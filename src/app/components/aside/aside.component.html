@@ -1,0 +1,58 @@
+<header>
+  <div class="asd-hd-top">
+    <div class="asd-name-in">KL</div>
+    <div class="asd-status-wrap">
+      <i class="material-icons">arrow_back</i>
+      <div class="asd-status">Super user</div>
+    </div>
+  </div>
+  <div class="asd-hd-bot">
+    <div class="asd-name">Kyle Ledbetter</div>
+    <div class="asd-email-wrap">
+      <div class="asd-email">kyle@kyleledbetter.com</div>
+      <i class="material-icons">arrow_drop_down</i>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="asd-mn-row" routerLink="/projects" routerLinkActive="asd-active">
+    <div class="asd-mn-name">
+      <i class="material-icons">folder</i>
+      <div class="text-wrap">
+        Projects
+      </div>
+    </div>
+    <div class="asd-mn-numb">4</div>
+  </div>
+  <div class="asd-mn-row" routerLink="/users" routerLinkActive="asd-active">
+    <div class="asd-mn-name">
+      <i class="material-icons">people</i>
+      <div class="text-wrap">
+        Users
+      </div>
+    </div>
+    <div class="asd-mn-numb">12</div>
+  </div>
+  <div class="asd-mn-row" routerLink="/settings" routerLinkActive="asd-active">
+    <div class="asd-mn-name">
+      <i class="material-icons">settings</i>
+      <div class="text-wrap">
+        Settings
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="asd-logout">
+    <i class="material-icons" (click)="logOut()">exit_to_app</i>
+    <div class="text-wrap" (click)="logOut()">
+      Log out
+    </div>
+  </div>
+  <div class="asd-terms">
+    <img src="../../../assets/img/logo.png" alt="">
+    <a href="#">Terms</a>
+  </div>
+</footer>
