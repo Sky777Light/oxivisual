@@ -1,5 +1,4 @@
 import { Injectable }     from '@angular/core';
-import {Response} from "@angular/http";
 import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, Resolve}  from '@angular/router';
 
 import {Observable} from "rxjs/Rx";

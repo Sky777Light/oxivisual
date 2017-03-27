@@ -33,8 +33,8 @@ export class UserService {
       if(res.status) {
         this.User = {};
       }
+      this.router.navigate(['/login']);
     }, (error) => {});
-    this.router.navigate(['/login']);
   }
   
   setUser(user: any): void {
