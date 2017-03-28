@@ -7,26 +7,26 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent{
 
-  private titleTemp: string;
+  @Input() header;
 
-  @Output() titleNameChange = new EventEmitter();
+  @Input() searchRes;
+  @Output() searchResChange = new EventEmitter();
+
+  @Input() sortType;
+  @Output() sortTypeChange = new EventEmitter();
 
   constructor(){
 
   }
 
-  @Input()
-  get titleName() {
-    return this.titleTemp;
+  changeSearchRes(val){
+    this.searchRes = val;
+    this.searchResChange.emit(this.searchRes);
   }
 
-  set titleName(val) {
-    this.titleTemp = val;
-    this.titleNameChange.emit(this.titleTemp);
-  }
-
-  change(){
-    this.titleName = 'hhhh';
+  changeSortType(val){
+    this.sortType = val;
+    this.sortTypeChange.emit(this.sortType);
   }
 
 }

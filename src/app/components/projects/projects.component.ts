@@ -7,7 +7,21 @@ import {Component} from '@angular/core';
 })
 export class ProjectsComponent {
 
-  public title: string = 'asfdsdfd';
+  private title: string = 'Projects';
+  private projects: any = [
+    {
+      title: 'first',
+      number: 1
+    },
+    {
+      title: 'second',
+      number: 2
+    },
+    {
+      title: 'third',
+      number: 3
+    }
+  ];
 
   constructor(){
     

@@ -7,6 +7,7 @@ import {AuthGuardService} from "./services/auth-guard.service";
 import {ProjectsComponent} from "./components/projects/projects.component";
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
+import {UsersComponent} from "./components/users/users.component";
 
 export const routes: Routes = [
     {
@@ -25,6 +26,10 @@ export const routes: Routes = [
             {
                 path: 'projects',
                 component: ProjectsComponent
+            },
+            {
+                path: 'users',
+                component: UsersComponent
             }
         ]
     },

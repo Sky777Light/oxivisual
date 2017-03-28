@@ -18,6 +18,9 @@ import {ProjectsComponent} from "./components/projects/projects.component";
 import {HomeComponent} from "./components/home/home.component";
 import { AsideComponent } from './components/aside/aside.component';
 import { HeaderComponent } from './components/header/header.component';
+import {UsersComponent} from "./components/users/users.component";
+import {SortPipe} from "./pipes/sort.pipe";
+import {NamePipe} from "./pipes/name.pipe";
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { HeaderComponent } from './components/header/header.component';
     ProjectsComponent,
     HomeComponent,
     AsideComponent,
-    HeaderComponent
+    HeaderComponent,
+    UsersComponent,
+    SortPipe,
+    NamePipe
   ],
   imports: [
     BrowserModule,

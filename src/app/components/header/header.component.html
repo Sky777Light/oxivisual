@@ -1,5 +1,13 @@
-<div class="header-wrap">
-  <div class="header-tag" (click)="change()">{{titleTemp}}</div>
-  <div class="header-search"></div>
-  <div class="header-sort"></div>
+<div class="header-wrap col-md-12">
+  <div class="header-tag">{{header.title}}<span>{{'( ' + header.length + ' )'}}</span></div>
+  <div class="header-search">
+    <input type="text" placeholder="Search" (input)="changeSearchRes($event.target.value)">
+  </div>
+  <div class="header-sort">
+    <span>Sorted by:</span>
+    <div class="sort-select">
+      <div class="sort-select-item" (click)="changeSortType('A-Z')">A-Z<i class="material-icons">arrow_drop_down</i></div>
+      <div class="sort-select-item" (click)="changeSortType('Z-A')">Z-A</div>
+    </div>
+  </div>
 </div>

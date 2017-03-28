@@ -1,0 +1,36 @@
+<app-header [header]="header" [(searchRes)]="searchName" [(sortType)]="sortType" class="row"></app-header>
+<main class="row">
+  <div class="user-list col-md-4">
+    <div class="user-list-item" [class.deactive]="!user.active" [class.new-user]="user.newUser" *ngFor="let user of users| sortfilter: sortType | namefilter: searchName">
+      <img src="../../../assets/img/1.jpg" alt="">
+      <div class="user-name-wrap">
+        <div class="user-name">
+          <span>{{user.firstName}} {{user.secondName}}</span>
+          <i class="material-icons" [class.hidden]="user.active">visibility_off</i>
+          <span class="new-title" [class.hidden]="!user.newUser">New</span>
+        </div>
+        <span class="user-status">sadfsfd</span>
+      </div>
+      <div class="user-ctrl">
+        <i class="material-icons">edit</i>
+        <div class="user-edit-wrap" [class.user-edit-active]="settingsUser === user">
+          <i class="material-icons" (click)="settingsUser = user" (window:mouseup)="settingsUser = null">more_vert</i>
+          <div class="user-edit-block" [hidden]="settingsUser !== user">
+            <div class="user-warn-set" [class.hidden]="!user.active" (click)="deactivateUser(user)">
+              <i class="material-icons">visibility_off</i><span>Deactivate</span>
+            </div>
+            <div class="user-warn-set" [class.hidden]="user.active" (click)="deactivateUser(user)">
+              <i class="material-icons">visibility</i><span>Activate</span>
+            </div>
+            <div class="user-warn-set">
+              <i class="material-icons">delete</i><span>Delete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user-profile col-md-8">
+
+  </div>
+</main>
