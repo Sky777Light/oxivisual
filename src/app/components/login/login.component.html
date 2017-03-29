@@ -14,12 +14,12 @@
     </div>
   </div>
   <div class="log-in">
-    <div class="chkbx-wrap">
+    <div class="chkbx-wrap pointer">
       <div id="remember-int" (click)="remember = !remember">
         <i class="material-icons" [class.hidden]="!remember">done</i>
       </div>
       <label for="remember-int">Remember password</label>
     </div>
-    <button (click)="logIn()">ACCEPT</button>
+    <button class="pointer" (click)="logIn()">ACCEPT</button>
   </div>
 </form>

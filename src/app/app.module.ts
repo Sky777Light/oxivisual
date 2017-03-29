@@ -19,8 +19,11 @@ import {HomeComponent} from "./components/home/home.component";
 import { AsideComponent } from './components/aside/aside.component';
 import { HeaderComponent } from './components/header/header.component';
 import {UsersComponent} from "./components/users/users.component";
+import { UserCardComponent } from './components/user-card/user-card.component';
+
 import {SortPipe} from "./pipes/sort.pipe";
 import {NamePipe} from "./pipes/name.pipe";
+import {SlimScroll} from './directives/slimscroll.directive';
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import {NamePipe} from "./pipes/name.pipe";
     HeaderComponent,
     UsersComponent,
     SortPipe,
-    NamePipe
+    NamePipe,
+    UserCardComponent,
+    SlimScroll
   ],
   imports: [
     BrowserModule,

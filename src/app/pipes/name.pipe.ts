@@ -11,19 +11,22 @@ export class NamePipe implements PipeTransform {
 
     constructor( ){  }
 
-    transform(items: any[], args: any): any {
+    transform(items: any[], name: string, moreParams:any ): any {
 
-        if(!args)
+        if(!name){
+            moreParams.arrLength = items.length;
             return items;
+        }
+
 
         if(items){
            this.filteredList = items.filter(item => {
                if(item.firstName)
-                   return ((item.firstName.toUpperCase().indexOf(args.toUpperCase(), 0) > -1) || (item.secondName.toUpperCase().indexOf(args.toUpperCase(), 0) > -1));
+                   return ((item.firstName.toUpperCase().indexOf(name.toUpperCase(), 0) > -1) || (item.secondName.toUpperCase().indexOf(name.toUpperCase(), 0) > -1));
 
-               return (item.title.toUpperCase().indexOf(args.toUpperCase(), 0) > -1);
+               return (item.title.toUpperCase().indexOf(name.toUpperCase(), 0) > -1);
             });
-
+            moreParams.arrLength = this.filteredList.length;
             return this.filteredList;
         }
 

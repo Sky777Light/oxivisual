@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {StorageService} from "./storage.service";
 import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
-import {UserLog} from "../interfaces/user.interface";
+import {UserLog} from "../interfaces/user-log.interface";
 
 @Injectable()
 export class UserService {

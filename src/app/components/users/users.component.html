@@ -1,36 +1,42 @@
 <app-header [header]="header" [(searchRes)]="searchName" [(sortType)]="sortType" class="row"></app-header>
 <main class="row">
-  <div class="user-list col-md-4">
-    <div class="user-list-item" [class.deactive]="!user.active" [class.new-user]="user.newUser" *ngFor="let user of users| sortfilter: sortType | namefilter: searchName">
-      <img src="../../../assets/img/1.jpg" alt="">
-      <div class="user-name-wrap">
-        <div class="user-name">
-          <span>{{user.firstName}} {{user.secondName}}</span>
-          <i class="material-icons" [class.hidden]="user.active">visibility_off</i>
-          <span class="new-title" [class.hidden]="!user.newUser">New</span>
-        </div>
-        <span class="user-status">sadfsfd</span>
-      </div>
-      <div class="user-ctrl">
-        <i class="material-icons">edit</i>
-        <div class="user-edit-wrap" [class.user-edit-active]="settingsUser === user">
-          <i class="material-icons" (click)="settingsUser = user" (window:mouseup)="settingsUser = null">more_vert</i>
-          <div class="user-edit-block" [hidden]="settingsUser !== user">
-            <div class="user-warn-set" [class.hidden]="!user.active" (click)="deactivateUser(user)">
-              <i class="material-icons">visibility_off</i><span>Deactivate</span>
+  <div class="user-list-wrap col-md-4">
+    <div class="user-list">
+      <div class="slimscroll-wrap" slimScroll  width="100%" alwaysVisible=true distance="0px" height="100%" size="2px" color="#8b8d91" opacity=1 railVisible=true railColor="#b2b3b7" railOpacity=0.5>
+        <div class="user-list-item" [class.deactive]="!user.active" [class.selected-user]="selectedUser === user" *ngFor="let user of users| sortfilter: sortType | namefilter: searchName : header">
+          <img class="pointer" src="../../../assets/img/1.jpg" alt="" (click)="selectUser(user, false)">
+          <div class="user-name-wrap">
+            <div class="user-name pointer" (click)="selectUser(user, false)">
+              <span>{{user.firstName}} {{user.secondName}}</span>
+              <i class="material-icons" [class.hidden]="user.active">visibility_off</i>
+              <span class="new-title" [class.hidden]="!user.newUser">New</span>
             </div>
-            <div class="user-warn-set" [class.hidden]="user.active" (click)="deactivateUser(user)">
-              <i class="material-icons">visibility</i><span>Activate</span>
-            </div>
-            <div class="user-warn-set">
-              <i class="material-icons">delete</i><span>Delete</span>
+            <br>
+            <span class="user-status pointer" (click)="selectUser(user, false)">{{user.status}}</span>
+          </div>
+          <div class="user-ctrl">
+            <i class="material-icons" (click)="selectUser(user, true)">edit</i>
+            <div class="user-edit-wrap" [class.user-edit-active]="settingsUser === user">
+              <i class="material-icons" (click)="settingsUser = user" (window:mouseup)="settingsUser = null">more_vert</i>
+              <div class="user-edit-block" [hidden]="settingsUser !== user">
+                <div class="user-warn-set pointer" [class.hidden]="!user.active" (click)="deactivateUser(user)">
+                  <i class="material-icons">visibility_off</i><span>Deactivate</span>
+                </div>
+                <div class="user-warn-set pointer" [class.hidden]="user.active" (click)="deactivateUser(user)">
+                  <i class="material-icons">visibility</i><span>Activate</span>
+                </div>
+                <div class="user-warn-set pointer" (click)="deleteUser(user)">
+                  <i class="material-icons">delete</i><span>Delete</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="user-profile col-md-8">
-
+  <div class="user-card-wrap col-md-8">
+    <app-user-card [user]="selectedUser" [edited]="canEdit" [hidden]="!selectedUser"></app-user-card>
+    <span class="no-user" [hidden]="selectedUser">No user selected</span>
   </div>
 </main>

@@ -3,7 +3,10 @@ export interface User{
     firstName: string,
     secondName: string,
     avatar: string,
-    status: number,
+    status: string,
+    created: string,
+    projects: any,
+    users: any,
     active: boolean,
     newUser?: boolean
 }

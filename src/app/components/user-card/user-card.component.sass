@@ -1,0 +1,126 @@
+@import "../../styles/values"
+
+app-user-card
+  height: 420px
+  width: 100%
+  .user-card, .user-card-foot
+    padding: 0 30px 0 27px
+    border-bottom: 2px solid $bottom-bor
+  .user-card
+    height: 340px
+    width: 100%
+    .user-card-head
+      width: 100%
+      height: 80px
+      position: relative
+      display: flex
+      justify-content: space-between
+      align-items: center
+      .user-card-hd-name
+        font-size: 24px
+        color: $tag-text
+      .user-card-hd-status
+        font-size: 14px
+        font-style: italic
+        color: $grey
+        margin-left: 10px
+      .user-card-hd-menu
+        height: 40px
+        width: 40px
+        position: relative
+        border-radius: 50%
+        display: flex
+        justify-content: center
+        align-items: center
+        .user-card-edit-block
+          position: absolute
+          right: 0
+          top: 50px
+          width: 200px
+          height: 215px
+          background-color: $white
+          box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16)
+          border-radius: 2px
+          padding: 10px 20px
+          display: flex
+          flex-direction: column
+          justify-content: space-around
+          .user-card-edit-item
+            display: flex
+            align-items: center
+            position: relative
+            i
+              font-size: 20px
+              margin-right: 19px
+            .user-card-edit-num
+              position: absolute
+              right: 0
+              top: 50%
+              transform: translateY(-50%)
+              color: $grey
+      .user-card-hd-menu-active
+        background-color: $bottom-bor
+      .user-card-created-date
+        position: absolute
+        line-height: 0.7
+        bottom: 0px
+        font-size: 14px
+        color: $grey
+    .user-card-body
+      width: 100%
+      height: 260px
+      padding-top: 35px
+      display: flex
+      .user-card-body-photo
+        width: 120px
+        height: 100%
+        img
+          max-height: 120px
+          max-width: 120px
+        .no-img
+          width: 120px
+          height: 120px
+          border-radius: 50%
+          background-color: $bottom-bor
+          display: flex
+          justify-content: center
+          align-items: center
+          i
+            font-size: 38px
+            color: $deactive
+            cursor: inherit
+        .photo-ctrl
+          width: 100%
+          margin-top: 20px
+          .photo-rm
+            margin-left: 14px
+      #user-form
+        width: 320px
+        margin-left: 60px
+        input
+          margin-bottom: 30px
+          width: 100%
+          height: 33px
+          border-bottom: 1px solid $reset
+          font-size: 16px
+          color: $reset
+
+
+  .user-card-foot
+    height: 80px
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .user-ft-l
+      margin-right: 15px
+    .user-ft-r
+      margin-left: 15px
+    button
+      text-transform: uppercase
+      font-size: 16px
+      color: $reset
+      font-weight: 500
+      text-align: center
+      &:hover
+        color: $btn-color
