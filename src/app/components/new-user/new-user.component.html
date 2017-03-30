@@ -1,0 +1,64 @@
+<div class="block-bg" (click)="cancel()"></div>
+
+<div class="new-user-form">
+  <span class="tag-text">Creating a new user:</span>
+  <div class="main-info">
+    <div class="user-photo">
+      <label class="photo" [ngStyle]="{'background-image': 'url(' + tempNewUser.avatar + ')'}">
+        <input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)">
+        <i class="material-icons" [hidden]="tempNewUser.avatar">crop_original</i>
+      </label>
+      <div class="photo-ctrl" [hidden]="!tempNewUser.avatar">
+        <label>Upload<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
+        <span (click)="removePhoto()">Remove</span>
+      </div>
+      <div class="photo-ctrl" [hidden]="tempNewUser.avatar">
+        <label>Upload image<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
+      </div>
+      <span class="photo-info">300*300 px</span>
+    </div>
+    <form class="user-form">
+      <div class="input-wrap">
+        <input type="email" [class.input-fill]="tempNewUser.email" placeholder="Email" [(ngModel)]="tempNewUser.email" [ngModelOptions]="{standalone: true}"  (focus)="resol.email = true">
+        <label [class.full-op]="!resol.email">This input requires a value!</label>
+      </div>
+      <div class="input-wrap">
+        <input type="text" [class.input-fill]="tempNewUser.firstName"  placeholder="First name" [(ngModel)]="tempNewUser.firstName" [ngModelOptions]="{standalone: true}"  (focus)="resol.firstName = true">
+        <label [class.full-op]="!resol.firstName">This input requires a value!</label>
+      </div>
+      <div class="input-wrap">
+        <input type="text" [class.input-fill]="tempNewUser.secondName"  placeholder="Last name" [(ngModel)]="tempNewUser.secondName" [ngModelOptions]="{standalone: true}" (focus)="resol.secondName = true">
+        <label [class.full-op]="!resol.secondName">This input requires a value!</label>
+      </div>
+      <div class="input-wrap">
+        <input type="password" [class.input-fill]="tempNewUser.password" placeholder="Password" [(ngModel)]="tempNewUser.password" [ngModelOptions]="{standalone: true}" (focus)="resol.pass = true">
+        <label [class.full-op]="!resol.pass">This input requires a value!</label>
+      </div>
+      <div class="input-wrap">
+        <input type="password" [class.input-fill]="tempNewUser.passwordRepeat" placeholder="Repeat password" [(ngModel)]="tempNewUser.passwordRepeat" [ngModelOptions]="{standalone: true}" (focus)="resol.passRep = true">
+        <label [class.full-op]="!resol.passRep">This input requires a value!</label>
+      </div>
+    </form>
+  </div>
+  <div class="user-status">
+    <div class="user-status-item">
+      <i class="material-icons selected-status" [hidden]="tempNewUser.status !== 'superuser'">radio_button_checked</i>
+      <i class="material-icons" [hidden]="tempNewUser.status === 'superuser'" (click)="tempNewUser.status = 'superuser'">radio_button_unchecked</i>
+      <span>Superuser</span>
+    </div>
+    <div class="user-status-item">
+      <i class="material-icons selected-status" [hidden]="tempNewUser.status !== 'client-admin'">radio_button_checked</i>
+      <i class="material-icons" [hidden]="tempNewUser.status === 'client-admin'" (click)="tempNewUser.status = 'client-admin'">radio_button_unchecked</i>
+      <span>Client-admin</span>
+    </div>
+    <div class="user-status-item">
+      <i class="material-icons selected-status" [hidden]="tempNewUser.status !== 'client-user'">radio_button_checked</i>
+      <i class="material-icons" [hidden]="tempNewUser.status === 'client-user'" (click)="tempNewUser.status = 'client-user'">radio_button_unchecked</i>
+      <span>Client-user</span>
+    </div>
+  </div>
+  <div class="new-user-btns">
+    <span class="text-btn" (click)="cancel()">cancel</span>
+    <span class="right-btn text-btn" (click)="accept()">accept</span>
+  </div>
+</div>

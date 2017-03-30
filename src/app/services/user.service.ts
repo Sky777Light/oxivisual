@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {StorageService} from "./storage.service";
 import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
-import {UserLog} from "../interfaces/user-log.interface";
 
 @Injectable()
 export class UserService {
@@ -15,7 +14,7 @@ export class UserService {
       private router: Router
   ) {}
 
-  logIn(remember: boolean, user: UserLog): void {
+  logIn(remember: boolean, user: any): void {
     this.authService.post('/auth/login', user).subscribe((response: any) => {
       let res = JSON.parse(response._body);
       if(res.status) {
@@ -45,5 +44,4 @@ export class UserService {
     return Object.assign({}, this.User);
   }
   
-
 }

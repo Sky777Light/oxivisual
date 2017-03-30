@@ -17,8 +17,11 @@ app-login
     img
       width: 100%
       height: 100%
-  #login-form
-    @extend .pos-center
+  .login-form
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
     width: 380px
     height: 280px
     padding: 30px
@@ -30,33 +33,14 @@ app-login
     .login-text
       font-size: 24px
       color: $tag-text
-    input, button
-      font-size: 16px
-    .login-inputs
-      margin: 25px 0 35px
-      .input-wrap
-        position: relative
-        input
-          width: 320px
-          height: 40px
-          margin-bottom: 15px
-          font-family: Roboto-Light
-          border-bottom: 1px dashed $input-color
-          transition: border-bottom .5s
-          &:focus
-            border-bottom: 1px solid $primary
-        label
-          position: absolute
-          font-size: 12px
-          bottom: -2px
-          color: $error
-          opacity: 0
-          transition: opacity .5s
-        .input-error
-          border-bottom: 1px solid $error
     .log-in
+      margin-top: 45px
+      display: flex
+      align-items: center
+      justify-content: space-between
       .chkbx-wrap
-        display: inline-block
+        display: flex
+        align-items: center
         #remember-int
           position: relative
           float: left
@@ -69,10 +53,3 @@ app-login
         label[for=remember-int]
           margin-left: 10px
           font-size: 15px
-      button
-        float: right
-        color: $reset
-        font-weight: 500
-        text-align: center
-        &:hover
-          color: $btn-color

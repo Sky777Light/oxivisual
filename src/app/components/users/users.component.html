@@ -8,8 +8,8 @@
           <div class="user-name-wrap">
             <div class="user-name pointer" (click)="selectUser(user, false)">
               <span>{{user.firstName}} {{user.secondName}}</span>
-              <i class="material-icons" [class.hidden]="user.active">visibility_off</i>
-              <span class="new-title" [class.hidden]="!user.newUser">New</span>
+              <i class="material-icons" [hidden]="user.active">visibility_off</i>
+              <span class="new-title" [hidden]="!user.newUser">New</span>
             </div>
             <br>
             <span class="user-status pointer" (click)="selectUser(user, false)">{{user.status}}</span>
@@ -18,15 +18,18 @@
             <i class="material-icons" (click)="selectUser(user, true)">edit</i>
             <div class="user-edit-wrap" [class.user-edit-active]="settingsUser === user">
               <i class="material-icons" (click)="settingsUser = user" (window:mouseup)="settingsUser = null">more_vert</i>
-              <div class="user-edit-block" [hidden]="settingsUser !== user">
-                <div class="user-warn-set pointer" [class.hidden]="!user.active" (click)="deactivateUser(user)">
-                  <i class="material-icons">visibility_off</i><span>Deactivate</span>
+              <div class="user-pop-up" [hidden]="settingsUser !== user">
+                <div class="user-pop-up-item" [hidden]="!user.active" (click)="deactivateUser(user)">
+                  <i class="material-icons">visibility_off</i>
+                  <span>Deactivate</span>
                 </div>
-                <div class="user-warn-set pointer" [class.hidden]="user.active" (click)="deactivateUser(user)">
-                  <i class="material-icons">visibility</i><span>Activate</span>
+                <div class="user-pop-up-item" [hidden]="user.active" (click)="deactivateUser(user)">
+                  <i class="material-icons">visibility</i>
+                  <span>Activate</span>
                 </div>
-                <div class="user-warn-set pointer" (click)="deleteUser(user)">
-                  <i class="material-icons">delete</i><span>Delete</span>
+                <div class="user-pop-up-item" (click)="deleteUser(user)">
+                  <i class="material-icons">delete</i>
+                  <span>Delete</span>
                 </div>
               </div>
             </div>
@@ -34,9 +37,18 @@
         </div>
       </div>
     </div>
+
+    <div class="add-btn" (click)="createNewUser = true" [hidden]="createNewUser">
+      <i class="material-icons">add</i>
+      <div class="span-hover">
+        <span>Add a new user</span>
+      </div>
+    </div>
+
   </div>
   <div class="user-card-wrap col-md-8">
-    <app-user-card [user]="selectedUser" [edited]="canEdit" [hidden]="!selectedUser"></app-user-card>
+    <app-user-card [user]="selectedUser" [canEdit]="canEdit" [hidden]="!selectedUser"></app-user-card>
     <span class="no-user" [hidden]="selectedUser">No user selected</span>
   </div>
 </main>
+<app-new-user *ngIf="createNewUser" ></app-new-user>

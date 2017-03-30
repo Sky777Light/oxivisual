@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "app/styles/values"
 @import "app/styles/fonts"
+@import "app/styles/elements"
 
 html,
 body
@@ -14,7 +15,7 @@ body
   color: $primary-text
   font-size: 15px
 
-input, button
+input
   margin: 0
   padding: 0
   border: none
@@ -23,6 +24,7 @@ input, button
     outline: none
 label
   font-weight: initial
+  margin: 0
 
 i
   cursor: pointer
@@ -33,7 +35,7 @@ i
 .row
   margin: 0
 
-.hidden
+[hidden]
   display: none!important
 
 
@@ -47,3 +49,4 @@ i
 @import "app/components/projects/projects.component"
 @import "app/components/users/users.component"
 @import "app/components/user-card/user-card.component"
+@import "app/components/new-user/new-user.component"

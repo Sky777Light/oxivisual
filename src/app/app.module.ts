@@ -20,10 +20,12 @@ import { AsideComponent } from './components/aside/aside.component';
 import { HeaderComponent } from './components/header/header.component';
 import {UsersComponent} from "./components/users/users.component";
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { NewUserComponent } from './components/new-user/new-user.component';
 
 import {SortPipe} from "./pipes/sort.pipe";
 import {NamePipe} from "./pipes/name.pipe";
 import {SlimScroll} from './directives/slimscroll.directive';
+import {ShareService} from "./services/share.service";
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import {SlimScroll} from './directives/slimscroll.directive';
     SortPipe,
     NamePipe,
     UserCardComponent,
-    SlimScroll
+    SlimScroll,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import {SlimScroll} from './directives/slimscroll.directive';
     StorageService,
     AuthGuardService,
     LoggedGuardService,
-    UserService
+    UserService,
+    ShareService
   ],
   bootstrap: [AppComponent]
 })

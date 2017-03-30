@@ -8,5 +8,7 @@ export interface User{
     projects: any,
     users: any,
     active: boolean,
+    password?: string,
+    passwordRepeat?: string,
     newUser?: boolean
 }

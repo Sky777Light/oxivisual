@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {UserLog} from "../../interfaces/user-log.interface";
+import {Resol} from "../../interfaces/resol.interface";
 
 @Component({
   selector: 'app-login',
@@ -10,11 +10,16 @@ import {UserLog} from "../../interfaces/user-log.interface";
 export class LoginComponent {
 
   private remember: boolean = false;
-  private user: UserLog = {
+  private resol: Resol = {
+    firstName: false,
+    secondName: false,
+    email: true,
+    pass: true,
+    passRep: false
+  };
+  private user: any = {
     username: '',
-    password: '',
-    nameResol: true,
-    passResol: true
+    password: ''
   };
 
   
@@ -23,9 +28,9 @@ export class LoginComponent {
   ) { }
 
   checkResol(){
-    this.user.nameResol = this.user.username ? true : false;
-    this.user.passResol = this.user.password ? true : false;
-    return this.user.nameResol && this.user.passResol;
+    this.resol.email = this.user.username ? true : false;
+    this.resol.pass = this.user.password ? true : false;
+    return this.resol.email && this.resol.pass;
   }
   
   logIn(){

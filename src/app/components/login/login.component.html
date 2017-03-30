@@ -1,25 +1,25 @@
 <div class="login-logo">
   <img src="../../../assets/img/logo.png" alt="">
 </div>
-<form id="login-form">
+<div class="login-form">
   <label class="login-text">Log in:</label>
-  <div class="login-inputs">
+  <form class="user-form">
     <div class="input-wrap">
-      <input id="login-name" [class.input-error]="!user.nameResol" type="text" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="user.nameResol = true">
-      <label for="login-name" [class.full-op]="!user.nameResol">This input requires a value!</label>
+      <input id="login-name" [class.input-fill]="user.username" [class.input-error]="!resol.email" type="text" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true">
+      <label for="login-name" [class.full-op]="!resol.email">This input requires a value!</label>
     </div>
     <div class="input-wrap">
-      <input id="login-pass" [class.input-error]="!user.passResol" type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" maxlength="5" placeholder="Password" (focus)="user.passResol = true">
-      <label for="login-pass" [class.full-op]="!user.passResol">This input requires a value!</label>
+      <input id="login-pass" [class.input-fill]="user.password" [class.input-error]="!resol.pass" type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" maxlength="5" placeholder="Password" (focus)="resol.pass = true">
+      <label for="login-pass" [class.full-op]="!resol.pass">This input requires a value!</label>
     </div>
-  </div>
+  </form>
   <div class="log-in">
     <div class="chkbx-wrap pointer">
       <div id="remember-int" (click)="remember = !remember">
-        <i class="material-icons" [class.hidden]="!remember">done</i>
+        <i class="material-icons" [hidden]="!remember">done</i>
       </div>
       <label for="remember-int">Remember password</label>
     </div>
-    <button class="pointer" (click)="logIn()">ACCEPT</button>
+    <span class="text-btn" (click)="logIn()">ACCEPT</span>
   </div>
-</form>
+</div>
