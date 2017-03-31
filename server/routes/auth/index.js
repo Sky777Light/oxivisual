@@ -96,7 +96,7 @@ router.post("/superuser", function (req, res) {
             throw err;
         }
 
-        User.find({_id: { $ne: user._id }}, function (err, users) {
+        User.find({email: { $ne: user.email }}, function (err, users) {
             user.users = users;
             user.token = "JWT " + jwt.encode({_id: user._id, email: user.email}, config.security.secret);
 
