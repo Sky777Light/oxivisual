@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {Resol} from "../../interfaces/resol.interface";
+import {User} from "../../interfaces/user.interface";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,32 +13,46 @@ export class LoginComponent {
 
   private remember: boolean = false;
   private resol: Resol = {
-    firstName: false,
-    secondName: false,
     email: true,
-    pass: true,
-    passRep: false
+    password: true
   };
-  private user: any = {
-    username: '',
+  private user: User = {
+    email: '',
     password: ''
   };
 
+  private logData: any = {
+    email: 'superuser',
+    password: 'superpass',
+    firstName: 'Superuser',
+    secondName: 'Superuser',
+    avatar: ''
+  };
   
   constructor(
-      private userService: UserService
+      private userService: UserService,
+      private authService: AuthService
   ) { }
-
-  checkResol(){
-    this.resol.email = this.user.username ? true : false;
-    this.resol.pass = this.user.password ? true : false;
-    return this.resol.email && this.resol.pass;
-  }
   
   logIn(){
-    if(!this.checkResol()) return false;
+    if(!this.userService.resolUser(this.resol, this.user)) return false;
+
+    if((this.user.email === this.logData.email) && (this.user.password === this.logData.password)){
+      this.createSuper();
+      return;
+    }
 
     this.userService.logIn(this.remember, this.user);
   }
-  
+
+
+  createSuper(){
+    this.authService.post('/auth/superuser', this.logData).subscribe((response: any) => {
+      let res = JSON.parse(response._body);
+      if(res.status) {
+        this.userService.logIn(this.remember, { email: this.logData.email, password: this.logData.password });
+      }
+    }, (error) => {});
+  }
+
 }

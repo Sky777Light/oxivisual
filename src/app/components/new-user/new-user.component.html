@@ -19,24 +19,24 @@
     </div>
     <form class="user-form">
       <div class="input-wrap">
-        <input type="email" [class.input-fill]="tempNewUser.email" placeholder="Email" [(ngModel)]="tempNewUser.email" [ngModelOptions]="{standalone: true}"  (focus)="resol.email = true">
+        <input type="email" [class.input-fill]="tempNewUser.email" [class.input-error]="!resol.email" placeholder="Email" [(ngModel)]="tempNewUser.email" [ngModelOptions]="{standalone: true}"  (focus)="resol.email = true">
         <label [class.full-op]="!resol.email">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempNewUser.firstName"  placeholder="First name" [(ngModel)]="tempNewUser.firstName" [ngModelOptions]="{standalone: true}"  (focus)="resol.firstName = true">
+        <input type="text" [class.input-fill]="tempNewUser.firstName" [class.input-error]="!resol.firstName"  placeholder="First name" [(ngModel)]="tempNewUser.firstName" [ngModelOptions]="{standalone: true}"  (focus)="resol.firstName = true">
         <label [class.full-op]="!resol.firstName">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempNewUser.secondName"  placeholder="Last name" [(ngModel)]="tempNewUser.secondName" [ngModelOptions]="{standalone: true}" (focus)="resol.secondName = true">
+        <input type="text" [class.input-fill]="tempNewUser.secondName" [class.input-error]="!resol.secondName"  placeholder="Last name" [(ngModel)]="tempNewUser.secondName" [ngModelOptions]="{standalone: true}" (focus)="resol.secondName = true">
         <label [class.full-op]="!resol.secondName">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="password" [class.input-fill]="tempNewUser.password" placeholder="Password" [(ngModel)]="tempNewUser.password" [ngModelOptions]="{standalone: true}" (focus)="resol.pass = true">
-        <label [class.full-op]="!resol.pass">This input requires a value!</label>
+        <input type="password" [class.input-fill]="tempNewUser.password" [class.input-error]="!resol.password" placeholder="Password" [(ngModel)]="tempNewUser.password" [ngModelOptions]="{standalone: true}" (focus)="resol.password = true">
+        <label [class.full-op]="!resol.password">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="password" [class.input-fill]="tempNewUser.passwordRepeat" placeholder="Repeat password" [(ngModel)]="tempNewUser.passwordRepeat" [ngModelOptions]="{standalone: true}" (focus)="resol.passRep = true">
-        <label [class.full-op]="!resol.passRep">This input requires a value!</label>
+        <input type="password" [class.input-fill]="tempNewUser.passwordRepeat" [class.input-error]="!resol.passwordRepeat" placeholder="Repeat password" [(ngModel)]="tempNewUser.passwordRepeat" [ngModelOptions]="{standalone: true}" (focus)="resol.passwordRepeat = true">
+        <label [class.full-op]="!resol.passwordRepeat">This input requires a value!</label>
       </div>
     </form>
   </div>

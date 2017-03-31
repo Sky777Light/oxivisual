@@ -12,7 +12,7 @@ import {UsersComponent} from "./components/users/users.component";
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/projects',
+        redirectTo: '/users',
         pathMatch: 'full'
     },
     {

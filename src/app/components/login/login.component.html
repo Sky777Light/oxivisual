@@ -5,12 +5,12 @@
   <label class="login-text">Log in:</label>
   <form class="user-form">
     <div class="input-wrap">
-      <input id="login-name" [class.input-fill]="user.username" [class.input-error]="!resol.email" type="text" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true">
+      <input id="login-name" [class.input-fill]="user.email" [class.input-error]="!resol.email" type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true">
       <label for="login-name" [class.full-op]="!resol.email">This input requires a value!</label>
     </div>
     <div class="input-wrap">
-      <input id="login-pass" [class.input-fill]="user.password" [class.input-error]="!resol.pass" type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" maxlength="5" placeholder="Password" (focus)="resol.pass = true">
-      <label for="login-pass" [class.full-op]="!resol.pass">This input requires a value!</label>
+      <input id="login-pass" [class.input-fill]="user.password" [class.input-error]="!resol.password" type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" maxlength="15" placeholder="Password" (focus)="resol.password = true">
+      <label for="login-pass" [class.full-op]="!resol.password">This input requires a value!</label>
     </div>
   </form>
   <div class="log-in">

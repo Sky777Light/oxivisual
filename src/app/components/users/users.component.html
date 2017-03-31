@@ -1,9 +1,11 @@
 <app-header [header]="header" [(searchRes)]="searchName" [(sortType)]="sortType" class="row"></app-header>
 <main class="row">
+
   <div class="user-list-wrap col-md-4">
+
     <div class="user-list">
       <div class="slimscroll-wrap" slimScroll  width="100%" alwaysVisible=true distance="0px" height="100%" size="2px" color="#8b8d91" opacity=1 railVisible=true railColor="#b2b3b7" railOpacity=0.5>
-        <div class="user-list-item" [class.deactive]="!user.active" [class.selected-user]="selectedUser === user" *ngFor="let user of users| sortfilter: sortType | namefilter: searchName : header">
+        <div class="user-list-item" [class.deactive]="!user.active" [class.selected-user]="selectedUser === user" *ngFor="let user of User.users | sortfilter: sortType | namefilter: searchName : header">
           <img class="pointer" src="../../../assets/img/1.jpg" alt="" (click)="selectUser(user, false)">
           <div class="user-name-wrap">
             <div class="user-name pointer" (click)="selectUser(user, false)">
@@ -46,9 +48,12 @@
     </div>
 
   </div>
+
   <div class="user-card-wrap col-md-8">
     <app-user-card [user]="selectedUser" [canEdit]="canEdit" [hidden]="!selectedUser"></app-user-card>
     <span class="no-user" [hidden]="selectedUser">No user selected</span>
   </div>
+
 </main>
+
 <app-new-user *ngIf="createNewUser" ></app-new-user>

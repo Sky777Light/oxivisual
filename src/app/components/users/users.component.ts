@@ -1,7 +1,11 @@
-import {Component, SimpleChange, SimpleChanges} from '@angular/core';
-import {User} from "../../interfaces/user";
+import {Component} from '@angular/core';
+import {User} from "../../interfaces/user.interface";
 import {Subscription} from "rxjs/Rx";
 import {ShareService} from "../../services/share.service";
+import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
+
+declare var alertify: any;
 
 @Component({
   selector: 'app-users',
@@ -9,7 +13,10 @@ import {ShareService} from "../../services/share.service";
   styleUrls: ['./users.component.sass']
 })
 export class UsersComponent {
-  //data work with header
+
+  private User: User;
+
+//data work with header
   private header: any = {
     title: 'Users',
     arrLength: 0
@@ -24,206 +31,34 @@ export class UsersComponent {
 //show user settings popup in list
   private settingsUser: User;
 
-//users list
-  private users: User[] = [
-    {
-      email: 'asd',
-      firstName: 'first',
-      secondName: 'first',
-      avatar: './assets/img/1.jpg',
-      status: 'client-admin',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'second',
-      secondName: 'second',
-      avatar: './assets/img/1.jpg',
-      status: 'super-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    },
-    {
-      email: 'asd',
-      firstName: 'third',
-      secondName: 'third',
-      avatar: './assets/img/1.jpg',
-      status: 'client-user',
-      created: '15.02.2017',
-      projects: [],
-      users: [],
-      active: true,
-      newUser: true
-    }
-  ];
-
 //create new user
   private createNewUser: boolean = false;
   private subNewUser:Subscription;
 
 
   constructor(
-      private shareService: ShareService
+      private shareService: ShareService,
+      private userService: UserService,
+      private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.subNewUser = this.shareService.shareListener
-        .subscribe((user: User) => {
-          console.log(123);
-          if(user){
-            this.createNewUser = false;
-          }
-        })
+    this.User = this.userService.getUser();
+
+    this.subNewUser = this.shareService.shareListener.subscribe((user: User) => {
+      if(user != undefined){
+        this.createNewUser = false;
+        if(user.newUser){
+          this.authService.post('/api/users/user', user).subscribe((res: any) => {
+            res = res.json();
+            if(res.status) {
+              this.User.users.push(res.res);
+            }
+            alertify.success(res.message);
+          }, (error) => {});
+        }
+      }
+    })
   }
   ngOnDestroy() {
     this.subNewUser.unsubscribe();
@@ -234,16 +69,27 @@ export class UsersComponent {
 //pop-up functions
 
   deactivateUser(user: any){
-    // not any ===> User
-    // send to db changed user
-    user.active = !user.active;
+    let temp = Object.assign({}, user);
+    temp.active = !temp.active;
+    this.authService.put('/api/users/user', temp).subscribe((res: any) => {
+      res = res.json();
+      if(res.status) {
+        user.active = !user.active;
+      }
+      alertify.success(res.message);
+    }, (error) => {});
   }
 
   deleteUser(user: any){
-    // not any ===> User
-    // send to db changed user
-    user.active = !user.active;
-  }
+    this.authService.delete('/api/users/user', user).subscribe((res: any) => {
+      res = res.json();
+      if(res.status) {
+        let idx = this.User.users.indexOf(user);
+        this.User.users.splice(idx, 1);
+      }
+      alertify.success(res.message);
+    }, (error) => {});
+  };
 
 // change user card
   selectUser(user: User, edit: boolean){

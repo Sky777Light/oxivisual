@@ -1,6 +1,8 @@
 import {Component, Input, SimpleChange} from '@angular/core';
-import {User} from "../../interfaces/user";
+import {User} from "../../interfaces/user.interface";
 import {Resol} from "../../interfaces/resol.interface";
+import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
 
 declare var alertify: any;
 
@@ -17,15 +19,23 @@ export class UserCardComponent {
   private resol: Resol = {
     firstName: true,
     secondName: true,
-    email: true,
-    pass: true,
-    passRep: false
+    email: true
   };
-  
+
+  private User: User;
   private tempUser: User;
+  
+  //popup menu
   private openMenu: boolean = false;
 
-  constructor() { }
+  constructor(
+      private userService: UserService,
+      private authService: AuthService
+  ) { }
+
+  ngOnInit(){
+    this.User = this.userService.getUser();
+  }
 
   ngOnChanges(changes: {[ propName: string]: SimpleChange}) {
     if(changes['user']){
@@ -50,26 +60,44 @@ export class UserCardComponent {
     this.tempUser.avatar = '';
   }
 
+//popup functions
+  deactivate(){
+    this.tempUser.active = !this.tempUser.active;
+    this.authService.put('/api/users/user', this.tempUser).subscribe((res: any) => {
+      res = res.json();
+      if(res.status) {
+        this.user.active = this.tempUser.active;
+      }
+      alertify.success(res.message);
+    }, (error) => {});
+  }
 
-//check inputs
-  checkResol(){
-    this.resol.email = this.tempUser.email ? true : false;
-    this.resol.firstName = this.tempUser.firstName ? true : false;
-    this.resol.secondName = this.tempUser.secondName ? true : false;
-    return this.resol.email && this.resol.firstName && this.resol.secondName;
+  delete(){
+    this.authService.delete('/api/users/user', this.user).subscribe((res: any) => {
+      res = res.json();
+      if(res.status) {
+        let idx = this.User.users.indexOf(this.user);
+        this.User.users.splice(idx, 1);
+      }
+      alertify.success(res.message);
+    }, (error) => {});
   }
 
 //change user
   changeUser(){
+    if(!this.userService.resolUser(this.resol, this.tempUser)) return false;
 
-    if(!this.checkResol()) return false;
-    // request to bd and on success do lines below
-    this.user.firstName = this.tempUser.firstName;
-    this.user.secondName = this.tempUser.secondName;
-    this.user.email = this.tempUser.email;
-    this.user.active = this.tempUser.active;
-    this.user.avatar = this.tempUser.avatar;
-    alertify.success("User has been changed");
+    this.authService.put('/api/users/user', this.tempUser).subscribe((res: any) => {
+      res = res.json();
+      if(res.status) {
+        this.user.firstName = this.tempUser.firstName;
+        this.user.secondName = this.tempUser.secondName;
+        this.user.email = this.tempUser.email;
+        this.user.active = this.tempUser.active;
+        this.user.avatar = this.tempUser.avatar;
+      }
+      alertify.success(res.message);
+    }, (error) => {});
 
   }
 

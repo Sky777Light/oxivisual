@@ -1,5 +1,8 @@
 const passport = require("passport");
 const router = require("express").Router();
+var jwt = require("jwt-simple");
+
+var config = require("../../config");
 
 const User = require("../../models/user");
 
@@ -19,7 +22,7 @@ router.post("/login", function (req, res, next) {
         if (!user) {
             return res.json({
                 status: false,
-                message: info.message
+                message: "Email or password is incorrect."
             });
         }
 
@@ -30,48 +33,13 @@ router.post("/login", function (req, res, next) {
 
             res.json({
                 status: true,
-                message: info.message,
+                message: "Login success.",
                 token: user.token
             });
         });
     })(req, res, next);
 });
 
-router.post("/signup", function (req, res) {
-    if (!req.body.username || !req.body.password) {
-        return res.json({
-            status: false,
-            message: "Empty fields."
-        });
-    }
-
-    User.findOne({ username: req.body.username }, function (err, user) {
-        if (err) {
-            throw err;
-        }
-
-        if (user) {
-            return res.json({
-                status: false,
-                message: "That username is already taken."
-            });
-        }
-
-        new User({
-            username: req.body.username,
-            password: req.body.password
-        }).save(function (err, user) {
-                if (err) {
-                    throw err;
-                }
-
-                res.json({
-                    status: true,
-                    message: "Signup success."
-                });
-            });
-    });
-});
 
 router.post("/logout", function (req, res) {
     if (!req.isAuthenticated()) {
@@ -90,6 +58,68 @@ router.post("/logout", function (req, res) {
             status: true,
             message: "Logout success."
         });
+    });
+});
+
+//create superuser
+router.post("/superuser", function (req, res) {
+    User.remove({ email: req.body.email }, function (err) {
+        if (err) {
+            throw err;
+        }
+    });
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) dd='0'+dd
+    if(mm<10) mm='0'+mm
+    today = dd+'.'+mm+'.'+yyyy;
+
+    var tempUser = {
+        email: req.body.email,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        secondName: req.body.secondName,
+        avatar: req.body.avatar || '',
+        status: 'superuser',
+        created: today,
+        active: true,
+        projects: [],
+        users: []
+    };
+
+    new User(tempUser).save(function (err, user) {
+        if (err) {
+            throw err;
+        }
+
+        User.find({}, function (err, users) {
+            user.users = users;
+
+            user.token = "JWT " + jwt.encode({_id: user._id, email: user.email}, config.security.secret);
+
+            user.save(function (err, user) {
+                if (err) {
+                    throw err;
+                }
+
+                req.login(user, function (err) {
+                    if (err) {
+                        throw err;
+                    }
+
+                    res.json({
+                        status: true,
+                        message: "Signup success.",
+                        res: user
+                    });
+                });
+            });
+        });
+
     });
 });
 

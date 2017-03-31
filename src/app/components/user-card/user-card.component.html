@@ -4,7 +4,7 @@
       <span class="user-card-hd-name">{{tempUser.firstName}} {{tempUser.secondName}}</span>
       <span class="user-card-hd-status">{{tempUser.status}}</span>
     </div>
-    <div class="user-card-hd-menu" [class.user-card-hd-menu-active]="openMenu">
+    <div class="user-card-hd-menu" [class.user-card-hd-menu-active]="openMenu" [hidden]="!canEdit">
       <i class="material-icons" (click)="openMenu = !openMenu" (window:mouseup)="openMenu = false">more_vert</i>
       <div class="user-pop-up" [class.hidden]="!openMenu">
         <div class="user-pop-up-item">
@@ -15,16 +15,16 @@
           <i class="material-icons">people</i><span>Users</span>
           <span class="user-pop-up-num">4</span>
         </div>
-        <div class="user-pop-up-item" [hidden]="!tempUser.active || !canEdit">
-          <i class="material-icons" (click)="tempUser.active = false">visibility_off</i><span (click)="tempUser.active = false">Deactivate</span>
+        <div class="user-pop-up-item" [hidden]="!tempUser.active || !canEdit" (click)="deactivate()">
+          <i class="material-icons" (click)="tempUser.active = false">visibility_off</i><span>Deactivate</span>
         </div>
-        <div class="user-pop-up-item" [hidden]="tempUser.active || !canEdit">
-          <i class="material-icons" (click)="tempUser.active = true">visibility</i><span (click)="tempUser.active = true">Activate</span>
+        <div class="user-pop-up-item" [hidden]="tempUser.active || !canEdit" (click)="deactivate()">
+          <i class="material-icons" (click)="tempUser.active = true">visibility</i><span>Activate</span>
         </div>
         <div class="user-pop-up-item" [hidden]="!canEdit">
           <i class="material-icons">lock</i><span>Change password</span>
         </div>
-        <div class="user-pop-up-item" [hidden]="!canEdit">
+        <div class="user-pop-up-item" [hidden]="!canEdit" (click)="delete()">
           <i class="material-icons">delete</i><span>Delete</span>
         </div>
       </div>
@@ -33,11 +33,11 @@
   </div>
   <div class="user-card-body">
     <div class="user-photo">
-      <label class="photo" [ngStyle]="{'background-image': 'url(' + tempUser.avatar + ')'}">
+      <label class="photo" [class.curs-dis]="!canEdit" [ngStyle]="{'background-image': 'url(' + tempUser.avatar + ')'}">
         <input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)">
         <i class="material-icons" [hidden]="tempUser.avatar">crop_original</i>
       </label>
-      <div class="photo-ctrl">
+      <div class="photo-ctrl" [hidden]="!canEdit">
         <label>Upload<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
         <span (click)="removePhoto()">Remove</span>
       </div>

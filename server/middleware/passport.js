@@ -20,11 +20,11 @@ module.exports = function (passport) {
     });
 
     passport.use(new LocalStrategy({
-        usernameField: "username",
+        usernameField: "email",
         passwordField: "password",
         passReqToCallback: true
-    }, function (req, username, password, done) {
-        User.findOne({ username: username }, function (err, user) {
+    }, function (req, email, password, done) {
+        User.findOne({ email: email }, function (err, user) {
             if (err) {
                 return done(err);
             }

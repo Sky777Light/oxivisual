@@ -9,5 +9,6 @@ router.all("/", function (req, res) {
 });
 
 router.use("/users", require("./users"));
+router.use("/projects", require("./projects"));
 
 module.exports = router;

@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {User} from "../../interfaces/user";
+import {User} from "../../interfaces/user.interface";
 import {ShareService} from "../../services/share.service";
 import {Resol} from "../../interfaces/resol.interface";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-new-user',
@@ -11,7 +12,7 @@ import {Resol} from "../../interfaces/resol.interface";
 export class NewUserComponent {
 
   private tempNewUser: User = {
-    email: 'asdasd',
+    email: '',
     firstName: '',
     secondName: '',
     avatar: '',
@@ -22,23 +23,25 @@ export class NewUserComponent {
     projects: [],
     users: [],
     active: true,
-    newUser: false
+    newUser: true
   };
 
   private resol: Resol = {
-  firstName: true,
-  secondName: true,
-  email: true,
-  pass: true,
-  passRep: true
-};
+    firstName: true,
+    secondName: true,
+    email: true,
+    password: true,
+    passwordRepeat: true,
+    status:true
+  };
 
   constructor(
-      private shareService: ShareService
+      private shareService: ShareService,
+      private userService: UserService
   ){ }
 
 
-  //photo change
+//photo change
   loadPhoto($event){
     let fr = new FileReader();
     try{
@@ -56,12 +59,30 @@ export class NewUserComponent {
   }
 
   //user save accept/cancel
-
   accept(){
+    if(!this.userService.resolUser(this.resol, this.tempNewUser)) return false;
+
+    //user's create date
+    let today = new Date();
+    let dd:any = today.getDate();
+    let mm:any = today.getMonth()+1; //January is 0!
+    let yyyy = today.getFullYear();
+
+    if(dd<10) {
+      dd='0'+dd
+    }
+
+    if(mm<10) {
+      mm='0'+mm
+    }
+    this.tempNewUser.created = dd+'.'+mm+'.'+yyyy;
+    this.tempNewUser.newUser = true;
+    
     this.shareService.changeShareSubject(this.tempNewUser);
   }
 
   cancel(){
+    this.tempNewUser.newUser = false;
     this.shareService.changeShareSubject(this.tempNewUser);
   }
   
