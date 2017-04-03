@@ -7,7 +7,7 @@
       <div class="slimscroll-wrap" slimScroll  width="100%" alwaysVisible=false distance="0px" height="100%" size="2px" color="#8b8d91" opacity=1 railColor="#b2b3b7" railOpacity=0>
         <div class="user-list-item" [class.deactive]="!user.active" [class.selected-user]="selectedUser === user" *ngFor="let user of User.users | sortfilter: sortType | namefilter: searchName : header">
           <div class="user-item-img-wrap">
-            <img class="pointer" src="../../../assets/img/1.jpg" alt="" (click)="selectUser(user, false)">
+            <img class="pointer" src="{{user.avatar}}" alt="" (click)="selectUser(user, false)">
           </div>
           <div class="user-name-wrap">
             <div class="user-name pointer" (click)="selectUser(user, false)">

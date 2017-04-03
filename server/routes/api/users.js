@@ -4,6 +4,40 @@ var fs = require("fs");
 
 const User = require("../../models/user");
 
+var saveImage = function (image, done) {
+    function decodeBase64Image(dataString){
+        var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+        var response = {};
+
+        if (matches.length !== 3)
+            return new Error('Invalid input string');
+
+        response.type = matches[1];
+        response.data = new Buffer(matches[2], 'base64');
+
+        return response;
+    }
+
+    var imageTypeRegularExpression = /\/(.*?)$/;
+
+    var crypto = require('crypto');
+    var seed = crypto.randomBytes(20);
+    var uniqueSHA1String = crypto.createHash('sha1').update(seed).digest('hex');
+
+    var imageBuffer = decodeBase64Image(image);
+    var userUploadedFeedMessagesLocation = './resources/img/users/';
+
+    var uniqueRandomImageName = 'image-' + uniqueSHA1String;
+    var imageTypeDetected = decodeBase64Image(image).type.match(imageTypeRegularExpression);
+    var userUploadedImagePath  = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
+    var clientSrc = 'resources/img/users/'+ uniqueRandomImageName + '.' + imageTypeDetected[1];
+
+    fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function(err){
+        console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
+        done(err, userUploadedFeedMessagesLocation);
+    });
+};
+
 router.get("/user", function (req, res) {
     async.waterfall([
         function (done) {
@@ -127,17 +161,36 @@ router.put("/user", function (req, res) {
         
         user.firstName = req.body.firstName || user.firstName;
         user.secondName = req.body.secondName || user.secondName;
-        user.avatar = req.body.avatar || user.avatar;
 
-        user.save(function (err, user) {
-            if (err) {
-                throw err;
-            }
-            res.json({
-                status: true,
-                message: "User successfully was changed."
+        if(req.body.avatar){
+            saveImage(req.body.avatar, function(err, img){
+                if (err) {
+                    throw err;
+                }
+                user.avatar = img;
+                user.save(function (err, user) {
+                    if (err) {
+                        throw err;
+                    }
+                    res.json({
+                        status: true,
+                        message: "User successfully was changed."
+                    })
+                });
             })
-        });
+        } else {
+            user.save(function (err, user) {
+                if (err) {
+                    throw err;
+                }
+                res.json({
+                    status: true,
+                    message: "User successfully was changed."
+                })
+            });
+        }
+
+
     });
 });
 
@@ -179,52 +232,37 @@ router.post("/user", function (req, res) {
                     active: true
                 });
 
-                function decodeBase64Image(dataString){
-                    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-                    var response = {};
-
-                    if (matches.length !== 3)
-                        return new Error('Invalid input string');
-
-                    response.type = matches[1];
-                    response.data = new Buffer(matches[2], 'base64');
-
-                    return response;
-                }
-
-                var imageTypeRegularExpression = /\/(.*?)$/;
-
-                var crypto = require('crypto');
-                var seed = crypto.randomBytes(20);
-                var uniqueSHA1String = crypto.createHash('sha1').update(seed).digest('hex');
-
-                var imageBuffer = decodeBase64Image(newUser.avatar);
-                var userUploadedFeedMessagesLocation = './resourses/img/users/';
-
-                var uniqueRandomImageName = 'image-' + uniqueSHA1String;
-                var imageTypeDetected = imageBuffer.type.match(imageTypeRegularExpression);
-
-                var userUploadedImagePath  = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
-
-                done(err, newUser, imageBuffer, userUploadedImagePath);
+                done(err, newUser);
             });
         },
-        function (user, imageBuffer,  userUploadedImagePath, done) {
-            fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function(err){
-                console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
-                done(err, user);
-            });
+        function (user, done) {
+
+            if(user.avatar){
+                saveImage(user.avatar, function(err, img){
+                    user.avatar = img;
+                    done(err, user);
+                })
+            } else {
+                done(null, user);
+            }
+
         }
     ],  function (err, user) {
         if (err) {
             throw err;
         }
 
-        return res.json({
-            status: true,
-            res: user,
-            message: "User was successfully created."
+        user.save(function (err, user) {
+            if (err) {
+                throw err;
+            }
+            res.json({
+                status: true,
+                res: user,
+                message: "User was successfully created."
+            })
         });
+
     });
 
 });
