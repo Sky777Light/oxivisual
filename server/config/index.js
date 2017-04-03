@@ -9,5 +9,9 @@ module.exports = {
     security: {
         secret: "t45g3w45r34tw5ye454uhdgdf",
         expiresIn: "24h"
+    },
+    superadmin: {
+        email: "superuser",
+        password: "superpass"
     }
 };

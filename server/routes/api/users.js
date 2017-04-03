@@ -1,37 +1,48 @@
 const router = require("express").Router();
+const async = require("async");
+var fs = require("fs");
 
 const User = require("../../models/user");
 
 router.get("/user", function (req, res) {
-    User.findOne({
-        _id: req.user._id
-    })
-    .populate({
-        path: "users"
-    })
-    .populate({
-        path: "projects"
-    })
-    .exec(function (err, user) {
+    async.waterfall([
+        function (done) {
+            User.findOne({ _id: req.user._id }, function (err, user) {
+                var tempUser = {
+                    _id: user._id,
+                    email: user.email,
+                    firstName: user.firstName,
+                    secondName: user.secondName,
+                    created: user.created,
+                    role: user.role,
+                    active: user.active,
+                    avatar: user.avatar
+                };
+
+                done(err, tempUser);
+            })
+        },
+        function (user, done) {
+            if(user.role === 'super'){
+                User.find({_id: { $ne: user._id }}, function (err, users) {
+                    user.users = users;
+                    done(err, user);
+                })
+            } else if( user.role === 'admin'){
+                User.find({parent: user._id}, function (err, users) {
+                    user.users = users;
+                    done(err, user);
+                })
+            }
+        }
+    ], function (err, user) {
         if (err) {
             throw err;
         }
-        var tempUser = {
-            _id: user._id,
-            email: user.email,
-            firstName: user.firstName,
-            secondName: user.secondName,
-            created: user.created,
-            projects: user.projects,
-            users: user.users,
-            status: user.status,
-            active: user.active,
-            avatar: user.avatar
-        };
 
         res.json({
             status: true,
-            res: tempUser
+            res: user
         });
     });
 
@@ -75,6 +86,22 @@ router.put("/user", function (req, res) {
             });
         }
 
+        //if user deactivated/activated
+        if(req.body.active !== user.active){
+            user.active = req.body.active;
+            user.save(function (err, user) {
+                if (err) {
+                    throw err;
+                }
+
+                res.json({
+                    status: true,
+                    message: user.active ? "User successfully was activated." : "User successfully was deactivated."
+                })
+            });
+            return;
+        }
+
         //if email changed
         if(req.body.email !== user.email){
             User.findOne({ email: req.body.email }, function (err, result) {
@@ -97,21 +124,6 @@ router.put("/user", function (req, res) {
                 });
             });
         }
-        //if user deactivated/activated
-        if(req.body.active !== user.active){
-            user.active = req.body.active;
-            user.save(function (err, user) {
-                if (err) {
-                    throw err;
-                }
-
-                res.json({
-                    status: true,
-                    message: user.active ? "User successfully was activated." : "User successfully was deactivated."
-                })
-            });
-            return;
-        }
         
         user.firstName = req.body.firstName || user.firstName;
         user.secondName = req.body.secondName || user.secondName;
@@ -131,80 +143,97 @@ router.put("/user", function (req, res) {
 
 //create user
 router.post("/user", function (req, res) {
+    if(req.user.role === 'user' || (req.user.role === 'admin' && req.body.role !== 'user')){
+        return res.json({
+            status: false,
+            message: 'Access denied'
+        });
+    }
 
-    if (!req.body.email || !req.body.password || !req.body.status || !req.body.firstName || !req.body.secondName) {
+    if (!req.body.email || !req.body.password || !req.body.role || !req.body.firstName || !req.body.secondName) {
         return res.json({
             status: false,
             message: "Empty fields."
         });
     }
-    
-    User.findOne({ email: req.body.email }, function (err, user) {
+
+    async.waterfall([
+        function (done) {
+            User.findOne({ email: req.body.email }, function (err, user) {
+                if (user) {
+                    return res.json({
+                        status: false,
+                        message: "That email is already taken."
+                    });
+                }
+
+                var newUser = new User({
+                    email: req.body.email,
+                    password: req.body.password,
+                    firstName: req.body.firstName,
+                    secondName: req.body.secondName,
+                    parent: req.user._id,
+                    avatar: req.body.avatar,
+                    role: req.body.role,
+                    created: req.body.created,
+                    active: true
+                });
+
+                function decodeBase64Image(dataString){
+                    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+                    var response = {};
+
+                    if (matches.length !== 3)
+                        return new Error('Invalid input string');
+
+                    response.type = matches[1];
+                    response.data = new Buffer(matches[2], 'base64');
+
+                    return response;
+                }
+
+                var imageTypeRegularExpression = /\/(.*?)$/;
+
+                var crypto = require('crypto');
+                var seed = crypto.randomBytes(20);
+                var uniqueSHA1String = crypto.createHash('sha1').update(seed).digest('hex');
+
+                var imageBuffer = decodeBase64Image(newUser.avatar);
+                var userUploadedFeedMessagesLocation = './resourses/img/users/';
+
+                var uniqueRandomImageName = 'image-' + uniqueSHA1String;
+                var imageTypeDetected = imageBuffer.type.match(imageTypeRegularExpression);
+
+                var userUploadedImagePath  = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
+
+                done(err, newUser, imageBuffer, userUploadedImagePath);
+            });
+        },
+        function (user, imageBuffer,  userUploadedImagePath, done) {
+            fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function(err){
+                console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
+                done(err, user);
+            });
+        }
+    ],  function (err, user) {
         if (err) {
             throw err;
         }
 
-        if (user) {
-            return res.json({
-                status: false,
-                message: "That email is already taken."
-            });
-        }
-
-        if(!req.body.created){
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
-            var yyyy = today.getFullYear();
-
-            if(dd<10) {
-                dd='0'+dd
-            }
-
-            if(mm<10) {
-                mm='0'+mm
-            }
-
-            today = dd+'.'+mm+'.'+yyyy;
-        }
-
-        new User({
-            email: req.body.email,
-            password: req.body.password,
-            firstName: req.body.firstName,
-            secondName: req.body.secondName,
-            avatar: req.body.avatar || '',
-            status: req.body.status,
-            created: req.body.created || today,
-            active: req.body.active || true,
-            projects: [],
-            users: []
-        }).save(function (err, user) {
-            if (err) {
-                throw err;
-            }
-
-            User.find({status: 'superuser'}, function (err, users) {
-                for(var i = 0; i < users.length; i++){
-                    users[i].users.push(user);
-                    users[i].save(function (err) {
-                        if (err) throw err;
-                    });
-                }
-            });
-            return res.json({
-                status: true,
-                res: user,
-                message: "User was successfully created."
-            });
+        return res.json({
+            status: true,
+            res: user,
+            message: "User was successfully created."
         });
-
     });
+
 });
 
 //delete user
 router.delete("/user", function (req, res) {
     User.findOne({ _id: req.body._id }, function (err, user) {
+        console.log(err, user);
+        return;
         if (err) {
             throw err;
         }
@@ -215,7 +244,7 @@ router.delete("/user", function (req, res) {
                 message: "No user found"
             });
         }
-    }).remove().exec(function (err, user) {
+    }).remove().exec(function (err) {
         if (err) {
             throw err;
         }

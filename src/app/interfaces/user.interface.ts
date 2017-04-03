@@ -4,7 +4,7 @@ export interface User{
     firstName?: string,
     secondName?: string,
     avatar?: string,
-    status?: string,
+    role?: string,
     created?: string,
     projects?: any,
     users?: any,

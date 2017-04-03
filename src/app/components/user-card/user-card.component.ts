@@ -1,4 +1,4 @@
-import {Component, Input, SimpleChange} from '@angular/core';
+import {Component, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
 import {User} from "../../interfaces/user.interface";
 import {Resol} from "../../interfaces/resol.interface";
 import {UserService} from "../../services/user.service";
@@ -15,6 +15,7 @@ export class UserCardComponent {
 
   @Input() canEdit;
   @Input() user;
+  @Output() userChange = new EventEmitter();
 
   private resol: Resol = {
     firstName: true,
@@ -78,6 +79,7 @@ export class UserCardComponent {
       if(res.status) {
         let idx = this.User.users.indexOf(this.user);
         this.User.users.splice(idx, 1);
+        this.userChange.emit(null);
       }
       alertify.success(res.message);
     }, (error) => {});
@@ -104,5 +106,6 @@ export class UserCardComponent {
   reset(){
     this.tempUser = Object.assign({}, this.user);
   }
+
 
 }

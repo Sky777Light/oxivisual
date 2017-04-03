@@ -19,12 +19,14 @@ const userSchema = new Schema({
         required: true
     },
     secondName: {
+        type: String
+    },
+    role: {
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        required: true
+    parent: {
+        type: String || null
     },
     created: {
         type: String,
@@ -37,8 +39,6 @@ const userSchema = new Schema({
     avatar: {
         type: String
     },
-    projects: [ { type: Types.ObjectId, ref: 'Project'} ],
-    users: [ { type: Types.ObjectId, ref: 'User'} ],
     token: {
         type: String
     }

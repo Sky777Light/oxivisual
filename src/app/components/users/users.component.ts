@@ -63,9 +63,7 @@ export class UsersComponent {
   ngOnDestroy() {
     this.subNewUser.unsubscribe();
   }
-
-
-
+  
 //pop-up functions
 
   deactivateUser(user: any){

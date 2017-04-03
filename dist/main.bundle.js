@@ -76,7 +76,6 @@ var HomeComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(69);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -89,11 +88,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 var LoginComponent = (function () {
-    function LoginComponent(userService, authService) {
+    function LoginComponent(userService) {
         this.userService = userService;
-        this.authService = authService;
         this.remember = false;
         this.resol = {
             email: true,
@@ -103,31 +100,16 @@ var LoginComponent = (function () {
             email: '',
             password: ''
         };
-        this.logData = {
-            email: 'superuser',
-            password: 'superpass',
-            firstName: 'Superuser',
-            secondName: 'Superuser',
-            avatar: ''
-        };
     }
     LoginComponent.prototype.logIn = function () {
         if (!this.userService.resolUser(this.resol, this.user))
             return false;
-        if ((this.user.email === this.logData.email) && (this.user.password === this.logData.password)) {
-            this.createSuper();
-            return;
-        }
         this.userService.logIn(this.remember, this.user);
     };
-    LoginComponent.prototype.createSuper = function () {
-        var _this = this;
-        this.authService.post('/auth/superuser', this.logData).subscribe(function (response) {
-            var res = JSON.parse(response._body);
-            if (res.status) {
-                _this.userService.logIn(_this.remember, { email: _this.logData.email, password: _this.logData.password });
-            }
-        }, function (error) { });
+    LoginComponent.prototype.keyDown = function ($event) {
+        if ($event.keyCode == 13) {
+            this.logIn();
+        }
     };
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_4" /* Component */])({
@@ -135,10 +117,10 @@ var LoginComponent = (function () {
             template: __webpack_require__(765),
             styles: [__webpack_require__(731)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object])
     ], LoginComponent);
     return LoginComponent;
-    var _a, _b;
+    var _a;
 }());
 //# sourceMappingURL=login.component.js.map
 
@@ -199,7 +181,7 @@ var ProjectsComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(93);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -305,9 +287,9 @@ var UsersComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_service__ = __webpack_require__(57);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -366,7 +348,7 @@ var AuthGuardService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(94);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoggedGuardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -445,8 +427,8 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_service__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(90);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -472,7 +454,7 @@ var UserService = (function () {
             firstName: '',
             secondName: '',
             avatar: '',
-            status: '',
+            role: '',
             created: '',
             projects: [],
             users: [],
@@ -576,7 +558,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(317);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__ = __webpack_require__(745);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__router__ = __webpack_require__(671);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_storage_service__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_user_service__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_auth_guard_service__ = __webpack_require__(344);
@@ -677,7 +659,7 @@ var AppModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(57);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsideComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -812,7 +794,7 @@ var NewUserComponent = (function () {
             firstName: '',
             secondName: '',
             avatar: '',
-            status: '',
+            role: '',
             created: '',
             password: '',
             passwordRepeat: '',
@@ -827,7 +809,7 @@ var NewUserComponent = (function () {
             email: true,
             password: true,
             passwordRepeat: true,
-            status: true
+            role: true
         };
     }
     //photo change
@@ -848,6 +830,14 @@ var NewUserComponent = (function () {
         this.tempNewUser.avatar = '';
     };
     //user save accept/cancel
+    NewUserComponent.prototype.keyDown = function (event) {
+        if (event.keyCode == 13) {
+            this.accept();
+        }
+        else if (event.keyCode == 27) {
+            this.cancel();
+        }
+    };
     NewUserComponent.prototype.accept = function () {
         if (!this.userService.resolUser(this.resol, this.tempNewUser))
             return false;
@@ -870,6 +860,12 @@ var NewUserComponent = (function () {
         this.tempNewUser.newUser = false;
         this.shareService.changeShareSubject(this.tempNewUser);
     };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_1" /* HostListener */])('window:keydown', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], NewUserComponent.prototype, "keyDown", null);
     NewUserComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_4" /* Component */])({
             selector: 'app-new-user',
@@ -891,7 +887,7 @@ var NewUserComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(93);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserCardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -909,6 +905,7 @@ var UserCardComponent = (function () {
     function UserCardComponent(userService, authService) {
         this.userService = userService;
         this.authService = authService;
+        this.userChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* EventEmitter */]();
         this.resol = {
             firstName: true,
             secondName: true,
@@ -961,6 +958,7 @@ var UserCardComponent = (function () {
             if (res.status) {
                 var idx = _this.User.users.indexOf(_this.user);
                 _this.User.users.splice(idx, 1);
+                _this.userChange.emit(null);
             }
             alertify.success(res.message);
         }, function (error) { });
@@ -993,6 +991,10 @@ var UserCardComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
         __metadata('design:type', Object)
     ], UserCardComponent.prototype, "user", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Output */])(), 
+        __metadata('design:type', Object)
+    ], UserCardComponent.prototype, "userChange", void 0);
     UserCardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_4" /* Component */])({
             selector: 'app-user-card',
@@ -1781,7 +1783,7 @@ var SortPipe = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_logged_guard_service__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_guard_service__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_projects_projects_component__ = __webpack_require__(342);
@@ -1845,78 +1847,6 @@ var environment = {
     production: false
 };
 //# sourceMappingURL=environment.js.map
-
-/***/ }),
-
-/***/ 69:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(94);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var AuthService = (function () {
-    function AuthService(http, storageService) {
-        this.http = http;
-        this.storageService = storageService;
-    }
-    AuthService.prototype.createAuthorizationHeader = function (headers) {
-        var token = this.storageService.get("token") || this.storageService.tempToken;
-        headers.append('authorization', token);
-    };
-    AuthService.prototype.get = function (url) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
-        this.createAuthorizationHeader(headers);
-        return this.http.get(url, {
-            headers: headers
-        });
-    };
-    AuthService.prototype.post = function (url, data) {
-        if (data === void 0) { data = {}; }
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
-        this.createAuthorizationHeader(headers);
-        return this.http.post(url, data, {
-            headers: headers
-        });
-    };
-    AuthService.prototype.put = function (url, data) {
-        if (data === void 0) { data = {}; }
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
-        this.createAuthorizationHeader(headers);
-        return this.http.put(url, data, {
-            headers: headers
-        });
-    };
-    AuthService.prototype.delete = function (url, data) {
-        if (data === void 0) { data = {}; }
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
-        this.createAuthorizationHeader(headers);
-        return this.http.delete(url, new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({
-            headers: headers,
-            body: data
-        }));
-    };
-    AuthService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */]) === 'function' && _b) || Object])
-    ], AuthService);
-    return AuthService;
-    var _a, _b;
-}());
-//# sourceMappingURL=auth.service.js.map
 
 /***/ }),
 
@@ -2000,7 +1930,7 @@ exports = module.exports = __webpack_require__(18)();
 
 
 // module
-exports.push([module.i, ".pos-center, app-login .login-form .log-in .chkbx-wrap #remember-int i {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-login {\n  background-color: #1976D2;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0; }\n  app-login .login-logo {\n    width: 165px;\n    height: 30px;\n    position: absolute;\n    left: 50%;\n    top: 16.6%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n    app-login .login-logo img {\n      width: 100%;\n      height: 100%; }\n  app-login .login-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    width: 380px;\n    height: 280px;\n    padding: 30px;\n    box-sizing: border-box;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n    app-login .login-form .login-text {\n      font-size: 24px;\n      color: #444444; }\n    app-login .login-form .log-in {\n      margin-top: 45px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-login .login-form .log-in .chkbx-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-login .login-form .log-in .chkbx-wrap #remember-int {\n          position: relative;\n          float: left;\n          width: 18px;\n          height: 18px;\n          border: 1px solid #4D4D4E;\n          border-radius: 3px; }\n        app-login .login-form .log-in .chkbx-wrap label[for=remember-int] {\n          margin-left: 10px;\n          font-size: 15px; }\n", ""]);
+exports.push([module.i, ".pos-center, app-login .login-form .log-in .chkbx-wrap #remember-int i {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-login {\n  background-color: #1976D2;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0; }\n  app-login .login-logo {\n    width: 165px;\n    height: 30px;\n    position: absolute;\n    left: 50%;\n    top: 16.6%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n    app-login .login-logo img {\n      width: 100%;\n      height: 100%; }\n  app-login .login-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    width: 380px;\n    height: 280px;\n    padding: 30px;\n    box-sizing: border-box;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n    app-login .login-form .login-text {\n      font-size: 24px;\n      color: #444444; }\n    app-login .login-form .log-in {\n      margin-top: 45px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-login .login-form .log-in .chkbx-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-login .login-form .log-in .chkbx-wrap #remember-int {\n          position: relative;\n          float: left;\n          width: 18px;\n          height: 18px;\n          border: 1px solid #4D4D4E;\n          border-radius: 3px;\n          cursor: pointer; }\n        app-login .login-form .log-in .chkbx-wrap label[for=remember-int] {\n          margin-left: 10px;\n          font-size: 15px;\n          cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -2018,7 +1948,7 @@ exports = module.exports = __webpack_require__(18)();
 
 
 // module
-exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-new-user {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  z-index: 1000;\n  top: 0;\n  left: 0; }\n  app-new-user .block-bg {\n    height: 100%;\n    width: 100%;\n    opacity: 0.2;\n    background-color: #000000; }\n  app-new-user .new-user-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 30px;\n    width: 460px;\n    height: 540px;\n    background-color: #ffffff;\n    box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19); }\n    app-new-user .new-user-form .tag-text {\n      font-size: 18px;\n      color: #444444; }\n    app-new-user .new-user-form .main-info {\n      width: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      app-new-user .new-user-form .main-info .user-photo {\n        padding-top: 30px;\n        width: 130px;\n        height: 200px; }\n        app-new-user .new-user-form .main-info .user-photo .photo {\n          width: 130px;\n          height: 130px; }\n      app-new-user .new-user-form .main-info .user-form {\n        width: 240px;\n        margin-left: 30px; }\n    app-new-user .new-user-form .user-status {\n      width: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      margin: 50px 0 58px; }\n      app-new-user .new-user-form .user-status .user-status-item {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        font-size: 16px;\n        color: #4A4A4A; }\n        app-new-user .new-user-form .user-status .user-status-item span {\n          margin-left: 12px; }\n        app-new-user .new-user-form .user-status .user-status-item .selected-status {\n          color: #1976D2; }\n    app-new-user .new-user-form .new-user-btns {\n      width: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: end;\n          -ms-flex-pack: end;\n              justify-content: flex-end; }\n      app-new-user .new-user-form .new-user-btns .right-btn {\n        margin-left: 30px; }\n", ""]);
+exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-new-user {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  z-index: 1000;\n  top: 0;\n  left: 0; }\n  app-new-user .block-bg {\n    height: 100%;\n    width: 100%;\n    opacity: 0.2;\n    background-color: #000000; }\n  app-new-user .new-user-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 30px;\n    width: 460px;\n    height: 540px;\n    background-color: #ffffff;\n    box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19); }\n    app-new-user .new-user-form .tag-text {\n      font-size: 18px;\n      color: #444444; }\n    app-new-user .new-user-form .main-info {\n      width: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      app-new-user .new-user-form .main-info .user-photo {\n        padding-top: 30px;\n        width: 130px;\n        height: 200px; }\n        app-new-user .new-user-form .main-info .user-photo .photo {\n          width: 130px;\n          height: 130px; }\n      app-new-user .new-user-form .main-info .user-form {\n        width: 240px;\n        margin-left: 30px; }\n    app-new-user .new-user-form .user-status {\n      width: 100%;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      margin: 50px 0 58px; }\n      app-new-user .new-user-form .user-status .user-status-item {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        font-size: 16px;\n        color: #4A4A4A; }\n        app-new-user .new-user-form .user-status .user-status-item span {\n          margin-left: 12px; }\n        app-new-user .new-user-form .user-status .user-status-item .selected-status {\n          color: #1976D2; }\n      app-new-user .new-user-form .user-status label {\n        position: absolute;\n        width: 100%;\n        left: 0;\n        top: 30px;\n        text-align: center;\n        color: #ff0000;\n        font-size: 12px;\n        opacity: 0;\n        -webkit-transition: opacity .5s;\n        transition: opacity .5s;\n        border-top: 2px solid #ff0000; }\n      app-new-user .new-user-form .user-status .err-status {\n        opacity: 1; }\n    app-new-user .new-user-form .new-user-btns {\n      width: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: end;\n          -ms-flex-pack: end;\n              justify-content: flex-end; }\n      app-new-user .new-user-form .new-user-btns .right-btn {\n        margin-left: 30px; }\n", ""]);
 
 // exports
 
@@ -2072,7 +2002,7 @@ exports = module.exports = __webpack_require__(18)();
 
 
 // module
-exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: calc(100% - 90px); }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: 90%;\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item img {\n              width: 39px;\n              height: 39px;\n              border-radius: 50%; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap {\n              margin-left: 15px;\n              width: 100%; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name {\n                display: -webkit-inline-box;\n                display: -ms-inline-flexbox;\n                display: inline-flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name i {\n                  margin-left: 10px;\n                  font-size: 21px;\n                  line-height: 0.7; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name span {\n                  display: block;\n                  float: left; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name .new-title {\n                  margin-left: 10px;\n                  color: #FFA000; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-status {\n                font-size: 14px;\n                font-family: Roboto-Light;\n                color: #9B9B9B;\n                font-style: italic; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl {\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl .user-edit-wrap {\n                position: relative;\n                width: 30px;\n                height: 30px;\n                border-radius: 50%;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-pack: center;\n                    -ms-flex-pack: center;\n                        justify-content: center;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center;\n                margin-right: 20px; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl .user-edit-wrap .user-pop-up {\n                  top: 35px;\n                  width: 170px;\n                  height: 100px; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl .user-edit-active {\n                background-color: #EBEBEB; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
+exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: calc(100% - 90px); }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: 90%;\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-item-img-wrap {\n              width: 39px;\n              height: 39px;\n              border-radius: 50%; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item img {\n              width: 39px;\n              height: 39px;\n              border-radius: 50%; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap {\n              margin-left: 15px;\n              width: 100%; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name {\n                display: -webkit-inline-box;\n                display: -ms-inline-flexbox;\n                display: inline-flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name i {\n                  margin-left: 10px;\n                  font-size: 21px;\n                  line-height: 0.7; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name span {\n                  display: block;\n                  float: left; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-name .new-title {\n                  margin-left: 10px;\n                  color: #FFA000; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-name-wrap .user-status {\n                font-size: 14px;\n                font-family: Roboto-Light;\n                color: #9B9B9B;\n                font-style: italic; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl {\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl .user-edit-wrap {\n                position: relative;\n                width: 30px;\n                height: 30px;\n                border-radius: 50%;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-pack: center;\n                    -ms-flex-pack: center;\n                        justify-content: center;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center;\n                margin-right: 20px; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl .user-edit-wrap .user-pop-up {\n                  top: 35px;\n                  width: 170px;\n                  height: 100px; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-ctrl .user-edit-active {\n                background-color: #EBEBEB; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
 
 // exports
 
@@ -2367,14 +2297,14 @@ module.exports = "<app-aside></app-aside>\n<main id=\"main-content\">\n    <rout
 /***/ 765:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/logo.png\" alt=\"\">\n</div>\n<div class=\"login-form\">\n  <label class=\"login-text\">Log in:</label>\n  <form class=\"user-form\">\n    <div class=\"input-wrap\">\n      <input id=\"login-name\" [class.input-fill]=\"user.email\" [class.input-error]=\"!resol.email\" type=\"text\" [(ngModel)]=\"user.email\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Username / email\" (focus)=\"resol.email = true\">\n      <label for=\"login-name\" [class.full-op]=\"!resol.email\">This input requires a value!</label>\n    </div>\n    <div class=\"input-wrap\">\n      <input id=\"login-pass\" [class.input-fill]=\"user.password\" [class.input-error]=\"!resol.password\" type=\"password\" [(ngModel)]=\"user.password\" [ngModelOptions]=\"{standalone: true}\" maxlength=\"15\" placeholder=\"Password\" (focus)=\"resol.password = true\">\n      <label for=\"login-pass\" [class.full-op]=\"!resol.password\">This input requires a value!</label>\n    </div>\n  </form>\n  <div class=\"log-in\">\n    <div class=\"chkbx-wrap pointer\">\n      <div id=\"remember-int\" (click)=\"remember = !remember\">\n        <i class=\"material-icons\" [hidden]=\"!remember\">done</i>\n      </div>\n      <label for=\"remember-int\">Remember password</label>\n    </div>\n    <span class=\"text-btn\" (click)=\"logIn()\">ACCEPT</span>\n  </div>\n</div>"
+module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/logo.png\" alt=\"\">\n</div>\n<div class=\"login-form\">\n  <label class=\"login-text\">Log in:</label>\n  <form class=\"user-form\" (keydown)=\"keyDown($event)\">\n    <div class=\"input-wrap\">\n      <input id=\"login-name\" [class.input-fill]=\"user.email\" [class.input-error]=\"!resol.email\" type=\"text\" [(ngModel)]=\"user.email\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Username / email\" (focus)=\"resol.email = true\">\n      <label for=\"login-name\" [class.full-op]=\"!resol.email\">This input requires a value!</label>\n    </div>\n    <div class=\"input-wrap\">\n      <input id=\"login-pass\" [class.input-fill]=\"user.password\" [class.input-error]=\"!resol.password\" type=\"password\" [(ngModel)]=\"user.password\" [ngModelOptions]=\"{standalone: true}\" maxlength=\"15\" placeholder=\"Password\" (focus)=\"resol.password = true\">\n      <label for=\"login-pass\" [class.full-op]=\"!resol.password\">This input requires a value!</label>\n    </div>\n  </form>\n  <div class=\"log-in\">\n    <div class=\"chkbx-wrap\">\n      <div id=\"remember-int\" (click)=\"remember = !remember\">\n        <i class=\"material-icons\" [hidden]=\"!remember\">done</i>\n      </div>\n      <label for=\"remember-int\" (click)=\"remember = !remember\">Remember password</label>\n    </div>\n    <span class=\"text-btn\" (click)=\"logIn()\">ACCEPT</span>\n  </div>\n</div>"
 
 /***/ }),
 
 /***/ 766:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-user-form\">\n  <span class=\"tag-text\">Creating a new user:</span>\n  <div class=\"main-info\">\n    <div class=\"user-photo\">\n      <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + tempNewUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempNewUser.avatar\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"!tempNewUser.avatar\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar\">\n        <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n      </div>\n      <span class=\"photo-info\">300*300 px</span>\n    </div>\n    <form class=\"user-form\">\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.input-fill]=\"tempNewUser.email\" [class.input-error]=\"!resol.email\" placeholder=\"Email\" [(ngModel)]=\"tempNewUser.email\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.email = true\">\n        <label [class.full-op]=\"!resol.email\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-fill]=\"tempNewUser.firstName\" [class.input-error]=\"!resol.firstName\"  placeholder=\"First name\" [(ngModel)]=\"tempNewUser.firstName\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.firstName = true\">\n        <label [class.full-op]=\"!resol.firstName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-fill]=\"tempNewUser.secondName\" [class.input-error]=\"!resol.secondName\"  placeholder=\"Last name\" [(ngModel)]=\"tempNewUser.secondName\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.secondName = true\">\n        <label [class.full-op]=\"!resol.secondName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-fill]=\"tempNewUser.password\" [class.input-error]=\"!resol.password\" placeholder=\"Password\" [(ngModel)]=\"tempNewUser.password\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.password = true\">\n        <label [class.full-op]=\"!resol.password\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-fill]=\"tempNewUser.passwordRepeat\" [class.input-error]=\"!resol.passwordRepeat\" placeholder=\"Repeat password\" [(ngModel)]=\"tempNewUser.passwordRepeat\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.passwordRepeat = true\">\n        <label [class.full-op]=\"!resol.passwordRepeat\">This input requires a value!</label>\n      </div>\n    </form>\n  </div>\n  <div class=\"user-status\">\n    <div class=\"user-status-item\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.status !== 'superuser'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.status === 'superuser'\" (click)=\"tempNewUser.status = 'superuser'\">radio_button_unchecked</i>\n      <span>Superuser</span>\n    </div>\n    <div class=\"user-status-item\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.status !== 'client-admin'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.status === 'client-admin'\" (click)=\"tempNewUser.status = 'client-admin'\">radio_button_unchecked</i>\n      <span>Client-admin</span>\n    </div>\n    <div class=\"user-status-item\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.status !== 'client-user'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.status === 'client-user'\" (click)=\"tempNewUser.status = 'client-user'\">radio_button_unchecked</i>\n      <span>Client-user</span>\n    </div>\n  </div>\n  <div class=\"new-user-btns\">\n    <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n    <span class=\"right-btn text-btn\" (click)=\"accept()\">accept</span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-user-form\">\n  <span class=\"tag-text\">Creating a new user:</span>\n  <div class=\"main-info\">\n    <div class=\"user-photo\">\n      <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + tempNewUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempNewUser.avatar\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"!tempNewUser.avatar\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar\">\n        <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n      </div>\n      <span class=\"photo-info\">300*300 px</span>\n    </div>\n    <form class=\"user-form\">\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.input-fill]=\"tempNewUser.email\" [class.input-error]=\"!resol.email\" placeholder=\"Email\" [(ngModel)]=\"tempNewUser.email\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.email = true\">\n        <label [class.full-op]=\"!resol.email\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-fill]=\"tempNewUser.firstName\" [class.input-error]=\"!resol.firstName\"  placeholder=\"First name\" [(ngModel)]=\"tempNewUser.firstName\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.firstName = true\">\n        <label [class.full-op]=\"!resol.firstName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-fill]=\"tempNewUser.secondName\" [class.input-error]=\"!resol.secondName\"  placeholder=\"Last name\" [(ngModel)]=\"tempNewUser.secondName\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.secondName = true\">\n        <label [class.full-op]=\"!resol.secondName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-fill]=\"tempNewUser.password\" [class.input-error]=\"!resol.password\" placeholder=\"Password\" [(ngModel)]=\"tempNewUser.password\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.password = true\">\n        <label [class.full-op]=\"!resol.password\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-fill]=\"tempNewUser.passwordRepeat\" [class.input-error]=\"!resol.passwordRepeat\" placeholder=\"Repeat password\" [(ngModel)]=\"tempNewUser.passwordRepeat\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.passwordRepeat = true\">\n        <label [class.full-op]=\"!resol.passwordRepeat\">This input requires a value!</label>\n      </div>\n    </form>\n  </div>\n  <div class=\"user-status\">\n    <div class=\"user-status-item\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'super'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'super'\" (click)=\"tempNewUser.role = 'super'; resol.role = true\">radio_button_unchecked</i>\n      <span>Superuser</span>\n    </div>\n    <div class=\"user-status-item\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'admin'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'admin'\" (click)=\"tempNewUser.role = 'admin'; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-admin</span>\n    </div>\n    <div class=\"user-status-item\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'user'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'user'\" (click)=\"tempNewUser.role = 'user'; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-user</span>\n    </div>\n    <label [class.err-status]=\"!resol.role\">Select user status</label>\n  </div>\n  <div class=\"new-user-btns\">\n    <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n    <span class=\"right-btn text-btn\" (click)=\"accept()\">accept</span>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2395,7 +2325,7 @@ module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n 
 /***/ 769:
 /***/ (function(module, exports) {
 
-module.exports = "<app-header [header]=\"header\" [(searchRes)]=\"searchName\" [(sortType)]=\"sortType\" class=\"row\"></app-header>\n<main class=\"row\">\n\n  <div class=\"user-list-wrap col-md-4\">\n\n    <div class=\"user-list\">\n      <div class=\"slimscroll-wrap\" slimScroll  width=\"100%\" alwaysVisible=true distance=\"0px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railVisible=true railColor=\"#b2b3b7\" railOpacity=0.5>\n        <div class=\"user-list-item\" [class.deactive]=\"!user.active\" [class.selected-user]=\"selectedUser === user\" *ngFor=\"let user of User.users | sortfilter: sortType | namefilter: searchName : header\">\n          <img class=\"pointer\" src=\"../../../assets/img/1.jpg\" alt=\"\" (click)=\"selectUser(user, false)\">\n          <div class=\"user-name-wrap\">\n            <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n              <span>{{user.firstName}} {{user.secondName}}</span>\n              <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n              <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n            </div>\n            <br>\n            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\">{{user.status}}</span>\n          </div>\n          <div class=\"user-ctrl\">\n            <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n            <div class=\"user-edit-wrap\" [class.user-edit-active]=\"settingsUser === user\">\n              <i class=\"material-icons\" (click)=\"settingsUser = user\" (window:mouseup)=\"settingsUser = null\">more_vert</i>\n              <div class=\"user-pop-up\" [hidden]=\"settingsUser !== user\">\n                <div class=\"user-pop-up-item\" [hidden]=\"!user.active\" (click)=\"deactivateUser(user)\">\n                  <i class=\"material-icons\">visibility_off</i>\n                  <span>Deactivate</span>\n                </div>\n                <div class=\"user-pop-up-item\" [hidden]=\"user.active\" (click)=\"deactivateUser(user)\">\n                  <i class=\"material-icons\">visibility</i>\n                  <span>Activate</span>\n                </div>\n                <div class=\"user-pop-up-item\" (click)=\"deleteUser(user)\">\n                  <i class=\"material-icons\">delete</i>\n                  <span>Delete</span>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewUser = true\" [hidden]=\"createNewUser\">\n      <i class=\"material-icons\">add</i>\n      <div class=\"span-hover\">\n        <span>Add a new user</span>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"user-card-wrap col-md-8\">\n    <app-user-card [user]=\"selectedUser\" [canEdit]=\"canEdit\" [hidden]=\"!selectedUser\"></app-user-card>\n    <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n  </div>\n\n</main>\n\n<app-new-user *ngIf=\"createNewUser\" ></app-new-user>\n"
+module.exports = "<app-header [header]=\"header\" [(searchRes)]=\"searchName\" [(sortType)]=\"sortType\" class=\"row\"></app-header>\n<main class=\"row\">\n\n  <div class=\"user-list-wrap col-md-4\">\n\n    <div class=\"user-list\">\n      <div class=\"slimscroll-wrap\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n        <div class=\"user-list-item\" [class.deactive]=\"!user.active\" [class.selected-user]=\"selectedUser === user\" *ngFor=\"let user of User.users | sortfilter: sortType | namefilter: searchName : header\">\n          <div class=\"user-item-img-wrap\">\n            <img class=\"pointer\" src=\"../../../assets/img/1.jpg\" alt=\"\" (click)=\"selectUser(user, false)\">\n          </div>\n          <div class=\"user-name-wrap\">\n            <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n              <span>{{user.firstName}} {{user.secondName}}</span>\n              <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n              <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n            </div>\n            <br>\n            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\">{{user.role}}</span>\n          </div>\n          <div class=\"user-ctrl\">\n            <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n            <div class=\"user-edit-wrap\" [class.user-edit-active]=\"settingsUser === user\">\n              <i class=\"material-icons\" (click)=\"settingsUser = user\" (window:mouseup)=\"settingsUser = null\">more_vert</i>\n              <div class=\"user-pop-up\" [hidden]=\"settingsUser !== user\">\n                <div class=\"user-pop-up-item\" [hidden]=\"!user.active\" (click)=\"deactivateUser(user)\">\n                  <i class=\"material-icons\">visibility_off</i>\n                  <span>Deactivate</span>\n                </div>\n                <div class=\"user-pop-up-item\" [hidden]=\"user.active\" (click)=\"deactivateUser(user)\">\n                  <i class=\"material-icons\">visibility</i>\n                  <span>Activate</span>\n                </div>\n                <div class=\"user-pop-up-item\" (click)=\"deleteUser(user)\">\n                  <i class=\"material-icons\">delete</i>\n                  <span>Delete</span>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewUser = true\" [hidden]=\"createNewUser\">\n      <i class=\"material-icons\">add</i>\n      <div class=\"span-hover\">\n        <span>Add a new user</span>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"user-card-wrap col-md-8\">\n    <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" [hidden]=\"!selectedUser\"></app-user-card>\n    <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n  </div>\n\n</main>\n\n<app-new-user *ngIf=\"createNewUser\" ></app-new-user>\n"
 
 /***/ }),
 
@@ -2404,6 +2334,78 @@ module.exports = "<app-header [header]=\"header\" [(searchRes)]=\"searchName\" [
 
 module.exports = __webpack_require__(545);
 
+
+/***/ }),
+
+/***/ 93:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(94);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthService = (function () {
+    function AuthService(http, storageService) {
+        this.http = http;
+        this.storageService = storageService;
+    }
+    AuthService.prototype.createAuthorizationHeader = function (headers) {
+        var token = this.storageService.get("token") || this.storageService.tempToken;
+        headers.append('authorization', token);
+    };
+    AuthService.prototype.get = function (url) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+        this.createAuthorizationHeader(headers);
+        return this.http.get(url, {
+            headers: headers
+        });
+    };
+    AuthService.prototype.post = function (url, data) {
+        if (data === void 0) { data = {}; }
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+        this.createAuthorizationHeader(headers);
+        return this.http.post(url, data, {
+            headers: headers
+        });
+    };
+    AuthService.prototype.put = function (url, data) {
+        if (data === void 0) { data = {}; }
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+        this.createAuthorizationHeader(headers);
+        return this.http.put(url, data, {
+            headers: headers
+        });
+    };
+    AuthService.prototype.delete = function (url, data) {
+        if (data === void 0) { data = {}; }
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+        this.createAuthorizationHeader(headers);
+        return this.http.delete(url, new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({
+            headers: headers,
+            body: data
+        }));
+    };
+    AuthService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */]) === 'function' && _b) || Object])
+    ], AuthService);
+    return AuthService;
+    var _a, _b;
+}());
+//# sourceMappingURL=auth.service.js.map
 
 /***/ }),
 

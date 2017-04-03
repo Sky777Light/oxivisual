@@ -3,7 +3,7 @@
 </div>
 <div class="login-form">
   <label class="login-text">Log in:</label>
-  <form class="user-form">
+  <form class="user-form" (keydown)="keyDown($event)">
     <div class="input-wrap">
       <input id="login-name" [class.input-fill]="user.email" [class.input-error]="!resol.email" type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true">
       <label for="login-name" [class.full-op]="!resol.email">This input requires a value!</label>
@@ -14,11 +14,11 @@
     </div>
   </form>
   <div class="log-in">
-    <div class="chkbx-wrap pointer">
+    <div class="chkbx-wrap">
       <div id="remember-int" (click)="remember = !remember">
         <i class="material-icons" [hidden]="!remember">done</i>
       </div>
-      <label for="remember-int">Remember password</label>
+      <label for="remember-int" (click)="remember = !remember">Remember password</label>
     </div>
     <span class="text-btn" (click)="logIn()">ACCEPT</span>
   </div>

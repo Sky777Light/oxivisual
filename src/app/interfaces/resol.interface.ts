@@ -4,5 +4,5 @@ export interface Resol {
     email?: boolean,
     password?: boolean,
     passwordRepeat?: boolean,
-    status?: boolean
+    role?: boolean
 }

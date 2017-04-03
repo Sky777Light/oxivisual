@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {User} from "../../interfaces/user.interface";
 import {ShareService} from "../../services/share.service";
 import {Resol} from "../../interfaces/resol.interface";
@@ -16,7 +16,7 @@ export class NewUserComponent {
     firstName: '',
     secondName: '',
     avatar: '',
-    status: '',
+    role: '',
     created: '',
     password: '',
     passwordRepeat: '',
@@ -32,7 +32,7 @@ export class NewUserComponent {
     email: true,
     password: true,
     passwordRepeat: true,
-    status:true
+    role:true
   };
 
   constructor(
@@ -59,6 +59,15 @@ export class NewUserComponent {
   }
 
   //user save accept/cancel
+  @HostListener('window:keydown', ['$event'])
+  keyDown(event: KeyboardEvent){
+    if(event.keyCode == 13){
+      this.accept();
+    } else if (event.keyCode == 27){
+      this.cancel();
+    }
+  }
+
   accept(){
     if(!this.userService.resolUser(this.resol, this.tempNewUser)) return false;
 

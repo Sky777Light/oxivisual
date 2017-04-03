@@ -16,7 +16,7 @@ export class UserService {
     firstName: '',
     secondName: '',
     avatar: '',
-    status: '',
+    role: '',
     created: '',
     projects: [],
     users: [],
