@@ -63,37 +63,26 @@ router.post("/login", function (req, res, next) {
                 new User( {
                     email: config.superadmin.email,
                     password: config.superadmin.password,
-                    firstName: "Superuser",
-                    secondName: "asdg",
+                    firstName: "Super",
+                    secondName: "User",
                     avatar: '',
                     role: 'super',
                     created: today,
                     active: true,
                     parent: null
                 } ).save(function (err, user) {
-                    console.log(err, user);
-                    return;
                     if (err) {
                         throw err;
                     }
 
                     user.token = "JWT " + jwt.encode({_id: user._id, email: user.email}, config.security.secret);
                     user.save(function (err, user) {
+                        console.log(err, user);
                         if (err) {
                             throw err;
                         }
 
-                        req.login(user, function (err) {
-                            if (err) {
-                                throw err;
-                            }
-
-                            res.json({
-                                status: true,
-                                message: "Superuser activated.",
-                                res: user
-                            });
-                        });
+                        passportCtrl();
                     });
 
                 });

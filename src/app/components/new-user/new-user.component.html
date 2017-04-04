@@ -41,17 +41,17 @@
     </form>
   </div>
   <div class="user-status">
-    <div class="user-status-item">
+    <div class="user-status-item" *ngIf="User.role == 'super'">
       <i class="material-icons selected-status" [hidden]="tempNewUser.role !== 'super'">radio_button_checked</i>
       <i class="material-icons" [hidden]="tempNewUser.role === 'super'" (click)="tempNewUser.role = 'super'; resol.role = true">radio_button_unchecked</i>
       <span>Superuser</span>
     </div>
-    <div class="user-status-item">
+    <div class="user-status-item" *ngIf="User.role == 'super'">
       <i class="material-icons selected-status" [hidden]="tempNewUser.role !== 'admin'">radio_button_checked</i>
       <i class="material-icons" [hidden]="tempNewUser.role === 'admin'" (click)="tempNewUser.role = 'admin'; resol.role = true">radio_button_unchecked</i>
       <span>Client-admin</span>
     </div>
-    <div class="user-status-item">
+    <div class="user-status-item" *ngIf="User.role !== 'user'">
       <i class="material-icons selected-status" [hidden]="tempNewUser.role !== 'user'">radio_button_checked</i>
       <i class="material-icons" [hidden]="tempNewUser.role === 'user'" (click)="tempNewUser.role = 'user'; resol.role = true">radio_button_unchecked</i>
       <span>Client-user</span>

@@ -11,6 +11,7 @@ import {UserService} from "../../services/user.service";
 })
 export class NewUserComponent {
 
+  private User: User;
   private tempNewUser: User = {
     email: '',
     firstName: '',
@@ -38,7 +39,9 @@ export class NewUserComponent {
   constructor(
       private shareService: ShareService,
       private userService: UserService
-  ){ }
+  ){
+    this.User = this.userService.getUser();
+  }
 
 
 //photo change

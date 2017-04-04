@@ -28,6 +28,13 @@ app-users
             align-items: center
             justify-content: space-between
             .user-item-img-wrap
+              cursor: pointer
+              float: left
+              display: flex
+              align-items: center
+              justify-content: center
+              font-size: 14px
+              color: $reset
               width: 39px
               height: 39px
               border-radius: 50%
@@ -35,44 +42,51 @@ app-users
               background-position: 50% 50%
               background-size: auto 100%
               background-color: $bottom-bor
-            .user-name-wrap
-              margin-left: 15px
-              width: 100%
-              .user-name
-                display: inline-flex
-                align-items: center
-                i
-                  margin-left: 10px
-                  font-size: 21px
-                  line-height: 0.7
-                span
-                  display: block
-                  float: left
-                .new-title
-                  margin-left: 10px
-                  color: $orange
-              .user-status
-                font-size: 14px
-                font-family: Roboto-Light
-                color: $grey
-                font-style: italic
-            .user-ctrl
+            .user-list-item-wrap
+              height: 100%
+              width: calc(100% - 39px)
               display: flex
-              .user-edit-wrap
-                position: relative
-                width: 30px
-                height: 30px
-                border-radius: 50%
+              align-items: center
+              justify-content: space-between
+              .user-name-wrap
+                margin-left: 15px
+                width: 100%
+                .user-name
+                  display: inline-flex
+                  align-items: center
+                  i
+                    margin-left: 10px
+                    font-size: 21px
+                    line-height: 0.7
+                  span
+                    display: block
+                    float: left
+                  .new-title
+                    margin-left: 10px
+                    color: $orange
+                .user-status
+                  font-size: 14px
+                  font-family: Roboto-Light
+                  color: $grey
+                  font-style: italic
+              .user-ctrl
+                float: right
                 display: flex
-                justify-content: center
-                align-items: center
-                margin-right: 20px
-                .user-pop-up
-                  top: 35px
-                  width: 170px
-                  height: 100px
-              .user-edit-active
-                background-color: $bottom-bor
+                .user-edit-wrap
+                  position: relative
+                  width: 30px
+                  height: 30px
+                  border-radius: 50%
+                  display: flex
+                  justify-content: center
+                  align-items: center
+                  margin-right: 20px
+                  .user-pop-up
+                    top: 35px
+                    width: 170px
+                    height: 100px
+                .user-edit-active
+                  background-color: $bottom-bor
           .deactive
             img
               opacity: 0.5

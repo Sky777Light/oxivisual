@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router, ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user.service";
 
 @Component({
@@ -13,7 +13,6 @@ export class AsideComponent {
 
   constructor(
       private userService: UserService,
-      private router: Router,
       private route: ActivatedRoute
   ) {
     route.data.subscribe((data: any) => {

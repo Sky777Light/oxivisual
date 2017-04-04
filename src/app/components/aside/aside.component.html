@@ -1,15 +1,19 @@
 <header>
   <div class="asd-hd-top">
-    <div class="asd-name-in">KL</div>
+    <div class="asd-name-in" [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}">
+      <span *ngIf="!user.avatar">{{userService.lettersNoImg(user)}}</span>
+    </div>
     <div class="asd-status-wrap">
       <i class="material-icons">arrow_back</i>
-      <div class="asd-status">Super user</div>
+      <div class="asd-status" *ngIf="user.role == 'super'">Super user</div>
+      <div class="asd-status" *ngIf="user.role == 'admin'">Client-admin</div>
+      <div class="asd-status" *ngIf="user.role == 'user'">Client-user</div>
     </div>
   </div>
   <div class="asd-hd-bot">
-    <div class="asd-name">Kyle Ledbetter</div>
+    <div class="asd-name">{{user.firstName}} {{user.secondName}}</div>
     <div class="asd-email-wrap">
-      <div class="asd-email">kyle@kyleledbetter.com</div>
+      <div class="asd-email">{{user.email}}</div>
       <i class="material-icons">arrow_drop_down</i>
     </div>
   </div>
@@ -18,11 +22,11 @@
 <div class="user-pop-up">
   <div class="user-pop-up-item" routerLink="/projects" routerLinkActive="asd-active">
     <i class="material-icons">folder</i><span class="pointer">Projects</span>
-    <span class="user-pop-up-num">4</span>
+    <span class="user-pop-up-num">0</span>
   </div>
   <div class="user-pop-up-item" routerLink="/users" routerLinkActive="asd-active">
     <i class="material-icons">people</i><span class="pointer">Users</span>
-    <span class="user-pop-up-num">12</span>
+    <span class="user-pop-up-num">{{user.users.length || 0}}</span>
   </div>
   <div class="user-pop-up-item" routerLink="/settings" routerLinkActive="asd-active">
     <i class="material-icons">settings</i><span class="pointer">Settings</span>

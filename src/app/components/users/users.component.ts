@@ -44,7 +44,6 @@ export class UsersComponent {
 
   ngOnInit() {
     this.User = this.userService.getUser();
-
     this.subNewUser = this.shareService.shareListener.subscribe((user: User) => {
       if(user != undefined){
         this.createNewUser = false;
@@ -100,5 +99,6 @@ export class UsersComponent {
     this.canEdit = edit;
     this.selectedUser = user;
   }
+
 
 }

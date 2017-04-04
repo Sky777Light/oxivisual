@@ -96,7 +96,7 @@ export class UserCardComponent {
         this.user.secondName = this.tempUser.secondName;
         this.user.email = this.tempUser.email;
         this.user.active = this.tempUser.active;
-        this.user.avatar = this.tempUser.avatar;
+        this.user.avatar = res.res.avatar;
       }
       alertify.success(res.message);
     }, (error) => {});

@@ -4,7 +4,7 @@ var fs = require("fs");
 
 const User = require("../../models/user");
 
-var saveImage = function (image, done) {
+var saveImage = function (image, avatar, done) {
     function decodeBase64Image(dataString){
         var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
         var response = {};
@@ -17,6 +17,19 @@ var saveImage = function (image, done) {
 
         return response;
     }
+    if(!image){
+        if(avatar){
+            var filePath = './resources' + avatar;
+            fs.unlinkSync(filePath);
+        }
+        done(null, '');
+        return;
+    }
+
+    if(avatar){
+        var filePath = './resources' + avatar;
+        fs.unlinkSync(filePath);
+    }
 
     var imageTypeRegularExpression = /\/(.*?)$/;
 
@@ -25,16 +38,16 @@ var saveImage = function (image, done) {
     var uniqueSHA1String = crypto.createHash('sha1').update(seed).digest('hex');
 
     var imageBuffer = decodeBase64Image(image);
-    var userUploadedFeedMessagesLocation = './resources/img/users/';
+    var userUploadedFeedMessagesLocation = 'resources/uploads/img/users/';
 
-    var uniqueRandomImageName = 'image-' + uniqueSHA1String;
+    var uniqueRandomImageName = 'image-' + uniqueSHA1String; //uniqueSHA1String;
     var imageTypeDetected = decodeBase64Image(image).type.match(imageTypeRegularExpression);
     var userUploadedImagePath  = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
-    var clientSrc = 'resources/img/users/'+ uniqueRandomImageName + '.' + imageTypeDetected[1];
+    var clientPath  = '/uploads/img/users/' + uniqueRandomImageName + '.' + imageTypeDetected[1];
 
     fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function(err){
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
-        done(err, userUploadedFeedMessagesLocation);
+        done(err, clientPath);
     });
 };
 
@@ -162,8 +175,8 @@ router.put("/user", function (req, res) {
         user.firstName = req.body.firstName || user.firstName;
         user.secondName = req.body.secondName || user.secondName;
 
-        if(req.body.avatar){
-            saveImage(req.body.avatar, function(err, img){
+        if(req.body.avatar !== user.avatar){
+            saveImage(req.body.avatar, user.avatar, function(err, img){
                 if (err) {
                     throw err;
                 }
@@ -174,6 +187,7 @@ router.put("/user", function (req, res) {
                     }
                     res.json({
                         status: true,
+                        res: user,
                         message: "User successfully was changed."
                     })
                 });
@@ -185,6 +199,7 @@ router.put("/user", function (req, res) {
                 }
                 res.json({
                     status: true,
+                    res: user,
                     message: "User successfully was changed."
                 })
             });
@@ -238,7 +253,7 @@ router.post("/user", function (req, res) {
         function (user, done) {
 
             if(user.avatar){
-                saveImage(user.avatar, function(err, img){
+                saveImage(user.avatar, null, function(err, img){
                     user.avatar = img;
                     done(err, user);
                 })

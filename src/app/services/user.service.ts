@@ -74,5 +74,18 @@ export class UserService {
     }
     return resolFlag;
   }
-  
+
+
+  lettersNoImg(user: any): string{
+    let l1= '';
+    let l2= '';
+    if(user.firstName){
+      l1 = user.firstName.charAt(0).toUpperCase();
+    }
+    if(user.secondName){
+      l2 = user.secondName.charAt(0).toUpperCase();
+    }
+
+    return l1+l2;
+  }
 }
