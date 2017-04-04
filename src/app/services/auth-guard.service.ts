@@ -29,6 +29,7 @@ export class AuthGuardService implements CanActivate,  Resolve<any> {
     return this.authService.get('/api/users/user').map((res: any) => {
       res = res.json();
       if(res.status) {
+        console.log(res.res, 1);
         this.userService.setUser(res.res);
         return res.res;
       }

@@ -59,6 +59,7 @@ export class UserService {
         this.User[i] = user[i];
       }
     }
+    console.log(this.User, 2);
   }
 
   getUser(){

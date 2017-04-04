@@ -214,6 +214,7 @@ var UsersComponent = (function () {
     UsersComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.User = this.userService.getUser();
+        console.log(this.User, 3);
         this.subNewUser = this.shareService.shareListener.subscribe(function (user) {
             if (user != undefined) {
                 _this.createNewUser = false;
@@ -325,6 +326,7 @@ var AuthGuardService = (function () {
         return this.authService.get('/api/users/user').map(function (res) {
             res = res.json();
             if (res.status) {
+                console.log(res.res, 1);
                 _this.userService.setUser(res.res);
                 return res.res;
             }
@@ -491,6 +493,7 @@ var UserService = (function () {
                 this.User[i] = user[i];
             }
         }
+        console.log(this.User, 2);
     };
     UserService.prototype.getUser = function () {
         return this.User;
