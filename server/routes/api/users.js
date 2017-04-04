@@ -80,6 +80,8 @@ router.get("/user", function (req, res) {
                     user.users = users;
                     done(err, user);
                 })
+            } else{
+                done(null, user);
             }
         }
     ], function (err, user) {
