@@ -54,12 +54,7 @@ export class UserService {
   }
   
   setUser(user: any): void {
-    for(let i in this.User){
-      if(user[i]){
-        this.User[i] = user[i];
-      }
-    }
-    console.log(this.User, 2);
+    this.User = user;
   }
 
   getUser(){

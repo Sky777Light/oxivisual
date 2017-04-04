@@ -488,12 +488,7 @@ var UserService = (function () {
         }, function (error) { });
     };
     UserService.prototype.setUser = function (user) {
-        for (var i in this.User) {
-            if (user[i]) {
-                this.User[i] = user[i];
-            }
-        }
-        console.log(this.User, 2);
+        this.User = user;
     };
     UserService.prototype.getUser = function () {
         return this.User;
