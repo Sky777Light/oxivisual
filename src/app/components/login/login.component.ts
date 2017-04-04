@@ -10,7 +10,7 @@ import {User} from "../../interfaces/user.interface";
 })
 export class LoginComponent {
 
-  private remember: boolean = false;
+  private remember: boolean = true;
   private resol: Resol = {
     email: true,
     password: true

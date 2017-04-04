@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate,  Resolve<any> {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
-    if (this.storageService.get("token") ||  this.storageService.tempToken) {
+    if (this.storageService.get("token") ||  this.storageService.getSession("token")) {
       return true;
     }
     this.router.navigate(['/login']);

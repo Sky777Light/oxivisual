@@ -11,7 +11,7 @@ export class AuthService {
   ) {}
 
   createAuthorizationHeader(headers: Headers) {
-    let token = this.storageService.get("token") ||  this.storageService.tempToken;
+    let token = this.storageService.get("token") ||  this.storageService.getSession("token");
     headers.append('authorization', token);
   }
 

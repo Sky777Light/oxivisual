@@ -71,12 +71,12 @@ router.get("/user", function (req, res) {
         },
         function (user, done) {
             if(user.role === 'super'){
-                User.find({_id: { $ne: user._id }}, function (err, users) {
+                User.find({}, function (err, users) {
                     user.users = users;
                     done(err, user);
                 })
             } else if( user.role === 'admin'){
-                User.find({parent: user._id}, function (err, users) {
+                User.find( {$or: [ { parent: user._id }, { _id: user._id }] }, function (err, users) {
                     user.users = users;
                     done(err, user);
                 })
@@ -287,7 +287,6 @@ router.post("/user", function (req, res) {
 //delete user
 router.delete("/user", function (req, res) {
     User.findOne({ _id: req.body._id }, function (err, user) {
-        console.log(err, user);
         return;
         if (err) {
             throw err;

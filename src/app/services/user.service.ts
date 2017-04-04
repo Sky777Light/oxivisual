@@ -33,7 +33,7 @@ export class UserService {
     this.authService.post('/auth/login', user).subscribe((response: any) => {
       let res = JSON.parse(response._body);
       if(res.status) {
-        remember ? this.storageService.set('token', res.token) : this.storageService.tempToken = res.token;
+        remember ? this.storageService.set('token', res.token) : this.storageService.setSession('token', res.token) ;
         this.router.navigate(['/']);
       }
       alertify.success(res.message);
@@ -42,7 +42,7 @@ export class UserService {
 
   logOut(): void {
     this.storageService.remove('token');
-    this.storageService.tempToken = null;
+    this.storageService.removeSession('token');
     this.authService.post('/auth/logout', {}).subscribe((response: any) => {
       let res = JSON.parse(response._body);
       if(res.status) {

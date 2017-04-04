@@ -7,21 +7,13 @@ import {Component} from '@angular/core';
 })
 export class ProjectsComponent {
 
-  private title: string = 'Projects';
-  private projects: any = [
-    {
-      title: 'first',
-      number: 1
-    },
-    {
-      title: 'second',
-      number: 2
-    },
-    {
-      title: 'third',
-      number: 3
-    }
-  ];
+//data work with header
+  private header: any = {
+    title: 'Projects',
+    arrLength: 0
+  };
+  private searchName: string;
+  private sortType: string = 'A-Z';
 
   constructor(){
     

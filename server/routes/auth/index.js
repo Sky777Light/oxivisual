@@ -77,11 +77,10 @@ router.post("/login", function (req, res, next) {
 
                     user.token = "JWT " + jwt.encode({_id: user._id, email: user.email}, config.security.secret);
                     user.save(function (err, user) {
-                        console.log(err, user);
                         if (err) {
                             throw err;
                         }
-
+                        
                         passportCtrl();
                     });
 
