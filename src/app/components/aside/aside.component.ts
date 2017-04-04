@@ -10,7 +10,7 @@ import {UserService} from "../../services/user.service";
 export class AsideComponent {
 
   private User: any;
-  private user: any = {};
+  private user: any;
 
   constructor(
       private userService: UserService,
