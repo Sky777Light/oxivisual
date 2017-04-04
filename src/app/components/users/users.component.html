@@ -17,7 +17,9 @@
                 <span class="new-title" [hidden]="!user.newUser">New</span>
               </div>
               <br>
-              <span class="user-status pointer" (click)="selectUser(user, false)">{{user.role}}</span>
+              <span class="user-status pointer" (click)="selectUser(user, false)" *ngIf="user.role == 'super'">Super user</span>
+              <span class="user-status pointer" (click)="selectUser(user, false)" *ngIf="user.role == 'admin'">Client-admin</span>
+              <span class="user-status pointer" (click)="selectUser(user, false)" *ngIf="user.role == 'user'">Client-user</span>
             </div>
             <div class="user-ctrl">
               <i class="material-icons" (click)="selectUser(user, true)">edit</i>

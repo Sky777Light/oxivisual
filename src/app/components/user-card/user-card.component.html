@@ -2,7 +2,9 @@
   <div class="user-card-head">
     <div>
       <span class="user-card-hd-name">{{tempUser.firstName}} {{tempUser.secondName}}</span>
-      <span class="user-card-hd-status">{{tempUser.status}}</span>
+      <span class="user-card-hd-status" *ngIf="tempUser.role == 'super'">Super user</span>
+      <span class="user-card-hd-status" *ngIf="tempUser.role == 'admin'">Client-admin</span>
+      <span class="user-card-hd-status" *ngIf="tempUser.role == 'user'">Client-user</span>
     </div>
     <div class="user-card-hd-menu" [class.user-card-hd-menu-active]="openMenu" [hidden]="!canEdit">
       <i class="material-icons" (click)="openMenu = !openMenu" (window:mouseup)="openMenu = false">more_vert</i>

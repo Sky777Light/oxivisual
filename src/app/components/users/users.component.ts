@@ -44,6 +44,7 @@ export class UsersComponent {
 
   ngOnInit() {
     this.User = this.userService.getUser();
+    console.log(this.User);
     this.subNewUser = this.shareService.shareListener.subscribe((user: User) => {
       if(user != undefined){
         this.createNewUser = false;
