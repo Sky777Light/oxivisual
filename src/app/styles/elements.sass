@@ -42,7 +42,7 @@
       transition: opacity .5s, visibility 0s
 
 // user form
-.user-form
+.item-form
   width: 320px
   .input-wrap
     width: 100%
@@ -82,14 +82,14 @@
         border-bottom: 2px solid $reset
 
   //user photo
-.user-photo
+.item-photo
   .photo
     width: 120px
     height: 120px
     border-radius: 50%
     background:  no-repeat
     background-position: 50% 50%
-    background-size: auto 100%
+    background-size: cover
     background-color: $bottom-bor
     display: flex
     justify-content: center
@@ -103,8 +103,12 @@
   .photo-ctrl
     width: 100%
     margin-top: 20px
+    font-size: 16px
+    color: $reset
     display: flex
-    justify-content: space-around
+    justify-content: center
+    span
+      margin-left: 15px
     input
       display: none
     span, label
@@ -163,3 +167,47 @@
       background-color: rgba(25, 118, 210, 0.1)
       span
         color: $primary
+
+//"add new" block
+.add-new
+  height: 100%
+  width: 100%
+  position: absolute
+  z-index: 1000
+  top: 0
+  left: 0
+  .block-bg
+    height: 100%
+    width: 100%
+    opacity: 0.2
+    background-color: $black
+  .new-form
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    display: flex
+    flex-direction: column
+    padding: 30px
+    background-color: $white
+    box-shadow: 0 17px 50px 0 rgba(0,0,0,0.19)
+    .tag-text
+      font-size: 18px
+      color: $tag-text
+    .main-info
+      width: 100%
+      display: flex
+    .new-btns
+      width: 100%
+      display: flex
+      justify-content: flex-end
+      .right-btn
+        margin-left: 30px
+
+
+
+
+
+
+
+

@@ -40,11 +40,12 @@ export class UsersComponent {
       private shareService: ShareService,
       private userService: UserService,
       private authService: AuthService
-  ) { }
+  ) {
+    this.User = this.userService.getUser();
+  }
 
   ngOnInit() {
-    this.User = this.userService.getUser();
-    this.subNewUser = this.shareService.shareListener.subscribe((user: User) => {
+    this.subNewUser = this.shareService.shareListener.subscribe((user: any) => {
       if(user != undefined){
         this.createNewUser = false;
         if(user.newUser){

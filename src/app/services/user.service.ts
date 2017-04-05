@@ -61,10 +61,10 @@ export class UserService {
     return this.User;
   }
 
-  resolUser(resol: Resol, user: User ){
+  resolUser(resol: Resol, obj: any ){
     let resolFlag: boolean = true;
     for(let i in resol){
-      resol[i] = user[i] ? true : false;
+      resol[i] = obj[i] ? true : false;
       if(!resol[i])
         resolFlag = false;
     }

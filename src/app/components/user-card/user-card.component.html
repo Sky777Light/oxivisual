@@ -34,7 +34,7 @@
     <span class="user-card-created-date">Created: {{tempUser.created}}</span>
   </div>
   <div class="user-card-body">
-    <div class="user-photo">
+    <div class="item-photo">
       <label class="photo" [class.curs-dis]="!canEdit" [ngStyle]="{'background-image': 'url(' + tempUser.avatar + ')'}">
         <input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)">
         <i class="material-icons" [hidden]="tempUser.avatar">crop_original</i>
@@ -44,7 +44,7 @@
         <span (click)="removePhoto()">Remove</span>
       </div>
     </div>
-    <form class="user-form">
+    <form class="item-form">
       <div class="input-wrap">
         <input type="email" [class.input-fill]="tempUser.email" [class.no-changable]="!canEdit" placeholder="Email" [(ngModel)]="tempUser.email" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.email = true">
         <label [class.full-op]="!resol.email">This input requires a value!</label>

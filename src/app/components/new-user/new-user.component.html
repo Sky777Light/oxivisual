@@ -1,23 +1,23 @@
 <div class="block-bg" (click)="cancel()"></div>
 
-<div class="new-user-form">
+<div class="new-form">
   <span class="tag-text">Creating a new user:</span>
   <div class="main-info">
-    <div class="user-photo">
+    <div class="item-photo">
       <label class="photo" [ngStyle]="{'background-image': 'url(' + tempNewUser.avatar + ')'}">
         <input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)">
-        <i class="material-icons" [hidden]="tempNewUser.avatar">crop_original</i>
+        <i class="material-icons" [hidden]="tempNewUser.avatar != false">crop_original</i>
       </label>
-      <div class="photo-ctrl" [hidden]="!tempNewUser.avatar">
+      <div class="photo-ctrl" [hidden]="tempNewUser.avatar == false">
         <label>Upload<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
         <span (click)="removePhoto()">Remove</span>
       </div>
-      <div class="photo-ctrl" [hidden]="tempNewUser.avatar">
+      <div class="photo-ctrl" [hidden]="tempNewUser.avatar != false">
         <label>Upload image<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
       </div>
       <span class="photo-info">300*300 px</span>
     </div>
-    <form class="user-form">
+    <form class="item-form">
       <div class="input-wrap">
         <input type="email" [class.input-fill]="tempNewUser.email" [class.input-error]="!resol.email" placeholder="Email" [(ngModel)]="tempNewUser.email" [ngModelOptions]="{standalone: true}"  (focus)="resol.email = true">
         <label [class.full-op]="!resol.email">This input requires a value!</label>
@@ -58,7 +58,7 @@
     </div>
     <label [class.err-status]="!resol.role">Select user status</label>
   </div>
-  <div class="new-user-btns">
+  <div class="new-btns">
     <span class="text-btn" (click)="cancel()">cancel</span>
     <span class="right-btn text-btn" (click)="accept()">accept</span>
   </div>

@@ -3,7 +3,7 @@
 </div>
 <div class="login-form">
   <label class="login-text">Log in:</label>
-  <form class="user-form" (keydown)="keyDown($event)">
+  <form class="item-form" (keydown)="keyDown($event)">
     <div class="input-wrap">
       <input id="login-name" [class.input-fill]="user.email" [class.input-error]="!resol.email" type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true">
       <label for="login-name" [class.full-op]="!resol.email">This input requires a value!</label>

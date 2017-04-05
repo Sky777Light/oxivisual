@@ -3,6 +3,7 @@ const async = require("async");
 var fs = require("fs");
 
 const User = require("../../models/user");
+const Project = require("../../models/project");
 
 var saveImage = function (image, avatar, done) {
     function decodeBase64Image(dataString){
@@ -62,12 +63,33 @@ router.get("/user", function (req, res) {
                     secondName: user.secondName,
                     created: user.created,
                     role: user.role,
+                    projects: [],
                     active: user.active,
                     avatar: user.avatar
                 };
 
                 done(err, tempUser);
             })
+        },
+        function (user, done) {
+            if(user.role === 'super'){
+                Project.find({}, function (err, projects) {
+                    user.projects = projects;
+                    done(err, user);
+                })
+            } else if( user.role === 'admin'){
+                Project.find( {owner: user._id}, function (err, projects) {
+                    user.projects = projects;
+                    done(err, user);
+                })
+            } else if( user.role === 'user'){
+                Project.find( {owner: user.parent}, function (err, projects) {
+                    user.projects = projects;
+                    done(err, user);
+                })
+            } else {
+                done(null, user);
+            }
         },
         function (user, done) {
             if(user.role === 'super'){

@@ -21,6 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
 import {UsersComponent} from "./components/users/users.component";
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import {NewProjectComponent} from "./components/new-project/new-project.component";
 
 import {SortPipe} from "./pipes/sort.pipe";
 import {NamePipe} from "./pipes/name.pipe";
@@ -41,7 +42,8 @@ import {ShareService} from "./services/share.service";
     NamePipe,
     UserCardComponent,
     SlimScroll,
-    NewUserComponent
+    NewUserComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,
