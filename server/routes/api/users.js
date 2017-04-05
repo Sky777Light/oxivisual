@@ -74,17 +74,17 @@ router.get("/user", function (req, res) {
         function (user, done) {
             if(user.role === 'super'){
                 Project.find({}, function (err, projects) {
-                    user.projects = projects || [];
+                    user.projects = projects;
                     done(err, user);
                 })
             } else if( user.role === 'admin'){
                 Project.find( {owner: user._id}, function (err, projects) {
-                    user.projects = projects || [];
+                    user.projects = projects;
                     done(err, user);
                 })
             } else if( user.role === 'user'){
                 Project.find( {owner: user.parent}, function (err, projects) {
-                    user.projects = projects || [];
+                    user.projects = projects;
                     done(err, user);
                 })
             } else {

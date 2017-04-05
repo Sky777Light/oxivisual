@@ -18,6 +18,7 @@ export class AsideComponent {
   ) {
     route.data.subscribe((data: any) => {
       this.User = data.user;
+      console.log(this.User);
       for(let i = 0; i < data.user.users.length; i++){
         if(data.user.users[i]._id == data.user._id ){
           this.user = data.user.users[i];
