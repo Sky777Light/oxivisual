@@ -1,8 +1,8 @@
 import {Component, HostListener} from '@angular/core';
-import {User} from "../../interfaces/user.interface";
-import {ShareService} from "../../services/share.service";
-import {Resol} from "../../interfaces/resol.interface";
-import {UserService} from "../../services/user.service";
+import {User} from "../../../../interfaces/user.interface";
+import {ShareService} from "../../../../services/share.service";
+import {Resol} from "../../../../interfaces/resol.interface";
+import {UserService} from "../../../../services/user.service";
 
 @Component({
   selector: 'app-new-user',

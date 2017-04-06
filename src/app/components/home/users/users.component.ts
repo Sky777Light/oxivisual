@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {User} from "../../interfaces/user.interface";
 import {Subscription} from "rxjs/Rx";
-import {ShareService} from "../../services/share.service";
-import {UserService} from "../../services/user.service";
-import {AuthService} from "../../services/auth.service";
+import {User} from "../../../interfaces/user.interface";
+import {ShareService} from "../../../services/share.service";
+import {UserService} from "../../../services/user.service";
+import {AuthService} from "../../../services/auth.service";
 
 declare var alertify: any;
 

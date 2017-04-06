@@ -1,8 +1,8 @@
 import {Component, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
-import {User} from "../../interfaces/user.interface";
-import {Resol} from "../../interfaces/resol.interface";
-import {UserService} from "../../services/user.service";
-import {AuthService} from "../../services/auth.service";
+import {User} from "../../../../interfaces/user.interface";
+import {Resol} from "../../../../interfaces/resol.interface";
+import {UserService} from "../../../../services/user.service";
+import {AuthService} from "../../../../services/auth.service";
 
 declare var alertify: any;
 

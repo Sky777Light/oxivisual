@@ -1,9 +1,9 @@
 import {Component, HostListener} from '@angular/core';
-import {UserService} from "../../services/user.service";
-import {User} from "../../interfaces/user.interface";
-import {Resol} from "../../interfaces/resol.interface";
-import {Project} from "../../interfaces/project.interface";
-import {ShareService} from "../../services/share.service";
+import {UserService} from "../../../../services/user.service";
+import {User} from "../../../../interfaces/user.interface";
+import {Resol} from "../../../../interfaces/resol.interface";
+import {Project} from "../../../../interfaces/project.interface";
+import {ShareService} from "../../../../services/share.service";
 
 @Component({
   selector: 'app-new-project',
