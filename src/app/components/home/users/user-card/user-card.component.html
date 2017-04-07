@@ -2,32 +2,50 @@
   <div class="user-card-head">
     <div>
       <span class="user-card-hd-name">{{tempUser.firstName}} {{tempUser.secondName}}</span>
-      <span class="user-card-hd-status" *ngIf="tempUser.role == 'super'">Super user</span>
-      <span class="user-card-hd-status" *ngIf="tempUser.role == 'admin'">Client-admin</span>
-      <span class="user-card-hd-status" *ngIf="tempUser.role == 'user'">Client-user</span>
+      <span class="user-card-hd-status" *ngIf="tempUser.role == 'super'">superuser</span>
+      <span class="user-card-hd-status" *ngIf="tempUser.role == 'admin'">client-admin</span>
+      <span class="user-card-hd-status" *ngIf="tempUser.role == 'user'">client-user</span>
     </div>
     <div class="user-card-hd-menu" [class.user-card-hd-menu-active]="openMenu" [hidden]="!canEdit">
       <i class="material-icons" (click)="openMenu = !openMenu" (window:mouseup)="openMenu = false">more_vert</i>
-      <div class="user-pop-up" [class.hidden]="!openMenu">
-        <div class="user-pop-up-item">
-          <i class="material-icons">folder</i><span>Projects</span>
-          <span class="user-pop-up-num">2</span>
+      <div class="pop-up" [class.hidden]="!openMenu">
+        <div class="pop-up-item">
+          <i class="material-icons">folder</i>
+          <div class="pop-up-row-name">
+            <span>Projects</span>
+            <span class="pop-up-num">2</span>
+          </div>
         </div>
-        <div class="user-pop-up-item">
-          <i class="material-icons">people</i><span>Users</span>
-          <span class="user-pop-up-num">4</span>
+        <div class="pop-up-item">
+          <i class="material-icons">people</i>
+          <div class="pop-up-row-name">
+            <span>Users</span>
+            <span class="pop-up-num">4</span>
+          </div>
         </div>
-        <div class="user-pop-up-item" [hidden]="!tempUser.active || !canEdit" (click)="deactivate()">
-          <i class="material-icons" (click)="tempUser.active = false">visibility_off</i><span>Deactivate</span>
+        <div class="pop-up-item" [hidden]="!tempUser.active || !canEdit" (click)="deactivate()">
+          <i class="material-icons" (click)="tempUser.active = false">visibility_off</i>
+          <div class="pop-up-row-name">
+            <span>Deactivate</span>
+          </div>
         </div>
-        <div class="user-pop-up-item" [hidden]="tempUser.active || !canEdit" (click)="deactivate()">
-          <i class="material-icons" (click)="tempUser.active = true">visibility</i><span>Activate</span>
+        <div class="pop-up-item" [hidden]="tempUser.active || !canEdit" (click)="deactivate()">
+          <i class="material-icons" (click)="tempUser.active = true">visibility</i>
+          <div class="pop-up-row-name">
+            <span>Activate</span>
+          </div>
         </div>
-        <div class="user-pop-up-item" [hidden]="!canEdit">
-          <i class="material-icons">lock</i><span>Change password</span>
+        <div class="pop-up-item" [hidden]="!canEdit">
+          <i class="material-icons">lock</i>
+          <div class="pop-up-row-name">
+            <span>Change password</span>
+          </div>
         </div>
-        <div class="user-pop-up-item" [hidden]="!canEdit" (click)="delete()">
-          <i class="material-icons">delete</i><span>Delete</span>
+        <div class="pop-up-item" [hidden]="!canEdit" (click)="delete()">
+          <i class="material-icons">delete</i>
+          <div class="pop-up-row-name">
+            <span>Delete</span>
+          </div>
         </div>
       </div>
     </div>
@@ -46,21 +64,22 @@
     </div>
     <form class="item-form">
       <div class="input-wrap">
-        <input type="email" [class.input-fill]="tempUser.email" [class.no-changable]="!canEdit" placeholder="Email" [(ngModel)]="tempUser.email" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.email = true">
+        <input type="email" [class.no-changable]="!canEdit" [class.input-error]="!resol.email || message" placeholder="Email" [(ngModel)]="tempUser.email" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.email = true; message =''">
         <label [class.full-op]="!resol.email">This input requires a value!</label>
+        <label [class.full-op]="message">{{message}}</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempUser.firstName" [class.no-changable]="!canEdit" placeholder="First name" [(ngModel)]="tempUser.firstName" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.firstName = true">
+        <input type="text" [class.no-changable]="!canEdit" [class.input-error]="!resol.firstName" placeholder="First name" [(ngModel)]="tempUser.firstName" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.firstName = true">
         <label [class.full-op]="!resol.firstName">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempUser.secondName" [class.no-changable]="!canEdit" placeholder="Last name" [(ngModel)]="tempUser.secondName" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.secondName = true">
+        <input type="text" [class.no-changable]="!canEdit" [class.input-error]="!resol.secondName" placeholder="Last name" [(ngModel)]="tempUser.secondName" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.secondName = true">
         <label [class.full-op]="!resol.secondName">This input requires a value!</label>
       </div>
     </form>
   </div>
 </div>
 <div class="user-card-foot" [hidden]="!canEdit">
-  <span class="user-ft-l text-btn" (click)="reset()">Reset</span>
-  <span class="user-ft-r text-btn" (click)="changeUser()">save changes</span>
+  <span class="user-ft-l false-btn" (click)="reset()">Reset</span>
+  <span class="user-ft-r true-btn" (click)="changeUser()">save changes</span>
 </div>

@@ -72,6 +72,7 @@ app-users
               .user-ctrl
                 float: right
                 display: flex
+                align-items: center
                 .user-edit-wrap
                   position: relative
                   width: 30px
@@ -81,7 +82,10 @@ app-users
                   justify-content: center
                   align-items: center
                   margin-right: 20px
-                  .user-pop-up
+                  .pop-up
+                    position: absolute
+                    z-index: 100
+                    right: 0
                     top: 35px
                     width: 170px
                     height: 100px

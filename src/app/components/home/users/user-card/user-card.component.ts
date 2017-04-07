@@ -22,6 +22,7 @@ export class UserCardComponent {
     secondName: true,
     email: true
   };
+  private message: string = '';
 
   private User: User;
   private tempUser: User;
@@ -97,7 +98,11 @@ export class UserCardComponent {
         this.user.email = this.tempUser.email;
         this.user.active = this.tempUser.active;
         this.user.avatar = res.res.avatar;
+      } else {
+        if(res.email)
+          this.message = res.message;
       }
+      
       alertify.success(res.message);
     }, (error) => {});
 

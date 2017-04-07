@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, Input} from '@angular/core';
 import {User} from "../../../../interfaces/user.interface";
 import {ShareService} from "../../../../services/share.service";
 import {Resol} from "../../../../interfaces/resol.interface";
@@ -12,6 +12,9 @@ import {UserService} from "../../../../services/user.service";
 export class NewUserComponent {
 
   private User: User;
+
+  @Input()message;
+
   private tempNewUser: User = {
     email: '',
     firstName: '',
@@ -43,6 +46,9 @@ export class NewUserComponent {
     this.User = this.userService.getUser();
   }
 
+  ngOnInit(){
+    this.message.email = '';
+  }
 
 //photo change
   loadPhoto($event){
@@ -73,6 +79,11 @@ export class NewUserComponent {
 
   accept(){
     if(!this.userService.resolUser(this.resol, this.tempNewUser)) return false;
+
+    if(this.tempNewUser.password !== this.tempNewUser.passwordRepeat){
+      this.message.password = "Password is incorrect";
+      return false;
+    }
 
     //user's create date
     let today = new Date();

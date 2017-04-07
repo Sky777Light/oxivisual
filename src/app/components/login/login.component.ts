@@ -11,6 +11,7 @@ import {User} from "../../interfaces/user.interface";
 export class LoginComponent {
 
   private remember: boolean = true;
+  private message: string = '';
   private resol: Resol = {
     email: true,
     password: true
@@ -27,7 +28,9 @@ export class LoginComponent {
   logIn(){
     if(!this.userService.resolUser(this.resol, this.user)) return false;
 
-    this.userService.logIn(this.remember, this.user);
+    this.userService.logIn(this.remember, this.user, (message: string) => {
+      this.message = message;
+    });
   }
 
   keyDown($event){

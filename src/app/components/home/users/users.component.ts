@@ -34,6 +34,10 @@ export class UsersComponent {
 //create new user
   private createNewUser: boolean = false;
   private subNewUser:Subscription;
+  private message: any = {
+    email: '',
+    password: ''
+  };
 
 
   constructor(
@@ -47,15 +51,20 @@ export class UsersComponent {
   ngOnInit() {
     this.subNewUser = this.shareService.shareListener.subscribe((user: any) => {
       if(user != undefined){
-        this.createNewUser = false;
         if(user.newUser){
           this.authService.post('/api/users/user', user).subscribe((res: any) => {
             res = res.json();
             if(res.status) {
               this.User.users.push(res.res);
+              this.createNewUser = false;
+            }else{
+              if(res.email)
+                this.message.email = res.message;
             }
             alertify.success(res.message);
           }, (error) => {});
+        } else {
+          this.createNewUser = false;
         }
       }
     })

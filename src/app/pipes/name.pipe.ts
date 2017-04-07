@@ -1,4 +1,5 @@
 import {Pipe, Injectable, PipeTransform} from "@angular/core";
+import {ShareService} from "../services/share.service";
 
 @Pipe({
     name: 'namefilter',
@@ -9,12 +10,14 @@ import {Pipe, Injectable, PipeTransform} from "@angular/core";
 export class NamePipe implements PipeTransform {
     private filteredList: any;
 
-    constructor( ){  }
+    constructor(
+        private shareService: ShareService
+    ){  }
 
-    transform(items: any[], name: string, moreParams:any ): any {
+    transform(items: any[], name: string): any {
 
         if(!name){
-            moreParams.arrLength = items.length;
+            this.shareService.changeSortArrSubject(items.length);
             return items;
         }
 
@@ -26,7 +29,7 @@ export class NamePipe implements PipeTransform {
 
                return (item.title.toUpperCase().indexOf(name.toUpperCase(), 0) > -1);
             });
-            moreParams.arrLength = this.filteredList.length;
+            this.shareService.changeSortArrSubject(this.filteredList.length);
             return this.filteredList;
         }
 

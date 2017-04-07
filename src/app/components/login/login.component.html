@@ -5,12 +5,14 @@
   <label class="login-text">Log in:</label>
   <form class="item-form" (keydown)="keyDown($event)">
     <div class="input-wrap">
-      <input id="login-name" [class.input-fill]="user.email" [class.input-error]="!resol.email" type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true">
+      <input id="login-name" [class.input-error]="!resol.email || message" type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true; message = ''">
       <label for="login-name" [class.full-op]="!resol.email">This input requires a value!</label>
+      <label for="login-name" [class.full-op]="message">{{message}}</label>
     </div>
     <div class="input-wrap">
-      <input id="login-pass" [class.input-fill]="user.password" [class.input-error]="!resol.password" type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" maxlength="15" placeholder="Password" (focus)="resol.password = true">
+      <input id="login-pass" [class.input-error]="!resol.password || message" type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" maxlength="15" placeholder="Password" (focus)="resol.password = true; message = ''">
       <label for="login-pass" [class.full-op]="!resol.password">This input requires a value!</label>
+      <label for="login-pass" [class.full-op]="message">{{message}}</label>
     </div>
   </form>
   <div class="log-in">
@@ -20,6 +22,6 @@
       </div>
       <label for="remember-int" (click)="remember = !remember">Remember password</label>
     </div>
-    <span class="text-btn" (click)="logIn()">ACCEPT</span>
+    <span class="true-btn" (click)="logIn()">ACCEPT</span>
   </div>
 </div>

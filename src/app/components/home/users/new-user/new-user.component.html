@@ -19,24 +19,26 @@
     </div>
     <form class="item-form">
       <div class="input-wrap">
-        <input type="email" [class.input-fill]="tempNewUser.email" [class.input-error]="!resol.email" placeholder="Email" [(ngModel)]="tempNewUser.email" [ngModelOptions]="{standalone: true}"  (focus)="resol.email = true">
+        <input type="email" [class.input-error]="!resol.email || message.email" placeholder="Email" [(ngModel)]="tempNewUser.email" [ngModelOptions]="{standalone: true}"  (focus)="resol.email = true; message.email = ''">
         <label [class.full-op]="!resol.email">This input requires a value!</label>
+        <label [class.full-op]="message.email">{{message.email}}</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempNewUser.firstName" [class.input-error]="!resol.firstName"  placeholder="First name" [(ngModel)]="tempNewUser.firstName" [ngModelOptions]="{standalone: true}"  (focus)="resol.firstName = true">
+        <input type="text" [class.input-error]="!resol.firstName"  placeholder="First name" [(ngModel)]="tempNewUser.firstName" [ngModelOptions]="{standalone: true}"  (focus)="resol.firstName = true">
         <label [class.full-op]="!resol.firstName">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempNewUser.secondName" [class.input-error]="!resol.secondName"  placeholder="Last name" [(ngModel)]="tempNewUser.secondName" [ngModelOptions]="{standalone: true}" (focus)="resol.secondName = true">
+        <input type="text" [class.input-error]="!resol.secondName"  placeholder="Last name" [(ngModel)]="tempNewUser.secondName" [ngModelOptions]="{standalone: true}" (focus)="resol.secondName = true">
         <label [class.full-op]="!resol.secondName">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="password" [class.input-fill]="tempNewUser.password" [class.input-error]="!resol.password" placeholder="Password" [(ngModel)]="tempNewUser.password" [ngModelOptions]="{standalone: true}" (focus)="resol.password = true">
+        <input type="password" [class.input-error]="!resol.password" placeholder="Password" [(ngModel)]="tempNewUser.password" [ngModelOptions]="{standalone: true}" (focus)="resol.password = true; message.password = ''">
         <label [class.full-op]="!resol.password">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="password" [class.input-fill]="tempNewUser.passwordRepeat" [class.input-error]="!resol.passwordRepeat" placeholder="Repeat password" [(ngModel)]="tempNewUser.passwordRepeat" [ngModelOptions]="{standalone: true}" (focus)="resol.passwordRepeat = true">
+        <input type="password" [class.input-error]="!resol.passwordRepeat || message.password" placeholder="Repeat password" [(ngModel)]="tempNewUser.passwordRepeat" [ngModelOptions]="{standalone: true}" (focus)="resol.passwordRepeat = true; message.password = ''">
         <label [class.full-op]="!resol.passwordRepeat">This input requires a value!</label>
+        <label [class.full-op]="message.password">Password is incorrect</label>
       </div>
     </form>
   </div>
@@ -59,7 +61,7 @@
     <label [class.err-status]="!resol.role">Select user status</label>
   </div>
   <div class="new-btns">
-    <span class="text-btn" (click)="cancel()">cancel</span>
-    <span class="right-btn text-btn" (click)="accept()">accept</span>
+    <span class="false-btn" (click)="cancel()">cancel</span>
+    <span class="true-btn" (click)="accept()">accept</span>
   </div>
 </div>

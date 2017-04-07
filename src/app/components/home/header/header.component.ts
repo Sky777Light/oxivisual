@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Subscription} from "rxjs/Rx";
+import {ShareService} from "../../../services/share.service";
 
 @Component({
   selector: 'app-header',
@@ -6,8 +8,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent{
-
-  @Input() header;
+  
+  private headerSub: Subscription;
+  @Input() headerData;
 
   @Input() searchRes;
   @Output() searchResChange = new EventEmitter();
@@ -15,10 +18,20 @@ export class HeaderComponent{
   @Input() sortType;
   @Output() sortTypeChange = new EventEmitter();
 
-  constructor(){
+  constructor(
+      private shareService: ShareService
+  ){}
 
+  ngOnInit() {
+    this.headerSub = this.shareService.headerListener.subscribe((data: any) => {
+      
+    })
   }
 
+  ngOnDestroy() {
+    this.headerSub.unsubscribe();
+  }
+  
   changeSearchRes(val){
     this.searchRes = val;
     this.searchResChange.emit(this.searchRes);

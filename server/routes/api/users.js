@@ -121,115 +121,106 @@ router.get("/user", function (req, res) {
 
 //update user
 router.put("/user", function (req, res) {
-    User.findOne({ _id: req.body._id }, function (err, user) {
-        if (err) {
-            return res.json({
-                status: false,
-                message: "Undefined error, no user found."
-            });
-        }
 
-        if (!user) {
-            return res.json({
-                status: false,
-                message: "No user found."
-            });
-        }
-
-        //if password changed
-        if(req.body.oldPassword) {
-            if (!user.comparePassword(req.body.oldPassword)) {
-                return res.json({
-                    status: false,
-                    message: "Oops! Wrong password."
-                });
-            }
-            user.password = req.body.password;
-            user.save(function (err, user) {
+    async.waterfall([
+        function (done) {
+            User.findOne({ _id: req.body._id }, {}, function (err, user) {
                 if (err) {
-                    throw err;
+                    done({status: false, message: "Undefined error, no user found."}, null);
+                    return;
                 }
 
-            return res.json({
-                    status: true,
-                    message: "Password successfully was changed."
-                });
-            });
-        }
-
-        //if user deactivated/activated
-        if(req.body.active !== user.active){
-            user.active = req.body.active;
-            user.save(function (err, user) {
-                if (err) {
-                    throw err;
+                if (!user) {
+                    done({status: false, message: "No user found."}, null);
+                    return;
                 }
 
-                res.json({
-                    status: true,
-                    message: user.active ? "User successfully was activated." : "User successfully was deactivated."
-                })
-            });
-            return;
-        }
-
-        //if email changed
-        if(req.body.email !== user.email){
-            User.findOne({ email: req.body.email }, function (err, result) {
-                if (err) {
-                    throw err;
-                }
-
-                if (result) {
-                    return res.json({
-                        status: false,
-                        message: "That email is already taken."
+                //if password changed
+                if(req.body.oldPassword) {
+                    if (!user.comparePassword(req.body.oldPassword)) {
+                        done({status: false, message: "Oops! Wrong password."}, null);
+                        return;
+                    }
+                    user.password = req.body.password;
+                    user.save(function (err) {
+                        if (err) {
+                            throw err;
+                        }
+                        done({status: true, message: "Password successfully was changed."}, null);
+                        return;
                     });
                 }
-                user.email = req.body.email;
 
-                user.save(function (err) {
-                    if (err) {
-                        throw err;
-                    }
-                });
+                //if user deactivated/activated
+                if(req.body.active !== user.active){
+                    user.active = req.body.active;
+                    user.save(function (err, user) {
+                        if (err) {
+                            done(err, null);
+                            return;
+                        }
+
+                        done({status: true, message: user.active ? "User successfully was activated." : "User successfully was deactivated."}, null);
+                        return;
+                    });
+                }
+
+                //if email changed
+                if(req.body.email !== user.email){
+                    User.findOne({ email: req.body.email }, function (err, result) {
+                        if(err){
+                            done(err, null);
+                            return;
+                        }
+
+                        if (result) {
+                            done({status: false, email: true, message: "That email is already taken."}, null);
+                            return;
+                        }
+                        user.email = req.body.email;
+
+                        done(null, user);
+                    });
+                } else {
+                    done(null, user);
+                }
+
             });
-        }
-        
-        user.firstName = req.body.firstName || user.firstName;
-        user.secondName = req.body.secondName || user.secondName;
 
-        if(req.body.avatar !== user.avatar){
-            saveImage(req.body.avatar, user.avatar, function(err, img){
-                if (err) {
-                    throw err;
-                }
-                user.avatar = img;
-                user.save(function (err, user) {
-                    if (err) {
-                        throw err;
-                    }
-                    res.json({
-                        status: true,
-                        res: user,
-                        message: "User successfully was changed."
-                    })
-                });
-            })
-        } else {
-            user.save(function (err, user) {
-                if (err) {
-                    throw err;
-                }
-                res.json({
-                    status: true,
-                    res: user,
-                    message: "User successfully was changed."
+        },
+        function (user, done) {
+            user.firstName = req.body.firstName || user.firstName;
+            user.secondName = req.body.secondName || user.secondName;
+
+            if(req.body.avatar !== user.avatar){
+                saveImage(req.body.avatar, user.avatar, function(err, img){
+                    user.avatar = img;
+                    done(err,user);
                 })
-            });
+            } else {
+                done(null,user);
+            }
         }
 
+    ], function (err, resUser) {
+        if(err){
+            if(err.message){
+                return res.json(err);
+            } else {
+                throw err;
+            }
+        }
 
+        resUser.save(function (err, user) {
+            if (err) {
+                throw err;
+            }
+            return res.json({
+                status: true,
+                res: user,
+                message: "User successfully was changed."
+            })
+        });
     });
 });
 
@@ -252,11 +243,14 @@ router.post("/user", function (req, res) {
     async.waterfall([
         function (done) {
             User.findOne({ email: req.body.email }, function (err, user) {
+                if(err){
+                    done(err, null);
+                    return;
+                }
+
                 if (user) {
-                    return res.json({
-                        status: false,
-                        message: "That email is already taken."
-                    });
+                    done({status: false, email: true, message: "That email is already taken."}, null);
+                    return;
                 }
 
                 var newUser = new User({
@@ -271,7 +265,7 @@ router.post("/user", function (req, res) {
                     active: true
                 });
 
-                done(err, newUser);
+                done(null, newUser);
             });
         },
         function (user, done) {
@@ -287,20 +281,27 @@ router.post("/user", function (req, res) {
 
         }
     ],  function (err, user) {
+
         if (err) {
-            throw err;
+            if( err.message ){
+                return res.json(err);
+            } else {
+                throw err;
+            }
         }
 
         user.save(function (err, user) {
             if (err) {
                 throw err;
             }
-            res.json({
+
+            return res.json({
                 status: true,
                 res: user,
                 message: "User was successfully created."
             })
         });
+
 
     });
 

@@ -29,12 +29,15 @@ export class UserService {
       private router: Router
   ) {}
 
-  logIn(remember: boolean, user: any): void {
+  logIn(remember: boolean, user: any, done?:any) {
     this.authService.post('/auth/login', user).subscribe((response: any) => {
       let res = JSON.parse(response._body);
       if(res.status) {
         remember ? this.storageService.set('token', res.token) : this.storageService.setSession('token', res.token) ;
         this.router.navigate(['/']);
+      } else {
+        if(done)
+          done(res.message);
       }
       alertify.success(res.message);
     }, (error) => {});

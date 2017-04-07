@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../../services/user.service";
 
@@ -11,6 +11,9 @@ export class AsideComponent {
 
   private User: any;
   private user: any;
+
+  @Input() menu;
+  @Output() menuChange = new EventEmitter();
 
   constructor(
       private userService: UserService,
@@ -28,6 +31,10 @@ export class AsideComponent {
     });
   }
 
+  closeMenu(){
+    this.menu = 'out';
+    this.menuChange.emit(this.menu);
+  }
 
   logOut(){
     this.userService.logOut();

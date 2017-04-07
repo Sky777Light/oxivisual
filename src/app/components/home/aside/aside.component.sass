@@ -1,6 +1,10 @@
 @import "../../../styles/values"
 
 app-aside
+  position: fixed
+  z-index: 2000
+  top: 0
+  left: 0
   display: inline-block
   float: left
   width: 260px
@@ -64,18 +68,17 @@ app-aside
         .asd-email
           font-family: Roboto-Light
           opacity: 0.4
-  .user-pop-up
-    position: inherit
+  .pop-up
     width: 100%
     height: 160px
     padding: 20px 0
     border-bottom: 2px solid #D6D5D5
     box-shadow: none
     border-radius: 0
-    .user-pop-up-item
+    .pop-up-item
       i
         margin-right: 32px
-      .user-pop-up-num
+      .pop-up-num
         font-size: 13px
     .asd-active
       color: $primary

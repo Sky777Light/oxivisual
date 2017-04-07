@@ -2,7 +2,7 @@
 <main>
     <div class="projects-wrap">
         <div class="projects-list  row" slimScroll  width="100%" alwaysVisible=false distance="9px" height="100%" size="2px" color="#8b8d91" opacity=1 railColor="#b2b3b7" railOpacity=0>
-            <div class="project-wrap col-lg-4 col-md-6" *ngFor="let project of User.projects | sortfilter: sortType | namefilter: searchName : header">
+            <div class="project-wrap col-xs-12 col-md-6 col-lg-4 col-exlg-3" *ngFor="let project of User.projects | sortfilter: sortType | namefilter: searchName">
                 <div class="project">
                     <div class="project-content img-true" [ngStyle]="{'background-image': 'url(' + project.image + ')'}" [class.img-true]="project.image">
                         <i class="material-icons no-img" [hidden]="project.image">crop_original</i>
