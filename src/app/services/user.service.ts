@@ -32,6 +32,7 @@ export class UserService {
   logIn(remember: boolean, user: any, done?:any) {
     this.authService.post('/auth/login', user).subscribe((response: any) => {
       let res = JSON.parse(response._body);
+      console.log(res);
       if(res.status) {
         remember ? this.storageService.set('token', res.token) : this.storageService.setSession('token', res.token) ;
         this.router.navigate(['/']);
@@ -71,6 +72,7 @@ export class UserService {
       if(!resol[i])
         resolFlag = false;
     }
+    console.log(resolFlag);
     return resolFlag;
   }
 

@@ -100,7 +100,7 @@ export class UsersComponent {
       console.log(res.message);
       alertify.success(res.message);
     }, (error) => {});
-  };
+  }
 
 // change user card
   selectUser(user: User, edit: boolean){

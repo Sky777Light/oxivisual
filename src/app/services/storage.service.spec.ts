@@ -8,7 +8,6 @@ describe('StorageService', () => {
       providers: [StorageService]
     });
   });
-
   it('should ...', inject([StorageService], (service: StorageService) => {
     expect(service).toBeTruthy();
   }));

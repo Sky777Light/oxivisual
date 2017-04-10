@@ -4,6 +4,7 @@ import {UserService} from "../../../services/user.service";
 import {Subscription} from "rxjs/Rx";
 import {ShareService} from "../../../services/share.service";
 import {AuthService} from "../../../services/auth.service";
+//import {IProject} from "../../../project.interface";
 
 declare var alertify: any;
 
@@ -27,6 +28,7 @@ export class ProjectsComponent {
 //new project
   private createNewProject: boolean = false;
   private subNewProject:Subscription;
+  //private editProject:IProject;
 
 //user
   private User: User;
@@ -49,7 +51,8 @@ export class ProjectsComponent {
           this.authService.post('/api/projects/project', project).subscribe((res: any) => {
             res = res.json();
             if(res.status) {
-              this.User.projects.push(res.res);
+              console.log(res);
+              //this.User.projects.push(res.res);
             }
             alertify.success(res.message);
           }, (error) => {});

@@ -1,5 +1,6 @@
 <app-header [class.openedMenu]="openMenu == 'in' "></app-header>
 <app-aside [@slideInOut]="openMenu" [(menu)]="openMenu"></app-aside>
+
 <main class="main-content" [class.openedMenu]="openMenu == 'in' ">
     <router-outlet></router-outlet>
 </main>

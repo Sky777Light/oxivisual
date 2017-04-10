@@ -1,35 +1,8 @@
+<!--<app-header [header]="header" [(searchRes)]="searchName" [(sortType)]="sortType" class="row"></app-header>-->
 <main>
     <div class="projects-wrap">
         <div class="projects-list  row" slimScroll  width="100%" alwaysVisible=false distance="9px" height="100%" size="2px" color="#8b8d91" opacity=1 railColor="#b2b3b7" railOpacity=0>
-            <div class="project-wrap col-xs-12 col-md-6 col-lg-4 col-exlg-3" *ngFor="let project of User.projects | namefilter: header.searchName: header.sortType">
-                <div class="project">
-                    <div class="project-content img-true" [ngStyle]="{'background-image': 'url(' + project.image + ')'}" [class.img-true]="project.image">
-                        <i class="material-icons no-img" [hidden]="project.image">crop_original</i>
-                        <div class="project-ctrl-wrap">
-                            <span [hidden]="project.published">Unpublished</span>
-                            <div class="project-ctrl">
-                                <i class="material-icons">edit</i>
-                                <i class="material-icons">more_vert</i>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-title">{{project.title}}</div>
-                            <div class="project-created">Created: {{project.created}}</div>
-                        </div>
-                    </div>
-                    <div class="project-bot">
-                        <span class="project-admin">Admin:</span>
-                        <div class="project-users">
-                            <div class="project-user">
-                                <div class="project-user-img" [ngStyle]="{'background-image': 'url(asfd)'}">
-                                    <span>AF</span>
-                                </div>
-                                <span class="project-user-name">Jennifer Carasdsdfd</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-project-view  *ngFor="let project of User.projects | namefilter: header.searchName: header.sortType" [project]="project" class="col-lg-4 col-md-6"></app-project-view>
         </div>
     </div>
 

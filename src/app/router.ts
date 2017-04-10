@@ -9,7 +9,11 @@ import {HomeComponent} from "./components/home/home.component";
 import {ProjectsComponent} from "./components/home/projects/projects.component";
 import {UsersComponent} from "./components/home/users/users.component";
 
+import {BasicProject} from "./components/home/projects/basic/basic.project";
+import {SourceProject} from "./components/home/projects/source/source.project";
+
 export const routes: Routes = [
+
     {
         path: '',
         redirectTo: '/users',
@@ -25,7 +29,26 @@ export const routes: Routes = [
         children: [
             {
                 path: 'projects',
-                component: ProjectsComponent
+                component: ProjectsComponent,
+                children: [
+                    ]
+            },
+            {
+                path: 'projects/:id',
+                redirectTo: '/projects/:id/basic',
+                pathMatch: 'full'
+            },
+            {
+                path: 'projects/:id',
+                children:[
+                    {
+                        path: 'basic',
+                        component: BasicProject
+                    } ,{
+                        path: 'source',
+                        component: SourceProject
+                    }
+                ]
             },
             {
                 path: 'users',
@@ -35,9 +58,14 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent,
+        component:  LoginComponent,
         canActivate: [LoggedGuardService]
+    },
+    {
+        path:"**",
+        redirectTo:'/'
     }
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

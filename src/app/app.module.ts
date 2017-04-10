@@ -26,6 +26,11 @@ import {HeaderComponent} from "./components/home/header/header.component";
 import {UserCardComponent} from "./components/home/users/user-card/user-card.component";
 import {NewUserComponent} from "./components/home/users/new-user/new-user.component";
 import {NewProjectComponent} from "./components/home/projects/new-project/new-project.component";
+import {BasicProject} from "./components/home/projects/basic/basic.project";
+import {ViewProject} from "./components/home/projects/view/view.project";
+import {EditProject} from "./components/home/projects/edit/edit.project";
+import {SourceProject} from "./components/home/projects/source/source.project";
+import {AbstractTemplateProject} from "./components/home/projects/template/temp.view.project";
 
 
 @NgModule({
@@ -41,7 +46,14 @@ import {NewProjectComponent} from "./components/home/projects/new-project/new-pr
     UserCardComponent,
     SlimScroll,
     NewUserComponent,
-    NewProjectComponent
+    ProjectsComponent,
+    NewProjectComponent,
+    ViewProject,
+    EditProject,
+    SourceProject,
+    AbstractTemplateProject,
+    BasicProject
+
   ],
   imports: [
     BrowserModule,

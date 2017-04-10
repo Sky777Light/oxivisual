@@ -1,35 +1,3 @@
-<div class="block-bg" (click)="cancel()"></div>
+<app-project-edit [title]="'Create a new project'" #project></app-project-edit>
+<div class="block-bg" (click)="project.cancel()"></div>
 
-<div class="new-form">
-  <span class="tag-text">Creating a new project:</span>
-  <div class="main-info">
-    <form class="item-form">
-      <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempNewProject.title" [class.input-error]="!resol.title" placeholder="Projet Name" [(ngModel)]="tempNewProject.title" [ngModelOptions]="{standalone: true}"  (focus)="resol.title = true">
-        <label [class.full-op]="!resol.title">This input requires a value!</label>
-      </div>
-      <div class="input-wrap">
-        <input type="text" [class.input-fill]="tempNewProject.link" [class.input-error]="!resol.link"  placeholder="datasource URL" [(ngModel)]="tempNewProject.link" [ngModelOptions]="{standalone: true}"  (focus)="resol.link = true">
-        <label [class.full-op]="!resol.link">This input requires a value!</label>
-      </div>
-    </form>
-    <div class="item-photo">
-      <label class="photo" [ngStyle]="{'background-image': 'url(' + tempNewProject.image + ')'}">
-        <input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)">
-        <i class="material-icons" [hidden]="tempNewProject.image != false">crop_original</i>
-      </label>
-      <div class="photo-ctrl" [hidden]="tempNewProject.image == false">
-        <label>Upload<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
-        <span (click)="removePhoto()">Remove</span>
-      </div>
-      <div class="photo-ctrl" [hidden]="tempNewProject.image != false">
-        <label>Upload image<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
-      </div>
-      <span class="photo-info">540*330 px</span>
-    </div>
-  </div>
-  <div class="new-btns">
-    <span class="text-btn" (click)="cancel()">cancel</span>
-    <span class="right-btn text-btn" (click)="accept()">accept</span>
-  </div>
-</div>
