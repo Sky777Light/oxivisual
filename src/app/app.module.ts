@@ -13,15 +13,14 @@ import {AuthGuardService} from "./services/auth-guard.service";
 import {LoggedGuardService} from "./services/logged-guard.service";
 import {ShareService} from "./services/share.service";
 
+import {NamePipe} from "./pipes/name.pipe";
+import {SlimScroll} from './directives/slimscroll.directive';
+
 import { AppComponent } from './app.component';
 import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {AsideComponent} from "./components/home/aside/aside.component";
 import {UsersComponent} from "./components/home/users/users.component";
-
-import {SortPipe} from "./pipes/sort.pipe";
-import {NamePipe} from "./pipes/name.pipe";
-import {SlimScroll} from './directives/slimscroll.directive';
 import {ProjectsComponent} from "./components/home/projects/projects.component";
 import {HeaderComponent} from "./components/home/header/header.component";
 import {UserCardComponent} from "./components/home/users/user-card/user-card.component";
@@ -38,7 +37,6 @@ import {NewProjectComponent} from "./components/home/projects/new-project/new-pr
     AsideComponent,
     HeaderComponent,
     UsersComponent,
-    SortPipe,
     NamePipe,
     UserCardComponent,
     SlimScroll,

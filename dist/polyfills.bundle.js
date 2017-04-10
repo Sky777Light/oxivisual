@@ -132,7 +132,7 @@ exports.RETURN = RETURN;
 
 var dP         = __webpack_require__(48)
   , createDesc = __webpack_require__(144);
-module.exports = __webpack_require__(58) ? function(object, key, value){
+module.exports = __webpack_require__(59) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
 } : function(object, key, value){
   object[key] = value;
@@ -611,7 +611,7 @@ var dP          = __webpack_require__(48).f
   , $iterDefine = __webpack_require__(689)
   , step        = __webpack_require__(691)
   , setSpecies  = __webpack_require__(697)
-  , DESCRIPTORS = __webpack_require__(58)
+  , DESCRIPTORS = __webpack_require__(59)
   , fastKey     = __webpack_require__(143).fastKey
   , SIZE        = DESCRIPTORS ? '_s' : 'size';
 
@@ -761,7 +761,7 @@ module.exports = function(it){
 /***/ 349:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(58) && !__webpack_require__(47)(function(){
+module.exports = !__webpack_require__(59) && !__webpack_require__(47)(function(){
   return Object.defineProperty(__webpack_require__(348)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
@@ -1014,7 +1014,7 @@ var anObject       = __webpack_require__(4)
   , toPrimitive    = __webpack_require__(225)
   , dP             = Object.defineProperty;
 
-exports.f = __webpack_require__(58) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+exports.f = __webpack_require__(59) ? Object.defineProperty : function defineProperty(O, P, Attributes){
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -1069,7 +1069,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
@@ -1079,7 +1079,7 @@ module.exports = !__webpack_require__(47)(function(){
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -1460,7 +1460,7 @@ var LIBRARY        = __webpack_require__(692)
   , Iterators      = __webpack_require__(216)
   , $iterCreate    = __webpack_require__(350)
   , setToStringTag = __webpack_require__(219)
-  , getPrototypeOf = __webpack_require__(59)
+  , getPrototypeOf = __webpack_require__(60)
   , ITERATOR       = __webpack_require__(36)('iterator')
   , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
   , FF_ITERATOR    = '@@iterator'
@@ -1614,7 +1614,7 @@ var dP       = __webpack_require__(48)
   , anObject = __webpack_require__(4)
   , getKeys  = __webpack_require__(353);
 
-module.exports = __webpack_require__(58) ? Object.defineProperties : function defineProperties(O, Properties){
+module.exports = __webpack_require__(59) ? Object.defineProperties : function defineProperties(O, Properties){
   anObject(O);
   var keys   = getKeys(Properties)
     , length = keys.length
@@ -1662,7 +1662,7 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it){
 
 var global      = __webpack_require__(22)
   , dP          = __webpack_require__(48)
-  , DESCRIPTORS = __webpack_require__(58)
+  , DESCRIPTORS = __webpack_require__(59)
   , SPECIES     = __webpack_require__(36)('species');
 
 module.exports = function(KEY){
@@ -1900,7 +1900,7 @@ $export($export.S, 'Reflect', {
 
 // 26.1.8 Reflect.getPrototypeOf(target)
 var $export  = __webpack_require__(13)
-  , getProto = __webpack_require__(59)
+  , getProto = __webpack_require__(60)
   , anObject = __webpack_require__(4);
 
 $export($export.S, 'Reflect', {
@@ -1916,7 +1916,7 @@ $export($export.S, 'Reflect', {
 
 // 26.1.6 Reflect.get(target, propertyKey [, receiver])
 var gOPD           = __webpack_require__(99)
-  , getPrototypeOf = __webpack_require__(59)
+  , getPrototypeOf = __webpack_require__(60)
   , has            = __webpack_require__(31)
   , $export        = __webpack_require__(13)
   , isObject       = __webpack_require__(14)
@@ -2028,7 +2028,7 @@ if(setProto)$export($export.S, 'Reflect', {
 // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
 var dP             = __webpack_require__(48)
   , gOPD           = __webpack_require__(99)
-  , getPrototypeOf = __webpack_require__(59)
+  , getPrototypeOf = __webpack_require__(60)
   , has            = __webpack_require__(31)
   , $export        = __webpack_require__(13)
   , createDesc     = __webpack_require__(144)
@@ -2183,7 +2183,7 @@ var Set                     = __webpack_require__(715)
   , from                    = __webpack_require__(676)
   , metadata                = __webpack_require__(35)
   , anObject                = __webpack_require__(4)
-  , getPrototypeOf          = __webpack_require__(59)
+  , getPrototypeOf          = __webpack_require__(60)
   , ordinaryOwnMetadataKeys = metadata.keys
   , toMetaKey               = metadata.key;
 
@@ -2206,7 +2206,7 @@ metadata.exp({getMetadataKeys: function getMetadataKeys(target /*, targetKey */)
 
 var metadata               = __webpack_require__(35)
   , anObject               = __webpack_require__(4)
-  , getPrototypeOf         = __webpack_require__(59)
+  , getPrototypeOf         = __webpack_require__(60)
   , ordinaryHasOwnMetadata = metadata.has
   , ordinaryGetOwnMetadata = metadata.get
   , toMetaKey              = metadata.key;
@@ -2258,7 +2258,7 @@ metadata.exp({getOwnMetadata: function getOwnMetadata(metadataKey, target /*, ta
 
 var metadata               = __webpack_require__(35)
   , anObject               = __webpack_require__(4)
-  , getPrototypeOf         = __webpack_require__(59)
+  , getPrototypeOf         = __webpack_require__(60)
   , ordinaryHasOwnMetadata = metadata.has
   , toMetaKey              = metadata.key;
 
@@ -4664,7 +4664,7 @@ var pIE            = __webpack_require__(354)
   , IE8_DOM_DEFINE = __webpack_require__(349)
   , gOPD           = Object.getOwnPropertyDescriptor;
 
-exports.f = __webpack_require__(58) ? gOPD : function getOwnPropertyDescriptor(O, P){
+exports.f = __webpack_require__(59) ? gOPD : function getOwnPropertyDescriptor(O, P){
   O = toIObject(O);
   P = toPrimitive(P, true);
   if(IE8_DOM_DEFINE)try {

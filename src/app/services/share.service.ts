@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ShareService {
+  private headerData: any = {};
 
   private shareSubject = new BehaviorSubject<any>(undefined);
 
@@ -12,20 +13,14 @@ export class ShareService {
     this.shareSubject.next(val);
   }
 
-  private headerSubject = new BehaviorSubject<any>(undefined);
-
-  headerListener = this.headerSubject.asObservable();
-
-  changeHeaderSubject(val: any) {
-    this.headerSubject.next(val);
+  setHeader(val: any){
+    for(let i in val){
+      this.headerData[i] = val[i];
+    }
+    return this.headerData;
   }
-
-  //listen array for header(only users, projects)
-  private sortArrSubject = new BehaviorSubject<number>(0);
-
-  sortArrListener = this.sortArrSubject.asObservable();
-
-  changeSortArrSubject(val: number) {
-    this.sortArrSubject.next(val);
+  getHeader(){
+    return this.headerData;
   }
+  
 }

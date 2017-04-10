@@ -6,8 +6,8 @@ webpackJsonp([1,4],{
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_service__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(92);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -157,8 +157,8 @@ var HomeComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(70);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -181,15 +181,18 @@ var ProjectsComponent = (function () {
         //data work with header
         this.header = {
             title: 'Projects',
-            arrLength: 0
+            arrLength: 0,
+            searchName: '',
+            sortType: 'A-Z',
+            type: 'projects'
         };
-        this.sortType = 'A-Z';
         //new project
         this.createNewProject = false;
         this.User = this.userService.getUser();
     }
     ProjectsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.header = this.shareService.setHeader(this.header);
         this.subNewProject = this.shareService.shareListener.subscribe(function (project) {
             if (project != undefined) {
                 _this.createNewProject = false;
@@ -228,9 +231,9 @@ var ProjectsComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(70);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -253,9 +256,11 @@ var UsersComponent = (function () {
         //data work with header
         this.header = {
             title: 'Users',
-            arrLength: 0
+            arrLength: 0,
+            searchName: '',
+            sortType: 'A-Z',
+            type: 'users'
         };
-        this.sortType = 'A-Z';
         this.canEdit = false;
         //create new user
         this.createNewUser = false;
@@ -267,6 +272,7 @@ var UsersComponent = (function () {
     }
     UsersComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.header = this.shareService.setHeader(this.header);
         this.subNewUser = this.shareService.shareListener.subscribe(function (user) {
             if (user != undefined) {
                 if (user.newUser) {
@@ -312,6 +318,7 @@ var UsersComponent = (function () {
                 var idx = _this.User.users.indexOf(user);
                 _this.User.users.splice(idx, 1);
             }
+            console.log(res.message);
             alertify.success(res.message);
         }, function (error) { });
     };
@@ -407,9 +414,9 @@ var LoginComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_service__ = __webpack_require__(34);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -468,7 +475,7 @@ var AuthGuardService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(95);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoggedGuardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -541,6 +548,53 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ }),
 
+/***/ 58:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShareService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ShareService = (function () {
+    function ShareService() {
+        this.headerData = {};
+        this.shareSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](undefined);
+        this.shareListener = this.shareSubject.asObservable();
+    }
+    ShareService.prototype.changeShareSubject = function (val) {
+        this.shareSubject.next(val);
+    };
+    ShareService.prototype.setHeader = function (val) {
+        for (var i in val) {
+            this.headerData[i] = val[i];
+        }
+        return this.headerData;
+    };
+    ShareService.prototype.getHeader = function () {
+        return this.headerData;
+    };
+    ShareService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
+        __metadata('design:paramtypes', [])
+    ], ShareService);
+    return ShareService;
+}());
+//# sourceMappingURL=share.service.js.map
+
+/***/ }),
+
 /***/ 662:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -585,25 +639,24 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(317);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__ = __webpack_require__(747);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__router__ = __webpack_require__(672);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_storage_service__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_user_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_auth_guard_service__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_logged_guard_service__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_share_service__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_component__ = __webpack_require__(662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_login_login_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_home_home_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_home_aside_aside_component__ = __webpack_require__(664);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_home_users_users_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pipes_sort_pipe__ = __webpack_require__(671);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pipes_name_pipe__ = __webpack_require__(670);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__directives_slimscroll_directive__ = __webpack_require__(669);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_header_header_component__ = __webpack_require__(665);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_home_users_user_card_user_card_component__ = __webpack_require__(668);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_home_users_new_user_new_user_component__ = __webpack_require__(667);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_share_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pipes_name_pipe__ = __webpack_require__(670);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_slimscroll_directive__ = __webpack_require__(669);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_component__ = __webpack_require__(662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_login_login_component__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_home_home_component__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_aside_aside_component__ = __webpack_require__(664);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_home_users_users_component__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_home_projects_projects_component__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_header_header_component__ = __webpack_require__(665);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_users_user_card_user_card_component__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_home_users_new_user_new_user_component__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_home_projects_new_project_new_project_component__ = __webpack_require__(666);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -638,26 +691,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["b" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__components_login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__["a" /* ProjectsComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__components_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__components_home_aside_aside_component__["a" /* AsideComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__components_home_header_header_component__["a" /* HeaderComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__components_home_users_users_component__["a" /* UsersComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__pipes_sort_pipe__["a" /* SortPipe */],
-                __WEBPACK_IMPORTED_MODULE_18__pipes_name_pipe__["a" /* NamePipe */],
-                __WEBPACK_IMPORTED_MODULE_22__components_home_users_user_card_user_card_component__["a" /* UserCardComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__directives_slimscroll_directive__["a" /* SlimScroll */],
-                __WEBPACK_IMPORTED_MODULE_23__components_home_users_new_user_new_user_component__["a" /* NewUserComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__["a" /* NewProjectComponent */]
+                __WEBPACK_IMPORTED_MODULE_14__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__components_login_login_component__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__components_home_projects_projects_component__["a" /* ProjectsComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__components_home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__components_home_aside_aside_component__["a" /* AsideComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__components_home_header_header_component__["a" /* HeaderComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__components_home_users_users_component__["a" /* UsersComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__pipes_name_pipe__["a" /* NamePipe */],
+                __WEBPACK_IMPORTED_MODULE_21__components_home_users_user_card_user_card_component__["a" /* UserCardComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__directives_slimscroll_directive__["a" /* SlimScroll */],
+                __WEBPACK_IMPORTED_MODULE_22__components_home_users_new_user_new_user_component__["a" /* NewUserComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__components_home_projects_new_project_new_project_component__["a" /* NewProjectComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -674,7 +725,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_8__services_user_service__["a" /* UserService */],
                 __WEBPACK_IMPORTED_MODULE_11__services_share_service__["a" /* ShareService */]
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* AppComponent */]]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_14__app_component__["a" /* AppComponent */]]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
@@ -689,7 +740,7 @@ var AppModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(34);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsideComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -712,7 +763,6 @@ var AsideComponent = (function () {
         this.menuChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* EventEmitter */]();
         route.data.subscribe(function (data) {
             _this.User = data.user;
-            console.log(_this.User);
             for (var i = 0; i < data.user.users.length; i++) {
                 if (data.user.users[i]._id == data.user._id) {
                     _this.user = data.user.users[i];
@@ -756,7 +806,7 @@ var AsideComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(58);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -772,44 +822,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HeaderComponent = (function () {
     function HeaderComponent(shareService) {
         this.shareService = shareService;
-        this.searchResChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* EventEmitter */]();
-        this.sortTypeChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* EventEmitter */]();
+        this.sortActive = false;
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        this.headerSub = this.shareService.headerListener.subscribe(function (data) {
-        });
+        this.headerData = this.shareService.getHeader();
     };
-    HeaderComponent.prototype.ngOnDestroy = function () {
-        this.headerSub.unsubscribe();
+    HeaderComponent.prototype.changeHeaderData = function (val, key) {
+        this.sortActive = false;
+        this.headerData[key] = val;
     };
-    HeaderComponent.prototype.changeSearchRes = function (val) {
-        this.searchRes = val;
-        this.searchResChange.emit(this.searchRes);
-    };
-    HeaderComponent.prototype.changeSortType = function (val) {
-        this.sortType = val;
-        this.sortTypeChange.emit(this.sortType);
-    };
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
-        __metadata('design:type', Object)
-    ], HeaderComponent.prototype, "headerData", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
-        __metadata('design:type', Object)
-    ], HeaderComponent.prototype, "searchRes", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Output */])(), 
-        __metadata('design:type', Object)
-    ], HeaderComponent.prototype, "searchResChange", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
-        __metadata('design:type', Object)
-    ], HeaderComponent.prototype, "sortType", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Output */])(), 
-        __metadata('design:type', Object)
-    ], HeaderComponent.prototype, "sortTypeChange", void 0);
     HeaderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_4" /* Component */])({
             selector: 'app-header',
@@ -831,7 +852,7 @@ var HeaderComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(58);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -936,7 +957,7 @@ var NewProjectComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(34);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewUserComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1065,7 +1086,7 @@ var NewUserComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(70);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserCardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1852,7 +1873,7 @@ var SlimScroll = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(58);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NamePipe; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1868,11 +1889,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var NamePipe = (function () {
     function NamePipe(shareService) {
         this.shareService = shareService;
+        this.array = {
+            arrLength: 0
+        };
     }
-    NamePipe.prototype.transform = function (items, name) {
+    NamePipe.prototype.transform = function (items, name, sortType) {
         if (!name) {
-            this.shareService.changeSortArrSubject(items.length);
-            return items;
+            this.array.arrLength = items.length;
+            this.shareService.setHeader(this.array);
+            return this.sort(items, sortType);
         }
         if (items) {
             this.filteredList = items.filter(function (item) {
@@ -1880,14 +1905,72 @@ var NamePipe = (function () {
                     return ((item.firstName.toUpperCase().indexOf(name.toUpperCase(), 0) > -1) || (item.secondName.toUpperCase().indexOf(name.toUpperCase(), 0) > -1));
                 return (item.title.toUpperCase().indexOf(name.toUpperCase(), 0) > -1);
             });
-            this.shareService.changeSortArrSubject(this.filteredList.length);
-            return this.filteredList;
+            this.array.arrLength = items.length;
+            this.shareService.setHeader(this.array);
+            return this.sort(this.filteredList, sortType);
+        }
+    };
+    NamePipe.prototype.sort = function (array, type) {
+        if (type == 'A-Z') {
+            array.sort(function (a, b) {
+                if (((a.firstName + a.secondName) || a.title) < ((b.firstName + b.secondName) || b.title)) {
+                    return -1;
+                }
+                else if (((a.firstName + a.secondName) || a.title) > ((b.firstName + b.secondName) || b.title)) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            return array;
+        }
+        else if (type == 'Z-A') {
+            array.sort(function (a, b) {
+                if (((a.firstName + a.secondName) || a.title) > ((b.firstName + b.secondName) || b.title)) {
+                    return -1;
+                }
+                else if (((a.firstName + a.secondName) || a.title) < ((b.firstName + b.secondName) || b.title)) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            return array;
+        }
+        else if (type == 'Newest to older') {
+            array.sort(function (a, b) {
+                if (a.created < b.created) {
+                    return -1;
+                }
+                else if (a.created > b.created) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            return array;
+        }
+        else if (type == 'Older to newest') {
+            array.sort(function (a, b) {
+                if (a.created > b.created) {
+                    return -1;
+                }
+                else if (a.created < b.created) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            return array;
         }
     };
     NamePipe = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* Pipe */])({
-            name: 'namefilter',
-            pure: false
+            name: 'namefilter'
         }),
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object])
@@ -1899,78 +1982,11 @@ var NamePipe = (function () {
 
 /***/ }),
 
-/***/ 671:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SortPipe; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var SortPipe = (function () {
-    function SortPipe() {
-    }
-    SortPipe.prototype.transform = function (items, args) {
-        if (!args)
-            return items;
-        if (items) {
-            if (args == 'A-Z') {
-                items.sort(function (a, b) {
-                    if (((a.firstName + a.secondName) || a.title) < ((b.firstName + b.secondName) || b.title)) {
-                        return -1;
-                    }
-                    else if (((a.firstName + a.secondName) || a.title) > ((b.firstName + b.secondName) || b.title)) {
-                        return 1;
-                    }
-                    else {
-                        return 0;
-                    }
-                });
-                return items;
-            }
-            else if (args == 'Z-A') {
-                items.sort(function (a, b) {
-                    if (((a.firstName + a.secondName) || a.title) > ((b.firstName + b.secondName) || b.title)) {
-                        return -1;
-                    }
-                    else if (((a.firstName + a.secondName) || a.title) < ((b.firstName + b.secondName) || b.title)) {
-                        return 1;
-                    }
-                    else {
-                        return 0;
-                    }
-                });
-                return items;
-            }
-        }
-    };
-    SortPipe = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* Pipe */])({
-            name: 'sortfilter',
-            pure: false
-        }),
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [])
-    ], SortPipe);
-    return SortPipe;
-}());
-//# sourceMappingURL=sort.pipe.js.map
-
-/***/ }),
-
 /***/ 672:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_logged_guard_service__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_guard_service__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__(343);
@@ -2037,7 +2053,7 @@ var environment = {
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2153,7 +2169,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: calc(100% - 60px);\n  height: 90px;\n  padding: 25px 30px;\n  border-bottom: 2px solid #EBEBEB;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n  app-header .header-wrap {\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-header .header-wrap span {\n      white-space: nowrap; }\n    app-header .header-wrap .header-tag {\n      font-size: 24px;\n      color: #444444; }\n      app-header .header-wrap .header-tag span {\n        font-size: 12px;\n        color: #9B9B9B;\n        margin-left: 10px; }\n    app-header .header-wrap .header-search {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      height: 100%;\n      width: 100%;\n      min-width: 150px;\n      margin: 0 60px;\n      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12); }\n      app-header .header-wrap .header-search input {\n        width: 100%;\n        font-size: 16px; }\n        app-header .header-wrap .header-search input::-webkit-input-placeholder {\n          color: #4D4D4E; }\n        app-header .header-wrap .header-search input::-moz-placeholder {\n          color: #4D4D4E; }\n        app-header .header-wrap .header-search input:-ms-input-placeholder {\n          color: #4D4D4E; }\n        app-header .header-wrap .header-search input:-moz-placeholder {\n          color: #4D4D4E; }\n    app-header .header-wrap .header-sort {\n      height: 100%;\n      width: 270px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 15px; }\n      app-header .header-wrap .header-sort .sort-select {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        margin-left: 20px;\n        width: 184px;\n        height: 40px;\n        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);\n        border-radius: 2px;\n        color: #9B9B9B; }\n        app-header .header-wrap .header-sort .sort-select .sort-select-item {\n          width: 100%;\n          height: 100%;\n          padding: 20px;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: justify;\n              -ms-flex-pack: justify;\n                  justify-content: space-between;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n", ""]);
+exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: calc(100% - 70px);\n  height: 90px;\n  padding: 25px 30px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-item-align: end;\n      align-self: flex-end;\n  -webkit-transition: margin .4s ease-in-out, width .4s ease-in-out;\n  transition: margin .4s ease-in-out, width .4s ease-in-out; }\n  app-header .header-wrap {\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-header .header-wrap span {\n      white-space: nowrap; }\n    app-header .header-wrap .header-tag {\n      font-size: 24px;\n      color: #444444; }\n      app-header .header-wrap .header-tag span {\n        font-size: 12px;\n        color: #9B9B9B;\n        margin-left: 10px; }\n    app-header .header-wrap .header-search {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      height: 100%;\n      width: 100%;\n      min-width: 150px;\n      margin: 0 60px;\n      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12); }\n      app-header .header-wrap .header-search input {\n        width: 100%;\n        font-size: 16px; }\n        app-header .header-wrap .header-search input::-webkit-input-placeholder {\n          color: #4D4D4E; }\n        app-header .header-wrap .header-search input::-moz-placeholder {\n          color: #4D4D4E; }\n        app-header .header-wrap .header-search input:-ms-input-placeholder {\n          color: #4D4D4E; }\n        app-header .header-wrap .header-search input:-moz-placeholder {\n          color: #4D4D4E; }\n    app-header .header-wrap .header-sort {\n      height: 100%;\n      width: 270px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 15px; }\n      app-header .header-wrap .header-sort .sort-select {\n        position: relative;\n        margin-left: 20px;\n        width: 184px;\n        height: 40px;\n        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);\n        border-radius: 2px;\n        color: #9B9B9B;\n        -webkit-transition: box-shadow .3s;\n        transition: box-shadow .3s; }\n        app-header .header-wrap .header-sort .sort-select .sort-present {\n          width: 100%;\n          height: 100%;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center;\n          -webkit-box-pack: justify;\n              -ms-flex-pack: justify;\n                  justify-content: space-between;\n          padding: 0 20px;\n          cursor: pointer; }\n        app-header .header-wrap .header-sort .sort-select .pop-up {\n          width: 184px;\n          position: absolute;\n          z-index: 200;\n          top: 45px; }\n          app-header .header-wrap .header-sort .sort-select .pop-up .pop-up-item {\n            height: 30px;\n            padding: 5px 20px; }\n            app-header .header-wrap .header-sort .sort-select .pop-up .pop-up-item .sort-selected {\n              color: #EBEBEB; }\n        app-header .header-wrap .header-sort .sort-select:hover {\n          box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1); }\n      app-header .header-wrap .header-sort .sort-active {\n        color: #4D4D4E; }\n        app-header .header-wrap .header-sort .sort-active i {\n          color: #1976D2; }\n", ""]);
 
 // exports
 
@@ -2171,7 +2187,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-home {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative; }\n  app-home .main-content {\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n    -webkit-transition: margin .4s ease-in-out, width .4s ease-in-out;\n    transition: margin .4s ease-in-out, width .4s ease-in-out; }\n  app-home .openedMenu {\n    margin-left: 260px;\n    width: calc(100% - 260px); }\n  app-home .menu-btn {\n    position: absolute;\n    z-index: 1000;\n    top: 20px;\n    left: 20px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    width: 50px;\n    height: 50px;\n    color: #ffffff;\n    border-radius: 50%;\n    background-color: #1976D2;\n    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);\n    visibility: visible;\n    opacity: 1;\n    -webkit-transition: opacity .3s, visibility 0s .3s;\n    transition: opacity .3s, visibility 0s .3s; }\n  app-home .menu-btn-hide {\n    visibility: hidden;\n    opacity: 0; }\n", ""]);
+exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-home {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative; }\n  app-home .main-content {\n    display: inline-block;\n    width: 100%;\n    height: calc(100% - 90px);\n    border-top: 2px solid #EBEBEB;\n    -webkit-transition: margin .4s ease-in-out, width .4s ease-in-out;\n    transition: margin .4s ease-in-out, width .4s ease-in-out; }\n  app-home .openedMenu {\n    margin-left: 260px;\n    width: calc(100% - 260px); }\n  app-home .menu-btn {\n    cursor: pointer;\n    position: absolute;\n    z-index: 1000;\n    top: 20px;\n    left: 20px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    width: 50px;\n    height: 50px;\n    color: #ffffff;\n    border-radius: 50%;\n    background-color: #1976D2;\n    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);\n    visibility: visible;\n    opacity: 1;\n    -webkit-transition: opacity .3s, visibility 0s .3s;\n    transition: opacity .3s, visibility 0s .3s; }\n  app-home .menu-btn-hide {\n    visibility: hidden;\n    opacity: 0; }\n", ""]);
 
 // exports
 
@@ -2207,7 +2223,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-projects {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-projects main {\n    width: 100%;\n    height: calc(100% - 90px);\n    padding: 30px 20px; }\n    app-projects main .projects-wrap {\n      width: 100%;\n      height: calc(100% - 56px); }\n      app-projects main .projects-wrap .projects-list {\n        height: 100%;\n        width: 100%; }\n        app-projects main .projects-wrap .projects-list .project-wrap {\n          padding: 0 10px 20px 10px;\n          height: 300px; }\n          app-projects main .projects-wrap .projects-list .project-wrap .project {\n            width: 100%;\n            height: 100%;\n            background-color: #ffffff;\n            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);\n            border-radius: 2px; }\n            app-projects main .projects-wrap .projects-list .project-wrap .project .project-content {\n              position: relative;\n              width: 100%;\n              height: 220px;\n              padding: 20px;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-orient: vertical;\n              -webkit-box-direction: normal;\n                  -ms-flex-direction: column;\n                      flex-direction: column;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between;\n              color: #ffffff;\n              border-radius: 2px;\n              background-position: 50% 50%;\n              background-size: cover;\n              background-color: #4D4D4E;\n              font-size: 14px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap {\n                width: 100%;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-pack: justify;\n                    -ms-flex-pack: justify;\n                        justify-content: space-between;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap span {\n                  font-weight: 500;\n                  color: #FFA000; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap .project-ctrl {\n                  width: 100%;\n                  display: -webkit-box;\n                  display: -ms-flexbox;\n                  display: flex;\n                  -webkit-box-pack: end;\n                      -ms-flex-pack: end;\n                          justify-content: flex-end; }\n                  app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap .project-ctrl i {\n                    margin-left: 20px;\n                    width: 14px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .no-img {\n                cursor: default;\n                position: absolute;\n                top: 50%;\n                left: 50%;\n                opacity: 0.2;\n                font-size: 38px;\n                -webkit-transform: translate(-50%, -50%);\n                        transform: translate(-50%, -50%); }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-info {\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-orient: vertical;\n                -webkit-box-direction: normal;\n                    -ms-flex-direction: column;\n                        flex-direction: column; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-info .project-title {\n                  font-size: 24px; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-info .project-created {\n                  opacity: 0.5; }\n            app-projects main .projects-wrap .projects-list .project-wrap .project .img-true {\n              background: -webkit-linear-gradient(top, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n              background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n              background-color: rgba(0, 0, 0, 0.3);\n              background-size: cover; }\n            app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot {\n              width: 100%;\n              height: 60px;\n              padding: 15px 20px;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              font-size: 14px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-admin {\n                color: #9B9B9B;\n                width: 44px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users {\n                width: calc(100% - 44px);\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users .project-user {\n                  width: 50%;\n                  padding-left: 20px;\n                  display: -webkit-box;\n                  display: -ms-flexbox;\n                  display: flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users .project-user .project-user-name {\n                    width: calc(100% - 40px);\n                    margin-left: 10px;\n                    overflow: hidden;\n                    text-overflow: ellipsis;\n                    white-space: nowrap; }\n                  app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users .project-user .project-user-img {\n                    display: -webkit-box;\n                    display: -ms-flexbox;\n                    display: flex;\n                    -webkit-box-align: center;\n                        -ms-flex-align: center;\n                            align-items: center;\n                    -webkit-box-pack: center;\n                        -ms-flex-pack: center;\n                            justify-content: center;\n                    color: #4A4A4A;\n                    width: 30px;\n                    height: 30px;\n                    border-radius: 50%;\n                    background: no-repeat;\n                    background-position: 50% 50%;\n                    background-size: auto 100%;\n                    background-color: #EBEBEB; }\n", ""]);
+exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-projects {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-projects main {\n    width: 100%;\n    height: 100%;\n    padding: 30px 20px; }\n    app-projects main .projects-wrap {\n      width: 100%;\n      height: calc(100% - 56px); }\n      app-projects main .projects-wrap .projects-list {\n        height: 100%;\n        width: 100%; }\n        app-projects main .projects-wrap .projects-list .project-wrap {\n          padding: 0 10px 20px 10px;\n          height: 300px; }\n          app-projects main .projects-wrap .projects-list .project-wrap .project {\n            width: 100%;\n            height: 100%;\n            background-color: #ffffff;\n            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);\n            border-radius: 2px; }\n            app-projects main .projects-wrap .projects-list .project-wrap .project .project-content {\n              position: relative;\n              width: 100%;\n              height: 220px;\n              padding: 20px;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-orient: vertical;\n              -webkit-box-direction: normal;\n                  -ms-flex-direction: column;\n                      flex-direction: column;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between;\n              color: #ffffff;\n              border-radius: 2px;\n              background-position: 50% 50%;\n              background-size: cover;\n              background-color: #4D4D4E;\n              font-size: 14px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap {\n                width: 100%;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-pack: justify;\n                    -ms-flex-pack: justify;\n                        justify-content: space-between;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap span {\n                  font-weight: 500;\n                  color: #FFA000; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap .project-ctrl {\n                  width: 100%;\n                  display: -webkit-box;\n                  display: -ms-flexbox;\n                  display: flex;\n                  -webkit-box-pack: end;\n                      -ms-flex-pack: end;\n                          justify-content: flex-end; }\n                  app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-ctrl-wrap .project-ctrl i {\n                    margin-left: 20px;\n                    width: 14px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .no-img {\n                cursor: default;\n                position: absolute;\n                top: 50%;\n                left: 50%;\n                opacity: 0.2;\n                font-size: 38px;\n                -webkit-transform: translate(-50%, -50%);\n                        transform: translate(-50%, -50%); }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-info {\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-orient: vertical;\n                -webkit-box-direction: normal;\n                    -ms-flex-direction: column;\n                        flex-direction: column; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-info .project-title {\n                  font-size: 24px; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-content .project-info .project-created {\n                  opacity: 0.5; }\n            app-projects main .projects-wrap .projects-list .project-wrap .project .img-true {\n              background: -webkit-linear-gradient(top, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n              background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n              background-color: rgba(0, 0, 0, 0.3);\n              background-size: cover; }\n            app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot {\n              width: 100%;\n              height: 60px;\n              padding: 15px 20px;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              font-size: 14px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-admin {\n                color: #9B9B9B;\n                width: 44px; }\n              app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users {\n                width: calc(100% - 44px);\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users .project-user {\n                  width: 50%;\n                  padding-left: 20px;\n                  display: -webkit-box;\n                  display: -ms-flexbox;\n                  display: flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users .project-user .project-user-name {\n                    width: calc(100% - 40px);\n                    margin-left: 10px;\n                    overflow: hidden;\n                    text-overflow: ellipsis;\n                    white-space: nowrap; }\n                  app-projects main .projects-wrap .projects-list .project-wrap .project .project-bot .project-users .project-user .project-user-img {\n                    display: -webkit-box;\n                    display: -ms-flexbox;\n                    display: flex;\n                    -webkit-box-align: center;\n                        -ms-flex-align: center;\n                            align-items: center;\n                    -webkit-box-pack: center;\n                        -ms-flex-pack: center;\n                            justify-content: center;\n                    color: #4A4A4A;\n                    width: 30px;\n                    height: 30px;\n                    border-radius: 50%;\n                    background: no-repeat;\n                    background-position: 50% 50%;\n                    background-size: auto 100%;\n                    background-color: #EBEBEB; }\n", ""]);
 
 // exports
 
@@ -2261,7 +2277,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: calc(100% - 90px); }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: calc(100% - 86px);\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-item-img-wrap {\n              cursor: pointer;\n              float: left;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: center;\n                  -ms-flex-pack: center;\n                      justify-content: center;\n              font-size: 14px;\n              color: #4A4A4A;\n              width: 39px;\n              height: 39px;\n              border-radius: 50%;\n              background: no-repeat;\n              background-position: 50% 50%;\n              background-size: auto 100%;\n              background-color: #EBEBEB; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap {\n              height: 100%;\n              width: calc(100% - 39px);\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap {\n                margin-left: 15px;\n                width: 100%; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name {\n                  display: -webkit-inline-box;\n                  display: -ms-inline-flexbox;\n                  display: inline-flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name i {\n                    margin-left: 10px;\n                    font-size: 21px;\n                    line-height: 0.7; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name span {\n                    display: block;\n                    float: left; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name .new-title {\n                    margin-left: 10px;\n                    color: #FFA000; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-status {\n                  font-size: 14px;\n                  font-family: Roboto-Light;\n                  color: #9B9B9B;\n                  font-style: italic; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl {\n                float: right;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .user-edit-wrap {\n                  position: relative;\n                  width: 30px;\n                  height: 30px;\n                  border-radius: 50%;\n                  display: -webkit-box;\n                  display: -ms-flexbox;\n                  display: flex;\n                  -webkit-box-pack: center;\n                      -ms-flex-pack: center;\n                          justify-content: center;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center;\n                  margin-right: 20px; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .user-edit-wrap .pop-up {\n                    position: absolute;\n                    z-index: 100;\n                    right: 0;\n                    top: 35px;\n                    width: 170px;\n                    height: 100px; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .user-edit-active {\n                  background-color: #EBEBEB; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
+exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: 100%; }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: calc(100% - 86px);\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-item-img-wrap {\n              cursor: pointer;\n              float: left;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: center;\n                  -ms-flex-pack: center;\n                      justify-content: center;\n              font-size: 14px;\n              color: #4A4A4A;\n              width: 39px;\n              height: 39px;\n              border-radius: 50%;\n              background: no-repeat;\n              background-position: 50% 50%;\n              background-size: auto 100%;\n              background-color: #EBEBEB; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap {\n              height: 100%;\n              width: calc(100% - 39px);\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap {\n                margin-left: 15px;\n                width: 100%; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name {\n                  display: -webkit-inline-box;\n                  display: -ms-inline-flexbox;\n                  display: inline-flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name i {\n                    margin-left: 10px;\n                    font-size: 21px;\n                    line-height: 0.7; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name span {\n                    display: block;\n                    float: left; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name .new-title {\n                    margin-left: 10px;\n                    color: #FFA000; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-status {\n                  font-size: 14px;\n                  font-family: Roboto-Light;\n                  color: #9B9B9B;\n                  font-style: italic; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl {\n                float: right;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .user-edit-wrap {\n                  position: relative;\n                  width: 30px;\n                  height: 30px;\n                  border-radius: 50%;\n                  display: -webkit-box;\n                  display: -ms-flexbox;\n                  display: flex;\n                  -webkit-box-pack: center;\n                      -ms-flex-pack: center;\n                          justify-content: center;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center;\n                  margin-right: 20px; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .user-edit-wrap .pop-up {\n                    position: absolute;\n                    z-index: 100;\n                    right: 0;\n                    top: 35px;\n                    width: 170px;\n                    height: 100px; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .user-edit-active {\n                  background-color: #EBEBEB; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
 
 // exports
 
@@ -2553,21 +2569,21 @@ module.exports = "<div class=\"app-wrap\">\r\n    <router-outlet></router-outlet
 /***/ 764:
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <div class=\"asd-hd-top\">\n    <div class=\"asd-name-in\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\">\n      <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n    </div>\n    <div class=\"asd-status-wrap\">\n      <i class=\"material-icons\" (click)=\"closeMenu()\">arrow_back</i>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'super'\">Super user</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'admin'\">Client-admin</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'user'\">Client-user</div>\n    </div>\n  </div>\n  <div class=\"asd-hd-bot\">\n    <div class=\"asd-name\">{{user.firstName}} {{user.secondName}}</div>\n    <div class=\"asd-email-wrap\">\n      <div class=\"asd-email\">{{user.email}}</div>\n      <i class=\"material-icons\">arrow_drop_down</i>\n    </div>\n  </div>\n</header>\n\n<div class=\"pop-up\">\n  <div class=\"pop-up-item\" routerLink=\"/projects\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">folder</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Projects</span>\n      <span class=\"pop-up-num\">0</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/users\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">people</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Users</span>\n      <span class=\"pop-up-num\">{{User.users.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/settings\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">settings</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Settings</span>\n    </div>\n  </div>\n</div>\n\n<footer>\n  <div class=\"asd-logout\">\n    <i class=\"material-icons\" (click)=\"logOut()\">exit_to_app</i>\n    <div class=\"text-wrap pointer\" (click)=\"logOut()\">\n      Log out\n    </div>\n  </div>\n  <div class=\"asd-terms\">\n    <img src=\"../../../assets/img/logo.png\" alt=\"\">\n    <a href=\"#\">Terms</a>\n  </div>\n</footer>\n"
+module.exports = "<header>\n  <div class=\"asd-hd-top\">\n    <div class=\"asd-name-in\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\">\n      <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n    </div>\n    <div class=\"asd-status-wrap\">\n      <i class=\"material-icons\" (click)=\"closeMenu()\">arrow_back</i>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'super'\">Super user</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'admin'\">Client-admin</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'user'\">Client-user</div>\n    </div>\n  </div>\n  <div class=\"asd-hd-bot\">\n    <div class=\"asd-name\">{{user.firstName}} {{user.secondName}}</div>\n    <div class=\"asd-email-wrap\">\n      <div class=\"asd-email\">{{user.email}}</div>\n      <i class=\"material-icons\">arrow_drop_down</i>\n    </div>\n  </div>\n</header>\n\n<div class=\"pop-up\">\n  <div class=\"pop-up-item\" routerLink=\"/projects\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">folder</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Projects</span>\n      <span class=\"pop-up-num\">{{User.projects.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/users\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">people</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Users</span>\n      <span class=\"pop-up-num\">{{User.users.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/settings\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">settings</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Settings</span>\n    </div>\n  </div>\n</div>\n\n<footer>\n  <div class=\"asd-logout\">\n    <i class=\"material-icons\" (click)=\"logOut()\">exit_to_app</i>\n    <div class=\"text-wrap pointer\" (click)=\"logOut()\">\n      Log out\n    </div>\n  </div>\n  <div class=\"asd-terms\">\n    <img src=\"../../../assets/img/logo.png\" alt=\"\">\n    <a href=\"#\">Terms</a>\n  </div>\n</footer>\n"
 
 /***/ }),
 
 /***/ 765:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-wrap\">\n  <div class=\"header-tag\">{{header.title}}<span>{{'( ' + header.arrLength + ' )'}}</span></div>\n  <div class=\"header-search\">\n    <input type=\"text\" placeholder=\"Search\" (input)=\"changeSearchRes($event.target.value)\">\n  </div>\n  <div class=\"header-sort\">\n    <span>Sorted by:</span>\n    <div class=\"sort-select\">\n      <div class=\"sort-select-item\" (click)=\"changeSortType('A-Z')\">A-Z<i class=\"material-icons\">arrow_drop_down</i></div>\n      <div class=\"sort-select-item\" (click)=\"changeSortType('Z-A')\">Z-A</div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"header-wrap\" *ngIf=\"headerData.type === 'users' || headerData.type === 'projects'\">\n  <div class=\"header-tag\">{{headerData.title}}<span>{{'( ' + headerData.arrLength + ' )'}}</span></div>\n  <div class=\"header-search\">\n    <input type=\"text\" placeholder=\"Search\" (input)=\"changeHeaderData($event.target.value, 'searchName')\">\n  </div>\n  <div class=\"header-sort\">\n    <span>Sorted by:</span>\n    <div class=\"sort-select\" (window:mouseup)=\"sortActive = false\">\n      <div class=\"sort-present\" [class.sort-active]=\"sortActive\" (click)=\"sortActive = !sortActive\">\n        <span>{{headerData.sortType}}</span>\n        <i class=\"material-icons\" >arrow_drop_down</i>\n      </div>\n      <div class=\"pop-up\" [hidden]=\"!sortActive\">\n        <div class=\"pop-up-item\" (click)=\"changeHeaderData('A-Z', 'sortType')\">\n          <div class=\"pop-up-row-name\">\n            <span [class.sort-selected]=\"headerData.sortType === 'A-Z'\">A-Z</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" (click)=\"changeHeaderData('Z-A', 'sortType')\">\n          <div class=\"pop-up-row-name\">\n            <span [class.sort-selected]=\"headerData.sortType === 'Z-A'\">Z-A</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" (click)=\"changeHeaderData('Newest to older', 'sortType')\">\n          <div class=\"pop-up-row-name\">\n            <span [class.sort-selected]=\"headerData.sortType === 'Newest to older'\">Newest to older</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" (click)=\"changeHeaderData('Older to newest', 'sortType')\">\n          <div class=\"pop-up-row-name\">\n            <span [class.sort-selected]=\"headerData.sortType === 'Older to newest'\">Older to newest</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
 /***/ 766:
 /***/ (function(module, exports) {
 
-module.exports = "<app-header [(headerData)]=\"headerData\"></app-header>\n<app-aside [@slideInOut]=\"openMenu\" [(menu)]=\"openMenu\"></app-aside>\n<main class=\"main-content\" [class.openedMenu]=\"openMenu == 'in' \" (click)=\"openMenu='in'\">\n    <router-outlet [(headerData)]=\"headerData\"></router-outlet>\n</main>\n<div class=\"menu-btn\" [class.menu-btn-hide]=\"openMenu == 'in' \" (click)=\"openMenu='in'\">\n    <i class=\"material-icons\">menu</i>\n</div>\n\n"
+module.exports = "<app-header [class.openedMenu]=\"openMenu == 'in' \"></app-header>\n<app-aside [@slideInOut]=\"openMenu\" [(menu)]=\"openMenu\"></app-aside>\n<main class=\"main-content\" [class.openedMenu]=\"openMenu == 'in' \">\n    <router-outlet></router-outlet>\n</main>\n<div class=\"menu-btn\" [class.menu-btn-hide]=\"openMenu == 'in' \" (click)=\"openMenu='in'\">\n    <i class=\"material-icons\">menu</i>\n</div>\n\n"
 
 /***/ }),
 
@@ -2581,7 +2597,7 @@ module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div cl
 /***/ 768:
 /***/ (function(module, exports) {
 
-module.exports = "<app-header [header]=\"header\" [(searchRes)]=\"searchName\" [(sortType)]=\"sortType\" class=\"row\"></app-header>\n<main>\n    <div class=\"projects-wrap\">\n        <div class=\"projects-list  row\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"9px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n            <div class=\"project-wrap col-xs-12 col-md-6 col-lg-4 col-exlg-3\" *ngFor=\"let project of User.projects | sortfilter: sortType | namefilter: searchName\">\n                <div class=\"project\">\n                    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\" [class.img-true]=\"project.image\">\n                        <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\n                        <div class=\"project-ctrl-wrap\">\n                            <span [hidden]=\"project.published\">Unpublished</span>\n                            <div class=\"project-ctrl\">\n                                <i class=\"material-icons\">edit</i>\n                                <i class=\"material-icons\">more_vert</i>\n                            </div>\n                        </div>\n                        <div class=\"project-info\">\n                            <div class=\"project-title\">{{project.title}}</div>\n                            <div class=\"project-created\">Created: {{project.created}}</div>\n                        </div>\n                    </div>\n                    <div class=\"project-bot\">\n                        <span class=\"project-admin\">Admin:</span>\n                        <div class=\"project-users\">\n                            <div class=\"project-user\">\n                                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\n                                    <span>AF</span>\n                                </div>\n                                <span class=\"project-user-name\">Jennifer Carasdsdfd</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewProject = true\" [hidden]=\"createNewProject\">\n        <i class=\"material-icons\">add</i>\n        <div class=\"span-hover\">\n            <span>Add a new project</span>\n        </div>\n    </div>\n</main>\n\n<app-new-project class=\"add-new\" *ngIf=\"createNewProject\"></app-new-project>"
+module.exports = "<main>\n    <div class=\"projects-wrap\">\n        <div class=\"projects-list  row\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"9px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n            <div class=\"project-wrap col-xs-12 col-md-6 col-lg-4 col-exlg-3\" *ngFor=\"let project of User.projects | namefilter: header.searchName: header.sortType\">\n                <div class=\"project\">\n                    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\" [class.img-true]=\"project.image\">\n                        <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\n                        <div class=\"project-ctrl-wrap\">\n                            <span [hidden]=\"project.published\">Unpublished</span>\n                            <div class=\"project-ctrl\">\n                                <i class=\"material-icons\">edit</i>\n                                <i class=\"material-icons\">more_vert</i>\n                            </div>\n                        </div>\n                        <div class=\"project-info\">\n                            <div class=\"project-title\">{{project.title}}</div>\n                            <div class=\"project-created\">Created: {{project.created}}</div>\n                        </div>\n                    </div>\n                    <div class=\"project-bot\">\n                        <span class=\"project-admin\">Admin:</span>\n                        <div class=\"project-users\">\n                            <div class=\"project-user\">\n                                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\n                                    <span>AF</span>\n                                </div>\n                                <span class=\"project-user-name\">Jennifer Carasdsdfd</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewProject = true\" [hidden]=\"createNewProject\">\n        <i class=\"material-icons\">add</i>\n        <div class=\"span-hover\">\n            <span>Add a new project</span>\n        </div>\n    </div>\n</main>\n\n<app-new-project class=\"add-new\" *ngIf=\"createNewProject\"></app-new-project>"
 
 /***/ }),
 
@@ -2602,7 +2618,7 @@ module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n 
 /***/ 771:
 /***/ (function(module, exports) {
 
-module.exports = "<app-header [header]=\"header\" [(searchRes)]=\"searchName\" [(sortType)]=\"sortType\" class=\"row\"></app-header>\r\n<main class=\"row\">\r\n\r\n  <div class=\"user-list-wrap col-md-4\">\r\n\r\n    <div class=\"user-list\">\r\n      <div class=\"slimscroll-wrap\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\r\n        <div class=\"user-list-item\" [class.deactive]=\"!user.active\" [class.selected-user]=\"selectedUser === user\" *ngFor=\"let user of User.users | sortfilter: sortType | namefilter: searchName\">\r\n          <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\" (click)=\"selectUser(user, false)\">\r\n            <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\r\n          </div>\r\n          <div class=\"user-list-item-wrap\">\r\n            <div class=\"user-name-wrap\">\r\n              <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\r\n                <span>{{user.firstName}} {{user.secondName}}</span>\r\n                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\r\n                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\r\n              </div>\r\n              <br>\r\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'super'\">Super user</span>\r\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'admin'\">Client-admin</span>\r\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'user'\">Client-user</span>\r\n            </div>\r\n            <div class=\"user-ctrl\">\r\n              <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\r\n              <div class=\"user-edit-wrap\" [class.user-edit-active]=\"settingsUser === user\">\r\n                <i class=\"material-icons\" (click)=\"settingsUser = user\" (window:mouseup)=\"settingsUser = null\">more_vert</i>\r\n                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\r\n                  <div class=\"pop-up-item\" [hidden]=\"!user.active\" (click)=\"deactivateUser(user)\">\r\n                    <i class=\"material-icons\">visibility_off</i>\r\n                    <div class=\"pop-up-row-name\">\r\n                      <span>Deactivate</span>\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"pop-up-item\" [hidden]=\"user.active\" (click)=\"deactivateUser(user)\">\r\n                    <i class=\"material-icons\">visibility</i>\r\n                    <div class=\"pop-up-row-name\">\r\n                      <span>Activate</span>\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\r\n                    <i class=\"material-icons\">delete</i>\r\n                    <div class=\"pop-up-row-name\">\r\n                      <span>Delete</span>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"add-btn\" (click)=\"createNewUser = true\" [hidden]=\"createNewUser\">\r\n      <i class=\"material-icons\">add</i>\r\n      <div class=\"span-hover\">\r\n        <span>Add a new user</span>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"user-card-wrap col-md-8\">\r\n    <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" [hidden]=\"!selectedUser\"></app-user-card>\r\n    <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\r\n  </div>\r\n\r\n</main>\r\n\r\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\" ></app-new-user>\r\n"
+module.exports = "<main class=\"row\">\r\n  <div class=\"user-list-wrap col-md-4\">\r\n\r\n    <div class=\"user-list\">\r\n      <div class=\"slimscroll-wrap\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\r\n        <div class=\"user-list-item\" [class.deactive]=\"!user.active\" [class.selected-user]=\"selectedUser === user\" *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\r\n          <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\" (click)=\"selectUser(user, false)\">\r\n            <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\r\n          </div>\r\n          <div class=\"user-list-item-wrap\">\r\n            <div class=\"user-name-wrap\">\r\n              <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\r\n                <span>{{user.firstName}} {{user.secondName}}</span>\r\n                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\r\n                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\r\n              </div>\r\n              <br>\r\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'super'\">Super user</span>\r\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'admin'\">Client-admin</span>\r\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'user'\">Client-user</span>\r\n            </div>\r\n            <div class=\"user-ctrl\">\r\n              <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\r\n              <div class=\"user-edit-wrap\" [class.user-edit-active]=\"settingsUser === user\">\r\n                <i class=\"material-icons\" (click)=\"settingsUser = user\" (window:mouseup)=\"settingsUser = null\">more_vert</i>\r\n                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\r\n                  <div class=\"pop-up-item\" [hidden]=\"!user.active\" (click)=\"deactivateUser(user)\">\r\n                    <i class=\"material-icons\">visibility_off</i>\r\n                    <div class=\"pop-up-row-name\">\r\n                      <span>Deactivate</span>\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"pop-up-item\" [hidden]=\"user.active\" (click)=\"deactivateUser(user)\">\r\n                    <i class=\"material-icons\">visibility</i>\r\n                    <div class=\"pop-up-row-name\">\r\n                      <span>Activate</span>\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\r\n                    <i class=\"material-icons\">delete</i>\r\n                    <div class=\"pop-up-row-name\">\r\n                      <span>Delete</span>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"add-btn\" (click)=\"createNewUser = true\" [hidden]=\"createNewUser\">\r\n      <i class=\"material-icons\">add</i>\r\n      <div class=\"span-hover\">\r\n        <span>Add a new user</span>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"user-card-wrap col-md-8\">\r\n    <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" [hidden]=\"!selectedUser\"></app-user-card>\r\n    <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\r\n  </div>\r\n\r\n</main>\r\n\r\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\" ></app-new-user>\r\n"
 
 /***/ }),
 
@@ -2618,54 +2634,6 @@ module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/l
 
 module.exports = __webpack_require__(545);
 
-
-/***/ }),
-
-/***/ 94:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShareService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ShareService = (function () {
-    function ShareService() {
-        this.shareSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](undefined);
-        this.shareListener = this.shareSubject.asObservable();
-        this.headerSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](undefined);
-        this.headerListener = this.headerSubject.asObservable();
-        //listen array for header(only users, projects)
-        this.sortArrSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](0);
-        this.sortArrListener = this.sortArrSubject.asObservable();
-    }
-    ShareService.prototype.changeShareSubject = function (val) {
-        this.shareSubject.next(val);
-    };
-    ShareService.prototype.changeHeaderSubject = function (val) {
-        this.headerSubject.next(val);
-    };
-    ShareService.prototype.changeSortArrSubject = function (val) {
-        this.sortArrSubject.next(val);
-    };
-    ShareService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [])
-    ], ShareService);
-    return ShareService;
-}());
-//# sourceMappingURL=share.service.js.map
 
 /***/ }),
 

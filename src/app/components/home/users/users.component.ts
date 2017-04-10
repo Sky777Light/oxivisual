@@ -19,10 +19,11 @@ export class UsersComponent {
 //data work with header
   private header: any = {
     title: 'Users',
-    arrLength: 0
+    arrLength: 0,
+    searchName: '',
+    sortType: 'A-Z',
+    type: 'users'
   };
-  private searchName: string;
-  private sortType: string = 'A-Z';
 
 //data work with user-card
   private selectedUser: User;
@@ -49,6 +50,8 @@ export class UsersComponent {
   }
 
   ngOnInit() {
+    this.header = this.shareService.setHeader(this.header);
+
     this.subNewUser = this.shareService.shareListener.subscribe((user: any) => {
       if(user != undefined){
         if(user.newUser){
@@ -72,7 +75,7 @@ export class UsersComponent {
   ngOnDestroy() {
     this.subNewUser.unsubscribe();
   }
-  
+
 //pop-up functions
 
   deactivateUser(user: any){
@@ -94,6 +97,7 @@ export class UsersComponent {
         let idx = this.User.users.indexOf(user);
         this.User.users.splice(idx, 1);
       }
+      console.log(res.message);
       alertify.success(res.message);
     }, (error) => {});
   };

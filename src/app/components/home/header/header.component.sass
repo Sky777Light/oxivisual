@@ -2,11 +2,12 @@
 
 app-header
   display: flex
-  width: calc(100% - 60px)
+  width: calc(100% - 70px)
   height: 90px
   padding: 25px 30px
-  border-bottom: 2px solid $bottom-bor
   align-items: center
+  align-self: flex-end
+  transition: margin .4s ease-in-out, width .4s ease-in-out
   .header-wrap
     width: 100%
     height: 100%
@@ -48,19 +49,35 @@ app-header
       align-items: center
       font-size: 15px
       .sort-select
-        display: flex
-        align-items: center
-        justify-content: space-between
+        position: relative
         margin-left: 20px
         width: 184px
         height: 40px
         box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1)
         border-radius: 2px
         color: $grey
-        .sort-select-item
+        transition: box-shadow .3s
+        .sort-present
           width: 100%
           height: 100%
-          padding: 20px
           display: flex
-          justify-content: space-between
           align-items: center
+          justify-content: space-between
+          padding: 0 20px
+          cursor: pointer
+        .pop-up
+          width: 184px
+          position: absolute
+          z-index: 200
+          top: 45px
+          .pop-up-item
+            height: 30px
+            padding: 5px 20px
+            .sort-selected
+              color: $bottom-bor
+        &:hover
+          box-shadow: 0 10px 20px 0 rgba(0,0,0,0.1)
+      .sort-active
+        color: $primary-text
+        i
+          color: $primary

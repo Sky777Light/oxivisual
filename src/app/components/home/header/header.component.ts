@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {Subscription} from "rxjs/Rx";
+import { Component } from '@angular/core';
 import {ShareService} from "../../../services/share.service";
 
 @Component({
@@ -8,38 +7,21 @@ import {ShareService} from "../../../services/share.service";
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent{
-  
-  private headerSub: Subscription;
-  @Input() headerData;
 
-  @Input() searchRes;
-  @Output() searchResChange = new EventEmitter();
-
-  @Input() sortType;
-  @Output() sortTypeChange = new EventEmitter();
+  private sortActive: boolean = false;
+  private headerData: any;
 
   constructor(
       private shareService: ShareService
   ){}
 
-  ngOnInit() {
-    this.headerSub = this.shareService.headerListener.subscribe((data: any) => {
-      
-    })
+  ngOnInit(){
+    this.headerData = this.shareService.getHeader();
   }
 
-  ngOnDestroy() {
-    this.headerSub.unsubscribe();
-  }
-  
-  changeSearchRes(val){
-    this.searchRes = val;
-    this.searchResChange.emit(this.searchRes);
-  }
-
-  changeSortType(val){
-    this.sortType = val;
-    this.sortTypeChange.emit(this.sortType);
+  changeHeaderData(val, key){
+    this.sortActive = false;
+    this.headerData[key] = val;
   }
 
 }

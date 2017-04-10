@@ -17,10 +17,12 @@ export class ProjectsComponent {
 //data work with header
   private header: any = {
     title: 'Projects',
-    arrLength: 0
+    arrLength: 0,
+    searchName: '',
+    sortType: 'A-Z',
+    type: 'projects'
   };
-  private searchName: string;
-  private sortType: string = 'A-Z';
+
 
 //new project
   private createNewProject: boolean = false;
@@ -38,6 +40,8 @@ export class ProjectsComponent {
   }
 
   ngOnInit() {
+    this.header = this.shareService.setHeader(this.header);
+
     this.subNewProject = this.shareService.shareListener.subscribe((project: any) => {
       if(project != undefined){
         this.createNewProject = false;

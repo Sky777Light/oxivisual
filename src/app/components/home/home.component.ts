@@ -20,11 +20,11 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
 export class HomeComponent {
 
   private openMenu: string = 'out';
-  private headerData: any;
 
   constructor() {
 
   }
-
+  
+  
 
 }

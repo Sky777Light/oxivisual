@@ -1,11 +1,9 @@
-<app-header [header]="header" [(searchRes)]="searchName" [(sortType)]="sortType" class="row"></app-header>
 <main class="row">
-
   <div class="user-list-wrap col-md-4">
 
     <div class="user-list">
       <div class="slimscroll-wrap" slimScroll  width="100%" alwaysVisible=false distance="0px" height="100%" size="2px" color="#8b8d91" opacity=1 railColor="#b2b3b7" railOpacity=0>
-        <div class="user-list-item" [class.deactive]="!user.active" [class.selected-user]="selectedUser === user" *ngFor="let user of User.users | sortfilter: sortType | namefilter: searchName">
+        <div class="user-list-item" [class.deactive]="!user.active" [class.selected-user]="selectedUser === user" *ngFor="let user of User.users | namefilter: header.searchName: header.sortType">
           <div class="user-item-img-wrap" [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}" (click)="selectUser(user, false)">
             <span *ngIf="!user.avatar">{{userService.lettersNoImg(user)}}</span>
           </div>

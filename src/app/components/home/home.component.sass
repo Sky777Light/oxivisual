@@ -9,12 +9,14 @@ app-home
   .main-content
     display: inline-block
     width: 100%
-    height: 100%
+    height: calc(100% - 90px)
+    border-top: 2px solid $bottom-bor
     transition: margin .4s ease-in-out, width .4s ease-in-out
   .openedMenu
     margin-left: 260px
     width: calc(100% - 260px)
   .menu-btn
+    cursor: pointer
     position: absolute
     z-index: 1000
     top: 20px
