@@ -16,7 +16,6 @@ export class BasicProject {
     }
 
     ngOnInit(){
-        console.log(123123312);
         this.project = this.projectService.getProject();
     }
     

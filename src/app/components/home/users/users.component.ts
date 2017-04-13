@@ -96,7 +96,6 @@ export class UsersComponent {
         let idx = this.User.users.indexOf(user);
         this.User.users.splice(idx, 1);
       }
-      console.log(res.message);
       alertify.success(res.message);
     }, (error) => {});
   }

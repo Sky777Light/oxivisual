@@ -11,7 +11,7 @@ export interface IProject extends IMain{
 
 export class Project  implements IProject{
     public _id:string;
-    public created:string;
+    public created:number;
     public title: string;
     public link: string;
     public image: string;
@@ -19,9 +19,10 @@ export class Project  implements IProject{
     public published: boolean;
     public newProject: boolean;
 
-    constructor(title:string='',id:string = null,link:string = null,owner:any = null,published:boolean = false,newProject:boolean=false,_created:any=Date.now(), image:string = ''){
+    constructor(title:string='',id:string = null,link:string = null,owner:any = null,published:boolean = false,newProject:boolean=false,_created:number=Date.now(), image:string = ''){
         this.title = title;
         this.image = image;
+        this.created = _created;
         this._id = id;
         this.link = link;
         this.owner = owner;

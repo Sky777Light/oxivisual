@@ -5,6 +5,8 @@ webpackJsonp([1,4],{
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service__ = __webpack_require__(31);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -16,8 +18,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ProjectService = (function () {
-    function ProjectService() {
+    function ProjectService(authService, userService) {
+        this.authService = authService;
+        this.userService = userService;
     }
     ProjectService.prototype.setProject = function (project) {
         this.Project = project;
@@ -25,11 +31,50 @@ var ProjectService = (function () {
     ProjectService.prototype.getProject = function () {
         return this.Project;
     };
+    ProjectService.prototype.createProject = function (project) {
+        var _this = this;
+        var link = '/api/projects/project';
+        this.authService.post(link, project).subscribe(function (res) {
+            res = res.json();
+            if (res.status) {
+                var user = _this.userService.getUser();
+                user.projects.push(res.res);
+            }
+            alertify.success(res.message);
+        }, function (error) { });
+    };
+    ProjectService.prototype.changeProject = function (project) {
+        var _this = this;
+        var link = '/api/projects/project';
+        this.authService.put(link, project).subscribe(function (res) {
+            res = res.json();
+            if (res.status) {
+                for (var key in res.res) {
+                    _this.Project[key] = res.res[key];
+                }
+            }
+            alertify.success(res.message);
+        }, function (error) { });
+    };
+    ProjectService.prototype.deleteProject = function (project) {
+        var _this = this;
+        var link = '/api/projects/project';
+        this.authService.delete(link, project).subscribe(function (res) {
+            res = res.json();
+            if (res.status) {
+                var user = _this.userService.getUser();
+                var idx = user.projects.indexOf(project);
+                user.projects.splice(idx, 1);
+            }
+            alertify.success(res.message);
+        }, function (error) { });
+    };
     ProjectService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === 'function' && _b) || Object])
     ], ProjectService);
     return ProjectService;
+    var _a, _b;
 }());
 //# sourceMappingURL=project.service.js.map
 
@@ -117,7 +162,6 @@ var UserService = (function () {
             if (!resol[i])
                 resolFlag = false;
         }
-        console.log(resolFlag);
         return resolFlag;
     };
     UserService.prototype.lettersNoImg = function (user) {
@@ -211,7 +255,6 @@ var BasicProject = (function () {
         this.projectService = projectService;
     }
     BasicProject.prototype.ngOnInit = function () {
-        console.log(123123312);
         this.project = this.projectService.getProject();
     };
     BasicProject = __decorate([
@@ -466,7 +509,6 @@ var UsersComponent = (function () {
                 var idx = _this.User.users.indexOf(user);
                 _this.User.users.splice(idx, 1);
             }
-            console.log(res.message);
             alertify.success(res.message);
         }, function (error) { });
     };
@@ -574,6 +616,7 @@ var Project = (function () {
         if (image === void 0) { image = ''; }
         this.title = title;
         this.image = image;
+        this.created = _created;
         this._id = id;
         this.link = link;
         this.owner = owner;
@@ -998,6 +1041,7 @@ var AsideComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__(210);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1010,9 +1054,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var HeaderComponent = (function () {
-    function HeaderComponent(shareService) {
+    function HeaderComponent(shareService, projectService) {
         this.shareService = shareService;
+        this.projectService = projectService;
         this.sortActive = false;
         this.headerData = {};
         this.headerSettings = false;
@@ -1028,8 +1074,16 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.ngOnDestroy = function () {
         this.subHeaderData.unsubscribe();
     };
-    HeaderComponent.prototype.deactivate = function (published) {
-        this.headerData.published = published;
+    HeaderComponent.prototype.deactivate = function () {
+        var id = this.headerData._id;
+        var temp = {
+            _id: id,
+            published: !this.headerData.published
+        };
+        this.projectService.changeProject(temp);
+    };
+    HeaderComponent.prototype.delete = function () {
+        this.projectService.deleteProject(this.headerData);
     };
     HeaderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_4" /* Component */])({
@@ -1037,10 +1091,10 @@ var HeaderComponent = (function () {
             template: __webpack_require__(774),
             styles: [__webpack_require__(735)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */]) === 'function' && _b) || Object])
     ], HeaderComponent);
     return HeaderComponent;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=header.component.js.map
 
@@ -1053,8 +1107,7 @@ var HeaderComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_Project__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_share_service__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(210);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1069,12 +1122,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var NewProjectComponent = (function () {
-    function NewProjectComponent(userService, shareService, authService) {
+    function NewProjectComponent(userService, projectService) {
         this.userService = userService;
-        this.shareService = shareService;
-        this.authService = authService;
+        this.projectService = projectService;
         this.openedStateChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* EventEmitter */]();
         this.resol = {
             title: true,
@@ -1082,7 +1133,11 @@ var NewProjectComponent = (function () {
         };
         this.User = this.userService.getUser();
         this.project = new __WEBPACK_IMPORTED_MODULE_2__entities_Project__["Project"]();
+        this.Create = true;
     }
+    NewProjectComponent.prototype.ngOnInit = function () {
+        this.tempProject = Object.assign({}, this.project);
+    };
     //photo change
     NewProjectComponent.prototype.loadPhoto = function ($event) {
         var _this = this;
@@ -1102,29 +1157,27 @@ var NewProjectComponent = (function () {
     };
     //user save accept/cancel
     NewProjectComponent.prototype.keyDown = function (event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode == 13 && this.Create) {
             this.accept();
         }
-        else if (event.keyCode == 27) {
+        else if (event.keyCode == 27 && this.Create) {
             this.cancel();
         }
     };
     NewProjectComponent.prototype.accept = function () {
-        var _this = this;
         if (!this.userService.resolUser(this.resol, this.project))
             return false;
-        this.authService.post('/api/projects/project', this.project).subscribe(function (res) {
-            res = res.json();
-            if (res.status) {
-                _this.User.projects.push(res.res);
-            }
-            alertify.success(res.message);
-        }, function (error) { });
+        this.Create ? this.projectService.createProject(this.project) : this.projectService.changeProject(this.project);
         this.cancel();
     };
     NewProjectComponent.prototype.cancel = function () {
         this.openedState = false;
         this.openedStateChange.emit(this.openedState);
+    };
+    NewProjectComponent.prototype.reset = function () {
+        this.project.image = this.tempProject.image;
+        this.project.link = this.tempProject.link;
+        this.project.title = this.tempProject.title;
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
@@ -1134,6 +1187,10 @@ var NewProjectComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
         __metadata('design:type', String)
     ], NewProjectComponent.prototype, "title", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
+        __metadata('design:type', Boolean)
+    ], NewProjectComponent.prototype, "Create", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
         __metadata('design:type', Boolean)
@@ -1154,10 +1211,10 @@ var NewProjectComponent = (function () {
             template: __webpack_require__(779),
             styles: [__webpack_require__(740)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_share_service__["a" /* ShareService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]) === 'function' && _e) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */]) === 'function' && _d) || Object])
     ], NewProjectComponent);
     return NewProjectComponent;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
 }());
 //# sourceMappingURL=new-project.component.js.map
 
@@ -1169,6 +1226,7 @@ var NewProjectComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_Project__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__(210);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1181,28 +1239,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ViewProject = (function () {
-    function ViewProject() {
+    function ViewProject(projectService) {
+        this.projectService = projectService;
         this.openedPopUp = false;
+        this.Editable = true;
     }
+    ViewProject.prototype.openPopUp = function () {
+        if (!this.Editable)
+            return;
+        if (!this.openedPopUp)
+            this.projectService.setProject(this.project);
+        this.openedPopUp = !this.openedPopUp;
+    };
+    ViewProject.prototype.deactivateProject = function () {
+        var id = this.project._id;
+        var temp = {
+            _id: id,
+            published: !this.project.published
+        };
+        this.projectService.changeProject(temp);
+    };
+    ViewProject.prototype.deleteProject = function () {
+        this.projectService.deleteProject(this.project);
+    };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__entities_Project__ !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__entities_Project__["IProject"]) === 'function' && _a) || Object)
     ], ViewProject.prototype, "project", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Input */])(), 
-        __metadata('design:type', String)
-    ], ViewProject.prototype, "noEdite", void 0);
+        __metadata('design:type', Boolean)
+    ], ViewProject.prototype, "Editable", void 0);
     ViewProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_4" /* Component */])({
             selector: 'app-project-view',
             template: __webpack_require__(781),
             styles: [__webpack_require__(742)]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */]) === 'function' && _b) || Object])
     ], ViewProject);
     return ViewProject;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=view.project.js.map
 
@@ -2481,7 +2560,7 @@ exports = module.exports = __webpack_require__(14)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\napp-basic-project {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n  app-basic-project .half-basic-l, app-basic-project .half-basic-r {\n    width: 50%;\n    height: 100%;\n    padding-top: 60px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n    app-basic-project .half-basic-l .basic-cont-wrap, app-basic-project .half-basic-r .basic-cont-wrap {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-inf, app-basic-project .half-basic-l .basic-cont-wrap .basic-prev, app-basic-project .half-basic-r .basic-cont-wrap .basic-inf, app-basic-project .half-basic-r .basic-cont-wrap .basic-prev {\n        font-size: 18px;\n        color: #444444; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-inf, app-basic-project .half-basic-r .basic-cont-wrap .basic-inf {\n        padding: 0 30px;\n        margin-bottom: 15px; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-prev, app-basic-project .half-basic-r .basic-cont-wrap .basic-prev {\n        padding: 0 10px;\n        margin-bottom: 40px; }\n      app-basic-project .half-basic-l .basic-cont-wrap app-project-view, app-basic-project .half-basic-r .basic-cont-wrap app-project-view {\n        width: 380px; }\n      app-basic-project .half-basic-l .basic-cont-wrap app-new-project .new-form, app-basic-project .half-basic-r .basic-cont-wrap app-new-project .new-form {\n        padding: 0 30px; }\n  app-basic-project .half-basic-r {\n    border-left: 2px solid #EBEBEB;\n    background-color: rgba(235, 235, 235, 0.3); }\n", ""]);
 
 // exports
 
@@ -2499,7 +2578,7 @@ exports = module.exports = __webpack_require__(14)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "app-project {\n  height: 100%;\n  width: 100%; }\n", ""]);
 
 // exports
 
@@ -2924,7 +3003,7 @@ module.exports = "<header>\n  <div class=\"asd-hd-top\">\n    <div class=\"asd-n
 /***/ 774:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-wrap\">\r\n  <div class=\"header-tag\">\r\n    <i class=\"material-icons\" [routerLink]=\"['/projects']\" *ngIf=\"headerData._id\">arrow_back</i>\r\n    <div class=\"header-title-wrap\">\r\n      <div class=\"header-title\">{{headerData.title}}<span class=\"arr-info\" *ngIf=\"!headerData._id\">{{'( ' + headerData.arrLength + ' )'}}</span></div>\r\n      <span class=\"published\" *ngIf=\"!headerData.published && headerData._id\" >Unpublished</span>\r\n    </div>\r\n  </div>\r\n  <div class=\"header-main\"  *ngIf=\"!headerData._id\">\r\n    <div class=\"header-search\">\r\n      <input type=\"text\" placeholder=\"Search\" [(ngModel)]=\"headerData.searchName\">\r\n    </div>\r\n    <div class=\"header-sort\">\r\n      <span>Sorted by:</span>\r\n      <div class=\"sort-select\" (window:mouseup)=\"sortActive = false\">\r\n        <div class=\"sort-present\" [class.sort-active]=\"sortActive\" (click)=\"sortActive = !sortActive\">\r\n          <span>{{headerData.sortType}}</span>\r\n          <i class=\"material-icons\" >arrow_drop_down</i>\r\n        </div>\r\n        <div class=\"pop-up\" [hidden]=\"!sortActive\">\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'A-Z'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'A-Z'\">A-Z</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Z-A'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'Z-A'\">Z-A</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Newest to older'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'Newest to older'\">Newest to older</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Older to newest'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'Older to newest'\">Older to newest</span>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"header-main\"  *ngIf=\"headerData._id\">\r\n    <div class=\"header-main-mnu\">\r\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/basic']\" routerLinkActive=\"mnu-item-active\">Basic</div>\r\n      <div class=\"mnu-item\">Admins</div>\r\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/source']\" routerLinkActive=\"mnu-item-active\">Source</div>\r\n      <div class=\"mnu-item\">Preview</div>\r\n    </div>\r\n    <div class=\"publish-btn\" [class.publish-btn-active]=\"headerData.published\" [class.publish-btn-disable]=\"headerData.published\"><span>Publish</span></div>\r\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"headerSettings\">\r\n      <i class=\"material-icons set-icon\" (click)=\"headerSettings = !headerSettings\" (window:mouseup)=\"headerSettings = false\">more_vert</i>\r\n      <div class=\"pop-up\" [hidden]=\"!headerSettings\">\r\n        <div class=\"pop-up-item\" [hidden]=\"!headerData.published\" (click)=\"deactivate(true)\">\r\n          <i class=\"material-icons\">visibility_off</i>\r\n          <div class=\"pop-up-row-name\">\r\n            <span>Deactivate</span>\r\n          </div>\r\n        </div>\r\n        <div class=\"pop-up-item\" [hidden]=\"headerData.published\" (click)=\"deactivate(false)\">\r\n          <i class=\"material-icons\">visibility</i>\r\n          <div class=\"pop-up-row-name\">\r\n            <span>Activate</span>\r\n          </div>\r\n        </div>\r\n        <div class=\"pop-up-item\" (click)=\"delete()\">\r\n          <i class=\"material-icons\">delete</i>\r\n          <div class=\"pop-up-row-name\">\r\n            <span>Delete</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"header-wrap\">\r\n  <div class=\"header-tag\">\r\n    <i class=\"material-icons\" [routerLink]=\"['/projects']\" *ngIf=\"headerData._id\">arrow_back</i>\r\n    <div class=\"header-title-wrap\">\r\n      <div class=\"header-title\">{{headerData.title}}<span class=\"arr-info\" *ngIf=\"!headerData._id\">{{'( ' + headerData.arrLength + ' )'}}</span></div>\r\n      <span class=\"published\" *ngIf=\"!headerData.published && headerData._id\" >Unpublished</span>\r\n    </div>\r\n  </div>\r\n  <div class=\"header-main\"  *ngIf=\"!headerData._id\">\r\n    <div class=\"header-search\">\r\n      <input type=\"text\" placeholder=\"Search\" [(ngModel)]=\"headerData.searchName\">\r\n    </div>\r\n    <div class=\"header-sort\">\r\n      <span>Sorted by:</span>\r\n      <div class=\"sort-select\" (window:mouseup)=\"sortActive = false\">\r\n        <div class=\"sort-present\" [class.sort-active]=\"sortActive\" (click)=\"sortActive = !sortActive\">\r\n          <span>{{headerData.sortType}}</span>\r\n          <i class=\"material-icons\" >arrow_drop_down</i>\r\n        </div>\r\n        <div class=\"pop-up\" [hidden]=\"!sortActive\">\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'A-Z'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'A-Z'\">A-Z</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Z-A'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'Z-A'\">Z-A</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Newest to older'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'Newest to older'\">Newest to older</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Older to newest'; sortActive = false\">\r\n            <div class=\"pop-up-row-name\">\r\n              <span [class.sort-selected]=\"headerData.sortType === 'Older to newest'\">Older to newest</span>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"header-main\"  *ngIf=\"headerData._id\">\r\n    <div class=\"header-main-mnu\">\r\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/basic']\" routerLinkActive=\"mnu-item-active\">Basic</div>\r\n      <div class=\"mnu-item\">Admins</div>\r\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/source']\" routerLinkActive=\"mnu-item-active\">Source</div>\r\n      <div class=\"mnu-item\">Preview</div>\r\n    </div>\r\n    <div class=\"publish-btn\" [class.publish-btn-active]=\"headerData.published\" [class.publish-btn-disable]=\"headerData.published\" (click)=\"deactivate()\"><span>Publish</span></div>\r\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"headerSettings\">\r\n      <i class=\"material-icons set-icon\" (click)=\"headerSettings = !headerSettings\" (window:mouseup)=\"headerSettings = false\">more_vert</i>\r\n      <div class=\"pop-up\" [hidden]=\"!headerSettings\">\r\n        <div class=\"pop-up-item\" [hidden]=\"!headerData.published\" (click)=\"deactivate()\">\r\n          <i class=\"material-icons\">visibility_off</i>\r\n          <div class=\"pop-up-row-name\">\r\n            <span>Deactivate</span>\r\n          </div>\r\n        </div>\r\n        <div class=\"pop-up-item\" [hidden]=\"headerData.published\" (click)=\"deactivate()\">\r\n          <i class=\"material-icons\">visibility</i>\r\n          <div class=\"pop-up-row-name\">\r\n            <span>Activate</span>\r\n          </div>\r\n        </div>\r\n        <div class=\"pop-up-item\" (click)=\"delete()\">\r\n          <i class=\"material-icons\">delete</i>\r\n          <div class=\"pop-up-row-name\">\r\n            <span>Delete</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -2938,7 +3017,7 @@ module.exports = "<app-header [class.openedMenu]=\"openMenu == 'in' \"></app-hea
 /***/ 776:
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"edit-form \">-->\r\n    <!--<div class=\"col-lg-4 col-md-6\">-->\r\n        <!--&lt;!&ndash;<app-project-edit [title]=\"'Basic information'\" [project]=\"project\"></app-project-edit>&ndash;&gt;-->\r\n    <!--</div>-->\r\n    <!--<div class=\"col-lg-8 col-md-6\">-->\r\n        <!--<div class=\"edit-form\">-->\r\n            <!--<span class=\"tag-text\" style=\"padding-left: 20px;\">Live Preview:</span>-->\r\n            <!--<main>-->\r\n                <!--<div class=\"projects-wrap\">-->\r\n                    <!--<div class=\"projects-list  row\"  width=\"100%\" alwaysVisible=false distance=\"9px\" height=\"100%\"-->\r\n                         <!--size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>-->\r\n                        <!--&lt;!&ndash;<app-project-view [project]=\"project\" [noEdite]=\"true\" class=\"col-lg-7\"></app-project-view>&ndash;&gt;-->\r\n                    <!--</div>-->\r\n                <!--</div>-->\r\n            <!--</main>-->\r\n        <!--</div>-->\r\n    <!--</div>-->\r\n<!--</div>-->\r\n"
+module.exports = "<div class=\"half-basic-l\">\r\n    <div class=\"basic-cont-wrap\">\r\n        <div class=\"basic-inf\">Basic information:</div>\r\n        <app-new-project [project]=\"project\" [Create]=\"false\"></app-new-project>\r\n    </div>\r\n</div>\r\n<div class=\"half-basic-r\">\r\n    <div class=\"basic-cont-wrap\">\r\n        <div class=\"basic-prev\">Live preview:</div>\r\n        <app-project-view [project]=\"project\" [Editable]=\"false\"></app-project-view>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2959,7 +3038,7 @@ module.exports = "TESTE"
 /***/ 779:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\r\n\r\n<div class=\"new-form\">\r\n    <span class=\"tag-text\">{{title}}</span>\r\n    <div class=\"main-info\">\r\n        <form class=\"item-form\">\r\n            <div class=\"input-wrap\">\r\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\r\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\r\n            </div>\r\n            <div class=\"input-wrap\">\r\n                <input type=\"text\" [class.input-fill]=\"project.link\" [class.input-error]=\"!resol.link\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.link = true\">\r\n                <label [class.full-op]=\"!resol.link\">This input requires a value!</label>\r\n            </div>\r\n        </form>\r\n        <div class=\"item-photo\">\r\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\r\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\r\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\r\n            </label>\r\n            <div class=\"photo-ctrl\" [hidden]=\"project.image == false\">\r\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\r\n                <span (click)=\"removePhoto()\">Remove</span>\r\n            </div>\r\n            <div class=\"photo-ctrl\" [hidden]=\"project.image != false\">\r\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\r\n            </div>\r\n            <span class=\"photo-info\">540*330 px</span>\r\n        </div>\r\n    </div>\r\n    <div class=\"new-btns\">\r\n        <span class=\"false-btn\" (click)=\"cancel()\">cancel</span>\r\n        <span class=\"true-btn\" (click)=\"accept()\">accept</span>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\r\n\r\n<div class=\"new-form\">\r\n    <span class=\"tag-text\">{{title}}</span>\r\n    <div class=\"main-info\">\r\n        <form class=\"item-form\">\r\n            <div class=\"input-wrap\">\r\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\r\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\r\n            </div>\r\n            <div class=\"input-wrap\">\r\n                <input type=\"text\" [class.input-fill]=\"project.link\" [class.input-error]=\"!resol.link\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.link = true\">\r\n                <label [class.full-op]=\"!resol.link\">This input requires a value!</label>\r\n            </div>\r\n        </form>\r\n        <div class=\"item-photo\">\r\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\r\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\r\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\r\n            </label>\r\n            <div class=\"photo-ctrl\" [hidden]=\"project.image == false\">\r\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\r\n                <span (click)=\"removePhoto()\">Remove</span>\r\n            </div>\r\n            <div class=\"photo-ctrl\" [hidden]=\"project.image != false\">\r\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\r\n            </div>\r\n            <span class=\"photo-info\">540*330 px</span>\r\n        </div>\r\n    </div>\r\n    <div class=\"new-btns\">\r\n        <span class=\"false-btn\" (click)=\"Create ? cancel() : reset()\">cancel</span>\r\n        <span class=\"true-btn\" (click)=\"accept()\">{{Create ? 'accept' : 'save'}}</span>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -2973,7 +3052,7 @@ module.exports = "<main>\r\n    <div class=\"projects-wrap\">\r\n        <div cl
 /***/ 781:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"project\">\r\n    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\" [class.img-true]=\"project.image\">\r\n        <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\r\n        <div class=\"project-ctrl-wrap\">\r\n            <span class=\"unpublished\" [hidden]=\"project.published\">Unpublished</span>\r\n            <div class=\"project-ctrl\">\r\n                <i class=\"material-icons\" [routerLink]=\"['/project', project._id]\"  routerLinkActive=\"active\">edit</i>\r\n                <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openedPopUp\">\r\n                    <i class=\"material-icons\" (click)=\"openedPopUp = !openedPopUp\" (window:mouseup)=\"openedPopUp = false\">more_vert</i>\r\n                    <div class=\"pop-up\" [hidden]=\"!openedPopUp\">\r\n                        <div class=\"pop-up-item\" [hidden]=\"!project.active\" (click)=\"deactivateProject(project)\">\r\n                            <i class=\"material-icons\">visibility_off</i>\r\n                            <div class=\"pop-up-row-name\">\r\n                                <span>Deactivate</span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"pop-up-item\" [hidden]=\"project.active\" (click)=\"deactivateProject(project)\">\r\n                            <i class=\"material-icons\">visibility</i>\r\n                            <div class=\"pop-up-row-name\">\r\n                                <span>Activate</span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"pop-up-item\" (click)=\"deleteProject(project)\">\r\n                            <i class=\"material-icons\">delete</i>\r\n                            <div class=\"pop-up-row-name\">\r\n                                <span>Delete</span>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"project-info\">\r\n            <div class=\"project-title\">{{project.title}}</div>\r\n            <div class=\"project-created\">Created: {{project.created}}</div>\r\n        </div>\r\n    </div>\r\n    <div class=\"project-bot\">\r\n        <span class=\"project-admin\">Admin:</span>\r\n        <div class=\"project-users\">\r\n            <div class=\"project-user\">\r\n                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\r\n                    <span>AF</span>\r\n                </div>\r\n                <span class=\"project-user-name\">Jennifer Carasdsdfd</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"project\">\r\n    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\" [class.img-true]=\"project.image\">\r\n        <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\r\n        <div class=\"project-ctrl-wrap\">\r\n            <span class=\"unpublished\" [hidden]=\"project.published\">Unpublished</span>\r\n            <div class=\"project-ctrl\">\r\n                <i class=\"material-icons\" [routerLink]=\"['/project', project._id]\"  routerLinkActive=\"active\">edit</i>\r\n                <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openedPopUp\">\r\n                    <i class=\"material-icons\" (click)=\"openPopUp()\" (window:mouseup)=\"openedPopUp = false\">more_vert</i>\r\n                    <div class=\"pop-up\" [hidden]=\"!openedPopUp\">\r\n                        <div class=\"pop-up-item\" [hidden]=\"!project.published\" (click)=\"deactivateProject()\">\r\n                            <i class=\"material-icons\">visibility_off</i>\r\n                            <div class=\"pop-up-row-name\">\r\n                                <span>Deactivate</span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"pop-up-item\" [hidden]=\"project.published\" (click)=\"deactivateProject()\">\r\n                            <i class=\"material-icons\">visibility</i>\r\n                            <div class=\"pop-up-row-name\">\r\n                                <span>Activate</span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"pop-up-item\" (click)=\"deleteProject()\">\r\n                            <i class=\"material-icons\">delete</i>\r\n                            <div class=\"pop-up-row-name\">\r\n                                <span>Delete</span>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"project-info\">\r\n            <div class=\"project-title\">{{project.title}}</div>\r\n            <div class=\"project-created\">Created: {{project.created}}</div>\r\n        </div>\r\n    </div>\r\n    <div class=\"project-bot\">\r\n        <span class=\"project-admin\">Admin:</span>\r\n        <div class=\"project-users\">\r\n            <div class=\"project-user\">\r\n                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\r\n                    <span>AF</span>\r\n                </div>\r\n                <span class=\"project-user-name\">Jennifer Carasdsdfd</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 

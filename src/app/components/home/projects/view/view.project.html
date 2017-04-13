@@ -6,21 +6,21 @@
             <div class="project-ctrl">
                 <i class="material-icons" [routerLink]="['/project', project._id]"  routerLinkActive="active">edit</i>
                 <div class="pop-up-icon" [class.pop-up-icon-active]="openedPopUp">
-                    <i class="material-icons" (click)="openedPopUp = !openedPopUp" (window:mouseup)="openedPopUp = false">more_vert</i>
+                    <i class="material-icons" (click)="openPopUp()" (window:mouseup)="openedPopUp = false">more_vert</i>
                     <div class="pop-up" [hidden]="!openedPopUp">
-                        <div class="pop-up-item" [hidden]="!project.active" (click)="deactivateProject(project)">
+                        <div class="pop-up-item" [hidden]="!project.published" (click)="deactivateProject()">
                             <i class="material-icons">visibility_off</i>
                             <div class="pop-up-row-name">
                                 <span>Deactivate</span>
                             </div>
                         </div>
-                        <div class="pop-up-item" [hidden]="project.active" (click)="deactivateProject(project)">
+                        <div class="pop-up-item" [hidden]="project.published" (click)="deactivateProject()">
                             <i class="material-icons">visibility</i>
                             <div class="pop-up-row-name">
                                 <span>Activate</span>
                             </div>
                         </div>
-                        <div class="pop-up-item" (click)="deleteProject(project)">
+                        <div class="pop-up-item" (click)="deleteProject()">
                             <i class="material-icons">delete</i>
                             <div class="pop-up-row-name">
                                 <span>Delete</span>

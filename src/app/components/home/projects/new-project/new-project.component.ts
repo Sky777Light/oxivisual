@@ -3,8 +3,7 @@ import {UserService} from "../../../../services/user.service";
 import {User} from "../../../../interfaces/user.interface";
 import {Resol} from "../../../../interfaces/resol.interface";
 import * as PROJ from "../../../../entities/Project";
-import {ShareService} from "../../../../services/share.service";
-import {AuthService} from "../../../../services/auth.service";
+import {ProjectService} from "../../../../services/project.service";
 
 declare var alertify;
 
@@ -16,11 +15,13 @@ declare var alertify;
 export class NewProjectComponent {
 
   @Input() project: PROJ.IProject;
-  @Input()  title:string;
+  @Input() title: string;
+  @Input() Create: boolean;
   @Input() openedState: boolean;
   @Output() openedStateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private User:User;
+  private tempProject: any;
 
   private resol:Resol = {
     title: true,
@@ -28,14 +29,18 @@ export class NewProjectComponent {
   };
 
   constructor(
-      protected userService:UserService,
-      protected shareService:ShareService,
-      protected authService:AuthService
+      protected userService: UserService,
+      protected projectService: ProjectService
   ) {
     this.User = this.userService.getUser();
     this.project = new PROJ.Project();
+    this.Create = true;
   }
 
+
+  ngOnInit(){
+    this.tempProject = Object.assign({}, this.project);
+  }
 
 //photo change
   loadPhoto($event) {
@@ -57,9 +62,9 @@ export class NewProjectComponent {
   //user save accept/cancel
   @HostListener('window:keydown', ['$event'])
   keyDown(event:KeyboardEvent) {
-    if (event.keyCode == 13) {
+    if (event.keyCode == 13 && this.Create) {
       this.accept();
-    } else if (event.keyCode == 27) {
+    } else if (event.keyCode == 27 && this.Create) {
       this.cancel();
     }
   }
@@ -67,13 +72,7 @@ export class NewProjectComponent {
   accept() {
     if (!this.userService.resolUser(this.resol, this.project)) return false;
 
-    this.authService.post('/api/projects/project', this.project).subscribe((res: any) => {
-      res = res.json();
-      if(res.status) {
-        this.User.projects.push(res.res);
-      }
-      alertify.success(res.message);
-    }, (error) => {});
+    this.Create ? this.projectService.createProject(this.project) : this.projectService.changeProject(this.project);
 
     this.cancel();
   }
@@ -83,5 +82,10 @@ export class NewProjectComponent {
     this.openedStateChange.emit(this.openedState);
   }
 
+  reset(){
+    this.project.image = this.tempProject.image;
+    this.project.link = this.tempProject.link;
+    this.project.title = this.tempProject.title;
+  }
 
 }
