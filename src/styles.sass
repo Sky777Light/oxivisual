@@ -46,6 +46,32 @@ i
 
 [hidden]
   display: none!important
+  
+.new-btns
+  width: 100%
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-pack: end
+  -ms-flex-pack: end
+  justify-content: flex-end
+  .text-btn
+    color: $reset
+    text-transform: uppercase
+    cursor: pointer
+    font-size: 16px
+    font-weight: 500
+    -webkit-transition: opacity .5s
+    transition: opacity .5s
+    &:hover
+      opacity: 0.6
+  .right-btn
+    color: $btn-color
+
+
+
+
+
 
 
 
@@ -60,4 +86,11 @@ i
 @import "app/components/home/users/users.component"
 @import "app/components/home/users/user-card/user-card.component"
 @import "app/components/home/users/new-user/new-user.component"
+@import "app/components/home/users/new-user/new-user.component"
+
+//@import "app/components/home/projects/basic/basic.project"
+@import "app/components/home/projects/source/source.project"
+//@import "app/components/home/projects/edit/edit.project"
+//@import "app/components/home/projects/view/view.project"
+@import "app/components/home/projects/source/upload.file"@import "app/components/home/users/new-user/new-user.component"
 @import "app/components/home/projects/view/view.project"

@@ -1,5 +1,15 @@
 import {IMain} from "../interfaces/IMain";
+import {IModelStructure} from "./ModelStructure";
+import {Main} from "./Main";
 
+export class ProjectModel extends Main{
+    public model:IModelStructure;
+    public link:string;
+    public name:string;
+    constructor(entity:any = null){
+        super(entity);
+    }
+}
 export interface IProject extends IMain{
     title: string;
     link?: string;
@@ -7,9 +17,9 @@ export interface IProject extends IMain{
     owner?: string;
     published?: boolean;
     newProject?: boolean;
+    model?: ProjectModel;
 }
-
-export class Project  implements IProject{
+export class Project  extends Main implements IProject{
     public _id:string;
     public created:string;
     public title: string;
@@ -18,15 +28,10 @@ export class Project  implements IProject{
     public owner: string;
     public published: boolean;
     public newProject: boolean;
+    public model: ProjectModel;
 
-    constructor(title:string='',id:string = null,link:string = null,owner:any = null,published:boolean = false,newProject:boolean=false,_created:any=Date.now(), image:string = ''){
-        this.title = title;
-        this.image = image;
-        this._id = id;
-        this.link = link;
-        this.owner = owner;
-        this.published = published;
-        this.newProject = newProject;
+    constructor(entity:any = null){
+        super(entity);
     }
 
 }

@@ -2,6 +2,8 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import * as PROJ from "../../../../entities/Project";
 import { ActivatedRoute } from '@angular/router';
 import {UserService} from "../../../../services/user.service";
+import {NewProjectComponent} from "../new-project/new-project.component";
+import {ShareService} from "../../../../services/share.service";
 
 
 declare var alertify: any;
@@ -13,6 +15,7 @@ declare var alertify: any;
 export class AbstractTemplateProject  implements OnInit,OnDestroy {
 
     protected project: PROJ.IProject;
+    protected abstract:any;
     protected sub: any;
 
     constructor(protected route: ActivatedRoute,protected userService: UserService){
@@ -23,7 +26,7 @@ export class AbstractTemplateProject  implements OnInit,OnDestroy {
         this.sub = this.route.params.subscribe(params => {
             this.userService.getUser().projects.forEach((project)=>{
                 if(project._id == params['id']){
-                    this.project = project;
+                    this.project = new PROJ.Project(project);
                 }
             });
         });

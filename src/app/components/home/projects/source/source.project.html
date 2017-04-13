@@ -1,0 +1,23 @@
+<div class="source-project">
+    <div *ngIf="!project.model.link" class="source-creating col-lg-3">
+        <span>Parent creating:</span>
+        <form class="item-form" #createForm="ngForm"  novalidate >
+            <div class="input-wrap">
+                <input type="text" #parentName="ngModel" name="parentName"  placeholder="Parent`s Name" [(ngModel)]="project.model.name" required autofocus>
+                <label [class.full-op]="parentName.invalid && parentName.touched"  >The Parent`s Name is required!</label>
+            </div>
+            <div class="upload-list col-lg-12">
+                <app-file-upload [title]="'Upload model'"   [accept]="'.obj'"  [required]="'1'" class="col-lg-6" ></app-file-upload>
+                <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'" [required]="'1'" [accept]="'image/*'" class="col-lg-6"></app-file-upload>
+            </div>
+
+            <div class="new-btns">
+                <span class="text-btn" (click)="cancel()">cancel</span>
+                <span class="right-btn text-btn" (click)="create(createForm)">create</span>
+                <!--<input type="submit"  class="right-btn text-btn" class="btn btn-default" value="create" />-->
+            </div>
+        </form>
+
+    </div>
+    <div *ngIf="project.model.link" class="source-creating"></div>
+</div>
