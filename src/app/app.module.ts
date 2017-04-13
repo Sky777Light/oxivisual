@@ -26,11 +26,11 @@ import {HeaderComponent} from "./components/home/header/header.component";
 import {UserCardComponent} from "./components/home/users/user-card/user-card.component";
 import {NewUserComponent} from "./components/home/users/new-user/new-user.component";
 import {NewProjectComponent} from "./components/home/projects/new-project/new-project.component";
-import {BasicProject} from "./components/home/projects/basic/basic.project";
 import {ViewProject} from "./components/home/projects/view/view.project";
-import {EditProject} from "./components/home/projects/edit/edit.project";
-import {SourceProject} from "./components/home/projects/source/source.project";
-import {AbstractTemplateProject} from "./components/home/projects/template/temp.view.project";
+import {ProjectComponent} from "./components/home/project/project.component";
+import {SourceProject} from "./components/home/project/source/source.project";
+import {BasicProject} from "./components/home/project/basic/basic.project";
+import {ProjectService} from "./services/project.service";
 
 
 @NgModule({
@@ -49,10 +49,9 @@ import {AbstractTemplateProject} from "./components/home/projects/template/temp.
     ProjectsComponent,
     NewProjectComponent,
     ViewProject,
-    EditProject,
     SourceProject,
-    AbstractTemplateProject,
-    BasicProject
+    BasicProject,
+    ProjectComponent
 
   ],
   imports: [
@@ -68,7 +67,8 @@ import {AbstractTemplateProject} from "./components/home/projects/template/temp.
     AuthGuardService,
     LoggedGuardService,
     UserService,
-    ShareService
+    ShareService,
+    ProjectService
   ],
   bootstrap: [AppComponent]
 })

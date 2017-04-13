@@ -6,7 +6,7 @@
       <span class="user-card-hd-status" *ngIf="tempUser.role == 'admin'">client-admin</span>
       <span class="user-card-hd-status" *ngIf="tempUser.role == 'user'">client-user</span>
     </div>
-    <div class="user-card-hd-menu" [class.user-card-hd-menu-active]="openMenu" [hidden]="!canEdit">
+    <div class="pop-up-icon" [class.pop-up-icon-active]="openMenu" [hidden]="!canEdit">
       <i class="material-icons" (click)="openMenu = !openMenu" (window:mouseup)="openMenu = false">more_vert</i>
       <div class="pop-up" [class.hidden]="!openMenu">
         <div class="pop-up-item">

@@ -1,28 +1,48 @@
-<div class="project-wrap " >
-    <div class="project">
-        <div class="project-content img-true" [ngStyle]="{'background-image': 'url(' + project.image + ')'}" [class.img-true]="project.image">
-            <i class="material-icons no-img" [hidden]="project.image">crop_original</i>
-            <div class="project-ctrl-wrap">
-                <span [hidden]="project.published">Unpublished</span>
-                <div [hidden]="noEdite" class="project-ctrl">
-                    <i class="material-icons"  > <a [routerLink]="['/projects', project._id]"  routerLinkActive="active">edit</a></i>
-                    <i class="material-icons">more_vert</i>
+<div class="project">
+    <div class="project-content img-true" [ngStyle]="{'background-image': 'url(' + project.image + ')'}" [class.img-true]="project.image">
+        <i class="material-icons no-img" [hidden]="project.image">crop_original</i>
+        <div class="project-ctrl-wrap">
+            <span class="unpublished" [hidden]="project.published">Unpublished</span>
+            <div class="project-ctrl">
+                <i class="material-icons" [routerLink]="['/project', project._id]"  routerLinkActive="active">edit</i>
+                <div class="pop-up-icon" [class.pop-up-icon-active]="openedPopUp">
+                    <i class="material-icons" (click)="openedPopUp = !openedPopUp" (window:mouseup)="openedPopUp = false">more_vert</i>
+                    <div class="pop-up" [hidden]="!openedPopUp">
+                        <div class="pop-up-item" [hidden]="!project.active" (click)="deactivateProject(project)">
+                            <i class="material-icons">visibility_off</i>
+                            <div class="pop-up-row-name">
+                                <span>Deactivate</span>
+                            </div>
+                        </div>
+                        <div class="pop-up-item" [hidden]="project.active" (click)="deactivateProject(project)">
+                            <i class="material-icons">visibility</i>
+                            <div class="pop-up-row-name">
+                                <span>Activate</span>
+                            </div>
+                        </div>
+                        <div class="pop-up-item" (click)="deleteProject(project)">
+                            <i class="material-icons">delete</i>
+                            <div class="pop-up-row-name">
+                                <span>Delete</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="project-info">
-                <div class="project-title">{{project.title}}</div>
-                <div class="project-created">Created: {{project.created}}</div>
             </div>
         </div>
-        <div class="project-bot">
-            <span class="project-admin">Admin:</span>
-            <div class="project-users">
-                <div class="project-user">
-                    <div class="project-user-img" [ngStyle]="{'background-image': 'url(asfd)'}">
-                        <span>AF</span>
-                    </div>
-                    <span class="project-user-name">Jennifer Carasdsdfd</span>
+        <div class="project-info">
+            <div class="project-title">{{project.title}}</div>
+            <div class="project-created">Created: {{project.created}}</div>
+        </div>
+    </div>
+    <div class="project-bot">
+        <span class="project-admin">Admin:</span>
+        <div class="project-users">
+            <div class="project-user">
+                <div class="project-user-img" [ngStyle]="{'background-image': 'url(asfd)'}">
+                    <span>AF</span>
                 </div>
+                <span class="project-user-name">Jennifer Carasdsdfd</span>
             </div>
         </div>
     </div>

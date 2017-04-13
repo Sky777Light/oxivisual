@@ -1,4 +1,5 @@
 export interface IMain{
     _id?: string;
-    created?: any;
+    title: string;
+    created: any;
 }

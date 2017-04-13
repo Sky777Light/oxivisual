@@ -147,7 +147,46 @@
   &:hover
     opacity: 0.6
 
+
+//publish-btn
+.publish-btn
+  height: 40px
+  width: 170px
+  margin: 0 30px
+  cursor: pointer
+  border-radius: 2px
+  background-color: $primary-text
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.1)
+  display: flex
+  justify-content: center
+  align-items: center
+  span
+    color: $white
+  &:hover
+    opacity: 0.85
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.15)
+.publish-btn-active
+  height: 36px
+  width: 153px
+  border-radius: 1.8px
+  opacity: 0.85
+.publish-btn-disable
+  background-color: $bottom-bor
+  span
+    color: $grey
+
 //pop up
+.pop-up-icon
+  position: relative
+  width: 30px
+  height: 30px
+  border-radius: 50%
+  display: flex
+  justify-content: center
+  align-items: center
+.pop-up-icon-active
+  background-color: $bottom-bor
+
 .pop-up  // add width height position
   background-color: $white
   padding: 10px 0
@@ -171,6 +210,8 @@
       width: 100%
       display: flex
       justify-content: space-between
+      span
+        line-height: 0.8
       .pop-up-num
         color: $grey
     &:hover
@@ -192,6 +233,7 @@
     background-color: $black
   .new-form
     position: absolute
+    z-index: 10
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)

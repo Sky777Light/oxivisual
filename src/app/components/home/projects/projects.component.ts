@@ -1,10 +1,7 @@
 import {Component} from '@angular/core';
 import {User} from "../../../interfaces/user.interface";
 import {UserService} from "../../../services/user.service";
-import {Subscription} from "rxjs/Rx";
 import {ShareService} from "../../../services/share.service";
-import {AuthService} from "../../../services/auth.service";
-//import {IProject} from "../../../project.interface";
 
 declare var alertify: any;
 
@@ -20,49 +17,25 @@ export class ProjectsComponent {
     title: 'Projects',
     arrLength: 0,
     searchName: '',
-    sortType: 'A-Z',
-    type: 'projects'
+    sortType: 'A-Z'
   };
 
 
 //new project
   private createNewProject: boolean = false;
-  private subNewProject:Subscription;
-  //private editProject:IProject;
 
 //user
   private User: User;
 
   constructor(
       private userService: UserService,
-      private shareService: ShareService,
-      private authService: AuthService
+      private shareService: ShareService
   ){
     this.User = this.userService.getUser();
   }
 
   ngOnInit() {
-    this.header = this.shareService.setHeader(this.header);
-
-    this.subNewProject = this.shareService.shareListener.subscribe((project: any) => {
-      if(project != undefined){
-        this.createNewProject = false;
-        if(project.newProject){
-          this.authService.post('/api/projects/project', project).subscribe((res: any) => {
-            res = res.json();
-            if(res.status) {
-              console.log(res);
-              //this.User.projects.push(res.res);
-            }
-            alertify.success(res.message);
-          }, (error) => {});
-        }
-      }
-    })
-  }
-
-  ngOnDestroy() {
-    this.subNewProject.unsubscribe();
+    this.shareService.changeHeaderSubject(this.header);
   }
 
 }

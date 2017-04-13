@@ -9,8 +9,9 @@ declare var alertify: any;
     styleUrls: ['./view.project.sass']
 })
 export class ViewProject{
-    @Input()  project:PROJ.IProject;
-    @Input()  noEdite:string;
+    @Input()  project: PROJ.IProject;
+    @Input()  noEdite: string;
+    private openedPopUp: boolean = false;
     constructor(){
     }
 }

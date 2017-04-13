@@ -1,8 +1,7 @@
-<!--<app-header [header]="header" [(searchRes)]="searchName" [(sortType)]="sortType" class="row"></app-header>-->
 <main>
     <div class="projects-wrap">
         <div class="projects-list  row" slimScroll  width="100%" alwaysVisible=false distance="9px" height="100%" size="2px" color="#8b8d91" opacity=1 railColor="#b2b3b7" railOpacity=0>
-            <app-project-view  *ngFor="let project of User.projects | namefilter: header.searchName: header.sortType" [project]="project" class="col-lg-4 col-md-6"></app-project-view>
+            <app-project-view class="project-wrap col-xs-12 col-sm-6 col-lg-4 col-exlg-3" *ngFor="let project of User.projects | namefilter: header.searchName: header.sortType" [project]="project" ></app-project-view>
         </div>
     </div>
 
@@ -14,4 +13,4 @@
     </div>
 </main>
 
-<app-new-project class="add-new" *ngIf="createNewProject"></app-new-project>
+<app-new-project class="add-new" [(openedState)]="createNewProject" [title]="'Create a new project:'" *ngIf="createNewProject"></app-new-project>

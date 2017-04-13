@@ -21,7 +21,7 @@
             </div>
             <div class="user-ctrl">
               <i class="material-icons" (click)="selectUser(user, true)">edit</i>
-              <div class="user-edit-wrap" [class.user-edit-active]="settingsUser === user">
+              <div class="pop-up-icon" [class.pop-up-icon-active]="settingsUser === user">
                 <i class="material-icons" (click)="settingsUser = user" (window:mouseup)="settingsUser = null">more_vert</i>
                 <div class="pop-up" [hidden]="settingsUser !== user">
                   <div class="pop-up-item" [hidden]="!user.active" (click)="deactivateUser(user)">

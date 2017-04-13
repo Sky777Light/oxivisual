@@ -1,39 +1,78 @@
-<div class="header-wrap" *ngIf="headerData.type === 'users' || headerData.type === 'projects'">
-  <div class="header-tag">{{headerData.title}}<span>{{'( ' + headerData.arrLength + ' )'}}</span></div>
-  <div class="header-search">
-    <input type="text" placeholder="Search" (input)="changeHeaderData($event.target.value, 'searchName')">
+<div class="header-wrap">
+  <div class="header-tag">
+    <i class="material-icons" [routerLink]="['/projects']" *ngIf="headerData._id">arrow_back</i>
+    <div class="header-title-wrap">
+      <div class="header-title">{{headerData.title}}<span class="arr-info" *ngIf="!headerData._id">{{'( ' + headerData.arrLength + ' )'}}</span></div>
+      <span class="published" *ngIf="!headerData.published && headerData._id" >Unpublished</span>
+    </div>
   </div>
-  <div class="header-sort">
-    <span>Sorted by:</span>
-    <div class="sort-select" (window:mouseup)="sortActive = false">
-      <div class="sort-present" [class.sort-active]="sortActive" (click)="sortActive = !sortActive">
-        <span>{{headerData.sortType}}</span>
-        <i class="material-icons" >arrow_drop_down</i>
-      </div>
-      <div class="pop-up" [hidden]="!sortActive">
-        <div class="pop-up-item" (click)="changeHeaderData('A-Z', 'sortType')">
-          <div class="pop-up-row-name">
-            <span [class.sort-selected]="headerData.sortType === 'A-Z'">A-Z</span>
-          </div>
+  <div class="header-main"  *ngIf="!headerData._id">
+    <div class="header-search">
+      <input type="text" placeholder="Search" [(ngModel)]="headerData.searchName">
+    </div>
+    <div class="header-sort">
+      <span>Sorted by:</span>
+      <div class="sort-select" (window:mouseup)="sortActive = false">
+        <div class="sort-present" [class.sort-active]="sortActive" (click)="sortActive = !sortActive">
+          <span>{{headerData.sortType}}</span>
+          <i class="material-icons" >arrow_drop_down</i>
         </div>
-        <div class="pop-up-item" (click)="changeHeaderData('Z-A', 'sortType')">
-          <div class="pop-up-row-name">
-            <span [class.sort-selected]="headerData.sortType === 'Z-A'">Z-A</span>
+        <div class="pop-up" [hidden]="!sortActive">
+          <div class="pop-up-item" (click)="headerData.sortType = 'A-Z'; sortActive = false">
+            <div class="pop-up-row-name">
+              <span [class.sort-selected]="headerData.sortType === 'A-Z'">A-Z</span>
+            </div>
           </div>
-        </div>
-        <div class="pop-up-item" (click)="changeHeaderData('Newest to older', 'sortType')">
-          <div class="pop-up-row-name">
-            <span [class.sort-selected]="headerData.sortType === 'Newest to older'">Newest to older</span>
+          <div class="pop-up-item" (click)="headerData.sortType = 'Z-A'; sortActive = false">
+            <div class="pop-up-row-name">
+              <span [class.sort-selected]="headerData.sortType === 'Z-A'">Z-A</span>
+            </div>
           </div>
-        </div>
-        <div class="pop-up-item" (click)="changeHeaderData('Older to newest', 'sortType')">
-          <div class="pop-up-row-name">
-            <span [class.sort-selected]="headerData.sortType === 'Older to newest'">Older to newest</span>
+          <div class="pop-up-item" (click)="headerData.sortType = 'Newest to older'; sortActive = false">
+            <div class="pop-up-row-name">
+              <span [class.sort-selected]="headerData.sortType === 'Newest to older'">Newest to older</span>
+            </div>
+          </div>
+          <div class="pop-up-item" (click)="headerData.sortType = 'Older to newest'; sortActive = false">
+            <div class="pop-up-row-name">
+              <span [class.sort-selected]="headerData.sortType === 'Older to newest'">Older to newest</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  <div class="header-main"  *ngIf="headerData._id">
+    <div class="header-main-mnu">
+      <div class="mnu-item" [routerLink]="['/project/' + headerData._id + '/basic']" routerLinkActive="mnu-item-active">Basic</div>
+      <div class="mnu-item">Admins</div>
+      <div class="mnu-item" [routerLink]="['/project/' + headerData._id + '/source']" routerLinkActive="mnu-item-active">Source</div>
+      <div class="mnu-item">Preview</div>
+    </div>
+    <div class="publish-btn" [class.publish-btn-active]="headerData.published" [class.publish-btn-disable]="headerData.published"><span>Publish</span></div>
+    <div class="pop-up-icon" [class.pop-up-icon-active]="headerSettings">
+      <i class="material-icons set-icon" (click)="headerSettings = !headerSettings" (window:mouseup)="headerSettings = false">more_vert</i>
+      <div class="pop-up" [hidden]="!headerSettings">
+        <div class="pop-up-item" [hidden]="!headerData.published" (click)="deactivate(true)">
+          <i class="material-icons">visibility_off</i>
+          <div class="pop-up-row-name">
+            <span>Deactivate</span>
+          </div>
+        </div>
+        <div class="pop-up-item" [hidden]="headerData.published" (click)="deactivate(false)">
+          <i class="material-icons">visibility</i>
+          <div class="pop-up-row-name">
+            <span>Activate</span>
+          </div>
+        </div>
+        <div class="pop-up-item" (click)="delete()">
+          <i class="material-icons">delete</i>
+          <div class="pop-up-row-name">
+            <span>Delete</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

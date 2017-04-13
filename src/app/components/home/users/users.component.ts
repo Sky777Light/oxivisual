@@ -21,8 +21,7 @@ export class UsersComponent {
     title: 'Users',
     arrLength: 0,
     searchName: '',
-    sortType: 'A-Z',
-    type: 'users'
+    sortType: 'A-Z'
   };
 
 //data work with user-card
@@ -50,7 +49,7 @@ export class UsersComponent {
   }
 
   ngOnInit() {
-    this.header = this.shareService.setHeader(this.header);
+    this.shareService.changeHeaderSubject(this.header);
 
     this.subNewUser = this.shareService.shareListener.subscribe((user: any) => {
       if(user != undefined){

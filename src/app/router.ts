@@ -8,15 +8,15 @@ import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {ProjectsComponent} from "./components/home/projects/projects.component";
 import {UsersComponent} from "./components/home/users/users.component";
-
-import {BasicProject} from "./components/home/projects/basic/basic.project";
-import {SourceProject} from "./components/home/projects/source/source.project";
+import {ProjectComponent} from "./components/home/project/project.component";
+import {BasicProject} from "./components/home/project/basic/basic.project";
+import {SourceProject} from "./components/home/project/source/source.project";
 
 export const routes: Routes = [
 
     {
         path: '',
-        redirectTo: '/users',
+        redirectTo: 'users',
         pathMatch: 'full'
     },
     {
@@ -29,30 +29,30 @@ export const routes: Routes = [
         children: [
             {
                 path: 'projects',
-                component: ProjectsComponent,
-                children: [
-                    ]
-            },
-            {
-                path: 'projects/:id',
-                redirectTo: '/projects/:id/basic',
-                pathMatch: 'full'
-            },
-            {
-                path: 'projects/:id',
-                children:[
-                    {
-                        path: 'basic',
-                        component: BasicProject
-                    } ,{
-                        path: 'source',
-                        component: SourceProject
-                    }
-                ]
+                component: ProjectsComponent
             },
             {
                 path: 'users',
                 component: UsersComponent
+            },
+            {
+                path: 'project/:id',
+                component: ProjectComponent,
+                children:[
+                    {
+                        path: '',
+                        redirectTo: 'basic',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'basic',
+                        component: BasicProject
+                    },
+                    {
+                        path: 'source',
+                        component: SourceProject
+                    }
+                ]
             }
         ]
     },

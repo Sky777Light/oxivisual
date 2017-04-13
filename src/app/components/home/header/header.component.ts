@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ShareService} from "../../../services/share.service";
+import {Subscription} from "rxjs/Rx";
 
 @Component({
   selector: 'app-header',
@@ -9,19 +10,29 @@ import {ShareService} from "../../../services/share.service";
 export class HeaderComponent{
 
   private sortActive: boolean = false;
-  private headerData: any;
+  private headerData: any = {};
+  private subHeaderData:Subscription;
+  private headerSettings: boolean = false;
 
   constructor(
       private shareService: ShareService
   ){}
 
-  ngOnInit(){
-    this.headerData = this.shareService.getHeader();
+  ngOnInit() {
+    this.subHeaderData = this.shareService.headerListener.subscribe((data: any) => {
+      if(data){
+        this.headerData = data;
+      }
+    })
+  }
+  ngOnDestroy() {
+    this.subHeaderData.unsubscribe();
   }
 
-  changeHeaderData(val, key){
-    this.sortActive = false;
-    this.headerData[key] = val;
+  deactivate(published: boolean){
+    this.headerData.published = published;
   }
 
+  delete(){
+  }
 }
