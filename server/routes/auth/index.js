@@ -51,14 +51,6 @@ router.post("/login", function (req, res, next) {
             if(user){
                 passportCtrl();
             } else {
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth()+1; //January is 0!
-                var yyyy = today.getFullYear();
-
-                if(dd<10) dd='0'+dd;
-                if(mm<10) mm='0'+mm;
-                today = dd+'.'+mm+'.'+yyyy;
 
                 new User( {
                     email: config.superadmin.email,
@@ -67,10 +59,11 @@ router.post("/login", function (req, res, next) {
                     secondName: "User",
                     avatar: '',
                     role: 'super',
-                    created: today,
+                    created: req.body.created,
                     active: true,
                     parent: null
                 } ).save(function (err, user) {
+
                     if (err) {
                         throw err;
                     }

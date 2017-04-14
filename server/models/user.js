@@ -29,7 +29,7 @@ const userSchema = new Schema({
         type: String || null
     },
     created: {
-        type: String,
+        type: Number,
         required: true
     },
     active: {
@@ -38,6 +38,12 @@ const userSchema = new Schema({
     },
     avatar: {
         type: String
+    },
+    users: {
+        type: []
+    },
+    projects: {
+        type: []
     },
     token: {
         type: String

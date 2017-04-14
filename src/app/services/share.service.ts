@@ -3,7 +3,6 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ShareService {
-  private headerData: any;
 
   private shareSubject = new BehaviorSubject<any>(undefined);
   shareListener = this.shareSubject.asObservable();

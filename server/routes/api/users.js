@@ -52,10 +52,17 @@ var saveImage = function (image, avatar, done) {
     });
 };
 
-router.get("/user", function (req, res) {
+
+router.get("/user/:id", function (req, res) {
+    console.log('>', req.params);
+
+    if(req.params.id === 'undefined'){
+        req.params.id = req.user._id;
+    }
+
     async.waterfall([
         function (done) {
-            User.findOne({ _id: req.user._id }, function (err, user) {
+            User.findOne({ _id: (req.params.id) }, function (err, user) {
                 var tempUser = {
                     _id: user._id,
                     email: user.email,
@@ -64,6 +71,7 @@ router.get("/user", function (req, res) {
                     created: user.created,
                     role: user.role,
                     projects: [],
+                    users: [],
                     active: user.active,
                     avatar: user.avatar
                 };
@@ -119,12 +127,14 @@ router.get("/user", function (req, res) {
 
 });
 
+
 //update user
 router.put("/user", function (req, res) {
 
     async.waterfall([
         function (done) {
             User.findOne({ _id: req.body._id }, {}, function (err, user) {
+
                 if (err) {
                     done({status: false, message: "Undefined error, no user found."}, null);
                     return;
@@ -144,15 +154,14 @@ router.put("/user", function (req, res) {
                     user.password = req.body.password;
                     user.save(function (err) {
                         if (err) {
-                            throw err;
+                            done(err, null);
+                            return;
                         }
                         done({status: true, message: "Password successfully was changed."}, null);
                         return;
                     });
-                }
-
-                //if user deactivated/activated
-                if(req.body.active !== user.active){
+                } else if (req.body.active !== user.active){
+                    //if user deactivated/activated
                     user.active = req.body.active;
                     user.save(function (err, user) {
                         if (err) {
@@ -163,10 +172,8 @@ router.put("/user", function (req, res) {
                         done({status: true, message: user.active ? "User successfully was activated." : "User successfully was deactivated."}, null);
                         return;
                     });
-                }
-
-                //if email changed
-                if(req.body.email !== user.email){
+                } else if (req.body.email !== user.email){
+                    //if email changed
                     User.findOne({ email: req.body.email }, function (err, result) {
                         if(err){
                             done(err, null);

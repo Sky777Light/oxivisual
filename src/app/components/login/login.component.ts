@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {Resol} from "../../interfaces/resol.interface";
-import {User} from "../../interfaces/user.interface";
+import * as USER from "../../interfaces/user.interface";
 
 @Component({
   selector: 'app-login',
@@ -16,10 +16,7 @@ export class LoginComponent {
     email: true,
     password: true
   };
-  private user: User = {
-    email: '',
-    password: ''
-  };
+  private user = new USER.User();
   
   constructor(
       private userService: UserService

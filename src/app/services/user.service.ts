@@ -3,25 +3,14 @@ import {StorageService} from "./storage.service";
 import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
 import {Resol} from "../interfaces/resol.interface";
-import {User} from "../interfaces/user.interface";
+import * as USER from "../interfaces/user.interface";
 
 declare var alertify: any;
 
 @Injectable()
 export class UserService {
 
-  private User: User = {
-    _id: '',
-    email: '',
-    firstName: '',
-    secondName: '',
-    avatar: '',
-    role: '',
-    created: '',
-    projects: [],
-    users: [],
-    active: true
-  };
+  private User = new USER.User();
 
   constructor(
       private storageService: StorageService,
@@ -32,7 +21,6 @@ export class UserService {
   logIn(remember: boolean, user: any, done?:any) {
     this.authService.post('/auth/login', user).subscribe((response: any) => {
       let res = JSON.parse(response._body);
-      console.log(res);
       if(res.status) {
         remember ? this.storageService.set('token', res.token) : this.storageService.setSession('token', res.token) ;
         this.router.navigate(['/']);
@@ -56,7 +44,7 @@ export class UserService {
       this.router.navigate(['/login']);
     }, (error) => {});
   }
-  
+
   setUser(user: any): void {
     this.User = user;
   }

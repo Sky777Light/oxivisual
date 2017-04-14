@@ -1,5 +1,5 @@
 import {Component, HostListener, Input} from '@angular/core';
-import {User} from "../../../../interfaces/user.interface";
+import * as USER from  "../../../../interfaces/user.interface";
 import {ShareService} from "../../../../services/share.service";
 import {Resol} from "../../../../interfaces/resol.interface";
 import {UserService} from "../../../../services/user.service";
@@ -11,24 +11,11 @@ import {UserService} from "../../../../services/user.service";
 })
 export class NewUserComponent {
 
-  private User: User;
+  private User: USER.IUser;
 
   @Input()message;
 
-  private tempNewUser: User = {
-    email: '',
-    firstName: '',
-    secondName: '',
-    avatar: '',
-    role: '',
-    created: '',
-    password: '',
-    passwordRepeat: '',
-    projects: [],
-    users: [],
-    active: true,
-    newUser: true
-  };
+  private tempNewUser = new USER.User();
 
   private resol: Resol = {
     firstName: true,
@@ -85,27 +72,12 @@ export class NewUserComponent {
       return false;
     }
 
-    //user's create date
-    let today = new Date();
-    let dd:any = today.getDate();
-    let mm:any = today.getMonth()+1; //January is 0!
-    let yyyy = today.getFullYear();
-
-    if(dd<10) {
-      dd='0'+dd
-    }
-
-    if(mm<10) {
-      mm='0'+mm
-    }
-    this.tempNewUser.created = dd+'.'+mm+'.'+yyyy;
     this.tempNewUser.newUser = true;
     
     this.shareService.changeShareSubject(this.tempNewUser);
   }
 
   cancel(){
-    this.tempNewUser.newUser = false;
     this.shareService.changeShareSubject(this.tempNewUser);
   }
   
