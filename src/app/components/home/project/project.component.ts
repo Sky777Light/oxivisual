@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ShareService} from "../../../services/share.service";
 import {UserService} from "../../../services/user.service";
 import {ProjectService} from "../../../services/project.service";
@@ -15,18 +15,26 @@ export class ProjectComponent{
   constructor(
       private shareService: ShareService,
       private route: ActivatedRoute,
+      private router: Router,
       private userService: UserService,
       private projectService: ProjectService
   ) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
+      let selectedProject = null;
       this.userService.getUser().projects.forEach((project)=>{
         if(project._id == params['id']){
-          this.shareService.changeHeaderSubject(project);
-          this.projectService.setProject(project);
+          selectedProject = project;
         }
       });
+
+      if(selectedProject){
+        this.shareService.changeHeaderSubject(selectedProject);
+        this.projectService.setProject(selectedProject);
+      } else {
+        this.router.navigate(['/']);
+      }
     });
   }
 

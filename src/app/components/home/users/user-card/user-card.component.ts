@@ -42,16 +42,19 @@ export class UserCardComponent {
   ngOnChanges(changes: {[ propName: string]: SimpleChange}) {
     if(changes['user'] && changes['user'].currentValue){
       let user = changes['user'].currentValue;
+      this.switchUser(user);
+    }
+  }
 
-      this.authService.get('/api/users/user/' + user._id).map((res: any) => {
-        res = res.json();
+  switchUser(user: any){
+    this.authService.get('/api/users/user/' + user._id).subscribe((res: any) => {
+      res = res.json();
         if(res.status) {
           user.users = res.res.users;
           user.projects = res.res.projects;
         }
-        this.tempUser = Object.assign({}, user);
-      });
-    }
+      this.tempUser = Object.assign({}, user);
+    }, (error) => {});
   }
 
 //photo change

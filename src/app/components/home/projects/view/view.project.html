@@ -4,7 +4,7 @@
         <div class="project-ctrl-wrap">
             <span class="unpublished" [hidden]="project.published">Unpublished</span>
             <div class="project-ctrl">
-                <i class="material-icons" [routerLink]="['/project', project._id]"  routerLinkActive="active">edit</i>
+                <i class="material-icons" [routerLink]="['/project', (project._id || 0)]"  routerLinkActive="active">edit</i>
                 <div class="pop-up-icon" [class.pop-up-icon-active]="openedPopUp">
                     <i class="material-icons" (click)="openPopUp()" (window:mouseup)="openedPopUp = false">more_vert</i>
                     <div class="pop-up" [hidden]="!openedPopUp">

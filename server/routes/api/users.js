@@ -54,29 +54,27 @@ var saveImage = function (image, avatar, done) {
 
 
 router.get("/user/:id", function (req, res) {
-    console.log('>', req.params);
 
-    if(req.params.id === 'undefined'){
-        req.params.id = req.user._id;
-    }
+    var id = (req.params.id === 'undefined') ? req.user._id : req.params.id;
 
     async.waterfall([
         function (done) {
-            User.findOne({ _id: (req.params.id) }, function (err, user) {
-                var tempUser = {
-                    _id: user._id,
-                    email: user.email,
-                    firstName: user.firstName,
-                    secondName: user.secondName,
-                    created: user.created,
-                    role: user.role,
-                    projects: [],
-                    users: [],
-                    active: user.active,
-                    avatar: user.avatar
-                };
-
-                done(err, tempUser);
+            User.findOne({ _id: id }, {
+                'email' :1,
+                'firstName': 1,
+                'secondName': 1,
+                'created': 1,
+                'role': 1,
+                'projects': 1,
+                'users': 1,
+                'active': 1,
+                'avatar': 1
+            }, function (err, user) {
+                if (!user) {
+                    done({status: false, message: "No user found."}, null);
+                    return;
+                }
+                done(err, user);
             })
         },
         function (user, done) {
@@ -101,12 +99,32 @@ router.get("/user/:id", function (req, res) {
         },
         function (user, done) {
             if(user.role === 'super'){
-                User.find({}, function (err, users) {
+                User.find({}, {
+                    'email' :1,
+                    'firstName': 1,
+                    'secondName': 1,
+                    'created': 1,
+                    'role': 1,
+                    'projects': 1,
+                    'users': 1,
+                    'active': 1,
+                    'avatar': 1
+                }, function (err, users) {
                     user.users = users;
                     done(err, user);
                 })
             } else if( user.role === 'admin'){
-                User.find( {$or: [ { parent: user._id }, { _id: user._id }] }, function (err, users) {
+                User.find( {$or: [ { parent: user._id }, { _id: user._id }] }, {
+                    'email' :1,
+                    'firstName': 1,
+                    'secondName': 1,
+                    'created': 1,
+                    'role': 1,
+                    'projects': 1,
+                    'users': 1,
+                    'active': 1,
+                    'avatar': 1
+                }, function (err, users) {
                     user.users = users;
                     done(err, user);
                 })
@@ -115,8 +133,13 @@ router.get("/user/:id", function (req, res) {
             }
         }
     ], function (err, user) {
+
         if (err) {
-            throw err;
+            if( err.message ){
+                return res.json(err);
+            } else {
+                throw err;
+            }
         }
 
         res.json({
@@ -126,7 +149,6 @@ router.get("/user/:id", function (req, res) {
     });
 
 });
-
 
 //update user
 router.put("/user", function (req, res) {

@@ -13,7 +13,9 @@ export class ProjectService {
   constructor(
       private authService: AuthService,
       private userService: UserService
-  ) { }
+  ) {
+    this.Project = new PROJ.Project();
+  }
 
   setProject(project: any): void {
     this.Project = project;
