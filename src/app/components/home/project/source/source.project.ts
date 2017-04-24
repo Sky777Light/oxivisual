@@ -28,9 +28,9 @@ export class SourceProject extends AbstractTemplateProject {
 
         if(form.invalid)return alert('Please fill all inputs correctly');
 
-        //let form = new FormData(),
-        //    fileReader = new FileReader();
-        //form.append('name',this.project.model.name);
+        let form = new FormData(),
+            fileReader = new FileReader();
+        form.append('name',this.project.model.name);
         //
         //fileReader.onload((e)=>{
         //    form.append('model',this.project.model.name);

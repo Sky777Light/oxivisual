@@ -310,7 +310,6 @@ router.post("/user", function (req, res) {
 //delete user
 router.delete("/user", function (req, res) {
     User.findOne({ _id: req.body._id }, function (err, user) {
-        return;
         if (err) {
             throw err;
         }

@@ -51,159 +51,70 @@ var saveImage = function (image, avatar, done) {
     });
 };
 
-router.get("/project", function (req, res) {
-    async.waterfall([
-        function (done) {
-            User.findOne({ _id: req.user._id }, function (err, user) {
-                var tempUser = {
-                    _id: user._id,
-                    email: user.email,
-                    firstName: user.firstName,
-                    secondName: user.secondName,
-                    created: user.created,
-                    role: user.role,
-                    projects: [],
-                    active: user.active,
-                    avatar: user.avatar
-                };
 
-                done(err, tempUser);
-            })
-        },
-        function (user, done) {
-            if(user.role === 'super'){
-                User.find({}, function (err, users) {
-                    user.users = users;
-                    done(err, user);
-                })
-            } else if( user.role === 'admin'){
-                User.find( {$or: [ { parent: user._id }, { _id: user._id }] }, function (err, users) {
-                    user.users = users;
-                    done(err, user);
-                })
-            } else{
-                done(null, user);
-            }
-        }
-    ], function (err, user) {
-        if (err) {
-            throw err;
-        }
-
-        res.json({
-            status: true,
-            res: user
-        });
-    });
-
-});
-
-//update user
-router.put("/user", function (req, res) {
-    User.findOne({ _id: req.body._id }, function (err, user) {
+//update project
+router.put("/project", function (req, res) {
+    Project.findOne({ _id: req.body._id }, function (err, project) {
         if (err) {
             return res.json({
                 status: false,
-                message: "Undefined error, no user found."
+                message: "Undefined error, no project found."
             });
         }
 
-        if (!user) {
+        if (!project) {
             return res.json({
                 status: false,
-                message: "No user found."
+                message: "No project found."
             });
         }
 
-        //if password changed
-        if(req.body.oldPassword) {
-            if (!user.comparePassword(req.body.oldPassword)) {
-                return res.json({
-                    status: false,
-                    message: "Oops! Wrong password."
-                });
-            }
-            user.password = req.body.password;
-            user.save(function (err, user) {
-                if (err) {
-                    throw err;
-                }
-
-            return res.json({
-                    status: true,
-                    message: "Password successfully was changed."
-                });
-            });
-        }
-
-        //if user deactivated/activated
-        if(req.body.active !== user.active){
-            user.active = req.body.active;
-            user.save(function (err, user) {
+        //if project deactivated/activated
+        if(req.body.published !== project.published){
+            project.published = req.body.published;
+            project.save(function (err, project) {
                 if (err) {
                     throw err;
                 }
 
                 res.json({
                     status: true,
-                    message: user.active ? "User successfully was activated." : "User successfully was deactivated."
+                    res: project,
+                    message: project.published ? "Project successfully was activated." : "Project successfully was deactivated."
                 })
             });
             return;
         }
 
-        //if email changed
-        if(req.body.email !== user.email){
-            User.findOne({ email: req.body.email }, function (err, result) {
+
+        project.title = req.body.title || project.title;
+
+        if(req.body.image !== project.image){
+            saveImage(req.body.image, project.image, function(err, img){
                 if (err) {
                     throw err;
                 }
-
-                if (result) {
-                    return res.json({
-                        status: false,
-                        message: "That email is already taken."
-                    });
-                }
-                user.email = req.body.email;
-
-                user.save(function (err) {
-                    if (err) {
-                        throw err;
-                    }
-                });
-            });
-        }
-        
-        user.firstName = req.body.firstName || user.firstName;
-        user.secondName = req.body.secondName || user.secondName;
-
-        if(req.body.avatar !== user.avatar){
-            saveImage(req.body.avatar, user.avatar, function(err, img){
-                if (err) {
-                    throw err;
-                }
-                user.avatar = img;
-                user.save(function (err, user) {
+                project.image = img;
+                project.save(function (err, project) {
                     if (err) {
                         throw err;
                     }
                     res.json({
                         status: true,
-                        res: user,
-                        message: "User successfully was changed."
+                        res: project,
+                        message: "Project successfully was changed."
                     })
                 });
             })
         } else {
-            user.save(function (err, user) {
+            project.save(function (err, project) {
                 if (err) {
                     throw err;
                 }
                 res.json({
                     status: true,
-                    res: user,
-                    message: "User successfully was changed."
+                    res: project,
+                    message: "Project successfully was changed."
                 })
             });
         }
@@ -241,12 +152,7 @@ router.post("/project", function (req, res) {
                 published: false
             });
 
-            if(req.user.role === 'super' )
-                newProject.owner = null;
-            if(req.user.role === 'admin' )
-                newProject.owner = req.user._id;
-            if(req.user.role === 'user' )
-                newProject.owner = req.user.parent;
+            newProject.owner = (req.user.role === 'super') ? null : req.user._id;
             
             if(req.body.image){
                 saveImage(req.body.image, null, function(err, img){
@@ -279,14 +185,13 @@ router.post("/project", function (req, res) {
 });
 
 //delete user
-router.delete("/user", function (req, res) {
-    User.findOne({ _id: req.body._id }, function (err, user) {
-        return;
+router.delete("/project", function (req, res) {
+    Project.findOne({ _id: req.body._id }, function (err, project) {
         if (err) {
             throw err;
         }
 
-        if (!user) {
+        if (!project) {
             return res.json({
                 status: false,
                 message: "No user found"
@@ -299,7 +204,7 @@ router.delete("/user", function (req, res) {
 
         res.json({
             status: true,
-            message: "User was successfully deleted"
+            message: "Project was successfully deleted"
         });
     });
 });

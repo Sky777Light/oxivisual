@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ShareService} from "../../../services/share.service";
 import {Subscription} from "rxjs/Rx";
+import {ProjectService} from "../../../services/project.service";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,9 @@ export class HeaderComponent{
   private headerSettings: boolean = false;
 
   constructor(
-      private shareService: ShareService
+      private shareService: ShareService,
+      private projectService: ProjectService
+
   ){}
 
   ngOnInit() {
@@ -29,10 +32,18 @@ export class HeaderComponent{
     this.subHeaderData.unsubscribe();
   }
 
-  deactivate(published: boolean){
-    this.headerData.published = published;
+  deactivate(){
+    let id = this.headerData._id;
+    let temp = {
+      _id: id,
+      published: !this.headerData.published
+    };
+    this.projectService.changeProject(temp);
   }
 
   delete(){
+    this.projectService.deleteProject(this.headerData);
   }
+
+
 }

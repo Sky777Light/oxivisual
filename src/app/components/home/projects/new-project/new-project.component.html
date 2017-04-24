@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="new-btns">
-        <span class="false-btn" (click)="cancel()">cancel</span>
-        <span class="true-btn" (click)="accept()">accept</span>
+        <span class="false-btn" (click)="Create ? cancel() : reset()">cancel</span>
+        <span class="true-btn" (click)="accept()">{{Create ? 'accept' : 'save'}}</span>
     </div>
 </div>

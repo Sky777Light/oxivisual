@@ -72,7 +72,6 @@ export class UserService {
       if(!resol[i])
         resolFlag = false;
     }
-    console.log(resolFlag);
     return resolFlag;
   }
 
