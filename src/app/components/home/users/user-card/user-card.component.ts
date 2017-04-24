@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
-import {User} from "../../../../interfaces/user.interface";
+import * as USER from "../../../../interfaces/user.interface";
 import {Resol} from "../../../../interfaces/resol.interface";
 import {UserService} from "../../../../services/user.service";
 import {AuthService} from "../../../../services/auth.service";
@@ -24,8 +24,8 @@ export class UserCardComponent {
   };
   private message: string = '';
 
-  private User: User;
-  private tempUser: User;
+  private User: USER.IUser;
+  private tempUser = new USER.User();
   
   //popup menu
   private openMenu: boolean = false;
@@ -40,9 +40,21 @@ export class UserCardComponent {
   }
 
   ngOnChanges(changes: {[ propName: string]: SimpleChange}) {
-    if(changes['user']){
-      this.tempUser = Object.assign({}, changes['user'].currentValue);
+    if(changes['user'] && changes['user'].currentValue){
+      let user = changes['user'].currentValue;
+      this.switchUser(user);
     }
+  }
+
+  switchUser(user: any){
+    this.authService.get('/api/users/user/' + user._id).subscribe((res: any) => {
+      res = res.json();
+        if(res.status) {
+          user.users = res.res.users;
+          user.projects = res.res.projects;
+        }
+      this.tempUser = Object.assign({}, user);
+    }, (error) => {});
   }
 
 //photo change

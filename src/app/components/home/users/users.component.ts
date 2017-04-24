@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Subscription} from "rxjs/Rx";
-import {User} from "../../../interfaces/user.interface";
+import * as USER from  "../../../interfaces/user.interface";
 import {ShareService} from "../../../services/share.service";
 import {UserService} from "../../../services/user.service";
 import {AuthService} from "../../../services/auth.service";
@@ -14,7 +14,7 @@ declare var alertify: any;
 })
 export class UsersComponent {
 
-  private User: User;
+  private User: USER.IUser;
 
 //data work with header
   private header: any = {
@@ -25,11 +25,11 @@ export class UsersComponent {
   };
 
 //data work with user-card
-  private selectedUser: User;
+  private selectedUser: USER.IUser;
   private canEdit: boolean = false;
 
 //show user settings popup in list
-  private settingsUser: User;
+  private settingsUser: USER.IUser;
 
 //create new user
   private createNewUser: boolean = false;
@@ -101,7 +101,7 @@ export class UsersComponent {
   }
 
 // change user card
-  selectUser(user: User, edit: boolean){
+  selectUser(user: USER.IUser, edit: boolean){
     if(this.selectedUser === user) {
       if(edit){
         this.canEdit = edit;

@@ -52,23 +52,29 @@ var saveImage = function (image, avatar, done) {
     });
 };
 
-router.get("/user", function (req, res) {
+
+router.get("/user/:id", function (req, res) {
+
+    var id = (req.params.id === 'undefined') ? req.user._id : req.params.id;
+
     async.waterfall([
         function (done) {
-            User.findOne({ _id: req.user._id }, function (err, user) {
-                var tempUser = {
-                    _id: user._id,
-                    email: user.email,
-                    firstName: user.firstName,
-                    secondName: user.secondName,
-                    created: user.created,
-                    role: user.role,
-                    projects: [],
-                    active: user.active,
-                    avatar: user.avatar
-                };
-
-                done(err, tempUser);
+            User.findOne({ _id: id }, {
+                'email' :1,
+                'firstName': 1,
+                'secondName': 1,
+                'created': 1,
+                'role': 1,
+                'projects': 1,
+                'users': 1,
+                'active': 1,
+                'avatar': 1
+            }, function (err, user) {
+                if (!user) {
+                    done({status: false, message: "No user found."}, null);
+                    return;
+                }
+                done(err, user);
             })
         },
         function (user, done) {
@@ -93,12 +99,32 @@ router.get("/user", function (req, res) {
         },
         function (user, done) {
             if(user.role === 'super'){
-                User.find({}, function (err, users) {
+                User.find({}, {
+                    'email' :1,
+                    'firstName': 1,
+                    'secondName': 1,
+                    'created': 1,
+                    'role': 1,
+                    'projects': 1,
+                    'users': 1,
+                    'active': 1,
+                    'avatar': 1
+                }, function (err, users) {
                     user.users = users;
                     done(err, user);
                 })
             } else if( user.role === 'admin'){
-                User.find( {$or: [ { parent: user._id }, { _id: user._id }] }, function (err, users) {
+                User.find( {$or: [ { parent: user._id }, { _id: user._id }] }, {
+                    'email' :1,
+                    'firstName': 1,
+                    'secondName': 1,
+                    'created': 1,
+                    'role': 1,
+                    'projects': 1,
+                    'users': 1,
+                    'active': 1,
+                    'avatar': 1
+                }, function (err, users) {
                     user.users = users;
                     done(err, user);
                 })
@@ -107,8 +133,13 @@ router.get("/user", function (req, res) {
             }
         }
     ], function (err, user) {
+
         if (err) {
-            throw err;
+            if( err.message ){
+                return res.json(err);
+            } else {
+                throw err;
+            }
         }
 
         res.json({
@@ -125,6 +156,7 @@ router.put("/user", function (req, res) {
     async.waterfall([
         function (done) {
             User.findOne({ _id: req.body._id }, {}, function (err, user) {
+
                 if (err) {
                     done({status: false, message: "Undefined error, no user found."}, null);
                     return;
@@ -144,15 +176,14 @@ router.put("/user", function (req, res) {
                     user.password = req.body.password;
                     user.save(function (err) {
                         if (err) {
-                            throw err;
+                            done(err, null);
+                            return;
                         }
                         done({status: true, message: "Password successfully was changed."}, null);
                         return;
                     });
-                }
-
-                //if user deactivated/activated
-                if(req.body.active !== user.active){
+                } else if (req.body.active !== user.active){
+                    //if user deactivated/activated
                     user.active = req.body.active;
                     user.save(function (err, user) {
                         if (err) {
@@ -163,10 +194,8 @@ router.put("/user", function (req, res) {
                         done({status: true, message: user.active ? "User successfully was activated." : "User successfully was deactivated."}, null);
                         return;
                     });
-                }
-
-                //if email changed
-                if(req.body.email !== user.email){
+                } else if (req.body.email !== user.email){
+                    //if email changed
                     User.findOne({ email: req.body.email }, function (err, result) {
                         if(err){
                             done(err, null);
