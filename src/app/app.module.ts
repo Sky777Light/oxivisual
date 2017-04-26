@@ -32,7 +32,6 @@ import {EditProject} from "./components/home/projects/edit/edit.project";
 import {SourceProject} from "./components/home/projects/source/source.project";
 import {AbstractTemplateProject} from "./components/home/projects/template/temp.view.project";
 import {UploadFile} from "./components/home/projects/source/upload.file";
-import {ViewProject} from "./components/home/projects/view/view.project";
 import {ProjectComponent} from "./components/home/project/project.component";
 import {SourceProject} from "./components/home/project/source/source.project";
 import {BasicProject} from "./components/home/project/basic/basic.project";
@@ -53,17 +52,10 @@ import {ProjectService} from "./services/project.service";
     UserCardComponent,
     SlimScroll,
     NewUserComponent,
-    ProjectsComponent,
     UploadFile,
-    NewProjectComponent,
-    ViewProject,
     EditProject,
-    SourceProject,
     AbstractTemplateProject,
-    BasicProject,
 
-    NewProjectComponent
-    ProjectsComponent,
     NewProjectComponent,
     ViewProject,
     SourceProject,

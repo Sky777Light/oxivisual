@@ -41,7 +41,7 @@ export const routes: Routes = [
                 children:[
                     {
                         path: '',
-                        redirectTo: 'basic',
+                        redirectTo: 'source',
                         pathMatch: 'full'
                     },
                     {
