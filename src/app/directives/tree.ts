@@ -2,6 +2,8 @@ import {
     Component,
     Input,
     //CORE_DIRECTIVES,
+    EventEmitter,
+    Output,
     OnInit
 } from  '@angular/core';
 
@@ -9,36 +11,41 @@ import {
     selector: 'node',
     template: `
 <li>
-	<a class ="iconButton" (click)="toggle()"> <i class="material-icons">add</i>{{item.name}},{{IsExpanded}}</a>
+	<a class ="iconButton"  (click)="select(item )" >{{item.name}}</a>
 	<div *ngIf="IsExpanded">
-  	<ul *ngIf="item.areas">
-  		<template  *ngFor="let subitem of item.areas" >
-  			<node [item]="subitem"></node>
-  		</template>
-  	</ul>
+        <ul *ngIf="item.areas">
+              <node  *ngFor="let subitem of item.areas" [parent]="parent" [item]="subitem"></node>
+        </ul>
 	</div>
 </li>
 `
 })
 export class MNode {
     @Input() item:any;
-    IsExpanded:boolean = false;
-
+    @Input() parent:any;
+    IsExpanded:boolean = true;
     toggle() {
         this.IsExpanded = !this.IsExpanded;
-        console.log(this.item);
+
 
     }
+    select(item){
+        this.parent.select(item);
+    }
+
 }
 
 @Component({
     selector: 'tree',
     template: `
 <ul>
-		<node *ngFor="let item of data" [item]="item"></node>
+		<node *ngFor="let item of data"   [parent]="parent" [item]="item"></node>
 </ul>
 `
 })
 export class MTree {
     @Input() data:any[];
+    @Input() parent:any;
+
+
 }

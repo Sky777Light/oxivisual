@@ -1,4 +1,4 @@
-<div class="model-config" >
+<div class="model-config"   >
     <form class="item-form" #editViewForm="ngForm" novalidate>
         <div class="top-block">
              <div class="input-wrap">
@@ -11,14 +11,14 @@
 
              <div class="upload-list col-lg-12">
                  <app-file-upload [title]="'Upload model'" [accept]="'.obj'"
-                                  [required]="'1'" class="col-lg-12"[files]="[modelStructure.destination]"
+                                  [required]="'1'" class="col-lg-12" [files]="[modelStructure.destination]"
                                   [inject]="modelStructure.app"
                                   #modelEditObj></app-file-upload>
                  <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'"
                                   [required]="'1'" [accept]="'image/*'" [files]="modelStructure.images"
                                   [inject]="modelStructure.app"
                                   class="col-lg-12" #framesEditObj></app-file-upload>
-                 <button class="btn-default">Save</button>
+                 <!--<button class="btn-default">Save</button>-->
              </div>
         </div>
         <div class="bottom-block">
@@ -82,5 +82,11 @@
             </div>
         </div>
 
+        <div class="add-btn" (click)="update()">
+            <i class="material-icons">save</i>
+            <div class="span-hover">
+                <span>Save</span>
+            </div>
+        </div>
     </form>
 </div>

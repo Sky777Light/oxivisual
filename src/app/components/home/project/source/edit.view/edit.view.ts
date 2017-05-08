@@ -17,7 +17,6 @@ export class EditView {
     @Input() modelStructure:ENTITY.ModelStructure;
 
     constructor(){
-
     }
 
 }

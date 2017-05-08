@@ -1,6 +1,10 @@
 export class Main{
+    public _id:string;
+    public created:number;
+
     constructor(instance:any = null){
         this.adapt(instance);
+        if(!this.created)this.created= Date.now();
     }
     toString(){
         //let result='';

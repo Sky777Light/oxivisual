@@ -14,7 +14,7 @@ export class WebglView implements OnInit,OnChanges {
 
     @ViewChild("renderParent")
         renderParent:HTMLElement;
-    @Input() selected:ENTITY.ModelStructure;
+    @Input() selected:any;
 
     app:OxiAPP;
 
@@ -23,6 +23,7 @@ export class WebglView implements OnInit,OnChanges {
     }
 
     ngOnChanges(changes) {
+        if (changes.selected.currentValue.destination != changes.selected.previousValue.destination)this.initWebgl();
         if (this.selected)this.selected.app = this.app;
     }
 
@@ -50,6 +51,8 @@ class OxiAPP {
     _events:OxiEvents;
     _animation:OxiAnimation;
     controls:any;
+    _files:any = {};
+    _fileReader:FileReader;
 
     constructor(main:WebglView) {
         this.main = main;
@@ -63,8 +66,9 @@ class OxiAPP {
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
-        //this.controls.addEventListener('change', ()=>this.render());
-        this.camera.positionDef = new THREE.Vector3().copy(main.selected.camera ? main.selected.camera.position : {
+        this.controls.enablePan = false;
+        //this.controls.addEventListener('change', ()=>this._animation.play());
+        this.camera.positionDef = new THREE.Vector3().copy(main.selected.camera && main.selected.camera.position ? main.selected.camera.position : {
             x: 34800,
             y: 18600,
             z: -600
@@ -81,21 +85,26 @@ class OxiAPP {
         }
         this.scene.add(new THREE.AxisHelper(500));
 
-        let light = new THREE.DirectionalLight(0xffffff);
-        light.position.set(1, 1, 1);
-        this.scene.add(light);
+        //let light = new THREE.DirectionalLight(0xffffff);
+        //light.position.set(1, 1, 1);
+        //this.scene.add(light);
 
 
         this.loadModel(()=> {
+
+            let foo = this._parent();
+            while (foo.firstChild) foo.removeChild(foo.firstChild);
+
             this._projControls = new OxiControls(this);
             this._slider = new OxiSlider(this);
-            this._events = new OxiEvents(this);
-            this._animation = new OxiAnimation(this);
             let parentCanvas = document.createElement('div');
             parentCanvas.className = ENTITY.ProjClasses.CENTER_CONTAINER;
             this._parent().appendChild(parentCanvas);
             parentCanvas.appendChild(renderer.domElement);
 
+
+            this._events = new OxiEvents(this);
+            this._animation = new OxiAnimation(this);
         });
     }
 
@@ -103,62 +112,83 @@ class OxiAPP {
         console.log("load was finished succesed");
     }) {
 
-        let manager = new THREE.LoadingManager();
-        manager.onProgress = function (item, loaded, total) {
-            console.log(item, loaded, total);
-        };
-
-
-        let onProgress = function (xhr) {
-            if (xhr.lengthComputable) {
-                let percentComplete = xhr.loaded / xhr.total * 100;
-                console.log((percentComplete).toFixed(2) + '% downloaded');
-            }
-        };
-
-        let onError = function (xhr) {
-            alertify.error(xhr)
-        };
-
-
-        let loader = this.loader = this.loader || new THREE.OBJLoader(manager);
-        loader.load(ENTITY.Config.PROJ_LOC + this.main.selected.projFilesDirname + "/" + this.main.selected.destination, (object)=> {
-            this.scene.add(object);
-            this.model = object;
-            object.traverse((child)=> {
-                if (child.type == 'Mesh') {
-                    child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
-                }
-            });
+        if (this.main.selected.cash.model) {
+            this._onLoadModel(this.main.selected.cash.model);
             callback();
-        }, onProgress, onError);
+        } else if (this.main.selected.projFilesDirname) {
+            let manager = new THREE.LoadingManager();
+            manager.onProgress = function (item, loaded, total) {
+                console.log(item, loaded, total);
+            };
 
 
+            let onProgress = function (xhr) {
+                if (xhr.lengthComputable) {
+                    let percentComplete = xhr.loaded / xhr.total * 100;
+                    console.log((percentComplete).toFixed(2) + '% downloaded');
+                }
+            };
+
+            let onError = function (xhr) {
+                alertify.error(xhr)
+            };
+
+
+            let loader = this.loader = this.loader || new THREE.OBJLoader(manager);
+            loader.load(ENTITY.Config.PROJ_LOC + this.main.selected.projFilesDirname + "/" + this.main.selected.destination, (object)=> {
+                this._onLoadModel(object);
+                callback();
+            }, onProgress, onError);
+        } else {
+            callback();
+        }
     }
+
+    _onLoadModel(object) {
+        if (this.model)this.scene.remove(this.model);
+        this.scene.add(object);
+        this.model = object;
+        object.traverse((child)=> {
+            if (child.type == 'Mesh') {
+                child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
+            }
+        });
+        this.main.selected.cash.model = object;
+    }
+
 
     _parent():HTMLElement {
         return this.main.renderParent['nativeElement'];
     }
 
     onFilesSelected(files) {
-        let filereader = new FileReader(),
+        let filereader = this._fileReader = this._fileReader || new FileReader(),
             isObj = files[0].name.match('.obj');
+        this._files[(isObj ? 'model[]' : 'frames[]')] = files;
 
-        files.forEach((file)=> {
+        if(!isObj)this.main.selected.cash.images = [];
+
+        let startFrom = 0;
+
+        function parseFiles(cur) {
+            if (!cur) return;
             if (isObj) {
-                filereader.readAsText(file);
+                filereader.readAsText(cur);
             } else {
-                filereader.readAsDataURL(file);
+                filereader.readAsDataURL(cur);
             }
+            filereader.onloadend = (e:any)=> {
+                if (isObj) {
+                    let loader = this.loader = this.loader || new THREE.OBJLoader();
+                    loader.parse(e.currentTarget.result, (m)=>this._onLoadModel(m));
+                } else {
+                    this.main.selected.cash.images.push({file:cur,data:e.currentTarget.result});
+                }
 
-        });
-        filereader.onloadend = function (e) {
-            if (isObj) {
-
-            } else {
-
-            }
-        }
+                parseFiles(files[startFrom++]);
+            };
+        };
+        parseFiles(files[startFrom++]);
     }
 
 
@@ -174,6 +204,7 @@ class OxiEvents {
     private mouse:OxiMouse;
     private raycaster:any;
     private main:any;
+    lastInter:any;
 
 
     constructor(app:OxiAPP) {
@@ -212,12 +243,13 @@ class OxiEvents {
 
         let _self = this;
         this.mouse.isDown = false;
+        this.main._projControls.show(ev, false);
+
         if (ev.button == 2) {
             let _self = this,
                 intersectList = _self.inter(ev);
             if (intersectList && intersectList[0]) {
-                let inter = intersectList[0];
-
+                let inter = _self.lastInter = intersectList[0];
                 this.main._projControls.show(ev);
 
             }
@@ -269,8 +301,8 @@ class OxiMouse {
         let _slider = this.main._slider,
             canvasW = _slider._W(),
             canvasH = _slider._H(),
-            _x = (ev ? ev.clientX : canvasW / 2) - _slider.container.offsetLeft,
-            _y = (ev ? ev.clientY : canvasH / 2) - _slider.container.offsetTop + 90
+            _x = (ev ? ev.clientX : canvasW / 2) - (_slider.container.offsetLeft + 10),
+            _y = (ev ? ev.clientY : canvasH / 2) - _slider.container.offsetTop + 110
             ;
 
         if (ev && ev.touches) {
@@ -297,8 +329,10 @@ class OxiMouse {
 }
 class OxiAnimation {
     private canAnimate:boolean = false;
+    private isStop:boolean = false;
     private lastUpdate:number = Date.now();
     private maxTimeUpdate:number = 1500;
+    private id:number = Date.now();
     private animations:Array<Function> = [];
     private lastIter:number = 0;
     private app:OxiAPP;
@@ -315,6 +349,7 @@ class OxiAnimation {
     }
 
     animate() {
+        if (!this.app.gl.domElement.clientWidth)return;
         for (let i = 0; i < this.animations.length; i++) {
             this.animations[i]();
         }
@@ -327,6 +362,7 @@ class OxiAnimation {
         requestAnimationFrame(() => {
             this.animate();
         });
+
     }
 
     play(flag:boolean = true) {
@@ -337,6 +373,7 @@ class OxiAnimation {
     }
 
     stop() {
+        this.isStop = true;
         this.canAnimate = false;
         this.lastIter = 0;
     }
@@ -359,8 +396,11 @@ class OxiSlider {
         if (this.container)app._parent().removeChild(this.container);
         if (this.imgPagination)app._parent().removeChild(this.imgPagination);
 
+
         let div = this.container = document.createElement('div'),
             imgPagination = this.imgPagination = document.createElement('ul');
+
+        if (!app.main.selected.images || !app.main.selected.images.length) return;
 
         for (let i = 0; i < app.main.selected.images.length; i++) {
             let img = document.createElement('img'),
@@ -376,6 +416,7 @@ class OxiSlider {
             });
             imgPagination.appendChild(item);
         }
+
         div.className = [ENTITY.ProjClasses.CENTER_CONTAINER, ENTITY.ProjClasses.IMG_SLIDER].join(" ");
         app._parent().appendChild(div);
         app._parent().appendChild(imgPagination);
@@ -405,40 +446,84 @@ class OxiControls {
         let div = this.controls = document.createElement('div');
         div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
         app._parent().appendChild(div);
+        this.app = app;
 
+        let childSelected = (child:any)=> {
+            this.app._events.lastInter.object._data = child;
+            child._id = this.app._events.lastInter.object.name;
+            child.name = child._id.toLowerCase();
+
+            if (!this.app.main.selected.areas) {
+                this.app.main.selected.areas = [child];
+            } else {
+                this.app.main.selected.areas.push(child);
+            }
+        };
         [
-            {
-                className: 'attach-link', click: ()=> {}, icon:'../assets/img/Fill%202.svg'
-            }, {
-            className: 'attach-new', click: ()=> {},  icon:'../assets/img/Fill%202.svg'
-        }, {
-            className: 'attach-js', click: ()=> {} , icon:'../assets/img/Fill%202.svg'
-        }, {
-            className: 'cntrls-close', click: ()=> {
 
-            }, icon:'../assets/img/users.svg'
+            {
+                className: 'attach-new', click: ()=> {
+                childSelected(new ENTITY.ModelStructure());
+
+            }, icon: '../assets/img/ic_library_add_white_24px.svg'
+            },
+            {
+                className: 'attach-link', click: ()=> {
+                let input = prompt("Input the link", 'https://google.com');
+                if (input)childSelected(new ENTITY.GeneralStructure({
+                    category: ENTITY.Config.PROJ_DESTINATION.LINK_REMOTE,
+                    destination: input
+                }));
+
+            }, icon: '../assets/img/ic_link_white_24px.svg'
+            },
+            {
+                className: 'attach-js', click: ()=> {
+                let input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
+                if (input)childSelected(new ENTITY.GeneralStructure({
+                    category: ENTITY.Config.PROJ_DESTINATION.JS_CODE,
+                    destination: input
+                }));
+            }, icon: '../assets/img/JS.svg'
+            }, {
+            className: 'cntrls-close', click: ()=> {
+            }, icon: '../assets/img/ic_close_white_24px.svg'
         }
         ].forEach((el, item)=> {
                 let domEl = document.createElement('div');
                 domEl.className = el.className;
-                domEl.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>{el.click()});
+                domEl.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
+                    this.show(e, false);
+                    el.click();
+                });
                 div.appendChild(domEl);
                 let icon = document.createElement('img');
-                icon.src = "../assets/img/Fill%202.svg";
-                icon.setAttribute('fillColor','#ffffff');
+                icon.src = el.icon;
+                icon.setAttribute('fillColor', '#ffffff');
+                icon.setAttribute('fill', '#ffffff');
                 icon.style.color = '#ffffff';
                 domEl.appendChild(icon);
             });
     }
-    show(pos,flag:boolean=true){
-        if(flag){
-            if(!this.controls.className.match(ENTITY.ProjClasses.ACTIVE)){
-                this.controls.className +=" "+ENTITY.ProjClasses.ACTIVE;
-            }
-        }else{
-            this.controls.className = this.controls.className.replace(ENTITY.ProjClasses.ACTIVE,'');
+
+    show(pos, flag:boolean = true) {
+
+        if (this.app._events.lastInter) {
+            if (!this.app._events.lastInter.object.material.defColor)this.app._events.lastInter.object.material.defColor = this.app._events.lastInter.object.material.color.clone();
+            this.app._events.lastInter.object.material.color = flag ? new THREE.Color(61 / 250, 131 / 250, 203 / 250) : this.app._events.lastInter.object.material.defColor;
+            if (this.app._events.lastInter.object._data && flag)return;
         }
-        this.controls.style.left = pos.x || pos.clientX;
-        this.controls.style.top = pos.y || pos.clientY;
+
+        if (flag) {
+
+            if (!this.controls.className.match(ENTITY.ProjClasses.ACTIVE)) {
+                this.controls.className += " " + ENTITY.ProjClasses.ACTIVE;
+            }
+        } else {
+            this.controls.className = this.controls.className.replace(ENTITY.ProjClasses.ACTIVE, '');
+        }
+
+        this.controls.style.left = ((pos.x || pos.clientX) - 15 ) + 'px';
+        this.controls.style.top = ((pos.y || pos.clientY) - this.controls.clientHeight / 2 - 15) + 'px';
     }
 }

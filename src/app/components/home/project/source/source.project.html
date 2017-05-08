@@ -1,4 +1,4 @@
-<div class="source-project">
+<div class="source-project"  >
     <div *ngIf="!project.model.link" class="source-creating col-lg-3">
         <span>Parent creating:</span>
 
@@ -47,9 +47,9 @@
                         </td>
                         <td class="s-tab webgl-item" rowspan="2"
                             [attr.colspan]="sceneConfig.hide && treeView.hide ?3:1">
-                            <app-project-webgl-view *ngIf="selectedChild" [selected]="selectedChild">-----WEBGL------</app-project-webgl-view>
+                            <app-project-webgl-view *ngIf="selectedChild && selectedChild.category == 2" [selected]="selectedChild">-----WEBGL------</app-project-webgl-view>
 
-                            <div class="pop-ups" #projChildCreate>
+                            <!--<div class="pop-ups" #projChildCreate>
                                 <div class="child-create" *ngIf="projChildCreate.show">
                                     <div class="source-creating col-lg-3">
                                         <span>Name of the new child:</span>
@@ -73,30 +73,31 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div>-->
                         </td>
                     </tr>
                     <tr>
                         <td *ngIf="!treeView.hide" [attr.colspan]="sceneConfig.hide?2:1">
                             <div class="tabs-body">
                                 <div class="body-data">
-                                    <tree [data]="project.model.data"></tree>
+                                    <tree   [parent] = "instance" [data]="project.model.data"></tree>
                                 </div>
                             </div>
                         </td>
                         <td *ngIf="!sceneConfig.hide" class="s-tab" [attr.colspan]="treeView.hide?2:1">
                             <div class="tabs-body">
                                 <div class="body-data">
-                                    <app-project-edit-view   *ngIf="selectedChild" [modelStructure]="selectedChild" ></app-project-edit-view>
+                                    <app-project-edit-view  *ngIf="selectedChild && selectedChild.category == 2" [modelStructure]="selectedChild" ></app-project-edit-view>
 
 
-                                    <div class="add-btn" *ngIf="!projChildCreate.show"
+                                    <!--<div class="add-btn" *ngIf="!projChildCreate.show"
                                          (click)="projChildCreate.show = !projChildCreate.show">
                                         <i class="material-icons">add</i>
                                         <div class="span-hover">
                                             <span>Add a new Child</span>
                                         </div>
-                                    </div>
+                                    </div>-->
+
                                 </div>
                             </div>
 

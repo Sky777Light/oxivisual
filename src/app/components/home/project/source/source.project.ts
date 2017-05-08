@@ -1,4 +1,4 @@
-import {ViewChild,Component,OnChanges,AfterViewInit} from '@angular/core';
+import {ViewChild,Component,OnChanges,AfterViewInit,Output,EventEmitter} from '@angular/core';
 import { NgForm} from '@angular/forms';
 //import {AbstractTemplateProject} from "../template/temp.view.project";
 import { ActivatedRoute } from '@angular/router';
@@ -14,8 +14,9 @@ declare var alertify:any;
     styleUrls: ['./source.project.sass']
 })
 export class SourceProject implements AfterViewInit,OnChanges{
-    private project:ENTITY.IProject;
-    selectedChild:ENTITY.ModelStructure;
+    public instance: SourceProject;
+    private project:any;
+    selectedChild:any;
     tempNewChild:ENTITY.ModelStructure;
     editview:boolean=false;
 
@@ -24,7 +25,9 @@ export class SourceProject implements AfterViewInit,OnChanges{
     @ViewChild("framesObj")
         framesObj:HTMLElement;
 
-    constructor(private projectService:ProjectService, private authService:AuthService) {}
+    constructor(private projectService:ProjectService, private authService:AuthService) {
+        this.instance = this;
+    }
 
     ngOnChanges(changes) {
         console.log(changes);
@@ -36,9 +39,11 @@ export class SourceProject implements AfterViewInit,OnChanges{
         this.project = this.projectService.getProject();
         this.tempNewChild = new ENTITY.ModelStructure();
         setTimeout(()=>{
-            if(this.project.model.data)this.select(this.project.model.data[0]);
+            if(this.project.model.data){
+                this.select(this.project.model.data[0]);
+            }
+
         },200);
-        console.log(this);
     }
 
 
@@ -75,12 +80,16 @@ export class SourceProject implements AfterViewInit,OnChanges{
         }, (error) => {
         });
     }
+    update(){
+
+    }
 
     createChild(form:NgForm){
 
     }
 
     select(child:any){
+        console.log(this);
         this.selectedChild = child;
     }
 }

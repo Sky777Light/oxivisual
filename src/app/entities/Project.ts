@@ -21,8 +21,6 @@ export interface IProject extends IMain{
     model?: ProjectModel;
 }
 export class Project  extends Main implements IProject{
-    public _id:string;
-    public created:number;
     public title: string;
     public link: string;
     public image: string;
