@@ -1,20 +1,22 @@
 import {Component} from '@angular/core';
-import {AbstractTemplateProject} from "../template/temp.view.project";
-import { ActivatedRoute } from '@angular/router';
-import {UserService} from "../../../../services/user.service";
 import * as PROJ from "../../../../entities/Project";
+import {ProjectService} from "../../../../services/project.service";
 
 declare var alertify: any;
 
 @Component({
-    selector: 'app-projects-edit',
+    selector: 'app-basic-project',
     templateUrl: './basic.project.html',
     styleUrls: ['./basic.project.sass']
 })
-export class BasicProject  extends AbstractTemplateProject{
+export class BasicProject {
+    private project: PROJ.IProject;
 
-    constructor(protected route: ActivatedRoute,protected userService: UserService){
-        super(route,userService);
+    constructor(private projectService: ProjectService){
+    }
+
+    ngOnInit(){
+        this.project = this.projectService.getProject();
     }
 
 }

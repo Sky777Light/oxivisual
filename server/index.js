@@ -8,6 +8,9 @@ const session = require("express-session");
 const busboy = require("connect-busboy");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const multer  = require('multer');
+
+
 
 const proxy = require("express-http-proxy");
 const MongoStore = require("connect-mongo")(session);
@@ -20,6 +23,16 @@ const routes = require("./routes");
 const app = express();
 const server = http.createServer(app);
 
+Object.assigns=function(toE,from){
+  for(var field in toE){
+      if(typeof toE[field] =='object' || typeof from[field] =='object'){
+          Object.assigns(toE[field],from[field]);
+      }else{
+          toE[field] = from[field];
+      }
+  }
+};
+
 hbs.localsAsTemplateData(app);
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
@@ -29,6 +42,29 @@ app.set("view options", {
     layout: "layout"
 });
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+var storage = multer.diskStorage({
+    dest:'/',
+    destination: function (req, file, cb) {
+        console.log("------------");
+        cb(null, '/resources')
+    },
+    filename: function (req, file, cb) {
+        console.log("***********");
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+
+var upload = multer({ dest: '/resources' }).fields([{ name: 'model[]', maxCount: 1 }, { name: 'frames[]', maxCount: 36 }]);
+
+app.use( upload);
 app.use(morgan("dev"));
 
 app.use(busboy());

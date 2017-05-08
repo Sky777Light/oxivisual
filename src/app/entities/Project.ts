@@ -3,7 +3,8 @@ import {IModelStructure} from "./ModelStructure";
 import {Main} from "./Main";
 
 export class ProjectModel extends Main{
-    public model:IModelStructure;
+    public id_model_structure:string;
+    public data:Array<IModelStructure>;
     public link:string;
     public name:string;
     constructor(entity:any = null){

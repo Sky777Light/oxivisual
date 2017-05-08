@@ -4,8 +4,8 @@ import {Component,Input,ViewChild,OnInit} from '@angular/core';
     selector: 'app-file-upload',
     template: '<input type="file" accept="{{accept}}"   [(ngModel)]="filesModel" #filesModels="ngModel" class="hidden" #fileUpload>' +
     ' <label [class.full-op]="filesModels.invalid"  [hidden] = "filesModels.valid">{{title}} is required</label> ' +
-    '<div #btnFile class="btn-def">{{title}}</div>  <div *ngFor="let file of files; let i = index">{{file.name}}{{i<files.length-1?",":""}}</div>',
-    styles: ['./upload.file.sass']
+    '<div #btnFile class="btn-def">{{title}}</div>  <div *ngFor="let file of files; let i = index" class="list-files">{{file.name||file}}{{i<files.length-1?",":""}}</div>',
+    styleUrls: ['./upload.file.sass']
 })
 export class UploadFile implements OnInit {
     @Input() accept:string = '';
@@ -13,13 +13,12 @@ export class UploadFile implements OnInit {
     @Input() required:string;
     @Input() title:string;
     @Input() inject:any;
-
+    @Input() files:Array<any>;
     @ViewChild("fileUpload")
         fileUpload:HTMLElement;
     @ViewChild("btnFile")
         btnFile:HTMLElement;
     abstract:any;
-    files:Array<any>;
     filesModel:any;
 
     constructor() {
@@ -28,12 +27,13 @@ export class UploadFile implements OnInit {
 
     ngOnInit() {
         let fileTag =  this.fileUpload['nativeElement'];
+
         fileTag.addEventListener('change', (e)=> {
             let files = e.target.files;
             this.files = [];
 
             for (let i = 0; i < files.length; i++) {
-                if (files[i].name.match(this.accept) || files[i].type.match(this.accept))this.files.push(files[i]);
+                if (files[i].name.match(this.accept) || files[i].type.match(this.accept))this.files.push(files[i].name);
             }
 
             if (!this.files.length || !this.inject || !this.inject.onFilesSelected)return;

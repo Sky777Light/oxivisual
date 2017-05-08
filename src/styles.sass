@@ -29,8 +29,6 @@ input:-webkit-autofill
   &:focus
     -webkit-text-fill-color: $primary-text !important
 
-
-
 label
   font-weight: initial
   margin: 0
@@ -45,35 +43,23 @@ i
   margin: 0
 
 [hidden]
-  display: none!important
-  
+  display: none !important
 .new-btns
-  width: 100%
-  display: -webkit-box
-  display: -ms-flexbox
-  display: flex
-  -webkit-box-pack: end
-  -ms-flex-pack: end
-  justify-content: flex-end
+  justify-content: center
   .text-btn
-    color: $reset
     text-transform: uppercase
     cursor: pointer
     font-size: 16px
+    color: $reset
     font-weight: 500
     -webkit-transition: opacity .5s
     transition: opacity .5s
-    &:hover
-      opacity: 0.6
+    padding: 15px
   .right-btn
+    margin-left: 30px
     color: $btn-color
-
-
-
-
-
-
-
+  span:hover
+    opacity: 0.6
 
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons)
 @import "app/app.component"
@@ -91,13 +77,8 @@ i
 @import "app/components/home/users/new-user/new-user.component"
 @import "app/components/home/users/new-user/new-user.component"
 
-//@import "app/components/home/projects/basic/basic.project"
-@import "app/components/home/project/source/source.project"
-//@import "app/components/home/projects/edit/edit.project"
-//@import "app/components/home/projects/view/view.project"
-@import "app/components/home/project/source/upload.file"
-@import "app/components/home/users/new-user/new-user.component"
-@import "app/components/home/projects/view/view.project"
+@import "app/directives/upload.files/upload.file"
+@import "app/directives/webgl.view/webgl.view"
 
 @import "app/components/home/project/project.component"
 @import "app/components/home/project/basic/basic.project"

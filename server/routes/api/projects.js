@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const async = require("async");
-var fs = require("fs");
+const fs = require("fs");
 
 const Project = require("../../models/project");
 
 var saveImage = function (image, avatar, done) {
-    function decodeBase64Image(dataString){
+    function decodeBase64Image(dataString) {
         var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
         var response = {};
 
@@ -17,8 +17,9 @@ var saveImage = function (image, avatar, done) {
 
         return response;
     }
-    if(!image){
-        if(avatar){
+
+    if (!image) {
+        if (avatar) {
             var filePath = './resources' + avatar;
             fs.unlinkSync(filePath);
         }
@@ -26,7 +27,7 @@ var saveImage = function (image, avatar, done) {
         return;
     }
 
-    if(avatar){
+    if (avatar) {
         var filePath = './resources' + avatar;
         fs.unlinkSync(filePath);
     }
@@ -42,19 +43,31 @@ var saveImage = function (image, avatar, done) {
 
     var uniqueRandomImageName = 'image-' + uniqueSHA1String; //uniqueSHA1String;
     var imageTypeDetected = decodeBase64Image(image).type.match(imageTypeRegularExpression);
-    var userUploadedImagePath  = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
-    var clientPath  = '/uploads/img/projects/' + uniqueRandomImageName + '.' + imageTypeDetected[1];
+    var userUploadedImagePath = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
+    var clientPath = '/uploads/img/projects/' + uniqueRandomImageName + '.' + imageTypeDetected[1];
 
-    fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function(err){
+    fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function (err) {
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
         done(err, clientPath);
     });
 };
+function randomString(l) {
 
+    var length_ = l || 25,
+        chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
+    if (typeof length_ !== "number") {
+        length_ = Math.floor(Math.random() * chars.length_);
+    }
+    var str = '';
+    for (var i = 0; i < length_; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return str + Date.now().toString(32);
+}
 
 //update project
 router.put("/project", function (req, res) {
-    Project.findOne({ _id: req.body._id }, function (err, project) {
+    Project.findOne({_id: req.body._id}, function (err, project) {
         if (err) {
             return res.json({
                 status: false,
@@ -69,35 +82,21 @@ router.put("/project", function (req, res) {
             });
         }
 
-        //if project deactivated/activated
-        if(req.body.published !== project.published){
-            project.published = req.body.published;
-            project.save(function (err, project) {
-                if (err) {
-                    throw err;
+
+        var needToYpdateImg = req.body.image !== project.image,
+            updateProj = function (fields) {
+                Object.assign(project, req.body);
+                if(fields)for(var f in fields){
+                    project[f] = fields[f];
                 }
 
-                res.json({
-                    status: true,
-                    res: project,
-                    message: project.published ? "Project successfully was activated." : "Project successfully was deactivated."
-                })
-            });
-            return;
-        }
-
-
-        project.title = req.body.title || project.title;
-
-        if(req.body.image !== project.image){
-            saveImage(req.body.image, project.image, function(err, img){
-                if (err) {
-                    throw err;
-                }
-                project.image = img;
                 project.save(function (err, project) {
                     if (err) {
-                        throw err;
+                        return res.json({
+                            status: false,
+                            res: project,
+                            message: err
+                        })
                     }
                     res.json({
                         status: true,
@@ -105,18 +104,22 @@ router.put("/project", function (req, res) {
                         message: "Project successfully was changed."
                     })
                 });
+            };
+
+
+        if (needToYpdateImg) {
+            saveImage(req.body.image, project.image, function (err, img) {
+                if (err) {
+                    return res.json({
+                        status: false,
+                        res: project,
+                        message: err
+                    })
+                }
+                updateProj({image:img});
             })
         } else {
-            project.save(function (err, project) {
-                if (err) {
-                    throw err;
-                }
-                res.json({
-                    status: true,
-                    res: project,
-                    message: "Project successfully was changed."
-                })
-            });
+            updateProj();
         }
 
 
@@ -125,7 +128,7 @@ router.put("/project", function (req, res) {
 
 //create project
 router.post("/project", function (req, res) {
-    if(req.user.role === 'user'){
+    if (req.user.role === 'user') {
         return res.json({
             status: false,
             message: 'Access denied'
@@ -142,7 +145,7 @@ router.post("/project", function (req, res) {
 
     async.waterfall([
         function (done) {
-            
+
             var newProject = new Project({
                 title: req.body.title,
                 link: req.body.link,
@@ -153,9 +156,9 @@ router.post("/project", function (req, res) {
             });
 
             newProject.owner = (req.user.role === 'super') ? null : req.user._id;
-            
-            if(req.body.image){
-                saveImage(req.body.image, null, function(err, img){
+
+            if (req.body.image) {
+                saveImage(req.body.image, null, function (err, img) {
                     newProject.image = img;
                     done(err, newProject);
                 })
@@ -163,7 +166,7 @@ router.post("/project", function (req, res) {
                 done(null, newProject);
             }
         }
-    ],  function (err, project) {
+    ], function (err, project) {
 
         if (err) {
             throw err;
@@ -184,9 +187,69 @@ router.post("/project", function (req, res) {
 
 });
 
+
+router.post("/project/model/create", function (req, res) {
+    // create an incoming form object
+
+    var modelName = req.body.name,
+        id_project = req.body.id_project;
+    if (!modelName || !modelName || !req.files['model[]'] || !req.files['frames[]']) {
+        return res.json({
+            status: false,
+            message: "something got incorect!!!"
+        });
+    } else {
+        var matches = ['.obj', 'image/'],
+            area = {
+                name:modelName,
+                projFilesDirname:modelName + "_" + randomString(),
+                frames:0,
+                images:[]
+            },
+            modelDir = 'resources/uploads/projects/'+ area.projFilesDirname,
+            imageDir = modelDir + "/images",
+            mode = parseInt("0777", 8);
+
+        if (!fs.existsSync(modelDir)) {
+            fs.mkdirSync(modelDir, mode);
+        }
+        if (!fs.existsSync(imageDir)) {
+            fs.mkdirSync(imageDir, mode);
+        }
+        for (var keys in req.files) {
+            for (var i = 0; i < req.files[keys].length; i++) {
+                var _file = req.files[keys][i];
+                if (_file.originalname.match(matches[0])) {
+                    fs.writeFileSync(modelDir + "/" + _file.originalname, fs.readFileSync(_file.path));
+                    area.destination = _file.originalname;
+                } else if (_file.mimetype.match(matches[1])) {
+                    fs.writeFileSync(imageDir + "/" + _file.originalname, fs.readFileSync(_file.path));
+                    area.frames++;
+                    area.images.push(_file.originalname);
+                }
+            }
+        }
+        fs.writeFileSync(modelDir + "/site_structure.json", JSON.stringify([area]));
+        Project.update({_id: id_project}, {$set: {"model.link": area.projFilesDirname, "model.name": modelName}}, function (err) {
+            return res.json({
+                status: !err,
+                message: err ? err : "model was saved",
+                model: {
+                    link: area.projFilesDirname,
+                    name: modelName,
+                    data:area
+                }
+            });
+        });
+
+
+    }
+
+});
+
 //delete user
 router.delete("/project", function (req, res) {
-    Project.findOne({ _id: req.body._id }, function (err, project) {
+    Project.findOne({_id: req.body._id}, function (err, project) {
         if (err) {
             throw err;
         }

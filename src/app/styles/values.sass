@@ -1,3 +1,5 @@
+@import "./animations"
+$text-color-gray: #7E7E7E
 $white: #ffffff
 $black: #000000
 $error: #ff0000
@@ -13,6 +15,8 @@ $deactive: #D6D5D5
 $orange: #FFA000
 $orange-hover: #FFB332
 $reset: #4A4A4A
+$border-color: #EBEBEB
+$back-alter: rgba(128, 128, 128, 0.1)
 
 
 .pos-center
@@ -67,29 +71,3 @@ $reset: #4A4A4A
   @media screen and (min-width: 1600px)
     width: 100%
 
-
-=keyframes($name)
-  @-webkit-keyframes #{$name}
-    @content
-  @-moz-keyframes #{$name}
-    @content
-  @-ms-keyframes #{$name}
-    @content
-  @keyframes #{$name}
-    @content
-
-+keyframes(opac-down)
-  0%
-    opacity: 1
-    z-index: 100
-  100%
-    opacity: 0
-    z-index: -1
-
-+keyframes(opac-up)
-  0%
-    opacity: 0
-    z-index: -1
-  100%
-    opacity: 1
-    z-index: 100

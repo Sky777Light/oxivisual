@@ -3,25 +3,27 @@ import {Main} from "./Main";
 
 export interface IModelStructure extends IMain{
     destination:string;
-    camera_distance:number;
-    camera_high_position:number;
-    camera_focalLength:number;
+    camera:OxiCamera;
     frames:number;
-    filename:string;
+    projFilesDirname:string;
     areas:Array<IModelStructure>;
+}
+class OxiCamera{
+    position:any;
+    fov:any;
 }
 export class ModelStructure extends Main implements IModelStructure{
 
    name:string;
    destination:string;
-   camera_distance:number;
-   camera_high_position:number;
-   camera_focalLength:number;
+   camera:OxiCamera;
    frames:number;
-   filename:string;
+    projFilesDirname:string;
+   images:Array<string>;
    areas:Array<IModelStructure>;
+    app:any;
 
-    constructor(entity:any){
+    constructor(entity:any={}){
         super(entity);
     }
 }

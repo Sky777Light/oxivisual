@@ -1,3 +1,4 @@
+/*
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import * as PROJ from "../../../../entities/Project";
 import { ActivatedRoute } from '@angular/router';
@@ -35,4 +36,4 @@ export class AbstractTemplateProject  implements OnInit,OnDestroy {
     ngOnDestroy() {
         this.sub.unsubscribe();
     }
-}
+}*/

@@ -1,0 +1,86 @@
+<div class="model-config" >
+    <form class="item-form" #editViewForm="ngForm" novalidate>
+        <div class="top-block">
+             <div class="input-wrap">
+                 <input type="text" #curentName="ngModel" name="curentName"
+                        placeholder="Level`s Name"
+                        [(ngModel)]="modelStructure.name" required autofocus>
+                 <label [class.full-op]="curentName.invalid && curentName.touched">The
+                     Level`s Name is required!</label>
+             </div>
+
+             <div class="upload-list col-lg-12">
+                 <app-file-upload [title]="'Upload model'" [accept]="'.obj'"
+                                  [required]="'1'" class="col-lg-12"[files]="[modelStructure.destination]"
+                                  [inject]="modelStructure.app"
+                                  #modelEditObj></app-file-upload>
+                 <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'"
+                                  [required]="'1'" [accept]="'image/*'" [files]="modelStructure.images"
+                                  [inject]="modelStructure.app"
+                                  class="col-lg-12" #framesEditObj></app-file-upload>
+                 <button class="btn-default">Save</button>
+             </div>
+        </div>
+        <div class="bottom-block">
+            <div class="row">
+                <div class="inp-form col-lg-6">
+                    <label>Width</label>
+                    <input name="width" type="number" *ngIf="modelStructure.app._slider" [(ngModel)]="modelStructure.app._slider.container.clientWidth">
+                </div>
+                <div class="inp-form col-lg-6">
+                    <label>Height</label>
+                    <input name="height"  type="number" *ngIf="modelStructure.app._slider" [(ngModel)]="modelStructure.app._slider.container.clientHeight">
+                </div>
+            </div>
+            <div class="row">
+                <div class="inp-form col-lg-4">
+                    <label>Scale</label>
+                    <input  name="scaleX" type="number" [(ngModel)]="modelStructure.app.scene.scale.x">
+                </div>
+                <div class="inp-form col-lg-4">
+                    <label>Current</label>
+                    <input  name="current" type="number" *ngIf="modelStructure.app._slider"  disabled="true" min="0" max="36" [(ngModel)]="modelStructure.app._slider.currentItem">
+                </div>
+                <div class="inp-form col-lg-4">
+                    <label>Frames</label>
+                    <input  name="frames" type="number"  min="0" max="36" disabled="true" [ngModel]="modelStructure.frames">
+                </div>
+            </div>
+            <div class="row">
+                <div class="inp-form col-lg-4">
+                    <label>Camera X</label>
+                    <input  name="posX" type="number" [(ngModel)]="modelStructure.app.camera.position.x">
+                </div>
+                <div class="inp-form col-lg-4">
+                    <label>Camera Y</label>
+                    <input  name="posY" type="number"  [(ngModel)]="modelStructure.app.camera.position.y">
+                </div>
+                <div class="inp-form col-lg-4">
+                    <label>Camera Z</label>
+                    <input  name="posZ" type="number"  [(ngModel)]="modelStructure.app.camera.position.z">
+                </div>
+            </div>
+            <div class="row">
+                <div class="inp-form col-lg-6">
+                    <label>Fov</label>
+                    <input  name="fov" type="number" [(ngModel)]="modelStructure.app.camera.fov">
+                </div>
+                <div class="inp-form col-lg-6">
+                    <label>Size</label>
+                    <input  name="size" type="number"  [(ngModel)]="modelStructure.app.camera.position.y">
+                </div>
+            </div>
+            <div class="row">
+                <div class="inp-form col-lg-6">
+                    <label>Lens</label>
+                    <input  name="lens" type="number" [(ngModel)]="modelStructure.app.camera.near">
+                </div>
+                <div class="inp-form col-lg-6">
+                    <label>Zoom</label>
+                    <input  name="zoom" type="number"  [(ngModel)]="modelStructure.app.camera.far">
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

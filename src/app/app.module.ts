@@ -14,7 +14,6 @@ import {LoggedGuardService} from "./services/logged-guard.service";
 import {ShareService} from "./services/share.service";
 
 import {NamePipe} from "./pipes/name.pipe";
-import {SlimScroll} from './directives/slimscroll.directive';
 
 import { AppComponent } from './app.component';
 import {LoginComponent} from "./components/login/login.component";
@@ -26,17 +25,15 @@ import {HeaderComponent} from "./components/home/header/header.component";
 import {UserCardComponent} from "./components/home/users/user-card/user-card.component";
 import {NewUserComponent} from "./components/home/users/new-user/new-user.component";
 import {NewProjectComponent} from "./components/home/projects/new-project/new-project.component";
-import {BasicProject} from "./components/home/projects/basic/basic.project";
 import {ViewProject} from "./components/home/projects/view/view.project";
 import {EditProject} from "./components/home/projects/edit/edit.project";
-import {SourceProject} from "./components/home/projects/source/source.project";
-import {AbstractTemplateProject} from "./components/home/projects/template/temp.view.project";
-import {UploadFile} from "./components/home/projects/source/upload.file";
+//import {AbstractTemplateProject} from "./components/home/projects/template/temp.view.project";
 import {ProjectComponent} from "./components/home/project/project.component";
 import {SourceProject} from "./components/home/project/source/source.project";
 import {BasicProject} from "./components/home/project/basic/basic.project";
 import {ProjectService} from "./services/project.service";
-
+import {WebglView,UploadFile,MNode,MTree,SlimScroll} from "./directives/directives";
+import {EditView} from "./components/home/project/source/edit.view/edit.view";
 
 
 @NgModule({
@@ -54,9 +51,13 @@ import {ProjectService} from "./services/project.service";
     NewUserComponent,
     UploadFile,
     EditProject,
-    AbstractTemplateProject,
+    EditView,
+    WebglView,
+    //AbstractTemplateProject,
 
     NewProjectComponent,
+    MTree,
+    MNode,
     ViewProject,
     SourceProject,
     BasicProject,

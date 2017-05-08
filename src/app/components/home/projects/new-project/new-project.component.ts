@@ -34,6 +34,7 @@ export class NewProjectComponent {
   ) {
     this.User = this.userService.getUser();
     this.project = new PROJ.Project();
+
     this.Create = true;
   }
 
@@ -72,7 +73,7 @@ export class NewProjectComponent {
   accept() {
     if (!this.userService.resolUser(this.resol, this.project)) return false;
 
-    this.Create ? this.projectService.createProject(this.project) : this.projectService.changeProject(this.project);
+    !this.project._id ? this.projectService.createProject(this.project) : this.projectService.changeProject(this.project);
 
     this.cancel();
   }

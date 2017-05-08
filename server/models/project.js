@@ -2,28 +2,25 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
 
 const Schema = mongoose.Schema;
-var NotEmptyString = {type: String, minLength: 1,required: true};
+var NotEmptyString = {type: String, minLength: 1,required: true},
+    EmtyStr = {type: String,default:null};
 
 const projectSchema = new Schema({
     title: NotEmptyString,
     link: NotEmptyString,
-    image: {
-        type: String
-    },
-    owner: {
-        type: String ,
-        default:null
-    },
+    image: EmtyStr,
+    owner: EmtyStr,
     created: {
         type: Date,
         default:Date.now()
     },
     published: {
         type: Boolean,
-        required: true
+        default:false
     },
     model:new Schema({
-        link: NotEmptyString
+        link:EmtyStr,
+        name:EmtyStr
     })
 });
 

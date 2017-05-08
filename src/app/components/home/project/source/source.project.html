@@ -1,14 +1,18 @@
 <div class="source-project">
     <div *ngIf="!project.model.link" class="source-creating col-lg-3">
         <span>Parent creating:</span>
-        <form class="item-form" #createForm="ngForm"  novalidate >
+
+        <form class="item-form" #createForm="ngForm" novalidate>
             <div class="input-wrap">
-                <input type="text" #parentName="ngModel" name="parentName"  placeholder="Parent`s Name" [(ngModel)]="project.model.name" required autofocus>
-                <label [class.full-op]="parentName.invalid && parentName.touched"  >The Parent`s Name is required!</label>
+                <input type="text" #parentName="ngModel" name="parentName" placeholder="Parent`s Name"
+                       [(ngModel)]="project.model.name" required autofocus>
+                <label [class.full-op]="parentName.invalid && parentName.touched">The Parent`s Name is required!</label>
             </div>
             <div class="upload-list col-lg-12">
-                <app-file-upload [title]="'Upload model'"   [accept]="'.obj'"  [required]="'1'" class="col-lg-6" ></app-file-upload>
-                <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'" [required]="'1'" [accept]="'image/*'" class="col-lg-6"></app-file-upload>
+                <app-file-upload [title]="'Upload model'" [accept]="'.obj'" [required]="'1'" class="col-lg-6"
+                                 #modelObj></app-file-upload>
+                <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'" [required]="'1'" [accept]="'image/*'"
+                                 class="col-lg-6" #framesObj></app-file-upload>
             </div>
 
             <div class="new-btns">
@@ -19,5 +23,89 @@
         </form>
 
     </div>
-    <div *ngIf="project.model.link" class="source-creating"></div>
+    <div *ngIf="project.model.link">
+        <div class="tabs-view">
+            <div class="tabs-blocks col-lg-12">
+                <table class="my-table col-lg-12">
+                    <tbody>
+                    <tr>
+                        <td class="tabs-header" [ngClass]="{'no-width':treeView.hide}" #treeView>
+                            <div *ngIf="!treeView.hide" class="tab-header">
+                                <span class="title">Project Map</span>
+                                <span class="text-btn" (click)="treeView.hide=!treeView.hide">hide</span>
+                            </div>
+                            <img *ngIf="treeView.hide" (click)="treeView.hide=!treeView.hide"
+                                 src="../assets/img/Fill%202.svg">
+                        </td>
+                        <td class="tabs-header s-tab" [ngClass]="{'no-width':sceneConfig.hide}" #sceneConfig>
+                            <div class="temp-header" *ngIf="!sceneConfig.hide">
+                                <span class="title">Preferences</span>
+                                <span class="text-btn" (click)="sceneConfig.hide=!sceneConfig.hide">hide</span>
+                            </div>
+                            <img *ngIf="sceneConfig.hide" (click)="sceneConfig.hide=!sceneConfig.hide"
+                                 src="../assets/img/Fill%202.svg">
+                        </td>
+                        <td class="s-tab webgl-item" rowspan="2"
+                            [attr.colspan]="sceneConfig.hide && treeView.hide ?3:1">
+                            <app-project-webgl-view *ngIf="selectedChild" [selected]="selectedChild">-----WEBGL------</app-project-webgl-view>
+
+                            <div class="pop-ups" #projChildCreate>
+                                <div class="child-create" *ngIf="projChildCreate.show">
+                                    <div class="source-creating col-lg-3">
+                                        <span>Name of the new child:</span>
+
+                                        <form class="item-form" #createChildForm="ngForm" novalidate>
+                                            <div class="input-wrap">
+                                                <input type="text" #childName="ngModel" name="childName"
+                                                       placeholder="Child`s Name"
+                                                       [(ngModel)]="tempNewChild.name" required autofocus>
+                                                <label [class.full-op]="childName.invalid && childName.touched">The
+                                                    Child`s Name is required!</label>
+                                            </div>
+
+                                            <div class="new-btns">
+                                                <span class="text-btn"
+                                                      (click)="projChildCreate.show = !projChildCreate.show">cancel</span>
+                                                <span class="right-btn text-btn" (click)="projChildCreate.show = !projChildCreate.show">create</span>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngIf="!treeView.hide" [attr.colspan]="sceneConfig.hide?2:1">
+                            <div class="tabs-body">
+                                <div class="body-data">
+                                    <tree [data]="project.model.data"></tree>
+                                </div>
+                            </div>
+                        </td>
+                        <td *ngIf="!sceneConfig.hide" class="s-tab" [attr.colspan]="treeView.hide?2:1">
+                            <div class="tabs-body">
+                                <div class="body-data">
+                                    <app-project-edit-view   *ngIf="selectedChild" [modelStructure]="selectedChild" ></app-project-edit-view>
+
+
+                                    <div class="add-btn" *ngIf="!projChildCreate.show"
+                                         (click)="projChildCreate.show = !projChildCreate.show">
+                                        <i class="material-icons">add</i>
+                                        <div class="span-hover">
+                                            <span>Add a new Child</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td *ngIf="sceneConfig.hide && treeView.hide"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

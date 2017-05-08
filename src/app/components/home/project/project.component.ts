@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ShareService} from "../../../services/share.service";
@@ -44,9 +43,3 @@ export class ProjectComponent{
   }
 
 }
-=======
-export class ProjectComponent{
-    constructor (){}
-
-}
->>>>>>> Stashed changes

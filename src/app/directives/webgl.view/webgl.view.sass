@@ -1,0 +1,50 @@
+@import "../../styles/values"
+
+.webgl-view
+  background: $primary-text
+  border-radius: 10px
+  ul
+    bottom: -220px
+    position: relative
+    text-align: center
+    li
+      display: inline
+      padding: 5px
+      background: $black
+      color: $white
+      border-radius: 5px
+      margin: 5px
+      cursor: pointer
+      &.active
+        background: $orange
+      &:hover
+        background: $text-color-gray
+
+  .oxi-controls
+    width: 150px
+    display: none
+    position: absolute
+    transform: translate(-50%,-50%)
+    z-index: 4
+    &.active
+      display: block
+    div
+      width: 50px
+      height: 50px
+      background: $black
+      opacity: 0.5
+      transition: transform,opacity 0.5s
+      border-radius: 50%
+      cursor: pointer
+      display: flex
+      img
+        margin: auto
+      &:hover
+        opacity: 1
+        transform: scale(1.2)
+      &:nth-child(1),&:nth-child(4)
+        margin: auto
+      &.attach-js
+        right: 0
+        position: absolute
+        top: 33%

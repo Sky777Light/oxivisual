@@ -1,15 +1,145 @@
+@import "../../../../styles/values"
+
+.my-btn
+  padding: 0 6px 0 6px
+  margin: 6px 8px 6px 8px
+  border-radius: 3px
+  font-size: 14px
+  text-align: center
+  text-transform: uppercase
+  border: none
+  outline: none
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15)
+  &.round
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    background: $orange
+    color: $white
+    float: right
+    i
+      display: table
+      margin: auto
+  &:active
+    margin-top: 15px
+  &:hover
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3)
 .source-creating
   position: absolute
   left: 50%
   top: 50%
   transform: translate(-50%, -50%)
-  div
-    padding: 0
-  .new-btns
-    justify-content: center
-
-    .text-btn
-      padding: 15px
+  //div
+  //  padding: 0
 
   .input-wrap
     margin-bottom: 30px
+.tabs-view
+  .tabs-blocks
+    display: inline-flex
+  .my-table
+    tr
+      &:nth-child(2)
+        td
+          height: calc(100vh - 160px)
+          overflow: auto
+    td
+      max-width: 0px
+      padding: 20px
+      transition: width,display,0.1s
+      .source-creating
+        transform: translate(-50%,0%)
+        position: relative
+        background: $white
+        padding: 30px
+        z-index: 3
+      &.s-tab
+        background: $back-alter
+        &.webgl-item
+          background: gray
+          padding: 0
+          margin: 0
+          max-height: calc(100vh - 230px)
+          *
+            vertical-align: middle
+
+        .add-btn
+          position: relative
+          outline: none
+          border: none
+          float: right
+          right: 0
+          bottom: 0
+      .webgl-view
+        padding: 0
+        background: $black
+        margin: 0
+    .tabs-header
+      transition: width,display,0.1s
+      border-bottom: 2px solid  $bottom-bor
+      &:nth-child(1)
+        width: 305px
+      &:nth-child(2)
+        width: 370px
+      .temp-data
+        display: inline-table
+        width: 100%
+        vertical-align: middle
+        .temp-header
+          display: table-cell
+          padding: 20px
+          border-bottom: 2px solid $bottom-bor
+        .tabs-body
+          display: table-row
+          .body-data
+            display: block
+            padding: 20px
+            height: calc(100vh - 163px)
+      .title, .text-btn
+        display: inline
+      .title
+        float: left
+      .text-btn
+        float: right
+        text-transform: uppercase
+        cursor: pointer
+        font-size: 16px
+        color: $btn-color
+        font-weight: 500
+        -webkit-transition: opacity .5s
+        transition: opacity .5s
+        &:hover
+          opacity: 0.6
+      &.no-width
+        width: 10px
+        text-align: center
+        padding: 20px
+      img
+        //padding: 22px
+        //border-bottom: 2px solid $bottom-bor
+        &:hover
+          cursor: pointer
+          box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3)
+      &:nth-child(2)
+        background: $back-alter
+  .model-config
+    .inp-form
+      input
+        width: 100%
+        background: $white
+        font-size: 22px
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13)
+
+.center-container
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(0,-50%)
+  z-index: 2
+.img-slider-container
+  img
+    display: none
+    width: 100%
+    margin: auto
+    &.active
+      display: block
