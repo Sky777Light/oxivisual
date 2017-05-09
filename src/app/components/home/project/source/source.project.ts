@@ -13,12 +13,12 @@ declare var alertify:any;
     templateUrl: './source.project.html',
     styleUrls: ['./source.project.sass']
 })
-export class SourceProject implements AfterViewInit,OnChanges{
-    public instance: SourceProject;
+export class SourceProject implements AfterViewInit,OnChanges {
+    public instance:SourceProject;
     private project:any;
     selectedChild:any;
     tempNewChild:ENTITY.ModelStructure;
-    editview:boolean=false;
+    editview:boolean = false;
 
     @ViewChild("modelObj")
         modelObj:HTMLElement;
@@ -32,20 +32,23 @@ export class SourceProject implements AfterViewInit,OnChanges{
     ngOnChanges(changes) {
         console.log(changes);
     }
+
     ngAfterViewInit() {
-        setTimeout(()=>{this.editview = true;},200);
+        setTimeout(()=> {
+            this.editview = true;
+        }, 200);
     }
+
     ngOnInit() {
         this.project = this.projectService.getProject();
         this.tempNewChild = new ENTITY.ModelStructure();
-        setTimeout(()=>{
-            if(this.project.model.data){
+        setTimeout(()=> {
+            if (this.project.model.data) {
                 this.select(this.project.model.data[0]);
             }
 
-        },200);
+        }, 200);
     }
-
 
     create(form:NgForm) {
 
@@ -80,28 +83,37 @@ export class SourceProject implements AfterViewInit,OnChanges{
         }, (error) => {
         });
     }
-    update(){
+    update(form:NgForm){
+        if (form.invalid)return alertify.error('Please fill all inputs correctly');
 
+        let startFrom =0;
+        function uploadStructure(area){
+            if(area){
+                if(area.area)uploadStructure(area.area[]);
+            }else{
+
+            }
+        }
+        uploadStructure(this.project.model.data[0]);
     }
 
-    createChild(form:NgForm){
-
-    }
-
-    select(child:any){
-        console.log(this);
+    select(child:any) {
+        if (this.selectedChild && this.selectedChild.app)this.selectedChild.app = null;
         this.selectedChild = child;
+        child._app = this;
     }
 }
-export class ProjTabs{
+export class ProjTabs {
 
     private source:SourceProject;
     private classes:Array<string>;
-    constructor(source:SourceProject){
+
+    constructor(source:SourceProject) {
         this.source = source;
         this.classes = ['hide'];
     }
-    toggle(elem:any){
-        elem.className = elem.className.match(this.classes[0])? elem.className.replace(this.classes[0],''):elem.className+" "+this.classes[0];
+
+    toggle(elem:any) {
+        elem.className = elem.className.match(this.classes[0]) ? elem.className.replace(this.classes[0], '') : elem.className + " " + this.classes[0];
     }
 }

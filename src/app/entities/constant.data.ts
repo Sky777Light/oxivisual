@@ -24,5 +24,3 @@ export class ProjClasses {
     static ACTIVE:string = 'active';
 
 }
-export enum Configs{
-}

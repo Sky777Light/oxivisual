@@ -1,5 +1,5 @@
 import {Input,Component} from '@angular/core';
-import * as PROJ from "../../../../entities/Project";
+import {IProject} from "../../../../entities/entities";
 import {ProjectService} from "../../../../services/project.service";
 
 declare var alertify: any;
@@ -10,7 +10,7 @@ declare var alertify: any;
     styleUrls: ['./view.project.sass']
 })
 export class ViewProject{
-    @Input()  project: PROJ.IProject;
+    @Input()  project:  IProject;
     @Input()  Editable: boolean;
     private openedPopUp: boolean = false;
     constructor(

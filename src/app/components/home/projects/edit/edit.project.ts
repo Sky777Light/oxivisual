@@ -3,7 +3,7 @@ import {UserService} from "../../../../services/user.service";
 import {User} from "../../../../interfaces/user.interface";
 import {Resol} from "../../../../interfaces/resol.interface";
 import {IMain} from "../../../../interfaces/IMain";
-import * as PROJ from "../../../../entities/Project";
+import {IProject,Project} from "../../../../entities/entities";
 import {ShareService} from "../../../../services/share.service";
 
 @Component({
@@ -13,7 +13,7 @@ import {ShareService} from "../../../../services/share.service";
 })
 export class EditProject {
 
-    @Input() project:PROJ.IProject;
+    @Input() project:IProject;
     @Input()  title:string;
 
     private user:User;
@@ -27,7 +27,7 @@ export class EditProject {
     constructor(protected userService:UserService,
                 protected shareService:ShareService) {
         this.user = this.userService.getUser();
-        this.project = new PROJ.Project();
+        this.project = new Project();
     }
 
 

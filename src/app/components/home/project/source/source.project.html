@@ -87,7 +87,7 @@
                         <td *ngIf="!sceneConfig.hide" class="s-tab" [attr.colspan]="treeView.hide?2:1">
                             <div class="tabs-body">
                                 <div class="body-data">
-                                    <app-project-edit-view  *ngIf="selectedChild && selectedChild.category == 2" [modelStructure]="selectedChild" ></app-project-edit-view>
+                                    <app-project-edit-view  *ngIf="selectedChild" [modelStructure]="selectedChild" ></app-project-edit-view>
 
 
                                     <!--<div class="add-btn" *ngIf="!projChildCreate.show"

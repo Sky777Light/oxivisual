@@ -9,9 +9,24 @@ export interface IModelStructure extends IMain {
     projFilesDirname:string;
     areas:Array<IModelStructure>;
 }
-class OxiCamera {
-    position:any;
-    fov:any;
+export class OxiCamera extends Main {
+    position:Vector3;
+    rotation:Vector3;
+    resolution:Vector3;
+    fov:number;
+    scale:number;
+
+    constructor(entity:any = {}) {
+        super(entity);
+    }
+}
+export class Vector3 extends Main {
+    x:number;
+    y:number;
+    z:number;
+    constructor(entity:any ) {
+        super(entity);
+    }
 }
 
 export class GeneralStructure extends Main {
@@ -39,9 +54,9 @@ export class ModelStructure extends GeneralStructure implements IModelStructure 
     cash:PCash;
 
     constructor(entity:any = {name: 'Child'}) {
-        entity.category = CONSTANTS.Config.PROJ_DESTINATION.MODEL_OBJ;
-        entity.cash = new PCash();
         super(entity);
+        this.category = CONSTANTS.Config.PROJ_DESTINATION.MODEL_OBJ;
+        this.cash = new PCash();
     }
 }
 

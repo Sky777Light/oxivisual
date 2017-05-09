@@ -1,9 +1,29 @@
-import {Input,ViewChild,Component,OnInit,OnChanges} from '@angular/core';
+import {Input,ViewChild,Component,OnInit,OnChanges,EventEmitter,Injectable} from '@angular/core';
 import * as ENTITY from '../../entities/entities';
 
 declare var alertify:any;
 declare var THREE:any;
 declare var Pace:any;
+
+@Injectable()
+export class WebGLService {
+    navchange:EventEmitter<any> = new EventEmitter();
+
+    constructor() {
+    }
+
+    emit(data) {
+        this.navchange.emit(data);
+    }
+
+    subscribe(component, callback) {
+        // set 'this' to component when callback is called
+        return this.navchange.subscribe(data => {
+            console.log(data);
+            callback.call(component, data);
+        });
+    }
+}
 
 @Component({
     selector: 'app-project-webgl-view',
@@ -17,14 +37,16 @@ export class WebglView implements OnInit,OnChanges {
     @Input() selected:any;
 
     app:OxiAPP;
+    private _id:number = Date.now();
 
-    constructor() {
+    constructor(private navService:WebGLService) {
 
     }
 
     ngOnChanges(changes) {
-        if (changes.selected.currentValue.destination != changes.selected.previousValue.destination)this.initWebgl();
+        if (changes.selected.currentValue.created != changes.selected.previousValue.created)this.initWebgl();
         if (this.selected)this.selected.app = this.app;
+
     }
 
     ngOnInit() {
@@ -34,6 +56,11 @@ export class WebglView implements OnInit,OnChanges {
 
     initWebgl() {
         this.app = new OxiAPP(this);
+    }
+
+    ngOnDestroy() {
+        console.log('webgl context '+this._id+" was clear");
+        this.app._animation.stop();
     }
 
 }
@@ -53,10 +80,12 @@ class OxiAPP {
     controls:any;
     _files:any = {};
     _fileReader:FileReader;
+    _container:any;
 
     constructor(main:WebglView) {
         this.main = main;
         this.scene = new THREE.Scene();
+        this.model = new THREE.Object3D();
         let renderer = this.gl = new THREE.WebGLRenderer({antialias: true, alpha: true}),
             SCREEN_WIDTH = this.screen.width = 720,
             SCREEN_HEIGHT = this.screen.height = 405;
@@ -67,12 +96,32 @@ class OxiAPP {
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
         this.controls.enablePan = false;
-        //this.controls.addEventListener('change', ()=>this._animation.play());
-        this.camera.positionDef = new THREE.Vector3().copy(main.selected.camera && main.selected.camera.position ? main.selected.camera.position : {
-            x: 34800,
-            y: 18600,
-            z: -600
+
+        this.controls.addEventListener('change', ()=> {
+            this.dataSave();
+            this._animation.play();
         });
+
+        /*-----------set config data----------*/
+        this.camera.positionDef = new THREE.Vector3( 34800,18600, -600);
+        if(main.selected.camera){
+            if(  main.selected.camera.rotation){
+                this.camera.rotation.x = main.selected.camera.rotation.x;
+                this.camera.rotation.y = main.selected.camera.rotation.y;
+                this.camera.rotation.z = main.selected.camera.rotation.z;
+            }
+            if( main.selected.camera.position){
+                this.camera.positionDef.copy(main.selected.camera.position);
+            }
+            if(  main.selected.camera.fov){
+                this.camera.fov = main.selected.camera.fov;
+            }
+            if(  main.selected.camera.scale){
+                this.model.scale.multiplyScalar(main.selected.camera.scale);
+            }
+        }
+
+
         this.camera.position.copy(this.camera.positionDef);
 
         let curDist = this.camera.positionDef.distanceTo(this.controls.target),
@@ -82,6 +131,7 @@ class OxiAPP {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
             this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
+            this._animation.play();
         }
         this.scene.add(new THREE.AxisHelper(500));
 
@@ -97,7 +147,7 @@ class OxiAPP {
 
             this._projControls = new OxiControls(this);
             this._slider = new OxiSlider(this);
-            let parentCanvas = document.createElement('div');
+            let parentCanvas = this._container = document.createElement('div');
             parentCanvas.className = ENTITY.ProjClasses.CENTER_CONTAINER;
             this._parent().appendChild(parentCanvas);
             parentCanvas.appendChild(renderer.domElement);
@@ -105,6 +155,34 @@ class OxiAPP {
 
             this._events = new OxiEvents(this);
             this._animation = new OxiAnimation(this);
+        });
+    }
+
+    updateData(data) {
+
+        switch (data) {
+            case'scale':
+            {
+                this.model.scale.z = this.model.scale.y = this.model.scale.x;
+                break;
+            }
+            default:
+            {
+                this.camera.updateProjectionMatrix();
+            }
+        }
+
+
+        this.dataSave();
+        this._animation.play();
+    }
+    dataSave(){
+        this.main.selected.camera = new ENTITY.OxiCamera({
+            position:new ENTITY.Vector3(this.camera.position),
+            rotation:new ENTITY.Vector3(this.camera.rotation),
+            resolution:new ENTITY.Vector3({x:this._slider._W(),y:this._slider._H()}),
+            fov:this.camera.fov,
+            scale:this.model.scale.x,
         });
     }
 
@@ -162,16 +240,17 @@ class OxiAPP {
     }
 
     onFilesSelected(files) {
-        let filereader = this._fileReader = this._fileReader || new FileReader(),
+        let _self = this,
+            filereader = this._fileReader = this._fileReader || new FileReader(),
             isObj = files[0].name.match('.obj');
         this._files[(isObj ? 'model[]' : 'frames[]')] = files;
 
-        if(!isObj)this.main.selected.cash.images = [];
+        if (!isObj)this.main.selected.images = [];
 
         let startFrom = 0;
 
         function parseFiles(cur) {
-            if (!cur) return;
+            if (!cur) return (isObj ? _self._animation.play() : _self._slider.addFrames());
             if (isObj) {
                 filereader.readAsText(cur);
             } else {
@@ -179,10 +258,13 @@ class OxiAPP {
             }
             filereader.onloadend = (e:any)=> {
                 if (isObj) {
-                    let loader = this.loader = this.loader || new THREE.OBJLoader();
-                    loader.parse(e.currentTarget.result, (m)=>this._onLoadModel(m));
+                    let loader = _self.loader = _self.loader || new THREE.OBJLoader();
+                    loader.parse(e.currentTarget.result, (m)=>{
+                        _self.main.selected.destination = cur;
+                        _self._onLoadModel(m);
+                    });
                 } else {
-                    this.main.selected.cash.images.push({file:cur,data:e.currentTarget.result});
+                    _self.main.selected.images.push({file: cur, name: cur.name, data: e.currentTarget.result});
                 }
 
                 parseFiles(files[startFrom++]);
@@ -301,8 +383,8 @@ class OxiMouse {
         let _slider = this.main._slider,
             canvasW = _slider._W(),
             canvasH = _slider._H(),
-            _x = (ev ? ev.clientX : canvasW / 2) - (_slider.container.offsetLeft + 10),
-            _y = (ev ? ev.clientY : canvasH / 2) - _slider.container.offsetTop + 110
+            _x = (ev ? ev.clientX : canvasW / 2) - (_slider._offsetLeft() + 10),
+            _y = (ev ? ev.clientY : canvasH / 2) - _slider._offsetTop() + 110
             ;
 
         if (ev && ev.touches) {
@@ -349,16 +431,16 @@ class OxiAnimation {
     }
 
     animate() {
-        if (!this.app.gl.domElement.clientWidth)return;
+        if (!this.app.gl.domElement.clientWidth || this.isStop)return;
         for (let i = 0; i < this.animations.length; i++) {
             this.animations[i]();
         }
 
-        //if (this.canAnimate) {
-        //    this.canAnimate = this.lastUpdate > Date.now();
-        //    if (!this.canAnimate || this.lastIter > 2)this.lastIter = 0;
-        this.app.render();
-        //}
+        if (this.canAnimate) {
+            this.canAnimate = this.lastUpdate > Date.now();
+            if (!this.canAnimate || this.lastIter > 2)this.lastIter = 0;
+            this.app.render();
+        }
         requestAnimationFrame(() => {
             this.animate();
         });
@@ -393,8 +475,13 @@ class OxiSlider {
 
     addFrames() {
         let app = this.app;
-        if (this.container)app._parent().removeChild(this.container);
-        if (this.imgPagination)app._parent().removeChild(this.imgPagination);
+
+        [this.container, this.imgPagination].forEach((domEl)=> {
+            if (domEl) {
+                while (domEl.firstChild) domEl.removeChild(domEl.firstChild);
+                if (domEl.parentNode)domEl.parentNode.removeChild(domEl);
+            }
+        });
 
 
         let div = this.container = document.createElement('div'),
@@ -405,7 +492,7 @@ class OxiSlider {
         for (let i = 0; i < app.main.selected.images.length; i++) {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
-            img.src = ENTITY.Config.PROJ_LOC + app.main.selected.projFilesDirname + "/images/" + curImg;
+            img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + app.main.selected.projFilesDirname + "/images/" + curImg : curImg.data;
             if (i == 0)img.className = ENTITY.ProjClasses.ACTIVE;
             div.appendChild(img);
 
@@ -437,6 +524,14 @@ class OxiSlider {
     _H() {
         return this.container.clientHeight || this.app.screen.height;
     }
+
+    _offsetLeft() {
+        return this.container.offsetLeft || this.app._container.offsetLeft;
+    }
+
+    _offsetTop() {
+        return this.container.offsetTop || this.app._container.offsetTop;
+    }
 }
 class OxiControls {
     app:OxiAPP;
@@ -451,7 +546,7 @@ class OxiControls {
         let childSelected = (child:any)=> {
             this.app._events.lastInter.object._data = child;
             child._id = this.app._events.lastInter.object.name;
-            child.name = child._id.toLowerCase();
+            child.name = child._id.toUpperCase();
 
             if (!this.app.main.selected.areas) {
                 this.app.main.selected.areas = [child];
@@ -525,5 +620,6 @@ class OxiControls {
 
         this.controls.style.left = ((pos.x || pos.clientX) - 15 ) + 'px';
         this.controls.style.top = ((pos.y || pos.clientY) - this.controls.clientHeight / 2 - 15) + 'px';
+        this.app._animation.play();
     }
 }

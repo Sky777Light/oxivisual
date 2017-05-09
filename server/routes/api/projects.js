@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const async = require("async");
 const fs = require("fs");
+const config = require("./config");
 
 const Project = require("../../models/project");
 
@@ -150,7 +151,6 @@ router.post("/project", function (req, res) {
                 title: req.body.title,
                 link: req.body.link,
                 owner: req.user._id,
-                created: req.body.created,
                 image: req.body.image,
                 published: false
             });
@@ -189,8 +189,6 @@ router.post("/project", function (req, res) {
 
 
 router.post("/project/model/create", function (req, res) {
-    // create an incoming form object
-
     var modelName = req.body.name,
         id_project = req.body.id_project;
     if (!modelName || !modelName || !req.files['model[]'] || !req.files['frames[]']) {
@@ -199,15 +197,16 @@ router.post("/project/model/create", function (req, res) {
             message: "something got incorect!!!"
         });
     } else {
-        var matches = ['.obj', 'image/'],
+        var matches = config.FILE_UPLOAD_EXT.concat([]),
             area = {
                 name:modelName,
                 projFilesDirname:modelName + "_" + randomString(),
                 frames:0,
+                created:Date.now(),
                 images:[]
             },
-            modelDir = 'resources/uploads/projects/'+ area.projFilesDirname,
-            imageDir = modelDir + "/images",
+            modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS+ area.projFilesDirname,
+            imageDir = modelDir + config.DIR.IMAGES,
             mode = parseInt("0777", 8);
 
         if (!fs.existsSync(modelDir)) {
@@ -229,7 +228,8 @@ router.post("/project/model/create", function (req, res) {
                 }
             }
         }
-        fs.writeFileSync(modelDir + "/site_structure.json", JSON.stringify([area]));
+        fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, JSON.stringify([area]));
+
         Project.update({_id: id_project}, {$set: {"model.link": area.projFilesDirname, "model.name": modelName}}, function (err) {
             return res.json({
                 status: !err,
@@ -241,11 +241,64 @@ router.post("/project/model/create", function (req, res) {
                 }
             });
         });
-
-
     }
-
 });
+router.post("/project/model/update", function (req, res) {
+    var modelName = req.body.name,
+        id_project = req.body.id_project;
+    if (!modelName || !modelName || !req.files['model[]'] || !req.files['frames[]']) {
+        return res.json({
+            status: false,
+            message: "something got incorect!!!"
+        });
+    } else {
+        var matches = config.FILE_UPLOAD_EXT.concat([]),
+            area = {
+                name:modelName,
+                projFilesDirname:modelName + "_" + randomString(),
+                frames:0,
+                created:Date.now(),
+                images:[]
+            },
+            modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS+ area.projFilesDirname,
+            imageDir = modelDir + config.DIR.IMAGES,
+            mode = parseInt("0777", 8);
+
+        if (!fs.existsSync(modelDir)) {
+            fs.mkdirSync(modelDir, mode);
+        }
+        if (!fs.existsSync(imageDir)) {
+            fs.mkdirSync(imageDir, mode);
+        }
+        for (var keys in req.files) {
+            for (var i = 0; i < req.files[keys].length; i++) {
+                var _file = req.files[keys][i];
+                if (_file.originalname.match(matches[0])) {
+                    fs.writeFileSync(modelDir + "/" + _file.originalname, fs.readFileSync(_file.path));
+                    area.destination = _file.originalname;
+                } else if (_file.mimetype.match(matches[1])) {
+                    fs.writeFileSync(imageDir + "/" + _file.originalname, fs.readFileSync(_file.path));
+                    area.frames++;
+                    area.images.push(_file.originalname);
+                }
+            }
+        }
+        fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, JSON.stringify([area]));
+
+        Project.update({_id: id_project}, {$set: {"model.link": area.projFilesDirname, "model.name": modelName}}, function (err) {
+            return res.json({
+                status: !err,
+                message: err ? err : "model was saved",
+                model: {
+                    link: area.projFilesDirname,
+                    name: modelName,
+                    data:area
+                }
+            });
+        });
+    }
+});
+
 
 //delete user
 router.delete("/project", function (req, res) {

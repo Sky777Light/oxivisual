@@ -2,6 +2,13 @@
 
 module.exports = {
     env: process.env.NODE_ENV,
+    DIR: {
+        UPLOADS:'resources/uploads/',
+        PROJECTS:'projects',
+        IMAGES:'images/',
+        SITE_STRUCTURE:'/site_structure.json'
+    },
+    FILE_UPLOAD_EXT:['.obj','image/'],
     port: process.env.PORT || 3007,
     mongoose: {
         uri: "mongodb://localhost/oxivisual"

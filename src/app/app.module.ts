@@ -32,7 +32,7 @@ import {ProjectComponent} from "./components/home/project/project.component";
 import {SourceProject} from "./components/home/project/source/source.project";
 import {BasicProject} from "./components/home/project/basic/basic.project";
 import {ProjectService} from "./services/project.service";
-import {WebglView,UploadFile,MNode,MTree,SlimScroll} from "./directives/directives";
+import {WebglView,WebGLService,UploadFile,MNode,MTree,SlimScroll} from "./directives/directives";
 import {EditView} from "./components/home/project/source/edit.view/edit.view";
 
 
@@ -78,6 +78,7 @@ import {EditView} from "./components/home/project/source/edit.view/edit.view";
     LoggedGuardService,
     UserService,
     ShareService,
+    WebGLService,
     ProjectService
   ],
   bootstrap: [AppComponent]
