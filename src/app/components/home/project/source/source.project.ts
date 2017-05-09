@@ -18,6 +18,7 @@ export class SourceProject implements AfterViewInit,OnChanges {
     private project:any;
     selectedChild:any;
     tempNewChild:ENTITY.ModelStructure;
+    uploadChild:any ;
     editview:boolean = false;
 
     @ViewChild("modelObj")
@@ -86,16 +87,66 @@ export class SourceProject implements AfterViewInit,OnChanges {
     update(form:NgForm){
         if (form.invalid)return alertify.error('Please fill all inputs correctly');
 
-        let startFrom =0;
-        function uploadStructure(area){
-            if(area){
-                if(area.area)uploadStructure(area.area[]);
-            }else{
-
-            }
-        }
-        uploadStructure(this.project.model.data[0]);
+        let data = this.project.model.data[0],
+            self = this;
+        this.uploadStructure(data,function(){
+            console.log(data.clone());
+            self.authService.post("/api/projects/project/model/update", {dir:data.projFilesDirname,structure:JSON.stringify([data.clone()])}).subscribe((res:any) => {
+                console.log("finish update");
+            });
+        },data.projFilesDirname);
     }
+    private uploadStructure(area,callback,dirStartFrom){
+        let _self = this,
+            siteStructure=[];
+
+        if(area){
+            let _form =  new FormData(),
+                filesUpload = [{a: area.destination, n: 'model[]'}, {a: area.images, n: 'frames[]'}];
+            _form.append('dir',dirStartFrom);
+
+            for (let f = 0; f < filesUpload.length; f++) {
+                let types = filesUpload[f];
+                if (!(types.a instanceof Array)|| !types.a.length ) continue;
+                for (var i = 0; i < types.a.length; i++) {
+                    var file = types.a[i].file;
+                    if(file instanceof File)_form.append(types.n, file, file.name);
+                }
+            }
+            _self.authService.post("/api/projects/project/model/update", _form).subscribe((res:any) => {
+                res = res.json();
+                if (res.status) {
+                    alertify.success(res.message);
+
+                    area.projFilesDirname = dirStartFrom;
+                    if(area.destination instanceof Array)area.destination = area.destination[0].name;
+                    for (let f = 0; area.images && f < area.images.length; f++) {
+                          if(area.images[f].file)area.images[f]= area.images[f].file.name;
+                    }
+                } else {
+                    alertify.error(res.message);
+                }
+
+                if(area.areas){
+                    var startAt =0,
+                        uploadChild =  function(_ar){
+                            if(!_ar)return callback();
+                            _self.uploadStructure(_ar,function(res){
+                                uploadChild(area.areas[startAt++]);
+                            }, _ar.projFilesDirname || (dirStartFrom +"/"+ _ar.name))
+                        };
+
+                    uploadChild(area.areas[startAt++]);
+                }else{
+                    callback();
+                }
+
+            });
+        }else{
+            callback();
+        }
+    }
+
 
     select(child:any) {
         if (this.selectedChild && this.selectedChild.app)this.selectedChild.app = null;

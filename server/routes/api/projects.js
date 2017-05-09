@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const async = require("async");
 const fs = require("fs");
-const config = require("./config");
+const config = require("../../config");
 
 const Project = require("../../models/project");
 
@@ -191,7 +191,7 @@ router.post("/project", function (req, res) {
 router.post("/project/model/create", function (req, res) {
     var modelName = req.body.name,
         id_project = req.body.id_project;
-    if (!modelName || !modelName || !req.files['model[]'] || !req.files['frames[]']) {
+    if (!modelName || !id_project || !req.files['model[]'] || !req.files['frames[]']) {
         return res.json({
             status: false,
             message: "something got incorect!!!"
@@ -199,6 +199,7 @@ router.post("/project/model/create", function (req, res) {
     } else {
         var matches = config.FILE_UPLOAD_EXT.concat([]),
             area = {
+                _id:id_project,
                 name:modelName,
                 projFilesDirname:modelName + "_" + randomString(),
                 frames:0,
@@ -207,7 +208,7 @@ router.post("/project/model/create", function (req, res) {
             },
             modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS+ area.projFilesDirname,
             imageDir = modelDir + config.DIR.IMAGES,
-            mode = parseInt("0777", 8);
+            mode = config.FILE_UPLOAD_ACCEC;
 
         if (!fs.existsSync(modelDir)) {
             fs.mkdirSync(modelDir, mode);
@@ -244,58 +245,49 @@ router.post("/project/model/create", function (req, res) {
     }
 });
 router.post("/project/model/update", function (req, res) {
-    var modelName = req.body.name,
-        id_project = req.body.id_project;
-    if (!modelName || !modelName || !req.files['model[]'] || !req.files['frames[]']) {
+    var body =  req.body;
+    if ( !body.dir ) {
         return res.json({
             status: false,
             message: "something got incorect!!!"
         });
-    } else {
-        var matches = config.FILE_UPLOAD_EXT.concat([]),
-            area = {
-                name:modelName,
-                projFilesDirname:modelName + "_" + randomString(),
-                frames:0,
-                created:Date.now(),
-                images:[]
-            },
-            modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS+ area.projFilesDirname,
-            imageDir = modelDir + config.DIR.IMAGES,
-            mode = parseInt("0777", 8);
+    }else{
 
-        if (!fs.existsSync(modelDir)) {
-            fs.mkdirSync(modelDir, mode);
-        }
-        if (!fs.existsSync(imageDir)) {
-            fs.mkdirSync(imageDir, mode);
-        }
-        for (var keys in req.files) {
-            for (var i = 0; i < req.files[keys].length; i++) {
-                var _file = req.files[keys][i];
-                if (_file.originalname.match(matches[0])) {
-                    fs.writeFileSync(modelDir + "/" + _file.originalname, fs.readFileSync(_file.path));
-                    area.destination = _file.originalname;
-                } else if (_file.mimetype.match(matches[1])) {
-                    fs.writeFileSync(imageDir + "/" + _file.originalname, fs.readFileSync(_file.path));
-                    area.frames++;
-                    area.images.push(_file.originalname);
+        let  modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS +"/"+ body.dir,
+            matches = config.FILE_UPLOAD_EXT;
+
+        if(req.files){
+            let  imageDir = modelDir + config.DIR.IMAGES;
+
+            if (!fs.existsSync(modelDir))fs.mkdirSync(modelDir, config.FILE_UPLOAD_ACCEC);
+            console.log(modelDir);
+            for (var keys in req.files) {
+                for (var i = 0; i < req.files[keys].length; i++) {
+                    var _file = req.files[keys][i];
+                    if (_file.originalname.match(matches[0])) {
+                        fs.writeFileSync(modelDir + "/" + _file.originalname, fs.readFileSync(_file.path));
+                    } else if (_file.mimetype.match(matches[1])) {
+                        fs.writeFileSync(imageDir + "/" + _file.originalname, fs.readFileSync(_file.path));
+                    }
                 }
             }
         }
-        fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, JSON.stringify([area]));
-
-        Project.update({_id: id_project}, {$set: {"model.link": area.projFilesDirname, "model.name": modelName}}, function (err) {
-            return res.json({
-                status: !err,
-                message: err ? err : "model was saved",
-                model: {
-                    link: area.projFilesDirname,
-                    name: modelName,
-                    data:area
-                }
-            });
+        if(body.structure){
+            fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, body.structure);
+        }
+        return res.json({
+            status: true,
+            message: "project area was updated"
         });
+        //var area = {
+        //        _id:body._id ,
+        //        name:body.name,
+        //        camera:body.camera,
+        //        frames:0,
+        //        created:Date.now(),
+        //        images:[]
+        //    };
+        //var structure = JSON.parse(fs.readFileSync(config.DIR.UPLOADS+config.DIR.PROJECTS+ body.projFilesDirname+ config.DIR.SITE_STRUCTURE));
     }
 });
 

@@ -9,6 +9,7 @@ module.exports = {
         SITE_STRUCTURE:'/site_structure.json'
     },
     FILE_UPLOAD_EXT:['.obj','image/'],
+    FILE_UPLOAD_ACCEC:parseInt("0777", 8),
     port: process.env.PORT || 3007,
     mongoose: {
         uri: "mongodb://localhost/oxivisual"

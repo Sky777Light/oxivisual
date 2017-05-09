@@ -10,6 +10,9 @@ export class ProjectModel extends Main{
     constructor(entity:any = null){
         super(entity);
     }
+    stringFy(){
+        let res = [];
+    }
 }
 export interface IProject extends IMain{
     title: string;

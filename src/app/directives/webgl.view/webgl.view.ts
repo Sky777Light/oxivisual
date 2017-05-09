@@ -229,6 +229,13 @@ class OxiAPP {
         object.traverse((child)=> {
             if (child.type == 'Mesh') {
                 child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
+
+                for(let i=0, areas=this.main.selected.areas; areas && i<areas.length;i++){
+                    if(areas[i]._id.match(child.name)){
+                        child._data = areas[i];
+                        break;
+                    }
+                }
             }
         });
         this.main.selected.cash.model = object;
@@ -260,7 +267,7 @@ class OxiAPP {
                 if (isObj) {
                     let loader = _self.loader = _self.loader || new THREE.OBJLoader();
                     loader.parse(e.currentTarget.result, (m)=>{
-                        _self.main.selected.destination = cur;
+                        _self.main.selected.destination = [{file:cur}];
                         _self._onLoadModel(m);
                     });
                 } else {
@@ -547,6 +554,8 @@ class OxiControls {
             this.app._events.lastInter.object._data = child;
             child._id = this.app._events.lastInter.object.name;
             child.name = child._id.toUpperCase();
+
+            child._id +=Date.now();
 
             if (!this.app.main.selected.areas) {
                 this.app.main.selected.areas = [child];
