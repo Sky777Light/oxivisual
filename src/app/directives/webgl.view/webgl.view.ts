@@ -602,7 +602,7 @@ class OxiControls {
             {
                 className: 'attach-link', click: ()=> {
                 let input = prompt("Input the link", 'https://google.com');
-                if (input)childSelected(new ENTITY.GeneralStructure({
+                if (input)childSelected(new ENTITY.LinkGeneralStructure({
                     destination: input
                 }));
 
