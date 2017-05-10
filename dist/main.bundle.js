@@ -3073,7 +3073,7 @@ var OxiAPP = (function () {
             this._onLoadModel(this.main.selected.cash.model);
             callback();
         }
-        else if (this.main.selected.projFilesDirname) {
+        else if (this.main.selected.projFilesDirname && this.main.selected.destination) {
             var manager = new THREE.LoadingManager();
             manager.onProgress = function (item, loaded, total) {
                 console.log(item, loaded, total);
