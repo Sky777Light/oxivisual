@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Super-User---projects" transform="translate(-224.000000, -20.000000)" fill="#FFFFFF">
+            <g id="navigation-drawer">
+                <g id="toolbar">
+                    <polygon id="arrow-back" points="240 27 227.8 27 233.4 21.4 232 20 224 28 232 36 233.4 34.6 227.8 29 240 29"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

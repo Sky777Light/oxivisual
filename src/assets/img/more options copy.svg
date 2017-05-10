@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="4px" height="16px" viewBox="0 0 4 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Super-User---created-user---user-in-project" transform="translate(-1006.000000, -140.000000)" fill="#FFFFFF">
+            <g id="project-card-copy" transform="translate(670.000000, 120.000000)">
+                <path d="M338,36 C336.895431,36 336,35.1045695 336,34 C336,32.8954305 336.895431,32 338,32 C339.104569,32 340,32.8954305 340,34 C340,35.1045695 339.104569,36 338,36 Z M338,30 C336.895431,30 336,29.1045695 336,28 C336,26.8954305 336.895431,26 338,26 C339.104569,26 340,26.8954305 340,28 C340,29.1045695 339.104569,30 338,30 Z M338,24 C336.895431,24 336,23.1045695 336,22 C336,20.8954305 336.895431,20 338,20 C339.104569,20 340,20.8954305 340,22 C340,23.1045695 339.104569,24 338,24 Z" id="more-options-copy"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Super-User---projects" transform="translate(-20.000000, -193.000000)" fill="#1976D2">
+            <g id="navigation-drawer">
+                <g id="list" transform="translate(0.000000, 181.000000)">
+                    <g id="list-item" transform="translate(20.000000, 10.000000)">
+                        <g id="projects" transform="translate(0.000000, 2.000000)">
+                            <path d="M7.99999952,0 L1.99999988,0 C0.900000036,0 0.0099999894,0.900000036 0.0099999894,1.99999988 L0,13.9999992 C0,15.0999994 0.900000036,15.999999 1.99999988,15.999999 L17.9999989,15.999999 C19.0999992,15.999999 19.9999988,15.0999994 19.9999988,13.9999992 L19.9999988,3.99999976 C19.9999988,2.89999992 19.0999992,1.99999988 17.9999989,1.99999988 L9.9999994,1.99999988 L7.99999952,0 Z" id="project"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

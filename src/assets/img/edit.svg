@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Super-User---project-creator---Basic" transform="translate(-1265.000000, -230.000000)" fill="#FFFFFF">
+            <g id="project-card" transform="translate(965.000000, 210.000000)">
+                <path d="M300,32.6222222 L300,36 L303.377778,36 L313.155556,26.1333333 L309.777778,22.7555556 L300,32.6222222 L300,32.6222222 Z M315.733333,23.5555556 C316.088889,23.2 316.088889,22.6666667 315.733333,22.3111111 L313.688889,20.2666667 C313.333333,19.9111111 312.8,19.9111111 312.444444,20.2666667 L310.844444,21.8666667 L314.222222,25.2444444 L315.733333,23.5555556 L315.733333,23.5555556 Z" id="edit"></path>
+            </g>
+        </g>
+    </g>
+</svg>
