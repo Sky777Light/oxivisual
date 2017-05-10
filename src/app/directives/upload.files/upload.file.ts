@@ -4,7 +4,7 @@ import {Component,Input,ViewChild,OnInit} from '@angular/core';
     selector: 'app-file-upload',
     template: '<input type="file" accept="{{accept}}"   [(ngModel)]="filesModel" #filesModels="ngModel" class="hidden" #fileUpload>' +
     ' <label [class.full-op]="filesModels.invalid"  [hidden] = "filesModels.valid">{{title}} is required</label> ' +
-    '<div #btnFile class="btn-def">{{title}}</div>  <div class="list-files"><span *ngFor="let file of files; let i = index"  >{{file?(file.name||file.name||file):""}}{{i<files.length-1?",":""}}</span></div>',
+    '<div #btnFile class="btn-def">{{title}}</div>  <div class="list-files" [innerHTML]="files.toString()"></div>',
     styleUrls: ['./upload.file.sass']
 })
 export class UploadFile implements OnInit {

@@ -11,7 +11,7 @@ const projectSchema = new Schema({
     image: EmtyStr,
     owner: EmtyStr,
     created: {
-        type: Date,
+        type: Number,
         default:Date.now()
     },
     published: {
@@ -20,7 +20,11 @@ const projectSchema = new Schema({
     },
     model:new Schema({
         link:EmtyStr,
-        name:EmtyStr
+        name:EmtyStr ,
+        created: {
+            type: Number,
+            default:Date.now()
+        }
     })
 });
 

@@ -1,21 +1,30 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Oxivisual</title>
-  <base href="/">
+    <meta charset="utf-8">
+    <title>Oxivisual</title>
+    <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="./assets/libs/alertify.css" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="./assets/libs/alertify.css">
+    <script>
+        Array.prototype.toString = function () {
+            if (!this.length)return "";
+            if (this.length==1)return this[0].name || this[0];
+            return this.reduce(function (previousValue, currentValue, index, array) {
+                return (previousValue.name || previousValue) + "," + (currentValue.name || currentValue);
+            });
+        }
+    </script>
 </head>
 <body>
-  <app-root class="mat-app-background">Loading...</app-root>
+<app-root class="mat-app-background">Loading...</app-root>
 
-  <script src="./assets/libs/alertify.js"></script>
-  <script src="./assets/libs/three/three.js"></script>
-  <script src="./assets/libs/three/OBJLoader.js"></script>
-  <script src="./assets/libs/three/OrbitControls.js"></script>
-  <script src="./assets/libs/pace.min.js"></script>
+<script src="./assets/libs/alertify.js"></script>
+<script src="./assets/libs/three/three.js"></script>
+<script src="./assets/libs/three/OBJLoader.js"></script>
+<script src="./assets/libs/three/OrbitControls.js"></script>
+<script src="./assets/libs/pace.min.js"></script>
 </body>
 </html>

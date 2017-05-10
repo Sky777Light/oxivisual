@@ -8,7 +8,7 @@ declare var alertify;
 @Injectable()
 export class ProjectService {
 
-    private Project:ENTITY.IProject;
+    private Project:any;
 
     constructor(private authService:AuthService,
                 private userService:UserService) {
@@ -23,7 +23,11 @@ export class ProjectService {
         if (this.Project.model.link) {
             if (!(this.Project.model.data instanceof  Array)) {
                 this.authService.get(ENTITY.Config.PROJ_LOC+this.Project.model.link + ENTITY.Config.SITE_STRUCTURE).subscribe((res:any) => {
-                    this.Project.model.data = [new ENTITY.ModelStructure(res.json()[0])];
+                    this.Project.model.data = [];
+                    for(let _data = res.json(),i =0;i<_data.length;i++){
+                        this.Project.model.data.push(ENTITY.ProjMain.inject(_data[i]));
+                    }
+                    if(this.Project.select)this.Project.select(this.Project.model);
                 });
 
             }

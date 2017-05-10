@@ -202,12 +202,11 @@ router.post("/project/model/create", function (req, res) {
                 _id:id_project,
                 name:modelName,
                 projFilesDirname:modelName + "_" + randomString(),
-                frames:0,
                 created:Date.now(),
                 images:[]
             },
             modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS+ area.projFilesDirname,
-            imageDir = modelDir + config.DIR.IMAGES,
+            imageDir = modelDir + "/"+config.DIR.IMAGES,
             mode = config.FILE_UPLOAD_ACCEC;
 
         if (!fs.existsSync(modelDir)) {
@@ -224,8 +223,7 @@ router.post("/project/model/create", function (req, res) {
                     area.destination = _file.originalname;
                 } else if (_file.mimetype.match(matches[1])) {
                     fs.writeFileSync(imageDir + "/" + _file.originalname, fs.readFileSync(_file.path));
-                    area.frames++;
-                    area.images.push(_file.originalname);
+                    area.images.push((_file.originalname));
                 }
             }
         }
@@ -253,21 +251,21 @@ router.post("/project/model/update", function (req, res) {
         });
     }else{
 
-        let  modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS +"/"+ body.dir,
+        let  modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS + body.dir,
             matches = config.FILE_UPLOAD_EXT;
 
         if(req.files){
-            let  imageDir = modelDir + config.DIR.IMAGES;
+            let  imageDir = modelDir + "/" + config.DIR.IMAGES;
 
             if (!fs.existsSync(modelDir))fs.mkdirSync(modelDir, config.FILE_UPLOAD_ACCEC);
-            console.log(modelDir);
+            if (!fs.existsSync(imageDir))fs.mkdirSync(imageDir, config.FILE_UPLOAD_ACCEC);
             for (var keys in req.files) {
                 for (var i = 0; i < req.files[keys].length; i++) {
                     var _file = req.files[keys][i];
                     if (_file.originalname.match(matches[0])) {
                         fs.writeFileSync(modelDir + "/" + _file.originalname, fs.readFileSync(_file.path));
                     } else if (_file.mimetype.match(matches[1])) {
-                        fs.writeFileSync(imageDir + "/" + _file.originalname, fs.readFileSync(_file.path));
+                        fs.writeFileSync(imageDir + _file.originalname, fs.readFileSync(_file.path));
                     }
                 }
             }

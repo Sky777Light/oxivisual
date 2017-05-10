@@ -2,10 +2,32 @@
 
 .model-config
   .row
-    margin: 15px 0
+    margin: 5px 0
   .inp-form
-    margin: 15px 0
+    margin: 5px 0
     label
       //color: $text-color-gray
   .upload-list
     padding: 10px 0
+    app-file-upload
+      margin: 5px 0
+      .btn-def,.list-files
+        width: 50%
+        float: left
+      .btn-def
+        padding: 10px 25px
+        background: $white
+      .list-files
+        padding: 13px 10px
+        color: $text-color-gray
+        font-size: 12px
+        overflow: hidden
+        text-overflow: ellipsis
+  .files-top-block
+    border-bottom: 1px solid $bottom-bor
+    margin: 20px 0
+    display: inline-block
+    padding: 0 10px
+    width: 100%
+.bottom-block
+  padding: 0 10px

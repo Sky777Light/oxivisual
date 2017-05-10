@@ -47,7 +47,7 @@
                         </td>
                         <td class="s-tab webgl-item" rowspan="2"
                             [attr.colspan]="sceneConfig.hide && treeView.hide ?3:1">
-                            <app-project-webgl-view *ngIf="selectedChild && selectedChild.category == 2" [selected]="selectedChild">-----WEBGL------</app-project-webgl-view>
+                            <app-project-webgl-view *ngIf="selectedChild && selectedChild._category == 2" [selected]="selectedChild">-----WEBGL------</app-project-webgl-view>
 
                             <!--<div class="pop-ups" #projChildCreate>
                                 <div class="child-create" *ngIf="projChildCreate.show">

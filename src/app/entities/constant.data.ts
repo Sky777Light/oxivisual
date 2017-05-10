@@ -2,9 +2,11 @@ export class Config {
     static SITE_STRUCTURE:string = '/site_structure.json';
     static PROJ_LOC:string = 'uploads/projects/';
     static PROJ_DESTINATION:any ={
-        JS_CODE:0,
-        LINK_REMOTE:1,
-        MODEL_OBJ:2,
+        GeneralStructure:0,
+        LinkGeneralStructure:1,
+        ModelStructure:2,
+        OxiCamera:3,
+        Vector3:4,
     };
     static EVENTS_NAME = {
         CLICK: 'click',

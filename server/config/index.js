@@ -4,7 +4,7 @@ module.exports = {
     env: process.env.NODE_ENV,
     DIR: {
         UPLOADS:'resources/uploads/',
-        PROJECTS:'projects',
+        PROJECTS:'projects/',
         IMAGES:'images/',
         SITE_STRUCTURE:'/site_structure.json'
     },

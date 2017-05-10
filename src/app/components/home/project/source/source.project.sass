@@ -39,13 +39,16 @@
     display: inline-flex
   .my-table
     tr
+      &:nth-child(1)
+        td
+          padding: 20px 30px
       &:nth-child(2)
         td
           height: calc(100vh - 160px)
           overflow: auto
     td
       max-width: 0px
-      padding: 20px
+      padding: 10px 0
       transition: width,display,0.1s
       .source-creating
         transform: translate(-50%,0%)
@@ -68,7 +71,7 @@
           outline: none
           border: none
           float: right
-          right: 0
+          right: 30px
           bottom: 0
       .webgl-view
         padding: 0

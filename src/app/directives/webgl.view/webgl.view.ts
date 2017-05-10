@@ -86,6 +86,7 @@ class OxiAPP {
         this.main = main;
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
+        this.scene.add( this.model);
         let renderer = this.gl = new THREE.WebGLRenderer({antialias: true, alpha: true}),
             SCREEN_WIDTH = this.screen.width = 720,
             SCREEN_HEIGHT = this.screen.height = 405;
@@ -93,6 +94,7 @@ class OxiAPP {
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
         this.controls.enablePan = false;
@@ -123,6 +125,7 @@ class OxiAPP {
 
 
         this.camera.position.copy(this.camera.positionDef);
+        this.camera.updateProjectionMatrix();
 
         let curDist = this.camera.positionDef.distanceTo(this.controls.target),
             curAngle = Math.acos((this.camera.positionDef.x - this.controls.target.x) / curDist);
@@ -166,6 +169,25 @@ class OxiAPP {
                 this.model.scale.z = this.model.scale.y = this.model.scale.x;
                 break;
             }
+            case'width':
+            {
+                let prop = this._slider.currentFrame.clientWidth/this._slider.currentFrame.clientHeight,
+                    val = this.main.selected.camera.resolution.x;
+                [].forEach.call(this._slider.imgPagination.childNodes,function(el,i){
+                    el[data] = val;
+                    el.height = data*prop;
+                });
+                break;
+            }
+            case'height':
+            {
+                let prop = this._slider.currentFrame.clientWidth/this._slider.currentFrame.clientHeight,
+                    val = this.main.selected.camera.resolution.y;
+                [].forEach.call(this._slider.imgPagination.childNodes,function(el,i){
+                    el[data] = val;
+                    el.width = data/prop;
+                });
+            }
             default:
             {
                 this.camera.updateProjectionMatrix();
@@ -177,13 +199,15 @@ class OxiAPP {
         this._animation.play();
     }
     dataSave(){
+        let old = this.main.selected.camera;
         this.main.selected.camera = new ENTITY.OxiCamera({
             position:new ENTITY.Vector3(this.camera.position),
-            rotation:new ENTITY.Vector3(this.camera.rotation),
+            rotation:new ENTITY.Vector3({x:this.camera.rotation.x,y:this.camera.rotation._y,z:this.camera.rotation._z}),
             resolution:new ENTITY.Vector3({x:this._slider._W(),y:this._slider._H()}),
             fov:this.camera.fov,
             scale:this.model.scale.x,
         });
+        this.main.selected.camera.resolution=old;
     }
 
     loadModel(callback:Function = ()=> {
@@ -223,9 +247,8 @@ class OxiAPP {
     }
 
     _onLoadModel(object) {
-        if (this.model)this.scene.remove(this.model);
-        this.scene.add(object);
-        this.model = object;
+        if (this.model.children)for(let i=0;i<this.model.children.length;i++)this.model.remove(this.model.children[i]);
+        this.model.add(object);
         object.traverse((child)=> {
             if (child.type == 'Mesh') {
                 child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
@@ -267,7 +290,7 @@ class OxiAPP {
                 if (isObj) {
                     let loader = _self.loader = _self.loader || new THREE.OBJLoader();
                     loader.parse(e.currentTarget.result, (m)=>{
-                        _self.main.selected.destination = [{file:cur}];
+                        _self.main.selected.destination = [{file:cur, name: cur.name}];
                         _self._onLoadModel(m);
                     });
                 } else {
@@ -468,9 +491,9 @@ class OxiAnimation {
     }
 }
 class OxiSlider {
+    currentFrame:any;
     container:HTMLElement;
     imgPagination:HTMLElement;
-    currentItem:number = 1;
     app:OxiAPP;
 
     constructor(app:OxiAPP) {
@@ -496,15 +519,18 @@ class OxiSlider {
 
         if (!app.main.selected.images || !app.main.selected.images.length) return;
 
-        for (let i = 0; i < app.main.selected.images.length; i++) {
+        for (let i in app.main.selected.images) {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
             img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + app.main.selected.projFilesDirname + "/images/" + curImg : curImg.data;
-            if (i == 0)img.className = ENTITY.ProjClasses.ACTIVE;
+            if (parseInt(i) == this.app.main.selected.currentItem){
+                img.className = ENTITY.ProjClasses.ACTIVE;
+                this.currentFrame = img;
+            }
             div.appendChild(img);
 
             let item = document.createElement('li');
-            item.innerHTML = (i + 1) + '';
+            item.innerHTML = (+i + 1) + '';
             item.addEventListener('click', ()=> {
                 this.updateView(i);
             });
@@ -517,10 +543,12 @@ class OxiSlider {
     }
 
     updateView(selectedItem) {
-        this.container.childNodes[this.currentItem - 1]['className'] = '';
-        this.currentItem = selectedItem + 1;
+        this.currentFrame['className'] = '';
+        this.app.main.selected.currentItem = selectedItem ;
         this.app.camera.updateView(selectedItem);
-        this.container.childNodes[selectedItem]['className'] = ENTITY.ProjClasses.ACTIVE;
+
+        this.currentFrame = this.container.childNodes[selectedItem];
+        this.currentFrame['className'] = ENTITY.ProjClasses.ACTIVE;
 
     }
 
@@ -575,7 +603,6 @@ class OxiControls {
                 className: 'attach-link', click: ()=> {
                 let input = prompt("Input the link", 'https://google.com');
                 if (input)childSelected(new ENTITY.GeneralStructure({
-                    category: ENTITY.Config.PROJ_DESTINATION.LINK_REMOTE,
                     destination: input
                 }));
 
@@ -585,7 +612,6 @@ class OxiControls {
                 className: 'attach-js', click: ()=> {
                 let input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
                 if (input)childSelected(new ENTITY.GeneralStructure({
-                    category: ENTITY.Config.PROJ_DESTINATION.JS_CODE,
                     destination: input
                 }));
             }, icon: '../assets/img/JS.svg'

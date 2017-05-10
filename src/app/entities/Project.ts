@@ -4,14 +4,11 @@ import {Main} from "./Main";
 
 export class ProjectModel extends Main{
     public id_model_structure:string;
-    public data:Array<IModelStructure>;
+    public data:Array<Main>;
     public link:string;
     public name:string;
     constructor(entity:any = null){
         super(entity);
-    }
-    stringFy(){
-        let res = [];
     }
 }
 export interface IProject extends IMain{

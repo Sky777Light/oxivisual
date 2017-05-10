@@ -42,13 +42,12 @@ export class SourceProject implements AfterViewInit,OnChanges {
 
     ngOnInit() {
         this.project = this.projectService.getProject();
-        this.tempNewChild = new ENTITY.ModelStructure();
-        setTimeout(()=> {
-            if (this.project.model.data) {
-                this.select(this.project.model.data[0]);
-            }
-
-        }, 200);
+        //this.tempNewChild = new ENTITY.ModelStructure();
+        this.project.select=(p)=>{
+            if (p.data)this.select(p.data[0]);
+            delete this.project['select'];
+        }
+        if(this.project.model && this.project.model.data && this.project.model.data.length)this.project.select(this.project.model);
     }
 
     create(form:NgForm) {
@@ -89,8 +88,8 @@ export class SourceProject implements AfterViewInit,OnChanges {
 
         let data = this.project.model.data[0],
             self = this;
+
         this.uploadStructure(data,function(){
-            console.log(data.clone());
             self.authService.post("/api/projects/project/model/update", {dir:data.projFilesDirname,structure:JSON.stringify([data.clone()])}).subscribe((res:any) => {
                 console.log("finish update");
             });
@@ -117,7 +116,6 @@ export class SourceProject implements AfterViewInit,OnChanges {
                 res = res.json();
                 if (res.status) {
                     alertify.success(res.message);
-
                     area.projFilesDirname = dirStartFrom;
                     if(area.destination instanceof Array)area.destination = area.destination[0].name;
                     for (let f = 0; area.images && f < area.images.length; f++) {
@@ -133,7 +131,7 @@ export class SourceProject implements AfterViewInit,OnChanges {
                             if(!_ar)return callback();
                             _self.uploadStructure(_ar,function(res){
                                 uploadChild(area.areas[startAt++]);
-                            }, _ar.projFilesDirname || (dirStartFrom +"/"+ _ar.name))
+                            }, _ar.projFilesDirname || (dirStartFrom +"/"+ _ar._id))
                         };
 
                     uploadChild(area.areas[startAt++]);
@@ -149,6 +147,7 @@ export class SourceProject implements AfterViewInit,OnChanges {
 
 
     select(child:any) {
+        if(this.selectedChild && this.selectedChild._id == child._id)return;
         if (this.selectedChild && this.selectedChild.app)this.selectedChild.app = null;
         this.selectedChild = child;
         child._app = this;
