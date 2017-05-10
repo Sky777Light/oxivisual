@@ -13,7 +13,7 @@
             if (!this.length)return "";
             if (this.length==1)return this[0].name || this[0];
             return this.reduce(function (previousValue, currentValue, index, array) {
-                return (previousValue.name || previousValue) + "," + (currentValue.name || currentValue);
+                return (previousValue&&previousValue.name?previousValue.name: previousValue) + "," + (currentValue&&currentValue.name?currentValue.name : currentValue);
             });
         }
     </script>
