@@ -251,11 +251,11 @@ router.post("/project/model/update", function (req, res) {
         });
     }else{
 
-        let  modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS + body.dir,
+        var  modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS + body.dir,
             matches = config.FILE_UPLOAD_EXT;
 
         if(req.files){
-            let  imageDir = modelDir + "/" + config.DIR.IMAGES;
+            var  imageDir = modelDir + "/" + config.DIR.IMAGES;
 
             if (!fs.existsSync(modelDir))fs.mkdirSync(modelDir, config.FILE_UPLOAD_ACCEC);
             if (!fs.existsSync(imageDir))fs.mkdirSync(imageDir, config.FILE_UPLOAD_ACCEC);
@@ -290,7 +290,7 @@ router.post("/project/model/update", function (req, res) {
 });
 
 
-//delete user
+//devare user
 router.delete("/project", function (req, res) {
     Project.findOne({_id: req.body._id}, function (err, project) {
         if (err) {
@@ -310,7 +310,7 @@ router.delete("/project", function (req, res) {
 
         res.json({
             status: true,
-            message: "Project was successfully deleted"
+            message: "Project was successfully devared"
         });
     });
 });

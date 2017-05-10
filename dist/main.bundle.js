@@ -2865,7 +2865,7 @@ var UploadFile = (function () {
             selector: 'app-file-upload',
             template: '<input type="file" accept="{{accept}}"   [(ngModel)]="filesModel" #filesModels="ngModel" class="hidden" #fileUpload>' +
                 ' <label [class.full-op]="filesModels.invalid"  [hidden] = "filesModels.valid">{{title}} is required</label> ' +
-                '<div #btnFile class="btn-def">{{title}}</div>  <div class="list-files" [innerHTML]="files.toString()"></div>',
+                '<div #btnFile class="btn-def">{{title}}</div>  <div class="list-files" *ngIf="files" [innerHTML]="files.toString()"></div>',
             styles: [__webpack_require__(763)]
         }), 
         __metadata('design:paramtypes', [])
