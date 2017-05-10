@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Super-User---project-creator---Basic" transform="translate(-986.000000, -231.000000)" fill="#FFFFFF">
+            <g id="project-card" transform="translate(965.000000, 210.000000)">
+                <g id="Group" transform="translate(21.000000, 20.000000)">
+                    <path d="M14.5,8 C15.8799991,8 16.9899997,6.8800001 16.9899997,5.5 C16.9899997,4.11999988 15.8799991,3 14.5,3 C13.1199998,3 12,4.11999988 12,5.5 C12,6.8800001 13.1199998,8 14.5,8 Z M7,7 C8.6599998,7 9.9899997,5.65999984 9.9899997,4 C9.9899997,2.34000015 8.6599998,1 7,1 C5.34000015,1 4,2.34000015 4,4 C4,5.65999984 5.34000015,7 7,7 Z M14.5,10 C12.67,10 9,10.92 9,12.75 L9,15 L20,15 L20,12.75 C20,10.92 16.3299999,10 14.5,10 Z M7,9 C4.67000007,9 0,10.17 0,12.5 L0,15 L7,15 L7,12.75 C7,11.8999996 7.32999992,10.4099998 9.3699998,9.2799997 C8.5,9.1000003 7.65999984,9 7,9 Z" id="users"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
