@@ -5,25 +5,28 @@ module.exports = function (req, res, next) {
 
     passport.authenticate("jwt", { session: false }, function (err, user, info) {
         if (err) {
-            throw err;
+            return res.status(401).json({
+                status: false,
+                message: err
+            });
         }
 
         if (!user) {
-            return res.status(401).json({
+            return res.status(200).json({
                 status: false,
                 message: info.message
             });
         }
 
         if (!req.isAuthenticated()) {
-            return res.status(403).json({
+            return res.status(200).json({
                 status: false,
                 message: "Not authenticated"
             });
         }
 
         if (user.token !== token) {
-            return res.status(403).json({
+            return res.status(200).json({
                 status: false,
                 message: "Expired token"
             });

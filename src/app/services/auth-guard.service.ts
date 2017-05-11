@@ -26,15 +26,17 @@ export class AuthGuardService implements CanActivate,  Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return this.authService.get('/api/users/user/undefined').map((res: any) => {
-      res = res.json();
-      if(res.status) {
-        this.userService.setUser(res.res);
-        return res.res;
-      }
-      this.userService.logOut();
-      return false;
-    });
+      return this.authService.get('/api/users/user/undefined').map((res: any) => {
+        res = res.json();
+        if(res.status) {
+          this.userService.setUser(res.res);
+          return res.res;
+        }else{
+          this.userService.logOut();
+          return false;
+        }
+      });
+
   }
 
 }

@@ -59,7 +59,7 @@ export class WebglView implements OnInit,OnChanges {
     }
 
     ngOnDestroy() {
-        console.log('webgl context '+this._id+" was clear");
+        console.log('webgl context ' + this._id + " was clear");
         this.app._animation.stop();
     }
 
@@ -86,7 +86,7 @@ class OxiAPP {
         this.main = main;
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
-        this.scene.add( this.model);
+        this.scene.add(this.model);
         let renderer = this.gl = new THREE.WebGLRenderer({antialias: true, alpha: true}),
             SCREEN_WIDTH = this.screen.width = 720,
             SCREEN_HEIGHT = this.screen.height = 405;
@@ -105,20 +105,20 @@ class OxiAPP {
         });
 
         /*-----------set config data----------*/
-        this.camera.positionDef = new THREE.Vector3( 34800,18600, -600);
-        if(main.selected.camera){
-            if(  main.selected.camera.rotation){
+        this.camera.positionDef = new THREE.Vector3(34800, 18600, -600);
+        if (main.selected.camera) {
+            if (main.selected.camera.rotation) {
                 this.camera.rotation.x = main.selected.camera.rotation.x;
                 this.camera.rotation.y = main.selected.camera.rotation.y;
                 this.camera.rotation.z = main.selected.camera.rotation.z;
             }
-            if( main.selected.camera.position){
+            if (main.selected.camera.position) {
                 this.camera.positionDef.copy(main.selected.camera.position);
             }
-            if(  main.selected.camera.fov){
+            if (main.selected.camera.fov) {
                 this.camera.fov = main.selected.camera.fov;
             }
-            if(  main.selected.camera.scale){
+            if (main.selected.camera.scale) {
                 this.model.scale.multiplyScalar(main.selected.camera.scale);
             }
         }
@@ -171,21 +171,21 @@ class OxiAPP {
             }
             case'width':
             {
-                let prop = this._slider.currentFrame.clientWidth/this._slider.currentFrame.clientHeight,
+                let prop = this._slider.currentFrame.clientWidth / this._slider.currentFrame.clientHeight,
                     val = this.main.selected.camera.resolution.x;
-                [].forEach.call(this._slider.imgPagination.childNodes,function(el,i){
+                [].forEach.call(this._slider.imgPagination.childNodes, function (el, i) {
                     el[data] = val;
-                    el.height = data*prop;
+                    el.height = data * prop;
                 });
                 break;
             }
             case'height':
             {
-                let prop = this._slider.currentFrame.clientWidth/this._slider.currentFrame.clientHeight,
+                let prop = this._slider.currentFrame.clientWidth / this._slider.currentFrame.clientHeight,
                     val = this.main.selected.camera.resolution.y;
-                [].forEach.call(this._slider.imgPagination.childNodes,function(el,i){
+                [].forEach.call(this._slider.imgPagination.childNodes, function (el, i) {
                     el[data] = val;
-                    el.width = data/prop;
+                    el.width = data / prop;
                 });
             }
             default:
@@ -198,16 +198,21 @@ class OxiAPP {
         this.dataSave();
         this._animation.play();
     }
-    dataSave(){
+
+    dataSave() {
         let old = this.main.selected.camera;
         this.main.selected.camera = new ENTITY.OxiCamera({
-            position:new ENTITY.Vector3(this.camera.position),
-            rotation:new ENTITY.Vector3({x:this.camera.rotation.x,y:this.camera.rotation._y,z:this.camera.rotation._z}),
-            resolution:new ENTITY.Vector3({x:this._slider._W(),y:this._slider._H()}),
-            fov:this.camera.fov,
-            scale:this.model.scale.x,
+            position: new ENTITY.Vector3(this.camera.position),
+            rotation: new ENTITY.Vector3({
+                x: this.camera.rotation.x,
+                y: this.camera.rotation._y,
+                z: this.camera.rotation._z
+            }),
+            resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
+            fov: this.camera.fov,
+            scale: this.model.scale.x,
         });
-        this.main.selected.camera.resolution=old;
+        this.main.selected.camera.resolution = old;
     }
 
     loadModel(callback:Function = ()=> {
@@ -220,14 +225,14 @@ class OxiAPP {
         } else if (this.main.selected.projFilesDirname && this.main.selected.destination) {
             let manager = new THREE.LoadingManager();
             manager.onProgress = function (item, loaded, total) {
-                console.log(item, loaded, total);
+                //console.log(item, loaded, total);
             };
 
 
             let onProgress = function (xhr) {
                 if (xhr.lengthComputable) {
-                    let percentComplete = xhr.loaded / xhr.total * 100;
-                    console.log((percentComplete).toFixed(2) + '% downloaded');
+                    //let percentComplete = xhr.loaded / xhr.total * 100;
+                    //console.log((percentComplete).toFixed(2) + '% downloaded');
                 }
             };
 
@@ -247,14 +252,14 @@ class OxiAPP {
     }
 
     _onLoadModel(object) {
-        if (this.model.children)for(let i=0;i<this.model.children.length;i++)this.model.remove(this.model.children[i]);
+        if (this.model.children)for (let i = 0; i < this.model.children.length; i++)this.model.remove(this.model.children[i]);
         this.model.add(object);
         object.traverse((child)=> {
             if (child.type == 'Mesh') {
                 child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
 
-                for(let i=0, areas=this.main.selected.areas; areas && i<areas.length;i++){
-                    if(areas[i]._id.match(child.name)){
+                for (let i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
+                    if (areas[i]._id.match(child.name)) {
                         child._data = areas[i];
                         break;
                     }
@@ -289,8 +294,8 @@ class OxiAPP {
             filereader.onloadend = (e:any)=> {
                 if (isObj) {
                     let loader = _self.loader = _self.loader || new THREE.OBJLoader();
-                    loader.parse(e.currentTarget.result, (m)=>{
-                        _self.main.selected.destination = [{file:cur, name: cur.name}];
+                    loader.parse(e.currentTarget.result, (m)=> {
+                        _self.main.selected.destination = [{file: cur, name: cur.name}];
                         _self._onLoadModel(m);
                     });
                 } else {
@@ -410,11 +415,13 @@ class OxiMouse {
     }
 
     interPoint(ev) {
-        let _slider = this.main._slider,
-            canvasW = _slider._W(),
-            canvasH = _slider._H(),
-            _x = (ev ? ev.clientX : canvasW / 2) - (_slider._offsetLeft() + 10),
-            _y = (ev ? ev.clientY : canvasH / 2) - _slider._offsetTop() + 110
+        let _slider = this.main.gl.domElement,
+            rect=  _slider.getBoundingClientRect(),
+            canvasW = _slider.clientWidth,
+            canvasH = _slider.clientHeight,
+
+            _x = (ev ? ev.clientX : canvasW / 2) - rect.left,
+            _y = (ev ? ev.clientY : canvasH / 2) - rect.top
             ;
 
         if (ev && ev.touches) {
@@ -523,7 +530,7 @@ class OxiSlider {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
             img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + app.main.selected.projFilesDirname + "/images/" + curImg : curImg.data;
-            if (parseInt(i) == this.app.main.selected.currentItem){
+            if (parseInt(i) == this.app.main.selected.currentItem) {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
             }
@@ -544,7 +551,7 @@ class OxiSlider {
 
     updateView(selectedItem) {
         this.currentFrame['className'] = '';
-        this.app.main.selected.currentItem = selectedItem ;
+        this.app.main.selected.currentItem = selectedItem;
         this.app.camera.updateView(selectedItem);
 
         this.currentFrame = this.container.childNodes[selectedItem];
@@ -583,7 +590,7 @@ class OxiControls {
             child._id = this.app._events.lastInter.object.name;
             child.name = child._id.toUpperCase();
 
-            child._id +=Date.now();
+            child._id += Date.now();
 
             if (!this.app.main.selected.areas) {
                 this.app.main.selected.areas = [child];
@@ -635,6 +642,7 @@ class OxiControls {
                 domEl.appendChild(icon);
             });
     }
+
 
     show(pos, flag:boolean = true) {
 

@@ -34,6 +34,7 @@ import {BasicProject} from "./components/home/project/basic/basic.project";
 import {ProjectService} from "./services/project.service";
 import {WebglView,WebGLService,UploadFile,MNode,MTree,SlimScroll} from "./directives/directives";
 import {EditView} from "./components/home/project/source/edit.view/edit.view";
+import {PreviewComponent} from "./components/preview/preview.project";
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {EditView} from "./components/home/project/source/edit.view/edit.view";
     EditProject,
     EditView,
     WebglView,
+    PreviewComponent,
     //AbstractTemplateProject,
 
     NewProjectComponent,

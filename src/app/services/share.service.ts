@@ -6,12 +6,14 @@ export class ShareService {
 
   private shareSubject = new BehaviorSubject<any>(undefined);
   shareListener = this.shareSubject.asObservable();
+  private headerSubject = new BehaviorSubject<any>(undefined);
+  headerListener = this.headerSubject.asObservable();
+
+
   changeShareSubject(val: any) {
     this.shareSubject.next(val);
   }
 
-  private headerSubject = new BehaviorSubject<any>(undefined);
-  headerListener = this.headerSubject.asObservable();
   changeHeaderSubject(val: any) {
     this.headerSubject.next(val);
   }

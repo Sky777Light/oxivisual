@@ -49,7 +49,7 @@
       <div class="mnu-item" [routerLink]="['/project/' + headerData._id + '/source']" routerLinkActive="mnu-item-active">Source</div>
       <div class="mnu-item">Preview</div>
     </div>
-    <div class="publish-btn" [class.publish-btn-active]="headerData.published" [class.publish-btn-disable]="headerData.published" (click)="deactivate()"><span>Publish</span></div>
+    <div class="publish-btn" [class.publish-btn-active]="headerData.published" [class.publish-btn-disable]="headerData.published" (click)="deactivate()"><span>{{headerData.published?"Deactivate":"Publish"}}</span></div>
     <div class="pop-up-icon" [class.pop-up-icon-active]="headerSettings">
       <i class="material-icons set-icon" (click)="headerSettings = !headerSettings" (window:mouseup)="headerSettings = false">more_vert</i>
       <div class="pop-up" [hidden]="!headerSettings">

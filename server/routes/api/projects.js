@@ -84,26 +84,27 @@ router.put("/project", function (req, res) {
         }
 
 
-        var needToYpdateImg = req.body.image !== project.image,
+        var needToYpdateImg = req.body.image && req.body.image !== project.image,
             updateProj = function (fields) {
-                Object.assign(project, req.body);
-                if(fields)for(var f in fields){
-                    project[f] = fields[f];
+                var _sets = {},
+                    exept = ['_id'];
+
+                for(var _field  in req.body){
+                    if(req.body.hasOwnProperty(_field) && exept.indexOf(_field) < 0){
+                        _sets[_field] = req.body[_field];
+                    }
+                }
+                if(fields) for(var _field  in fields){
+                    if(fields.hasOwnProperty(_field) && exept.indexOf(_field) < 0){
+                        _sets[_field] = fields[_field];
+                    }
                 }
 
-                project.save(function (err, project) {
-                    if (err) {
-                        return res.json({
-                            status: false,
-                            res: project,
-                            message: err
-                        })
-                    }
-                    res.json({
-                        status: true,
-                        res: project,
-                        message: "Project successfully was changed."
-                    })
+                Project.update({_id: req.body._id}, {$set: _sets}, function (err) {
+                    return res.json({
+                        status: !err,
+                        message: err ? (err.message || err) : "Project successfully was changed."
+                    });
                 });
             };
 

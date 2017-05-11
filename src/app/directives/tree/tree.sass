@@ -1,0 +1,44 @@
+@import "../../styles/values"
+
+tree
+  .parent
+    .iconButton
+      background: $text-color-gray
+  .tree-webgl-view
+    list-style-type: none
+    padding: 0 15px
+    margin: 10px 0
+    .iconButton
+      color: $black
+      padding: 10px
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15)
+      max-width: 140px
+      text-overflow: ellipsis
+      display: block
+      overflow: hidden
+      cursor: pointer
+      margin: 10px 0
+      border-radius: 2px
+      &.main
+        background: $text-color-gray
+      &.link
+        background: $grey
+      &.js-code
+        background: $deactive
+      a
+        padding-top: 7px
+        color: $black
+        float: left
+        text-overflow: ellipsis
+        overflow: hidden
+        width: 70%
+      .pop-up-icon
+        float: right
+      li
+        margin: 30px 0
+  .pop-up
+    margin-right: -10px
+    margin-top: -20px
+    &.bla-t
+      position: absolute
+      z-index: 1

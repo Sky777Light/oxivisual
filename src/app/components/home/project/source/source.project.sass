@@ -50,6 +50,7 @@
       max-width: 0px
       padding: 10px 0
       transition: width,display,0.1s
+      vertical-align: top
       .source-creating
         transform: translate(-50%,0%)
         position: relative
@@ -63,8 +64,7 @@
           padding: 0
           margin: 0
           max-height: calc(100vh - 230px)
-          *
-            vertical-align: middle
+          vertical-align: bottom
 
         .add-btn
           position: relative
@@ -75,7 +75,6 @@
           bottom: 0
       .webgl-view
         padding: 0
-        background: $black
         margin: 0
     .tabs-header
       transition: width,display,0.1s
@@ -87,7 +86,7 @@
       .temp-data
         display: inline-table
         width: 100%
-        vertical-align: middle
+        vertical-align: top
         .temp-header
           display: table-cell
           padding: 20px

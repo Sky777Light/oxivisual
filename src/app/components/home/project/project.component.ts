@@ -30,8 +30,8 @@ export class ProjectComponent{
       });
 
       if(selectedProject){
-        this.shareService.changeHeaderSubject(selectedProject);
         this.projectService.setProject(selectedProject);
+        this.shareService.changeHeaderSubject(this.projectService.getProject());
       } else {
         this.router.navigate(['/']);
       }

@@ -58,12 +58,15 @@ export class ProjectService {
         this.authService.put(link, project).subscribe((res:any) => {
             res = res.json();
             if (res.status) {
-                this.setProject(res.res);
-                //for(let key in res.res){
-                //  this.Project[key] = res.res[key];
-                //}
+                alertify.success(res.message);
+                //this.setProject(res.res);
+                for(let key in project){
+                  this.Project[key] = project[key];
+                }
+            }else{
+                alertify.error(res.message);
             }
-            alertify.success(res.message);
+
         }, (error) => {
         });
     }

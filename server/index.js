@@ -61,8 +61,7 @@ var storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now())
     }
 });
-
-var upload = multer({ dest: '/resources' }).fields([{ name: 'model[]', maxCount: 1 }, { name: 'frames[]', maxCount: 36 }]);
+var upload = multer({ dest: config.DIR.PUBLIC }).fields([{ name: 'model[]', maxCount: 1 }, { name: 'frames[]', maxCount: 36 }]);
 
 app.use( upload);
 app.use(morgan("dev"));

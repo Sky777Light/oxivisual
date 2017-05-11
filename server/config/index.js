@@ -3,6 +3,7 @@
 module.exports = {
     env: process.env.NODE_ENV,
     DIR: {
+        PUBLIC:'/resources',
         UPLOADS:'resources/uploads/',
         PROJECTS:'projects/',
         IMAGES:'images/',
