@@ -4,7 +4,7 @@ import { NgForm} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {UserService,AuthService,ProjectService} from "../../../../services/services";
 import * as ENTITY from "../../../../entities/entities";
-import {MTree} from "../../../../directives/tree";
+import {MTree} from "../../../../directives/tree/tree";
 
 declare var alertify:any;
 
