@@ -47,7 +47,7 @@
       <div class="mnu-item" [routerLink]="['/project/' + headerData._id + '/basic']" routerLinkActive="mnu-item-active">Basic</div>
       <div class="mnu-item">Admins</div>
       <div class="mnu-item" [routerLink]="['/project/' + headerData._id + '/source']" routerLinkActive="mnu-item-active">Source</div>
-      <div class="mnu-item">Preview</div>
+      <div class="mnu-item" [routerLink]="['/project/' + headerData._id + '/preview']" routerLinkActive="mnu-item-active">Preview</div>
     </div>
     <div class="publish-btn" [class.publish-btn-active]="headerData.published" [class.publish-btn-disable]="headerData.published" (click)="deactivate()"><span>{{headerData.published?"Deactivate":"Publish"}}</span></div>
     <div class="pop-up-icon" [class.pop-up-icon-active]="headerSettings">

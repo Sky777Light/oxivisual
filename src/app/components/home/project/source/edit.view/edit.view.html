@@ -29,12 +29,14 @@
                     <div class="inp-form col-lg-6">
                         <label>Width</label>
                         <input name="width" type="number" *ngIf="modelStructure.app._slider"
-                               [(ngModel)]="modelStructure.app._slider.container.clientWidth" disabled>
+                               [(ngModel)]="modelStructure.camera.resolution.x"
+                               (change)="modelStructure.app.updateData('x')">
                     </div>
                     <div class="inp-form col-lg-6">
                         <label>Height</label>
                         <input name="height" type="number" *ngIf="modelStructure.app._slider"
-                               [(ngModel)]="modelStructure.app._slider.container.clientHeight" disabled>
+                               (change)="modelStructure.app.updateData('y')"
+                               [(ngModel)]="modelStructure.camera.resolution.y" >
                     </div>
                 </div>
                 <div class="row">
@@ -79,20 +81,21 @@
                     </div>
                     <div class="inp-form col-lg-6">
                         <label>Size</label>
-                        <input name="size" type="number" [(ngModel)]="modelStructure.app.camera.position.y"
-                               disabled="true">
+                        <input name="size" type="number" [(ngModel)]="modelStructure.camera.size"
+                               (change)="modelStructure.app.updateData('size')"
+                               step="0.1">
                     </div>
                 </div>
                 <div class="row">
                     <div class="inp-form col-lg-6">
                         <label>Lens</label>
-                        <input name="lens" type="number" (change)="modelStructure.app.updateData()"
-                               [(ngModel)]="modelStructure.app.camera.near" disabled="true">
+                        <input name="lens" type="number" (change)="modelStructure.app.updateData('lens')"
+                               [(ngModel)]="modelStructure.camera.lens" step="0.01" >
                     </div>
                     <div class="inp-form col-lg-6">
                         <label>Zoom</label>
                         <input name="zoom" type="number" (change)="modelStructure.app.updateData()"
-                               [(ngModel)]="modelStructure.app.camera.far" disabled="true">
+                               [(ngModel)]="modelStructure.app.camera.zoom"  step="0.1"  >
                     </div>
                 </div>
             </div>

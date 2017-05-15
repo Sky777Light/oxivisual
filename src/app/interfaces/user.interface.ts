@@ -3,7 +3,7 @@ export interface IUser{
     firstName: string,
     secondName: string,
     email: string,
-    role: string,
+    role: number,
     created: number,
     avatar: string,
     active: boolean,
@@ -19,7 +19,7 @@ export class User  implements IUser{
     public firstName: string;
     public secondName: string;
     public email: string;
-    public role: string;
+    public role: number;
     public created:number;
     public avatar: string;
     public active: boolean;
@@ -34,8 +34,8 @@ export class User  implements IUser{
         firstName:string='',
         secondName:string='',
         email:string='',
-        role:string='',
-        created:number=Date.now(),
+        role:number=null,
+        created:number=null,
         avatar:string='',
         active:boolean = true,
         password:string = '',

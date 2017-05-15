@@ -13,7 +13,7 @@ declare var alertify:any;
     templateUrl: './source.project.html',
     styleUrls: ['./source.project.sass']
 })
-export class SourceProject implements AfterViewInit,OnChanges {
+export class SourceProject   {
     public instance:SourceProject;
     private project:any;
     selectedChild:any;
@@ -31,13 +31,9 @@ export class SourceProject implements AfterViewInit,OnChanges {
     }
 
     ngOnChanges(changes) {
-        console.log(changes);
     }
 
     ngAfterViewInit() {
-        setTimeout(()=> {
-            this.editview = true;
-        }, 200);
     }
 
     ngOnInit() {
@@ -48,6 +44,7 @@ export class SourceProject implements AfterViewInit,OnChanges {
             delete this.project['select'];
         }
         if(this.project.model && this.project.model.data && this.project.model.data.length)this.project.select(this.project.model);
+        console.log(this);
     }
 
     create(form:NgForm) {
@@ -103,6 +100,8 @@ export class SourceProject implements AfterViewInit,OnChanges {
             let _form =  new FormData(),
                 filesUpload = [{a: area.destination, n: 'model[]'}, {a: area.images, n: 'frames[]'}];
             _form.append('dir',dirStartFrom);
+            _form.append('destination',area.destination);
+            _form.append('id_project',this.project._id);
 
             for (let f = 0; f < filesUpload.length; f++) {
                 let types = filesUpload[f];
@@ -151,6 +150,7 @@ export class SourceProject implements AfterViewInit,OnChanges {
         if (this.selectedChild && this.selectedChild.app)this.selectedChild.app = null;
         this.selectedChild = child;
         child._app = this;
+
     }
 }
 export class ProjTabs {

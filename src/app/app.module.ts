@@ -31,10 +31,11 @@ import {EditProject} from "./components/home/projects/edit/edit.project";
 import {ProjectComponent} from "./components/home/project/project.component";
 import {SourceProject} from "./components/home/project/source/source.project";
 import {BasicProject} from "./components/home/project/basic/basic.project";
+import {PreviewProject} from "./components/home/project/preview/preview";
 import {ProjectService} from "./services/project.service";
 import {WebglView,WebGLService,UploadFile,MNode,MTree,SlimScroll} from "./directives/directives";
 import {EditView} from "./components/home/project/source/edit.view/edit.view";
-import {PreviewComponent} from "./components/preview/preview.project";
+import {PreviewSceneComponent,PreviewSceneService} from "./components/preview/preview.project";
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {PreviewComponent} from "./components/preview/preview.project";
     EditProject,
     EditView,
     WebglView,
-    PreviewComponent,
+    PreviewSceneComponent,
+    PreviewProject,
     //AbstractTemplateProject,
 
     NewProjectComponent,
@@ -81,6 +83,7 @@ import {PreviewComponent} from "./components/preview/preview.project";
     UserService,
     ShareService,
     WebGLService,
+    PreviewSceneService,
     ProjectService
   ],
   bootstrap: [AppComponent]

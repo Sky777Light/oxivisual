@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt-nodejs");
+var Project = require("./project");
 
 const Schema = mongoose.Schema;
 var NotEmptyString = {type: String, minLength: 1,required: true},
@@ -9,7 +10,10 @@ const projectSchema = new Schema({
     title: NotEmptyString,
     link: NotEmptyString,
     image: EmtyStr,
-    owner: EmtyStr,
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     created: {
         type: Number,
         default:Date.now()

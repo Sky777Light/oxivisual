@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt-nodejs");
 
 const Schema = mongoose.Schema;
 const Types = mongoose.Schema.Types;
+var config = require('../config');
 
 const userSchema = new Schema({
     email: {
@@ -22,29 +23,34 @@ const userSchema = new Schema({
         type: String
     },
     role: {
-        type: String,
-        required: true
+        type: Number,
+        default:config.USER_ROLE.USER
     },
     parent: {
-        type: String || null
+        type: String,
+        default:null
     },
     created: {
         type: Number,
-        required: true
+        default:Date.now()
     },
     active: {
         type: Boolean,
-        required: true
+        default: true
     },
     avatar: {
-        type: String
+        type: String,
+        default: ''
     },
     users: {
-        type: []
+        type: Array,
+        default: []
     },
-    projects: {
-        type: []
-    },
+    projects: [{
+        type: Types.ObjectId,
+        ref: 'Project',
+        default: []
+    }],
     token: {
         type: String
     }

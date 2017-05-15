@@ -13,6 +13,7 @@ export class Config {
         TOUCH_START: 'touchstart',
         TOUCH_MOVE: 'touchmove',
         TOUCH_END: 'touchend',
+        MOUSE_OUT: 'mouseout',
         MOUSE_DOWN: 'mousedown',
         MOUSE_MOVE: 'mousemove',
         MOUSE_UP: 'mouseup'

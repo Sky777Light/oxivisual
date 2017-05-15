@@ -1,4 +1,5 @@
 // process.env.NODE_ENV = 'production';
+const fs = require("fs");
 
 module.exports = {
     env: process.env.NODE_ENV,
@@ -10,6 +11,7 @@ module.exports = {
         SITE_STRUCTURE:'/site_structure.json'
     },
     FILE_UPLOAD_EXT:['.obj','image/'],
+    FILE_UPLOAD_ATTR:['model[]','frames[]'],
     FILE_UPLOAD_ACCEC:parseInt("0777", 8),
     port: process.env.PORT || 3009,
     mongoose: {
@@ -22,5 +24,27 @@ module.exports = {
     superadmin: {
         email: "superuser",
         password: "superpass"
+    },
+    help:{
+         deleteFolderRecursive:function(path,flag) {
+             var _self = this;
+            if( fs.existsSync(path) ) {
+                for(var u=0,files = fs.readdirSync(path);u<files.length;u++){
+                    var file=files[u],
+                        curPath = path + "/" + file;
+                    if(fs.lstatSync(curPath).isDirectory()) { // recurse
+                        _self.deleteFolderRecursive(curPath,flag);
+                    } else {
+                        fs.unlinkSync(curPath);
+                    }
+                }
+                if(flag)fs.rmdirSync(path);
+            }
+        }
+    },
+    USER_ROLE:{
+        ADMIN:1,
+        SUPER:0,
+        USER:2
     }
 };

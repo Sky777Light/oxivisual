@@ -100,6 +100,7 @@ class OxiAPP {
         this.controls.enablePan = false;
 
         this.controls.addEventListener('change', ()=> {
+            this.camera.updateProjectionMatrix();
             this.dataSave();
             this._animation.play();
         });
@@ -108,9 +109,9 @@ class OxiAPP {
         this.camera.positionDef = new THREE.Vector3(34800, 18600, -600);
         if (main.selected.camera) {
             if (main.selected.camera.rotation) {
-                this.camera.rotation.x = main.selected.camera.rotation.x;
-                this.camera.rotation.y = main.selected.camera.rotation.y;
-                this.camera.rotation.z = main.selected.camera.rotation.z;
+                this.camera.rotation.x = main.selected.camera.rotation._x;
+                this.camera.rotation.y = main.selected.camera.rotation._y;
+                this.camera.rotation.z = main.selected.camera.rotation._z;
             }
             if (main.selected.camera.position) {
                 this.camera.positionDef.copy(main.selected.camera.position);
@@ -121,6 +122,9 @@ class OxiAPP {
             if (main.selected.camera.scale) {
                 this.model.scale.multiplyScalar(main.selected.camera.scale);
             }
+            if (main.selected.camera.zoom) {
+                this.camera.zoom = main.selected.camera.zoom;
+            }
         }
 
 
@@ -129,13 +133,12 @@ class OxiAPP {
 
         let curDist = this.camera.positionDef.distanceTo(this.controls.target),
             curAngle = Math.acos((this.camera.positionDef.x - this.controls.target.x) / curDist);
-
         this.camera.updateView = (angle)=> {
             let quaternion = new THREE.Quaternion();
             quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
             this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
             this._animation.play();
-        }
+        };
         this.scene.add(new THREE.AxisHelper(500));
 
         //let light = new THREE.DirectionalLight(0xffffff);
@@ -148,12 +151,16 @@ class OxiAPP {
             let foo = this._parent();
             while (foo.firstChild) foo.removeChild(foo.firstChild);
 
-            this._projControls = new OxiControls(this);
-            this._slider = new OxiSlider(this);
+
             let parentCanvas = this._container = document.createElement('div');
-            parentCanvas.className = ENTITY.ProjClasses.CENTER_CONTAINER;
+            parentCanvas.className = [ENTITY.ProjClasses.CENTER_CONTAINER,'THREEJS'].join(" ");
             this._parent().appendChild(parentCanvas);
             parentCanvas.appendChild(renderer.domElement);
+
+
+            this._projControls = new OxiControls(this);
+            this._slider = new OxiSlider(this);
+
 
 
             this._events = new OxiEvents(this);
@@ -162,31 +169,38 @@ class OxiAPP {
     }
 
     updateData(data) {
-
+        let settings = this.main.selected.camera;
         switch (data) {
             case'scale':
             {
                 this.model.scale.z = this.model.scale.y = this.model.scale.x;
                 break;
             }
-            case'width':
+
+            case'y':
+            case'x':
             {
-                let prop = this._slider.currentFrame.clientWidth / this._slider.currentFrame.clientHeight,
-                    val = this.main.selected.camera.resolution.x;
-                [].forEach.call(this._slider.imgPagination.childNodes, function (el, i) {
-                    el[data] = val;
-                    el.height = data * prop;
+                let
+                    val =  this.main.selected.camera.resolution[data],
+                    prop = this._slider._W() / this._slider._H(),
+                    isHeight = data=='y',
+                    _px = 'px';
+                [].forEach.call(this._slider.container.childNodes, function (el, i) {
+                    el.style.height =(isHeight?val:val / prop)+_px;
+                    el.style.width = (isHeight?val * prop:val)+_px;
                 });
+                this._events.onWindowResize();
                 break;
             }
-            case'height':
+            case'size':
+            case'lens':
             {
-                let prop = this._slider.currentFrame.clientWidth / this._slider.currentFrame.clientHeight,
-                    val = this.main.selected.camera.resolution.y;
-                [].forEach.call(this._slider.imgPagination.childNodes, function (el, i) {
-                    el[data] = val;
-                    el.width = data / prop;
-                });
+
+                //settings.size =this._slider._W() * 1.1 > window.innerWidth ? (window.innerWidth / this._slider._W()) * 0.9 : 1;
+                settings.aspect = settings.resolution.x / settings.resolution.y;
+                this.camera.setLens(settings.lens * settings.aspect, settings.size);
+                this.camera.updateProjectionMatrix();
+                break;
             }
             default:
             {
@@ -202,17 +216,15 @@ class OxiAPP {
     dataSave() {
         let old = this.main.selected.camera;
         this.main.selected.camera = new ENTITY.OxiCamera({
-            position: new ENTITY.Vector3(this.camera.position),
-            rotation: new ENTITY.Vector3({
-                x: this.camera.rotation.x,
-                y: this.camera.rotation._y,
-                z: this.camera.rotation._z
-            }),
+            position: this.camera.position,
+            rotation: this.camera.rotation,
             resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
             fov: this.camera.fov,
+            zoom: this.camera.zoom,
             scale: this.model.scale.x,
+            lens: old.lens,
+            size: old.size,
         });
-        this.main.selected.camera.resolution = old;
     }
 
     loadModel(callback:Function = ()=> {
@@ -309,6 +321,9 @@ class OxiAPP {
     }
 
 
+    _offset(){
+        return this.gl.domElement.getBoundingClientRect()
+    }
     render() {
         if (Pace.running) return;
         this.gl.render(this.scene, this.camera);
@@ -372,6 +387,9 @@ class OxiEvents {
             }
             ev.preventDefault();
         }
+    }
+    onMouseOut(ev:any){
+        this.main._projControls.show(ev, false);
     }
 
     onMouseMove(ev:Event) {
@@ -459,7 +477,10 @@ class OxiAnimation {
     constructor(main) {
         this.app = main;
         this.play();
-        this.animate();
+        setTimeout(()=>{
+            this.animate();
+        },100);
+
 
     }
 
@@ -478,9 +499,15 @@ class OxiAnimation {
             if (!this.canAnimate || this.lastIter > 2)this.lastIter = 0;
             this.app.render();
         }
+        if(this.app._container.clientWidth != this.app._container.lastClientWidth){
+            this.app._container.lastClientWidth = this.app._container.clientWidth;
+            this.app._events.onWindowResize();
+            this.app._projControls.show({},false);
+        }
         requestAnimationFrame(() => {
             this.animate();
         });
+
 
     }
 
@@ -511,7 +538,8 @@ class OxiSlider {
     }
 
     addFrames() {
-        let app = this.app;
+        let _self = this,
+            app = this.app;
 
         [this.container, this.imgPagination].forEach((domEl)=> {
             if (domEl) {
@@ -522,7 +550,9 @@ class OxiSlider {
 
 
         let div = this.container = document.createElement('div'),
-            imgPagination = this.imgPagination = document.createElement('ul');
+            imgPagination = this.imgPagination = document.createElement('ul'),
+            _resol = this.app.main.selected.camera.resolution,
+            _px = 'px';
 
         if (!app.main.selected.images || !app.main.selected.images.length) return;
 
@@ -533,6 +563,13 @@ class OxiSlider {
             if (parseInt(i) == this.app.main.selected.currentItem) {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
+                img.onload = function(){
+                    _self.app._events.onWindowResize();
+                }
+            }
+            if(_resol){
+                img.style.width = _resol.x + _px;
+                img.style.height = _resol.y + _px;
             }
             div.appendChild(img);
 
@@ -545,26 +582,27 @@ class OxiSlider {
         }
 
         div.className = [ENTITY.ProjClasses.CENTER_CONTAINER, ENTITY.ProjClasses.IMG_SLIDER].join(" ");
-        app._parent().appendChild(div);
+        app._container.appendChild(div);
         app._parent().appendChild(imgPagination);
     }
 
     updateView(selectedItem) {
         this.currentFrame['className'] = '';
         this.app.main.selected.currentItem = selectedItem;
-        this.app.camera.updateView(selectedItem);
+        this.app.camera.updateView(selectedItem-this.app.main.selected.currentItem0);
 
         this.currentFrame = this.container.childNodes[selectedItem];
         this.currentFrame['className'] = ENTITY.ProjClasses.ACTIVE;
 
+        this.app._events.onMouseOut({});
     }
 
     _W() {
-        return this.container.clientWidth || this.app.screen.width;
+        return this.currentFrame.clientWidth|| this.container.clientWidth || this.app.screen.width;
     }
 
     _H() {
-        return this.container.clientHeight || this.app.screen.height;
+        return this.currentFrame.clientHeight|| this.container.clientHeight || this.app.screen.height;
     }
 
     _offsetLeft() {
@@ -642,8 +680,6 @@ class OxiControls {
                 domEl.appendChild(icon);
             });
     }
-
-
     show(pos, flag:boolean = true) {
 
         if (this.app._events.lastInter) {
@@ -661,8 +697,13 @@ class OxiControls {
             this.controls.className = this.controls.className.replace(ENTITY.ProjClasses.ACTIVE, '');
         }
 
-        this.controls.style.left = ((pos.x || pos.clientX) - 15 ) + 'px';
-        this.controls.style.top = ((pos.y || pos.clientY) - this.controls.clientHeight / 2 - 15) + 'px';
+        let _d:any = document.querySelector('app-aside');
+        if(_d){
+            _d = _d.getBoundingClientRect();
+        }
+
+        this.controls.style.left = ((   pos.clientX || pos.x) - 15-(_d.right?_d.right:0) ) + 'px';
+        this.controls.style.top = ((  pos.clientY || pos.y) - this.controls.clientHeight / 2 - 15) + 'px';
         this.app._animation.play();
     }
 }

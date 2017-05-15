@@ -80,7 +80,7 @@
                         <td *ngIf="!treeView.hide" [attr.colspan]="sceneConfig.hide?2:1">
                             <div class="tabs-body">
                                 <div class="body-data">
-                                    <tree   [parent] = "instance" [data]="project.model.data"></tree>
+                                    <tree   [mainParent] = "instance" [data]="project.model.data"></tree>
                                 </div>
                             </div>
                         </td>

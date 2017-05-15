@@ -45,10 +45,11 @@ router.post("/login", function (req, res, next) {
     if((req.body.email === config.superadmin.email) && (req.body.password === config.superadmin.password)){
         User.findOne({email: req.body.email}, function (err, user) {
             if (err) {
-                throw err;
-            }
-
-            if(user){
+                return res.json({
+                    status: false,
+                    message: err&& err.message?err.message:"You are not logged in."
+                });
+            }else  if(user){
                 passportCtrl();
             } else {
 
@@ -57,15 +58,15 @@ router.post("/login", function (req, res, next) {
                     password: config.superadmin.password,
                     firstName: "Super",
                     secondName: "User",
-                    avatar: '',
-                    role: 'super',
-                    created: req.body.created,
-                    active: true,
-                    parent: null
+                    role: config.USER_ROLE.SUPER,
+                    parent: req.user?req.user._id:null
                 } ).save(function (err, user) {
 
                     if (err) {
-                        throw err;
+                        return res.json({
+                            status: false,
+                            message: err&& err.message?err.message:"You are not logged in."
+                        });
                     }
 
                     user.token = "JWT " + jwt.encode({_id: user._id, email: user.email}, config.security.secret);

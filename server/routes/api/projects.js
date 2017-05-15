@@ -2,8 +2,10 @@ const router = require("express").Router();
 const async = require("async");
 const fs = require("fs");
 const config = require("../../config");
+const path = require("path");
 
 const Project = require("../../models/project");
+const User = require("../../models/user");
 
 var saveImage = function (image, avatar, done) {
     function decodeBase64Image(dataString) {
@@ -24,7 +26,7 @@ var saveImage = function (image, avatar, done) {
             var filePath = './resources' + avatar;
             fs.unlinkSync(filePath);
         }
-        done(null, '');
+        if(done)done(null, '');
         return;
     }
 
@@ -49,7 +51,7 @@ var saveImage = function (image, avatar, done) {
 
     fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function (err) {
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
-        done(err, clientPath);
+        if(done)done(err, clientPath);
     });
 };
 function randomString(l) {
@@ -65,79 +67,108 @@ function randomString(l) {
     }
     return str + Date.now().toString(32);
 }
+function checkPermissionOnProject(req, res, next) {
+    if (req.body._id || req.user.projects.indexOf(req.body._id) < 0) {
+        //if (req.user.projects.indexOf(req.body._id) < 0) {
+        //    Project.findOne({_id: req.body.id_project}, {_id: 1, model: 1, owner: 1}, function (err, project) {
+        //        if (err || !project || project.owner != req.user._id) {
+        //            return res.json({
+        //                status: false,
+        //                message: "permission denied!!!"
+        //            });
+        //        } else {
+        //            req.user.lastEditProject = project;
+        //            if (project.model && project.model.link) {
+        //                project.data = fs.readSync(path.normalize(config.DIR.UPLOADS + config.DIR.PROJECTS + project.model.link + "/" + config.DIR.SITE_STRUCTURE), 'utf8');
+        //                project.data = project.data ? JSON.parse(project.data) : [];
+        //            }
+        //            next(req, res);
+        //        }
+        //    });
+        //} else {
+
+        next(req, res);
+        //}
+    } else {
+        return res.json({
+            status: false,
+            message: "permission denied"
+        });
+    }
+
+}
 
 //update project
-router.put("/project", function (req, res) {
-    Project.findOne({_id: req.body._id}, function (err, project) {
-        if (err) {
-            return res.json({
-                status: false,
-                message: "Undefined error, no project found."
-            });
-        }
-
-        if (!project) {
-            return res.json({
-                status: false,
-                message: "No project found."
-            });
-        }
-
-
-        var needToYpdateImg = req.body.image && req.body.image !== project.image,
-            updateProj = function (fields) {
-                var _sets = {},
-                    exept = ['_id'];
-
-                for(var _field  in req.body){
-                    if(req.body.hasOwnProperty(_field) && exept.indexOf(_field) < 0){
-                        _sets[_field] = req.body[_field];
-                    }
-                }
-                if(fields) for(var _field  in fields){
-                    if(fields.hasOwnProperty(_field) && exept.indexOf(_field) < 0){
-                        _sets[_field] = fields[_field];
-                    }
-                }
-
-                Project.update({_id: req.body._id}, {$set: _sets}, function (err) {
-                    return res.json({
-                        status: !err,
-                        message: err ? (err.message || err) : "Project successfully was changed."
-                    });
+router.put("/project", function (request, responce) {
+    checkPermissionOnProject(request, responce, function (req, res) {
+        Project.findOne({_id: req.body._id}, function (err, project) {
+            if (err) {
+                return res.json({
+                    status: false,
+                    message: "Undefined error, no project found."
                 });
-            };
+            }
+
+            if (!project) {
+                return res.json({
+                    status: false,
+                    message: "No project found."
+                });
+            }
 
 
-        if (needToYpdateImg) {
-            saveImage(req.body.image, project.image, function (err, img) {
-                if (err) {
-                    return res.json({
-                        status: false,
-                        res: project,
-                        message: err
-                    })
-                }
-                updateProj({image:img});
-            })
-        } else {
-            updateProj();
-        }
+            var needToYpdateImg = req.body.image && req.body.image !== project.image,
+                updateProj = function (fields) {
+                    var _sets = {},
+                        exept = ['_id'];
+
+                    for (var _field  in req.body) {
+                        if (req.body.hasOwnProperty(_field) && exept.indexOf(_field) < 0) {
+                            _sets[_field] = req.body[_field];
+                        }
+                    }
+                    if (fields) for (var _field  in fields) {
+                        if (fields.hasOwnProperty(_field) && exept.indexOf(_field) < 0) {
+                            _sets[_field] = fields[_field];
+                        }
+                    }
+
+                    Project.update({_id: req.body._id}, {$set: _sets}, function (err) {
+                        return res.json({
+                            status: !err,
+                            message: err ? (err.message || err) : "Project successfully was changed."
+                        });
+                    });
+                };
 
 
+            if (needToYpdateImg) {
+                saveImage(req.body.image, project.image, function (err, img) {
+                    if (err) {
+                        return res.json({
+                            status: false,
+                            res: project,
+                            message: err
+                        })
+                    }
+                    updateProj({image: img});
+                })
+            } else {
+                updateProj();
+            }
+
+
+        });
     });
 });
-
 //create project
 router.post("/project", function (req, res) {
-    if (req.user.role === 'user') {
+    if (req.user.role === config.USER_ROLE.USER) {
         return res.json({
             status: false,
             message: 'Access denied'
         });
-    }
-
-    if (!req.body.title || !req.body.link) {
+    } else if (!req.body.title || !req.body.link) {
         return res.json({
             status: false,
             message: "Empty fields."
@@ -152,11 +183,10 @@ router.post("/project", function (req, res) {
                 title: req.body.title,
                 link: req.body.link,
                 owner: req.user._id,
-                image: req.body.image,
-                published: false
+                image: req.body.image
             });
 
-            newProject.owner = (req.user.role === 'super') ? null : req.user._id;
+            //newProject.owner = (req.user.role === 'super') ? null : req.user._id;
 
             if (req.body.image) {
                 saveImage(req.body.image, null, function (err, img) {
@@ -175,24 +205,30 @@ router.post("/project", function (req, res) {
 
         project.save(function (err, tempProject) {
             if (err) {
-                throw err;
+                return res.json({
+                    status: false,
+                    message: err && err.message ? err.message : "model was not saved"
+                });
+            } else {
+                User.update({_id: req.user._id}, {$push: {projects: tempProject._id}}, function (err) {
+                    if (!err)req.user.projects.push(tempProject._id);
+                    return res.json({
+                        status: !err,
+                        message: err ? err : "Project was successfully created.",
+                        res: tempProject
+                    });
+                });
+
             }
-            res.json({
-                status: true,
-                res: tempProject,
-                message: "Project was successfully created."
-            })
         });
 
     });
 
 });
-
-
 router.post("/project/model/create", function (req, res) {
     var modelName = req.body.name,
         id_project = req.body.id_project;
-    if (!modelName || !id_project || !req.files['model[]'] || !req.files['frames[]']) {
+    if (!modelName || !id_project || !req.files[config.FILE_UPLOAD_ATTR[0]] || !req.files[config.FILE_UPLOAD_ATTR[1]]) {
         return res.json({
             status: false,
             message: "something got incorect!!!"
@@ -200,14 +236,15 @@ router.post("/project/model/create", function (req, res) {
     } else {
         var matches = config.FILE_UPLOAD_EXT.concat([]),
             area = {
-                _id:id_project,
-                name:modelName,
-                projFilesDirname:modelName + "_" + randomString(),
-                created:Date.now(),
-                images:[]
+                _id: id_project,
+                name: modelName,
+                projFilesDirname: modelName + "_" + randomString(),
+                created: Date.now(),
+                _category: 2,
+                images: []
             },
-            modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS+ area.projFilesDirname,
-            imageDir = modelDir + "/"+config.DIR.IMAGES,
+            modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + area.projFilesDirname,
+            imageDir = modelDir + "/" + config.DIR.IMAGES,
             mode = config.FILE_UPLOAD_ACCEC;
 
         if (!fs.existsSync(modelDir)) {
@@ -230,88 +267,116 @@ router.post("/project/model/create", function (req, res) {
         }
         fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, JSON.stringify([area]));
 
-        Project.update({_id: id_project}, {$set: {"model.link": area.projFilesDirname, "model.name": modelName}}, function (err) {
+        Project.update({_id: id_project}, {
+            $set: {
+                "model.link": area.projFilesDirname,
+                "model.name": modelName
+            }
+        }, function (err) {
             return res.json({
                 status: !err,
                 message: err ? err : "model was saved",
                 model: {
                     link: area.projFilesDirname,
                     name: modelName,
-                    data:area
+                    data: area
                 }
             });
         });
     }
 });
-router.post("/project/model/update", function (req, res) {
-    var body =  req.body;
-    if ( !body.dir ) {
-        return res.json({
-            status: false,
-            message: "something got incorect!!!"
-        });
-    }else{
+router.post("/project/model/update", function (request, responce) {
+    checkPermissionOnProject(request, responce, function (req, res) {
+        var body = req.body;
+        console.log(req.user);
+        if (!body.dir) {
+            return res.json({
+                status: false,
+                message: "something got incorect!!!"
+            });
+        } else {
 
-        var  modelDir = config.DIR.UPLOADS+config.DIR.PROJECTS + body.dir,
-            matches = config.FILE_UPLOAD_EXT;
+            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + body.dir + "/",
+                matches = config.FILE_UPLOAD_EXT;
 
-        if(req.files){
-            var  imageDir = modelDir + "/" + config.DIR.IMAGES;
+            if (req.files) {
+                var imageDir = modelDir + config.DIR.IMAGES;
 
-            if (!fs.existsSync(modelDir))fs.mkdirSync(modelDir, config.FILE_UPLOAD_ACCEC);
-            if (!fs.existsSync(imageDir))fs.mkdirSync(imageDir, config.FILE_UPLOAD_ACCEC);
-            for (var keys in req.files) {
-                for (var i = 0; i < req.files[keys].length; i++) {
-                    var _file = req.files[keys][i];
-                    if (_file.originalname.match(matches[0])) {
-                        fs.writeFileSync(modelDir + "/" + _file.originalname, fs.readFileSync(_file.path));
-                    } else if (_file.mimetype.match(matches[1])) {
-                        fs.writeFileSync(imageDir + _file.originalname, fs.readFileSync(_file.path));
+                if (fs.existsSync(path.normalize(modelDir))) {
+                    if (req.files[config.FILE_UPLOAD_ATTR[0]])fs.unlinkSync(modelDir + body.destination);
+                } else {
+                    fs.mkdirSync(path.normalize(modelDir), config.FILE_UPLOAD_ACCEC);
+                }
+                if (fs.existsSync(imageDir)) {
+                    if (req.files[config.FILE_UPLOAD_ATTR[1]])config.help.deleteFolderRecursive(imageDir);
+                } else {
+                    fs.mkdirSync(imageDir, config.FILE_UPLOAD_ACCEC);
+                }
+
+                for (var keys in req.files) {
+                    for (var i = 0; i < req.files[keys].length; i++) {
+                        var _file = req.files[keys][i];
+                        if (_file.originalname.match(matches[0])) {
+                            fs.writeFileSync(modelDir + _file.originalname, fs.readFileSync(_file.path));
+                        } else if (_file.mimetype.match(matches[1])) {
+                            fs.writeFileSync(imageDir + _file.originalname, fs.readFileSync(_file.path));
+                        }
                     }
                 }
             }
+            if (body.structure) {
+                fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), body.structure);
+            }
+            return res.json({
+                status: true,
+                message: "project area was updated"
+            });
         }
-        if(body.structure){
-            fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, body.structure);
-        }
-        return res.json({
-            status: true,
-            message: "project area was updated"
-        });
-        //var area = {
-        //        _id:body._id ,
-        //        name:body.name,
-        //        camera:body.camera,
-        //        frames:0,
-        //        created:Date.now(),
-        //        images:[]
-        //    };
-        //var structure = JSON.parse(fs.readFileSync(config.DIR.UPLOADS+config.DIR.PROJECTS+ body.projFilesDirname+ config.DIR.SITE_STRUCTURE));
-    }
+    });
 });
 
 
 //devare user
-router.delete("/project", function (req, res) {
-    Project.findOne({_id: req.body._id}, function (err, project) {
-        if (err) {
-            throw err;
-        }
+router.delete("/project", function (request, responce) {
+    checkPermissionOnProject(request, responce, function (req, res) {
+        Project.findOne({_id: req.body._id}, function (err, project) {
+            if (err) {
+                return res.json({
+                    status: false,
+                    message: "No project found"
+                });
+            } else if (!project) {
+                return res.json({
+                    status: false,
+                    message: "No user found"
+                });
+            } else {
+                Project.remove({_id: req.body._id}, function (er) {
+                    if (er) {
+                        res.json({
+                            status: false,
+                            message: err.message
+                        });
+                    } else {
 
-        if (!project) {
-            return res.json({
-                status: false,
-                message: "No user found"
-            });
-        }
-    }).remove().exec(function (err) {
-        if (err) {
-            throw err;
-        }
+                        if (project.image)saveImage(false,project.image);
+                        if (project.model && project.model.link)config.help.deleteFolderRecursive(config.DIR.UPLOADS + config.DIR.PROJECTS + project.model.link, true);
 
-        res.json({
-            status: true,
-            message: "Project was successfully devared"
+                        User.update({_id: req.user._id},
+                            {$pull: {projects: {$in: [req.body._id]}}}
+                            , function (err) {
+                                console.log('User was updated', err);
+                                if (!err && req.user.projects.indexOf(req.body._id) > -1)req.user.projects.splice(req.user.projects.indexOf(req.body._id), 1);
+                                res.json({
+                                    status: !err,
+                                    message: err ? err.message : "Project was deleted"
+                                });
+                            }
+                        );
+                    }
+                });
+
+            }
         });
     });
 });

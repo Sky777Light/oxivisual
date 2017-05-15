@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const async = require("async");
+const config = require("../../config");
 var fs = require("fs");
 
 const User = require("../../models/user");
@@ -19,7 +20,7 @@ var saveImage = function (image, avatar, done) {
         return response;
     }
     if(!image){
-        if(avatar){
+        if(avatar && avatar.length){
             var filePath = './resources' + avatar;
             fs.unlinkSync(filePath);
         }
@@ -27,7 +28,7 @@ var saveImage = function (image, avatar, done) {
         return;
     }
 
-    if(avatar){
+    if(avatar && avatar.length){
         var filePath = './resources' + avatar;
         fs.unlinkSync(filePath);
     }
@@ -39,12 +40,12 @@ var saveImage = function (image, avatar, done) {
     var uniqueSHA1String = crypto.createHash('sha1').update(seed).digest('hex');
 
     var imageBuffer = decodeBase64Image(image);
-    var userUploadedFeedMessagesLocation = 'resources/uploads/img/users/';
+    var userUploadedFeedMessagesLocation = 'resources/uploads/img/';
 
     var uniqueRandomImageName = 'image-' + uniqueSHA1String; //uniqueSHA1String;
     var imageTypeDetected = decodeBase64Image(image).type.match(imageTypeRegularExpression);
     var userUploadedImagePath  = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
-    var clientPath  = '/uploads/img/users/' + uniqueRandomImageName + '.' + imageTypeDetected[1];
+    var clientPath  = '/uploads/img/' + uniqueRandomImageName + '.' + imageTypeDetected[1];
 
     fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function(err){
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
@@ -78,17 +79,17 @@ router.get("/user/:id", function (req, res) {
             })
         },
         function (user, done) {
-            if(user.role === 'super'){
+            if(user.role === config.USER_ROLE.SUPER){
                 Project.find({}, function (err, projects) {
                     user.projects = projects;
                     done(err, user);
                 })
-            } else if( user.role === 'admin'){
+            } else if( user.role === config.USER_ROLE.ADMIN){
                 Project.find( {owner: user._id}, function (err, projects) {
                     user.projects = projects;
                     done(err, user);
                 })
-            } else if( user.role === 'user'){
+            } else if( user.role === config.USER_ROLE.USER){
                 Project.find( {owner: user.parent}, function (err, projects) {
                     user.projects = projects;
                     done(err, user);
@@ -98,39 +99,20 @@ router.get("/user/:id", function (req, res) {
             }
         },
         function (user, done) {
-            if(user.role === 'super'){
-                User.find({}, {
-                    'email' :1,
-                    'firstName': 1,
-                    'secondName': 1,
-                    'created': 1,
-                    'role': 1,
-                    'projects': 1,
-                    'users': 1,
-                    'active': 1,
-                    'avatar': 1
-                }, function (err, users) {
-                    user.users = users;
-                    done(err, user);
-                })
-            } else if( user.role === 'admin'){
-                User.find( {$or: [ { parent: user._id }, { _id: user._id }] }, {
-                    'email' :1,
-                    'firstName': 1,
-                    'secondName': 1,
-                    'created': 1,
-                    'role': 1,
-                    'projects': 1,
-                    'users': 1,
-                    'active': 1,
-                    'avatar': 1
-                }, function (err, users) {
-                    user.users = users;
-                    done(err, user);
-                })
-            } else{
-                done(null, user);
-            }
+            User.find((user.role === config.USER_ROLE.SUPER?{}:(user.role === config.USER_ROLE.ADMIN?{$or: [ { parent: user._id }, { _id: user._id }] }:{_id:-1})), {
+                'email' :1,
+                'firstName': 1,
+                'secondName': 1,
+                'created': 1,
+                'role': 1,
+                'projects': 1,
+                'users': 1,
+                'active': 1,
+                'avatar': 1
+            }, function (err, users) {
+                user.users = users;
+                done(err, user);
+            });
         }
     ], function (err, user) {
 
@@ -260,80 +242,80 @@ router.post("/user", function (req, res) {
             status: false,
             message: 'Access denied'
         });
-    }
-
-    if (!req.body.email || !req.body.password || !req.body.role || !req.body.firstName || !req.body.secondName) {
+    }else if (!req.body.email || !req.body.password  || !req.body.firstName || !req.body.secondName) {
         return res.json({
             status: false,
             message: "Empty fields."
         });
-    }
+    }else{
+        async.waterfall([
+            function (done) {
+                User.findOne({ email: req.body.email }, function (err, user) {
+                    if(err){
+                        return done(err, null);
+                        return res.json({
+                            status: false,
+                            err: err,
+                            message: "Error"
+                        });
+                    }else if (user) {
+                        return done({status: false, email: true, message: "That email is already taken."}, null);
+                    }else{
 
-    async.waterfall([
-        function (done) {
-            User.findOne({ email: req.body.email }, function (err, user) {
-                if(err){
-                    done(err, null);
-                    return;
-                }
+                        var newUser = new User({
+                            email: req.body.email,
+                            password: req.body.password,
+                            firstName: req.body.firstName,
+                            secondName: req.body.secondName,
+                            parent: req.user._id,
+                            avatar: req.body.avatar
+                        });
+                        done(null, newUser);
+                    }
 
-                if (user) {
-                    done({status: false, email: true, message: "That email is already taken."}, null);
-                    return;
-                }
-
-                var newUser = new User({
-                    email: req.body.email,
-                    password: req.body.password,
-                    firstName: req.body.firstName,
-                    secondName: req.body.secondName,
-                    parent: req.user._id,
-                    avatar: req.body.avatar,
-                    role: req.body.role,
-                    created: req.body.created,
-                    active: true
                 });
+            },
+            function (user, done) {
 
-                done(null, newUser);
-            });
-        },
-        function (user, done) {
+                if(user.avatar){
+                    saveImage(user.avatar, null, function(err, img){
+                        user.avatar = img;
+                        done(err, user);
+                    })
+                } else {
+                    done(null, user);
+                }
 
-            if(user.avatar){
-                saveImage(user.avatar, null, function(err, img){
-                    user.avatar = img;
-                    done(err, user);
-                })
-            } else {
-                done(null, user);
             }
-
-        }
-    ],  function (err, user) {
-
-        if (err) {
-            if( err.message ){
-                return res.json(err);
-            } else {
-                throw err;
-            }
-        }
-
-        user.save(function (err, user) {
+        ],  function (err, user) {
             if (err) {
-                throw err;
+                return res.json({
+                    status: false,
+                    err: err,
+                    message: "Error."
+                })
+            }else{
+                user.save(function (err, user) {
+                    if (err) {
+                        return res.json({
+                            status: true,
+                            err: err,
+                            message: "User was unsuccessfully created."
+                        })
+                    }else{
+                        return res.json({
+                            status: true,
+                            res: user,
+                            message: "User was successfully created."
+                        });
+                    }
+
+
+                });
             }
 
-            return res.json({
-                status: true,
-                res: user,
-                message: "User was successfully created."
-            })
         });
-
-
-    });
-
+    }
 });
 
 //delete user

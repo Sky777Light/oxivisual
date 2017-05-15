@@ -11,6 +11,8 @@ import {UsersComponent} from "./components/home/users/users.component";
 import {ProjectComponent} from "./components/home/project/project.component";
 import {BasicProject} from "./components/home/project/basic/basic.project";
 import {SourceProject} from "./components/home/project/source/source.project";
+import {PreviewProject} from "./components/home/project/preview/preview";
+import {PreviewSceneComponent,PreviewSceneService} from "./components/preview/preview.project";
 
 export const routes: Routes = [
 
@@ -51,6 +53,10 @@ export const routes: Routes = [
                     {
                         path: 'source',
                         component: SourceProject
+                    },
+                    {
+                        path: 'preview',
+                        component: PreviewProject
                     }
                 ]
             }
@@ -60,6 +66,11 @@ export const routes: Routes = [
         path: 'login',
         component:  LoginComponent,
         canActivate: [LoggedGuardService]
+    },
+    {
+        path: 'preview',
+        component:  PreviewSceneComponent,
+        canActivate: [PreviewSceneService]
     },
     {
         path:"**",
