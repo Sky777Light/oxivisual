@@ -40,7 +40,7 @@ var saveImage = function (image, avatar, done) {
     var uniqueSHA1String = crypto.createHash('sha1').update(seed).digest('hex');
 
     var imageBuffer = decodeBase64Image(image);
-    var userUploadedFeedMessagesLocation = 'resources/uploads/img/';
+    var userUploadedFeedMessagesLocation = 'resources/uploads/img/users/';
 
     var uniqueRandomImageName = 'image-' + uniqueSHA1String; //uniqueSHA1String;
     var imageTypeDetected = decodeBase64Image(image).type.match(imageTypeRegularExpression);

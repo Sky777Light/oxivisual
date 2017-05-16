@@ -19,26 +19,41 @@ export class ViewProject{
         this.Editable = true;
     }
 
-    openPopUp(){
+    openPopUp(event){
+        event.preventDefault();
+        event.stopPropagation();
         if(!this.Editable)
             return;
 
-        if(!this.openedPopUp)
+        //if(!this.openedPopUp)
             this.projectService.setProject(this.project);
 
         this.openedPopUp = !this.openedPopUp;
+        return false;
     }
 
-    deactivateProject() {
+    deactivateProject(event) {
+        event.preventDefault();
+        event.stopPropagation();
         let id = this.project._id;
         let temp = {
             _id: id,
             published: !this.project.published
         };
         this.projectService.changeProject(temp);
+        this.openedPopUp = !this.openedPopUp;
+        //this.project.published =  !this.project.published;
+        return false;
     }
 
-    deleteProject() {
+    deleteProject(event) {
+        event.preventDefault();
+        event.stopPropagation();
         this.projectService.deleteProject(this.project);
+        this.openedPopUp = !this.openedPopUp;
+        return false;
+    }
+    openUrl(){
+        console.log('tet');
     }
 }

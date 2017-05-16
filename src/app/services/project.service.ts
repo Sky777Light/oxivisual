@@ -16,7 +16,12 @@ export class ProjectService {
     }
 
     setProject(project:any):void {
-        this.Project = new ENTITY.Project(project);
+
+        if(!(project instanceof  ENTITY.Project)){
+            this.Project = new ENTITY.Project(project);
+        }else{
+            this.Project = project;
+        }
         if (!(this.Project.model instanceof  ENTITY.ProjectModel)) {
             this.Project.model = new ENTITY.ProjectModel(this.Project.model);
         }

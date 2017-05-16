@@ -68,7 +68,7 @@ function randomString(l) {
     return str + Date.now().toString(32);
 }
 function checkPermissionOnProject(req, res, next) {
-    if (req.body._id || req.user.projects.indexOf(req.body._id) < 0) {
+    if (req.body._id && req.user.projects.indexOf(req.body._id) >= 0) {
         //if (req.user.projects.indexOf(req.body._id) < 0) {
         //    Project.findOne({_id: req.body.id_project}, {_id: 1, model: 1, owner: 1}, function (err, project) {
         //        if (err || !project || project.owner != req.user._id) {

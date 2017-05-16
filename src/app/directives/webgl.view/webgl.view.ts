@@ -102,8 +102,8 @@ class OxiAPP {
 
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
-        this.controls.enabled = this.main.selected.canEdit;
-        if (this.main.selected.canEdit)this.controls.addEventListener('change', ()=> {
+        this.controls.enabled = !!this.main.selected.canEdit;
+        if (this.controls.enabled)this.controls.addEventListener('change', ()=> {
             this.camera.updateProjectionMatrix();
             this.dataSave();
             this._animation.play();
@@ -297,7 +297,7 @@ class OxiAPP {
         object.traverse((child)=> {
             if (child.type == 'Mesh') {
                 child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
-
+                child.material.onSelectColor = new THREE.Color(Math.random(),Math.random(),Math.random());
                 for (let i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
                     if (areas[i]._id.match(child.name)) {
                         child._data = areas[i];
@@ -478,6 +478,10 @@ class OxiEvents {
     private onMouseDown(ev:Event) {
         this.mouse.down = ev;
     }
+    onCntxMenu(event){
+        event.preventDefault();
+        return false;
+    }
 
     inter(ev:any, arg:any = null) {
         var _self = this,
@@ -641,6 +645,10 @@ class OxiSlider {
                 this.currentFrame = img;
                 img.onload = function () {
                     _self.app._events.onWindowResize();
+                    if(!_self.app.main.selected.camera.resolution.x){
+                        _self.app.main.selected.camera.resolution.x = _self._W();
+                        _self.app.main.selected.camera.resolution.y = _self._H();
+                    }
                 }
             }
             if (_resol) {
@@ -714,6 +722,7 @@ class OxiControls {
         let div = this.controls = document.createElement('div');
         this.app = app;
 
+        div.addEventListener( ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false );
         if (app.main.selected.canEdit) {
             div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
             app._parent().appendChild(div);
@@ -793,6 +802,7 @@ class OxiControls {
                     child.material.visible = false;
                     child._toolTip = new OxiToolTip(child, app.main.location);
                     tooltipParent.appendChild(child._toolTip.tooltip);
+                    tooltipParent.addEventListener( ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false );
                 }
             });
             let path = this.app.main.location.path(),
@@ -808,6 +818,7 @@ class OxiControls {
                     this.app.main.location.go(areas.length > 1 ? areas.join(ENTITY.Config.PROJ_DMNS[0] + "area=") : areas.join(''));
                     window.location.reload();
                 });
+                back.addEventListener( ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false );
 
             }
         }

@@ -86,7 +86,7 @@ export class SourceProject   {
             self = this;
 
         this.uploadStructure(data,function(){
-            self.authService.post("/api/projects/project/model/update", {dir:data.projFilesDirname,structure:JSON.stringify([data.clone()])}).subscribe((res:any) => {
+            self.authService.post("/api/projects/project/model/update", {_id:self.project._id,dir:data.projFilesDirname,structure:JSON.stringify([data.clone()])}).subscribe((res:any) => {
                 console.log("finish update");
             });
         },data.projFilesDirname);
@@ -100,7 +100,7 @@ export class SourceProject   {
                 filesUpload = [{a: area.destination, n: 'model[]'}, {a: area.images, n: 'frames[]'}];
             _form.append('dir',dirStartFrom);
             _form.append('destination',area.destination);
-            _form.append('id_project',this.project._id);
+            _form.append('_id',this.project._id);
 
             for (let f = 0; f < filesUpload.length; f++) {
                 let types = filesUpload[f];

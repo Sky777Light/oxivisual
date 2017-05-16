@@ -1,26 +1,21 @@
-<div class="project">
+<div class="project" [routerLink]="['/project', (project._id || 0)]"  routerLinkActive="active">
     <div class="project-content img-true" [ngStyle]="{'background-image': 'url(' + project.image + ')'}" [class.img-true]="project.image">
         <i class="material-icons no-img" [hidden]="project.image">crop_original</i>
         <div class="project-ctrl-wrap">
             <span class="unpublished" [hidden]="project.published">Unpublished</span>
             <div class="project-ctrl">
-                <i class="material-icons" [routerLink]="['/project', (project._id || 0)]"  routerLinkActive="active">edit</i>
+                <i class="material-icons" >edit</i>
                 <div class="pop-up-icon" [class.pop-up-icon-active]="openedPopUp">
-                    <i class="material-icons" (click)="openPopUp()" (window:mouseup)="openedPopUp = false">more_vert</i>
+                    <i class="material-icons" (click)="openPopUp($event)"  >more_vert</i>
                     <div class="pop-up" [hidden]="!openedPopUp">
-                        <div class="pop-up-item" [hidden]="!project.published" (click)="deactivateProject()">
-                            <i class="material-icons">visibility_off</i>
+
+                        <div class="pop-up-item"   (click)="deactivateProject($event)">
+                            <i class="material-icons" [innerText]="project.published?'visibility':'visibility_off'"></i>
                             <div class="pop-up-row-name">
-                                <span>Deactivate</span>
+                                <span [innerText]="project.published?'Deactivate':'Activate'"></span>
                             </div>
                         </div>
-                        <div class="pop-up-item" [hidden]="project.published" (click)="deactivateProject()">
-                            <i class="material-icons">visibility</i>
-                            <div class="pop-up-row-name">
-                                <span>Activate</span>
-                            </div>
-                        </div>
-                        <div class="pop-up-item" (click)="deleteProject()">
+                        <div class="pop-up-item" (click)="deleteProject($event)">
                             <i class="material-icons">delete</i>
                             <div class="pop-up-row-name">
                                 <span>Delete</span>

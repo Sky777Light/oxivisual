@@ -4,6 +4,7 @@ import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
 import {Resol} from "../interfaces/resol.interface";
 import * as USER from "../interfaces/user.interface";
+import * as ENTITY from "../entities/entities";
 
 declare var alertify: any;
 
@@ -47,6 +48,11 @@ export class UserService {
 
   setUser(user: any): void {
     this.User = user;
+    if(user.projects){
+      for(let i=0;i<user.projects.length;i++){
+        user.projects[i] = new ENTITY.Project(user.projects[i]);
+      }
+    }
   }
 
   getUser(){

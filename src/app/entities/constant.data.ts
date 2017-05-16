@@ -10,6 +10,7 @@ export class Config {
         Vector3:4,
     };
     static EVENTS_NAME = {
+        CNTXMENU: 'contextmenu',
         CLICK: 'click',
         TOUCH_START: 'touchstart',
         TOUCH_MOVE: 'touchmove',
