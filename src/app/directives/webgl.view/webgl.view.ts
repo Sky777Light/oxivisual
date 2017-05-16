@@ -102,7 +102,6 @@ class OxiAPP {
 
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
-        this.controls.enablePan = false;
         this.controls.enabled = this.main.selected.canEdit;
         if (this.main.selected.canEdit)this.controls.addEventListener('change', ()=> {
             this.camera.updateProjectionMatrix();
@@ -129,6 +128,9 @@ class OxiAPP {
             }
             if (main.selected.camera.zoom) {
                 this.camera.zoom = main.selected.camera.zoom;
+            }
+            if (main.selected.camera.target) {
+                this.controls.target.copy(main.selected.camera.target);
             }
         }
 
@@ -243,6 +245,7 @@ class OxiAPP {
         this.main.selected.camera = new ENTITY.OxiCamera({
             position: this.camera.position,
             rotation: this.camera.rotation,
+            target: this.controls.target,
             resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
             fov: this.camera.fov,
             zoom: this.camera.zoom,

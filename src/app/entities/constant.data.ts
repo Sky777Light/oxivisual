@@ -1,7 +1,7 @@
 export class Config {
     static SITE_STRUCTURE:string = '/site_structure.json';
     static PROJ_LOC:string = 'uploads/projects/';
-    static PROJ_DMNS:Array = ["&",'='];
+    static PROJ_DMNS:any = ["&",'='];
     static PROJ_DESTINATION:any ={
         GeneralStructure:0,
         LinkGeneralStructure:1,

@@ -100,6 +100,7 @@ export class ProjMain extends Main {
 }
 export class OxiCamera extends ProjMain {
     position:Vector3;
+    target:Vector3;
     rotation:Vector3;
     resolution:Vector3;
     fov:number;

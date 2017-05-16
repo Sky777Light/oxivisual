@@ -1,4 +1,4 @@
-import { Component,Injectable } from '@angular/core';
+import { Component,Injectable,ViewChild } from '@angular/core';
 import { CanActivate }  from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -14,6 +14,8 @@ declare var alertify:any;
 })
 export class PreviewSceneComponent{
     private model:any;
+
+
     structure:any;
     selected:any;
     constructor( private authService:AuthService,private location: Location) {
@@ -27,6 +29,7 @@ export class PreviewSceneComponent{
         let dmens = ENTITY.Config.PROJ_DMNS,
             areas = this.location.path().split(dmens[0]),
             main:any = areas[0];
+
         main = main.split(dmens[1])[1];
         if(!main)return alertify.error("No project scene exist");
         this.authService.get(ENTITY.Config.PROJ_LOC+main + ENTITY.Config.SITE_STRUCTURE).subscribe((res:any) => {
@@ -62,15 +65,7 @@ export class PreviewSceneComponent{
         this.selected = child;
         console.log(child);
     }
-    copyUrl(){
-        try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copying text command was ' + msg);
-        } catch (err) {
-            console.log('Oops, unable to copy');
-        }
-    }
+
 }
 
 @Injectable()
