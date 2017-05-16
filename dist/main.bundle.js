@@ -1421,12 +1421,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* enableProdMode */])(); // for production mode
+//enableProdMode(); // for production mode
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
-        // for production mode
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__(794),
@@ -2016,7 +2015,6 @@ var ViewProject = (function () {
         };
         this.projectService.changeProject(temp);
         this.openedPopUp = !this.openedPopUp;
-        //this.project.published =  !this.project.published;
         return false;
     };
     ViewProject.prototype.deleteProject = function (event) {

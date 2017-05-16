@@ -42,7 +42,6 @@ export class ViewProject{
         };
         this.projectService.changeProject(temp);
         this.openedPopUp = !this.openedPopUp;
-        //this.project.published =  !this.project.published;
         return false;
     }
 
