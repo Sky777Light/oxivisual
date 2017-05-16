@@ -238,7 +238,7 @@ router.post("/project/model/create", function (req, res) {
             area = {
                 _id: id_project,
                 name: modelName,
-                projFilesDirname: modelName + "_" + randomString(),
+                projFilesDirname: /*modelName + "_" +*/ randomString(),
                 created: Date.now(),
                 _category: 2,
                 images: []
@@ -288,7 +288,6 @@ router.post("/project/model/create", function (req, res) {
 router.post("/project/model/update", function (request, responce) {
     checkPermissionOnProject(request, responce, function (req, res) {
         var body = req.body;
-        console.log(req.user);
         if (!body.dir) {
             return res.json({
                 status: false,
@@ -303,7 +302,7 @@ router.post("/project/model/update", function (request, responce) {
                 var imageDir = modelDir + config.DIR.IMAGES;
 
                 if (fs.existsSync(path.normalize(modelDir))) {
-                    if (req.files[config.FILE_UPLOAD_ATTR[0]])fs.unlinkSync(modelDir + body.destination);
+                    //if (req.files[config.FILE_UPLOAD_ATTR[0]])fs.unlinkSync(modelDir + body.destination);
                 } else {
                     fs.mkdirSync(path.normalize(modelDir), config.FILE_UPLOAD_ACCEC);
                 }

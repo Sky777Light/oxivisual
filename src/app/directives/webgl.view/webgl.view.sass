@@ -2,11 +2,23 @@
 
 .webgl-view
   border-radius: 10px
+  .back-area
+    position: absolute
+    z-index: 1000000
+    bottom: 5px
+    left: 38%
+    transform: translateX(-50%)
+    width: 50px
+    height: 50px
+    background-size: contain
+    background-repeat: no-repeat
+    cursor: pointer
   ul
     position: relative
     text-align: center
     margin: auto
     padding: 10px 0
+    z-index: 10
     li
       display: inline-block
       padding: 5px
@@ -22,6 +34,19 @@
       &:hover
         background: $text-color-gray
 
+  .oxi-controls-move
+    position: absolute
+    left: 50%
+    transform: translate(-50%,0%)
+    bottom: 0
+    div
+      display: inline-block
+      padding: 10px
+      margin: 10px
+      background: $white
+      cursor: pointer
+      &:hover
+        background: $border-color
   .oxi-controls
     width: 150px
     display: none
@@ -67,3 +92,22 @@
       img
         max-width: 995px
         max-height: 560px
+  .oxi-tooltips
+    position: absolute
+    top: 0
+    left: 0
+    .tooltip
+      display: none
+      opacity: 1
+      position: absolute
+      transform: translate(-50%,-50%)
+      cursor: pointer
+      background: $white
+
+      .header
+        text-transform: uppercase
+        padding: 10px 5px
+      .body
+        display: none
+      &.active
+        display: block

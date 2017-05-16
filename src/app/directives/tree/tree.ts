@@ -66,7 +66,8 @@ export class MNode {
 
     }
     delete(){
-        this.parent.areas.splice(this._iter,1);
+       ;
+        this.mainParent.selectedChild.app._deleteArea( this.parent.areas.splice(this._iter,1)[0]);
     }
 
 }

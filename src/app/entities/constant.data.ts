@@ -1,6 +1,7 @@
 export class Config {
     static SITE_STRUCTURE:string = '/site_structure.json';
     static PROJ_LOC:string = 'uploads/projects/';
+    static PROJ_DMNS:Array = ["&",'='];
     static PROJ_DESTINATION:any ={
         GeneralStructure:0,
         LinkGeneralStructure:1,
@@ -24,6 +25,13 @@ export class ProjClasses {
     static IMG_SLIDER:string = 'img-slider-container';
     static CENTER_CONTAINER:string = 'center-container';
     static PROJ_CONTROLS:string = 'oxi-controls';
+    static PROJ_CONTROLS_MOVE:string = 'oxi-controls-move';
+    static PROJ_TOOLTIPS:any = {
+        CONTAINER:'oxi-tooltips',
+        TOOLTIP:'tooltip',
+        HEADER:'header',
+        BODY:'body',
+    };
     static ACTIVE:string = 'active';
 
 }

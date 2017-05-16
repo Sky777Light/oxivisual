@@ -417,13 +417,13 @@ var PreviewProject = (function () {
     }
     PreviewProject.prototype.ngOnInit = function () {
         var project = this.projectService.getProject();
-        this.dataSrc = project.model ? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene=" + project.model.link) : null;
+        this.dataSrc = project.model && project.model.link ? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene=" + project.model.link) : null;
     };
     PreviewProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
             selector: 'app-project-preview',
-            template: '<iframe  *ngIf="dataSrc" [src]="dataSrc" frameborder=0 outline=0><h1 *ngIf="!dataSrc">Still had nothing created!!!</h1>',
-            styles: [__webpack_require__(754)]
+            template: __webpack_require__(851),
+            styles: ['iframe{width:100%;height:100%}']
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === 'function' && _b) || Object])
     ], PreviewProject);
@@ -545,7 +545,6 @@ var SourceProject = (function () {
         };
         if (this.project.model && this.project.model.data && this.project.model.data.length)
             this.project.select(this.project.model);
-        console.log(this);
     };
     SourceProject.prototype.create = function (form) {
         var _this = this;
@@ -645,6 +644,7 @@ var SourceProject = (function () {
             this.selectedChild.app = null;
         this.selectedChild = child;
         child._app = this;
+        child.canEdit = true;
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ViewChild */])("modelObj"), 
@@ -939,20 +939,62 @@ var PreviewSceneComponent = (function () {
         this.authService = authService;
         this.location = location;
         this.model = new __WEBPACK_IMPORTED_MODULE_3__entities_entities__["a" /* Project */]();
-        console.log(this);
-        console.log(this.location.path());
     }
     PreviewSceneComponent.prototype.ngOnInit = function () {
-        var remote = this.location.path().split("?")[1];
-        if (!remote)
-            return alertify.error('couldn`t find the project');
-        remote = remote.split("=");
-        //this.authService.get(ENTITY.Config.PROJ_LOC+this.model.link + ENTITY.Config.SITE_STRUCTURE).subscribe((res:any) => {
-        //    this.model.data = [];
-        //    for(let _data = res.json(),i =0;i<_data.length;i++){
-        //        this.model.data.push(ENTITY.ProjMain.inject(_data[i]));
-        //    }
-        //});
+        var _this = this;
+        //let remote:any = this.location.path().split("?")[1];
+        //if(!remote)return alertify.error('couldn`t find the project');
+        //remote = remote.split("&");
+        var dmens = __WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].PROJ_DMNS, areas = this.location.path().split(dmens[0]), main = areas[0];
+        main = main.split(dmens[1])[1];
+        if (!main)
+            return alertify.error("No project scene exist");
+        this.authService.get(__WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].PROJ_LOC + main + __WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].SITE_STRUCTURE).subscribe(function (res) {
+            if (!res.status || res._body.match('!doctype html')) {
+                alertify.error("No project found");
+            }
+            else {
+                _this.model.data = [];
+                for (var _data = res.json(), i = 0; i < _data.length; i++) {
+                    _this.model.data.push(__WEBPACK_IMPORTED_MODULE_3__entities_entities__["d" /* ProjMain */].inject(_data[i]));
+                    if (areas.length > 1) {
+                        var curIArea = areas[areas.length - 1].split(dmens[1])[1];
+                        if (!curIArea)
+                            return alertify.error("Something went wrong");
+                        _this.checkChild(_this.model.data[i], curIArea, function (c) { return _this.select(c); });
+                    }
+                    else if (i == 0)
+                        _this.select(_this.model.data[i]);
+                }
+            }
+        }, function (e) {
+            console.log(e);
+        }, function () {
+        });
+    };
+    PreviewSceneComponent.prototype.checkChild = function (child, curIArea, calback) {
+        if (child.projFilesDirname.indexOf(curIArea) > -1) {
+            calback(child);
+        }
+        else if (child.areas) {
+            for (var d = 0; d < child.areas.length; d++) {
+                this.checkChild(child.areas[d], curIArea, calback);
+            }
+        }
+    };
+    PreviewSceneComponent.prototype.select = function (child) {
+        this.selected = child;
+        console.log(child);
+    };
+    PreviewSceneComponent.prototype.copyUrl = function () {
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+        }
+        catch (err) {
+            console.log('Oops, unable to copy');
+        }
     };
     PreviewSceneComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
@@ -1026,6 +1068,7 @@ var Config = (function () {
     }
     Config.SITE_STRUCTURE = '/site_structure.json';
     Config.PROJ_LOC = 'uploads/projects/';
+    Config.PROJ_DMNS = ["&", '='];
     Config.PROJ_DESTINATION = {
         GeneralStructure: 0,
         LinkGeneralStructure: 1,
@@ -1051,6 +1094,13 @@ var ProjClasses = (function () {
     ProjClasses.IMG_SLIDER = 'img-slider-container';
     ProjClasses.CENTER_CONTAINER = 'center-container';
     ProjClasses.PROJ_CONTROLS = 'oxi-controls';
+    ProjClasses.PROJ_CONTROLS_MOVE = 'oxi-controls-move';
+    ProjClasses.PROJ_TOOLTIPS = {
+        CONTAINER: 'oxi-tooltips',
+        TOOLTIP: 'tooltip',
+        HEADER: 'header',
+        BODY: 'body',
+    };
     ProjClasses.ACTIVE = 'active';
     return ProjClasses;
 }());
@@ -2903,7 +2953,8 @@ var MNode = (function () {
         this.iconBtn['nativeElement'].className += ' active';
     };
     MNode.prototype.delete = function () {
-        this.parent.areas.splice(this._iter, 1);
+        ;
+        this.mainParent.selectedChild.app._deleteArea(this.parent.areas.splice(this._iter, 1)[0]);
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Input */])(), 
@@ -3064,6 +3115,7 @@ var UploadFile = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(12);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WebGLService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebglView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3075,6 +3127,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var WebGLService = (function () {
@@ -3098,9 +3151,9 @@ var WebGLService = (function () {
     return WebGLService;
 }());
 var WebglView = (function () {
-    function WebglView(navService) {
-        this.navService = navService;
+    function WebglView(location) {
         this._id = Date.now();
+        this.location = location;
     }
     WebglView.prototype.ngOnChanges = function (changes) {
         if (changes.selected.currentValue.created != changes.selected.previousValue.created)
@@ -3134,31 +3187,35 @@ var WebglView = (function () {
             template: __webpack_require__(812),
             styles: [__webpack_require__(769)]
         }), 
-        __metadata('design:paramtypes', [WebGLService])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["a" /* Location */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_common__["a" /* Location */]) === 'function' && _a) || Object])
     ], WebglView);
     return WebglView;
+    var _a;
 }());
 var OxiAPP = (function () {
     function OxiAPP(main) {
         var _this = this;
+        this.isMobile = false;
         this.screen = {};
         this._files = {};
         this.main = main;
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
         this.scene.add(this.model);
-        var renderer = this.gl = new THREE.WebGLRenderer({ antialias: true, alpha: true }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405;
+        var renderer = this.gl = new THREE.WebGLRenderer({ antialias: true, alpha: true }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405, _self = this;
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
         this.controls.enablePan = false;
-        this.controls.addEventListener('change', function () {
-            _this.camera.updateProjectionMatrix();
-            _this.dataSave();
-            _this._animation.play();
-        });
+        this.controls.enabled = this.main.selected.canEdit;
+        if (this.main.selected.canEdit)
+            this.controls.addEventListener('change', function () {
+                _this.camera.updateProjectionMatrix();
+                _this.dataSave();
+                _this._animation.play();
+            });
         /*-----------set config data----------*/
         this.camera.positionDef = new THREE.Vector3(34800, 18600, -600);
         if (main.selected.camera) {
@@ -3193,6 +3250,21 @@ var OxiAPP = (function () {
         //let light = new THREE.DirectionalLight(0xffffff);
         //light.position.set(1, 1, 1);
         //this.scene.add(light);
+        THREE.Mesh.prototype.getScreenPst = function () {
+            var mesh = this, m = _self.gl.domElement, offset = _self._offset(), width = m.clientWidth, height = m.clientHeight, widthHalf = width / 2, heightHalf = height / 2, position = new THREE.Vector3();
+            mesh.updateMatrixWorld();
+            mesh.updateMatrix();
+            mesh.geometry.computeBoundingBox();
+            mesh.geometry.computeBoundingSphere();
+            var boundingBox = mesh.geometry.boundingBox;
+            position.subVectors(boundingBox.max, boundingBox.min);
+            position.multiplyScalar(0.5);
+            position.add(boundingBox.min);
+            position.project(_self.camera);
+            position.x = (position.x * widthHalf) + widthHalf + offset.left;
+            position.y = -(position.y * heightHalf) + heightHalf + offset.top;
+            mesh.onscreenParams = position;
+        };
         this.loadModel(function () {
             var foo = _this._parent();
             while (foo.firstChild)
@@ -3306,6 +3378,8 @@ var OxiAPP = (function () {
         });
         this.main.selected.cash.model = object;
     };
+    OxiAPP.prototype._deleteArea = function (item) {
+    };
     OxiAPP.prototype._parent = function () {
         return this.main.renderParent['nativeElement'];
     };
@@ -3355,7 +3429,10 @@ var OxiAPP = (function () {
 var OxiEvents = (function () {
     function OxiEvents(app) {
         var _this = this;
+        this.canEdit = false;
+        this.pathOnMove = 50;
         var _self = this, elem = app.gl.domElement, handler = (elem.addEventListener || elem.attachEvent).bind(elem);
+        this.canEdit = app.main.selected.canEdit;
         this.main = app;
         this.EVENTS_NAME = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME;
         this.mouse = new OxiMouse(app);
@@ -3375,36 +3452,68 @@ var OxiEvents = (function () {
             app._animation.play();
     };
     OxiEvents.prototype.onMouseUp = function (ev) {
-        var _self = this;
-        this.mouse.isDown = false;
+        var _self = this, btn = ev.button;
+        this.mouse.down = this.lastEv = null;
         this.main._projControls.show(ev, false);
-        if (ev.button == 2) {
-            var _self_1 = this, intersectList = _self_1.inter(ev);
-            if (intersectList && intersectList[0]) {
-                var inter = _self_1.lastInter = intersectList[0];
-                this.main._projControls.show(ev);
-            }
-            ev.preventDefault();
+        switch (btn) {
+            case 0:
+            case 1:
+                {
+                    if (this.lastInter && this.lastInter.object.click)
+                        this.lastInter.object.click();
+                    break;
+                }
+            case 2:
+                {
+                    if (this.canEdit) {
+                        var intersectList = _self.inter(ev);
+                        if (intersectList && intersectList[0]) {
+                            _self.lastInter = intersectList[0];
+                            this.main._projControls.show(ev);
+                        }
+                    }
+                    break;
+                }
         }
+        ev.preventDefault();
     };
     OxiEvents.prototype.onMouseOut = function (ev) {
         this.main._projControls.show(ev, false);
     };
     OxiEvents.prototype.onMouseMove = function (ev) {
-        /* let _self = this,
-         intersectList = _self.inter(ev);
-         if (intersectList && intersectList[0]) {
-         let inter = intersectList[0];
-         console.log(inter);
-         }*/
+        var _self = this;
+        if (this.canEdit) {
+        }
+        else {
+            if (this.lastInter) {
+                this.main._projControls.show(ev, false);
+                this.lastInter = null;
+            }
+            if (this.mouse.down) {
+                if (!this.lastEv)
+                    return this.lastEv = ev;
+                if (Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove ||
+                    Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove) {
+                    this.main._slider.move((ev.clientX > this.lastEv.clientX || ev.clientY > this.lastEv.clientY ? -1 : 1));
+                    this.lastEv = ev;
+                }
+            }
+            else {
+                var intersectList = _self.inter(ev);
+                if (intersectList && intersectList[0]) {
+                    _self.lastInter = intersectList[0];
+                    this.main._projControls.show(ev);
+                }
+            }
+        }
     };
     OxiEvents.prototype.onMouseDown = function (ev) {
-        this.mouse.isDown = true;
+        this.mouse.down = ev;
     };
     OxiEvents.prototype.inter = function (ev, arg) {
         if (arg === void 0) { arg = null; }
-        var _self = this, elements = arg && arg.childs ? arg.childs : (_self.main.interMeshes ? _self.main.interMeshes : _self.main.model.children);
-        if (this.mouse.isDown || !elements || !_self.main.controls.enabled)
+        var _self = this, elements = arg && arg.childs ? arg.childs : [_self.main.model];
+        if (this.mouse.down || !elements)
             return false;
         if (arg && arg.position) {
             var direction = new THREE.Vector3().subVectors(arg.target, arg.position);
@@ -3467,7 +3576,7 @@ var OxiAnimation = (function () {
     };
     OxiAnimation.prototype.animate = function () {
         var _this = this;
-        if (!this.app.gl.domElement.clientWidth || this.isStop)
+        if (!this.app.gl.domElement.width || this.isStop)
             return;
         for (var i = 0; i < this.animations.length; i++) {
             this.animations[i]();
@@ -3504,6 +3613,7 @@ var OxiAnimation = (function () {
 }());
 var OxiSlider = (function () {
     function OxiSlider(app) {
+        this.currentFrame = {};
         this.app = app;
         this.addFrames();
     }
@@ -3518,7 +3628,7 @@ var OxiSlider = (function () {
                     domEl.parentNode.removeChild(domEl);
             }
         });
-        var div = this.container = document.createElement('div'), imgPagination = this.imgPagination = document.createElement('ul'), _resol = this.app.main.selected.camera.resolution, _px = 'px';
+        var div = this.container = document.createElement('div'), imgPagination = this.imgPagination = document.createElement('ul'), _resol = this.app.main.selected.camera.resolution, _px = 'px', canEdit = app.main.selected.canEdit;
         if (!app.main.selected.images || !app.main.selected.images.length)
             return;
         var _loop_1 = function(i) {
@@ -3536,12 +3646,15 @@ var OxiSlider = (function () {
                 img.style.height = _resol.y + _px;
             }
             div.appendChild(img);
-            var item = document.createElement('li');
-            item.innerHTML = (+i + 1) + '';
-            item.addEventListener('click', function () {
-                _this.updateView(i);
-            });
-            imgPagination.appendChild(item);
+            if (canEdit) {
+                var item = document.createElement('li');
+                item.innerHTML = (+i + 1) + '';
+                item.addEventListener('click', function () {
+                    _this.updateView(i);
+                    _this.app.dataSave();
+                });
+                imgPagination.appendChild(item);
+            }
         };
         var this_1 = this;
         for (var i in app.main.selected.images) {
@@ -3549,7 +3662,8 @@ var OxiSlider = (function () {
         }
         div.className = [__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].CENTER_CONTAINER, __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].IMG_SLIDER].join(" ");
         app._container.appendChild(div);
-        app._parent().appendChild(imgPagination);
+        if (canEdit)
+            app._parent().appendChild(imgPagination);
     };
     OxiSlider.prototype.updateView = function (selectedItem) {
         this.currentFrame['className'] = '';
@@ -3558,6 +3672,20 @@ var OxiSlider = (function () {
         this.currentFrame = this.container.childNodes[selectedItem];
         this.currentFrame['className'] = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
         this.app._events.onMouseOut({});
+        this.app._projControls.show({}, false);
+    };
+    OxiSlider.prototype.move = function (next) {
+        if (next < 0) {
+            if (this.app.main.selected.currentItem < 1) {
+                return this.updateView(this.app.main.selected.images.length - 1);
+            }
+        }
+        else {
+            if (this.app.main.selected.currentItem >= this.app.main.selected.images.length - 1) {
+                return this.updateView(0);
+            }
+        }
+        this.updateView(this.app.main.selected.currentItem + next);
     };
     OxiSlider.prototype._W = function () {
         return this.currentFrame.clientWidth || this.container.clientWidth || this.app.screen.width;
@@ -3577,90 +3705,189 @@ var OxiControls = (function () {
     function OxiControls(app) {
         var _this = this;
         var div = this.controls = document.createElement('div');
-        div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_CONTROLS;
-        app._parent().appendChild(div);
         this.app = app;
-        var childSelected = function (child) {
-            _this.app._events.lastInter.object._data = child;
-            child._id = _this.app._events.lastInter.object.name;
-            child.name = child._id.toUpperCase();
-            child._id += Date.now();
-            if (!_this.app.main.selected.areas) {
-                _this.app.main.selected.areas = [child];
-            }
-            else {
-                _this.app.main.selected.areas.push(child);
-            }
-        };
-        [
-            {
-                className: 'attach-new', click: function () {
-                    childSelected(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["h" /* ModelStructure */]());
-                }, icon: '../assets/img/ic_library_add_white_24px.svg'
-            },
-            {
-                className: 'attach-link', click: function () {
-                    var input = prompt("Input the link", 'https://google.com');
-                    if (input)
-                        childSelected(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["i" /* LinkGeneralStructure */]({
-                            destination: input
-                        }));
-                }, icon: '../assets/img/ic_link_white_24px.svg'
-            },
-            {
-                className: 'attach-js', click: function () {
-                    var input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
-                    if (input)
-                        childSelected(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["j" /* GeneralStructure */]({
-                            destination: input
-                        }));
-                }, icon: '../assets/img/JS.svg'
-            }, {
-                className: 'cntrls-close', click: function () {
-                }, icon: '../assets/img/ic_close_white_24px.svg'
-            }
-        ].forEach(function (el, item) {
-            var domEl = document.createElement('div');
-            domEl.className = el.className;
-            domEl.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
-                _this.show(e, false);
-                el.click();
+        if (app.main.selected.canEdit) {
+            div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_CONTROLS;
+            app._parent().appendChild(div);
+            var childSelected_1 = function (child) {
+                _this.app._events.lastInter.object._data = child;
+                child._id = _this.app._events.lastInter.object.name;
+                child.name = child._id.toUpperCase();
+                child._id += Date.now();
+                if (!_this.app.main.selected.areas) {
+                    _this.app.main.selected.areas = [child];
+                }
+                else {
+                    _this.app.main.selected.areas.push(child);
+                }
+            };
+            [
+                {
+                    className: 'attach-new', click: function () {
+                        childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["h" /* ModelStructure */]());
+                    }, icon: '../assets/img/ic_library_add_white_24px.svg'
+                },
+                {
+                    className: 'attach-link', click: function () {
+                        var input = prompt("Input the link", 'https://google.com');
+                        if (input)
+                            childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["i" /* LinkGeneralStructure */]({
+                                destination: input
+                            }));
+                    }, icon: '../assets/img/ic_link_white_24px.svg'
+                },
+                {
+                    className: 'attach-js', click: function () {
+                        var input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
+                        if (input)
+                            childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["j" /* GeneralStructure */]({
+                                destination: input
+                            }));
+                    }, icon: '../assets/img/JS.svg'
+                }, {
+                    className: 'cntrls-close', click: function () {
+                    }, icon: '../assets/img/ic_close_white_24px.svg'
+                }
+            ].forEach(function (el, item) {
+                var domEl = document.createElement('div');
+                domEl.className = el.className;
+                domEl.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
+                    _this.show(e, false);
+                    el.click();
+                });
+                div.appendChild(domEl);
+                var icon = document.createElement('img');
+                icon.src = el.icon;
+                icon.setAttribute('fillColor', '#ffffff');
+                icon.setAttribute('fill', '#ffffff');
+                icon.style.color = '#ffffff';
+                domEl.appendChild(icon);
             });
-            div.appendChild(domEl);
-            var icon = document.createElement('img');
-            icon.src = el.icon;
-            icon.setAttribute('fillColor', '#ffffff');
-            icon.setAttribute('fill', '#ffffff');
-            icon.style.color = '#ffffff';
-            domEl.appendChild(icon);
-        });
+        }
+        else {
+            div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_CONTROLS_MOVE;
+            app._container.appendChild(div);
+            [{ _c: 'left', _i: -1 }, { _c: 'right', _i: 1 }].forEach(function (child) {
+                var childDiv = document.createElement('div');
+                childDiv.className = child._c;
+                childDiv.innerHTML = child._c.toUpperCase();
+                div.appendChild(childDiv);
+                childDiv.addEventListener((_this.app.isMobile ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.TOUCH_END : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK), function (e) {
+                    _this.app._slider.move(child._i);
+                });
+            });
+            var tooltipParent_1 = this._tooltips = document.createElement('div');
+            tooltipParent_1.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.CONTAINER;
+            app._parent().appendChild(tooltipParent_1);
+            app.model.traverse(function (child) {
+                if (child.type == "Mesh") {
+                    child.material.visible = false;
+                    child._toolTip = new OxiToolTip(child, app.main.location);
+                    tooltipParent_1.appendChild(child._toolTip.tooltip);
+                }
+            });
+            var path = this.app.main.location.path(), areas_1 = path.split(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0]);
+            if (areas_1.length > 1) {
+                var back = document.createElement('div');
+                back.className = 'back-area';
+                back.style.backgroundImage = "url('assets/img/android-system-back.png')";
+                app._container.appendChild(back);
+                areas_1.pop();
+                back.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
+                    e.preventDefault();
+                    _this.app.main.location.go(areas_1.length > 1 ? areas_1.join(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0] + "area=") : areas_1.join(''));
+                    window.location.reload();
+                });
+            }
+        }
     }
     OxiControls.prototype.show = function (pos, flag) {
         if (flag === void 0) { flag = true; }
+        var canEdit = this.app.main.selected.canEdit;
         if (this.app._events.lastInter) {
+            if (this.app._events.lastInter.object._toolTip)
+                this.app._events.lastInter.object._toolTip.show(flag);
             if (!this.app._events.lastInter.object.material.defColor)
                 this.app._events.lastInter.object.material.defColor = this.app._events.lastInter.object.material.color.clone();
-            this.app._events.lastInter.object.material.color = flag ? new THREE.Color(61 / 250, 131 / 250, 203 / 250) : this.app._events.lastInter.object.material.defColor;
+            if (!this.app._events.lastInter.object.material.onSelectColor)
+                this.app._events.lastInter.object.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
+            this.app._events.lastInter.object.material.color = flag ? this.app._events.lastInter.object.material.onSelectColor : this.app._events.lastInter.object.material.defColor;
             if (this.app._events.lastInter.object._data && flag)
                 return;
         }
         if (flag) {
-            if (!this.controls.className.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE)) {
+            if (this.controls.className.indexOf(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE) < 0) {
                 this.controls.className += " " + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
             }
         }
         else {
-            this.controls.className = this.controls.className.replace(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE, '');
+            this.controls.className = this.controls.className.replace(" " + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE, '');
         }
-        var _d = document.querySelector('app-aside');
-        if (_d) {
-            _d = _d.getBoundingClientRect();
+        if (canEdit) {
+            var _d = document.querySelector('app-aside');
+            if (_d) {
+                _d = _d.getBoundingClientRect();
+            }
+            this.controls.style.left = ((pos.clientX || pos.x) - 15 - (_d.right ? _d.right : 0)) + 'px';
+            this.controls.style.top = ((pos.clientY || pos.y) - this.controls.clientHeight / 2 - 15) + 'px';
         }
-        this.controls.style.left = ((pos.clientX || pos.x) - 15 - (_d.right ? _d.right : 0)) + 'px';
-        this.controls.style.top = ((pos.clientY || pos.y) - this.controls.clientHeight / 2 - 15) + 'px';
+        else {
+        }
         this.app._animation.play();
     };
     return OxiControls;
+}());
+var OxiToolTip = (function () {
+    function OxiToolTip(mesh, location) {
+        var tooltip = this.tooltip = document.createElement('div'), head = document.createElement('div'), body = document.createElement('div');
+        this.mesh = mesh;
+        tooltip.appendChild(head);
+        tooltip.appendChild(body);
+        body.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.BODY;
+        head.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.HEADER;
+        tooltip.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.TOOLTIP;
+        head.innerHTML = mesh.name;
+        body.innerHTML = mesh.name;
+        mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
+        if (mesh._data) {
+            if (mesh._data._category == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure) {
+                mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+            }
+            mesh.click = function () {
+                switch (mesh._data._category) {
+                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure:
+                        {
+                            var _url = mesh._data.projFilesDirname.split("/");
+                            location.go(location.path() + "&area=" + _url[_url.length - 1]);
+                            window.location.reload();
+                            break;
+                        }
+                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.LinkGeneralStructure:
+                        {
+                            window.open(mesh._data.destination);
+                            break;
+                        }
+                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.GeneralStructure:
+                        {
+                            window['eval'](mesh._data.destination);
+                            break;
+                        }
+                }
+            };
+            tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
+        }
+    }
+    OxiToolTip.prototype.show = function (show) {
+        if (show === void 0) { show = true; }
+        this.tooltip.className = show ? [__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.TOOLTIP, __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE].join(" ") : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.TOOLTIP;
+        this.mesh.material.visible = show;
+        if (show) {
+            this.mesh.getScreenPst();
+            this.tooltip.style.left = this.mesh.onscreenParams.x + 'px';
+            this.tooltip.style.top = this.mesh.onscreenParams.y + 'px';
+        }
+    };
+    return OxiToolTip;
 }());
 //# sourceMappingURL=webgl.view.js.map
 
@@ -3695,7 +3922,7 @@ var ProjMain = (function (_super) {
         this._category = __WEBPACK_IMPORTED_MODULE_1__constant_data__["a" /* Config */].PROJ_DESTINATION[this.constructor.name];
     }
     ProjMain.prototype.clone = function () {
-        var noClone = ['app', '_app', 'cash'], acceptType = ['boolean', 'string', 'number'];
+        var noClone = ['app', '_app', 'cash', 'canEdit'], acceptType = ['boolean', 'string', 'number'];
         //for(let field in this){
         //    if(this.hasOwnProperty(field) && acceptType.indexOf(typeof this[field])>-1 )clone[field]=this[field];
         //}
@@ -4216,24 +4443,6 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 754:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(6)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
 /***/ 755:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4494,7 +4703,7 @@ exports = module.exports = __webpack_require__(6)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.webgl-view {\n  border-radius: 10px; }\n  .webgl-view ul {\n    position: relative;\n    text-align: center;\n    margin: auto;\n    padding: 10px 0; }\n    .webgl-view ul li {\n      display: inline-block;\n      padding: 5px;\n      background: #000000;\n      color: #ffffff;\n      border-radius: 5px;\n      margin: 5px;\n      cursor: pointer;\n      -webkit-transition: background, 0.5s;\n      transition: background, 0.5s;\n      z-index: 3; }\n      .webgl-view ul li.active {\n        background: #FFA000; }\n      .webgl-view ul li:hover {\n        background: #7E7E7E; }\n  .webgl-view .oxi-controls {\n    width: 150px;\n    display: none;\n    position: absolute;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    z-index: 4; }\n    .webgl-view .oxi-controls.active {\n      display: block; }\n    .webgl-view .oxi-controls div {\n      width: 50px;\n      height: 50px;\n      background: #000000;\n      opacity: 0.5;\n      -webkit-transition: opacity 0.5s,-webkit-transform;\n      transition: opacity 0.5s,-webkit-transform;\n      transition: transform,opacity 0.5s;\n      transition: transform,opacity 0.5s,-webkit-transform;\n      border-radius: 50%;\n      cursor: pointer;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .webgl-view .oxi-controls div img {\n        fill: #ffffff;\n        margin: auto; }\n      .webgl-view .oxi-controls div:hover {\n        opacity: 1;\n        -webkit-transform: scale(1.2);\n                transform: scale(1.2); }\n      .webgl-view .oxi-controls div:nth-child(1), .webgl-view .oxi-controls div:nth-child(4) {\n        margin: auto; }\n      .webgl-view .oxi-controls div.attach-js {\n        right: 0;\n        position: absolute;\n        top: 33%; }\n  .webgl-view .center-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .webgl-view .center-container.THREEJS {\n      position: relative;\n      left: 0;\n      top: 0;\n      -webkit-transform: translate(0);\n              transform: translate(0);\n      text-align: center; }\n      .webgl-view .center-container.THREEJS canvas {\n        margin: auto; }\n    .webgl-view .center-container.img-slider-container {\n      z-index: -1;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%); }\n      .webgl-view .center-container.img-slider-container img {\n        max-width: 995px;\n        max-height: 560px; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.webgl-view {\n  border-radius: 10px; }\n  .webgl-view .back-area {\n    position: absolute;\n    z-index: 1000000;\n    bottom: 5px;\n    left: 38%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n    width: 50px;\n    height: 50px;\n    background-size: contain;\n    background-repeat: no-repeat;\n    cursor: pointer; }\n  .webgl-view ul {\n    position: relative;\n    text-align: center;\n    margin: auto;\n    padding: 10px 0;\n    z-index: 10; }\n    .webgl-view ul li {\n      display: inline-block;\n      padding: 5px;\n      background: #000000;\n      color: #ffffff;\n      border-radius: 5px;\n      margin: 5px;\n      cursor: pointer;\n      -webkit-transition: background, 0.5s;\n      transition: background, 0.5s;\n      z-index: 3; }\n      .webgl-view ul li.active {\n        background: #FFA000; }\n      .webgl-view ul li:hover {\n        background: #7E7E7E; }\n  .webgl-view .oxi-controls-move {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    bottom: 0; }\n    .webgl-view .oxi-controls-move div {\n      display: inline-block;\n      padding: 10px;\n      margin: 10px;\n      background: #ffffff;\n      cursor: pointer; }\n      .webgl-view .oxi-controls-move div:hover {\n        background: #EBEBEB; }\n  .webgl-view .oxi-controls {\n    width: 150px;\n    display: none;\n    position: absolute;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    z-index: 4; }\n    .webgl-view .oxi-controls.active {\n      display: block; }\n    .webgl-view .oxi-controls div {\n      width: 50px;\n      height: 50px;\n      background: #000000;\n      opacity: 0.5;\n      -webkit-transition: opacity 0.5s,-webkit-transform;\n      transition: opacity 0.5s,-webkit-transform;\n      transition: transform,opacity 0.5s;\n      transition: transform,opacity 0.5s,-webkit-transform;\n      border-radius: 50%;\n      cursor: pointer;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .webgl-view .oxi-controls div img {\n        fill: #ffffff;\n        margin: auto; }\n      .webgl-view .oxi-controls div:hover {\n        opacity: 1;\n        -webkit-transform: scale(1.2);\n                transform: scale(1.2); }\n      .webgl-view .oxi-controls div:nth-child(1), .webgl-view .oxi-controls div:nth-child(4) {\n        margin: auto; }\n      .webgl-view .oxi-controls div.attach-js {\n        right: 0;\n        position: absolute;\n        top: 33%; }\n  .webgl-view .center-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .webgl-view .center-container.THREEJS {\n      position: relative;\n      left: 0;\n      top: 0;\n      -webkit-transform: translate(0);\n              transform: translate(0);\n      text-align: center; }\n      .webgl-view .center-container.THREEJS canvas {\n        margin: auto; }\n    .webgl-view .center-container.img-slider-container {\n      z-index: -1;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%); }\n      .webgl-view .center-container.img-slider-container img {\n        max-width: 995px;\n        max-height: 560px; }\n  .webgl-view .oxi-tooltips {\n    position: absolute;\n    top: 0;\n    left: 0; }\n    .webgl-view .oxi-tooltips .tooltip {\n      display: none;\n      opacity: 1;\n      position: absolute;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%);\n      cursor: pointer;\n      background: #ffffff; }\n      .webgl-view .oxi-tooltips .tooltip .header {\n        text-transform: uppercase;\n        padding: 10px 5px; }\n      .webgl-view .oxi-tooltips .tooltip .body {\n        display: none; }\n      .webgl-view .oxi-tooltips .tooltip.active {\n        display: block; }\n", ""]);
 
 // exports
 
@@ -4873,7 +5082,7 @@ module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/l
 /***/ 811:
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n    <app-project-webgl-view *ngIf=\"structure\" [selected]=\"selected\"></app-project-webgl-view>\n</div>"
+module.exports = "<div>\n    <app-project-webgl-view *ngIf=\"selected\" [selected]=\"selected\"></app-project-webgl-view>\n</div>"
 
 /***/ }),
 
@@ -4889,6 +5098,13 @@ module.exports = "<div class=\"webgl-view\" #renderParent></div>"
 
 module.exports = __webpack_require__(559);
 
+
+/***/ }),
+
+/***/ 851:
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"dataSrc\">\n    <iframe  [src]=\"dataSrc\" frameborder=0 outline=0></iframe>\n\n</div>\n\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
 
 /***/ })
 

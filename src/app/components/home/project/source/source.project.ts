@@ -44,7 +44,6 @@ export class SourceProject   {
             delete this.project['select'];
         }
         if(this.project.model && this.project.model.data && this.project.model.data.length)this.project.select(this.project.model);
-        console.log(this);
     }
 
     create(form:NgForm) {
@@ -150,6 +149,7 @@ export class SourceProject   {
         if (this.selectedChild && this.selectedChild.app)this.selectedChild.app = null;
         this.selectedChild = child;
         child._app = this;
+        child.canEdit = true;
 
     }
 }

@@ -1,5 +1,6 @@
 import {Input,ViewChild,Component,OnInit,OnChanges,EventEmitter,Injectable} from '@angular/core';
 import * as ENTITY from '../../entities/entities';
+import {Location} from '@angular/common';
 
 declare var alertify:any;
 declare var THREE:any;
@@ -37,10 +38,12 @@ export class WebglView implements OnInit,OnChanges {
     @Input() selected:any;
 
     app:OxiAPP;
+    location:Location;
     private _id:number = Date.now();
 
-    constructor(private navService:WebGLService) {
+    constructor(location:Location) {
 
+        this.location = location;
     }
 
     ngOnChanges(changes) {
@@ -66,6 +69,7 @@ export class WebglView implements OnInit,OnChanges {
 }
 
 class OxiAPP {
+    isMobile:boolean = false;
     scene:any;
     model:any;
     camera:any;
@@ -89,7 +93,8 @@ class OxiAPP {
         this.scene.add(this.model);
         let renderer = this.gl = new THREE.WebGLRenderer({antialias: true, alpha: true}),
             SCREEN_WIDTH = this.screen.width = 720,
-            SCREEN_HEIGHT = this.screen.height = 405;
+            SCREEN_HEIGHT = this.screen.height = 405,
+            _self = this;
 
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -98,8 +103,8 @@ class OxiAPP {
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
         this.controls.enablePan = false;
-
-        this.controls.addEventListener('change', ()=> {
+        this.controls.enabled = this.main.selected.canEdit;
+        if (this.main.selected.canEdit)this.controls.addEventListener('change', ()=> {
             this.camera.updateProjectionMatrix();
             this.dataSave();
             this._animation.play();
@@ -146,6 +151,29 @@ class OxiAPP {
         //this.scene.add(light);
 
 
+        THREE.Mesh.prototype.getScreenPst = function () {
+            let mesh:any = this,
+                m = _self.gl.domElement,
+                offset = _self._offset(),
+                width = m.clientWidth, height = m.clientHeight,
+                widthHalf = width / 2, heightHalf = height / 2,
+                position:any = new THREE.Vector3();
+
+            mesh.updateMatrixWorld();
+            mesh.updateMatrix();
+            mesh.geometry.computeBoundingBox();
+            mesh.geometry.computeBoundingSphere();
+
+            let boundingBox = mesh.geometry.boundingBox;
+            position.subVectors(boundingBox.max, boundingBox.min);
+            position.multiplyScalar(0.5);
+            position.add(boundingBox.min);
+
+            position.project(_self.camera);
+            position.x = ( position.x * widthHalf ) + widthHalf + offset.left;
+            position.y = -( position.y * heightHalf ) + heightHalf + offset.top;
+            mesh.onscreenParams = position;
+        }
         this.loadModel(()=> {
 
             let foo = this._parent();
@@ -153,16 +181,13 @@ class OxiAPP {
 
 
             let parentCanvas = this._container = document.createElement('div');
-            parentCanvas.className = [ENTITY.ProjClasses.CENTER_CONTAINER,'THREEJS'].join(" ");
+            parentCanvas.className = [ENTITY.ProjClasses.CENTER_CONTAINER, 'THREEJS'].join(" ");
             this._parent().appendChild(parentCanvas);
             parentCanvas.appendChild(renderer.domElement);
 
 
             this._projControls = new OxiControls(this);
             this._slider = new OxiSlider(this);
-
-
-
             this._events = new OxiEvents(this);
             this._animation = new OxiAnimation(this);
         });
@@ -181,13 +206,13 @@ class OxiAPP {
             case'x':
             {
                 let
-                    val =  this.main.selected.camera.resolution[data],
+                    val = this.main.selected.camera.resolution[data],
                     prop = this._slider._W() / this._slider._H(),
-                    isHeight = data=='y',
+                    isHeight = data == 'y',
                     _px = 'px';
                 [].forEach.call(this._slider.container.childNodes, function (el, i) {
-                    el.style.height =(isHeight?val:val / prop)+_px;
-                    el.style.width = (isHeight?val * prop:val)+_px;
+                    el.style.height = (isHeight ? val : val / prop) + _px;
+                    el.style.width = (isHeight ? val * prop : val) + _px;
                 });
                 this._events.onWindowResize();
                 break;
@@ -281,6 +306,10 @@ class OxiAPP {
         this.main.selected.cash.model = object;
     }
 
+    _deleteArea(item) {
+
+    }
+
 
     _parent():HTMLElement {
         return this.main.renderParent['nativeElement'];
@@ -321,9 +350,10 @@ class OxiAPP {
     }
 
 
-    _offset(){
+    _offset() {
         return this.gl.domElement.getBoundingClientRect()
     }
+
     render() {
         if (Pace.running) return;
         this.gl.render(this.scene, this.camera);
@@ -335,7 +365,10 @@ class OxiEvents {
     private  EVENTS_NAME:any;
     private mouse:OxiMouse;
     private raycaster:any;
-    private main:any;
+    private main:OxiAPP;
+    private canEdit:boolean = false;
+    private pathOnMove:number = 50;
+    private lastEv:any;
     lastInter:any;
 
 
@@ -345,7 +378,7 @@ class OxiEvents {
             _self = this,
             elem = app.gl.domElement,
             handler = (elem.addEventListener || elem.attachEvent).bind(elem);
-
+        this.canEdit = app.main.selected.canEdit;
         this.main = app;
         this.EVENTS_NAME = ENTITY.Config.EVENTS_NAME;
         this.mouse = new OxiMouse(app);
@@ -371,45 +404,83 @@ class OxiEvents {
         if (app._animation)app._animation.play();
     }
 
-    onMouseUp(ev:any) {
+    private onMouseUp(ev:any) {
 
-        let _self = this;
-        this.mouse.isDown = false;
+        let _self = this,
+            btn:number = ev.button;
+        this.mouse.down = this.lastEv = null;
         this.main._projControls.show(ev, false);
 
-        if (ev.button == 2) {
-            let _self = this,
-                intersectList = _self.inter(ev);
-            if (intersectList && intersectList[0]) {
-                let inter = _self.lastInter = intersectList[0];
-                this.main._projControls.show(ev);
+        switch (btn) {
+            case 0:
+            case 1:
+            {
 
+                if (this.lastInter && this.lastInter.object.click)this.lastInter.object.click();
+                break;
             }
-            ev.preventDefault();
+            case 2:
+            {
+                if (this.canEdit) {
+                    let intersectList = _self.inter(ev);
+                    if (intersectList && intersectList[0]) {
+                        _self.lastInter = intersectList[0];
+                        this.main._projControls.show(ev);
+                    }
+                }
+                break;
+            }
+
+        }
+        ev.preventDefault();
+    }
+
+    onMouseOut(ev:any) {
+        this.main._projControls.show(ev, false);
+    }
+
+    private onMouseMove(ev:any) {
+        let _self = this;
+
+        if (this.canEdit) {
+
+        } else {
+            if (this.lastInter) {
+                this.main._projControls.show(ev, false);
+                this.lastInter = null;
+            }
+
+            if (this.mouse.down) {
+                if (!this.lastEv)return this.lastEv = ev;
+                if (
+                    Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove ||
+                    Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove
+                ) {
+                    this.main._slider.move((ev.clientX > this.lastEv.clientX || ev.clientY > this.lastEv.clientY ? -1 : 1));
+                    this.lastEv = ev;
+                }
+
+
+            } else {
+                let intersectList = _self.inter(ev);
+                if (intersectList && intersectList[0]) {
+                    _self.lastInter = intersectList[0];
+                    this.main._projControls.show(ev);
+                }
+            }
+
         }
     }
-    onMouseOut(ev:any){
-        this.main._projControls.show(ev, false);
-    }
 
-    onMouseMove(ev:Event) {
-        /* let _self = this,
-         intersectList = _self.inter(ev);
-         if (intersectList && intersectList[0]) {
-         let inter = intersectList[0];
-         console.log(inter);
-         }*/
-    }
-
-    onMouseDown(ev:Event) {
-        this.mouse.isDown = true;
+    private onMouseDown(ev:Event) {
+        this.mouse.down = ev;
     }
 
     inter(ev:any, arg:any = null) {
         var _self = this,
-            elements = arg && arg.childs ? arg.childs : (_self.main.interMeshes ? _self.main.interMeshes : _self.main.model.children);
+            elements = arg && arg.childs ? arg.childs : [_self.main.model];
 
-        if (this.mouse.isDown || !elements || !_self.main.controls.enabled)return false;
+        if (this.mouse.down || !elements)return false;
         if (arg && arg.position) {
             var direction = new THREE.Vector3().subVectors(arg.target, arg.position);
             _self.raycaster.set(arg.position, direction.clone().normalize());
@@ -425,6 +496,7 @@ class OxiEvents {
 class OxiMouse {
     main:OxiAPP;
     isDown:boolean;
+    down:any;
 
 
     constructor(main) {
@@ -434,7 +506,7 @@ class OxiMouse {
 
     interPoint(ev) {
         let _slider = this.main.gl.domElement,
-            rect=  _slider.getBoundingClientRect(),
+            rect = _slider.getBoundingClientRect(),
             canvasW = _slider.clientWidth,
             canvasH = _slider.clientHeight,
 
@@ -477,9 +549,9 @@ class OxiAnimation {
     constructor(main) {
         this.app = main;
         this.play();
-        setTimeout(()=>{
+        setTimeout(()=> {
             this.animate();
-        },100);
+        }, 100);
 
 
     }
@@ -489,7 +561,7 @@ class OxiAnimation {
     }
 
     animate() {
-        if (!this.app.gl.domElement.clientWidth || this.isStop)return;
+        if (!this.app.gl.domElement.width || this.isStop)return;
         for (let i = 0; i < this.animations.length; i++) {
             this.animations[i]();
         }
@@ -499,10 +571,10 @@ class OxiAnimation {
             if (!this.canAnimate || this.lastIter > 2)this.lastIter = 0;
             this.app.render();
         }
-        if(this.app._container.clientWidth != this.app._container.lastClientWidth){
+        if (this.app._container.clientWidth != this.app._container.lastClientWidth) {
             this.app._container.lastClientWidth = this.app._container.clientWidth;
             this.app._events.onWindowResize();
-            this.app._projControls.show({},false);
+            this.app._projControls.show({}, false);
         }
         requestAnimationFrame(() => {
             this.animate();
@@ -525,7 +597,7 @@ class OxiAnimation {
     }
 }
 class OxiSlider {
-    currentFrame:any;
+    currentFrame:any = {};
     container:HTMLElement;
     imgPagination:HTMLElement;
     app:OxiAPP;
@@ -539,7 +611,7 @@ class OxiSlider {
 
     addFrames() {
         let _self = this,
-            app = this.app;
+            app:OxiAPP = this.app;
 
         [this.container, this.imgPagination].forEach((domEl)=> {
             if (domEl) {
@@ -552,7 +624,8 @@ class OxiSlider {
         let div = this.container = document.createElement('div'),
             imgPagination = this.imgPagination = document.createElement('ul'),
             _resol = this.app.main.selected.camera.resolution,
-            _px = 'px';
+            _px = 'px',
+            canEdit = app.main.selected.canEdit;
 
         if (!app.main.selected.images || !app.main.selected.images.length) return;
 
@@ -563,46 +636,62 @@ class OxiSlider {
             if (parseInt(i) == this.app.main.selected.currentItem) {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
-                img.onload = function(){
+                img.onload = function () {
                     _self.app._events.onWindowResize();
                 }
             }
-            if(_resol){
+            if (_resol) {
                 img.style.width = _resol.x + _px;
                 img.style.height = _resol.y + _px;
             }
             div.appendChild(img);
 
-            let item = document.createElement('li');
-            item.innerHTML = (+i + 1) + '';
-            item.addEventListener('click', ()=> {
-                this.updateView(i);
-            });
-            imgPagination.appendChild(item);
+            if (canEdit) {
+                let item = document.createElement('li');
+                item.innerHTML = (+i + 1) + '';
+                item.addEventListener('click', ()=> {
+                    this.updateView(i);
+                    this.app.dataSave();
+                });
+                imgPagination.appendChild(item);
+            }
         }
 
         div.className = [ENTITY.ProjClasses.CENTER_CONTAINER, ENTITY.ProjClasses.IMG_SLIDER].join(" ");
         app._container.appendChild(div);
-        app._parent().appendChild(imgPagination);
+        if (canEdit)app._parent().appendChild(imgPagination);
     }
 
     updateView(selectedItem) {
         this.currentFrame['className'] = '';
         this.app.main.selected.currentItem = selectedItem;
-        this.app.camera.updateView(selectedItem-this.app.main.selected.currentItem0);
+        this.app.camera.updateView(selectedItem - this.app.main.selected.currentItem0);
 
         this.currentFrame = this.container.childNodes[selectedItem];
         this.currentFrame['className'] = ENTITY.ProjClasses.ACTIVE;
-
         this.app._events.onMouseOut({});
+        this.app._projControls.show({}, false);
+    }
+
+    move(next:number) {
+        if (next < 0) {
+            if (this.app.main.selected.currentItem < 1) {
+                return this.updateView(this.app.main.selected.images.length - 1);
+            }
+        } else {
+            if (this.app.main.selected.currentItem >= this.app.main.selected.images.length - 1) {
+                return this.updateView(0);
+            }
+        }
+        this.updateView(this.app.main.selected.currentItem + next);
     }
 
     _W() {
-        return this.currentFrame.clientWidth|| this.container.clientWidth || this.app.screen.width;
+        return this.currentFrame.clientWidth || this.container.clientWidth || this.app.screen.width;
     }
 
     _H() {
-        return this.currentFrame.clientHeight|| this.container.clientHeight || this.app.screen.height;
+        return this.currentFrame.clientHeight || this.container.clientHeight || this.app.screen.height;
     }
 
     _offsetLeft() {
@@ -614,96 +703,206 @@ class OxiSlider {
     }
 }
 class OxiControls {
-    app:OxiAPP;
-    controls:HTMLElement;
+    private app:OxiAPP;
+    private controls:HTMLElement;
+    private _tooltips:HTMLElement;
 
     constructor(app:OxiAPP) {
         let div = this.controls = document.createElement('div');
-        div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
-        app._parent().appendChild(div);
         this.app = app;
 
-        let childSelected = (child:any)=> {
-            this.app._events.lastInter.object._data = child;
-            child._id = this.app._events.lastInter.object.name;
-            child.name = child._id.toUpperCase();
+        if (app.main.selected.canEdit) {
+            div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
+            app._parent().appendChild(div);
+            let childSelected = (child:any)=> {
+                this.app._events.lastInter.object._data = child;
+                child._id = this.app._events.lastInter.object.name;
+                child.name = child._id.toUpperCase();
 
-            child._id += Date.now();
+                child._id += Date.now();
 
-            if (!this.app.main.selected.areas) {
-                this.app.main.selected.areas = [child];
-            } else {
-                this.app.main.selected.areas.push(child);
+                if (!this.app.main.selected.areas) {
+                    this.app.main.selected.areas = [child];
+                } else {
+                    this.app.main.selected.areas.push(child);
+                }
+            };
+            [
+
+                {
+                    className: 'attach-new', click: ()=> {
+                    childSelected(new ENTITY.ModelStructure());
+
+                }, icon: '../assets/img/ic_library_add_white_24px.svg'
+                },
+                {
+                    className: 'attach-link', click: ()=> {
+                    let input = prompt("Input the link", 'https://google.com');
+                    if (input)childSelected(new ENTITY.LinkGeneralStructure({
+                        destination: input
+                    }));
+
+                }, icon: '../assets/img/ic_link_white_24px.svg'
+                },
+                {
+                    className: 'attach-js', click: ()=> {
+                    let input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
+                    if (input)childSelected(new ENTITY.GeneralStructure({
+                        destination: input
+                    }));
+                }, icon: '../assets/img/JS.svg'
+                }, {
+                className: 'cntrls-close', click: ()=> {
+                }, icon: '../assets/img/ic_close_white_24px.svg'
             }
-        };
-        [
-
-            {
-                className: 'attach-new', click: ()=> {
-                childSelected(new ENTITY.ModelStructure());
-
-            }, icon: '../assets/img/ic_library_add_white_24px.svg'
-            },
-            {
-                className: 'attach-link', click: ()=> {
-                let input = prompt("Input the link", 'https://google.com');
-                if (input)childSelected(new ENTITY.LinkGeneralStructure({
-                    destination: input
-                }));
-
-            }, icon: '../assets/img/ic_link_white_24px.svg'
-            },
-            {
-                className: 'attach-js', click: ()=> {
-                let input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
-                if (input)childSelected(new ENTITY.GeneralStructure({
-                    destination: input
-                }));
-            }, icon: '../assets/img/JS.svg'
-            }, {
-            className: 'cntrls-close', click: ()=> {
-            }, icon: '../assets/img/ic_close_white_24px.svg'
-        }
-        ].forEach((el, item)=> {
-                let domEl = document.createElement('div');
-                domEl.className = el.className;
-                domEl.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
-                    this.show(e, false);
-                    el.click();
+            ].forEach((el, item)=> {
+                    let domEl = document.createElement('div');
+                    domEl.className = el.className;
+                    domEl.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
+                        this.show(e, false);
+                        el.click();
+                    });
+                    div.appendChild(domEl);
+                    let icon = document.createElement('img');
+                    icon.src = el.icon;
+                    icon.setAttribute('fillColor', '#ffffff');
+                    icon.setAttribute('fill', '#ffffff');
+                    icon.style.color = '#ffffff';
+                    domEl.appendChild(icon);
                 });
-                div.appendChild(domEl);
-                let icon = document.createElement('img');
-                icon.src = el.icon;
-                icon.setAttribute('fillColor', '#ffffff');
-                icon.setAttribute('fill', '#ffffff');
-                icon.style.color = '#ffffff';
-                domEl.appendChild(icon);
+        } else {
+            div.className = ENTITY.ProjClasses.PROJ_CONTROLS_MOVE;
+            app._container.appendChild(div);
+            [{_c: 'left', _i: -1}, {_c: 'right', _i: 1}].forEach((child)=> {
+                let childDiv = document.createElement('div');
+                childDiv.className = child._c;
+                childDiv.innerHTML = child._c.toUpperCase();
+                div.appendChild(childDiv);
+                childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
+                    this.app._slider.move(child._i);
+                });
             });
+            let tooltipParent = this._tooltips = document.createElement('div');
+            tooltipParent.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER;
+            app._parent().appendChild(tooltipParent);
+            app.model.traverse((child)=> {
+                if (child.type == "Mesh") {
+                    child.material.visible = false;
+                    child._toolTip = new OxiToolTip(child, app.main.location);
+                    tooltipParent.appendChild(child._toolTip.tooltip);
+                }
+            });
+            let path = this.app.main.location.path(),
+                areas = path.split(ENTITY.Config.PROJ_DMNS[0]);
+            if (areas.length > 1) {
+                let back:any = document.createElement('div');
+                back.className = 'back-area';
+                back.style.backgroundImage = "url('assets/img/android-system-back.png')";
+                app._container.appendChild(back);
+                areas.pop();
+                back.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
+                    e.preventDefault();
+                    this.app.main.location.go(areas.length > 1 ? areas.join(ENTITY.Config.PROJ_DMNS[0] + "area=") : areas.join(''));
+                    window.location.reload();
+                });
+
+            }
+        }
+
     }
+
     show(pos, flag:boolean = true) {
 
+        let canEdit = this.app.main.selected.canEdit;
         if (this.app._events.lastInter) {
+            if (this.app._events.lastInter.object._toolTip)this.app._events.lastInter.object._toolTip.show(flag);
             if (!this.app._events.lastInter.object.material.defColor)this.app._events.lastInter.object.material.defColor = this.app._events.lastInter.object.material.color.clone();
-            this.app._events.lastInter.object.material.color = flag ? new THREE.Color(61 / 250, 131 / 250, 203 / 250) : this.app._events.lastInter.object.material.defColor;
+            if (!this.app._events.lastInter.object.material.onSelectColor)this.app._events.lastInter.object.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
+            this.app._events.lastInter.object.material.color = flag ? this.app._events.lastInter.object.material.onSelectColor : this.app._events.lastInter.object.material.defColor;
             if (this.app._events.lastInter.object._data && flag)return;
         }
 
         if (flag) {
 
-            if (!this.controls.className.match(ENTITY.ProjClasses.ACTIVE)) {
+            if (this.controls.className.indexOf(ENTITY.ProjClasses.ACTIVE) < 0) {
                 this.controls.className += " " + ENTITY.ProjClasses.ACTIVE;
             }
         } else {
-            this.controls.className = this.controls.className.replace(ENTITY.ProjClasses.ACTIVE, '');
+            this.controls.className = this.controls.className.replace(" " + ENTITY.ProjClasses.ACTIVE, '');
         }
 
-        let _d:any = document.querySelector('app-aside');
-        if(_d){
-            _d = _d.getBoundingClientRect();
-        }
+        if (canEdit) {
+            let _d:any = document.querySelector('app-aside');
+            if (_d) {
+                _d = _d.getBoundingClientRect();
+            }
+            this.controls.style.left = ((   pos.clientX || pos.x) - 15 - (_d.right ? _d.right : 0) ) + 'px';
+            this.controls.style.top = ((  pos.clientY || pos.y) - this.controls.clientHeight / 2 - 15) + 'px';
 
-        this.controls.style.left = ((   pos.clientX || pos.x) - 15-(_d.right?_d.right:0) ) + 'px';
-        this.controls.style.top = ((  pos.clientY || pos.y) - this.controls.clientHeight / 2 - 15) + 'px';
+        } else {
+
+        }
         this.app._animation.play();
     }
+}
+class OxiToolTip {
+    tooltip:any;
+    private mesh:any;
+
+    constructor(mesh, location) {
+        let tooltip = this.tooltip = document.createElement('div'),
+            head:any = document.createElement('div'),
+            body:any = document.createElement('div')
+            ;
+        this.mesh = mesh;
+        tooltip.appendChild(head);
+        tooltip.appendChild(body);
+        body.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.BODY;
+        head.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.HEADER;
+        tooltip.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.TOOLTIP;
+        head.innerHTML = mesh.name;
+        body.innerHTML = mesh.name;
+        mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
+        if (mesh._data) {
+            if (mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
+                mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+            }
+            mesh.click = ()=> {
+                switch (mesh._data._category) {
+                    case ENTITY.Config.PROJ_DESTINATION.ModelStructure:
+                    {
+                        let _url = mesh._data.projFilesDirname.split("/");
+                        location.go(location.path() + "&area=" + _url[_url.length - 1]);
+                        window.location.reload();
+                        break;
+                    }
+                    case ENTITY.Config.PROJ_DESTINATION.LinkGeneralStructure:
+                    {
+                        window.open(mesh._data.destination);
+                        break;
+                    }
+                    case ENTITY.Config.PROJ_DESTINATION.GeneralStructure:
+                    {
+                        window['eval'](mesh._data.destination);
+                        break;
+                    }
+                }
+            };
+
+            tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
+        }
+
+    }
+
+    show(show:boolean = true) {
+        this.tooltip.className = show ? [ENTITY.ProjClasses.PROJ_TOOLTIPS.TOOLTIP, ENTITY.ProjClasses.ACTIVE].join(" ") : ENTITY.ProjClasses.PROJ_TOOLTIPS.TOOLTIP;
+        this.mesh.material.visible = show;
+        if (show) {
+            this.mesh.getScreenPst();
+            this.tooltip.style.left = this.mesh.onscreenParams.x + 'px';
+            this.tooltip.style.top = this.mesh.onscreenParams.y + 'px';
+        }
+    }
+
+
 }

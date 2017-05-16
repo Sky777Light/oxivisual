@@ -6,8 +6,8 @@ declare var alertify:any;
 
 @Component({
     selector: 'app-project-preview',
-    template: '<iframe  *ngIf="dataSrc" [src]="dataSrc" frameborder=0 outline=0><h1 *ngIf="!dataSrc">Still had nothing created!!!</h1>',
-    styleUrls: ['./project.preview.sass']
+    templateUrl: './project.preview.html',
+    styles: ['iframe{width:100%;height:100%}']
 })
 export class PreviewProject   {
     private dataSrc:SafeResourceUrl;
@@ -18,7 +18,7 @@ export class PreviewProject   {
 
     ngOnInit() {
        let project = this.projectService.getProject();
-        this.dataSrc = project.model? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene="+project.model.link):null;
+        this.dataSrc = project.model && project.model.link? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene="+project.model.link):null;
     }
 
 }

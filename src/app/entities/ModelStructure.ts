@@ -17,7 +17,7 @@ export class ProjMain extends Main {
 
 
     clone() {
-        let noClone = ['app', '_app', 'cash'],
+        let noClone = ['app', '_app', 'cash', 'canEdit'],
             acceptType = ['boolean', 'string', 'number']
         //,clone:any = new this.constructor(this)
             ;
