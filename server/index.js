@@ -42,13 +42,13 @@ app.set("view options", {
     layout: "layout"
 });
 
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
+//app.use(function (req, res, next) {
+//    res.setHeader('Access-Control-Allow-Origin', '*');
+//    res.setHeader('Access-Control-Allow-Methods', '*');
+//    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//    res.setHeader('Access-Control-Allow-Credentials', true);
+//    next();
+//});
 
 var storage = multer.diskStorage({
     dest:'/',
@@ -61,7 +61,13 @@ var storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now())
     }
 });
-var upload = multer({ dest: config.DIR.PUBLIC }).fields([{ name: 'model[]', maxCount: 1 }, { name: 'frames[]', maxCount: 36 }]);
+var upload = multer({ dest: config.DIR.PUBLIC }).fields(
+    [
+        { name: config.FILE_UPLOAD_ATTR[0], maxCount: 1 },
+        { name: config.FILE_UPLOAD_ATTR[2], maxCount: 36 },
+        { name: config.FILE_UPLOAD_ATTR[1], maxCount: 36 }
+    ]
+);
 
 app.use( upload);
 app.use(morgan("dev"));

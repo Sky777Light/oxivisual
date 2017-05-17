@@ -9,6 +9,7 @@ import {Component,Input,ViewChild,OnInit} from '@angular/core';
 })
 export class UploadFile implements OnInit {
     @Input() accept:string = '';
+    @Input() category:string;
     @Input() multiple:string;
     @Input() required:string;
     @Input() title:string;
@@ -30,15 +31,16 @@ export class UploadFile implements OnInit {
 
         fileTag.addEventListener('change', (e)=> {
             let files = e.target.files;
+            if(!files.length)return;
             this.files = [];
 
             for (let i = 0; i < files.length; i++) {
+                if(this.category) files[i].category = this.category;
                 if (files[i].name.match(this.accept) || files[i].type.match(this.accept))this.files.push(files[i]);
             }
 
             if (!this.files.length || !this.inject || !this.inject.onFilesSelected)return;
 
-            console.log(this.inject);
             this.inject.onFilesSelected(this.files);
 
         });
@@ -52,10 +54,6 @@ export class UploadFile implements OnInit {
             fileTag.setAttribute('name','fileTag'+Math.random());
             fileTag.setAttribute('required',true);
         }
-
-    }
-
-    OnInit() {
 
     }
 }

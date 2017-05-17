@@ -4,9 +4,11 @@
   .row
     margin: 5px 0
   .inp-form
-    margin: 5px 0
+    &.col-lg-12
+      margin: 20px 0
     label
-      //color: $text-color-gray
+      &.full-op
+        right: inherit
   .upload-list
     padding: 10px 0
     app-file-upload
@@ -15,7 +17,7 @@
         width: 50%
         float: left
       .btn-def
-        padding: 10px 25px
+        padding: 10px
         background: $white
       .list-files
         padding: 13px 10px

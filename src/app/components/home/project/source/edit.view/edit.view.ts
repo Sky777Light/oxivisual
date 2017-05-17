@@ -17,7 +17,11 @@ export class EditView {
     @Input() modelStructure:any;
 
     pattrns:any;
+    _CONFIG:any;
+
     constructor(){
+
+        this._CONFIG = ENTITY.Config;
         this.pattrns={
             URL: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
         };

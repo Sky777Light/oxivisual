@@ -48,6 +48,7 @@ export class ViewProject{
     deleteProject(event) {
         event.preventDefault();
         event.stopPropagation();
+
         this.projectService.deleteProject(this.project);
         this.openedPopUp = !this.openedPopUp;
         return false;

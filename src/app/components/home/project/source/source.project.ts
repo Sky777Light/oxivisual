@@ -17,6 +17,7 @@ export class SourceProject   {
     public instance:SourceProject;
     private project:any;
     selectedChild:any;
+    _CONFIG:any;
     tempNewChild:ENTITY.ModelStructure;
     uploadChild:any ;
     editview:boolean = false;
@@ -28,6 +29,7 @@ export class SourceProject   {
 
     constructor(private projectService:ProjectService, private authService:AuthService) {
         this.instance = this;
+        this._CONFIG = ENTITY.Config;
     }
 
     ngOnChanges(changes) {
@@ -52,7 +54,7 @@ export class SourceProject   {
 
         let myForm = new FormData(),
             fileReader = new FileReader(),
-            filesUpload = [{a: this.modelObj, n: 'model[]'}, {a: this.framesObj, n: 'frames[]'}];
+            filesUpload = [{a: this.modelObj, n: ENTITY.Config.FILE.STORAGE.MODEL_OBJ }, {a: this.framesObj, n: ENTITY.Config.FILE.STORAGE.PREVIEW_IMG }];
         myForm.append('name', this.project.model.name);
         myForm.append('id_project', this.project._id);
 
@@ -87,17 +89,26 @@ export class SourceProject   {
 
         this.uploadStructure(data,function(){
             self.authService.post("/api/projects/project/model/update", {_id:self.project._id,dir:data.projFilesDirname,structure:JSON.stringify([data.clone()])}).subscribe((res:any) => {
-                console.log("finish update");
+                res = res.json();
+                if (res.status) {
+                    alertify.success(res.message);
+                }else{
+                    alertify.error(res.message);
+                }
             });
         },data.projFilesDirname);
     }
-    private uploadStructure(area,callback,dirStartFrom){
+    private uploadStructure(area:any,callback,dirStartFrom){
         let _self = this,
             siteStructure=[];
 
         if(area){
             let _form =  new FormData(),
-                filesUpload = [{a: area.destination, n: 'model[]'}, {a: area.images, n: 'frames[]'}];
+                filesUpload = [
+                    {a: area.destination, n: ENTITY.Config.FILE.STORAGE.MODEL_OBJ },
+                    {a: area.alignImages, n: ENTITY.Config.FILE.STORAGE.ALIGN_IMG },
+                    {a: area.images, n: ENTITY.Config.FILE.STORAGE.PREVIEW_IMG }
+                ];
             _form.append('dir',dirStartFrom);
             _form.append('destination',area.destination);
             _form.append('_id',this.project._id);
@@ -113,12 +124,14 @@ export class SourceProject   {
             _self.authService.post("/api/projects/project/model/update", _form).subscribe((res:any) => {
                 res = res.json();
                 if (res.status) {
-                    alertify.success(res.message);
                     area.projFilesDirname = dirStartFrom;
                     if(area.destination instanceof Array)area.destination = area.destination[0].name;
-                    for (let f = 0; area.images && f < area.images.length; f++) {
-                          if(area.images[f].file)area.images[f]= area.images[f].file.name;
-                    }
+
+                    ['alignImages','images'].forEach((field)=>{
+                        for (let f = 0; area[field] && f < area[field].length; f++) {
+                            if(area[field][f] instanceof ENTITY.ProjFile || area[field][f].file )area[field][f]= area[field][f].name;
+                        }
+                    });
                 } else {
                     alertify.error(res.message);
                 }
@@ -150,7 +163,7 @@ export class SourceProject   {
         this.selectedChild = child;
         child._app = this;
         child.canEdit = true;
-
+        console.log(child);
     }
 }
 export class ProjTabs {

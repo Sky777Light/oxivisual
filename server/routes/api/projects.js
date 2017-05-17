@@ -275,7 +275,7 @@ router.post("/project/model/create", function (req, res) {
         }, function (err) {
             return res.json({
                 status: !err,
-                message: err ? err : "model was saved",
+                message: err ? err : "area was created",
                 model: {
                     link: area.projFilesDirname,
                     name: modelName,
@@ -295,31 +295,57 @@ router.post("/project/model/update", function (request, responce) {
             });
         } else {
 
-            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + body.dir + "/",
-                matches = config.FILE_UPLOAD_EXT;
+            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + body.dir + "/";
 
             if (req.files) {
-                var imageDir = modelDir + config.DIR.IMAGES;
-
-                if (fs.existsSync(path.normalize(modelDir))) {
-                    //if (req.files[config.FILE_UPLOAD_ATTR[0]])fs.unlinkSync(modelDir + body.destination);
-                } else {
-                    fs.mkdirSync(path.normalize(modelDir), config.FILE_UPLOAD_ACCEC);
-                }
-                if (fs.existsSync(imageDir)) {
-                    if (req.files[config.FILE_UPLOAD_ATTR[1]])config.help.deleteFolderRecursive(imageDir);
-                } else {
-                    fs.mkdirSync(imageDir, config.FILE_UPLOAD_ACCEC);
-                }
-
                 for (var keys in req.files) {
+                    var urlSaveFile;
+                    switch (keys){
+                        case config.FILE_UPLOAD_ATTR[0]:{
+                            urlSaveFile = modelDir;
+                            if (fs.existsSync(path.normalize(urlSaveFile))) {
+                                for(var u=0,files = fs.readdirSync(urlSaveFile);u<files.length;u++){
+                                    var file=files[u],
+                                        curPath = path + "/" + file;
+                                    if(fs.lstatSync(curPath).isDirectory()) {
+                                    } else {
+                                        if(curPath.indexOf(config.FILE_UPLOAD_EXT[0])){
+                                            fs.unlinkSync(curPath);
+                                            break;
+                                        }
+                                    }
+                                }
+                            } else {
+                                fs.mkdirSync(path.normalize(urlSaveFile), config.FILE_UPLOAD_ACCEC);
+                            }
+                            break;
+                        }
+                        case config.FILE_UPLOAD_ATTR[1]:{
+                            urlSaveFile = modelDir + config.DIR.IMAGES;
+                            if (fs.existsSync(urlSaveFile)) {
+                                if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
+                            } else {
+                                fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
+                            }
+                            break;
+                        }
+                        case config.FILE_UPLOAD_ATTR[2]:{
+                            urlSaveFile = modelDir + config.DIR.ALIGN_IMAGES;
+                            if (fs.existsSync(urlSaveFile)) {
+                                if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
+                            } else {
+                                fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
+                            }
+                            break;
+                        }
+                    }
+                    if(!fs.existsSync(urlSaveFile))return res.json({
+                        status: false,
+                        message: "project can`t save"
+                    });
                     for (var i = 0; i < req.files[keys].length; i++) {
                         var _file = req.files[keys][i];
-                        if (_file.originalname.match(matches[0])) {
-                            fs.writeFileSync(modelDir + _file.originalname, fs.readFileSync(_file.path));
-                        } else if (_file.mimetype.match(matches[1])) {
-                            fs.writeFileSync(imageDir + _file.originalname, fs.readFileSync(_file.path));
-                        }
+                        fs.writeFileSync(urlSaveFile + _file.originalname, fs.readFileSync(_file.path));
                     }
                 }
             }

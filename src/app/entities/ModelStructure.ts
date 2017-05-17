@@ -8,6 +8,7 @@ export interface IModelStructure extends IMain {
     projFilesDirname:string;
     areas:Array<IModelStructure>;
 }
+
 export class ProjMain extends Main {
     constructor(entity:any = {name: 'Child'}) {
         super(entity);
@@ -15,39 +16,10 @@ export class ProjMain extends Main {
         this._category = CONSTANTS.Config.PROJ_DESTINATION[this.constructor.name];
     }
 
-
     clone() {
         let noClone = ['app', '_app', 'cash', 'canEdit'],
-            acceptType = ['boolean', 'string', 'number']
-        //,clone:any = new this.constructor(this)
-            ;
-        //for(let field in this){
-        //    if(this.hasOwnProperty(field) && acceptType.indexOf(typeof this[field])>-1 )clone[field]=this[field];
-        //}
-        //delete clone['app'];
-        //delete clone['_app'];
-        //delete clone['cash'];
-        //clone.areas=[];
+            acceptType = ['boolean', 'string', 'number'];
 
-        /*function cloneS(obj) {
-         if (obj === null || typeof(obj) !== 'object' || 'isActiveClone' in obj)
-         return obj;
-
-         if (obj instanceof Date)
-         var temp = new obj.constructor(); //or new Date(obj);
-         else
-         var temp = obj.constructor();
-
-         for (var key in obj) {
-         if (Object.prototype.hasOwnProperty.call(obj, key)) {
-         obj['isActiveClone'] = null;
-         temp[key] = cloneS(obj[key]);
-         delete obj['isActiveClone'];
-         }
-         }
-
-         return temp;
-         }*/
         function cloneObject(obj) {
             var temp = obj instanceof Array ? [] : {};
             for (var i in obj) {
@@ -66,13 +38,14 @@ export class ProjMain extends Main {
     }
 
     private copyS(entity:any = {}) {
-        let _self = this;
+        let _self = this,
+            noClone = ['File'];
 
         function cloneObject(obj) {
             var temp = obj instanceof Array ? [] : _self || entity;
 
             for (var i in obj) {
-                if (typeof(obj[i]) == "object" && obj[i] != null)
+                if ( typeof(obj[i]) == "object" && obj[i] != null && noClone.indexOf(obj[i].constructor.name) < 0)
                     temp[i] = (obj[i] instanceof Array ? cloneObject(obj[i]) : ( ProjMain.inject(obj[i])));
                 else
                     temp[i] = obj[i];
@@ -98,11 +71,22 @@ export class ProjMain extends Main {
         }
     }
 }
+export class ProjFile extends ProjMain {
+
+    data:string;
+    file:File;
+    name:string;
+
+    constructor(entity:any) {
+        super(entity);
+    }
+}
 export class OxiCamera extends ProjMain {
     position:Vector3;
     target:Vector3;
     rotation:Vector3;
     resolution:Vector3;
+    frameState:any;
     fov:number;
     scale:number;
     zoom:number;
@@ -117,6 +101,7 @@ export class OxiCamera extends ProjMain {
         if (!this.resolution)this.resolution = new Vector3();
         if (!this.size)this.size = 36;
         if (!this.lens)this.lens = 19;
+        if (!this.frameState)this.frameState = {};
     }
 }
 export class Vector3 extends ProjMain {
@@ -156,13 +141,16 @@ export class ModelStructure extends GeneralStructure implements IModelStructure 
     currentItem0:number;
     projFilesDirname:string;
     images:Array<any>;
+    alignImages:Array<any>;
     areas:Array<IModelStructure>;
+    canEdit:boolean;
     cash:PCash;
 
     constructor(entity:any = {}) {
         super(entity);
         this.cash = new PCash();
         if (!this.images)this.images = [];
+        if (!this.alignImages)this.alignImages = [];
         if (!this.camera)this.camera = new OxiCamera();
         if (!this.currentItem)this.currentItem = 0;
         this.currentItem = +this.currentItem;

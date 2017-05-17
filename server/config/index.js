@@ -8,10 +8,11 @@ module.exports = {
         UPLOADS:'resources/uploads/',
         PROJECTS:'projects/',
         IMAGES:'images/',
+        ALIGN_IMAGES:'align_images/',
         SITE_STRUCTURE:'/site_structure.json'
     },
     FILE_UPLOAD_EXT:['.obj','image/'],
-    FILE_UPLOAD_ATTR:['model[]','frames[]'],
+    FILE_UPLOAD_ATTR:['model[]','frames[]','alignFrames[]'],
     FILE_UPLOAD_ACCEC:parseInt("0777", 8),
     port: process.env.PORT || 3009,
     mongoose: {

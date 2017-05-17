@@ -8,6 +8,7 @@ export class Config {
         ModelStructure:2,
         OxiCamera:3,
         Vector3:4,
+        ProjFile:5,
     };
     static EVENTS_NAME = {
         CNTXMENU: 'contextmenu',
@@ -20,6 +21,24 @@ export class Config {
         MOUSE_MOVE: 'mousemove',
         MOUSE_UP: 'mouseup'
     };
+    static FILE={
+        TYPE:{
+            MODEL_OBJ:1,
+            PREVIEW_IMG:2,
+            ALIGN_IMG:3
+        },
+        STORAGE:{
+            MODEL_OBJ:'model[]',
+            PREVIEW_IMG:'frames[]',
+            ALIGN_IMG:'alignFrames[]'
+        },
+        DIR:{
+            DELIMETER:"/",
+            PROJECT_PREVIEW:'images/',
+            PROJECT_ALIGN_IMG:'align_images/',
+        }
+
+    }
 
 }
 export class ProjClasses {

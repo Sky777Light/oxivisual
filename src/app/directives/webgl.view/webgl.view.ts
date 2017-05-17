@@ -1,6 +1,7 @@
 import {Input,ViewChild,Component,OnInit,OnChanges,EventEmitter,Injectable} from '@angular/core';
 import * as ENTITY from '../../entities/entities';
 import {Location} from '@angular/common';
+import {Confirm} from '../dialogs/dialog';
 
 declare var alertify:any;
 declare var THREE:any;
@@ -141,10 +142,19 @@ class OxiAPP {
         let curDist = this.camera.positionDef.distanceTo(this.controls.target),
             curAngle = Math.acos((this.camera.positionDef.x - this.controls.target.x) / curDist);
         this.camera.updateView = (angle)=> {
-            let quaternion = new THREE.Quaternion();
-            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
-            this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
+            let _cm = main.selected.camera,
+                _p = _cm.frameState[main.selected.currentItem];
+            if( _p){
+                this.camera.position.set(_p.x,_p.y,_p.z);
+                if(_p.target)this.controls.target.set(_p.target.x,_p.target.y,_p.target.z);
+            }else{
+                let quaternion = new THREE.Quaternion();
+                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
+                this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
+                if(_cm.target)this.controls.target.set(_cm.target.x,_cm.target.y,_cm.target.z);
+            }
             this._animation.play();
+
         };
         this.scene.add(new THREE.AxisHelper(500));
 
@@ -211,11 +221,20 @@ class OxiAPP {
                     val = this.main.selected.camera.resolution[data],
                     prop = this._slider._W() / this._slider._H(),
                     isHeight = data == 'y',
-                    _px = 'px';
-                [].forEach.call(this._slider.container.childNodes, function (el, i) {
-                    el.style.height = (isHeight ? val : val / prop) + _px;
-                    el.style.width = (isHeight ? val * prop : val) + _px;
+                    _px = 'px',
+                    elem:any = [this._slider.container.childNodes];
+                if(!elem[0] || !elem[0].length) break;
+                if(this._slider.alignImgContainer instanceof Node){
+                    let el = this._slider.alignImgContainer.childNodes;
+                    if(el && el.length) elem.push(el);
+                }
+                elem.forEach(function(lstChilds){
+                    [].forEach.call(lstChilds, function (el) {
+                        el.style.height = (isHeight ? val : val / prop) + _px;
+                        el.style.width = (isHeight ? val * prop : val) + _px;
+                    });
                 });
+
                 this._events.onWindowResize();
                 break;
             }
@@ -246,6 +265,7 @@ class OxiAPP {
             position: this.camera.position,
             rotation: this.camera.rotation,
             target: this.controls.target,
+            frameState: old.frameState,
             resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
             fov: this.camera.fov,
             zoom: this.camera.zoom,
@@ -297,7 +317,7 @@ class OxiAPP {
         object.traverse((child)=> {
             if (child.type == 'Mesh') {
                 child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
-                child.material.onSelectColor = new THREE.Color(Math.random(),Math.random(),Math.random());
+                child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                 for (let i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
                     if (areas[i]._id.match(child.name)) {
                         child._data = areas[i];
@@ -309,10 +329,17 @@ class OxiAPP {
         this.main.selected.cash.model = object;
     }
 
+    //TODO
     _deleteArea(item) {
 
+        delete item._data;
+        for (let i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
+            if (areas[i].created == item.created) {
+                delete item._data;
+                break;
+            }
+        }
     }
-
 
     _parent():HTMLElement {
         return this.main.renderParent['nativeElement'];
@@ -321,31 +348,89 @@ class OxiAPP {
     onFilesSelected(files) {
         let _self = this,
             filereader = this._fileReader = this._fileReader || new FileReader(),
-            isObj = files[0].name.match('.obj');
-        this._files[(isObj ? 'model[]' : 'frames[]')] = files;
+            _flStrg,
+            onFinish;
 
-        if (!isObj)this.main.selected.images = [];
+        if (!files || !files.length)return console.error("files had not been selected");
 
+        switch (files[0].category) {
+            case ENTITY.Config.FILE.TYPE.MODEL_OBJ:
+            {
+                _flStrg = ENTITY.Config.FILE.STORAGE.MODEL_OBJ;
+                onFinish = ()=>_self._animation.play();
+                break;
+            }
+            case ENTITY.Config.FILE.TYPE.PREVIEW_IMG:
+            {
+                _flStrg = ENTITY.Config.FILE.STORAGE.PREVIEW_IMG;
+                this.main.selected.images = [];
+                onFinish = ()=>_self._slider.addFrames();
+                break;
+            }
+            case ENTITY.Config.FILE.TYPE.ALIGN_IMG:
+            {
+                _flStrg = ENTITY.Config.FILE.STORAGE.ALIGN_IMG;
+                this.main.selected.alignImages = [];
+                onFinish = ()=>_self._slider.addAlignImg();
+                break;
+            }
+        }
+        if (!_flStrg || !onFinish)return console.error("file category is not recognized");
+
+        this._files[_flStrg] = files;
         let startFrom = 0;
 
         function parseFiles(cur) {
-            if (!cur) return (isObj ? _self._animation.play() : _self._slider.addFrames());
-            if (isObj) {
-                filereader.readAsText(cur);
-            } else {
-                filereader.readAsDataURL(cur);
+            if (!cur) return onFinish();
+
+            switch (cur.category) {
+                case ENTITY.Config.FILE.TYPE.MODEL_OBJ:
+                {
+                    filereader.readAsText(cur);
+                    break;
+                }
+                case ENTITY.Config.FILE.TYPE.PREVIEW_IMG:
+                case ENTITY.Config.FILE.TYPE.ALIGN_IMG:
+                {
+                    filereader.readAsDataURL(cur);
+                    break;
+                }
+                default :
+                {
+                    parseFiles(files[startFrom++]);
+                }
             }
             filereader.onloadend = (e:any)=> {
-                if (isObj) {
-                    let loader = _self.loader = _self.loader || new THREE.OBJLoader();
-                    loader.parse(e.currentTarget.result, (m)=> {
-                        _self.main.selected.destination = [{file: cur, name: cur.name}];
-                        _self._onLoadModel(m);
-                    });
-                } else {
-                    _self.main.selected.images.push({file: cur, name: cur.name, data: e.currentTarget.result});
-                }
 
+                switch (cur.category) {
+                    case ENTITY.Config.FILE.TYPE.MODEL_OBJ:
+                    {
+                        let loader = _self.loader = _self.loader || new THREE.OBJLoader();
+                        loader.parse(e.currentTarget.result, (m)=> {
+                            _self.main.selected.destination = [new ENTITY.ProjFile({file: cur, name: cur.name})];
+                            _self._onLoadModel(m);
+                        });
+                        break;
+                    }
+                    case ENTITY.Config.FILE.TYPE.PREVIEW_IMG:
+                    {
+                        _self.main.selected.images.push(new ENTITY.ProjFile({
+                            file: cur,
+                            name: cur.name,
+                            data: e.currentTarget.result
+                        }));
+                        break;
+                    }
+                    case ENTITY.Config.FILE.TYPE.ALIGN_IMG:
+                    {
+                        _self.main.selected.alignImages.push(new ENTITY.ProjFile({
+                            file: cur,
+                            name: cur.name,
+                            data: e.currentTarget.result
+                        }));
+                        break;
+                    }
+                }
                 parseFiles(files[startFrom++]);
             };
         };
@@ -403,6 +488,7 @@ class OxiEvents {
         app.camera.aspect = _w / _h;
         app.camera.updateProjectionMatrix();
         app.gl.setSize(_w, _h);
+        app._container.style.height = _h+'px';
 
         if (app._animation)app._animation.play();
     }
@@ -478,7 +564,8 @@ class OxiEvents {
     private onMouseDown(ev:Event) {
         this.mouse.down = ev;
     }
-    onCntxMenu(event){
+
+    onCntxMenu(event) {
         event.preventDefault();
         return false;
     }
@@ -604,15 +691,22 @@ class OxiAnimation {
     }
 }
 class OxiSlider {
-    currentFrame:any = {};
+    private currentFrame:any = {};
+    private currentAlignFrame:any = {};
+    private currentPagination:any = {};
     container:HTMLElement;
+    alignImgContainer:HTMLElement;
     imgPagination:HTMLElement;
     app:OxiAPP;
+    private canEdit:boolean = false;
+    isDebug:boolean = false;
 
     constructor(app:OxiAPP) {
 
+        this.canEdit = app.main.selected.canEdit;
         this.app = app;
         this.addFrames();
+        if (this.canEdit)this.addAlignImg();
 
     }
 
@@ -621,10 +715,7 @@ class OxiSlider {
             app:OxiAPP = this.app;
 
         [this.container, this.imgPagination].forEach((domEl)=> {
-            if (domEl) {
-                while (domEl.firstChild) domEl.removeChild(domEl.firstChild);
-                if (domEl.parentNode)domEl.parentNode.removeChild(domEl);
-            }
+            this.removeNode(domEl);
         });
 
 
@@ -632,22 +723,22 @@ class OxiSlider {
             imgPagination = this.imgPagination = document.createElement('ul'),
             _resol = this.app.main.selected.camera.resolution,
             _px = 'px',
-            canEdit = app.main.selected.canEdit;
+            canEdit = this.canEdit;
 
         if (!app.main.selected.images || !app.main.selected.images.length) return;
 
         for (let i in app.main.selected.images) {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
-            img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + app.main.selected.projFilesDirname + "/images/" + curImg : curImg.data;
+            img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + app.main.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + curImg : curImg.data;
             if (parseInt(i) == this.app.main.selected.currentItem) {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
                 img.onload = function () {
                     _self.app._events.onWindowResize();
-                    if(!_self.app.main.selected.camera.resolution.x){
-                        _self.app.main.selected.camera.resolution.x = _self._W();
-                        _self.app.main.selected.camera.resolution.y = _self._H();
+                    if (!_resol.x) {
+                        _resol.x = _self._W();
+                        _resol.y = _self._H();
                     }
                 }
             }
@@ -660,27 +751,93 @@ class OxiSlider {
             if (canEdit) {
                 let item = document.createElement('li');
                 item.innerHTML = (+i + 1) + '';
+                if(+i == this.app.main.selected.currentItem){
+                    item.className = ENTITY.ProjClasses.ACTIVE;
+                    this.currentPagination = item;
+                }
                 item.addEventListener('click', ()=> {
-                    this.updateView(i);
-                    this.app.dataSave();
+                    new Confirm({
+                        title:"The camera for current ("+(+app.main.selected.currentItem+1)+") frame will be saved, if cancel will lose",
+                        onOk:()=>{
+                            let _c = app.camera.position,
+                                _t = app.controls.target;
+                            app.main.selected.camera.frameState[app.main.selected.currentItem] = {x:_c.x,y:_c.y,z:_c.z,target:{x:_t.x,y:_t.y,z:_t.z}};
+                        },
+                        onCancel:()=>{
+                            delete app.main.selected.camera.frameState[app.main.selected.currentItem];
+                        },
+                        onAnyWay:()=>{
+                            this.updateView(i);
+                            this.app.dataSave();
+                        }
+                    });
+
                 });
                 imgPagination.appendChild(item);
             }
         }
 
+        div.style.display = this.isDebug ? 'none' : '';
         div.className = [ENTITY.ProjClasses.CENTER_CONTAINER, ENTITY.ProjClasses.IMG_SLIDER].join(" ");
         app._container.appendChild(div);
-        if (canEdit)app._parent().appendChild(imgPagination);
+        if (canEdit){
+            app._container.appendChild(imgPagination);
+            imgPagination.style.bottom = -imgPagination.clientHeight+'px';
+        }
+    }
+
+    addAlignImg() {
+
+        this.removeNode(this.alignImgContainer);
+        if (!this.canEdit)return;
+
+        let div = this.alignImgContainer = document.createElement('div'),
+            _selected = this.app.main.selected,
+            _resol = _selected.camera.resolution,
+            _px = 'px';
+
+        for (let i = 0, arr = _selected.alignImages, _length = arr.length; i < _length; i++) {
+            let img = document.createElement('img'),
+                curImg = arr[i];
+            img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + _selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_ALIGN_IMG + curImg : curImg.data;
+            if (i == _selected.currentItem) {
+                img.className = ENTITY.ProjClasses.ACTIVE;
+                this.currentAlignFrame = img;
+            }
+            if (_resol) {
+                img.style.width = _resol.x + _px;
+                img.style.height = _resol.y + _px;
+            }
+            div.appendChild(img);
+        }
+        div.style.display = this.isDebug ? '' : 'none';
+        div.className = [ENTITY.ProjClasses.CENTER_CONTAINER, ENTITY.ProjClasses.IMG_SLIDER].join(" ");
+        this.app._container.appendChild(div);
+
+    }
+
+    toggleDebug() {
+        this.isDebug = !this.isDebug;
+        this.alignImgContainer.style.display = this.isDebug ? '' : 'none';
+        this.container.style.display = !this.isDebug ? '' : 'none';
+    }
+
+    private removeNode(domEl:any) {
+        if (!domEl) return;
+        while (domEl.firstChild) domEl.removeChild(domEl.firstChild);
+        if (domEl.parentNode)domEl.parentNode.removeChild(domEl);
     }
 
     updateView(selectedItem) {
-        this.currentFrame['className'] = '';
+        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className']='';
         this.app.main.selected.currentItem = selectedItem;
         this.app.camera.updateView(selectedItem - this.app.main.selected.currentItem0);
 
         this.currentFrame = this.container.childNodes[selectedItem];
-        this.currentFrame['className'] = ENTITY.ProjClasses.ACTIVE;
-        this.app._events.onMouseOut({});
+        this.currentPagination = this.imgPagination && this.imgPagination.childNodes[selectedItem]?this.imgPagination.childNodes[selectedItem]:{};
+        this.currentAlignFrame = this.alignImgContainer && this.alignImgContainer.childNodes[selectedItem] ? this.alignImgContainer.childNodes[selectedItem] : {};
+        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className']=ENTITY.ProjClasses.ACTIVE;
+        //this.app._events.onMouseOut({});
         this.app._projControls.show({}, false);
     }
 
@@ -698,11 +855,11 @@ class OxiSlider {
     }
 
     _W() {
-        return this.currentFrame.clientWidth || this.container.clientWidth || this.app.screen.width;
+        return this.currentFrame.clientWidth || this.container.clientWidth || this.app.main.selected.camera.resolution.x ||this.app.screen.width;
     }
 
     _H() {
-        return this.currentFrame.clientHeight || this.container.clientHeight || this.app.screen.height;
+        return this.currentFrame.clientHeight || this.container.clientHeight || this.app.main.selected.camera.resolution.y ||this.app.screen.height;
     }
 
     _offsetLeft() {
@@ -722,7 +879,7 @@ class OxiControls {
         let div = this.controls = document.createElement('div');
         this.app = app;
 
-        div.addEventListener( ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false );
+        div.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
         if (app.main.selected.canEdit) {
             div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
             app._parent().appendChild(div);
@@ -802,7 +959,7 @@ class OxiControls {
                     child.material.visible = false;
                     child._toolTip = new OxiToolTip(child, app.main.location);
                     tooltipParent.appendChild(child._toolTip.tooltip);
-                    tooltipParent.addEventListener( ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false );
+                    tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
                 }
             });
             let path = this.app.main.location.path(),
@@ -818,7 +975,7 @@ class OxiControls {
                     this.app.main.location.go(areas.length > 1 ? areas.join(ENTITY.Config.PROJ_DMNS[0] + "area=") : areas.join(''));
                     window.location.reload();
                 });
-                back.addEventListener( ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false );
+                back.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
 
             }
         }

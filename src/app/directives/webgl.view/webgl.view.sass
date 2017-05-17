@@ -13,12 +13,22 @@
     background-size: contain
     background-repeat: no-repeat
     cursor: pointer
+  .THREEJS
+    canvas
+      position: absolute
+      top: 50%
+      left: 50%
+      -webkit-transform: translate(-50%, -50%)
+      transform: translate(-50%, -50%)
+      z-index: 2
+      display: flex
   ul
-    position: relative
     text-align: center
     margin: auto
     padding: 10px 0
     z-index: 10
+    width: 100%
+    position: absolute
     li
       display: inline-block
       padding: 5px
@@ -30,7 +40,7 @@
       transition: background, 0.5s
       z-index: 3
       &.active
-        background: $orange
+        border: 1px solid $border-active-color
       &:hover
         background: $text-color-gray
 

@@ -37,6 +37,7 @@ import {WebglView,WebGLService,UploadFile,MNode,MTree,SlimScroll} from "./direct
 import {EditView} from "./components/home/project/source/edit.view/edit.view";
 import {PreviewSceneComponent,PreviewSceneService} from "./components/preview/preview.project";
 
+declare var webpack:any;
 
 @NgModule({
   declarations: [
