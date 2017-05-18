@@ -45,7 +45,7 @@ var saveImage = function (image, avatar, done) {
     var uniqueRandomImageName = 'image-' + uniqueSHA1String; //uniqueSHA1String;
     var imageTypeDetected = decodeBase64Image(image).type.match(imageTypeRegularExpression);
     var userUploadedImagePath  = userUploadedFeedMessagesLocation + uniqueRandomImageName + '.' + imageTypeDetected[1];
-    var clientPath  = '/uploads/img/' + uniqueRandomImageName + '.' + imageTypeDetected[1];
+    var clientPath  = '/uploads/img//users/' + uniqueRandomImageName + '.' + imageTypeDetected[1];
 
     fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function(err){
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
