@@ -741,14 +741,16 @@ class OxiSlider {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
                 img.onload = function () {
-                    _self.app._events.onWindowResize();
+
                     if (!_resol.x) {
                         _resol.x = _self._W();
                         _resol.y = _self._H();
                     }
+                    _self.app._events.onWindowResize();
+                    _self.onResize();
                 }
             }
-            if (_resol) {
+            if (_resol && _resol.x) {
                 img.style.width = _resol.x + _px;
                 img.style.height = _resol.y + _px;
             }
@@ -797,6 +799,24 @@ class OxiSlider {
         }
     }
 
+    onResize(){
+        let
+            val = this.app.main.selected.camera.resolution,
+            _px = 'px',
+            elem:any = [this.container.childNodes];
+
+        if (!elem[0] || !elem[0].length) return;
+        if (this.alignImgContainer instanceof Node) {
+            let el = this.alignImgContainer.childNodes;
+            if (el && el.length) elem.push(el);
+        }
+        elem.forEach(function (lstChilds) {
+            [].forEach.call(lstChilds, function (el) {
+                el.style.height =   val.y + _px;
+                el.style.width =  val.x  + _px;
+            });
+        });
+    }
     addAlignImg() {
 
         this.removeNode(this.alignImgContainer);
@@ -815,7 +835,7 @@ class OxiSlider {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentAlignFrame = img;
             }
-            if (_resol) {
+            if (_resol && _resol.x) {
                 img.style.width = _resol.x + _px;
                 img.style.height = _resol.y + _px;
             }
@@ -866,11 +886,11 @@ class OxiSlider {
     }
 
     _W() {
-        return this.currentFrame.clientWidth || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
+        return this.currentFrame.clientWidth ||this.currentFrame.width || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
     }
 
     _H() {
-        return this.currentFrame.clientHeight || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
+        return this.currentFrame.clientHeight ||  this.currentFrame.height || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
     }
 
     _offsetLeft() {

@@ -49,7 +49,7 @@ export class ViewProject{
         event.preventDefault();
         event.stopPropagation();
 
-        this.projectService.deleteProject(this.project);
+        this.projectService.deleteProject({_id:this.project._id});
         this.openedPopUp = !this.openedPopUp;
         return false;
     }

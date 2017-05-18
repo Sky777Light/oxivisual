@@ -17,9 +17,9 @@ export class ProjectService {
 
     setProject(project:any):void {
 
-        if(!(project instanceof  ENTITY.Project)){
+        if (!(project instanceof  ENTITY.Project)) {
             this.Project = new ENTITY.Project(project);
-        }else{
+        } else {
             this.Project = project;
         }
         if (!(this.Project.model instanceof  ENTITY.ProjectModel)) {
@@ -27,12 +27,12 @@ export class ProjectService {
         }
         if (this.Project.model.link) {
             if (!(this.Project.model.data instanceof  Array)) {
-                this.authService.get(ENTITY.Config.PROJ_LOC+this.Project.model.link + ENTITY.Config.SITE_STRUCTURE).subscribe((res:any) => {
+                this.authService.get(ENTITY.Config.PROJ_LOC + this.Project.model.link + ENTITY.Config.SITE_STRUCTURE).subscribe((res:any) => {
                     this.Project.model.data = [];
-                    for(let _data = res.json(),i =0;i<_data.length;i++){
+                    for (let _data = res.json(), i = 0; i < _data.length; i++) {
                         this.Project.model.data.push(ENTITY.ProjMain.inject(_data[i]));
                     }
-                    if(this.Project.select)this.Project.select(this.Project.model);
+                    if (this.Project.select)this.Project.select(this.Project.model);
                 });
 
             }
@@ -65,10 +65,10 @@ export class ProjectService {
             if (res.status) {
                 alertify.success(res.message);
                 //this.setProject(res.res);
-                for(let key in project){
-                  this.Project[key] = project[key];
+                for (let key in project) {
+                    this.Project[key] = project[key];
                 }
-            }else{
+            } else {
                 alertify.error(res.message);
             }
 
@@ -76,15 +76,16 @@ export class ProjectService {
         });
     }
 
-    deleteProject(project:ENTITY.IProject) {
+    deleteProject(project:any) {
         let link = '/api/projects/project';
 
         this.authService.delete(link, project).subscribe((res:any) => {
             res = res.json();
             if (res.status) {
                 let user = this.userService.getUser();
-                let idx = user.projects.indexOf(project);
-                user.projects.splice(idx, 1);
+                for (let i = 0; i < user.projects.length; i++) {
+                    if (user.projects[i]._id == project._id) return user.projects.splice(i, 1);
+                }
             }
             alertify.success(res.message);
         }, (error) => {

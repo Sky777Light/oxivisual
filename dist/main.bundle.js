@@ -1431,8 +1431,10 @@ var ProjectService = (function () {
             res = res.json();
             if (res.status) {
                 var user = _this.userService.getUser();
-                var idx = user.projects.indexOf(project);
-                user.projects.splice(idx, 1);
+                for (var i = 0; i < user.projects.length; i++) {
+                    if (user.projects[i]._id == project._id)
+                        return user.projects.splice(i, 1);
+                }
             }
             alertify.success(res.message);
         }, function (error) {
@@ -2067,7 +2069,7 @@ var ViewProject = (function () {
     ViewProject.prototype.deleteProject = function (event) {
         event.preventDefault();
         event.stopPropagation();
-        this.projectService.deleteProject(this.project);
+        this.projectService.deleteProject({ _id: this.project._id });
         this.openedPopUp = !this.openedPopUp;
         return false;
     };
@@ -3951,14 +3953,15 @@ var OxiSlider = (function () {
                 img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
                 this_1.currentFrame = img;
                 img.onload = function () {
-                    _self.app._events.onWindowResize();
                     if (!_resol.x) {
                         _resol.x = _self._W();
                         _resol.y = _self._H();
                     }
+                    _self.app._events.onWindowResize();
+                    _self.onResize();
                 };
             }
-            if (_resol) {
+            if (_resol && _resol.x) {
                 img.style.width = _resol.x + _px;
                 img.style.height = _resol.y + _px;
             }
@@ -4006,6 +4009,22 @@ var OxiSlider = (function () {
             imgPagination.style.bottom = -imgPagination.clientHeight + 'px';
         }
     };
+    OxiSlider.prototype.onResize = function () {
+        var val = this.app.main.selected.camera.resolution, _px = 'px', elem = [this.container.childNodes];
+        if (!elem[0] || !elem[0].length)
+            return;
+        if (this.alignImgContainer instanceof Node) {
+            var el = this.alignImgContainer.childNodes;
+            if (el && el.length)
+                elem.push(el);
+        }
+        elem.forEach(function (lstChilds) {
+            [].forEach.call(lstChilds, function (el) {
+                el.style.height = val.y + _px;
+                el.style.width = val.x + _px;
+            });
+        });
+    };
     OxiSlider.prototype.addAlignImg = function () {
         this.removeNode(this.alignImgContainer);
         if (!this.canEdit)
@@ -4018,7 +4037,7 @@ var OxiSlider = (function () {
                 img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
                 this.currentAlignFrame = img;
             }
-            if (_resol) {
+            if (_resol && _resol.x) {
                 img.style.width = _resol.x + _px;
                 img.style.height = _resol.y + _px;
             }
@@ -4066,10 +4085,10 @@ var OxiSlider = (function () {
         this.updateView(this.app.main.selected.currentItem + next);
     };
     OxiSlider.prototype._W = function () {
-        return this.currentFrame.clientWidth || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
+        return this.currentFrame.clientWidth || this.currentFrame.width || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
     };
     OxiSlider.prototype._H = function () {
-        return this.currentFrame.clientHeight || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
+        return this.currentFrame.clientHeight || this.currentFrame.height || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
     };
     OxiSlider.prototype._offsetLeft = function () {
         return this.container.offsetLeft || this.app._container.offsetLeft;
