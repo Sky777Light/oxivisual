@@ -1146,7 +1146,7 @@ class OxiToolTip {
         body.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.BODY;
         head.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.HEADER;
         tooltip.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.TOOLTIP;
-        head.innerHTML = mesh.name;
+        head.innerHTML = mesh._data?mesh._data.name:mesh.name;
         body.innerHTML = mesh.name;
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
         if (mesh._data) {
@@ -1173,7 +1173,6 @@ class OxiToolTip {
                     }
                 }
             };
-
             tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
         }
 

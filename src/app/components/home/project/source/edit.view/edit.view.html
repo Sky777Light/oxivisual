@@ -32,7 +32,7 @@
                     <div class="add-btn" *ngIf="modelStructure.images.length && modelStructure.alignImages.length && modelStructure.app._slider" (click)="modelStructure.app._slider.toggleDebug()">
                         <i class="material-icons">image</i>
                         <div class="span-hover">
-                            <span>Toogle to {{modelStructure.app._slider.isDebug?'Upload':'Align'}} frames </span>
+                            <span>Togle to {{modelStructure.app._slider.isDebug?'Upload':'Align'}} frames </span>
                         </div>
                     </div>
                 </div>
@@ -115,6 +115,15 @@
         </div>
         <div *ngIf="modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure">
             <div class="bottom-block">
+                <div class="input-wrap">
+                    <div class="col-lg-12">
+                        <input type="text" #curentName="ngModel" name="curentName"
+                               placeholder="Level`s Name"
+                               [(ngModel)]="modelStructure.name" required autofocus>
+                        <label [class.full-op]="curentName.invalid && curentName.touched">The
+                            Level`s Name is required!</label>
+                    </div>
+                </div>
                 <div class="input-wrap">
                     <div class="inp-form col-lg-12">
                         <span>Destionation</span>
