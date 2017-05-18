@@ -41,6 +41,7 @@ export class ViewProject{
             published: !this.project.published
         };
         this.projectService.changeProject(temp);
+        this.project.published = temp.published;
         this.openedPopUp = !this.openedPopUp;
         return false;
     }
