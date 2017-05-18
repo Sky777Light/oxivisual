@@ -977,7 +977,7 @@ class OxiControls {
                     let onChange = ()=> {
                         let prompt =new Prompt({
                             title: "Please input js code",
-                            txt: 'function(args){console.log(args)}',
+                            txt: 'alert("TEST")',
                             onOk: (input)=> {
                                 childSelected(new ENTITY.GeneralStructure({
                                     destination: prompt.input.value||''

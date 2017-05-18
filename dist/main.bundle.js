@@ -4165,7 +4165,7 @@ var OxiControls = (function () {
                         var onChange = function () {
                             var prompt = new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["b" /* Prompt */]({
                                 title: "Please input js code",
-                                txt: 'function(args){console.log(args)}',
+                                txt: 'alert("TEST")',
                                 onOk: function (input) {
                                     childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["k" /* GeneralStructure */]({
                                         destination: prompt.input.value || ''
