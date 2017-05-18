@@ -423,15 +423,24 @@ var PreviewProject = (function () {
         this.sanitizer = sanitizer;
     }
     PreviewProject.prototype.ngOnInit = function () {
-        var project = this.projectService.getProject();
+        var _this = this;
+        var project = this.projectService.getProject(), _self = this;
         this.dataSrc = project.model && project.model.link ? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene=" + project.model.link) : null;
-        this.urlForCopy = window.location.origin + "/preview?scene=" + project.model.link;
+        if (this.dataSrc)
+            var chekIfIframeCreated = setInterval(function () {
+                if (_this.ifrm) {
+                    clearInterval(chekIfIframeCreated);
+                    _this.ifrm['nativeElement'].onload = function () {
+                        _self.urlC = this.contentWindow.location.href;
+                    };
+                }
+            }, 100);
     };
     PreviewProject.prototype.copyUrl = function () {
         var copyTextarea = this.textAr['nativeElement'];
         copyTextarea.select();
         try {
-            alertify.success("Url copied was " + (document.execCommand('copy') && document.queryCommandEnabled('copy') && document.queryCommandSupported('copy') ? 'successful' : 'unsuccessful'));
+            alertify.success("Url copied was " + (document.queryCommandEnabled('copy') && document.queryCommandSupported('copy') && document.execCommand('copy') ? 'successful' : 'unsuccessful'));
         }
         catch (err) {
             alertify.error("Oops, unable to copy");
@@ -441,6 +450,10 @@ var PreviewProject = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ViewChild */])("textAr"), 
         __metadata('design:type', Object)
     ], PreviewProject.prototype, "textAr", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ViewChild */])("ifrm"), 
+        __metadata('design:type', Object)
+    ], PreviewProject.prototype, "ifrm", void 0);
     PreviewProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
             selector: 'app-project-preview',
@@ -1019,7 +1032,6 @@ var PreviewSceneComponent = (function () {
     };
     PreviewSceneComponent.prototype.select = function (child) {
         this.selected = child;
-        console.log(child);
     };
     PreviewSceneComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
@@ -2343,6 +2355,7 @@ var UserCardComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Confirm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Prompt; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -2359,9 +2372,15 @@ var Dialog = (function () {
         this.popUp.className = 'dialog-pop-up';
         div.appendChild(this.popUp);
         this.parent.appendChild(div);
+        this.popUp.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
         var title = document.createElement('h4');
         title.innerHTML = val.title;
         this.popUp.appendChild(title);
+        var body = this.body = document.createElement('h4');
+        this.popUp.appendChild(body);
         var btns = this.btns = document.createElement('div');
         var btnOk = document.createElement('span');
         btns.className = 'new-btns';
@@ -2391,10 +2410,12 @@ var Dialog = (function () {
 var Confirm = (function (_super) {
     __extends(Confirm, _super);
     function Confirm(val) {
+        var _this = this;
         _super.call(this, val);
         var btnCancel = document.createElement('span');
         btnCancel.className = 'false-btn';
         btnCancel.innerText = 'cancel';
+        btnCancel.addEventListener('click', function () { return _this.onCancel(); });
         this.btns.appendChild(btnCancel);
     }
     Confirm.prototype.onCancel = function () {
@@ -2403,6 +2424,30 @@ var Confirm = (function (_super) {
         this.anyWay();
     };
     return Confirm;
+}(Dialog));
+var Prompt = (function (_super) {
+    __extends(Prompt, _super);
+    function Prompt(val) {
+        var _this = this;
+        _super.call(this, val);
+        var input = this.input = document.createElement('input');
+        input.value = val.txt || 'Default input data';
+        input.addEventListener('change', function (e) {
+            _this.input.className = input.value.length ? '' : 'error';
+        });
+        this.body.appendChild(input);
+    }
+    Prompt.prototype.onOk = function () {
+        if (!this.input.value)
+            return this.input.className = 'error';
+        _super.prototype.onOk.call(this);
+    };
+    Prompt.prototype.anyWay = function () {
+        if (!this.input.value)
+            return this.input.className = 'error';
+        _super.prototype.anyWay.call(this);
+    };
+    return Prompt;
 }(Dialog));
 //# sourceMappingURL=dialog.js.map
 
@@ -3739,13 +3784,18 @@ var OxiEvents = (function () {
     };
     OxiEvents.prototype.onMouseMove = function (ev) {
         var _self = this;
+        if (this.lastInter) {
+            this.main._projControls.show(ev, false);
+            this.lastInter = null;
+        }
         if (this.canEdit) {
+            var intersectList = _self.inter(ev);
+            if (intersectList && intersectList[0]) {
+                _self.lastInter = intersectList[0];
+                this.main._projControls.show({ x: -1500 }, true, false);
+            }
         }
         else {
-            if (this.lastInter) {
-                this.main._projControls.show(ev, false);
-                this.lastInter = null;
-            }
             if (this.mouse.down) {
                 if (!this.lastEv)
                     return this.lastEv = ev;
@@ -3925,7 +3975,12 @@ var OxiSlider = (function () {
                         title: "The camera for current (" + (+app.main.selected.currentItem + 1) + ") frame will be saved, if cancel will lose",
                         onOk: function () {
                             var _c = app.camera.position, _t = app.controls.target;
-                            app.main.selected.camera.frameState[app.main.selected.currentItem] = { x: _c.x, y: _c.y, z: _c.z, target: { x: _t.x, y: _t.y, z: _t.z } };
+                            app.main.selected.camera.frameState[app.main.selected.currentItem] = {
+                                x: _c.x,
+                                y: _c.y,
+                                z: _c.z,
+                                target: { x: _t.x, y: _t.y, z: _t.z }
+                            };
                         },
                         onCancel: function () {
                             delete app.main.selected.camera.frameState[app.main.selected.currentItem];
@@ -4044,40 +4099,121 @@ var OxiControls = (function () {
                 else {
                     _this.app.main.selected.areas.push(child);
                 }
+            }, removeChild_1 = function () {
+                for (var i = 0, areas = _this.app.main.selected.areas; i < areas.length; i++) {
+                    if (areas[i]._id == _this.app._events.lastInter.object._data._id) {
+                        areas.splice(i, 1);
+                        break;
+                    }
+                }
+                _this.app._events.lastInter.object._data = null;
             };
             [
                 {
-                    className: 'attach-new', click: function () {
-                        childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["i" /* ModelStructure */]());
+                    className: 'attach-new', click: function (onFinish) {
+                        if (_this.app._events.lastInter.object._data) {
+                            new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area had already a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                                onOk: function () {
+                                    removeChild_1();
+                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["i" /* ModelStructure */]());
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["i" /* ModelStructure */]());
+                            onFinish();
+                        }
                     }, icon: '../assets/img/ic_library_add_white_24px.svg'
                 },
                 {
-                    className: 'attach-link', click: function () {
-                        var input = prompt("Input the link", 'https://google.com');
-                        if (input)
-                            childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["j" /* LinkGeneralStructure */]({
-                                destination: input
-                            }));
+                    className: 'attach-link', click: function (onFinish) {
+                        var onChange = function () {
+                            var prompt = new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["b" /* Prompt */]({
+                                title: "Input the link",
+                                txt: 'https://google.com',
+                                onOk: function () {
+                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["j" /* LinkGeneralStructure */]({
+                                        destination: prompt.input.value || ''
+                                    }));
+                                    onFinish();
+                                }
+                            });
+                        };
+                        if (_this.app._events.lastInter.object._data) {
+                            new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area had already a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                                onOk: function () {
+                                    onChange();
+                                    removeChild_1();
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            onChange();
+                        }
                     }, icon: '../assets/img/ic_link_white_24px.svg'
                 },
                 {
-                    className: 'attach-js', click: function () {
-                        var input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
-                        if (input)
-                            childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["k" /* GeneralStructure */]({
-                                destination: input
-                            }));
+                    className: 'attach-js', click: function (onFinish) {
+                        var onChange = function () {
+                            var prompt = new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["b" /* Prompt */]({
+                                title: "Please input js code",
+                                txt: 'function(args){console.log(args)}',
+                                onOk: function (input) {
+                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["k" /* GeneralStructure */]({
+                                        destination: prompt.input.value || ''
+                                    }));
+                                    onFinish();
+                                }
+                            });
+                        };
+                        if (_this.app._events.lastInter.object._data) {
+                            new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area had already a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                                onOk: function () {
+                                    onChange();
+                                    removeChild_1();
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            onChange();
+                        }
                     }, icon: '../assets/img/JS.svg'
-                }, {
-                    className: 'cntrls-close', click: function () {
+                },
+                {
+                    className: 'cntrls-close', click: function (onFinish) {
+                        if (_this.app._events.lastInter.object._data) {
+                            new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area has a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will remove!!!",
+                                onOk: function () {
+                                    removeChild_1();
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            onFinish();
+                        }
                     }, icon: '../assets/img/ic_close_white_24px.svg'
                 }
             ].forEach(function (el, item) {
                 var domEl = document.createElement('div');
                 domEl.className = el.className;
                 domEl.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
-                    _this.show(e, false);
-                    el.click();
+                    el.click(function () { return _this.show(e, false); });
                 });
                 div.appendChild(domEl);
                 var icon = document.createElement('img');
@@ -4120,15 +4256,15 @@ var OxiControls = (function () {
                 areas_1.pop();
                 back.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
                     e.preventDefault();
-                    _this.app.main.location.go(areas_1.length > 1 ? areas_1.join(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0] + "area=") : areas_1.join(''));
-                    window.location.reload();
+                    window.location.href = window.location.origin + (areas_1.length > 1 ? areas_1.join(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0]) : areas_1.join(''));
                 });
                 back.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU, function (e) { return app._events.onCntxMenu(e); }, false);
             }
         }
     }
-    OxiControls.prototype.show = function (pos, flag) {
+    OxiControls.prototype.show = function (pos, flag, fl) {
         if (flag === void 0) { flag = true; }
+        if (fl === void 0) { fl = true; }
         var canEdit = this.app.main.selected.canEdit;
         if (this.app._events.lastInter) {
             if (this.app._events.lastInter.object._toolTip)
@@ -4138,8 +4274,7 @@ var OxiControls = (function () {
             if (!this.app._events.lastInter.object.material.onSelectColor)
                 this.app._events.lastInter.object.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
             this.app._events.lastInter.object.material.color = flag ? this.app._events.lastInter.object.material.onSelectColor : this.app._events.lastInter.object.material.defColor;
-            if (this.app._events.lastInter.object._data && flag)
-                return;
+            this.app._events.lastInter.object.material.transparent = fl;
         }
         if (flag) {
             if (this.controls.className.indexOf(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE) < 0) {
@@ -4184,8 +4319,7 @@ var OxiToolTip = (function () {
                     case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure:
                         {
                             var _url = mesh._data.projFilesDirname.split("/");
-                            location.go(location.path() + "&area=" + _url[_url.length - 1]);
-                            window.location.reload();
+                            window.location.href += "&area=" + _url[_url.length - 1];
                             break;
                         }
                     case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.LinkGeneralStructure:
@@ -5290,7 +5424,7 @@ module.exports = "<div class=\"half-basic-l\">\n    <div class=\"basic-cont-wrap
 /***/ 800:
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"dataSrc\">\n    <iframe  [src]=\"dataSrc\" frameborder=0 outline=0></iframe>\n    <textarea  style=\"height: 0px;width: 0px\"  [innerText]=\"urlForCopy\" #textAr></textarea>\n    <div class=\"add-btn\" (click)=\"copyUrl()\">\n        <i class=\"material-icons\">save</i>\n        <div class=\"span-hover\">\n            <span>Click to copy link</span>\n        </div>\n    </div>\n</div>\n\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
+module.exports = "<div *ngIf=\"dataSrc\">\n    <iframe  [src]=\"dataSrc\" frameborder=0 outline=0 #ifrm></iframe>\n    <textarea  style=\"height: 0px;width: 0px\"  [innerText]=\"urlC\" #textAr></textarea>\n    <div class=\"add-btn\" (click)=\"copyUrl()\">\n        <i class=\"material-icons\">save</i>\n        <div class=\"span-hover\">\n            <span>Click to copy link</span>\n        </div>\n    </div>\n</div>\n\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
 
 /***/ }),
 

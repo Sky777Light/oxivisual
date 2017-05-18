@@ -1,6 +1,6 @@
 <div *ngIf="dataSrc">
-    <iframe  [src]="dataSrc" frameborder=0 outline=0></iframe>
-    <textarea  style="height: 0px;width: 0px"  [innerText]="urlForCopy" #textAr></textarea>
+    <iframe  [src]="dataSrc" frameborder=0 outline=0 #ifrm></iframe>
+    <textarea  style="height: 0px;width: 0px"  [innerText]="urlC" #textAr></textarea>
     <div class="add-btn" (click)="copyUrl()">
         <i class="material-icons">save</i>
         <div class="span-hover">

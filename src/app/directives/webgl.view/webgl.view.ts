@@ -1,7 +1,7 @@
 import {Input,ViewChild,Component,OnInit,OnChanges,EventEmitter,Injectable} from '@angular/core';
 import * as ENTITY from '../../entities/entities';
 import {Location} from '@angular/common';
-import {Confirm} from '../dialogs/dialog';
+import {Confirm,Prompt} from '../dialogs/dialog';
 
 declare var alertify:any;
 declare var THREE:any;
@@ -144,14 +144,14 @@ class OxiAPP {
         this.camera.updateView = (angle)=> {
             let _cm = main.selected.camera,
                 _p = _cm.frameState[main.selected.currentItem];
-            if( _p){
-                this.camera.position.set(_p.x,_p.y,_p.z);
-                if(_p.target)this.controls.target.set(_p.target.x,_p.target.y,_p.target.z);
-            }else{
+            if (_p) {
+                this.camera.position.set(_p.x, _p.y, _p.z);
+                if (_p.target)this.controls.target.set(_p.target.x, _p.target.y, _p.target.z);
+            } else {
                 let quaternion = new THREE.Quaternion();
                 quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
                 this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
-                if(_cm.target)this.controls.target.set(_cm.target.x,_cm.target.y,_cm.target.z);
+                if (_cm.target)this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
             }
             this._animation.play();
 
@@ -223,12 +223,12 @@ class OxiAPP {
                     isHeight = data == 'y',
                     _px = 'px',
                     elem:any = [this._slider.container.childNodes];
-                if(!elem[0] || !elem[0].length) break;
-                if(this._slider.alignImgContainer instanceof Node){
+                if (!elem[0] || !elem[0].length) break;
+                if (this._slider.alignImgContainer instanceof Node) {
                     let el = this._slider.alignImgContainer.childNodes;
-                    if(el && el.length) elem.push(el);
+                    if (el && el.length) elem.push(el);
                 }
-                elem.forEach(function(lstChilds){
+                elem.forEach(function (lstChilds) {
                     [].forEach.call(lstChilds, function (el) {
                         el.style.height = (isHeight ? val : val / prop) + _px;
                         el.style.width = (isHeight ? val * prop : val) + _px;
@@ -488,7 +488,7 @@ class OxiEvents {
         app.camera.aspect = _w / _h;
         app.camera.updateProjectionMatrix();
         app.gl.setSize(_w, _h);
-        app._container.style.height = _h+'px';
+        app._container.style.height = _h + 'px';
 
         if (app._animation)app._animation.play();
     }
@@ -531,13 +531,19 @@ class OxiEvents {
     private onMouseMove(ev:any) {
         let _self = this;
 
-        if (this.canEdit) {
+        if (this.lastInter) {
+            this.main._projControls.show(ev, false);
+            this.lastInter = null;
+        }
 
-        } else {
-            if (this.lastInter) {
-                this.main._projControls.show(ev, false);
-                this.lastInter = null;
+        if (this.canEdit) {
+            let intersectList = _self.inter(ev);
+            if (intersectList && intersectList[0]) {
+                _self.lastInter = intersectList[0];
+                this.main._projControls.show({x: -1500}, true, false);
             }
+        } else {
+
 
             if (this.mouse.down) {
                 if (!this.lastEv)return this.lastEv = ev;
@@ -751,22 +757,27 @@ class OxiSlider {
             if (canEdit) {
                 let item = document.createElement('li');
                 item.innerHTML = (+i + 1) + '';
-                if(+i == this.app.main.selected.currentItem){
+                if (+i == this.app.main.selected.currentItem) {
                     item.className = ENTITY.ProjClasses.ACTIVE;
                     this.currentPagination = item;
                 }
                 item.addEventListener('click', ()=> {
                     new Confirm({
-                        title:"The camera for current ("+(+app.main.selected.currentItem+1)+") frame will be saved, if cancel will lose",
-                        onOk:()=>{
+                        title: "The camera for current (" + (+app.main.selected.currentItem + 1) + ") frame will be saved, if cancel will lose",
+                        onOk: ()=> {
                             let _c = app.camera.position,
                                 _t = app.controls.target;
-                            app.main.selected.camera.frameState[app.main.selected.currentItem] = {x:_c.x,y:_c.y,z:_c.z,target:{x:_t.x,y:_t.y,z:_t.z}};
+                            app.main.selected.camera.frameState[app.main.selected.currentItem] = {
+                                x: _c.x,
+                                y: _c.y,
+                                z: _c.z,
+                                target: {x: _t.x, y: _t.y, z: _t.z}
+                            };
                         },
-                        onCancel:()=>{
+                        onCancel: ()=> {
                             delete app.main.selected.camera.frameState[app.main.selected.currentItem];
                         },
-                        onAnyWay:()=>{
+                        onAnyWay: ()=> {
                             this.updateView(i);
                             this.app.dataSave();
                         }
@@ -780,9 +791,9 @@ class OxiSlider {
         div.style.display = this.isDebug ? 'none' : '';
         div.className = [ENTITY.ProjClasses.CENTER_CONTAINER, ENTITY.ProjClasses.IMG_SLIDER].join(" ");
         app._container.appendChild(div);
-        if (canEdit){
+        if (canEdit) {
             app._container.appendChild(imgPagination);
-            imgPagination.style.bottom = -imgPagination.clientHeight+'px';
+            imgPagination.style.bottom = -imgPagination.clientHeight + 'px';
         }
     }
 
@@ -829,14 +840,14 @@ class OxiSlider {
     }
 
     updateView(selectedItem) {
-        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className']='';
+        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className'] = '';
         this.app.main.selected.currentItem = selectedItem;
         this.app.camera.updateView(selectedItem - this.app.main.selected.currentItem0);
 
         this.currentFrame = this.container.childNodes[selectedItem];
-        this.currentPagination = this.imgPagination && this.imgPagination.childNodes[selectedItem]?this.imgPagination.childNodes[selectedItem]:{};
+        this.currentPagination = this.imgPagination && this.imgPagination.childNodes[selectedItem] ? this.imgPagination.childNodes[selectedItem] : {};
         this.currentAlignFrame = this.alignImgContainer && this.alignImgContainer.childNodes[selectedItem] ? this.alignImgContainer.childNodes[selectedItem] : {};
-        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className']=ENTITY.ProjClasses.ACTIVE;
+        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className'] = ENTITY.ProjClasses.ACTIVE;
         //this.app._events.onMouseOut({});
         this.app._projControls.show({}, false);
     }
@@ -855,11 +866,11 @@ class OxiSlider {
     }
 
     _W() {
-        return this.currentFrame.clientWidth || this.container.clientWidth || this.app.main.selected.camera.resolution.x ||this.app.screen.width;
+        return this.currentFrame.clientWidth || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
     }
 
     _H() {
-        return this.currentFrame.clientHeight || this.container.clientHeight || this.app.main.selected.camera.resolution.y ||this.app.screen.height;
+        return this.currentFrame.clientHeight || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
     }
 
     _offsetLeft() {
@@ -884,52 +895,136 @@ class OxiControls {
             div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
             app._parent().appendChild(div);
             let childSelected = (child:any)=> {
-                this.app._events.lastInter.object._data = child;
-                child._id = this.app._events.lastInter.object.name;
-                child.name = child._id.toUpperCase();
+                    this.app._events.lastInter.object._data = child;
+                    child._id = this.app._events.lastInter.object.name;
+                    child.name = child._id.toUpperCase();
 
-                child._id += Date.now();
+                    child._id += Date.now();
 
-                if (!this.app.main.selected.areas) {
-                    this.app.main.selected.areas = [child];
-                } else {
-                    this.app.main.selected.areas.push(child);
-                }
-            };
+                    if (!this.app.main.selected.areas) {
+                        this.app.main.selected.areas = [child];
+                    } else {
+                        this.app.main.selected.areas.push(child);
+                    }
+                },
+                removeChild = ()=> {
+                    for (let i = 0, areas = this.app.main.selected.areas; i < areas.length; i++) {
+                        if (areas[i]._id == this.app._events.lastInter.object._data._id) {
+                            areas.splice(i, 1);
+                            break;
+                        }
+                    }
+                    this.app._events.lastInter.object._data = null;
+                };
             [
 
                 {
-                    className: 'attach-new', click: ()=> {
-                    childSelected(new ENTITY.ModelStructure());
+                    className: 'attach-new', click: (onFinish)=> {
+
+                    if (this.app._events.lastInter.object._data) {
+                        new Confirm({
+                            title: "This area had already a structure (" + this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                            onOk: ()=> {
+                                removeChild();
+                                childSelected(new ENTITY.ModelStructure());
+                            },
+                            onAnyWay: ()=> {
+                                onFinish();
+                            }
+                        });
+                    } else {
+                        childSelected(new ENTITY.ModelStructure());
+                        onFinish();
+                    }
 
                 }, icon: '../assets/img/ic_library_add_white_24px.svg'
                 },
                 {
-                    className: 'attach-link', click: ()=> {
-                    let input = prompt("Input the link", 'https://google.com');
-                    if (input)childSelected(new ENTITY.LinkGeneralStructure({
-                        destination: input
-                    }));
+                    className: 'attach-link', click: (onFinish)=> {
+                    let onChange = ()=> {
+                        let prompt = new Prompt({
+                            title: "Input the link",
+                            txt: 'https://google.com',
+                            onOk: ()=> {
+                                childSelected(new ENTITY.LinkGeneralStructure({
+                                    destination: prompt.input.value||''
+                                }));
+                                onFinish();
+                            }
+                        });
+                    };
+                    if (this.app._events.lastInter.object._data) {
+                        new Confirm({
+                            title: "This area had already a structure (" + this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                            onOk: ()=> {
+                                onChange();
+                                removeChild();
+                            },
+                            onAnyWay: ()=> {
+                                onFinish();
+                            }
+                        });
+                    } else {
+                        onChange();
+                    }
+
 
                 }, icon: '../assets/img/ic_link_white_24px.svg'
                 },
                 {
-                    className: 'attach-js', click: ()=> {
-                    let input = prompt("Input the JS code", "myfujnction('param1','param2','param3');");
-                    if (input)childSelected(new ENTITY.GeneralStructure({
-                        destination: input
-                    }));
+                    className: 'attach-js', click: (onFinish)=> {
+
+                    let onChange = ()=> {
+                        let prompt =new Prompt({
+                            title: "Please input js code",
+                            txt: 'function(args){console.log(args)}',
+                            onOk: (input)=> {
+                                childSelected(new ENTITY.GeneralStructure({
+                                    destination: prompt.input.value||''
+                                }));
+                                onFinish();
+                            }
+                        });
+                    };
+                    if (this.app._events.lastInter.object._data) {
+                        new Confirm({
+                            title: "This area had already a structure (" + this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                            onOk: ()=> {
+                                onChange();
+                                removeChild();
+                            },
+                            onAnyWay: ()=> {
+                                onFinish();
+                            }
+                        });
+                    } else {
+                        onChange();
+                    }
+
                 }, icon: '../assets/img/JS.svg'
-                }, {
-                className: 'cntrls-close', click: ()=> {
+                },
+                {
+                    className: 'cntrls-close', click: (onFinish)=> {
+                    if (this.app._events.lastInter.object._data) {
+                        new Confirm({
+                            title: "This area has a structure (" + this.app._events.lastInter.object._data.name + "), if ok will remove!!!",
+                            onOk: ()=> {
+                                removeChild();
+                            },
+                            onAnyWay: ()=> {
+                                onFinish();
+                            }
+                        });
+                    } else {
+                        onFinish();
+                    }
                 }, icon: '../assets/img/ic_close_white_24px.svg'
-            }
+                }
             ].forEach((el, item)=> {
                     let domEl = document.createElement('div');
                     domEl.className = el.className;
                     domEl.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
-                        this.show(e, false);
-                        el.click();
+                        el.click(()=>this.show(e, false));
                     });
                     div.appendChild(domEl);
                     let icon = document.createElement('img');
@@ -972,8 +1067,7 @@ class OxiControls {
                 areas.pop();
                 back.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
                     e.preventDefault();
-                    this.app.main.location.go(areas.length > 1 ? areas.join(ENTITY.Config.PROJ_DMNS[0] + "area=") : areas.join(''));
-                    window.location.reload();
+                    window.location.href = window.location.origin + (areas.length > 1 ? areas.join(ENTITY.Config.PROJ_DMNS[0]) : areas.join(''));
                 });
                 back.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
 
@@ -982,7 +1076,7 @@ class OxiControls {
 
     }
 
-    show(pos, flag:boolean = true) {
+    show(pos, flag:boolean = true, fl:boolean = true) {
 
         let canEdit = this.app.main.selected.canEdit;
         if (this.app._events.lastInter) {
@@ -990,7 +1084,8 @@ class OxiControls {
             if (!this.app._events.lastInter.object.material.defColor)this.app._events.lastInter.object.material.defColor = this.app._events.lastInter.object.material.color.clone();
             if (!this.app._events.lastInter.object.material.onSelectColor)this.app._events.lastInter.object.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
             this.app._events.lastInter.object.material.color = flag ? this.app._events.lastInter.object.material.onSelectColor : this.app._events.lastInter.object.material.defColor;
-            if (this.app._events.lastInter.object._data && flag)return;
+            this.app._events.lastInter.object.material.transparent = fl;
+            //if (this.app._events.lastInter.object._data && flag)return;
         }
 
         if (flag) {
@@ -1043,8 +1138,7 @@ class OxiToolTip {
                     case ENTITY.Config.PROJ_DESTINATION.ModelStructure:
                     {
                         let _url = mesh._data.projFilesDirname.split("/");
-                        location.go(location.path() + "&area=" + _url[_url.length - 1]);
-                        window.location.reload();
+                        window.location.href += "&area=" + _url[_url.length - 1];
                         break;
                     }
                     case ENTITY.Config.PROJ_DESTINATION.LinkGeneralStructure:

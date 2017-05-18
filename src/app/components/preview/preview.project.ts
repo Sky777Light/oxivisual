@@ -63,7 +63,6 @@ export class PreviewSceneComponent{
     }
     private select(child:ENTITY.ProjMain){
         this.selected = child;
-        console.log(child);
     }
 
 }

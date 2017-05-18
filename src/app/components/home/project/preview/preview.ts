@@ -10,29 +10,39 @@ declare var alertify:any;
     templateUrl: './project.preview.html',
     styles: ['iframe{width:100%;height:100%; position: absolute;}']
 })
-export class PreviewProject   {
+export class PreviewProject {
     private dataSrc:SafeResourceUrl;
+    private urlC:string;
     @ViewChild("textAr")
-        textAr:HTMLElement;
+      textAr:HTMLElement;
+    @ViewChild("ifrm")
+      ifrm:HTMLElement;
 
-    urlForCopy:any;
-    constructor( private projectService:ProjectService,private sanitizer: DomSanitizer) {
+    constructor(private projectService:ProjectService, private sanitizer:DomSanitizer) {
     }
 
 
     ngOnInit() {
-       let project = this.projectService.getProject();
-        this.dataSrc = project.model && project.model.link? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene="+project.model.link):null;
-        this.urlForCopy = window.location.origin+"/preview?scene="+project.model.link;
+        let project = this.projectService.getProject(),
+            _self = this;
+        this.dataSrc = project.model && project.model.link ? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene=" + project.model.link) : null;
+        if( this.dataSrc)var chekIfIframeCreated = setInterval(()=>{
+            if(this.ifrm){
+                clearInterval(chekIfIframeCreated);
+                this.ifrm['nativeElement'].onload = function () {
+                    _self.urlC = this.contentWindow.location.href;
+                }
+            }
+        },100);
     }
 
-    copyUrl(){
+    copyUrl() {
         let copyTextarea = this.textAr['nativeElement'];
         copyTextarea.select();
         try {
-            alertify.success("Url copied was " + (document.execCommand('copy') && document.queryCommandEnabled('copy') && document.queryCommandSupported('copy')? 'successful' : 'unsuccessful'));
+            alertify.success("Url copied was " + (document.queryCommandEnabled('copy') && document.queryCommandSupported('copy') && document.execCommand('copy')  ? 'successful' : 'unsuccessful'));
         } catch (err) {
-            alertify.error("Oops, unable to copy"  );
+            alertify.error("Oops, unable to copy");
         }
     }
 }
