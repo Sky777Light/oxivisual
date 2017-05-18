@@ -295,11 +295,19 @@ router.post("/project/model/update", function (request, responce) {
             });
         } else {
 
-            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + body.dir + "/";
+            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + body.dir + "/",
+                keyses = config.FILE_UPLOAD_ATTR;
 
             if (req.files) {
-                for (var keys in req.files) {
-                    var urlSaveFile;
+                if (!fs.existsSync(path.normalize(modelDir))) {
+                    fs.mkdirSync(path.normalize(modelDir), config.FILE_UPLOAD_ACCEC);
+                }
+
+                for (var key =0;key<keyses.length;key++) {
+                    var urlSaveFile,
+                        keys = key[i];
+                    if(!req.files[keys])continue;
+
                     switch (keys){
                         case config.FILE_UPLOAD_ATTR[0]:{
                             urlSaveFile = modelDir;
