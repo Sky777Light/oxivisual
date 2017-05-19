@@ -4,6 +4,16 @@ tree
   .parent
     .iconButton
       background: $text-color-gray
+  ul
+    &.tree-webgl-view
+      &.first
+        border: none
+      border-left: 1px solid gray
+      .left-arrow
+        position: absolute
+        width: 15px
+        border-top: 1px solid black
+        transform: translate(-100%,-33px)
   .tree-webgl-view
     list-style-type: none
     padding: 0 15px

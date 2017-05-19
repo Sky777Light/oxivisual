@@ -19,6 +19,8 @@ import {
           <i class="material-icons set-icon" (click)="showPopUp = !showPopUp">more_vert</i>
         </div>
 	</div>
+	<div *ngIf="!arrow" class="left-arrow"></div>
+
 	    <div class="pop-up bla-t" [hidden]="!showPopUp" *ngIf="showPopUp" (click)="showPopUp = !showPopUp" >
             <div class="pop-up-item"  *ngIf="item.areas && item.areas.length" (click)="IsExpanded = !IsExpanded">
               <i class="material-icons">visibility</i>
@@ -43,6 +45,7 @@ import {
 })
 export class MNode {
     @Input() classes:any;
+    @Input() arrow:any;
     @Input() item:any;
     @Input() parent:any;
     @Input() mainParent:any;
@@ -74,8 +77,8 @@ export class MNode {
 @Component({
     selector: 'tree',
     template: `
-<ul class="tree-webgl-view ">
-		<node *ngFor="let item of data" [classes]="'main active'" [parent]="item" [mainParent]="mainParent" [item]="item"></node>
+<ul class="tree-webgl-view first" >
+		<node *ngFor="let item of data" [arrow]="1" [classes]="'main active'" [parent]="item" [mainParent]="mainParent" [item]="item"></node>
 </ul>
 `,
     styleUrls: ['./tree.sass']
