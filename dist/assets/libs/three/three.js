@@ -15683,9 +15683,10 @@
 		setFocalLength: function ( focalLength ) {
 
 			// see http://www.bobatkins.com/photography/technical/field_of_view.html
-			var vExtentSlope = 0.5 * this.getFilmHeight() / focalLength;
+			//var vExtentSlope = 0.5 * this.getFilmHeight() / focalLength;
 
-			this.fov = _Math.RAD2DEG * 2 * Math.atan( vExtentSlope );
+			//this.fov = _Math.RAD2DEG * 2 * Math.atan( vExtentSlope );
+			this.fov = 2 * THREE.Math.radToDeg( Math.atan( this.filmGauge / ( focalLength * 2 ) ) );
 			this.updateProjectionMatrix();
 
 		},
