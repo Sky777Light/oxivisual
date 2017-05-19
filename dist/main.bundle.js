@@ -3748,7 +3748,7 @@ var OxiEvents = (function () {
         this.onWindowResize();
     }
     OxiEvents.prototype.onWindowResize = function () {
-        var app = this.main, _w = app._slider._W(), _h = app._slider._H();
+        var app = this.main, _w = app._slider._W(), _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight, _h = _w / _nat; //app._slider._H();
         app.camera.aspect = _w / _h;
         app.camera.updateProjectionMatrix();
         app.gl.setSize(_w, _h);
