@@ -243,7 +243,11 @@ class OxiAPP {
             {
 
                 //settings.size =this._slider._W() * 1.1 > window.innerWidth ? (window.innerWidth / this._slider._W()) * 0.9 : 1;
-                settings.aspect = settings.resolution.x / settings.resolution.y;
+                let
+                    sizeX = this._slider.currentFrame.clientWidth || this._slider.currentAlignFrame.clientWidth,
+                    sizeY = this._slider.currentFrame.clientHeight || this._slider.currentAlignFrame.clientHeight
+                    ;
+                settings.aspect =sizeX/sizeY;
                 this.camera.setLens(settings.lens * settings.aspect, settings.size);
                 this.camera.updateProjectionMatrix();
                 break;
@@ -697,8 +701,8 @@ class OxiAnimation {
     }
 }
 class OxiSlider {
-    private currentFrame:any = {};
-    private currentAlignFrame:any = {};
+      currentFrame:any = {};
+     currentAlignFrame:any = {};
     private currentPagination:any = {};
     container:HTMLElement;
     alignImgContainer:HTMLElement;
