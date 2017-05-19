@@ -41,13 +41,13 @@
                 <div class="row">
                     <div class="inp-form col-lg-6">
                         <label>Width</label>
-                        <input name="width" type="number" *ngIf="modelStructure.app._slider"
+                        <input name="width" type="number" disabled *ngIf="modelStructure.app._slider"
                                [(ngModel)]="modelStructure.camera.resolution.x"
                                (change)="modelStructure.app.updateData('x')">
                     </div>
                     <div class="inp-form col-lg-6">
                         <label>Height</label>
-                        <input name="height" type="number" *ngIf="modelStructure.app._slider"
+                        <input name="height" type="number" disabled *ngIf="modelStructure.app._slider"
                                (change)="modelStructure.app.updateData('y')"
                                [(ngModel)]="modelStructure.camera.resolution.y">
                     </div>

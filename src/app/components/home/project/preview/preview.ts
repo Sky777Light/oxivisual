@@ -8,7 +8,7 @@ declare var alertify:any;
 @Component({
     selector: 'app-project-preview',
     templateUrl: './project.preview.html',
-    styles: ['iframe{width:100%;height:100%; position: absolute;}']
+    styles: ['iframe{width:50%;height:100%; position: absolute;    left: 50%;transform: translateX(-50%);}']
 })
 export class PreviewProject {
     private dataSrc:SafeResourceUrl;

@@ -266,7 +266,7 @@ class OxiAPP {
             rotation: this.camera.rotation,
             target: this.controls.target,
             frameState: old.frameState,
-            resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
+            //resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
             fov: this.camera.fov,
             zoom: this.camera.zoom,
             scale: this.model.scale.x,
@@ -747,13 +747,13 @@ class OxiSlider {
                         _resol.y = _self._H();
                     }
                     _self.app._events.onWindowResize();
-                    _self.onResize();
+                    //_self.onResize();
                 }
             }
-            if (_resol && _resol.x) {
-                img.style.width = _resol.x + _px;
-                img.style.height = _resol.y + _px;
-            }
+            //if (_resol && _resol.x) {
+            //    img.style.width = _resol.x + _px;
+            //    img.style.height = _resol.y + _px;
+            //}
             div.appendChild(img);
 
             if (canEdit) {
@@ -835,10 +835,10 @@ class OxiSlider {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentAlignFrame = img;
             }
-            if (_resol && _resol.x) {
-                img.style.width = _resol.x + _px;
-                img.style.height = _resol.y + _px;
-            }
+            //if (_resol && _resol.x) {
+            //    img.style.width = _resol.x + _px;
+            //    img.style.height = _resol.y + _px;
+            //}
             div.appendChild(img);
         }
         div.style.display = this.isDebug ? '' : 'none';
