@@ -8,7 +8,6 @@ export interface IModelStructure extends IMain {
     projFilesDirname:string;
     areas:Array<IModelStructure>;
 }
-
 export class ProjMain extends Main {
     constructor(entity:any = {name: 'Child'}) {
         super(entity);
@@ -17,7 +16,7 @@ export class ProjMain extends Main {
     }
 
     clone() {
-        let noClone = ['app', '_app', 'cash', 'canEdit'],
+        let noClone = ['glApp','sourcesApp', 'cash', 'canEdit','_selected'],
             acceptType = ['boolean', 'string', 'number'];
 
         function cloneObject(obj) {
@@ -136,14 +135,17 @@ export class PCash {
 }
 export class ModelStructure extends GeneralStructure implements IModelStructure {
 
+    _selected:boolean=false;
+    canEdit:boolean=false;
     camera:OxiCamera;
+    glApp:any;
+    sourcesApp:any;
     currentItem:number;
     currentItem0:number;
     projFilesDirname:string;
     images:Array<any>;
     alignImages:Array<any>;
     areas:Array<IModelStructure>;
-    canEdit:boolean;
     cash:PCash;
 
     constructor(entity:any = {}) {

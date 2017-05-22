@@ -76,7 +76,7 @@ export class ProjectService {
         });
     }
 
-    deleteProject(project:any) {
+    deleteProject(project:any,callback=null) {
         let link = '/api/projects/project';
 
         this.authService.delete(link, project).subscribe((res:any) => {
@@ -84,8 +84,12 @@ export class ProjectService {
             if (res.status) {
                 let user = this.userService.getUser();
                 for (let i = 0; i < user.projects.length; i++) {
-                    if (user.projects[i]._id == project._id) return user.projects.splice(i, 1);
+                    if (user.projects[i]._id == project._id) {
+                        user.projects.splice(i, 1);
+                        break;
+                    }
                 }
+                if(callback)callback();
             }
             alertify.success(res.message);
         }, (error) => {

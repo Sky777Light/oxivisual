@@ -1,4 +1,4 @@
-class Dialog {
+export class Dialog {
     parent:any;
     container:any;
     popUp:any;
@@ -15,7 +15,7 @@ class Dialog {
         this.popUp.className = 'dialog-pop-up';
         div.appendChild(this.popUp);
         this.parent.appendChild(div);
-        this.popUp.addEventListener('click',function(e){
+        this.popUp.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
         });
@@ -56,7 +56,7 @@ export class Confirm extends Dialog {
         let btnCancel = document.createElement('span');
         btnCancel.className = 'false-btn';
         btnCancel.innerText = 'cancel';
-        btnCancel.addEventListener('click',()=>this.onCancel());
+        btnCancel.addEventListener('click', ()=>this.onCancel());
         this.btns.appendChild(btnCancel);
     }
 
@@ -66,7 +66,7 @@ export class Confirm extends Dialog {
     }
 }
 export class Prompt extends Dialog {
-      input:any;
+    input:any;
 
     constructor(val) {
         super(val);
@@ -82,7 +82,8 @@ export class Prompt extends Dialog {
         if (!this.input.value)return this.input.className = 'error';
         super.onOk();
     }
-    anyWay(){
+
+    anyWay() {
         if (!this.input.value)return this.input.className = 'error';
         super.anyWay();
     }

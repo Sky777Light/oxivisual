@@ -21,7 +21,6 @@ export class WebGLService {
     subscribe(component, callback) {
         // set 'this' to component when callback is called
         return this.navchange.subscribe(data => {
-            console.log(data);
             callback.call(component, data);
         });
     }
@@ -49,13 +48,13 @@ export class WebglView implements OnInit,OnChanges {
 
     ngOnChanges(changes) {
         if (changes.selected.currentValue.created != changes.selected.previousValue.created)this.initWebgl();
-        if (this.selected)this.selected.app = this.app;
+        if (this.selected)this.selected.glApp = this.app;
 
     }
 
     ngOnInit() {
         this.initWebgl();
-        if (this.selected)this.selected.app = this.app;
+        if (this.selected)this.selected.glApp = this.app;
     }
 
     initWebgl() {
@@ -247,7 +246,7 @@ class OxiAPP {
                     sizeX = this.gl.domElement.clientWidth,
                     sizeY = this.gl.domElement.clientHeight
                     ;
-                settings.aspect =sizeX/sizeY;
+                settings.aspect = sizeX / sizeY;
                 this.camera.setLens(settings.lens * settings.aspect, settings.size);
                 this.camera.updateProjectionMatrix();
                 break;
@@ -487,7 +486,7 @@ class OxiEvents {
     onWindowResize() {
         let app = this.main,
             _w = app._slider._W(),
-            _nat = app._slider.currentFrame.naturalWidth/ app._slider.currentFrame.naturalHeight,
+            _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight,
             _h = _w / _nat;//app._slider._H();
 
         app.camera.aspect = _w / _h;
@@ -702,8 +701,8 @@ class OxiAnimation {
     }
 }
 class OxiSlider {
-      currentFrame:any = {};
-     currentAlignFrame:any = {};
+    currentFrame:any = {};
+    currentAlignFrame:any = {};
     private currentPagination:any = {};
     container:HTMLElement;
     alignImgContainer:HTMLElement;
@@ -804,7 +803,7 @@ class OxiSlider {
         }
     }
 
-    onResize(){
+    onResize() {
         let
             val = this.app.main.selected.camera.resolution,
             _px = 'px',
@@ -817,11 +816,12 @@ class OxiSlider {
         }
         elem.forEach(function (lstChilds) {
             [].forEach.call(lstChilds, function (el) {
-                el.style.height =   val.y + _px;
-                el.style.width =  val.x  + _px;
+                el.style.height = val.y + _px;
+                el.style.width = val.x + _px;
             });
         });
     }
+
     addAlignImg() {
 
         this.removeNode(this.alignImgContainer);
@@ -891,11 +891,11 @@ class OxiSlider {
     }
 
     _W() {
-        return this.currentFrame.clientWidth ||this.currentFrame.width || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
+        return this.currentFrame.clientWidth || this.currentFrame.width || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
     }
 
     _H() {
-        return this.currentFrame.clientHeight ||  this.currentFrame.height || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
+        return this.currentFrame.clientHeight || this.currentFrame.height || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
     }
 
     _offsetLeft() {
@@ -972,7 +972,7 @@ class OxiControls {
                             txt: 'https://google.com',
                             onOk: ()=> {
                                 childSelected(new ENTITY.LinkGeneralStructure({
-                                    destination: prompt.input.value||''
+                                    destination: prompt.input.value || ''
                                 }));
                                 onFinish();
                             }
@@ -1000,12 +1000,12 @@ class OxiControls {
                     className: 'attach-js', click: (onFinish)=> {
 
                     let onChange = ()=> {
-                        let prompt =new Prompt({
+                        let prompt = new Prompt({
                             title: "Please input js code",
                             txt: 'alert("TEST")',
                             onOk: (input)=> {
                                 childSelected(new ENTITY.GeneralStructure({
-                                    destination: prompt.input.value||''
+                                    destination: prompt.input.value || ''
                                 }));
                                 onFinish();
                             }
@@ -1151,7 +1151,7 @@ class OxiToolTip {
         body.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.BODY;
         head.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.HEADER;
         tooltip.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.TOOLTIP;
-        head.innerHTML = mesh._data?mesh._data.name:mesh.name;
+        head.innerHTML = mesh._data ? mesh._data.name : mesh.name;
         body.innerHTML = mesh.name;
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
         if (mesh._data) {

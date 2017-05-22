@@ -1,6 +1,6 @@
 <div class="header-wrap">
   <div class="header-tag">
-    <i class="material-icons" [routerLink]="['/projects']" *ngIf="headerData._id">arrow_back</i>
+    <i class="material-icons" [routerLink]="['/projects']" *ngIf="headerData._id" #backProject>arrow_back</i>
     <div class="header-title-wrap">
       <div class="header-title">{{headerData.title}}<span class="arr-info" *ngIf="!headerData._id">{{'( ' + headerData.arrLength + ' )'}}</span></div>
       <span class="published" *ngIf="!headerData.published && headerData._id" >Unpublished</span>

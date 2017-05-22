@@ -13,7 +13,7 @@ import {
     template: `
 <li>
 
-	<div class ="iconButton"   [ngClass]="classes" #iconBtn>
+	<div class ="iconButton"   [ngClass]="item._selected?classes+' active':classes"  #iconBtn>
 	    <a  (click)="select(item )" >{{item.name}}</a>
 	    <div class="pop-up-icon" [class.pop-up-icon-active]="showPopUp">
           <i class="material-icons set-icon" (click)="showPopUp = !showPopUp">more_vert</i>
@@ -60,16 +60,11 @@ export class MNode {
     }
     select(item){
         this.mainParent.select(item);
-
-        let _active = document.querySelector('.tree-webgl-view .iconButton.active');
-        if(_active){
-            _active.className = _active.className.replace(' active','');
-        }
-        this.iconBtn['nativeElement'].className +=' active';
-
     }
     delete(){
-        this.mainParent.selectedChild.app._deleteArea( this.parent.areas.splice(this._iter,1)[0]);
+        let itemDroped = this.parent.areas.splice(this._iter,1)[0];
+        if(this.mainParent.selectedChild.glApp)this.mainParent.selectedChild.glApp._deleteArea(itemDroped);
+        this.mainParent.select(this.parent);
     }
 
 }
@@ -78,7 +73,7 @@ export class MNode {
     selector: 'tree',
     template: `
 <ul class="tree-webgl-view first" >
-		<node *ngFor="let item of data" [arrow]="1" [classes]="'main active'" [parent]="item" [mainParent]="mainParent" [item]="item"></node>
+		<node *ngFor="let item of data" [arrow]="1" [classes]="'main'" [parent]="item" [mainParent]="mainParent" [item]="item"></node>
 </ul>
 `,
     styleUrls: ['./tree.sass']

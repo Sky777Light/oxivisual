@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import {ShareService} from "../../../services/share.service";
 import {Subscription} from "rxjs/Rx";
 import {ProjectService} from "../../../services/project.service";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,13 @@ export class HeaderComponent{
   private headerData: any = {};
   private subHeaderData:Subscription;
   private headerSettings: boolean = false;
+  @ViewChild("backProject")
+      backProject:HTMLElement;
 
   constructor(
       private shareService: ShareService,
-      private projectService: ProjectService
+      private projectService: ProjectService,
+      private location:Location
 
   ){}
 
@@ -42,7 +46,9 @@ export class HeaderComponent{
   }
 
   delete(){
-    this.projectService.deleteProject(this.headerData);
+    this.projectService.deleteProject(this.headerData,()=>{
+      this.location.back();
+    });
   }
 
 

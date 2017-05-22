@@ -63,6 +63,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ dest: config.DIR.PUBLIC }).fields(
     [
+        { name: config.FILE_UPLOAD_ATTR[3], maxCount: 1 },
         { name: config.FILE_UPLOAD_ATTR[0], maxCount: 1 },
         { name: config.FILE_UPLOAD_ATTR[2], maxCount: 36 },
         { name: config.FILE_UPLOAD_ATTR[1], maxCount: 36 }

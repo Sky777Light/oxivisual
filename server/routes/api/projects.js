@@ -26,7 +26,7 @@ var saveImage = function (image, avatar, done) {
             var filePath = './resources' + avatar;
             fs.unlinkSync(filePath);
         }
-        if(done)done(null, '');
+        if (done)done(null, '');
         return;
     }
 
@@ -51,7 +51,7 @@ var saveImage = function (image, avatar, done) {
 
     fs.writeFile(userUploadedImagePath, imageBuffer.data, 'base64', function (err) {
         console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
-        if(done)done(err, clientPath);
+        if (done)done(err, clientPath);
     });
 };
 function randomString(l) {
@@ -69,26 +69,25 @@ function randomString(l) {
 }
 function checkPermissionOnProject(req, res, next) {
     if (req.body._id && req.user.projects.indexOf(req.body._id) >= 0) {
-        //if (req.user.projects.indexOf(req.body._id) < 0) {
-        //    Project.findOne({_id: req.body.id_project}, {_id: 1, model: 1, owner: 1}, function (err, project) {
-        //        if (err || !project || project.owner != req.user._id) {
-        //            return res.json({
-        //                status: false,
-        //                message: "permission denied!!!"
-        //            });
-        //        } else {
-        //            req.user.lastEditProject = project;
-        //            if (project.model && project.model.link) {
-        //                project.data = fs.readSync(path.normalize(config.DIR.UPLOADS + config.DIR.PROJECTS + project.model.link + "/" + config.DIR.SITE_STRUCTURE), 'utf8');
-        //                project.data = project.data ? JSON.parse(project.data) : [];
-        //            }
-        //            next(req, res);
-        //        }
-        //    });
-        //} else {
-
-        next(req, res);
-        //}
+        if (req.session.lastEditProject && req.session.lastEditProject.model && req.session.lastEditProject.model.link && req.session.lastEditProject._id == req.body._id) {
+            next(req, res);
+        } else {
+            Project.findOne({_id: req.body._id}, {_id: 1, model: 1}, function (err, project) {
+                if (err || !project ) {
+                    return res.json({
+                        status: false,
+                        message: "permission denied!!!"
+                    });
+                } else {
+                    req.session.lastEditProject = project;
+                    //if (project.model && project.model.link) {
+                    //    project.data = fs.readSync(path.normalize(config.DIR.UPLOADS + config.DIR.PROJECTS + project.model.link + "/" + config.DIR.SITE_STRUCTURE), 'utf8');
+                    //    project.data = project.data ? JSON.parse(project.data) : [];
+                    //}
+                    next(req, res);
+                }
+            });
+        }
     } else {
         return res.json({
             status: false,
@@ -288,36 +287,35 @@ router.post("/project/model/create", function (req, res) {
 router.post("/project/model/update", function (request, responce) {
     checkPermissionOnProject(request, responce, function (req, res) {
         var body = req.body;
-        if (!body.dir) {
+        if (!body.dir || !req.session.lastEditProject || !req.session.lastEditProject.model || !req.session.lastEditProject.model.link) {
             return res.json({
                 status: false,
                 message: "something got incorect!!!"
             });
         } else {
 
-            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + body.dir + "/",
+            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + req.session.lastEditProject.model.link+body.dir.replace(req.session.lastEditProject.model.link,'') + config.DIR.DELIMETER,
                 keyses = config.FILE_UPLOAD_ATTR;
-
             if (req.files) {
                 if (!fs.existsSync(path.normalize(modelDir))) {
                     fs.mkdirSync(path.normalize(modelDir), config.FILE_UPLOAD_ACCEC);
                 }
-                for (var key =0;key<keyses.length;key++) {
+                for (var key = 0; key < keyses.length; key++) {
                     var urlSaveFile,
                         keys = keyses[key];
-
-                    if(!req.files[keys])continue;
-
-                    switch (keys){
-                        case config.FILE_UPLOAD_ATTR[0]:{
+                    if (!req.files[keys] || !req.files[keys].length)continue;
+                    switch (keys) {
+                        case config.FILE_UPLOAD_ATTR[0]:
+                        {
                             urlSaveFile = modelDir;
-                            if (fs.existsSync(path.normalize(urlSaveFile))) {
-                                for(var u=0,files = fs.readdirSync(urlSaveFile);u<files.length;u++){
-                                    var file=files[u],
-                                        curPath = path + "/" + file;
-                                    if(fs.lstatSync(curPath).isDirectory()) {
+                            let pathF = path.normalize(urlSaveFile);
+                            if (fs.existsSync(pathF)) {
+                                for (var u = 0, files = fs.readdirSync(urlSaveFile); u < files.length; u++) {
+                                    var file = files[u],
+                                        curPath = pathF + "/" + file;
+                                    if (fs.lstatSync(curPath).isDirectory()) {
                                     } else {
-                                        if(curPath.indexOf(config.FILE_UPLOAD_EXT[0])){
+                                        if (curPath.indexOf(config.FILE_UPLOAD_EXT[0])) {
                                             fs.unlinkSync(curPath);
                                             break;
                                         }
@@ -328,7 +326,8 @@ router.post("/project/model/update", function (request, responce) {
                             }
                             break;
                         }
-                        case config.FILE_UPLOAD_ATTR[1]:{
+                        case config.FILE_UPLOAD_ATTR[1]:
+                        {
                             urlSaveFile = modelDir + config.DIR.IMAGES;
                             if (fs.existsSync(urlSaveFile)) {
                                 if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
@@ -337,7 +336,8 @@ router.post("/project/model/update", function (request, responce) {
                             }
                             break;
                         }
-                        case config.FILE_UPLOAD_ATTR[2]:{
+                        case config.FILE_UPLOAD_ATTR[2]:
+                        {
                             urlSaveFile = modelDir + config.DIR.ALIGN_IMAGES;
                             if (fs.existsSync(urlSaveFile)) {
                                 if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
@@ -346,20 +346,20 @@ router.post("/project/model/update", function (request, responce) {
                             }
                             break;
                         }
+                        case config.FILE_UPLOAD_ATTR[3]:
+                        {
+                            fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), fs.readFileSync(req.files[keys][0].path));
+                            break;
+                        }
                     }
-                    if(!fs.existsSync(urlSaveFile))return res.json({
-                        status: false,
-                        message: "project can`t save"
-                    });
+                    if (!urlSaveFile && !fs.existsSync(urlSaveFile))continue;
                     for (var i = 0; i < req.files[keys].length; i++) {
                         var _file = req.files[keys][i];
                         fs.writeFileSync(urlSaveFile + _file.originalname, fs.readFileSync(_file.path));
                     }
                 }
             }
-            if (body.structure) {
-                fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), body.structure);
-            }
+
             return res.json({
                 status: true,
                 message: "project area was updated"
@@ -392,7 +392,8 @@ router.delete("/project", function (request, responce) {
                         });
                     } else {
 
-                        if (project.image)saveImage(false,project.image);
+                        req.session.lastEditProject = null;
+                        if (project.image)saveImage(false, project.image);
                         if (project.model && project.model.link)config.help.deleteFolderRecursive(config.DIR.UPLOADS + config.DIR.PROJECTS + project.model.link, true);
 
                         User.update({_id: req.user._id},

@@ -28,6 +28,7 @@ export class Config {
             ALIGN_IMG:3
         },
         STORAGE:{
+            SITE_STRUCTURE:'structure',
             MODEL_OBJ:'model[]',
             PREVIEW_IMG:'frames[]',
             ALIGN_IMG:'alignFrames[]'

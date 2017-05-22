@@ -16,23 +16,23 @@
                     <app-file-upload [title]="'Upload model'" [accept]="'.obj'"
                                      [category]="_CONFIG.FILE.TYPE.MODEL_OBJ"
                                      [required]="'1'" class="col-lg-12" [files]="[modelStructure.destination]"
-                                     [inject]="modelStructure.app" ></app-file-upload>
+                                     [inject]="modelStructure.glApp" ></app-file-upload>
 
                     <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'"
                                      [category]="_CONFIG.FILE.TYPE.PREVIEW_IMG"
                                      [required]="'1'" [accept]="'image/*'" [files]="modelStructure.images"
-                                     [inject]="modelStructure.app"
+                                     [inject]="modelStructure.glApp"
                                      class="col-lg-12"  ></app-file-upload>
 
                     <app-file-upload [title]="'Aligning frames'" [multiple]="'multiple'"
-                                     [inject]="modelStructure.app"
+                                     [inject]="modelStructure.glApp"
                                      [category]="_CONFIG.FILE.TYPE.ALIGN_IMG" [accept]="'image/*'" [files]="modelStructure.alignImages"
                                      class="col-lg-12"  ></app-file-upload>
 
-                    <div class="add-btn" *ngIf="modelStructure.images.length && modelStructure.alignImages.length && modelStructure.app._slider" (click)="modelStructure.app._slider.toggleDebug()">
+                    <div class="add-btn" *ngIf="modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider" (click)="modelStructure.glApp._slider.toggleDebug()">
                         <i class="material-icons">image</i>
                         <div class="span-hover">
-                            <span>Togle to {{modelStructure.app._slider.isDebug?'Upload':'Align'}} frames </span>
+                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>
                         </div>
                     </div>
                 </div>
@@ -41,24 +41,24 @@
                 <div class="row">
                     <div class="inp-form col-lg-6">
                         <label>Width</label>
-                        <input name="width" type="number" disabled *ngIf="modelStructure.app._slider"
-                               [ngModel]="modelStructure.app._slider.currentFrame.clientWidth ||modelStructure.app._slider.currentAlignFrame.clientWidth" >
+                        <input name="width" type="number" disabled *ngIf="modelStructure.glApp._slider"
+                               [ngModel]="modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth" >
                     </div>
                     <div class="inp-form col-lg-6">
                         <label>Height</label>
-                        <input name="height" type="number" disabled *ngIf="modelStructure.app._slider"
-                               [ngModel]="modelStructure.app._slider.currentFrame.clientHeight ||modelStructure.app._slider.currentAlignFrame.clientHeight">
+                        <input name="height" type="number" disabled *ngIf="modelStructure.glApp._slider"
+                               [ngModel]="modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight">
                     </div>
                 </div>
                 <div class="row">
                     <div class="inp-form col-lg-4">
                         <label>Scale</label>
-                        <input name="scaleX" type="number" (change)="modelStructure.app.updateData('scale')" step="0.1"
-                               [(ngModel)]="modelStructure.app.model.scale.x">
+                        <input name="scaleX" type="number" (change)="modelStructure.glApp.updateData('scale')" step="0.1"
+                               [(ngModel)]="modelStructure.glApp.model.scale.x">
                     </div>
                     <div class="inp-form col-lg-4">
                         <label>Current</label>
-                        <input name="current" type="number" *ngIf="modelStructure.app._slider" disabled="true" min="0"
+                        <input name="current" type="number" *ngIf="modelStructure.glApp._slider" disabled="true" min="0"
                                max="36" [(ngModel)]="modelStructure.currentItem">
                     </div>
                     <div class="inp-form col-lg-4">
@@ -70,43 +70,43 @@
                 <div class="row">
                     <div class="inp-form col-lg-4">
                         <label>Camera X</label>
-                        <input name="posX" type="number" (change)="modelStructure.app.updateData()"
-                               [(ngModel)]="modelStructure.app.camera.position.x">
+                        <input name="posX" type="number" (change)="modelStructure.glApp.updateData()"
+                               [(ngModel)]="modelStructure.glApp.camera.position.x">
                     </div>
                     <div class="inp-form col-lg-4">
                         <label>Camera Y</label>
-                        <input name="posY" type="number" (change)="modelStructure.app.updateData()"
-                               [(ngModel)]="modelStructure.app.camera.position.y">
+                        <input name="posY" type="number" (change)="modelStructure.glApp.updateData()"
+                               [(ngModel)]="modelStructure.glApp.camera.position.y">
                     </div>
                     <div class="inp-form col-lg-4">
                         <label>Camera Z</label>
-                        <input name="posZ" type="number" (change)="modelStructure.app.updateData()"
-                               [(ngModel)]="modelStructure.app.camera.position.z">
+                        <input name="posZ" type="number" (change)="modelStructure.glApp.updateData()"
+                               [(ngModel)]="modelStructure.glApp.camera.position.z">
                     </div>
                 </div>
                 <div class="row">
                     <div class="inp-form col-lg-6">
                         <label>Fov</label>
-                        <input name="fov" type="number" step="0.01" (change)="modelStructure.app.updateData()"
-                               [(ngModel)]="modelStructure.app.camera.fov">
+                        <input name="fov" type="number" step="0.01" (change)="modelStructure.glApp.updateData()"
+                               [(ngModel)]="modelStructure.glApp.camera.fov">
                     </div>
                     <div class="inp-form col-lg-6">
                         <label>Size</label>
                         <input name="size" type="number" [(ngModel)]="modelStructure.camera.size"
-                               (change)="modelStructure.app.updateData('size')"
+                               (change)="modelStructure.glApp.updateData('size')"
                                step="0.1">
                     </div>
                 </div>
                 <div class="row">
                     <div class="inp-form col-lg-6">
                         <label>Lens</label>
-                        <input name="lens" type="number" (change)="modelStructure.app.updateData('lens')"
+                        <input name="lens" type="number" (change)="modelStructure.glApp.updateData('lens')"
                                [(ngModel)]="modelStructure.camera.lens" step="0.01">
                     </div>
                     <div class="inp-form col-lg-6">
                         <label>Zoom</label>
-                        <input name="zoom" type="number" (change)="modelStructure.app.updateData()"
-                               [(ngModel)]="modelStructure.app.camera.zoom" step="0.01">
+                        <input name="zoom" type="number" (change)="modelStructure.glApp.updateData()"
+                               [(ngModel)]="modelStructure.glApp.camera.zoom" step="0.01">
                     </div>
                 </div>
             </div>
@@ -145,7 +145,7 @@
             </div>
         </div>
 
-        <div class="add-btn" (click)="modelStructure._app.update(editViewForm)">
+        <div class="add-btn" (click)="modelStructure.sourcesApp.update(editViewForm)">
             <i class="material-icons">save</i>
 
             <div class="span-hover">

@@ -88,7 +88,12 @@ export class SourceProject   {
             self = this;
 
         this.uploadStructure(data,function(){
-            self.authService.post("/api/projects/project/model/update", {_id:self.project._id,dir:data.projFilesDirname,structure:JSON.stringify([data.clone()])}).subscribe((res:any) => {
+            let _form =  new FormData();
+            _form.append('dir',ENTITY.Config.FILE.DIR.DELIMETER);
+            _form.append('_id',self.project._id);
+            _form.append(ENTITY.Config.FILE.STORAGE.SITE_STRUCTURE,new Blob([JSON.stringify([data.clone()])],{type:'text/json'}));
+
+            self.authService.post("/api/projects/project/model/update", _form).subscribe((res:any) => {
                 res = res.json();
                 if (res.status) {
                     alertify.success(res.message);
@@ -98,6 +103,7 @@ export class SourceProject   {
             });
         },data.projFilesDirname);
     }
+
     private uploadStructure(area:any,callback,dirStartFrom){
         let _self = this,
             siteStructure=[];
@@ -142,7 +148,7 @@ export class SourceProject   {
                             if(!_ar)return callback();
                             _self.uploadStructure(_ar,function(res){
                                 uploadChild(area.areas[startAt++]);
-                            }, _ar.projFilesDirname || (dirStartFrom +"/"+ _ar._id))
+                            }, _ar.projFilesDirname || (dirStartFrom +ENTITY.Config.FILE.DIR.DELIMETER+ _ar._id))
                         };
 
                     uploadChild(area.areas[startAt++]);
@@ -159,11 +165,14 @@ export class SourceProject   {
 
     select(child:any) {
         if(this.selectedChild && this.selectedChild._id == child._id)return;
-        if (this.selectedChild && this.selectedChild.app)this.selectedChild.app = null;
+        if (this.selectedChild ){
+            this.selectedChild._selected = !this.selectedChild._selected;
+            if(this.selectedChild.glApp)this.selectedChild.glApp = null;
+        }
         this.selectedChild = child;
-        child._app = this;
+        child.sourcesApp = this;
         child.canEdit = true;
-        console.log(child);
+        child._selected = !child._selected;
     }
 }
 export class ProjTabs {

@@ -20,7 +20,9 @@ export class AsideComponent {
       private route: ActivatedRoute
   ) {
     route.data.subscribe((data: any) => {
-      this.User = data.user;
+      this.User = data.user||{};
+      if(!data.user.projects)data.user.projects=[];
+      if(!data.user.users)data.user.users=[];
       for(let i = 0; i < data.user.users.length; i++){
         if(data.user.users[i]._id == data.user._id ){
           this.user = data.user.users[i];
