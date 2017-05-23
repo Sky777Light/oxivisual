@@ -16,7 +16,14 @@
   align-items: center
   border-radius: 50%
   transition: background-color .5s, box-shadow .5s
+  &.disabled
+    background: lightgray
+    cursor: default
+    &:hover
+      background-color: lightgray
+      box-shadow: none
   .span-hover
+    z-index: 1
     position: absolute
     opacity: 0
     top: 50%

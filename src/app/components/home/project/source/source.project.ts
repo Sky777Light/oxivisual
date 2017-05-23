@@ -131,6 +131,7 @@ export class SourceProject   {
                 res = res.json();
                 if (res.status) {
                     area.projFilesDirname = dirStartFrom;
+                    area.hasChanges = false;
                     if(area.destination instanceof Array)area.destination = area.destination[0].name;
 
                     ['alignImages','images'].forEach((field)=>{

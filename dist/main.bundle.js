@@ -657,6 +657,7 @@ var SourceProject = (function () {
                 res = res.json();
                 if (res.status) {
                     area.projFilesDirname = dirStartFrom;
+                    area.hasChanges = false;
                     if (area.destination instanceof Array)
                         area.destination = area.destination[0].name;
                     ['alignImages', 'images'].forEach(function (field) {
@@ -1150,6 +1151,7 @@ var Config = (function () {
             PROJECT_ALIGN_IMG: 'align_images/',
         }
     };
+    Config.IGNORE = 'ignore';
     return Config;
 }());
 var ProjClasses = (function () {
@@ -3457,6 +3459,9 @@ var OxiAPP = (function () {
         this.controls.enabled = !!this.main.selected.canEdit;
         if (this.controls.enabled)
             this.controls.addEventListener('change', function () {
+                main.selected.hasRecalcChanges = main.selected.hasChanges = true;
+                if (main.selected.camera.frameState[main.selected.currentItem])
+                    main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
                 _this.camera.updateProjectionMatrix();
                 _this.dataSave();
                 _this._animation.play();
@@ -3538,17 +3543,37 @@ var OxiAPP = (function () {
         });
     }
     OxiAPP.prototype.updateData = function (data) {
-        var settings = this.main.selected.camera;
+        var _selected = this.main.selected, settings = _selected.camera;
+        _selected.hasChanges = _selected.hasRecalcChanges = true;
+        if (_selected.camera.frameState[_selected.currentItem])
+            _selected.camera.frameState[_selected.currentItem].hasChanges = true;
         switch (data) {
             case 'scale':
                 {
                     this.model.scale.z = this.model.scale.y = this.model.scale.x;
                     break;
                 }
+            case 'opacity':
+                {
+                    this.model.traverse(function (child) {
+                        if (child.type == 'Mesh') {
+                            child.material.opacity = settings.opacity;
+                        }
+                    });
+                    break;
+                }
+            case 'update':
+                {
+                    break;
+                }
+            case 'cameraPst':
+                {
+                    break;
+                }
             case 'y':
             case 'x':
                 {
-                    var val_1 = this.main.selected.camera.resolution[data], prop_1 = this._slider._W() / this._slider._H(), isHeight_1 = data == 'y', _px_1 = 'px', elem = [this._slider.container.childNodes];
+                    var val_1 = settings.resolution[data], prop_1 = this._slider._W() / this._slider._H(), isHeight_1 = data == 'y', _px_1 = 'px', elem = [this._slider.container.childNodes];
                     if (!elem[0] || !elem[0].length)
                         break;
                     if (this._slider.alignImgContainer instanceof Node) {
@@ -3583,20 +3608,55 @@ var OxiAPP = (function () {
         this.dataSave();
         this._animation.play();
     };
+    OxiAPP.prototype.recalc = function () {
+        var _selected = this.main.selected, _c = this.camera.position.clone(), _t = this.controls.target.clone();
+        _selected.camera.frameState = [];
+        _selected.camera.frameState[_selected.currentItem] = {
+            x: _c.x,
+            y: _c.y,
+            z: _c.z,
+            target: { x: _t.x, y: _t.y, z: _t.z }
+        };
+        for (var i = 0; i < _selected.images.length; i++) {
+            if (_selected.currentItem == i)
+                continue;
+            var quaternion = new THREE.Quaternion(), _cmC = _c.clone();
+            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * 10) * Math.PI / 180);
+            _cmC.applyQuaternion(quaternion);
+            _selected.camera.frameState[i] = {
+                x: _cmC.x,
+                y: _cmC.y,
+                z: _cmC.z,
+                target: { x: _t.x, y: _t.y, z: _t.z }
+            };
+        }
+        _selected.hasRecalcChanges = false;
+    };
     OxiAPP.prototype.dataSave = function () {
         var old = this.main.selected.camera;
-        this.main.selected.camera = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* OxiCamera */]({
-            position: this.camera.position,
-            rotation: this.camera.rotation,
-            target: this.controls.target,
-            frameState: old.frameState,
-            //resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
-            fov: this.camera.fov,
-            zoom: this.camera.zoom,
-            scale: this.model.scale.x,
-            lens: old.lens,
-            size: old.size,
-        });
+        if (!(old instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* OxiCamera */])) {
+            this.main.selected.camera = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* OxiCamera */]({
+                position: this.camera.position,
+                rotation: this.camera.rotation,
+                target: this.controls.target,
+                frameState: old.frameState,
+                //resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
+                fov: this.camera.fov,
+                zoom: this.camera.zoom,
+                scale: this.model.scale.x,
+                lens: old.lens,
+                opacity: old.opacity,
+                size: old.size,
+            });
+        }
+        else {
+            old.position = this.camera.position.clone();
+            old.rotation = this.camera.rotation.clone();
+            old.target = this.controls.target.clone();
+            old.fov = this.camera.fov;
+            old.zoom = this.camera.zoom;
+            old.scale = this.model.scale.x;
+        }
     };
     OxiAPP.prototype.loadModel = function (callback) {
         var _this = this;
@@ -3637,8 +3697,15 @@ var OxiAPP = (function () {
         this.model.add(object);
         object.traverse(function (child) {
             if (child.type == 'Mesh') {
-                child.material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.7 });
+                child.material = new THREE.MeshBasicMaterial({
+                    transparent: true,
+                    opacity: _this.main.selected.camera.opacity
+                });
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
+                child.name = child.name.toLowerCase();
+                if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
+                    child.material.color = new THREE.Color(0, 0, 0);
+                }
                 for (var i = 0, areas = _this.main.selected.areas; areas && i < areas.length; i++) {
                     if (areas[i]._id.match(child.name)) {
                         child._data = areas[i];
@@ -3786,6 +3853,7 @@ var OxiEvents = (function () {
             app._animation.play();
     };
     OxiEvents.prototype.onMouseUp = function (ev) {
+        var _this = this;
         var _self = this, btn = ev.button;
         this.mouse.down = this.lastEv = null;
         this.main._projControls.show(ev, false);
@@ -3800,11 +3868,9 @@ var OxiEvents = (function () {
             case 2:
                 {
                     if (this.canEdit) {
-                        var intersectList = _self.inter(ev);
-                        if (intersectList && intersectList[0]) {
-                            _self.lastInter = intersectList[0];
-                            this.main._projControls.show(ev);
-                        }
+                        this.onSelected(ev, function (inter) {
+                            _this.main._projControls.show(ev);
+                        });
                     }
                     break;
                 }
@@ -3815,17 +3881,16 @@ var OxiEvents = (function () {
         this.main._projControls.show(ev, false);
     };
     OxiEvents.prototype.onMouseMove = function (ev) {
+        var _this = this;
         var _self = this;
         if (this.lastInter) {
             this.main._projControls.show(ev, false);
             this.lastInter = null;
         }
         if (this.canEdit) {
-            var intersectList = _self.inter(ev);
-            if (intersectList && intersectList[0]) {
-                _self.lastInter = intersectList[0];
-                this.main._projControls.show({ x: -1500 }, true, false);
-            }
+            this.onSelected(ev, function (inter) {
+                _this.main._projControls.show({ x: -1500 }, true, false);
+            });
         }
         else {
             if (this.mouse.down) {
@@ -3838,12 +3903,19 @@ var OxiEvents = (function () {
                 }
             }
             else {
-                var intersectList = _self.inter(ev);
-                if (intersectList && intersectList[0]) {
-                    _self.lastInter = intersectList[0];
-                    this.main._projControls.show(ev);
-                }
+                this.onSelected(ev, function (inter) {
+                    _this.main._projControls.show(ev);
+                });
             }
+        }
+    };
+    OxiEvents.prototype.onSelected = function (ev, callback) {
+        var intersectList = this.inter(ev);
+        if (intersectList && intersectList[0]) {
+            if (intersectList[0].object.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE))
+                return;
+            this.lastInter = intersectList[0];
+            callback(intersectList[0]);
         }
     };
     OxiEvents.prototype.onMouseDown = function (ev) {
@@ -3973,13 +4045,13 @@ var OxiSlider = (function () {
         [this.container, this.imgPagination].forEach(function (domEl) {
             _this.removeNode(domEl);
         });
-        var div = this.container = document.createElement('div'), imgPagination = this.imgPagination = document.createElement('ul'), _resol = this.app.main.selected.camera.resolution, _px = 'px', canEdit = this.canEdit;
+        var div = this.container = document.createElement('div'), imgPagination = this.imgPagination = document.createElement('ul'), _selected = app.main.selected, _resol = _selected.camera.resolution, _px = 'px', canEdit = this.canEdit;
         if (!app.main.selected.images || !app.main.selected.images.length)
             return;
         var _loop_1 = function(i) {
             var img = document.createElement('img'), curImg = app.main.selected.images[i];
-            img.src = typeof curImg == 'string' ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + app.main.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + curImg : curImg.data;
-            if (parseInt(i) == this_1.app.main.selected.currentItem) {
+            img.src = typeof curImg == 'string' ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + _selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + curImg : curImg.data;
+            if (parseInt(i) == _selected.currentItem) {
                 img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
                 this_1.currentFrame = img;
                 img.onload = function () {
@@ -3999,30 +4071,45 @@ var OxiSlider = (function () {
             if (canEdit) {
                 var item = document.createElement('li');
                 item.innerHTML = (+i + 1) + '';
-                if (+i == this_1.app.main.selected.currentItem) {
+                if (+i == _selected.currentItem) {
                     item.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
                     this_1.currentPagination = item;
                 }
-                item.addEventListener('click', function () {
-                    new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["a" /* Confirm */]({
-                        title: "The camera for current (" + (+app.main.selected.currentItem + 1) + ") frame will be saved, if cancel will lose",
-                        onOk: function () {
-                            var _c = app.camera.position, _t = app.controls.target;
-                            app.main.selected.camera.frameState[app.main.selected.currentItem] = {
-                                x: _c.x,
-                                y: _c.y,
-                                z: _c.z,
-                                target: { x: _t.x, y: _t.y, z: _t.z }
-                            };
-                        },
-                        onCancel: function () {
-                            delete app.main.selected.camera.frameState[app.main.selected.currentItem];
-                        },
-                        onAnyWay: function () {
-                            _this.updateView(i);
-                            _this.app.dataSave();
-                        }
-                    });
+                item.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function () {
+                    var saveD = function () {
+                        var _c = app.camera.position, _t = app.controls.target;
+                        _selected.camera.frameState[_selected.currentItem] = {
+                            x: _c.x,
+                            y: _c.y,
+                            z: _c.z,
+                            target: { x: _t.x, y: _t.y, z: _t.z }
+                        };
+                    }, anyway = function () {
+                        _this.updateView(i);
+                        _this.app.dataSave();
+                    };
+                    if (!_selected.camera.frameState[_selected.currentItem]) {
+                        saveD();
+                        anyway();
+                    }
+                    else if (_selected.camera.frameState[_selected.currentItem].hasChanges) {
+                        delete _selected.camera.frameState[_selected.currentItem].hasChanges;
+                        new __WEBPACK_IMPORTED_MODULE_3__dialogs_dialog__["a" /* Confirm */]({
+                            title: "The data view for current (" + (+_selected.currentItem + 1) + ") has been changed, accept to save, if cancel will lose",
+                            onOk: function () {
+                                saveD();
+                            },
+                            onCancel: function () {
+                                delete _selected.camera.frameState[_selected.currentItem];
+                            },
+                            onAnyWay: function () {
+                                anyway();
+                            }
+                        });
+                    }
+                    else {
+                        anyway();
+                    }
                 });
                 imgPagination.appendChild(item);
             }
@@ -4432,7 +4519,7 @@ var ProjMain = (function (_super) {
         this._category = __WEBPACK_IMPORTED_MODULE_1__constant_data__["a" /* Config */].PROJ_DESTINATION[this.constructor.name];
     }
     ProjMain.prototype.clone = function () {
-        var noClone = ['glApp', 'sourcesApp', 'cash', 'canEdit', '_selected'], acceptType = ['boolean', 'string', 'number'];
+        var noClone = ['glApp', 'sourcesApp', 'cash', 'canEdit', '_selected', 'hasChanges', 'hasRecalcChanges'], acceptType = ['boolean', 'string', 'number'];
         function cloneObject(obj) {
             var temp = obj instanceof Array ? [] : {};
             for (var i in obj) {
@@ -4502,6 +4589,8 @@ var OxiCamera = (function (_super) {
             this.lens = 19;
         if (!this.frameState)
             this.frameState = {};
+        if (!this.opacity)
+            this.opacity = 0.7;
     }
     return OxiCamera;
 }(ProjMain));
@@ -5489,7 +5578,7 @@ module.exports = "<router-outlet></router-outlet>"
 /***/ 802:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate>\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\" ></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"  ></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\" [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"  ></app-file-upload>\n\n                    <div class=\"add-btn\" *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\" (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\" >\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Scale</label>\n                        <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\" step=\"0.1\"\n                               [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Current</label>\n                        <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\" min=\"0\"\n                               max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Frames</label>\n                        <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                               [ngModel]=\"modelStructure.images.length\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera X</label>\n                        <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera Y</label>\n                        <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera Z</label>\n                        <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Fov</label>\n                        <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Size</label>\n                        <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                               (change)=\"modelStructure.glApp.updateData('size')\"\n                               step=\"0.1\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Lens</label>\n                        <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                               [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Zoom</label>\n                        <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"pattrns.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n    </form>\n</div>"
+module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\" ></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"  ></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\" [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"  ></app-file-upload>\n\n                    <div class=\"add-btn\" *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\" (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-12\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\" >\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\" >\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Scale</label>\n                        <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\" step=\"0.1\"\n                               [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Current</label>\n                        <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\" min=\"0\"\n                               max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Frames</label>\n                        <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                               [ngModel]=\"modelStructure.images.length\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera X</label>\n                        <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera Y</label>\n                        <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera Z</label>\n                        <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Fov</label>\n                        <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Size</label>\n                        <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                               (change)=\"modelStructure.glApp.updateData('size')\"\n                               step=\"0.1\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Lens</label>\n                        <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                               [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Zoom</label>\n                        <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"pattrns.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges\" (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 

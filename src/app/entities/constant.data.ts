@@ -39,7 +39,8 @@ export class Config {
             PROJECT_ALIGN_IMG:'align_images/',
         }
 
-    }
+    };
+    static IGNORE:string='ignore';
 
 }
 export class ProjClasses {

@@ -1,5 +1,5 @@
 <div class="model-config">
-    <form class="item-form" #editViewForm="ngForm" novalidate>
+    <form class="item-form" #editViewForm="ngForm" novalidate (change)="modelStructure.glApp.updateData('test')">
         <div *ngIf="modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure">
             <div class="top-block files-top-block ">
                 <div class="input-wrap">
@@ -39,6 +39,14 @@
             </div>
             <div class="bottom-block">
                 <div class="row">
+                    <div class="inp-form col-lg-12">
+                        <label>Opacity</label>
+                        <input name="opacity" type="number"
+                               (change)="modelStructure.glApp.updateData('opacity')" step="0.01" min="0" max="1"
+                               [(ngModel)]="modelStructure.camera.opacity" >
+                    </div>
+                </div>
+                <div class="row">
                     <div class="inp-form col-lg-6">
                         <label>Width</label>
                         <input name="width" type="number" disabled *ngIf="modelStructure.glApp._slider"
@@ -70,17 +78,17 @@
                 <div class="row">
                     <div class="inp-form col-lg-4">
                         <label>Camera X</label>
-                        <input name="posX" type="number" (change)="modelStructure.glApp.updateData()"
+                        <input name="posX" type="number" (change)="modelStructure.glApp.updateData('cameraPst')"
                                [(ngModel)]="modelStructure.glApp.camera.position.x">
                     </div>
                     <div class="inp-form col-lg-4">
                         <label>Camera Y</label>
-                        <input name="posY" type="number" (change)="modelStructure.glApp.updateData()"
+                        <input name="posY" type="number" (change)="modelStructure.glApp.updateData('cameraPst')"
                                [(ngModel)]="modelStructure.glApp.camera.position.y">
                     </div>
                     <div class="inp-form col-lg-4">
                         <label>Camera Z</label>
-                        <input name="posZ" type="number" (change)="modelStructure.glApp.updateData()"
+                        <input name="posZ" type="number" (change)="modelStructure.glApp.updateData('cameraPst')"
                                [(ngModel)]="modelStructure.glApp.camera.position.z">
                     </div>
                 </div>
@@ -118,8 +126,8 @@
                         <input type="text" #curentName="ngModel" name="curentName"
                                placeholder="Level`s Name"
                                [(ngModel)]="modelStructure.name" required autofocus>
-                        <label [class.full-op]="curentName.invalid && curentName.touched">The
-                            Level`s Name is required!</label>
+                        <label [class.full-op]="curentName.invalid && curentName.touched">
+                            The Level`s Name is required!</label>
                     </div>
                 </div>
                 <div class="input-wrap">
@@ -145,12 +153,23 @@
             </div>
         </div>
 
-        <div class="add-btn" (click)="modelStructure.sourcesApp.update(editViewForm)">
+        <div class="add-btn" *ngIf="modelStructure.hasChanges" (click)="modelStructure.sourcesApp.update(editViewForm)">
             <i class="material-icons">save</i>
 
             <div class="span-hover">
                 <span>Save</span>
             </div>
+        </div>
+        <div class="add-btn" *ngIf="modelStructure.hasRecalcChanges" (click)="modelStructure.glApp.recalc()">
+            <i class="material-icons">exposure</i>
+
+            <div class="span-hover">
+                <span>Recalculate for all</span>
+            </div>
+        </div>
+
+        <div class="add-btn disabled" *ngIf="!modelStructure.hasChanges">
+            <i class="material-icons">save</i>
         </div>
     </form>
 </div>

@@ -104,6 +104,8 @@ class OxiAPP {
         this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
         this.controls.enabled = !!this.main.selected.canEdit;
         if (this.controls.enabled)this.controls.addEventListener('change', ()=> {
+            main.selected.hasRecalcChanges = main.selected.hasChanges =true;
+            if (main.selected.camera.frameState[main.selected.currentItem])main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
             this.camera.updateProjectionMatrix();
             this.dataSave();
             this._animation.play();
@@ -205,7 +207,10 @@ class OxiAPP {
     }
 
     updateData(data) {
-        let settings = this.main.selected.camera;
+        let _selected = this.main.selected,
+            settings = _selected.camera;
+        _selected.hasChanges =  _selected.hasRecalcChanges =true;
+        if(_selected.camera.frameState[_selected.currentItem])_selected.camera.frameState[_selected.currentItem].hasChanges = true;
         switch (data) {
             case'scale':
             {
@@ -213,11 +218,28 @@ class OxiAPP {
                 break;
             }
 
+            case'opacity':
+            {
+                this.model.traverse((child)=> {
+                    if (child.type == 'Mesh') {
+                        child.material.opacity = settings.opacity;
+                    }
+                });
+                break;
+            }
+            case'update':
+            {
+                break;
+            }
+            case 'cameraPst':
+            {
+                break;
+            }
             case'y':
             case'x':
             {
                 let
-                    val = this.main.selected.camera.resolution[data],
+                    val = settings.resolution[data],
                     prop = this._slider._W() / this._slider._H(),
                     isHeight = data == 'y',
                     _px = 'px',
@@ -256,26 +278,65 @@ class OxiAPP {
                 this.camera.updateProjectionMatrix();
             }
         }
-
-
         this.dataSave();
         this._animation.play();
     }
 
+    recalc() {
+        let
+            _selected = this.main.selected,
+            _c = this.camera.position.clone(),
+            _t = this.controls.target.clone();
+        _selected.camera.frameState = [];
+        _selected.camera.frameState[_selected.currentItem] = {
+            x: _c.x,
+            y: _c.y,
+            z: _c.z,
+            target: {x: _t.x, y: _t.y, z: _t.z}
+        };
+
+        for (let i = 0; i < _selected.images.length; i++) {
+            if (_selected.currentItem == i)continue;
+
+            let quaternion = new THREE.Quaternion(),
+                _cmC = _c.clone();
+            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * 10) * Math.PI / 180);
+            _cmC.applyQuaternion(quaternion);
+            _selected.camera.frameState[i] = {
+                x: _cmC.x,
+                y: _cmC.y,
+                z: _cmC.z,
+                target: {x: _t.x, y: _t.y, z: _t.z}
+            };
+        }
+        _selected.hasRecalcChanges = false;
+    }
+
     dataSave() {
         let old = this.main.selected.camera;
-        this.main.selected.camera = new ENTITY.OxiCamera({
-            position: this.camera.position,
-            rotation: this.camera.rotation,
-            target: this.controls.target,
-            frameState: old.frameState,
-            //resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
-            fov: this.camera.fov,
-            zoom: this.camera.zoom,
-            scale: this.model.scale.x,
-            lens: old.lens,
-            size: old.size,
-        });
+        if(!(old instanceof ENTITY.OxiCamera)){
+            this.main.selected.camera = new ENTITY.OxiCamera({
+                position: this.camera.position,
+                rotation: this.camera.rotation,
+                target: this.controls.target,
+                frameState: old.frameState,
+                //resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
+                fov: this.camera.fov,
+                zoom: this.camera.zoom,
+                scale: this.model.scale.x,
+                lens: old.lens,
+                opacity: old.opacity,
+                size: old.size,
+            });
+        }else{
+            old.position =  this.camera.position.clone();
+            old.rotation =  this.camera.rotation.clone();
+            old.target =  this.controls.target.clone();
+            old.fov =  this.camera.fov;
+            old.zoom =  this.camera.zoom;
+            old.scale =  this.model.scale.x;
+        }
+
     }
 
     loadModel(callback:Function = ()=> {
@@ -319,8 +380,16 @@ class OxiAPP {
         this.model.add(object);
         object.traverse((child)=> {
             if (child.type == 'Mesh') {
-                child.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.7});
+                child.material = new THREE.MeshBasicMaterial({
+                    transparent: true,
+                    opacity: this.main.selected.camera.opacity
+                });
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
+                child.name = child.name.toLowerCase();
+                if (child.name.match(ENTITY.Config.IGNORE)) {
+                    child.material.color = new THREE.Color(0, 0, 0);
+                }
+
                 for (let i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
                     if (areas[i]._id.match(child.name)) {
                         child._data = areas[i];
@@ -515,11 +584,9 @@ class OxiEvents {
             case 2:
             {
                 if (this.canEdit) {
-                    let intersectList = _self.inter(ev);
-                    if (intersectList && intersectList[0]) {
-                        _self.lastInter = intersectList[0];
+                    this.onSelected(ev, (inter)=> {
                         this.main._projControls.show(ev);
-                    }
+                    });
                 }
                 break;
             }
@@ -541,13 +608,10 @@ class OxiEvents {
         }
 
         if (this.canEdit) {
-            let intersectList = _self.inter(ev);
-            if (intersectList && intersectList[0]) {
-                _self.lastInter = intersectList[0];
+            this.onSelected(ev, (inter)=> {
                 this.main._projControls.show({x: -1500}, true, false);
-            }
+            });
         } else {
-
 
             if (this.mouse.down) {
                 if (!this.lastEv)return this.lastEv = ev;
@@ -561,13 +625,20 @@ class OxiEvents {
 
 
             } else {
-                let intersectList = _self.inter(ev);
-                if (intersectList && intersectList[0]) {
-                    _self.lastInter = intersectList[0];
+                this.onSelected(ev, (inter)=> {
                     this.main._projControls.show(ev);
-                }
+                });
             }
 
+        }
+    }
+
+    private onSelected(ev, callback) {
+        let intersectList = this.inter(ev);
+        if (intersectList && intersectList[0]) {
+            if (intersectList[0].object.name.match(ENTITY.Config.IGNORE))return;
+            this.lastInter = intersectList[0];
+            callback(intersectList[0]);
         }
     }
 
@@ -731,7 +802,8 @@ class OxiSlider {
 
         let div = this.container = document.createElement('div'),
             imgPagination = this.imgPagination = document.createElement('ul'),
-            _resol = this.app.main.selected.camera.resolution,
+            _selected = app.main.selected,
+            _resol = _selected.camera.resolution,
             _px = 'px',
             canEdit = this.canEdit;
 
@@ -740,8 +812,8 @@ class OxiSlider {
         for (let i in app.main.selected.images) {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
-            img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + app.main.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + curImg : curImg.data;
-            if (parseInt(i) == this.app.main.selected.currentItem) {
+            img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + _selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + curImg : curImg.data;
+            if (parseInt(i) == _selected.currentItem) {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
                 img.onload = function () {
@@ -763,31 +835,47 @@ class OxiSlider {
             if (canEdit) {
                 let item = document.createElement('li');
                 item.innerHTML = (+i + 1) + '';
-                if (+i == this.app.main.selected.currentItem) {
+                if (+i == _selected.currentItem) {
                     item.className = ENTITY.ProjClasses.ACTIVE;
                     this.currentPagination = item;
                 }
-                item.addEventListener('click', ()=> {
-                    new Confirm({
-                        title: "The camera for current (" + (+app.main.selected.currentItem + 1) + ") frame will be saved, if cancel will lose",
-                        onOk: ()=> {
-                            let _c = app.camera.position,
-                                _t = app.controls.target;
-                            app.main.selected.camera.frameState[app.main.selected.currentItem] = {
-                                x: _c.x,
-                                y: _c.y,
-                                z: _c.z,
-                                target: {x: _t.x, y: _t.y, z: _t.z}
-                            };
-                        },
-                        onCancel: ()=> {
-                            delete app.main.selected.camera.frameState[app.main.selected.currentItem];
-                        },
-                        onAnyWay: ()=> {
+                item.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, ()=> {
+                    let saveD = ()=> {
+                        let _c = app.camera.position,
+                            _t = app.controls.target;
+                            _selected.camera.frameState[_selected.currentItem] = {
+                            x: _c.x,
+                            y: _c.y,
+                            z: _c.z,
+                            target: {x: _t.x, y: _t.y, z: _t.z}
+                        };
+                    },
+                        anyway =()=>{
                             this.updateView(i);
                             this.app.dataSave();
-                        }
-                    });
+                        };
+
+                    if (!_selected.camera.frameState[_selected.currentItem]) {
+                        saveD();
+                        anyway();
+                    } else if (_selected.camera.frameState[_selected.currentItem].hasChanges) {
+                        delete _selected.camera.frameState[_selected.currentItem].hasChanges;
+                        new Confirm({
+                            title: "The data view for current (" + (+_selected.currentItem + 1) + ") has been changed, accept to save, if cancel will lose",
+                            onOk: ()=> {
+                                saveD();
+                            },
+                            onCancel: ()=> {
+                                delete _selected.camera.frameState[_selected.currentItem];
+                            },
+                            onAnyWay: ()=> {
+                                anyway();
+                            }
+                        });
+                    }else{
+                        anyway();
+                    }
+
 
                 });
                 imgPagination.appendChild(item);

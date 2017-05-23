@@ -16,7 +16,7 @@ export class ProjMain extends Main {
     }
 
     clone() {
-        let noClone = ['glApp','sourcesApp', 'cash', 'canEdit','_selected'],
+        let noClone = ['glApp','sourcesApp', 'cash', 'canEdit','_selected','hasChanges','hasRecalcChanges'],
             acceptType = ['boolean', 'string', 'number'];
 
         function cloneObject(obj) {
@@ -87,6 +87,7 @@ export class OxiCamera extends ProjMain {
     resolution:Vector3;
     frameState:any;
     fov:number;
+    opacity:number;
     scale:number;
     zoom:number;
     lens:number;
@@ -101,6 +102,7 @@ export class OxiCamera extends ProjMain {
         if (!this.size)this.size = 36;
         if (!this.lens)this.lens = 19;
         if (!this.frameState)this.frameState = {};
+        if (!this.opacity)this.opacity = 0.7;
     }
 }
 export class Vector3 extends ProjMain {
@@ -119,6 +121,8 @@ export class GeneralStructure extends ProjMain {
     name:string;
     destination:string;
     app:any;
+    hasChanges:boolean;
+    hasRecalcChanges:boolean;
 
     constructor(entity:any) {
         super(entity);
