@@ -157,7 +157,7 @@ class OxiAPP {
             this._animation.play();
 
         };
-        this.scene.add(new THREE.AxisHelper(500));
+        if(this.main.selected.canEdit)this.scene.add(new THREE.AxisHelper(500));
 
         //let light = new THREE.DirectionalLight(0xffffff);
         //light.position.set(1, 1, 1);
@@ -385,7 +385,7 @@ class OxiAPP {
                     opacity: this.main.selected.camera.opacity
                 });
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
-                child.name = child.name.toLowerCase();
+                //child.name = child.name.toLowerCase();
                 if (child.name.match(ENTITY.Config.IGNORE)) {
                     child.material.color = new THREE.Color(0, 0, 0);
                 }
@@ -556,7 +556,7 @@ class OxiEvents {
         let app = this.main,
             _w = app._slider._W(),
             _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight,
-            _h = _w / _nat;//app._slider._H();
+            _h = _nat?_w / _nat:app._slider._H();
 
         app.camera.aspect = _w / _h;
         app.camera.updateProjectionMatrix();
@@ -1138,6 +1138,7 @@ class OxiControls {
                     domEl.className = el.className;
                     domEl.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
                         el.click(()=>this.show(e, false));
+                        app.main.selected.hasChanges =  true;
                     });
                     div.appendChild(domEl);
                     let icon = document.createElement('img');

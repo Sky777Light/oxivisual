@@ -3509,7 +3509,8 @@ var OxiAPP = (function () {
             }
             _this._animation.play();
         };
-        this.scene.add(new THREE.AxisHelper(500));
+        if (this.main.selected.canEdit)
+            this.scene.add(new THREE.AxisHelper(500));
         //let light = new THREE.DirectionalLight(0xffffff);
         //light.position.set(1, 1, 1);
         //this.scene.add(light);
@@ -3702,7 +3703,7 @@ var OxiAPP = (function () {
                     opacity: _this.main.selected.camera.opacity
                 });
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
-                child.name = child.name.toLowerCase();
+                //child.name = child.name.toLowerCase();
                 if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
                     child.material.color = new THREE.Color(0, 0, 0);
                 }
@@ -3844,7 +3845,7 @@ var OxiEvents = (function () {
         this.onWindowResize();
     }
     OxiEvents.prototype.onWindowResize = function () {
-        var app = this.main, _w = app._slider._W(), _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight, _h = _w / _nat; //app._slider._H();
+        var app = this.main, _w = app._slider._W(), _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight, _h = _nat ? _w / _nat : app._slider._H();
         app.camera.aspect = _w / _h;
         app.camera.updateProjectionMatrix();
         app.gl.setSize(_w, _h);
@@ -4350,6 +4351,7 @@ var OxiControls = (function () {
                 domEl.className = el.className;
                 domEl.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
                     el.click(function () { return _this.show(e, false); });
+                    app.main.selected.hasChanges = true;
                 });
                 div.appendChild(domEl);
                 var icon = document.createElement('img');
