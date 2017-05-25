@@ -188,16 +188,16 @@ function saveProjectFiles(options, req, res, next) {
             for (var i = 0; i < req.files[keys].length; i++) {
                 var _file = req.files[keys][i],
                     buffer = fs.readFileSync(_file.path),
-                    fileName = _file.originalname ? _file.originalname : filesName ? filesName.shift() : '.bak';
-                fs.writeFileSync(urlSaveFile + fileName, buffer);
+                    _fileName = _file.originalname ? _file.originalname : filesName ? filesName.shift() : '.bak';
+                fs.writeFileSync(urlSaveFile + _fileName, buffer);
 
 
                 if (severalTypes) {
                     if (area && area.images) {
-                        area.images.push(fileName);
+                        area.images.push(_fileName);
                     }
                     let separator = ".",
-                        fileName = fileName.split(separator);
+                        fileName = _fileName.split(separator);
                     fileName.pop();
                     webp.cwebp(_file.path, urlSaveFile + severalTypes[0] + fileName.join(separator) + '.webp', "-q 50", function (status) {
                         console.log(status);
@@ -207,9 +207,9 @@ function saveProjectFiles(options, req, res, next) {
                             if (err) return console.error(err);
                             lenna.resize(720, Jimp.AUTO).quality(50).write(url); // save
                         }
-                    })(urlSaveFile + severalTypes[1] + fileName));
+                    })(urlSaveFile + severalTypes[1] + _fileName));
                 } else {
-                    if (area && modelSaved)area[modelSaved] = fileName;
+                    if (area && modelSaved)area[modelSaved] = _fileName;
                 }
 
             }

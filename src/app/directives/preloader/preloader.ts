@@ -46,8 +46,9 @@ export class Preloader implements OnInit {
 
             if (model.templates.indexOf(_DIR.PROJECT_TEMPLATE._TYPE.PRELOADER) > -1) {
                 _template = ENTITY.Config.PROJ_LOC + model.projFilesDirname + _DIR.DELIMETER + _template.replace('assets/','');
-                htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML;
-                cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
+                let newT = '?time='+Date.now();
+                htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML+newT;
+                cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS+newT;
             }
 
         this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(cssUrl);

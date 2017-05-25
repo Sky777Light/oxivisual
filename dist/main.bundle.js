@@ -1373,7 +1373,7 @@ var Config = (function () {
             PROJECT_PREVIEW: 'images/',
             PROJECT_ALIGN_IMG: 'align_images/',
             PROJECT_TEMPLATE: {
-                NAME: 'templates/',
+                NAME: 'assets/templates/',
                 CSS: 'style.css',
                 HTML: 'index.html',
                 TYPES: ['preloader/', 'tooltip/'],
@@ -2774,8 +2774,9 @@ var Preloader = (function () {
         var _template = _DIR.PROJECT_TEMPLATE.NAME + _DIR.PROJECT_TEMPLATE.TYPES[_DIR.PROJECT_TEMPLATE._TYPE.PRELOADER], htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML, cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
         if (model.templates.indexOf(_DIR.PROJECT_TEMPLATE._TYPE.PRELOADER) > -1) {
             _template = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + model.projFilesDirname + _DIR.DELIMETER + _template.replace('assets/', '');
-            htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML;
-            cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
+            var newT = '?time=' + Date.now();
+            htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML + newT;
+            cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS + newT;
         }
         this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(cssUrl);
         this.authService.get(htmlUrl).subscribe(function (res) {

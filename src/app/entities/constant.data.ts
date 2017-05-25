@@ -40,7 +40,7 @@ export class Config {
             PROJECT_PREVIEW: 'images/',
             PROJECT_ALIGN_IMG: 'align_images/',
             PROJECT_TEMPLATE: {
-                NAME: 'templates/',
+                NAME: 'assets/templates/',
                 CSS: 'style.css',
                 HTML: 'index.html',
                 TYPES: ['preloader/', 'tooltip/'],
