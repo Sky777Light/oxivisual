@@ -1,0 +1,55 @@
+<div class="costumization" *ngIf="project.model && project.model.link">
+    <div class="cos-row col-lg-2">
+        <div class="row cos-header">Element list:</div>
+        <ul class="cos-list">
+            <li *ngFor="let item of menuList" [ngClass]="{'active':item.active}" (click)="selectCurItem(item,menuList)">
+                {{item.title}}
+                <div class="mailicon">
+                    <svg width="6px" height="9px" viewBox="0 0 6 9" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs></defs>
+                        <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Super-User---project-creator---Publishing-"
+                               transform="translate(-1298.000000, -396.000000)" fill="#181818">
+                                <g id="tooltip" transform="translate(1048.000000, 370.000000)">
+                                    <g id="Page-1" transform="translate(245.000000, 23.000000)">
+                                        <polygon id="Fill-2-Copy"
+                                                 points="5.72666642 10.8933327 8.77999947 7.83333286 5.72666642 4.77333294 6.66666627 3.8333331 10.666666 7.83333286 6.66666627 11.8333326"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="cos-row col-lg-3">
+        <div class="row cos-header cos-t">Customization <span class="btn-def" (click)="saveChanges()">SAVE CHANGES</span>
+        </div>
+        <div class="cos-edit-body">
+
+            <div class="cos-item" [ngClass]="{'active':menuList[0].active}">
+
+            </div>
+
+            <div class="cos-item" [ngClass]="{'active':menuList[1].active}">
+                <div class="cos-tabs w3-bar w3-black">
+                    <button *ngFor="let mtab of tabList[1]" (click)="selectCurItem(mtab , tabList[1])" [ngClass]="{'active':mtab.active}" class="w3-bar-item w3-button" [innerText]="mtab.title"></button>
+                </div>
+                <codemirror *ngFor="let mtab of tabList[1]"
+                            [config]="mtab.config" class="cos-code" [ngClass]="{'active':mtab.active}" [(ngModel)]="mtab.config.value"></codemirror>
+            </div>
+            <div class="cos-item" [ngClass]="{'active':menuList[2].active}">
+                <div class="cos-tabs w3-bar w3-black">
+                    <button *ngFor="let mtab of tabList[0]" (click)="selectCurItem(mtab , tabList[0])" [ngClass]="{'active':mtab.active}" class="w3-bar-item w3-button" [innerText]="mtab.title"></button>
+                </div>
+                <codemirror *ngFor="let mtab of tabList[0]"
+                            [config]="mtab.config" class="cos-code" [ngClass]="{'active':mtab.active}" [(ngModel)]="mtab.config.value"></codemirror>
+                <!--<textarea #cssCode>.tes {     width:10px; }</textarea>-->
+                <!--<textarea #htmlCode></textarea>-->
+            </div>
+        </div>
+    </div>
+    <div class="cos-row col-lg-7"></div>
+</div>

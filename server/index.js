@@ -63,6 +63,8 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ dest: config.DIR.PUBLIC }).fields(
     [
+        { name: config.FILE_UPLOAD_ATTR[4], maxCount: 2 },
+        { name: config.FILE_UPLOAD_ATTR[5], maxCount: 2 },
         { name: config.FILE_UPLOAD_ATTR[3], maxCount: 1 },
         { name: config.FILE_UPLOAD_ATTR[0], maxCount: 1 },
         { name: config.FILE_UPLOAD_ATTR[2], maxCount: 36 },
@@ -102,13 +104,17 @@ app.use(express.static(path.join(__dirname, "../resources")));
 app.use("/", routes);
 
 app.use("*", function (req, res) {
+
     res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 app.use(function (req, res, next) {
     var err = new Error("Not Found");
     err.status = 404;
-
+    //res.json({
+    //    status:false,
+    //    message:'not found'
+    //});
     next(err);
 });
 

@@ -3,7 +3,8 @@ const async = require("async");
 const fs = require("fs");
 const config = require("../../config");
 const path = require("path");
-
+const webp = require('webp-converter');
+const Jimp = require("jimp");
 const Project = require("../../models/project");
 const User = require("../../models/user");
 
@@ -73,7 +74,7 @@ function checkPermissionOnProject(req, res, next) {
             next(req, res);
         } else {
             Project.findOne({_id: req.body._id}, {_id: 1, model: 1}, function (err, project) {
-                if (err || !project ) {
+                if (err || !project) {
                     return res.json({
                         status: false,
                         message: "permission denied!!!"
@@ -95,6 +96,128 @@ function checkPermissionOnProject(req, res, next) {
         });
     }
 
+}
+function saveProjectFiles(options, req, res, next) {
+
+    if (req.files) {
+        let keyses = config.FILE_UPLOAD_ATTR,
+            modelDir = options.modelDir,
+            area = options.area;
+
+        if (!fs.existsSync(path.normalize(modelDir))) {
+            fs.mkdirSync(path.normalize(modelDir), config.FILE_UPLOAD_ACCEC);
+        }
+        for (var key = 0; key < keyses.length; key++) {
+            var urlSaveFile,
+                severalTypes,
+                modelSaved,
+                keys = keyses[key],
+                filesName;
+            if (!req.files[keys] || !req.files[keys].length)continue;
+            switch (keys) {
+                case config.FILE_UPLOAD_ATTR[0]:
+                {
+                    modelSaved = 'destination';
+                    urlSaveFile = modelDir;
+                    let pathF = path.normalize(urlSaveFile);
+                    if (fs.existsSync(pathF)) {
+                        for (var u = 0, files = fs.readdirSync(urlSaveFile); u < files.length; u++) {
+                            var file = files[u],
+                                curPath = pathF + "/" + file;
+                            if (fs.lstatSync(curPath).isDirectory()) {
+                            } else {
+                                if (curPath.indexOf(config.FILE_UPLOAD_EXT[0])) {
+                                    fs.unlinkSync(curPath);
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        fs.mkdirSync(path.normalize(urlSaveFile), config.FILE_UPLOAD_ACCEC);
+                    }
+                    break;
+                }
+                case config.FILE_UPLOAD_ATTR[1]:
+                {
+                    urlSaveFile = modelDir + config.DIR.IMAGES;
+                    if (fs.existsSync(urlSaveFile)) {
+                        if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
+                    } else {
+                        fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
+                    }
+
+                    severalTypes = config.DIR.IMG_TYPES;
+                    for (var i = 0; i < severalTypes.length; i++) {
+                        if (!fs.existsSync(urlSaveFile + severalTypes[i]))fs.mkdirSync(urlSaveFile + severalTypes[i], config.FILE_UPLOAD_ACCEC);
+                    }
+                    break;
+                }
+                case config.FILE_UPLOAD_ATTR[2]:
+                {
+
+                    urlSaveFile = modelDir + config.DIR.ALIGN_IMAGES;
+                    if (fs.existsSync(urlSaveFile)) {
+                        if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
+                    } else {
+                        fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
+                    }
+                    break;
+                }
+                case config.FILE_UPLOAD_ATTR[3]:
+                {
+                    fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), fs.readFileSync(req.files[keys][0].path));
+                    break;
+                }
+                case config.FILE_UPLOAD_ATTR[4]:
+                case config.FILE_UPLOAD_ATTR[5]:
+                {
+                    urlSaveFile = modelDir + config.DIR.PROJECT_TEMPLATE.NAME;
+                    if (!fs.existsSync(urlSaveFile)) {
+                        fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
+                    }
+                    urlSaveFile += keys.split("[]")[0] + config.DIR.DELIMETER;
+                    if (!fs.existsSync(urlSaveFile)) {
+                        fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
+                    }
+                    filesName = [config.DIR.PROJECT_TEMPLATE.CSS, config.DIR.PROJECT_TEMPLATE.HTML];
+                    if (options.callback)options.callback(keys);
+                    break;
+                }
+            }
+            if (!urlSaveFile && !fs.existsSync(urlSaveFile))continue;
+            for (var i = 0; i < req.files[keys].length; i++) {
+                var _file = req.files[keys][i],
+                    buffer = fs.readFileSync(_file.path),
+                    fileName = _file.originalname ? _file.originalname : filesName ? filesName.shift() : '.bak';
+                fs.writeFileSync(urlSaveFile + fileName, buffer);
+
+
+                if (severalTypes) {
+                    if (area && area.images) {
+                        area.images.push(fileName);
+                    }
+                    let separator = ".",
+                        fileName = fileName.split(separator);
+                    fileName.pop();
+                    webp.cwebp(_file.path, urlSaveFile + severalTypes[0] + fileName.join(separator) + '.webp', "-q 50", function (status) {
+                        console.log(status);
+                    });
+                    Jimp.read(_file.path, (function (url) {
+                        return function (err, lenna) {
+                            if (err) return console.error(err);
+                            lenna.resize(720, Jimp.AUTO).quality(50).write(url); // save
+                        }
+                    })(urlSaveFile + severalTypes[1] + fileName));
+                } else {
+                    if (area && modelSaved)area[modelSaved] = fileName;
+                }
+
+            }
+        }
+        next(req, res);
+    } else {
+        next(req, res);
+    }
 }
 
 //update project
@@ -226,64 +349,52 @@ router.post("/project", function (req, res) {
 });
 router.post("/project/model/create", function (req, res) {
     var modelName = req.body.name,
-        id_project = req.body.id_project;
+        id_project = req.body._id;
     if (!modelName || !id_project || !req.files[config.FILE_UPLOAD_ATTR[0]] || !req.files[config.FILE_UPLOAD_ATTR[1]]) {
         return res.json({
             status: false,
             message: "something got incorect!!!"
         });
     } else {
-        var matches = config.FILE_UPLOAD_EXT.concat([]),
-            area = {
-                _id: id_project,
-                name: modelName,
-                projFilesDirname: /*modelName + "_" +*/ randomString(),
-                created: Date.now(),
-                _category: 2,
-                images: []
-            },
-            modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + area.projFilesDirname,
-            imageDir = modelDir + "/" + config.DIR.IMAGES,
-            mode = config.FILE_UPLOAD_ACCEC;
-
-        if (!fs.existsSync(modelDir)) {
-            fs.mkdirSync(modelDir, mode);
-        }
-        if (!fs.existsSync(imageDir)) {
-            fs.mkdirSync(imageDir, mode);
-        }
-        for (var keys in req.files) {
-            for (var i = 0; i < req.files[keys].length; i++) {
-                var _file = req.files[keys][i];
-                if (_file.originalname.match(matches[0])) {
-                    fs.writeFileSync(modelDir + "/" + _file.originalname, fs.readFileSync(_file.path));
-                    area.destination = _file.originalname;
-                } else if (_file.mimetype.match(matches[1])) {
-                    fs.writeFileSync(imageDir + "/" + _file.originalname, fs.readFileSync(_file.path));
-                    area.images.push((_file.originalname));
-                }
-            }
-        }
-        fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, JSON.stringify([area]));
-
-        Project.update({_id: id_project}, {
-            $set: {
-                "model.link": area.projFilesDirname,
-                "model.name": modelName
-            }
-        }, function (err) {
-            return res.json({
-                status: !err,
-                message: err ? err : "area was created",
-                model: {
-                    link: area.projFilesDirname,
+        checkPermissionOnProject(req, res, function () {
+            var area = {
+                    _id: id_project,
                     name: modelName,
-                    data: area
-                }
+                    projFilesDirname: /*modelName + "_" +*/ randomString(),
+                    created: Date.now(),
+                    _category: 2,
+                    images: []
+                },
+                modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + area.projFilesDirname + config.DIR.DELIMETER;
+
+            if (req.body.preview)area.preview = req.body.preview;
+            saveProjectFiles({modelDir: modelDir, area: area}, req, res, function (reqq, ress) {
+                fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, JSON.stringify([area]));
+
+                Project.update({_id: id_project}, {
+                    $set: {
+                        "model.link": area.projFilesDirname,
+                        "model.name": modelName
+                    }
+                }, function (err) {
+                    return ress.json({
+                        status: !err,
+                        message: err ? err : "area was created",
+                        model: {
+                            link: area.projFilesDirname,
+                            name: modelName,
+                            data: area
+                        }
+                    });
+                });
             });
+
         });
+
+
     }
-});
+})
+;
 router.post("/project/model/update", function (request, responce) {
     checkPermissionOnProject(request, responce, function (req, res) {
         var body = req.body;
@@ -294,76 +405,52 @@ router.post("/project/model/update", function (request, responce) {
             });
         } else {
 
-            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + req.session.lastEditProject.model.link+body.dir.replace(req.session.lastEditProject.model.link,'') + config.DIR.DELIMETER,
-                keyses = config.FILE_UPLOAD_ATTR;
-            if (req.files) {
-                if (!fs.existsSync(path.normalize(modelDir))) {
-                    fs.mkdirSync(path.normalize(modelDir), config.FILE_UPLOAD_ACCEC);
-                }
-                for (var key = 0; key < keyses.length; key++) {
-                    var urlSaveFile,
-                        keys = keyses[key];
-                    if (!req.files[keys] || !req.files[keys].length)continue;
-                    switch (keys) {
-                        case config.FILE_UPLOAD_ATTR[0]:
-                        {
-                            urlSaveFile = modelDir;
-                            let pathF = path.normalize(urlSaveFile);
-                            if (fs.existsSync(pathF)) {
-                                for (var u = 0, files = fs.readdirSync(urlSaveFile); u < files.length; u++) {
-                                    var file = files[u],
-                                        curPath = pathF + "/" + file;
-                                    if (fs.lstatSync(curPath).isDirectory()) {
-                                    } else {
-                                        if (curPath.indexOf(config.FILE_UPLOAD_EXT[0])) {
-                                            fs.unlinkSync(curPath);
-                                            break;
-                                        }
-                                    }
-                                }
-                            } else {
-                                fs.mkdirSync(path.normalize(urlSaveFile), config.FILE_UPLOAD_ACCEC);
-                            }
-                            break;
-                        }
-                        case config.FILE_UPLOAD_ATTR[1]:
-                        {
-                            urlSaveFile = modelDir + config.DIR.IMAGES;
-                            if (fs.existsSync(urlSaveFile)) {
-                                if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
-                            } else {
-                                fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
-                            }
-                            break;
-                        }
-                        case config.FILE_UPLOAD_ATTR[2]:
-                        {
-                            urlSaveFile = modelDir + config.DIR.ALIGN_IMAGES;
-                            if (fs.existsSync(urlSaveFile)) {
-                                if (req.files[keys])config.help.deleteFolderRecursive(urlSaveFile);
-                            } else {
-                                fs.mkdirSync(urlSaveFile, config.FILE_UPLOAD_ACCEC);
-                            }
-                            break;
-                        }
-                        case config.FILE_UPLOAD_ATTR[3]:
-                        {
-                            fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), fs.readFileSync(req.files[keys][0].path));
-                            break;
-                        }
-                    }
-                    if (!urlSaveFile && !fs.existsSync(urlSaveFile))continue;
-                    for (var i = 0; i < req.files[keys].length; i++) {
-                        var _file = req.files[keys][i];
-                        fs.writeFileSync(urlSaveFile + _file.originalname, fs.readFileSync(_file.path));
-                    }
-                }
-            }
-
-            return res.json({
-                status: true,
-                message: "project area was updated"
+            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + req.session.lastEditProject.model.link + body.dir.replace(req.session.lastEditProject.model.link, '') + config.DIR.DELIMETER;
+            saveProjectFiles({modelDir: modelDir}, req, res, function (reqq, ress) {
+                return ress.json({
+                    status: true,
+                    message: "project area was updated"
+                });
             });
+
+        }
+    });
+});
+router.post("/project/template/update", function (request, responce) {
+    checkPermissionOnProject(request, responce, function (req, res) {
+        var body = req.body;
+        if (!body.dir || !req.session.lastEditProject || !req.session.lastEditProject.model || !req.session.lastEditProject.model.link) {
+            return res.json({
+                status: false,
+                message: "something got incorect!!!"
+            });
+        } else {
+
+
+            var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + req.session.lastEditProject.model.link + config.DIR.DELIMETER;
+            var structure = fs.readFileSync(modelDir + config.DIR.SITE_STRUCTURE, 'utf-8');
+            if (!structure)return res.json({
+                status: false,
+                message: "can`t save template"
+            });
+            structure = JSON.parse(structure)[0];
+            saveProjectFiles({
+                modelDir: modelDir, callback: function (key) {
+                    if (!structure.templates)structure.templates = [];
+                    var item = 0;
+                    if (config.FILE_UPLOAD_ATTR[5] == key) {
+                        item = 1;
+                    }
+                    structure.templates.push(item)
+                }
+            }, req, res, function (reqq, ress) {
+                fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), JSON.stringify([structure]), 'utf8');
+                return ress.json({
+                    status: true,
+                    message: "project area was updated"
+                });
+            });
+
         }
     });
 });

@@ -11,6 +11,7 @@ import {UsersComponent} from "./components/home/users/users.component";
 import {ProjectComponent} from "./components/home/project/project.component";
 import {BasicProject} from "./components/home/project/basic/basic.project";
 import {SourceProject} from "./components/home/project/source/source.project";
+import {Costumization} from "./components/home/project/costumization/costumization";
 import {PreviewProject} from "./components/home/project/preview/preview";
 import {PreviewSceneComponent,PreviewSceneService} from "./components/preview/preview.project";
 
@@ -49,6 +50,10 @@ export const routes: Routes = [
                     {
                         path: 'basic',
                         component: BasicProject
+                    },
+                    {
+                        path: 'costumization',
+                        component: Costumization
                     },
                     {
                         path: 'source',

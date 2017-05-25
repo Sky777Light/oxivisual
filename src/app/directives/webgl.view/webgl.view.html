@@ -1,1 +1,5 @@
-<div class="webgl-view" #renderParent></div>
+<div class="webgl-view" #renderParent>
+    <div class="center-container THREEJS" #projCnt>
+        <app-project-preloader [preview]="preview" [modelData]="selected" #preloader></app-project-preloader>
+    </div>
+</div>

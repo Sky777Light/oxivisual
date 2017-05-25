@@ -87,6 +87,7 @@ export class OxiCamera extends ProjMain {
     resolution:Vector3;
     frameState:any;
     fov:number;
+    kompass:Kompass;
     opacity:number;
     scale:number;
     zoom:number;
@@ -103,6 +104,16 @@ export class OxiCamera extends ProjMain {
         if (!this.lens)this.lens = 19;
         if (!this.frameState)this.frameState = {};
         if (!this.opacity)this.opacity = 0.7;
+        if (!this.kompass)this.kompass = new Kompass();
+    }
+}
+export class Kompass extends ProjMain{
+    enabled:boolean;
+    angle:number;
+    constructor(a:any={}){
+        super(a);
+        if(!this.angle)this.angle=0;
+        if(!this.enabled !== false)this.enabled = true;
     }
 }
 export class Vector3 extends ProjMain {
@@ -151,6 +162,8 @@ export class ModelStructure extends GeneralStructure implements IModelStructure 
     alignImages:Array<any>;
     areas:Array<IModelStructure>;
     cash:PCash;
+    preview:string;
+    templates:Array<string>;
 
     constructor(entity:any = {}) {
         super(entity);
@@ -159,6 +172,7 @@ export class ModelStructure extends GeneralStructure implements IModelStructure 
         if (!this.alignImages)this.alignImages = [];
         if (!this.camera)this.camera = new OxiCamera();
         if (!this.currentItem)this.currentItem = 0;
+        if (!this.templates)this.templates = [];
         this.currentItem = +this.currentItem;
         this.currentItem0 = this.currentItem;
     }

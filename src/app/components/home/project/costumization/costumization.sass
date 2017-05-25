@@ -1,0 +1,145 @@
+@import "../../../../styles/values"
+
+.costumization
+  padding: 0 10px
+  color: $tag-text
+  font-size: 16px
+  line-height: 18px
+  .cos-edit-body
+    padding: 20px 15px
+    overflow: auto
+    background: $back-color1
+    border: 1px solid $bottom-bor
+    border-top: none
+    height: calc(100vh - 152px)
+    min-height: 420px
+    .cos-item
+      width: 0
+      height: 0
+      transform: translateY(-60%)
+      position: absolute
+      left: 0
+      z-index: 0
+      padding: 10px 15px
+      opacity: 0
+      transition: opacity,transform 0.2s linear
+      &.active
+        opacity: 1
+        transform: translateY(0)
+        width: 100%
+        z-index: 1
+      .w3-bar
+        .w3-button
+
+          &:hover
+            color: #fff
+            background: #d6d6d6
+          &.active
+            color: #fff
+            background-color: #5D5D5E
+            border-radius: 2px 2px 0 0
+      .cos-code
+        overflow: auto
+        display: none
+        min-height: 350px
+        width: 100%
+        &.active
+          display: block
+  .cos-row
+    padding: 0
+    margin: 0
+    &:nth-child(2)
+      background: $back-color1
+
+  .cos-header
+    padding: 20px 15px
+    border-bottom: 1px solid $bottom-bor
+    &.cos-t
+      border-right: 1px solid $bottom-bor
+      border-left: 1px solid $bottom-bor
+    .btn-def
+      float: right
+      cursor: pointer
+      color: $btn-color
+      &:hover
+        color: $border-active-color
+  .cos-list
+    list-style: none
+    padding: 0
+    margin: 0
+    position: absolute
+    z-index: 2
+    width: 100%
+    background: #fff
+    li
+      background: #fff
+      padding: 20px 15px
+      transition: transform,color,0.2s linear
+      border-bottom: 1px solid $bottom-bor
+
+      cursor: pointer
+      &:hover
+        border-color: $primary
+        border-right: 1px solid
+        color: $primary
+        transform: translateX(10px)
+        polygon
+          fill: $primary
+      &.active
+        border-color: $primary
+        color: $primary
+      .mailicon
+        float: right
+
+
+
+.w3-light-grey, .w3-hover-light-grey:hover, .w3-light-gray, .w3-hover-light-gray:hover
+  color: #000!important
+  background-color: #f1f1f1!important
+.w3-border-bottom
+  border-bottom: 1px solid #ccc!important
+.w3-bar
+  width: 100%
+  overflow: hidden
+
+.w3-container:after, .w3-container:before, .w3-panel:after, .w3-panel:before, .w3-row:after, .w3-row:before, .w3-row-padding:after,  .w3-row-padding:before, .w3-cell-row:before, .w3-cell-row:after, .w3-clear:after, .w3-clear:before, .w3-bar:before, .w3-bar:after
+  content: ""
+  display: table
+  clear: both
+
+.w3-bar .w3-button
+  white-space: normal
+
+.w3-bar .w3-bar-item
+  padding: 8px 16px
+  float: left
+  width: auto
+  border: none
+  outline: none
+  display: block
+
+.w3-dark-grey, .w3-hover-dark-grey:hover, .w3-dark-gray, .w3-hover-dark-gray:hover
+  color: #fff!important
+  background-color: #616161!important
+
+.w3-btn, .w3-button
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.w3-btn, .w3-button
+  border: none
+  display: inline-block
+  outline: 0
+  padding: 8px 16px
+  vertical-align: middle
+  overflow: hidden
+  text-decoration: none
+  color: inherit
+  background-color: inherit
+  text-align: center
+  cursor: pointer
+  white-space: nowrap

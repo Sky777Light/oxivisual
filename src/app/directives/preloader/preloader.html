@@ -1,0 +1,5 @@
+<link rel="stylesheet" [href]="cssUrl">
+<div class="preloader-back" #preloader>
+    <img *ngIf = "preview" [src]="preview" class="preview" (load)="onPreloaderLoad()" #prevImg>
+    <div class="preloader-data" [innerHTML]="htmlTemplate"></div>
+</div>

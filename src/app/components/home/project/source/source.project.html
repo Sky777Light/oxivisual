@@ -48,32 +48,6 @@
                         <td class="s-tab webgl-item" rowspan="2"
                             [attr.colspan]="sceneConfig.hide && treeView.hide ?3:1">
                             <app-project-webgl-view *ngIf="selectedChild && selectedChild._category == 2" [selected]="selectedChild">-----WEBGL------</app-project-webgl-view>
-
-                            <!--<div class="pop-ups" #projChildCreate>
-                                <div class="child-create" *ngIf="projChildCreate.show">
-                                    <div class="source-creating col-lg-3">
-                                        <span>Name of the new child:</span>
-
-                                        <form class="item-form" #createChildForm="ngForm" novalidate>
-                                            <div class="input-wrap">
-                                                <input type="text" #childName="ngModel" name="childName"
-                                                       placeholder="Child`s Name"
-                                                       [(ngModel)]="tempNewChild.name" required autofocus>
-                                                <label [class.full-op]="childName.invalid && childName.touched">The
-                                                    Child`s Name is required!</label>
-                                            </div>
-
-                                            <div class="new-btns">
-                                                <span class="text-btn"
-                                                      (click)="projChildCreate.show = !projChildCreate.show">cancel</span>
-                                                <span class="right-btn text-btn" (click)="projChildCreate.show = !projChildCreate.show">create</span>
-                                            </div>
-                                        </form>
-
-                                    </div>
-
-                                </div>
-                            </div>-->
                         </td>
                     </tr>
                     <tr>
@@ -88,16 +62,6 @@
                             <div class="tabs-body">
                                 <div class="body-data">
                                     <app-project-edit-view  *ngIf="selectedChild" [modelStructure]="selectedChild" ></app-project-edit-view>
-
-
-                                    <!--<div class="add-btn" *ngIf="!projChildCreate.show"
-                                         (click)="projChildCreate.show = !projChildCreate.show">
-                                        <i class="material-icons">add</i>
-                                        <div class="span-hover">
-                                            <span>Add a new Child</span>
-                                        </div>
-                                    </div>-->
-
                                 </div>
                             </div>
 

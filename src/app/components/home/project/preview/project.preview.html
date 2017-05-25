@@ -1,10 +1,61 @@
 <div *ngIf="dataSrc">
-    <iframe  [src]="dataSrc" frameborder=0 outline=0 #ifrm></iframe>
-    <textarea  style="height: 0px;width: 0px"  [innerText]="urlC" #textAr></textarea>
-    <div class="add-btn" (click)="copyUrl()">
-        <i class="material-icons">save</i>
-        <div class="span-hover">
-            <span>Click to copy link</span>
+    <div class="tabs-view">
+        <div class="tabs-blocks col-lg-12">
+            <table class="my-table col-lg-12">
+                <tbody>
+                <tr>
+                    <td class="tabs-header" [ngClass]="{'no-width':treeView.hide}" #treeView>
+                        <div *ngIf="!treeView.hide" class="tab-header">
+                            <span class="title">Project Share</span>
+                            <span class="text-btn" (click)="treeView.hide=!treeView.hide">hide</span>
+                        </div>
+                        <img *ngIf="treeView.hide" (click)="treeView.hide=!treeView.hide"
+                             src="../assets/img/Fill%202.svg">
+                    </td>
+                    <td class="s-tab webgl-item" rowspan="2"
+                        [attr.colspan]="treeView.hide ?2:1">
+                        <iframe [src]="dataSrc" frameborder=0 allowfullscreen #ifrm></iframe>
+                    </td>
+                </tr>
+                <tr>
+                    <td *ngIf="!treeView.hide" [attr.colspan]="treeView.hide?2:1" class="s-tab">
+                        <div class="tabs-body">
+                            <div class="body-data">
+                                <div class="model-config">
+                                    <form class="item-form" novalidate>
+                                        <div class="bottom-block">
+                                            <div class="row">
+                                                <div class="inp-form col-lg-12">
+                                                    <label>Link</label>
+                                                    <input name="link" type="text" [(attr.value)]="data.link">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="inp-form col-lg-12">
+                                                    <label>HTML</label>
+                                                    <input name="linkH" type="text"
+                                                           [(attr.value)]="data.ifr">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <textarea style="opacity: 0" [innerText]="urlC" #textAr></textarea>
+
+                                <div class="add-btn" (click)="copyUrl()">
+                                    <i class="material-icons">save</i>
+
+                                    <div class="span-hover">
+                                        <span>Click to copy link</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td *ngIf="treeView.hide"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

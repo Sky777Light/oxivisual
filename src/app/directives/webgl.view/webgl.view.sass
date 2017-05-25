@@ -5,8 +5,8 @@
   .back-area
     position: absolute
     z-index: 1000000
-    bottom: 5px
-    left: 38%
+    bottom: 10px
+    right: 10px
     transform: translateX(-50%)
     width: 50px
     height: 50px
@@ -44,6 +44,14 @@
       &:hover
         background: $text-color-gray
 
+  .kompass
+    position: absolute
+    left: 10px
+    bottom: 10px
+    width: 78px
+    height: 78px
+    background-size: contain
+    background-repeat: no-repeat
   .oxi-controls-move
     position: absolute
     left: 50%
@@ -53,11 +61,14 @@
     div
       display: inline-block
       padding: 10px
-      margin: 10px
-      background: $white
+      margin: 10px 30px
       cursor: pointer
+      width: 42px
+      background-size: contain
+      &.right
+        transform:  rotate3d(0,1,0,180deg)
       &:hover
-        background: $border-color
+        opacity: 0.7
   .oxi-controls
     width: 150px
     display: none

@@ -20,7 +20,8 @@ export class AsideComponent {
       private route: ActivatedRoute
   ) {
     route.data.subscribe((data: any) => {
-      this.User = data.user||{};
+      this.User = data.user;
+      if(!this.User || typeof this.User=="boolean")this.User = data.user = {};
       if(!data.user.projects)data.user.projects=[];
       if(!data.user.users)data.user.users=[];
       for(let i = 0; i < data.user.users.length; i++){

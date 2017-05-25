@@ -8,11 +8,12 @@ declare var alertify:any;
 @Component({
     selector: 'app-project-preview',
     templateUrl: './project.preview.html',
-    styles: ['iframe{width:50%;height:100%; position: absolute;    left: 50%;transform: translateX(-50%);}']
+    styleUrls: ['./project.preview.sass']
 })
 export class PreviewProject {
     private dataSrc:SafeResourceUrl;
     private urlC:string;
+      data:any={};
     @ViewChild("textAr")
       textAr:HTMLElement;
     @ViewChild("ifrm")
@@ -24,16 +25,24 @@ export class PreviewProject {
 
     ngOnInit() {
         let project = this.projectService.getProject(),
-            _self = this;
-        this.dataSrc = project.model && project.model.link ? this.sanitizer.bypassSecurityTrustResourceUrl("preview?scene=" + project.model.link) : null;
-        if( this.dataSrc)var chekIfIframeCreated = setInterval(()=>{
-            if(this.ifrm){
-                clearInterval(chekIfIframeCreated);
-                this.ifrm['nativeElement'].onload = function () {
-                    _self.urlC = this.contentWindow.location.href;
+            _self = this,
+            link  = "preview?scene=" + project.model.link;
+        this.dataSrc = project.model && project.model.link ? this.sanitizer.bypassSecurityTrustResourceUrl(link) : null;
+        if( this.dataSrc){
+            var chekIfIframeCreated = setInterval(()=>{
+                if(this.ifrm){
+                    clearInterval(chekIfIframeCreated);
+                    this.ifrm['nativeElement'].onload = function () {
+                        _self.urlC = this.contentWindow.location.href;
+                        _self.data = {
+                            ifr:"<iframe width=\"720\" height=\"405\" src="+(_self.urlC)+" frameborder=0 allowfullscreen ></iframe>",
+                            link:_self.urlC
+                        };
+                    }
                 }
-            }
-        },100);
+            },100);
+
+        }
     }
 
     copyUrl() {

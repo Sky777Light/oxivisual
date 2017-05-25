@@ -1,0 +1,8 @@
+.cos-tooltip {
+    color: #fff;
+    font-size: 22px;
+}
+
+.cos-tooltip>.cos-tooltip-body {
+    background-color: #0000ff;
+}

@@ -39,11 +39,23 @@
             </div>
             <div class="bottom-block">
                 <div class="row">
-                    <div class="inp-form col-lg-12">
+                    <div class="inp-form col-lg-3">
                         <label>Opacity</label>
                         <input name="opacity" type="number"
                                (change)="modelStructure.glApp.updateData('opacity')" step="0.01" min="0" max="1"
                                [(ngModel)]="modelStructure.camera.opacity" >
+                    </div>
+                    <div class="inp-form col-lg-6">
+                        <label>Kompas(&deg;),start from</label>
+                        <input name="angle" type="number"
+                               (change)="modelStructure.glApp.updateData('kompass')" step="1" min="0" max="360"
+                               [(ngModel)]="modelStructure.camera.kompass.angle" >
+                    </div>
+                    <div class="inp-form col-lg-3">
+                        <label>Kompas(*)</label>
+                        <input name="enablr" type="checkbox"
+                               (change)="modelStructure.glApp.updateData('kompass')" step="1" min="0" max="360"
+                               [(ngModel)]="modelStructure.camera.kompass.enabled" >
                     </div>
                 </div>
                 <div class="row">

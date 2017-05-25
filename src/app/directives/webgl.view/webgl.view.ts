@@ -33,16 +33,21 @@ export class WebGLService {
 })
 export class WebglView implements OnInit,OnChanges {
 
+    preview:string;
     @ViewChild("renderParent")
         renderParent:HTMLElement;
+    @ViewChild("preloader")
+        preloader:any;
+    @ViewChild("projCnt")
+        projCnt:HTMLElement;
     @Input() selected:any;
 
     app:OxiAPP;
     location:Location;
     private _id:number = Date.now();
+    private inited:boolean = false;
 
     constructor(location:Location) {
-
         this.location = location;
     }
 
@@ -58,6 +63,13 @@ export class WebglView implements OnInit,OnChanges {
     }
 
     initWebgl() {
+        if (!this.inited) return this.inited = true;
+        if (this.selected.images.length) {
+            this.preview = ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + this.selected.images[0];
+        } else if (this.selected.preview) {
+            this.preview = this.selected.preview;
+        }
+
         this.app = new OxiAPP(this);
     }
 
@@ -68,8 +80,10 @@ export class WebglView implements OnInit,OnChanges {
 
 }
 
+
 class OxiAPP {
     isMobile:boolean = false;
+    imgType:string = '';
     scene:any;
     model:any;
     camera:any;
@@ -85,8 +99,15 @@ class OxiAPP {
     _files:any = {};
     _fileReader:FileReader;
     _container:any;
+    _preloaderStatus:any;
 
     constructor(main:WebglView) {
+
+        Pace.once('done', (e)=> {
+            console.log("loading project finish");
+        });
+
+
         this.main = main;
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
@@ -96,15 +117,21 @@ class OxiAPP {
             SCREEN_HEIGHT = this.screen.height = 405,
             _self = this;
 
+        this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || {style: {}};
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+        this.isMobile = this.deviceCheck();
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
-        this.controls = new THREE.OrbitControls(this.camera, renderer.domElement);
+
+        this.controls = main.selected.canEdit ? new THREE.OrbitControls(this.camera, renderer.domElement) : {
+            update: ()=> {
+            }, target: this.scene.position.clone()
+        };
         this.controls.enabled = !!this.main.selected.canEdit;
         if (this.controls.enabled)this.controls.addEventListener('change', ()=> {
-            main.selected.hasRecalcChanges = main.selected.hasChanges =true;
+            main.selected.hasRecalcChanges = main.selected.hasChanges = true;
             if (main.selected.camera.frameState[main.selected.currentItem])main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
             this.camera.updateProjectionMatrix();
             this.dataSave();
@@ -157,7 +184,7 @@ class OxiAPP {
             this._animation.play();
 
         };
-        if(this.main.selected.canEdit)this.scene.add(new THREE.AxisHelper(500));
+        if (this.main.selected.canEdit)this.scene.add(new THREE.AxisHelper(500));
 
         //let light = new THREE.DirectionalLight(0xffffff);
         //light.position.set(1, 1, 1);
@@ -186,31 +213,86 @@ class OxiAPP {
             position.x = ( position.x * widthHalf ) + widthHalf + offset.left;
             position.y = -( position.y * heightHalf ) + heightHalf + offset.top;
             mesh.onscreenParams = position;
-        }
-        this.loadModel(()=> {
-
-            let foo = this._parent();
-            while (foo.firstChild) foo.removeChild(foo.firstChild);
-
-
-            let parentCanvas = this._container = document.createElement('div');
-            parentCanvas.className = [ENTITY.ProjClasses.CENTER_CONTAINER, 'THREEJS'].join(" ");
-            this._parent().appendChild(parentCanvas);
-            parentCanvas.appendChild(renderer.domElement);
-
-
-            this._projControls = new OxiControls(this);
-            this._slider = new OxiSlider(this);
-            this._events = new OxiEvents(this);
-            this._animation = new OxiAnimation(this);
+        };
+        main.preloader.callbacks.push(()=>{
+            this.loadModel(()=> {
+                this.checkLoadedImg(()=> {
+                    //let foo = this._parent();
+                    //while (foo.firstChild) foo.removeChild(foo.firstChild);
+                    let parentCanvas;
+                    //if (!main.projCnt) {
+                    parentCanvas = this._container = main.projCnt['nativeElement'];
+                    //} else {
+                    //    parentCanvas = this._container = document.createElement('div');
+                    //    parentCanvas.className = [ENTITY.ProjClasses.CENTER_CONTAINER, 'THREEJS'].join(" ");
+                    //    this._parent().appendChild(parentCanvas);
+                    //}
+                    if(main.preloader.prevImg){
+                        main.preloader.prevImg.nativeElement.className +=' active';
+                    }
+                    parentCanvas.appendChild(renderer.domElement);
+                    this._projControls = new OxiControls(this);
+                    this._slider = new OxiSlider(this);
+                    this._events = new OxiEvents(this);
+                    this._animation = new OxiAnimation(this);
+                    setTimeout(()=>{
+                        let _preloader = document.querySelector('app-project-preloader');
+                        if(_preloader)_preloader.parentNode.removeChild(_preloader);
+                    },1000);
+                });
+            });
         });
+
+    }
+
+    private checkLoadedImg(callback) {
+        let _self = this,
+            allows = ['1', '2'],
+            checkLow = ()=> {
+                if (this.isMobile) {
+                    this.imgType = ENTITY.Config.FILE.DIR.PREVIEW.LOW;
+                }
+                callback()
+            };
+
+        if (this.main.selected.images.length) {
+            let isAllowed:any = window.localStorage.getItem(ENTITY.Config.FILE.DIR.PREVIEW.WEBP);
+            if (isAllowed) {
+                if (isAllowed == allows[0]) {
+                    _self.imgType = ENTITY.Config.FILE.DIR.PREVIEW.WEBP;
+                    callback();
+                } else {
+                    checkLow();
+                }
+            } else {
+                let img = new Image();
+                img.onload = function () {
+                    let isAllow = !!(img.height > 0 && img.width > 0);
+                    window.localStorage.setItem(ENTITY.Config.FILE.DIR.PREVIEW.WEBP, isAllow ? allows[0] : allows[1]);
+                    if (isAllow) {
+                        _self.imgType = ENTITY.Config.FILE.DIR.PREVIEW.WEBP;
+                        callback();
+                    } else {
+                        checkLow();
+                    }
+
+                };
+                img.onerror = function () {
+                    window.localStorage.setItem(ENTITY.Config.FILE.DIR.PREVIEW.WEBP, allows[1]);
+                    checkLow();
+                };
+                img.src = './assets/img/img_large_0_4.webp';
+            }
+        } else {
+            checkLow();
+        }
     }
 
     updateData(data) {
         let _selected = this.main.selected,
             settings = _selected.camera;
-        _selected.hasChanges =  _selected.hasRecalcChanges =true;
-        if(_selected.camera.frameState[_selected.currentItem])_selected.camera.frameState[_selected.currentItem].hasChanges = true;
+        _selected.hasChanges = _selected.hasRecalcChanges = true;
+        if (_selected.camera.frameState[_selected.currentItem])_selected.camera.frameState[_selected.currentItem].hasChanges = true;
         switch (data) {
             case'scale':
             {
@@ -228,6 +310,11 @@ class OxiAPP {
                 break;
             }
             case'update':
+            {
+                break;
+            }
+            case'kompass':
+                this._projControls.kompas.onUpdate();
             {
                 break;
             }
@@ -282,6 +369,14 @@ class OxiAPP {
         this._animation.play();
     }
 
+    private  deviceCheck() {
+        var check = false;
+        (function (a) {
+            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+        })(navigator.userAgent || navigator.vendor || window['opera']);
+        return check;
+    }
+
     recalc() {
         let
             _selected = this.main.selected,
@@ -314,7 +409,7 @@ class OxiAPP {
 
     dataSave() {
         let old = this.main.selected.camera;
-        if(!(old instanceof ENTITY.OxiCamera)){
+        if (!(old instanceof ENTITY.OxiCamera)) {
             this.main.selected.camera = new ENTITY.OxiCamera({
                 position: this.camera.position,
                 rotation: this.camera.rotation,
@@ -328,13 +423,13 @@ class OxiAPP {
                 opacity: old.opacity,
                 size: old.size,
             });
-        }else{
-            old.position =  this.camera.position.clone();
-            old.rotation =  this.camera.rotation.clone();
-            old.target =  this.controls.target.clone();
-            old.fov =  this.camera.fov;
-            old.zoom =  this.camera.zoom;
-            old.scale =  this.model.scale.x;
+        } else {
+            old.position = this.camera.position.clone();
+            old.rotation = this.camera.rotation.clone();
+            old.target = this.controls.target.clone();
+            old.fov = this.camera.fov;
+            old.zoom = this.camera.zoom;
+            old.scale = this.model.scale.x;
         }
 
     }
@@ -343,6 +438,7 @@ class OxiAPP {
         console.log("load was finished succesed");
     }) {
 
+        let _self = this;
         if (this.main.selected.cash.model) {
             this._onLoadModel(this.main.selected.cash.model);
             callback();
@@ -355,7 +451,7 @@ class OxiAPP {
 
             let onProgress = function (xhr) {
                 if (xhr.lengthComputable) {
-                    //let percentComplete = xhr.loaded / xhr.total * 100;
+                    _self.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total );
                     //console.log((percentComplete).toFixed(2) + '% downloaded');
                 }
             };
@@ -548,6 +644,8 @@ class OxiEvents {
         handler(this.EVENTS_NAME.MOUSE_UP, (e)=>this.onMouseUp(e));
         handler(this.EVENTS_NAME.MOUSE_MOVE, (e)=>this.onMouseMove(e));
 
+        if (!this.canEdit)handler(this.EVENTS_NAME.MOUSE_OUT, (e)=>this.onMouseOut(e));
+
         window.addEventListener('resize', ()=>this.onWindowResize());
         this.onWindowResize();
     }
@@ -556,7 +654,7 @@ class OxiEvents {
         let app = this.main,
             _w = app._slider._W(),
             _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight,
-            _h = _nat?_w / _nat:app._slider._H();
+            _h = _nat ? _w / _nat : app._slider._H();
 
         app.camera.aspect = _w / _h;
         app.camera.updateProjectionMatrix();
@@ -570,7 +668,7 @@ class OxiEvents {
 
         let _self = this,
             btn:number = ev.button;
-        this.mouse.down = this.lastEv = null;
+        this.mouse.down = this.lastEv = false;
         this.main._projControls.show(ev, false);
 
         switch (btn) {
@@ -593,11 +691,9 @@ class OxiEvents {
 
         }
         ev.preventDefault();
+
     }
 
-    onMouseOut(ev:any) {
-        this.main._projControls.show(ev, false);
-    }
 
     private onMouseMove(ev:any) {
         let _self = this;
@@ -644,6 +740,10 @@ class OxiEvents {
 
     private onMouseDown(ev:Event) {
         this.mouse.down = ev;
+    }
+
+    private onMouseOut(ev:any) {
+        if (this.mouse.down)this.onMouseUp(ev);
     }
 
     onCntxMenu(event) {
@@ -812,7 +912,19 @@ class OxiSlider {
         for (let i in app.main.selected.images) {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
-            img.src = typeof curImg == 'string' ? ENTITY.Config.PROJ_LOC + _selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + curImg : curImg.data;
+            if (typeof curImg == 'string') {
+                img.src = ENTITY.Config.PROJ_LOC + _selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + app.imgType;
+                if (app.imgType == ENTITY.Config.FILE.DIR.PREVIEW.WEBP) {
+                    let imgD = curImg.split(".");
+                    imgD.pop();
+                    img.src += imgD.join(".") + '.webp';
+                } else {
+                    img.src += curImg;
+                }
+            } else {
+                img.src = curImg.data;
+            }
+
             if (parseInt(i) == _selected.currentItem) {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
@@ -841,16 +953,16 @@ class OxiSlider {
                 }
                 item.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, ()=> {
                     let saveD = ()=> {
-                        let _c = app.camera.position,
-                            _t = app.controls.target;
+                            let _c = app.camera.position,
+                                _t = app.controls.target;
                             _selected.camera.frameState[_selected.currentItem] = {
-                            x: _c.x,
-                            y: _c.y,
-                            z: _c.z,
-                            target: {x: _t.x, y: _t.y, z: _t.z}
-                        };
-                    },
-                        anyway =()=>{
+                                x: _c.x,
+                                y: _c.y,
+                                z: _c.z,
+                                target: {x: _t.x, y: _t.y, z: _t.z}
+                            };
+                        },
+                        anyway = ()=> {
                             this.updateView(i);
                             this.app.dataSave();
                         };
@@ -872,7 +984,7 @@ class OxiSlider {
                                 anyway();
                             }
                         });
-                    }else{
+                    } else {
                         anyway();
                     }
 
@@ -998,9 +1110,12 @@ class OxiControls {
     private app:OxiAPP;
     private controls:HTMLElement;
     private _tooltips:HTMLElement;
+    kompas:any;
 
     constructor(app:OxiAPP) {
-        let div = this.controls = document.createElement('div');
+        let
+            _self = this,
+            div = this.controls = document.createElement('div');
         this.app = app;
 
         div.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
@@ -1138,7 +1253,7 @@ class OxiControls {
                     domEl.className = el.className;
                     domEl.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
                         el.click(()=>this.show(e, false));
-                        app.main.selected.hasChanges =  true;
+                        app.main.selected.hasChanges = true;
                     });
                     div.appendChild(domEl);
                     let icon = document.createElement('img');
@@ -1149,17 +1264,20 @@ class OxiControls {
                     domEl.appendChild(icon);
                 });
         } else {
-            div.className = ENTITY.ProjClasses.PROJ_CONTROLS_MOVE;
-            app._container.appendChild(div);
-            [{_c: 'left', _i: -1}, {_c: 'right', _i: 1}].forEach((child)=> {
-                let childDiv = document.createElement('div');
-                childDiv.className = child._c;
-                childDiv.innerHTML = child._c.toUpperCase();
-                div.appendChild(childDiv);
-                childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
-                    this.app._slider.move(child._i);
+            if (this.app.main.selected.images.length > 1) {
+                div.className = ENTITY.ProjClasses.PROJ_CONTROLS_MOVE;
+                app._container.appendChild(div);
+                [{_c: 'left', _i: -1}, {_c: 'right', _i: 1}].forEach((child)=> {
+                    let childDiv = document.createElement('div');
+                    childDiv.className = child._c;
+                    childDiv.style.backgroundImage = 'url("assets/img/left_arrow.png")';
+                    //childDiv.innerHTML = child._c.toUpperCase();
+                    div.appendChild(childDiv);
+                    childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
+                        this.app._slider.move(child._i);
+                    });
                 });
-            });
+            }
             let tooltipParent = this._tooltips = document.createElement('div');
             tooltipParent.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER;
             app._parent().appendChild(tooltipParent);
@@ -1171,6 +1289,7 @@ class OxiControls {
                     tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
                 }
             });
+
             let path = this.app.main.location.path(),
                 areas = path.split(ENTITY.Config.PROJ_DMNS[0]);
             if (areas.length > 1) {
@@ -1188,11 +1307,23 @@ class OxiControls {
             }
         }
 
+        let kompass:any = this.kompas = document.createElement('div');
+        kompass.className = 'kompass';
+        kompass.style.backgroundImage = 'url("assets/img/kompas.png")';
+        app._container.appendChild(kompass);
+        kompass.onUpdate = ()=> {
+            kompass.style.display = !_self.app.main.selected.camera.kompass.enabled ? 'none' : '';
+            kompass.style.transform = 'rotate(' + (_self.app.main.selected.currentItem * ENTITY.Config.ANGLE_STEP + app.main.selected.camera.kompass.angle) + 'deg)';
+        };
+        kompass.onUpdate();
+
+
     }
 
     show(pos, flag:boolean = true, fl:boolean = true) {
 
         let canEdit = this.app.main.selected.canEdit;
+        if (this.kompas)this.kompas.onUpdate();
         if (this.app._events.lastInter) {
             if (this.app._events.lastInter.object._toolTip)this.app._events.lastInter.object._toolTip.show(flag);
             if (!this.app._events.lastInter.object.material.defColor)this.app._events.lastInter.object.material.defColor = this.app._events.lastInter.object.material.color.clone();
@@ -1224,6 +1355,7 @@ class OxiControls {
         }
         this.app._animation.play();
     }
+
 }
 class OxiToolTip {
     tooltip:any;
