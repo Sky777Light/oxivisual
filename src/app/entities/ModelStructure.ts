@@ -164,6 +164,7 @@ export class ModelStructure extends GeneralStructure implements IModelStructure 
     cash:PCash;
     preview:string;
     templates:Array<string>;
+    parent:any;
 
     constructor(entity:any = {}) {
         super(entity);

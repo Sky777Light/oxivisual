@@ -437,6 +437,7 @@ router.post("/project/template/update", function (request, responce) {
             saveProjectFiles({
                 modelDir: modelDir, callback: function (key) {
                     if (!structure.templates)structure.templates = [];
+                    if (structure.templates.length>2)return;
                     var item = 0;
                     if (config.FILE_UPLOAD_ATTR[5] == key) {
                         item = 1;

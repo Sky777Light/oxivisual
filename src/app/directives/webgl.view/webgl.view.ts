@@ -102,12 +102,6 @@ class OxiAPP {
     _preloaderStatus:any;
 
     constructor(main:WebglView) {
-
-        Pace.once('done', (e)=> {
-            console.log("loading project finish");
-        });
-
-
         this.main = main;
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
@@ -235,16 +229,20 @@ class OxiAPP {
                     this._slider = new OxiSlider(this);
                     this._events = new OxiEvents(this);
                     this._animation = new OxiAnimation(this);
-                    setTimeout(()=>{
+                    Pace.once('done', (e)=> {
                         let _preloader = document.querySelector('app-project-preloader');
                         if(_preloader)_preloader.parentNode.removeChild(_preloader);
-                    },1000);
+                        console.log("loaded done");
+                    });
                 });
             });
         });
 
     }
 
+    private loadTemplates(){
+
+    }
     private checkLoadedImg(callback) {
         let _self = this,
             allows = ['1', '2'],
@@ -604,7 +602,6 @@ class OxiAPP {
         };
         parseFiles(files[startFrom++]);
     }
-
 
     _offset() {
         return this.gl.domElement.getBoundingClientRect()
@@ -1265,13 +1262,13 @@ class OxiControls {
                 });
         } else {
             if (this.app.main.selected.images.length > 1) {
+
                 div.className = ENTITY.ProjClasses.PROJ_CONTROLS_MOVE;
                 app._container.appendChild(div);
                 [{_c: 'left', _i: -1}, {_c: 'right', _i: 1}].forEach((child)=> {
                     let childDiv = document.createElement('div');
                     childDiv.className = child._c;
                     childDiv.style.backgroundImage = 'url("assets/img/left_arrow.png")';
-                    //childDiv.innerHTML = child._c.toUpperCase();
                     div.appendChild(childDiv);
                     childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
                         this.app._slider.move(child._i);

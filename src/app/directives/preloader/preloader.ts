@@ -20,16 +20,21 @@ export class Preloader implements OnInit {
         prevImg:HTMLElement;
     @ViewChild("preloader")
         preloader:HTMLElement;
+    @ViewChild("tempLoad")
+        tempLoad:any;
 
+    @Input() htmlTemplate:any;
     @Input() preview:any;
     @Input() modelData:any;
     @Input() htmlUrl:any;
     @Input() cssUrl:any;
     private progressB:any;
-    htmlTemplate:any;
+    private DIR:any;
     callbacks:Array<Function> = [];
 
-    constructor(private authService:AuthService, private sanitizer:DomSanitizer) {
+    constructor() {
+        this.DIR = ENTITY.Config.FILE.DIR;
+
     }
 
     onPreloaderLoad() {
@@ -37,29 +42,17 @@ export class Preloader implements OnInit {
     }
 
     ngOnInit() {
-        let model = this.modelData,
-            _DIR = ENTITY.Config.FILE.DIR;
+        if(this.htmlTemplate){
 
-            let _template = _DIR.PROJECT_TEMPLATE.NAME + _DIR.PROJECT_TEMPLATE.TYPES[_DIR.PROJECT_TEMPLATE._TYPE.PRELOADER],
-                htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML,
-                cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
-
-            if (model.templates.indexOf(_DIR.PROJECT_TEMPLATE._TYPE.PRELOADER) > -1) {
-                _template = ENTITY.Config.PROJ_LOC + model.projFilesDirname + _DIR.DELIMETER + _template.replace('assets/','');
-                let newT = '?time='+Date.now();
-                htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML+newT;
-                cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS+newT;
-            }
-
-        this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(cssUrl);
-
-        this.authService.get(htmlUrl).subscribe((res:any)=> {
-            this.htmlTemplate = res._body;
-            for (let i = 0; i < this.callbacks.length; i++) {
-                this.callbacks[i]();
-            }
-        });
-
+        }else{
+            this.tempLoad.callbacks.push(()=>{
+                this.cssUrl =  this.tempLoad.cssUrl;
+                this.htmlTemplate = this.tempLoad.htmlTemplate;
+                for (let i = 0; i < this.callbacks.length; i++) {
+                    this.callbacks[i]();
+                }
+            });
+        }
     }
 
     onUpdatePreloaderStatus(value) {

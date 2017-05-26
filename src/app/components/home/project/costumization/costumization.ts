@@ -18,6 +18,8 @@ export class Costumization implements OnInit,AfterViewInit {
     private tabList:any;
     private project:any;
     private cssUrl:any;
+    private curItem:any;
+    private cssElement:any;
     @ViewChild("cssCode")
         cssCode:HTMLElement;
     @ViewChild("htmlCode")
@@ -27,12 +29,43 @@ export class Costumization implements OnInit,AfterViewInit {
         //let editor = CodeMirror.fromTextArea(myTextarea, {
         //    lineNumbers: true
         //});
+        let
+            cssId = 'cssInject',
+            cssEl = document.getElementById(cssId);
+        if (!cssEl) {
+            cssEl = document.createElement('style');
+            cssEl.id = cssId;
+            cssEl.setAttribute('type', 'text/css');
+            document.head.appendChild(cssEl);
+        }
+        this.cssElement = cssEl;
         this.menuList = [
-            {title: 'Corporate style', active: true},
-            {title: 'Tooltip'},
-            {title: 'Pre-loader'}
+            {title: 'Corporate style', active: true },
+            {title: 'Tooltip' },
+            {title: 'Pre-loader' }
         ];
         this.tabList = [
+            [
+                {
+                    title: 'Css Code',
+                    active: true,
+                    config: {
+                        autoFocus: true,
+                        addModeClass: true,
+                        language: 'css',
+                        rtl: true,
+                        lineNumbers: true,
+                        theme: 'ambiance',
+                        mode: {name: 'javascript', json: true},
+                        value: ''
+                    }
+                },
+                {
+                    title: 'HTML Code',
+                    active: true,
+                    config: {lineNumbers: true, theme: 'ambiance', mode: 'text/html', value: ''}
+                }
+            ],
             [
                 {
                     title: 'Css Code',
@@ -108,7 +141,7 @@ export class Costumization implements OnInit,AfterViewInit {
                 htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML,
                 cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
             if (model.data[0].templates.indexOf(u) > -1) {
-                _template = ENTITY.Config.PROJ_LOC + model.link + _DIR.DELIMETER + _template.replace('assets/','');
+                _template = ENTITY.Config.PROJ_LOC + model.link + _DIR.DELIMETER + _template.replace('assets/', '');
                 htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML;
                 cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
             }
@@ -128,6 +161,10 @@ export class Costumization implements OnInit,AfterViewInit {
         }
     }
 
+    private codeChange() {
+       if(this.curItem) this.cssElement.innerText = this.curItem[0].config.value;
+    }
+
     private saveChanges() {
 
         let self = this,
@@ -140,7 +177,7 @@ export class Costumization implements OnInit,AfterViewInit {
         _form.append('dir', ENTITY.Config.FILE.DIR.DELIMETER);
         _form.append('_id', self.project._id);
 
-        for (let u = 0, types = [_FILE.STORAGE.PRELOADER, _FILE.STORAGE.TOOLTIP]; u < types.length; u++) {
+        for (let u = 0, types = [_FILE.STORAGE.CONTROLS, _FILE.STORAGE.TOOLTIP,_FILE.STORAGE.PRELOADER]; u < types.length; u++) {
             for (let i = 0, arr = this.tabList[u]; i < arr.length; i++) {
                 _form.append(types[u], new File([new Blob([this.tabList[u][i].config.value], {type: 'text/*'})], i == 0 ? _DIR.PROJECT_TEMPLATE.CSS : _DIR.PROJECT_TEMPLATE.HTML));
             }
@@ -156,18 +193,14 @@ export class Costumization implements OnInit,AfterViewInit {
         });
     }
 
-    private selectCurItem(item, list) {
+    private selectCurItem(item, list,index) {
         for (let i = 0; i < list.length; i++) {
             list[i].active = false;
         }
         item.active = !item.active;
-    }
-
-    private onFocus() {
-        console.log('onFocus');
-    }
-
-    private onBlur() {
-        console.log('onBlur');
+        if (!isNaN(index)) {
+            this.curItem =  this.tabList[index];
+            this.cssElement.innerText = this.curItem[0].config.value;
+        }
     }
 }

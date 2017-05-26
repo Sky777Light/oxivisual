@@ -33,6 +33,7 @@ export class Config {
             PREVIEW_IMG: 'frames[]',
             ALIGN_IMG: 'alignFrames[]',
             PRELOADER: 'preloader[]',
+            CONTROLS: 'controls[]',
             TOOLTIP:'tooltip[]'
         },
         DIR: {
@@ -43,10 +44,11 @@ export class Config {
                 NAME: 'assets/templates/',
                 CSS: 'style.css',
                 HTML: 'index.html',
-                TYPES: ['preloader/', 'tooltip/'],
+                TYPES: ['controls/', 'tooltip/','preloader/'],
                 _TYPE:{
-                    PRELOADER:0,
+                    PRELOADER:2,
                     TOOLTIP:1,
+                    CONTROLS:0,
                 }
 
             },

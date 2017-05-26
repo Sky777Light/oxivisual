@@ -178,6 +178,7 @@ export class SourceProject {
         }
         this.selectedChild = child;
         child.sourcesApp = this;
+        child.parent = this.project.model.data[0];
         child.canEdit = true;
         child._selected = !child._selected;
     }

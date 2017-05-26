@@ -36,7 +36,7 @@ import {BasicProject} from "./components/home/project/basic/basic.project";
 import {Costumization} from "./components/home/project/costumization/costumization";
 import {PreviewProject} from "./components/home/project/preview/preview";
 import {ProjectService} from "./services/project.service";
-import {WebglView,WebGLService,UploadFile,MNode,MTree,SlimScroll,Preloader} from "./directives/directives";
+import {WebglView,WebGLService,UploadFile,MNode,MTree,SlimScroll,Preloader,TemplatesLoader} from "./directives/directives";
 import {EditView} from "./components/home/project/source/edit.view/edit.view";
 import {PreviewSceneComponent,PreviewSceneService} from "./components/preview/preview.project";
 
@@ -63,6 +63,7 @@ declare var webpack:any;
     PreviewProject,
     Costumization,
     Preloader,
+    TemplatesLoader,
     //AbstractTemplateProject,
 
     NewProjectComponent,
