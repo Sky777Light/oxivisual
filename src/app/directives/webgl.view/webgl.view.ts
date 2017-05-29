@@ -119,7 +119,7 @@ class OxiAPP {
             SCREEN_HEIGHT = this.screen.height = 405,
             _self = this;
 
-        main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth*(SCREEN_WIDTH/SCREEN_HEIGHT)+'px';
+        main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth*(SCREEN_HEIGHT/SCREEN_WIDTH)+'px';
         this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || {style: {}};
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
