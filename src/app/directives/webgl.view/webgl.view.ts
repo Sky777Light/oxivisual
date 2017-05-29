@@ -234,19 +234,10 @@ class OxiAPP {
                         onFinish = ()=> {
                             let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
                             if (_preloader)_preloader.parentNode.removeChild(_preloader);
-                        },
-                        _inter = setTimeout(()=> {
-                            Pace.stop();
-                            onFinish();
-                        }, 2000);
-
-                    Pace.once('done', (e)=> {
-                        clearTimeout(_inter);
-                        onFinish();
-                    });
+                        };
                     if (main.preloader.prevImg) {
                         main.preloader.prevImg.nativeElement.className += ' active';
-                    }else{
+                    } else {
                         main.preloader.preloader.nativeElement.className += ' active';
                     }
                     parentCanvas.appendChild(this.gl.domElement);
@@ -254,6 +245,16 @@ class OxiAPP {
                     this._slider = new OxiSlider(this);
                     this._events = new OxiEvents(this);
                     this._animation = new OxiAnimation(this);
+
+                    let _inter = setTimeout(()=> {
+                        Pace.stop();
+                        onFinish();
+                    }, 2000);
+
+                    Pace.once('done', (e)=> {
+                        clearTimeout(_inter);
+                        onFinish();
+                    });
                 });
             });
         }
@@ -660,8 +661,12 @@ class OxiEvents {
         handler(this.EVENTS_NAME.MOUSE_DOWN, (e)=>this.onMouseDown(e));
         handler(this.EVENTS_NAME.MOUSE_UP, (e)=>this.onMouseUp(e));
         handler(this.EVENTS_NAME.MOUSE_MOVE, (e)=>this.onMouseMove(e));
-        handler('ondblclick', (e)=>{return false;});
-        handler('onselectstart', (e)=>{return false;});
+        handler('ondblclick', (e)=> {
+            return false;
+        });
+        handler('onselectstart', (e)=> {
+            return false;
+        });
 
         if (!this.canEdit)handler(this.EVENTS_NAME.MOUSE_OUT, (e)=>this.onMouseOut(e));
 
