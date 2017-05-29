@@ -118,6 +118,7 @@ class OxiAPP {
             SCREEN_HEIGHT = this.screen.height = 405,
             _self = this;
 
+
         this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || {style: {}};
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -658,6 +659,8 @@ class OxiEvents {
         handler(this.EVENTS_NAME.MOUSE_DOWN, (e)=>this.onMouseDown(e));
         handler(this.EVENTS_NAME.MOUSE_UP, (e)=>this.onMouseUp(e));
         handler(this.EVENTS_NAME.MOUSE_MOVE, (e)=>this.onMouseMove(e));
+        handler('ondblclick', (e)=>{return false;});
+        handler('onselectstart', (e)=>{return false;});
 
         if (!this.canEdit)handler(this.EVENTS_NAME.MOUSE_OUT, (e)=>this.onMouseOut(e));
 
