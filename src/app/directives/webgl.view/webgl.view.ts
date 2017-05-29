@@ -231,9 +231,20 @@ class OxiAPP {
             this.loadModel(()=> {
                 this.checkLoadedImg(()=> {
                     let parentCanvas = this._container = main.projCnt['nativeElement'],
+
                         onFinish = ()=> {
-                            let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
-                            if (_preloader)_preloader.parentNode.removeChild(_preloader);
+                            let  onEnd = ()=>{
+                                let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
+                                if (_preloader)_preloader.parentNode.removeChild(_preloader);
+                            };
+                            if(this._slider.isLoaded){
+                                onEnd();
+                            }else{
+                                this._slider.onFinish = ()=>{
+                                    onEnd();
+                                }
+                            }
+
                         };
                     if (main.preloader.prevImg) {
                         main.preloader.prevImg.nativeElement.className += ' active';
@@ -661,11 +672,11 @@ class OxiEvents {
         handler(this.EVENTS_NAME.MOUSE_DOWN, (e)=>this.onMouseDown(e));
         handler(this.EVENTS_NAME.MOUSE_UP, (e)=>this.onMouseUp(e));
         handler(this.EVENTS_NAME.MOUSE_MOVE, (e)=>this.onMouseMove(e));
-        handler('ondblclick', (e)=> {
-            return false;
+        handler('dblclick', (event)=> {
+            event.preventDefault();return false;
         });
-        handler('onselectstart', (e)=> {
-            return false;
+        handler('selectstart', (event)=> {
+            event.preventDefault();return false;
         });
 
         if (!this.canEdit)handler(this.EVENTS_NAME.MOUSE_OUT, (e)=>this.onMouseOut(e));
@@ -905,6 +916,8 @@ class OxiSlider {
     app:OxiAPP;
     private canEdit:boolean = false;
     isDebug:boolean = false;
+    isLoaded:boolean = true;
+    onFinish:any ;
 
     constructor(app:OxiAPP) {
 
@@ -952,6 +965,7 @@ class OxiSlider {
             if (parseInt(i) == _selected.currentItem) {
                 img.className = ENTITY.ProjClasses.ACTIVE;
                 this.currentFrame = img;
+                _self.isLoaded = false;
                 img.onload = function () {
 
                     if (!_resol.x) {
@@ -960,6 +974,8 @@ class OxiSlider {
                     }
                     _self.app._events.onWindowResize();
                     //_self.onResize();
+                    _self.isLoaded = true;
+                    if(_self.onFinish)_self.onFinish();
                 }
             }
             //if (_resol && _resol.x) {

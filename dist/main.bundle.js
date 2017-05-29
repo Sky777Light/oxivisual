@@ -4193,17 +4193,20 @@ var OxiAPP = (function () {
             this.loadModel(function () {
                 _this.checkLoadedImg(function () {
                     var parentCanvas = _this._container = main.projCnt['nativeElement'], onFinish = function () {
-                        var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
-                        if (_preloader)
-                            _preloader.parentNode.removeChild(_preloader);
-                    }, _inter = setTimeout(function () {
-                        Pace.stop();
-                        onFinish();
-                    }, 2000);
-                    Pace.once('done', function (e) {
-                        clearTimeout(_inter);
-                        onFinish();
-                    });
+                        var onEnd = function () {
+                            var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
+                            if (_preloader)
+                                _preloader.parentNode.removeChild(_preloader);
+                        };
+                        if (_this._slider.isLoaded) {
+                            onEnd();
+                        }
+                        else {
+                            _this._slider.onFinish = function () {
+                                onEnd();
+                            };
+                        }
+                    };
                     if (main.preloader.prevImg) {
                         main.preloader.prevImg.nativeElement.className += ' active';
                     }
@@ -4215,6 +4218,14 @@ var OxiAPP = (function () {
                     _this._slider = new OxiSlider(_this);
                     _this._events = new OxiEvents(_this);
                     _this._animation = new OxiAnimation(_this);
+                    var _inter = setTimeout(function () {
+                        Pace.stop();
+                        onFinish();
+                    }, 2000);
+                    Pace.once('done', function (e) {
+                        clearTimeout(_inter);
+                        onFinish();
+                    });
                 });
             });
         }
@@ -4577,8 +4588,14 @@ var OxiEvents = (function () {
         handler(this.EVENTS_NAME.MOUSE_DOWN, function (e) { return _this.onMouseDown(e); });
         handler(this.EVENTS_NAME.MOUSE_UP, function (e) { return _this.onMouseUp(e); });
         handler(this.EVENTS_NAME.MOUSE_MOVE, function (e) { return _this.onMouseMove(e); });
-        handler('ondblclick', function (e) { return false; });
-        handler('onselectstart', function (e) { return false; });
+        handler('dblclick', function (event) {
+            event.preventDefault();
+            return false;
+        });
+        handler('selectstart', function (event) {
+            event.preventDefault();
+            return false;
+        });
         if (!this.canEdit)
             handler(this.EVENTS_NAME.MOUSE_OUT, function (e) { return _this.onMouseOut(e); });
         window.addEventListener('resize', function () { return _this.onWindowResize(); });
@@ -4775,6 +4792,7 @@ var OxiSlider = (function () {
         this.currentPagination = {};
         this.canEdit = false;
         this.isDebug = false;
+        this.isLoaded = true;
         this.canEdit = app.main.selected.canEdit;
         this.app = app;
         this.addFrames();
@@ -4809,6 +4827,7 @@ var OxiSlider = (function () {
             if (parseInt(i) == _selected.currentItem) {
                 img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE;
                 this_1.currentFrame = img;
+                _self.isLoaded = false;
                 img.onload = function () {
                     if (!_resol.x) {
                         _resol.x = _self._W();
@@ -4816,6 +4835,9 @@ var OxiSlider = (function () {
                     }
                     _self.app._events.onWindowResize();
                     //_self.onResize();
+                    _self.isLoaded = true;
+                    if (_self.onFinish)
+                        _self.onFinish();
                 };
             }
             //if (_resol && _resol.x) {
