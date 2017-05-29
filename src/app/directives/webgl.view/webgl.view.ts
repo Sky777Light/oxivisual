@@ -234,7 +234,6 @@ class OxiAPP {
                         onFinish = ()=> {
                             let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
                             if (_preloader)_preloader.parentNode.removeChild(_preloader);
-                            console.log("loaded done");
                         },
                         _inter = setTimeout(()=> {
                             Pace.stop();
@@ -247,6 +246,8 @@ class OxiAPP {
                     });
                     if (main.preloader.prevImg) {
                         main.preloader.prevImg.nativeElement.className += ' active';
+                    }else{
+                        main.preloader.preloader.nativeElement.className += ' active';
                     }
                     parentCanvas.appendChild(this.gl.domElement);
                     this._projControls = new OxiControls(this);

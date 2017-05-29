@@ -24,6 +24,7 @@ export class Preloader extends AbstractChangesView {
 
     @Input() preview:any;
     private progressB:any;
+    private isActive:boolean=false;
 
     constructor() {
         super();

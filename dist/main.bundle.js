@@ -2952,6 +2952,7 @@ var Preloader = (function (_super) {
     __extends(Preloader, _super);
     function Preloader() {
         _super.call(this);
+        this.isActive = false;
     }
     Preloader.prototype.onPreloaderLoad = function () {
         this.preloader['nativeElement'].className += ' active';
@@ -4195,7 +4196,6 @@ var OxiAPP = (function () {
                         var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
                         if (_preloader)
                             _preloader.parentNode.removeChild(_preloader);
-                        console.log("loaded done");
                     }, _inter = setTimeout(function () {
                         Pace.stop();
                         onFinish();
@@ -4206,6 +4206,9 @@ var OxiAPP = (function () {
                     });
                     if (main.preloader.prevImg) {
                         main.preloader.prevImg.nativeElement.className += ' active';
+                    }
+                    else {
+                        main.preloader.preloader.nativeElement.className += ' active';
                     }
                     parentCanvas.appendChild(_this.gl.domElement);
                     _this._projControls = new OxiControls(_this);
@@ -6079,7 +6082,7 @@ exports = module.exports = __webpack_require__(6)();
 
 
 // module
-exports.push([module.i, ".preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: #000; }\n  .preloader-back.active {\n    background: rgba(0, 0, 0, 0.5);\n    -webkit-transition: background 1s linear;\n    transition: background 1s linear; }\n  .preloader-back .preview {\n    -webkit-filter: blur(15px);\n            filter: blur(15px);\n    -webkit-transition: -webkit-filter 5s linear;\n    transition: -webkit-filter 5s linear;\n    transition: filter 5s linear;\n    transition: filter 5s linear, -webkit-filter 5s linear;\n    height: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  -webkit-transition: background-color 10s linear;\n  transition: background-color 10s linear; }\n  .preloader-back.active {\n    background-color: rgba(0, 0, 0, 0.5); }\n  .preloader-back .preview {\n    -webkit-filter: blur(20px);\n            filter: blur(20px);\n    -webkit-transition: -webkit-filter 1s linear;\n    transition: -webkit-filter 1s linear;\n    transition: filter 1s linear;\n    transition: filter 1s linear, -webkit-filter 1s linear;\n    height: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n", ""]);
 
 // exports
 
