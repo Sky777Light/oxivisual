@@ -1,4 +1,5 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component,ViewChild  } from '@angular/core';
+import {  Router} from '@angular/router';
 import {ShareService} from "../../../services/share.service";
 import {Subscription} from "rxjs/Rx";
 import {ProjectService} from "../../../services/project.service";
@@ -21,6 +22,7 @@ export class HeaderComponent{
   constructor(
       private shareService: ShareService,
       private projectService: ProjectService,
+      private _router: Router,
       private location:Location
 
   ){}
@@ -47,7 +49,7 @@ export class HeaderComponent{
 
   delete(){
     this.projectService.deleteProject(this.headerData,()=>{
-      this.location.back();
+      this._router.navigate(['projects']);
     });
   }
 

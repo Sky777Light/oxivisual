@@ -38,6 +38,8 @@ export class WebglView implements OnInit,OnChanges {
         renderParent:HTMLElement;
     @ViewChild("preloader")
         preloader:any;
+    @ViewChild("preControls")
+        preControls:any;
     @ViewChild("projCnt")
         projCnt:HTMLElement;
     @Input() selected:any;
@@ -100,6 +102,11 @@ class OxiAPP {
     _fileReader:FileReader;
     _container:any;
     _preloaderStatus:any;
+    private curLoadedTemplates:number = 0;
+    TEMPLATES:any = {
+        CONTROLS: 'app-project-webgl-controls',
+        PRELOADER: 'app-project-preloader'
+    };
 
     constructor(main:WebglView) {
         this.main = main;
@@ -208,41 +215,52 @@ class OxiAPP {
             position.y = -( position.y * heightHalf ) + heightHalf + offset.top;
             mesh.onscreenParams = position;
         };
-        main.preloader.callbacks.push(()=>{
-            this.loadModel(()=> {
-                this.checkLoadedImg(()=> {
-                    //let foo = this._parent();
-                    //while (foo.firstChild) foo.removeChild(foo.firstChild);
-                    let parentCanvas;
-                    //if (!main.projCnt) {
-                    parentCanvas = this._container = main.projCnt['nativeElement'];
-                    //} else {
-                    //    parentCanvas = this._container = document.createElement('div');
-                    //    parentCanvas.className = [ENTITY.ProjClasses.CENTER_CONTAINER, 'THREEJS'].join(" ");
-                    //    this._parent().appendChild(parentCanvas);
-                    //}
-                    if(main.preloader.prevImg){
-                        main.preloader.prevImg.nativeElement.className +=' active';
-                    }
-                    parentCanvas.appendChild(renderer.domElement);
-                    this._projControls = new OxiControls(this);
-                    this._slider = new OxiSlider(this);
-                    this._events = new OxiEvents(this);
-                    this._animation = new OxiAnimation(this);
-                    Pace.once('done', (e)=> {
-                        let _preloader = document.querySelector('app-project-preloader');
-                        if(_preloader)_preloader.parentNode.removeChild(_preloader);
-                        console.log("loaded done");
-                    });
-                });
+        [main.preControls, main.preloader].forEach((el)=> {
+            el.callbacks.push(()=> {
+                this.onFinishLoadTemplates()
             });
         });
 
     }
 
-    private loadTemplates(){
+    private onFinishLoadTemplates() {
+        let COUNT_TEMPLATES = 2,
+            main = this.main;
+        if (++this.curLoadedTemplates == COUNT_TEMPLATES) {
+            this.loadModel(()=> {
+                this.checkLoadedImg(()=> {
+                    let parentCanvas = this._container = main.projCnt['nativeElement'],
+                        onFinish = ()=> {
+                            let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
+                            if (_preloader)_preloader.parentNode.removeChild(_preloader);
+                            console.log("loaded done");
+                        },
+                        _inter = setTimeout(()=> {
+                            Pace.stop();
+                            onFinish();
+                        }, 2000);
+
+                    Pace.once('done', (e)=> {
+                        clearTimeout(_inter);
+                        onFinish();
+                    });
+                    if (main.preloader.prevImg) {
+                        main.preloader.prevImg.nativeElement.className += ' active';
+                    }
+                    parentCanvas.appendChild(this.gl.domElement);
+                    this._projControls = new OxiControls(this);
+                    this._slider = new OxiSlider(this);
+                    this._events = new OxiEvents(this);
+                    this._animation = new OxiAnimation(this);
+                });
+            });
+        }
+    }
+
+    private loadTemplates() {
 
     }
+
     private checkLoadedImg(callback) {
         let _self = this,
             allows = ['1', '2'],
@@ -449,7 +467,7 @@ class OxiAPP {
 
             let onProgress = function (xhr) {
                 if (xhr.lengthComputable) {
-                    _self.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total );
+                    _self.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total);
                     //console.log((percentComplete).toFixed(2) + '% downloaded');
                 }
             };
@@ -1112,10 +1130,13 @@ class OxiControls {
     constructor(app:OxiAPP) {
         let
             _self = this,
-            div = this.controls = document.createElement('div');
+            div:any = this.controls = document.createElement('div'),
+            _div:any = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + ENTITY.ProjClasses.PROJ_CONTROLS_MOVE),
+            kompass:any = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + ENTITY.ProjClasses.PROJ_COMPASS)
+            ;
         this.app = app;
+        if (_div)_div.style.display = 'none';
 
-        div.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
         if (app.main.selected.canEdit) {
             div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
             app._parent().appendChild(div);
@@ -1263,18 +1284,38 @@ class OxiControls {
         } else {
             if (this.app.main.selected.images.length > 1) {
 
-                div.className = ENTITY.ProjClasses.PROJ_CONTROLS_MOVE;
-                app._container.appendChild(div);
-                [{_c: 'left', _i: -1}, {_c: 'right', _i: 1}].forEach((child)=> {
-                    let childDiv = document.createElement('div');
-                    childDiv.className = child._c;
-                    childDiv.style.backgroundImage = 'url("assets/img/left_arrow.png")';
-                    div.appendChild(childDiv);
-                    childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
-                        this.app._slider.move(child._i);
+
+                let arrows = [{_c: 'left', _i: -1}, {_c: 'right', _i: 1}];
+                if (_div) {
+                    div = _div;
+                    _div.style.display = '';
+                    for (let i = 0; i < _div.childNodes.length; i++) {
+                        let childDiv = _div.childNodes[i];
+                        for (let u = 0; u < arrows.length; u++) {
+                            if (childDiv.localName == 'div') {
+                                childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
+                                    this.app._slider.move(arrows[u]._i);
+                                });
+                                break;
+                            }
+                        }
+
+                    }
+                } else {
+                    div.className = ENTITY.ProjClasses.PROJ_CONTROLS_MOVE;
+                    app._container.appendChild(div);
+                    arrows.forEach((child)=> {
+                        let childDiv = document.createElement('div');
+                        childDiv.className = child._c;
+                        childDiv.style.backgroundImage = 'url("assets/img/left_arrow.png")';
+                        div.appendChild(childDiv);
+                        childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
+                            this.app._slider.move(child._i);
+                        });
                     });
-                });
+                }
             }
+
             let tooltipParent = this._tooltips = document.createElement('div');
             tooltipParent.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER;
             app._parent().appendChild(tooltipParent);
@@ -1303,11 +1344,15 @@ class OxiControls {
 
             }
         }
+        div.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
 
-        let kompass:any = this.kompas = document.createElement('div');
-        kompass.className = 'kompass';
-        kompass.style.backgroundImage = 'url("assets/img/kompas.png")';
-        app._container.appendChild(kompass);
+        if (!kompass) {
+            kompass = document.createElement('div');
+            kompass.className = 'kompass';
+            kompass.style.backgroundImage = 'url("assets/img/kompas.png")';
+            app._container.appendChild(kompass);
+        }
+        this.kompas = kompass;
         kompass.onUpdate = ()=> {
             kompass.style.display = !_self.app.main.selected.camera.kompass.enabled ? 'none' : '';
             kompass.style.transform = 'rotate(' + (_self.app.main.selected.currentItem * ENTITY.Config.ANGLE_STEP + app.main.selected.camera.kompass.angle) + 'deg)';

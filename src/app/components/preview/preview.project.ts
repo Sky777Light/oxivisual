@@ -43,7 +43,7 @@ export class PreviewSceneComponent{
                         let curIArea = areas[areas.length-1].split(dmens[1])[1];
                         if(!curIArea)return alertify.error("Something went wrong");
                         this.checkChild(this.model.data[i],curIArea,(c)=>this.select(c));
-                    }else if(i==0)this.select(this.model.data[i]);
+                    }else this.select(this.model.data[i]);
                 }
             }
 
@@ -61,8 +61,9 @@ export class PreviewSceneComponent{
             }
         }
     }
-    private select(child:ENTITY.ProjMain){
+    private select(child:any){
         this.selected = child;
+        child.parent = this.model.data[0];
     }
 
 }

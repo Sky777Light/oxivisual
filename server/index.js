@@ -87,10 +87,12 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json({ limit: "50mb" }));
 
+var expireTime =  1000*60*60*24*3;//3 days
 app.use(session({
     secret: config.security.secret,
     resave: true,
     saveUninitialized: true,
+    cookie:{expires: new Date(Date.now() +expireTime), maxAge : expireTime },
     store: new MongoStore({
         mongooseConnection: mongoose.connection
     })

@@ -3,7 +3,8 @@
     <div class="cos-row col-lg-2">
         <div class="row cos-header">Element list:</div>
         <ul class="cos-list">
-            <li *ngFor="let item of menuList;  let ind = index" [ngClass]="{'active':item.active}" (click)="selectCurItem(item,menuList,ind)">
+            <li *ngFor="let item of menuList;  let ind = index" [ngClass]="{'active':item.active}"
+                (click)="selectCurItem(item,menuList,ind)">
                 {{item.title}}
                 <div class="mailicon">
                     <svg width="6px" height="9px" viewBox="0 0 6 9" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -35,23 +36,27 @@
 
             </div>
 
-            <div class="cos-item" *ngFor="let menuL of menuList;  let ind = index" [ngClass]="{'active':menuL.active}" >
+            <div class="cos-item" *ngFor="let menuL of menuList;  let ind = index" [ngClass]="{'active':menuL.active}">
                 <div class="cos-tabs w3-bar w3-black">
                     <button *ngFor="let mtab of tabList[ind]" (click)="selectCurItem(mtab , tabList[ind])"
                             [ngClass]="{'active':mtab.active}" class="w3-bar-item w3-button"
                             [innerText]="mtab.title"></button>
                 </div>
-                <codemirror *ngFor="let mtab of tabList[ind]"
-                            (change)="codeChange()"
-                            [config]="mtab.config" class="cos-code" [ngClass]="{'active':mtab.active}"
-                            [(ngModel)]="mtab.config.value"></codemirror>
+                <app-project-text-code-mirror *ngFor="let mtab of tabList[ind]" class="cos-code"
+                                              [ngClass]="{'active':mtab.active}" [config]="mtab"></app-project-text-code-mirror>
+
             </div>
 
         </div>
     </div>
     <div class="cos-row col-lg-7">
+        <div class="cos-preview webgl-view" *ngIf="menuList[0].active && curItem">
+            <app-project-webgl-controls [parent]="curNameSpace" [htmlTemplate]="curItem[1].value"
+                                        #wcontrols></app-project-webgl-controls>
+        </div>
         <div class="cos-preview" *ngIf="menuList[2].active">
-            <app-project-preloader [htmlTemplate]="curItem[1].config.value"></app-project-preloader>
+            <app-project-preloader [parent]="curNameSpace" [htmlTemplate]="curItem[1].value"
+                                   #preloader></app-project-preloader>
         </div>
     </div>
 </div>

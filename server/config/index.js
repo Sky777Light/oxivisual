@@ -16,7 +16,12 @@ module.exports = {
             NAME: 'templates/',
             CSS: 'style.css',
             HTML: 'index.html',
-            TYPES: ['preloader/', 'tooltip/']
+            TYPES: ['controls/', 'tooltip/','preloader/'],
+            _TYPE:{
+                PRELOADER:2,
+                TOOLTIP:1,
+                CONTROLS:0
+            }
 
         }
     },

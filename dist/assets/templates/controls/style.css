@@ -1,0 +1,55 @@
+/*------------ARROWS---------*/
+.webgl-view .oxi-controls-move {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+    bottom: 0;
+    z-index: 99;
+}
+.webgl-view .oxi-controls-move div {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 30px;
+    cursor: pointer;
+    width: 42px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('assets/img/left_arrow.png');
+}
+.webgl-view .oxi-controls-move div.right {
+    -webkit-transform: rotate3d(0, 1, 0, 180deg);
+    transform: rotate3d(0, 1, 0, 180deg);
+}
+/*------------ARROWS---------*/
+
+/*--------->>>>>>>><<<<<<<<---------*/
+
+/*------------KOMPASS---------*/
+.webgl-view .kompass {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: 78px;
+    height: 78px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('assets/img/kompas.png');
+}
+/*------------KOMPASS---------*/
+
+/*--------->>>>>>>><<<<<<<<---------*/
+
+/*------------LOGO---------*/
+.webgl-view .proj-logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 78px;
+    height: 78px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 18px;
+    font-weight: 900;
+}
+/*------------LOGO---------*/

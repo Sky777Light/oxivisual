@@ -170,6 +170,7 @@ function saveProjectFiles(options, req, res, next) {
                 }
                 case config.FILE_UPLOAD_ATTR[4]:
                 case config.FILE_UPLOAD_ATTR[5]:
+                case config.FILE_UPLOAD_ATTR[6]:
                 {
                     urlSaveFile = modelDir + config.DIR.PROJECT_TEMPLATE.NAME;
                     if (!fs.existsSync(urlSaveFile)) {
@@ -437,10 +438,19 @@ router.post("/project/template/update", function (request, responce) {
             saveProjectFiles({
                 modelDir: modelDir, callback: function (key) {
                     if (!structure.templates)structure.templates = [];
-                    if (structure.templates.length>2)return;
+                    if (structure.templates.length>config.DIR.PROJECT_TEMPLATE.TYPES)return;
                     var item = 0;
-                    if (config.FILE_UPLOAD_ATTR[5] == key) {
-                        item = 1;
+                    switch (key){
+                        case config.FILE_UPLOAD_ATTR[4]:{
+                            item = 2;
+                            break;
+                        }case config.FILE_UPLOAD_ATTR[5]:{
+                            item = 1;
+                            break;
+                        }case config.FILE_UPLOAD_ATTR[6]:{
+                            item = 0;
+                            break;
+                        }
                     }
                     structure.templates.push(item)
                 }

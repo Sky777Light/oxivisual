@@ -14,9 +14,8 @@ export class ProjMain extends Main {
         this.copyS(entity);
         this._category = CONSTANTS.Config.PROJ_DESTINATION[this.constructor.name];
     }
-
     clone() {
-        let noClone = ['glApp','sourcesApp', 'cash', 'canEdit','_selected','hasChanges','hasRecalcChanges'],
+        let noClone = ['glApp','sourcesApp', 'cash', 'canEdit','_selected','hasChanges','hasRecalcChanges','parent'],
             acceptType = ['boolean', 'string', 'number'];
 
         function cloneObject(obj) {
@@ -35,7 +34,6 @@ export class ProjMain extends Main {
         return cloneObject(this);
 
     }
-
     private copyS(entity:any = {}) {
         let _self = this,
             noClone = ['File'];
@@ -54,7 +52,6 @@ export class ProjMain extends Main {
 
         return cloneObject(entity);
     }
-
     static inject(obj):any {
         switch (obj._category) {
             case CONSTANTS.Config.PROJ_DESTINATION.LinkGeneralStructure:

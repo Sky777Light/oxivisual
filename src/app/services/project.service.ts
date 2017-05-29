@@ -79,7 +79,7 @@ export class ProjectService {
     deleteProject(project:any,callback=null) {
         let link = '/api/projects/project';
 
-        this.authService.delete(link, project).subscribe((res:any) => {
+        this.authService.delete(link, {_id:project._id}).subscribe((res:any) => {
             res = res.json();
             if (res.status) {
                 let user = this.userService.getUser();
@@ -93,6 +93,7 @@ export class ProjectService {
             }
             alertify.success(res.message);
         }, (error) => {
+            alertify.error(error && error.message?error.message:error);
         });
     }
 }

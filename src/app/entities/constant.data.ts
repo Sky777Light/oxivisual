@@ -34,7 +34,7 @@ export class Config {
             ALIGN_IMG: 'alignFrames[]',
             PRELOADER: 'preloader[]',
             CONTROLS: 'controls[]',
-            TOOLTIP:'tooltip[]'
+            TOOLTIP: 'tooltip[]'
         },
         DIR: {
             DELIMETER: "/",
@@ -44,11 +44,11 @@ export class Config {
                 NAME: 'assets/templates/',
                 CSS: 'style.css',
                 HTML: 'index.html',
-                TYPES: ['controls/', 'tooltip/','preloader/'],
-                _TYPE:{
-                    PRELOADER:2,
-                    TOOLTIP:1,
-                    CONTROLS:0,
+                TYPES: ['controls/', 'tooltip/', 'preloader/'],
+                _TYPE: {
+                    PRELOADER: 2,
+                    TOOLTIP: 1,
+                    CONTROLS: 0,
                 }
 
             },
@@ -68,12 +68,19 @@ export class Config {
         }
     }
 
+    static randomInteger(min=0, max=Date.now()) {
+        return Math.round(min + Math.random() * (max - min))
+    }
+
+
 }
 export class ProjClasses {
     static IMG_SLIDER:string = 'img-slider-container';
     static CENTER_CONTAINER:string = 'center-container';
     static PROJ_CONTROLS:string = 'oxi-controls';
     static PROJ_CONTROLS_MOVE:string = 'oxi-controls-move';
+    static PROJ_CONTROLS_CONTAINER:string = 'oxi-controls-container';
+    static PROJ_COMPASS:string = 'kompass';
     static PROJ_TOOLTIPS:any = {
         CONTAINER: 'oxi-tooltips',
         TOOLTIP: 'tooltip',

@@ -1,6 +1,6 @@
-<header>
+<header *ngIf="user">
   <div class="asd-hd-top">
-    <div class="asd-name-in" [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}">
+    <div class="asd-name-in"  [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}">
       <span *ngIf="!user.avatar">{{userService.lettersNoImg(user)}}</span>
     </div>
     <div class="asd-status-wrap">

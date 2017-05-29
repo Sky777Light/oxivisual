@@ -14,6 +14,7 @@
     cursor: pointer;
     width: 42px;
     background-size: contain;
+    background-repeat: no-repeat;
     background-image: url('assets/img/left_arrow.png');
 }
 .webgl-view .oxi-controls-move div.right {

@@ -1,0 +1,3 @@
+<app-template-loader  [model]="modelData" [templateType]="DIR.PROJECT_TEMPLATE._TYPE.CONTROLS" #tempLoad></app-template-loader>
+<link rel="stylesheet" *ngIf="cssUrl" [href]="cssUrl">
+<div class="oxi-controls-container" [innerHTML]="htmlTemplate"></div>
