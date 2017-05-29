@@ -41,7 +41,7 @@ export class WebglView implements OnInit,OnChanges {
     @ViewChild("preControls")
         preControls:any;
     @ViewChild("projCnt")
-        projCnt:HTMLElement;
+        projCnt:any;
     @Input() selected:any;
 
     app:OxiAPP;
@@ -66,6 +66,7 @@ export class WebglView implements OnInit,OnChanges {
 
     initWebgl() {
         if (!this.inited) return this.inited = true;
+
         if (this.selected.images.length) {
             this.preview = ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + this.selected.images[0];
         } else if (this.selected.preview) {
@@ -118,7 +119,7 @@ class OxiAPP {
             SCREEN_HEIGHT = this.screen.height = 405,
             _self = this;
 
-
+        main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth*(SCREEN_WIDTH/SCREEN_HEIGHT)+'px';
         this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || {style: {}};
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
