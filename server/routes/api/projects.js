@@ -73,7 +73,7 @@ function checkPermissionOnProject(req, res, next) {
         if (req.session.lastEditProject && req.session.lastEditProject.model && req.session.lastEditProject.model.link && req.session.lastEditProject._id == req.body._id) {
             next(req, res);
         } else {
-            Project.findOne({_id: req.body._id}, {_id: 1, model: 1}, function (err, project) {
+            Project.findOne({_id: req.body._id}, {_id: 1, model: 1,image:1,link:1}, function (err, project) {
                 if (err || !project) {
                     return res.json({
                         status: false,
@@ -257,6 +257,7 @@ router.put("/project", function (request, responce) {
                     }
 
                     Project.update({_id: req.body._id}, {$set: _sets}, function (err) {
+                        if(req.session.lastEditProject)delete req.session.lastEditProject ;
                         return res.json({
                             status: !err,
                             message: err ? (err.message || err) : "Project successfully was changed."
@@ -368,7 +369,8 @@ router.post("/project/model/create", function (req, res) {
                 },
                 modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + area.projFilesDirname + config.DIR.DELIMETER;
 
-            if (req.body.preview)area.preview = req.body.preview;
+            area.preview = req.session.lastEditProject.image;
+            area.dataSource = req.session.lastEditProject.link;
             saveProjectFiles({modelDir: modelDir, area: area}, req, res, function (reqq, ress) {
                 fs.writeFileSync(modelDir + config.DIR.SITE_STRUCTURE, JSON.stringify([area]));
 
@@ -452,6 +454,7 @@ router.post("/project/template/update", function (request, responce) {
                             break;
                         }
                     }
+                    if (structure.templates.indexOf(item)>-1)return;
                     structure.templates.push(item)
                 }
             }, req, res, function (reqq, ress) {

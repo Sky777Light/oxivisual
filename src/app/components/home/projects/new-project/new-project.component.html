@@ -3,14 +3,18 @@
 <div class="new-form">
     <span class="tag-text">{{title}}</span>
     <div class="main-info">
-        <form class="item-form">
+        <form class="item-form" #createViewForm="ngForm" novalidate>
             <div class="input-wrap">
                 <input type="text" [class.input-fill]="project.title" [class.input-error]="!resol.title" placeholder="Projet Name" [(ngModel)]="project.title" [ngModelOptions]="{standalone: true}"  (focus)="resol.title = true">
                 <label [class.full-op]="!resol.title">This input requires a value!</label>
             </div>
             <div class="input-wrap">
-                <input type="text" [class.input-fill]="project.link" [class.input-error]="!resol.link"  placeholder="datasource URL" [(ngModel)]="project.link" [ngModelOptions]="{standalone: true}"  (focus)="resol.link = true">
-                <label [class.full-op]="!resol.link">This input requires a value!</label>
+
+                <input [class.input-fill]="project.link" [class.input-error]="destination1.invalid && (destination1.touched || createViewForm.clicked)"  placeholder="datasource URL" [(ngModel)]="project.link" [ngModelOptions]="{standalone: true}"
+                       name="destination1" #destination1="ngModel" type="text" required
+                       [pattern]="_CONFIG.PATTERNS.URL" >
+                <label [class.full-op]="destination1.invalid && (destination1.touched|| createViewForm.clicked)">The
+                    Destionation is required and must be an url!</label>
             </div>
         </form>
         <div class="item-photo">
@@ -30,6 +34,6 @@
     </div>
     <div class="new-btns">
         <span class="false-btn" (click)="Create ? cancel() : reset()">cancel</span>
-        <span class="true-btn" (click)="accept()">{{Create ? 'accept' : 'save'}}</span>
+        <span class="true-btn" (click)="accept(createViewForm)">{{Create ? 'accept' : 'save'}}</span>
     </div>
 </div>

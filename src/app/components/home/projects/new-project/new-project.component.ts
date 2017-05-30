@@ -1,8 +1,8 @@
-import {Component, Input, Output, EventEmitter, HostListener} from '@angular/core';
+import {Component, Input, Output, EventEmitter, HostListener,ViewChild} from '@angular/core';
 import {UserService} from "../../../../services/user.service";
 import {User} from "../../../../interfaces/user.interface";
 import {Resol} from "../../../../interfaces/resol.interface";
-import * as PROJ from "../../../../entities/Project";
+import * as ENTITY from "../../../../entities/entities";
 import {ProjectService} from "../../../../services/project.service";
 
 declare var alertify;
@@ -14,13 +14,16 @@ declare var alertify;
 })
 export class NewProjectComponent {
 
-  @Input() project: PROJ.IProject;
+  @ViewChild("createViewForm")
+      createViewForm:HTMLElement;
+  @Input() project:any;
   @Input() title: string;
   @Input() Create: boolean;
   @Input() openedState: boolean;
   @Output() openedStateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private User:User;
+  private _CONFIG:any;
   private tempProject: any;
 
   private resol:Resol = {
@@ -33,8 +36,9 @@ export class NewProjectComponent {
       protected projectService: ProjectService
   ) {
     this.User = this.userService.getUser();
-    this.project = new PROJ.Project();
+    this.project = new ENTITY.Project();
 
+    this._CONFIG = ENTITY.Config;
     this.Create = true;
   }
 
@@ -64,14 +68,15 @@ export class NewProjectComponent {
   @HostListener('window:keydown', ['$event'])
   keyDown(event:KeyboardEvent) {
     if (event.keyCode == 13 && this.Create) {
-      this.accept();
+      this.accept(this.createViewForm);
     } else if (event.keyCode == 27 && this.Create) {
       this.cancel();
     }
   }
 
-  accept() {
-    if (!this.userService.resolUser(this.resol, this.project)) return false;
+  accept(form:any) {
+    form.clicked = true;
+    if (form.invalid || !this.userService.resolUser(this.resol, this.project)) return false;
 
     !this.project._id ? this.projectService.createProject(this.project) : this.projectService.changeProject(this.project);
 

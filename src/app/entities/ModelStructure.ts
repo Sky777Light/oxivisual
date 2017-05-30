@@ -160,6 +160,7 @@ export class ModelStructure extends GeneralStructure implements IModelStructure 
     areas:Array<IModelStructure>;
     cash:PCash;
     preview:string;
+    dataSource:string;
     templates:Array<string>;
     parent:any;
 

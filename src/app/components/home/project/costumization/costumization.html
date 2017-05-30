@@ -54,9 +54,14 @@
             <app-project-webgl-controls [parent]="curNameSpace" [htmlTemplate]="curItem[1].value"
                                         #wcontrols></app-project-webgl-controls>
         </div>
+        <div class="cos-preview" *ngIf="menuList[1].active">
+            <app-project-webgl-tooltip [parent]="curNameSpace" [htmlTemplate]="curItem[1].value"
+                                       #wtooltip></app-project-webgl-tooltip>
+        </div>
         <div class="cos-preview" *ngIf="menuList[2].active">
             <app-project-preloader [parent]="curNameSpace" [htmlTemplate]="curItem[1].value"
                                    #preloader></app-project-preloader>
         </div>
+
     </div>
 </div>

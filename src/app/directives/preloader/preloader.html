@@ -1,6 +1,0 @@
-<app-template-loader  [model]="modelData" [templateType]="DIR.PROJECT_TEMPLATE._TYPE.PRELOADER" #tempLoad></app-template-loader>
-<!--<link rel="stylesheet" *ngIf="cssUrl" [href]="cssUrl">-->
-<div class="preloader-back" #preloader>
-    <img *ngIf = "preview" [src]="preview" class="preview" (load)="onPreloaderLoad()" #prevImg>
-    <div class="preloader-data" [innerHTML]="htmlTemplate"></div>
-</div>

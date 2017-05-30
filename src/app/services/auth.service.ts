@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {StorageService} from "./storage.service";
 
+declare var alertify:any;
+
 @Injectable()
 export class AuthService {
 
@@ -23,9 +25,9 @@ export class AuthService {
     return this.http.get(url, new RequestOptions({ headers: headers }));
   }
 
-  post(url, data = {}) {
+  post(url, data = {},options:any={hasAuthHeader:true}) {
     let headers = new Headers();
-    this.createAuthorizationHeader(headers);
+    if(options.hasAuthHeader)this.createAuthorizationHeader(headers);
     return this.http.post(url, data, new RequestOptions({ headers: headers }));
   }
 
@@ -42,5 +44,16 @@ export class AuthService {
       headers: headers,
       body: data
     }));
+  }
+
+  saveJS(jsCode):Function{
+    let res = ()=>{};
+    try{
+      res = Function("return "+jsCode)();
+    }catch(e){
+      alertify.error(e);
+    }finally{
+      return res ;
+    }
   }
 }

@@ -1,5 +1,6 @@
 import {Input,ViewChild,Component,OnInit,OnChanges,EventEmitter,Injectable} from '@angular/core';
 import * as ENTITY from '../../entities/entities';
+import {AuthService} from '../../services/services';
 import {Location} from '@angular/common';
 import {Confirm,Prompt} from '../dialogs/dialog';
 
@@ -38,6 +39,8 @@ export class WebglView implements OnInit,OnChanges {
         renderParent:HTMLElement;
     @ViewChild("preloader")
         preloader:any;
+    @ViewChild("preToolTip")
+        preToolTip:any;
     @ViewChild("preControls")
         preControls:any;
     @ViewChild("projCnt")
@@ -49,7 +52,7 @@ export class WebglView implements OnInit,OnChanges {
     private _id:number = Date.now();
     private inited:boolean = false;
 
-    constructor(location:Location) {
+    constructor(location:Location,authServ:AuthService) {
         this.location = location;
     }
 
@@ -103,7 +106,9 @@ class OxiAPP {
     _container:any;
     _preloaderStatus:any;
     private curLoadedTemplates:number = 0;
+    private templates:Array<any>;
     TEMPLATES:any = {
+        TOOLTIP: 'app-project-webgl-tooltip',
         CONTROLS: 'app-project-webgl-controls',
         PRELOADER: 'app-project-preloader'
     };
@@ -216,7 +221,8 @@ class OxiAPP {
             position.y = -( position.y * heightHalf ) + heightHalf + offset.top;
             mesh.onscreenParams = position;
         };
-        [main.preControls, main.preloader].forEach((el)=> {
+        this.templates = [main.preControls, main.preloader];
+        this.templates.forEach((el)=> {
             el.callbacks.push(()=> {
                 this.onFinishLoadTemplates()
             });
@@ -225,9 +231,8 @@ class OxiAPP {
     }
 
     private onFinishLoadTemplates() {
-        let COUNT_TEMPLATES = 2,
-            main = this.main;
-        if (++this.curLoadedTemplates == COUNT_TEMPLATES) {
+        let main = this.main;
+        if (++this.curLoadedTemplates == this.templates.length) {
             setTimeout(()=> {
                 this.loadModel(()=> {
                     this.checkLoadedImg(()=> {
@@ -269,7 +274,14 @@ class OxiAPP {
                         });
                     });
                 });
-            },100);
+            }, 100);
+        }else if(main.preToolTip){
+            if (main.selected.canEdit){
+                this.templates.push(main.preToolTip);
+                main.preToolTip.callbacks.push(()=> {
+                    this.onFinishLoadTemplates()
+                });
+            }
         }
     }
 
@@ -1161,10 +1173,12 @@ class OxiControls {
             _self = this,
             div:any = this.controls = document.createElement('div'),
             _div:any = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + ENTITY.ProjClasses.PROJ_CONTROLS_MOVE),
+            _backArea:any = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + ENTITY.ProjClasses.PROJ_BACK_AREA),
             kompass:any = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + ENTITY.ProjClasses.PROJ_COMPASS)
             ;
         this.app = app;
         if (_div)_div.style.display = 'none';
+        if (_backArea)_backArea.style.display = 'none';
 
         if (app.main.selected.canEdit) {
             div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
@@ -1351,7 +1365,7 @@ class OxiControls {
             app.model.traverse((child)=> {
                 if (child.type == "Mesh") {
                     child.material.visible = false;
-                    child._toolTip = new OxiToolTip(child, app.main.location);
+                    child._toolTip = new OxiToolTip(child, app);
                     tooltipParent.appendChild(child._toolTip.tooltip);
                     tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
                 }
@@ -1360,10 +1374,15 @@ class OxiControls {
             let path = this.app.main.location.path(),
                 areas = path.split(ENTITY.Config.PROJ_DMNS[0]);
             if (areas.length > 1) {
-                let back:any = document.createElement('div');
-                back.className = 'back-area';
-                back.style.backgroundImage = "url('assets/img/android-system-back.png')";
-                app._container.appendChild(back);
+                let back:any = _backArea;
+                if (!back) {
+                    back = document.createElement('div');
+                    back.className = ENTITY.ProjClasses.PROJ_BACK_AREA;
+                    back.style.backgroundImage = "url('assets/img/android-system-back.png')";
+                    app._container.appendChild(back);
+                } else {
+                    back.style.display = '';
+                }
                 areas.pop();
                 back.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=> {
                     e.preventDefault();
@@ -1432,19 +1451,28 @@ class OxiToolTip {
     tooltip:any;
     private mesh:any;
 
-    constructor(mesh, location) {
-        let tooltip = this.tooltip = document.createElement('div'),
-            head:any = document.createElement('div'),
-            body:any = document.createElement('div')
-            ;
+    constructor(mesh, main) {
+        let tooltipTemplate:any = document.querySelector(main.TEMPLATES.TOOLTIP + ' .' + ENTITY.ProjClasses.PROJ_TOOLTIP_CONTAINER),
+            tooltip;
+        if (tooltipTemplate) {
+            tooltip = this.htmlToElement(tooltipTemplate.innerHTML);
+        } else {
+
+            tooltip = document.createElement('div');
+            let
+                head:any = document.createElement('div'),
+                body:any = document.createElement('div');
+            tooltip.appendChild(head);
+            tooltip.appendChild(body);
+            body.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.BODY;
+            head.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.HEADER;
+            tooltip.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.TOOLTIP;
+            head.innerHTML = mesh._data ? mesh._data.name : mesh.name;
+            body.innerHTML = mesh.name;
+        }
+        this.tooltip = tooltip;
         this.mesh = mesh;
-        tooltip.appendChild(head);
-        tooltip.appendChild(body);
-        body.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.BODY;
-        head.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.HEADER;
-        tooltip.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.TOOLTIP;
-        head.innerHTML = mesh._data ? mesh._data.name : mesh.name;
-        body.innerHTML = mesh.name;
+
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
         if (mesh._data) {
             if (mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
@@ -1465,7 +1493,7 @@ class OxiToolTip {
                     }
                     case ENTITY.Config.PROJ_DESTINATION.GeneralStructure:
                     {
-                        window['eval'](mesh._data.destination);
+                        main.authServ.saveJS(mesh._data.destination)();
                         break;
                     }
                 }
@@ -1485,5 +1513,10 @@ class OxiToolTip {
         }
     }
 
+    private   htmlToElement(html) {
+        let template = document.createElement('template');
+        template.innerHTML = html;
+        return template.content.firstChild;
+    }
 
 }

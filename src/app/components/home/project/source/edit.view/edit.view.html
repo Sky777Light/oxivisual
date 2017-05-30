@@ -148,7 +148,7 @@
 
                         <div *ngIf="modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure">
                             <input name="destination1" #destination1="ngModel" type="text" required
-                                   [pattern]="pattrns.URL"
+                                   [pattern]="_CONFIG.PATTERNS.URL"
                                    [(ngModel)]="modelStructure.destination">
                             <label [class.full-op]="destination1.invalid && destination1.touched">The
                                 Destionation is required and must be an url!</label>

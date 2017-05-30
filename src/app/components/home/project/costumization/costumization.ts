@@ -3,7 +3,7 @@ import {DomSanitizer,SafeResourceUrl,} from '@angular/platform-browser';
 import {ProjectService,AuthService} from "../../../../services/services";
 import {Config} from "../../../../entities/constant.data";
 import * as ENTITY from "../../../../entities/entities";
-import {WControls,Preloader} from "../../../../directives/directives";
+import {WControls,Preloader,WTooltip} from "../../../../directives/directives";
 
 declare var alertify:any;
 declare var CodeMirror:any;
@@ -30,6 +30,8 @@ export class Costumization implements OnInit,AfterViewInit {
         preloader:Preloader;
     @ViewChild("wcontrols")
         wcontrols:WControls;
+    @ViewChild("wtooltip")
+        wtooltip:WTooltip;
 
     constructor(private projectService:ProjectService, private authService:AuthService, private sanitizer:DomSanitizer) {
         //let editor = CodeMirror.fromTextArea(myTextarea, {
@@ -45,7 +47,7 @@ export class Costumization implements OnInit,AfterViewInit {
 
         this.tabList = [];
         for (let i = 0; i < this.menuList.length; i++) {
-            this.tabList.push(new CodeConfig(this).config);
+            this.tabList.push(new CodeConfig({cstm: this, _jsMode: i == 1}).config);
         }
     }
 
@@ -76,22 +78,23 @@ export class Costumization implements OnInit,AfterViewInit {
 
         for (let u = 0, types = _DIR.PROJECT_TEMPLATE.TYPES; u < types.length; u++) {
             let _template = _DIR.PROJECT_TEMPLATE.NAME + _DIR.PROJECT_TEMPLATE.TYPES[u],
-                htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML,
+                templateMode = /*u == 1 ? _DIR.PROJECT_TEMPLATE.JS :*/ _DIR.PROJECT_TEMPLATE.HTML,
+                htmlUrl = _template + templateMode,
                 cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
             if (model.data[0].templates.indexOf(u) > -1) {
                 _template = ENTITY.Config.PROJ_LOC + model.link + _DIR.DELIMETER + _template.replace('assets/', '');
-                htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML;
+                htmlUrl = _template + templateMode;
                 cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
             }
             for (let i = 0, arr = [cssUrl, htmlUrl]; i < arr.length; i++) {
                 this.authService.get(arr[i]).subscribe((res:any)=> {
-                    this.tabList[u][i].value =   res._body;
-                    setTimeout(()=>{
+                    this.tabList[u][i].value = res._body;
+                    setTimeout(()=> {
                         this.tabList[u][i].oninit();
                     });
-                    setTimeout(()=>{
+                    setTimeout(()=> {
                         this.tabList[u][1].active = false
-                    },111);
+                    }, 111);
 
                     this.tabList[u].active = false;
                     if (u === 0 && i == 1) {
@@ -121,9 +124,22 @@ export class Costumization implements OnInit,AfterViewInit {
      }*/
 
     codeChange() {
-        if (this.curItem && this[this.curTemplate]) {
-            this.curItem[0].value = (this.curItem[0].html.getValue());
-            this.curItem[1].value = (this.curItem[1].html.getValue());
+        if (this.curItem) {
+            for (let i = 0; i < 2; i++) {
+                let curVal = this.curItem[i].html.getValue();
+                if (this.curItem[i].isJS) {
+                    try {
+                        eval(curVal);
+                        this.curItem[i].value = curVal;
+                    } catch (e) {
+                        alertify.error(e);
+                    }
+                } else {
+                    this.curItem[i].value = curVal;
+                }
+            }
+        }
+        if (this[this.curTemplate]) {
             this[this.curTemplate].tempLoad.updateCss(this.curItem[0].value);
         }
     }
@@ -181,23 +197,27 @@ export class TextAr implements OnInit,AfterViewInit {
     @Input() config:any;
     @ViewChild("txtarea")
         txtarea:HTMLElement;
-    constructor(){
+
+    constructor() {
 
     }
-    change(){
+
+    change() {
         console.log("change");
     }
-    ngOnInit(){
+
+    ngOnInit() {
 
     }
-    ngAfterViewInit(){
+
+    ngAfterViewInit() {
         this.config.html = (this.txtarea['nativeElement']);
     }
 }
 class CodeConfig {
     config:Array<any>;
 
-    constructor(cons:Costumization) {
+    constructor(options:any = {}) {
 
         this.config = [
             {
@@ -211,8 +231,8 @@ class CodeConfig {
                         indentUnit: 4,
                         theme: 'ambiance'
                     });
-                    this.html.on('change',()=>{
-                        cons.codeChange();
+                    this.html.on('change', ()=> {
+                        options.cstm.codeChange();
                     });
                 },
                 config: {
@@ -230,35 +250,33 @@ class CodeConfig {
                 }
             },
             {
-                title: 'HTML Code',
+                title: ( options._jsMode ? 'JS' : 'HTML') + ' Code',
+                isJS: ( options._jsMode ),
                 active: true,
                 oninit: function (e) {
                     this.html = CodeMirror.fromTextArea(this.html, {
 
                         lineNumbers: true,
                         matchBrackets: true,
-                        mode: 'htmlmixed',
+                        continueComments: "Enter",
+                        extraKeys: {"Ctrl-Q": "toggleComment"},
+                        mode: options._jsMode ?  "javascript"  : 'htmlmixed',
                         indentUnit: 4,
-                        theme: 'ambiance',
-                        autoFocus: true
+                        theme: 'ambiance'
                     });
-                    this.html.on('change',()=>{
-                        cons.codeChange();
+                    this.html.on('change', ()=> {
+                        options.cstm.codeChange();
                     });
                 },
                 config: {lineNumbers: true, theme: 'ambiance', mode: 'text/html', value: ''}
             }
         ];
-        for (let i = 0; i < this.config.length; i++) {
-            //this.config[i].id = 'codeMirror' + ENTITY.Config.randomInteger();
-        }
 
     }
 
     private getAttr() {
         let html = document.createElement('textarea');
         html.className = 'cos-code';
-        //html.setAttribute('[(ngModel)]',"mtab.config.value");
         return html;
     }
 }

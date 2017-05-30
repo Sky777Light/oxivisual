@@ -44,6 +44,7 @@ export class Config {
                 NAME: 'assets/templates/',
                 CSS: 'style.css',
                 HTML: 'index.html',
+                JS: 'index.js',
                 TYPES: ['controls/', 'tooltip/', 'preloader/'],
                 _TYPE: {
                     PRELOADER: 2,
@@ -58,6 +59,9 @@ export class Config {
             }
         }
 
+    };
+    static PATTERNS:any = {
+        URL:/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
     };
     static IGNORE:string = 'ignore';
     static ANGLE_STEP:number = 10;
@@ -77,6 +81,8 @@ export class Config {
 export class ProjClasses {
     static IMG_SLIDER:string = 'img-slider-container';
     static CENTER_CONTAINER:string = 'center-container';
+    static PROJ_TOOLTIP_CONTAINER:string = 'tooltip-container';
+    static PROJ_BACK_AREA:string = 'back-area';
     static PROJ_CONTROLS:string = 'oxi-controls';
     static PROJ_CONTROLS_MOVE:string = 'oxi-controls-move';
     static PROJ_CONTROLS_CONTAINER:string = 'oxi-controls-container';

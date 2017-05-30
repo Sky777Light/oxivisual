@@ -1,6 +1,6 @@
 import {Input,ViewChild,Component,OnInit,OnChanges,EventEmitter,Injectable} from '@angular/core';
 import * as ENTITY from '../../../entities/entities';
-import {AbstractChangesView} from '../../abstract.changes.view';
+import {AbstractChangesView} from '../abstract.changes.view';
 
 declare var alertify:any;
 
