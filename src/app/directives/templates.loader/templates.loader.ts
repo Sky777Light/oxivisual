@@ -36,7 +36,7 @@ export class TemplatesLoader implements OnInit  {
             _DIR = ENTITY.Config.FILE.DIR;
 
 
-        if(!model || isNaN(this.templateType) )return alertify.error('can\'t find area' );
+        if(!model || isNaN(this.templateType) )return  ;
         let _template = _DIR.PROJECT_TEMPLATE.NAME + _DIR.PROJECT_TEMPLATE.TYPES[this.templateType],
             htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML,
             cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;

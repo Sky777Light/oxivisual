@@ -173,14 +173,18 @@ export class SourceProject {
         if (this.selectedChild && this.selectedChild._id == child._id)return;
         if (this.selectedChild) {
             this.selectedChild._selected = !this.selectedChild._selected;
-            if (this.selectedChild.glApp)this.selectedChild.glApp = null;
+            if (this.selectedChild.glApp)this.selectedChild.glApp = this.selectedChild.parent = null;
             if(!this.selectedChild.preview)this.selectedChild.preview = this.project.image;
         }
-        this.selectedChild = child;
-        child.sourcesApp = this;
-        child.parent = this.project.model.data[0];
-        child.canEdit = true;
-        child._selected = !child._selected;
+        this.selectedChild = null;
+        setTimeout(()=>{
+            this.selectedChild = child;
+            child.sourcesApp = this;
+            child.parent = this.project.model.data[0];
+            child.canEdit = true;
+            child._selected = !child._selected;
+        });
+
     }
 }
 export class ProjTabs {

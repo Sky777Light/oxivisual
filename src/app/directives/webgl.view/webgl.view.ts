@@ -66,7 +66,6 @@ export class WebglView implements OnInit,OnChanges {
 
     initWebgl() {
         if (!this.inited) return this.inited = true;
-
         if (this.selected.images.length) {
             this.preview = ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + this.selected.images[0];
         } else if (this.selected.preview) {
@@ -119,7 +118,7 @@ class OxiAPP {
             SCREEN_HEIGHT = this.screen.height = 405,
             _self = this;
 
-        main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth*(SCREEN_HEIGHT/SCREEN_WIDTH)+'px';
+        main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth * (SCREEN_HEIGHT / SCREEN_WIDTH) + 'px';
         this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || {style: {}};
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -229,46 +228,48 @@ class OxiAPP {
         let COUNT_TEMPLATES = 2,
             main = this.main;
         if (++this.curLoadedTemplates == COUNT_TEMPLATES) {
-            this.loadModel(()=> {
-                this.checkLoadedImg(()=> {
-                    let parentCanvas = this._container = main.projCnt['nativeElement'],
+            setTimeout(()=> {
+                this.loadModel(()=> {
+                    this.checkLoadedImg(()=> {
+                        let parentCanvas = this._container = main.projCnt['nativeElement'],
 
-                        onFinish = ()=> {
-                            let  onEnd = ()=>{
-                                let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
-                                if (_preloader)_preloader.parentNode.removeChild(_preloader);
-                            };
-                            if(this._slider.isLoaded){
-                                onEnd();
-                            }else{
-                                this._slider.onFinish = ()=>{
+                            onFinish = ()=> {
+                                let onEnd = ()=> {
+                                    let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
+                                    if (_preloader)_preloader.parentNode.removeChild(_preloader);
+                                };
+                                if (this._slider.isLoaded) {
                                     onEnd();
+                                } else {
+                                    this._slider.onFinish = ()=> {
+                                        onEnd();
+                                    }
                                 }
-                            }
 
-                        };
-                    if (main.preloader.prevImg) {
-                        main.preloader.prevImg.nativeElement.className += ' active';
-                    } else {
-                        main.preloader.preloader.nativeElement.className += ' active';
-                    }
-                    parentCanvas.appendChild(this.gl.domElement);
-                    this._projControls = new OxiControls(this);
-                    this._slider = new OxiSlider(this);
-                    this._events = new OxiEvents(this);
-                    this._animation = new OxiAnimation(this);
+                            };
+                        if (main.preloader.prevImg) {
+                            main.preloader.prevImg.nativeElement.className += ' active';
+                        } else {
+                            main.preloader.preloader.nativeElement.className += ' active';
+                        }
+                        parentCanvas.appendChild(this.gl.domElement);
+                        this._projControls = new OxiControls(this);
+                        this._slider = new OxiSlider(this);
+                        this._events = new OxiEvents(this);
+                        this._animation = new OxiAnimation(this);
 
-                    let _inter = setTimeout(()=> {
-                        Pace.stop();
-                        onFinish();
-                    }, 2000);
+                        let _inter = setTimeout(()=> {
+                            Pace.stop();
+                            onFinish();
+                        }, 2000);
 
-                    Pace.once('done', (e)=> {
-                        clearTimeout(_inter);
-                        onFinish();
+                        Pace.once('done', (e)=> {
+                            clearTimeout(_inter);
+                            onFinish();
+                        });
                     });
                 });
-            });
+            },100);
         }
     }
 
@@ -674,10 +675,12 @@ class OxiEvents {
         handler(this.EVENTS_NAME.MOUSE_UP, (e)=>this.onMouseUp(e));
         handler(this.EVENTS_NAME.MOUSE_MOVE, (e)=>this.onMouseMove(e));
         handler('dblclick', (event)=> {
-            event.preventDefault();return false;
+            event.preventDefault();
+            return false;
         });
         handler('selectstart', (event)=> {
-            event.preventDefault();return false;
+            event.preventDefault();
+            return false;
         });
 
         if (!this.canEdit)handler(this.EVENTS_NAME.MOUSE_OUT, (e)=>this.onMouseOut(e));
@@ -918,7 +921,7 @@ class OxiSlider {
     private canEdit:boolean = false;
     isDebug:boolean = false;
     isLoaded:boolean = true;
-    onFinish:any ;
+    onFinish:any;
 
     constructor(app:OxiAPP) {
 
@@ -976,7 +979,7 @@ class OxiSlider {
                     _self.app._events.onWindowResize();
                     //_self.onResize();
                     _self.isLoaded = true;
-                    if(_self.onFinish)_self.onFinish();
+                    if (_self.onFinish)_self.onFinish();
                 }
             }
             //if (_resol && _resol.x) {

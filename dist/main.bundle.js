@@ -997,20 +997,24 @@ var SourceProject = (function () {
         }
     };
     SourceProject.prototype.select = function (child) {
+        var _this = this;
         if (this.selectedChild && this.selectedChild._id == child._id)
             return;
         if (this.selectedChild) {
             this.selectedChild._selected = !this.selectedChild._selected;
             if (this.selectedChild.glApp)
-                this.selectedChild.glApp = null;
+                this.selectedChild.glApp = this.selectedChild.parent = null;
             if (!this.selectedChild.preview)
                 this.selectedChild.preview = this.project.image;
         }
-        this.selectedChild = child;
-        child.sourcesApp = this;
-        child.parent = this.project.model.data[0];
-        child.canEdit = true;
-        child._selected = !child._selected;
+        this.selectedChild = null;
+        setTimeout(function () {
+            _this.selectedChild = child;
+            child.sourcesApp = _this;
+            child.parent = _this.project.model.data[0];
+            child.canEdit = true;
+            child._selected = !child._selected;
+        });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("modelObj"), 
@@ -3682,7 +3686,7 @@ var TemplatesLoader = (function () {
         var _this = this;
         var model = this.model, _DIR = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR;
         if (!model || isNaN(this.templateType))
-            return alertify.error('can\'t find area');
+            return;
         var _template = _DIR.PROJECT_TEMPLATE.NAME + _DIR.PROJECT_TEMPLATE.TYPES[this.templateType], htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML, cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
         if (model.templates.indexOf(this.templateType) > -1 && model.projFilesDirname) {
             _template = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + model.projFilesDirname + _DIR.DELIMETER + _template.replace('assets/', '');
@@ -4190,44 +4194,46 @@ var OxiAPP = (function () {
         var _this = this;
         var COUNT_TEMPLATES = 2, main = this.main;
         if (++this.curLoadedTemplates == COUNT_TEMPLATES) {
-            this.loadModel(function () {
-                _this.checkLoadedImg(function () {
-                    var parentCanvas = _this._container = main.projCnt['nativeElement'], onFinish = function () {
-                        var onEnd = function () {
-                            var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
-                            if (_preloader)
-                                _preloader.parentNode.removeChild(_preloader);
+            setTimeout(function () {
+                _this.loadModel(function () {
+                    _this.checkLoadedImg(function () {
+                        var parentCanvas = _this._container = main.projCnt['nativeElement'], onFinish = function () {
+                            var onEnd = function () {
+                                var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
+                                if (_preloader)
+                                    _preloader.parentNode.removeChild(_preloader);
+                            };
+                            if (_this._slider.isLoaded) {
+                                onEnd();
+                            }
+                            else {
+                                _this._slider.onFinish = function () {
+                                    onEnd();
+                                };
+                            }
                         };
-                        if (_this._slider.isLoaded) {
-                            onEnd();
+                        if (main.preloader.prevImg) {
+                            main.preloader.prevImg.nativeElement.className += ' active';
                         }
                         else {
-                            _this._slider.onFinish = function () {
-                                onEnd();
-                            };
+                            main.preloader.preloader.nativeElement.className += ' active';
                         }
-                    };
-                    if (main.preloader.prevImg) {
-                        main.preloader.prevImg.nativeElement.className += ' active';
-                    }
-                    else {
-                        main.preloader.preloader.nativeElement.className += ' active';
-                    }
-                    parentCanvas.appendChild(_this.gl.domElement);
-                    _this._projControls = new OxiControls(_this);
-                    _this._slider = new OxiSlider(_this);
-                    _this._events = new OxiEvents(_this);
-                    _this._animation = new OxiAnimation(_this);
-                    var _inter = setTimeout(function () {
-                        Pace.stop();
-                        onFinish();
-                    }, 2000);
-                    Pace.once('done', function (e) {
-                        clearTimeout(_inter);
-                        onFinish();
+                        parentCanvas.appendChild(_this.gl.domElement);
+                        _this._projControls = new OxiControls(_this);
+                        _this._slider = new OxiSlider(_this);
+                        _this._events = new OxiEvents(_this);
+                        _this._animation = new OxiAnimation(_this);
+                        var _inter = setTimeout(function () {
+                            Pace.stop();
+                            onFinish();
+                        }, 2000);
+                        Pace.once('done', function (e) {
+                            clearTimeout(_inter);
+                            onFinish();
+                        });
                     });
                 });
-            });
+            }, 100);
         }
     };
     OxiAPP.prototype.loadTemplates = function () {
@@ -6104,7 +6110,7 @@ exports = module.exports = __webpack_require__(6)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  -webkit-transition: background-color 10s linear;\n  transition: background-color 10s linear; }\n  .preloader-back.active {\n    background-color: rgba(0, 0, 0, 0.5); }\n  .preloader-back .preview {\n    -webkit-filter: blur(20px);\n            filter: blur(20px);\n    -webkit-transition: -webkit-filter 1s linear;\n    transition: -webkit-filter 1s linear;\n    transition: filter 1s linear;\n    transition: filter 1s linear, -webkit-filter 1s linear;\n    height: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  -webkit-transition: background-color 2s linear;\n  transition: background-color 2s linear; }\n  .preloader-back.active {\n    background-color: rgba(0, 0, 0, 0.5); }\n  .preloader-back .preview {\n    -webkit-filter: blur(20px);\n            filter: blur(20px);\n    -webkit-transition: -webkit-filter 1s linear;\n    transition: -webkit-filter 1s linear;\n    transition: filter 1s linear;\n    transition: filter 1s linear, -webkit-filter 1s linear;\n    height: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n", ""]);
 
 // exports
 
