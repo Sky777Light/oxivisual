@@ -2,9 +2,10 @@
 
 .webgl-view
   border-radius: 10px
-  position: absolute
-  width: 100%
-  height: 100%
+  &.preview
+    .center-container
+     &.THREEJS
+        max-width: 100vw
   .back-area
     position: absolute
     z-index: 1000000
@@ -104,6 +105,8 @@
   .center-container
     display: flex
     &.THREEJS
+      max-width: 70vw
+      margin: auto
       position: relative
       left: 0
       top: 0

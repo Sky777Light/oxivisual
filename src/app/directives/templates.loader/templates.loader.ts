@@ -1,4 +1,4 @@
-import { Component,OnInit,Input } from '@angular/core';
+import { Component,OnInit,Input,AfterViewChecked } from '@angular/core';
 import * as ENTITY from '../../entities/entities';
 import {AuthService} from '../../services/auth.service';
 import {DomSanitizer,SafeResourceUrl,} from '@angular/platform-browser';
@@ -36,12 +36,12 @@ export class TemplatesLoader implements OnInit  {
             _DIR = ENTITY.Config.FILE.DIR;
 
 
-        if(!model  )return;
+        if(!model || isNaN(this.templateType) )return alertify.error('can\'t find area' );
         let _template = _DIR.PROJECT_TEMPLATE.NAME + _DIR.PROJECT_TEMPLATE.TYPES[this.templateType],
             htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML,
             cssUrl = _template + _DIR.PROJECT_TEMPLATE.CSS;
 
-        if (model.templates.indexOf(this.templateType) > -1) {
+        if (model.templates.indexOf(this.templateType) > -1 && model.projFilesDirname) {
             _template = ENTITY.Config.PROJ_LOC + model.projFilesDirname + _DIR.DELIMETER + _template.replace('assets/','');
             let newT = '?time='+Date.now();
             htmlUrl = _template + _DIR.PROJECT_TEMPLATE.HTML+newT;
@@ -53,9 +53,9 @@ export class TemplatesLoader implements OnInit  {
             this.authService.get(arr[i].link).subscribe((res:any)=> {
                this[arr[i]._f] = res._body;
                 if(arr[i]._f==arr[0]._f)this.updateCss( res._body);
-                if(this[arr[0]._f] ||this[arr[1]._f] ){
+                if(this[arr[0]._f] && this[arr[1]._f] ){
                     for (let i = 0; i < this.callbacks.length; i++) {
-                        this.callbacks[i]();
+                        this.callbacks.shift()();
                     }
                 }
             });
@@ -67,5 +67,6 @@ export class TemplatesLoader implements OnInit  {
     ngOnDestroy(){
         this.cssElement.parentNode.removeChild(this.cssElement);
     }
+
 
 }

@@ -1,4 +1,4 @@
-<div class="webgl-view" #renderParent>
+<div class="webgl-view" [ngClass]="{'preview':selected && !selected.canEdit}" #renderParent>
     <div class="center-container THREEJS" #projCnt>
         <app-project-preloader [preview]="preview" [modelData]="selected.parent" #preloader></app-project-preloader>
         <app-project-webgl-controls [modelData]="selected.parent" #preControls></app-project-webgl-controls>
