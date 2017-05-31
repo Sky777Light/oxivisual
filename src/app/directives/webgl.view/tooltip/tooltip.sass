@@ -1,3 +1,5 @@
+@import "../../../styles/values"
+
 .preloader-back
   position: absolute
   z-index: 999
@@ -28,3 +30,78 @@
       .pre-progress-status
         height: 100%
         border-radius: 4px
+
+.tooltip-container
+  .cos-info
+    position: absolute
+    z-index: 3
+    display: none
+
+    &.active
+      display: block
+    &.act
+      &:after
+        content: ''
+        position: absolute
+        top: 100%
+        margin-left: 9px
+        margin-top: -25px
+        background-size: 35px 25px
+        background-color: rgba(0, 0, 0, 0)
+        width: 0
+        height: 0
+        border-left: 20px solid transparent
+        border-right: 20px solid transparent
+        border-top: 20px solid $white
+    hr
+      padding: 0
+      margin: 0 10px
+      border-width: 2px
+    .cos-tooltip,.cos-label
+      position: absolute
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      color: #000
+    .cos-tooltip
+      width: 280px
+      height: 160px
+      border-radius: 5px
+      box-shadow: 0 15px 40px 0 rgba(0,0,0,0.15)
+      background-color: #FFFFFF
+      bottom: 25px
+      transform: translateX(-40%) scale(0)
+      transition: transform 0.2s linear
+      transform-origin: bottom
+      &.active
+        //display: block
+        transform: translateX(-40%) scale(1)
+      .cos-tooltip-header
+        overflow: hidden
+        text-overflow: ellipsis
+        padding: 10px 15px
+        border-left: 2px solid $primary
+        margin: 10px 0
+      .cos-tooltip-body
+        padding: 10px 15px
+        margin: 10px 0
+        height: 50%
+        color: $grey
+        font-size: 13px
+        font-weight: 300
+        line-height: 20px
+        .cos-tooltip-body-title
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: initial
+          height: 100%
+
+
+    .cos-label
+      border-radius: 50%
+      border: 3px solid #fff
+      background: $primary
+      padding: 20px
+      font-size: 28px
+      color: white
+      box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.38)

@@ -55,7 +55,7 @@
                                         #wcontrols></app-project-webgl-controls>
         </div>
         <div class="cos-preview" *ngIf="menuList[1].active">
-            <app-project-webgl-tooltip [parent]="curNameSpace" [htmlTemplate]="curItem[1].value"
+            <app-project-webgl-tooltip [isEdit]="1" [modelData]="modelData" [parent]="curNameSpace" [htmlTemplate]="curItem[1].value"
                                        #wtooltip></app-project-webgl-tooltip>
         </div>
         <div class="cos-preview" *ngIf="menuList[2].active">

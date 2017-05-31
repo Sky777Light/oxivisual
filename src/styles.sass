@@ -85,6 +85,17 @@ i
   direction: ltr
   -webkit-font-feature-settings: 'liga'
   -webkit-font-smoothing: antialiased
+.body-dialog
+  max-height: 110px
+  overflow: auto
+
+  .my-dialog
+    display: flex
+    span
+      float: left
+    button
+      float: right
+      margin-left: 70px
 
 
 
@@ -107,10 +118,12 @@ i
 @import "app/directives/upload.files/upload.file"
 @import "app/directives/webgl.view/webgl.view"
 @import "app/directives/webgl.view/preloader/preloader"
+@import "app/directives/webgl.view/tooltip/tooltip"
 @import "app/directives/tree/tree"
 
 @import "app/components/home/project/project.component"
 @import "app/components/home/project/basic/basic.project"
 @import "app/components/home/project/source/source.project"
+@import "app/components/home/project/costumization/costumization"
 @import "app/styles/dialog"
 @import "app/styles/scollbar"

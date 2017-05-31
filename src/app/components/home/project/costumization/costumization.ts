@@ -16,6 +16,7 @@ declare var CodeMirror:any;
 export class Costumization implements OnInit,AfterViewInit {
 
     private menuList:any;
+    private modelData:any;
     private tabList:any;
     private project:any;
     private cssUrl:any;
@@ -75,6 +76,7 @@ export class Costumization implements OnInit,AfterViewInit {
     private loadTemplates() {
         let model = this.project.model,
             _DIR = ENTITY.Config.FILE.DIR;
+        this.modelData = model.data[0];
 
         for (let u = 0, types = _DIR.PROJECT_TEMPLATE.TYPES; u < types.length; u++) {
             let _template = _DIR.PROJECT_TEMPLATE.NAME + _DIR.PROJECT_TEMPLATE.TYPES[u],
@@ -127,20 +129,12 @@ export class Costumization implements OnInit,AfterViewInit {
         if (this.curItem) {
             for (let i = 0; i < 2; i++) {
                 let curVal = this.curItem[i].html.getValue();
-                if (this.curItem[i].isJS) {
-                    try {
-                        eval(curVal);
-                        this.curItem[i].value = curVal;
-                    } catch (e) {
-                        alertify.error(e);
-                    }
-                } else {
-                    this.curItem[i].value = curVal;
-                }
+                this.curItem[i].value = curVal;
             }
         }
         if (this[this.curTemplate]) {
             this[this.curTemplate].tempLoad.updateCss(this.curItem[0].value);
+            this[this.curTemplate].updateAfterInput(this.curItem[1].value);
         }
     }
 
@@ -260,7 +254,7 @@ class CodeConfig {
                         matchBrackets: true,
                         continueComments: "Enter",
                         extraKeys: {"Ctrl-Q": "toggleComment"},
-                        mode: options._jsMode ?  "javascript"  : 'htmlmixed',
+                        mode: options._jsMode ? "javascript" : 'htmlmixed',
                         indentUnit: 4,
                         theme: 'ambiance'
                     });

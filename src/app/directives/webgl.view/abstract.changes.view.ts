@@ -40,5 +40,8 @@ export class AbstractChangesView implements OnInit  {
         if(this.parent && this.parent.onLoadTemplate)setTimeout(()=>this.parent.onLoadTemplate(this.constructor.name.toLowerCase()),100);
     }
 
+    updateAfterInput(){
+
+    }
 }
 

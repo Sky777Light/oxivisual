@@ -46,7 +46,7 @@ export class AuthService {
     }));
   }
 
-  saveJS(jsCode):Function{
+  safeJS(jsCode):Function{
     let res = ()=>{};
     try{
       res = Function("return "+jsCode)();

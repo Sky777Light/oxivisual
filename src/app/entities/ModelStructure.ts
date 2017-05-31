@@ -127,6 +127,7 @@ export class Vector3 extends ProjMain {
 }
 export class GeneralStructure extends ProjMain {
     name:string;
+    dataSourceId:any;
     destination:string;
     app:any;
     hasChanges:boolean;

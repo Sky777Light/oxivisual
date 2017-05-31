@@ -88,7 +88,7 @@ export class ProjClasses {
     static PROJ_CONTROLS_CONTAINER:string = 'oxi-controls-container';
     static PROJ_COMPASS:string = 'kompass';
     static PROJ_TOOLTIPS:any = {
-        CONTAINER: 'oxi-tooltips',
+        CONTAINER: 'tooltip-container',
         TOOLTIP: 'tooltip',
         HEADER: 'header',
         BODY: 'body',

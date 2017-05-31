@@ -45,7 +45,9 @@ export class SourceProject {
             if (p.data)this.select(p.data[0]);
             delete this.project['select'];
         }
-        if (this.project.model && this.project.model.data && this.project.model.data.length)this.project.select(this.project.model);
+        if (this.project.model && this.project.model.data && this.project.model.data.length){
+            this.project.select(this.project.model);
+        }
     }
 
     create(form:NgForm) {

@@ -2,6 +2,6 @@
     <div class="center-container THREEJS" #projCnt>
         <app-project-preloader [preview]="preview" [modelData]="selected.parent" #preloader></app-project-preloader>
         <app-project-webgl-controls [modelData]="selected.parent" #preControls></app-project-webgl-controls>
-        <app-project-webgl-tooltip *ngIf="!selected.canEdit" style="display: none" [modelData]="selected.parent" #preToolTip ></app-project-webgl-tooltip>
+        <app-project-webgl-tooltip  [modelData]="selected.parent" #preToolTip ></app-project-webgl-tooltip>
     </div>
 </div>

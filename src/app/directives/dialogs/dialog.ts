@@ -23,7 +23,8 @@ export class Dialog {
         title.innerHTML = val.title;
         this.popUp.appendChild(title);
 
-        let body = this.body = document.createElement('h4');
+        let body = this.body = document.createElement('div');
+        body.className = "body-dialog";
         this.popUp.appendChild(body);
 
 
