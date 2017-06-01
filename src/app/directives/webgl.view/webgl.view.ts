@@ -194,6 +194,7 @@ class OxiAPP {
                 this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
                 if (_cm.target)this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
             }
+            this.camera.updateProjectionMatrix();
             this._animation.play();
 
         };
@@ -226,6 +227,7 @@ class OxiAPP {
             position.x = ( position.x * widthHalf ) + widthHalf + offset.left;
             position.y = -( position.y * heightHalf ) + heightHalf + offset.top;
             mesh.onscreenParams = position;
+            mesh.onscreenOffset = offset;
         };
         this.templates = [main.preToolTip, main.preControls, main.preloader];
         this.templates.forEach((el)=> {
@@ -666,6 +668,7 @@ class OxiAPP {
 
     render() {
         if (Pace.running) return;
+        this.updateInfoHTML();
         this.gl.render(this.scene, this.camera);
         this.camera.lookAt(this.controls.target);
     }
@@ -722,7 +725,7 @@ class OxiEvents {
         app.camera.updateProjectionMatrix();
         app.gl.setSize(_w, _h);
         app._container.style.height = _h + 'px';
-        app.updateInfoHTML();
+        //app.updateInfoHTML();
         if (app._animation)app._animation.play();
     }
 
@@ -739,19 +742,24 @@ class OxiEvents {
             {
 
                 if (this.canEdit) {
+                    if (!this.lastInter)return;
                     if (this.lastInter && !this.lastInter.object._data)return alert('please create area for this element, on right click');
                     let _mesh = this.lastInter.object,
                         _dialog:any = new Dialog({title: 'Attach data source'});
                     for (let i = 0, _a = this.main.main.preToolTip.dataElem; i < _a.length; i++) {
+                        if (_a[i].active)continue;
                         let d = document.createElement('div'),
                             spa = document.createElement('span'),
                             btn = document.createElement('button');
                         btn.addEventListener('click', ()=> {
-                            if (_mesh._dataSource) _mesh._dataSource.active = false;
+                            if (_mesh._dataSource) {
+                                _mesh._dataSource.active = false;
+                            }
                             _mesh._data.dataSourceId = _a[i]._id;
                             _mesh._dataSource = _a[i];
                             _mesh._tooltip = new OxiToolTip(_mesh, _self.main);
                             _dialog.anyWay();
+                            this.main._animation.play();
                         });
                         btn.innerText = 'Attach';
                         spa.innerText = _a[i]._id;
@@ -802,15 +810,15 @@ class OxiEvents {
                 ) {
                     this.main._slider.move((ev.clientX > this.lastEv.clientX || ev.clientY > this.lastEv.clientY ? -1 : 1));
                     this.lastEv = ev;
+                    //this.main.updateInfoHTML();
                 }
-                this.main.updateInfoHTML();
             } else {
                 this.onSelected(ev, (inter)=> {
                     this.main._projControls.show(ev);
                 });
             }
-
         }
+
     }
 
     private onSelected(ev, callback) {
@@ -1357,6 +1365,12 @@ class OxiControls {
                     icon.style.color = '#ffffff';
                     domEl.appendChild(icon);
                 });
+
+            app.model.traverse((child)=> {
+                if (child.type == "Mesh" && child._dataSource ) {
+                    child._toolTip = new OxiToolTip(child, app);
+                }
+            });
         } else {
             if (this.app.main.selected.images.length > 1) {
 
@@ -1369,8 +1383,9 @@ class OxiControls {
                         let childDiv = _div.childNodes[i];
                         for (let u = 0; u < arrows.length; u++) {
                             if (childDiv.localName == 'div') {
+                                let dir = arrows.splice(u, 1)[0]._i;
                                 childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
-                                    this.app._slider.move(arrows[u]._i);
+                                    this.app._slider.move(dir);
                                 });
                                 break;
                             }
@@ -1403,7 +1418,7 @@ class OxiControls {
                 if (child.type == "Mesh") {
                     child.material.visible = false;
                     child._toolTip = new OxiToolTip(child, app);
-                    if(!child._dataSource)tooltipParent.appendChild(child._toolTip.tooltip);
+                    if (!child._dataSource)tooltipParent.appendChild(child._toolTip.tooltip);
                     tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
                 }
             });
@@ -1448,7 +1463,6 @@ class OxiControls {
     }
 
     show(pos, flag:boolean = true, fl:boolean = true) {
-
         let canEdit = this.app.main.selected.canEdit;
         if (this.kompas)this.kompas.onUpdate();
         if (this.app._events.lastInter) {
@@ -1480,8 +1494,9 @@ class OxiControls {
         } else {
 
         }
-        this.app.updateInfoHTML();
+
         this.app._animation.play();
+        //this.app.updateInfoHTML();
     }
 
 }
@@ -1534,7 +1549,7 @@ class OxiToolTip {
             //tooltip.innerHTML += '<div class="cos-label"><span>0</span></div>';
             let sp = document.createElement('div');
             sp.className = 'cos-label';
-            let ps = document.createElement('div');
+            let ps = document.createElement('span');
             ps.innerText = '0';
             sp.appendChild(ps);
             tooltip.appendChild(sp);
@@ -1546,7 +1561,7 @@ class OxiToolTip {
 
 
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
-        if (mesh._data) {
+        if (mesh._data && !main.main.selected.canEdit) {
             if (mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
                 mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
             }
@@ -1603,8 +1618,8 @@ class OxiToolTip {
             this.tooltip.style.left = this.mesh.onscreenParams.x + 'px';
             this.tooltip.style.top = this.mesh.onscreenParams.y + 'px';
         } else {
-            this.mesh._dataSource._left = this.mesh.onscreenParams.x + 'px';
-            this.mesh._dataSource._top = this.mesh.onscreenParams.y + 'px';
+            this.mesh._dataSource._left = (this.mesh.onscreenParams.x - this.mesh.onscreenOffset.left) + 'px';
+            this.mesh._dataSource._top = (this.mesh.onscreenParams.y - this.mesh.onscreenOffset.top) + 'px';
         }
     }
 
