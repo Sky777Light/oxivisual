@@ -1612,7 +1612,7 @@ class OxiToolTip {
 
                 if (mesh._dataSource.URL && mesh._dataSource.URL.match(ENTITY.Config.PATTERNS.URL)) {
                     mesh.click = ()=> {
-                        window.open(mesh._data.destination);
+                        window.open(mesh._dataSource.URL);
                     }
                     mesh._dataSource.onclick = mesh.click;
                     if (tooltip)tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());

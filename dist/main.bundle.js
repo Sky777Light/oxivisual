@@ -5523,7 +5523,7 @@ var OxiToolTip = (function () {
             else if (mesh._dataSource) {
                 if (mesh._dataSource.URL && mesh._dataSource.URL.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PATTERNS.URL)) {
                     mesh.click = function () {
-                        window.open(mesh._data.destination);
+                        window.open(mesh._dataSource.URL);
                     };
                     mesh._dataSource.onclick = mesh.click;
                     if (tooltip)
