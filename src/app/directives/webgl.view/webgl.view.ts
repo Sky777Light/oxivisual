@@ -124,7 +124,10 @@ class OxiAPP {
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
         this.scene.add(this.model);
-        let renderer = this.gl = new THREE.WebGLRenderer({antialias: true, alpha: true}),
+        let renderer = this.gl = new THREE.WebGLRenderer({
+                antialias: true, alpha: true, clearAlpha: true,
+                sortObjects: false
+            }),
             SCREEN_WIDTH = this.screen.width = 720,
             SCREEN_HEIGHT = this.screen.height = 405,
             _self = this;
@@ -529,6 +532,7 @@ class OxiAPP {
                 });
                 child.material.opacity0 = child.material.opacity;
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
+                child.renderOrder = 0;
                 //child.name = child.name.toLowerCase();
                 if (child.name.match(ENTITY.Config.IGNORE)) {
                     child.material.color = new THREE.Color(0, 0, 0);
@@ -843,7 +847,7 @@ class OxiEvents {
     }
 
     private onDbClick(e:any) {
-        if (this.canEdit){
+        if (this.canEdit) {
             this.main.controls.target.copy(this.main.scene.position);
             this.main.controls.update();
         }
@@ -1481,12 +1485,15 @@ class OxiControls {
     show(pos, flag:boolean = true, fl:boolean = true) {
         let canEdit = this.app.main.selected.canEdit;
         if (this.kompas)this.kompas.onUpdate();
-        if (this.app._events.lastInter) {
-            if (this.app._events.lastInter.object._toolTip)this.app._events.lastInter.object._toolTip.show(flag);
-            if (!this.app._events.lastInter.object.material.defColor)this.app._events.lastInter.object.material.defColor = this.app._events.lastInter.object.material.color.clone();
-            if (!this.app._events.lastInter.object.material.onSelectColor)this.app._events.lastInter.object.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
-            this.app._events.lastInter.object.material.color = flag ? this.app._events.lastInter.object.material.onSelectColor : this.app._events.lastInter.object.material.defColor;
-            this.app._events.lastInter.object.material.transparent = fl;
+        let _inter = this.app._events.lastInter;
+        if (_inter) {
+            _inter = _inter.object;
+            if (_inter._toolTip)_inter._toolTip.show(flag);
+            if (!_inter.material.defColor)_inter.material.defColor = _inter.material.color.clone();
+            if (!_inter.material.onSelectColor)_inter.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
+            _inter.material.color = flag ? _inter.material.onSelectColor : _inter.material.defColor;
+            _inter.material.transparent = fl;
+            _inter.renderOrder = flag ? 100 : 0;
             //if (this.app._events.lastInter.object._data && flag)return;
         }
 
@@ -1638,7 +1645,7 @@ class OxiToolTip {
 
     show(show:boolean = true) {
         //this.mesh.material.visible = show || this.canEdit;
-        this.mesh.material.opacity = (show || this.canEdit)?this.mesh.material.opacity0: 0;
+        this.mesh.material.opacity = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
 
         if (this.tooltip) {
 

@@ -4203,7 +4203,10 @@ var OxiAPP = (function () {
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
         this.scene.add(this.model);
-        var renderer = this.gl = new THREE.WebGLRenderer({ antialias: true, alpha: true }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405, _self = this;
+        var renderer = this.gl = new THREE.WebGLRenderer({
+            antialias: true, alpha: true, clearAlpha: true,
+            sortObjects: false
+        }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405, _self = this;
         main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth * (SCREEN_HEIGHT / SCREEN_WIDTH) + 'px';
         this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || { style: {} };
         renderer.setClearColor(0xffffff, 0);
@@ -4565,6 +4568,7 @@ var OxiAPP = (function () {
                 });
                 child.material.opacity0 = child.material.opacity;
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
+                child.renderOrder = 0;
                 //child.name = child.name.toLowerCase();
                 if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
                     child.material.color = new THREE.Color(0, 0, 0);
@@ -5410,15 +5414,18 @@ var OxiControls = (function () {
         var canEdit = this.app.main.selected.canEdit;
         if (this.kompas)
             this.kompas.onUpdate();
-        if (this.app._events.lastInter) {
-            if (this.app._events.lastInter.object._toolTip)
-                this.app._events.lastInter.object._toolTip.show(flag);
-            if (!this.app._events.lastInter.object.material.defColor)
-                this.app._events.lastInter.object.material.defColor = this.app._events.lastInter.object.material.color.clone();
-            if (!this.app._events.lastInter.object.material.onSelectColor)
-                this.app._events.lastInter.object.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
-            this.app._events.lastInter.object.material.color = flag ? this.app._events.lastInter.object.material.onSelectColor : this.app._events.lastInter.object.material.defColor;
-            this.app._events.lastInter.object.material.transparent = fl;
+        var _inter = this.app._events.lastInter;
+        if (_inter) {
+            _inter = _inter.object;
+            if (_inter._toolTip)
+                _inter._toolTip.show(flag);
+            if (!_inter.material.defColor)
+                _inter.material.defColor = _inter.material.color.clone();
+            if (!_inter.material.onSelectColor)
+                _inter.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
+            _inter.material.color = flag ? _inter.material.onSelectColor : _inter.material.defColor;
+            _inter.material.transparent = fl;
+            _inter.renderOrder = flag ? 100 : 0;
         }
         if (flag) {
             if (this.controls.className.indexOf(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE) < 0) {
