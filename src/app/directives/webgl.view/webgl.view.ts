@@ -194,6 +194,8 @@ class OxiAPP {
                 this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
                 if (_cm.target)this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
             }
+
+            this.camera.lookAt(this.controls.target);
             this.camera.updateProjectionMatrix();
             this._animation.play();
 
@@ -666,11 +668,16 @@ class OxiAPP {
         return this.gl.domElement.getBoundingClientRect()
     }
 
+    onEventPrevent(event) {
+        event.preventDefault();
+        return false;
+    }
+
     render() {
         if (Pace.running) return;
         this.updateInfoHTML();
         this.gl.render(this.scene, this.camera);
-        this.camera.lookAt(this.controls.target);
+        console.log(this.camera.position);
     }
 
 }
@@ -700,14 +707,8 @@ class OxiEvents {
         handler(this.EVENTS_NAME.MOUSE_DOWN, (e)=>this.onMouseDown(e));
         handler(this.EVENTS_NAME.MOUSE_UP, (e)=>this.onMouseUp(e));
         handler(this.EVENTS_NAME.MOUSE_MOVE, (e)=>this.onMouseMove(e));
-        handler('dblclick', (event)=> {
-            event.preventDefault();
-            return false;
-        });
-        handler('selectstart', (event)=> {
-            event.preventDefault();
-            return false;
-        });
+        handler(this.EVENTS_NAME.DB_CLICK, app.onEventPrevent);
+        handler(this.EVENTS_NAME.SELECT_START, app.onEventPrevent);
 
         if (!this.canEdit)handler(this.EVENTS_NAME.MOUSE_OUT, (e)=>this.onMouseOut(e));
 
@@ -805,12 +806,14 @@ class OxiEvents {
             if (this.mouse.down) {
                 if (!this.lastEv)return this.lastEv = ev;
                 if (
-                    Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove ||
-                    Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove
+                    Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove
+
                 ) {
-                    this.main._slider.move((ev.clientX > this.lastEv.clientX || ev.clientY > this.lastEv.clientY ? -1 : 1));
+                    this.main._slider.move((ev.clientX > this.lastEv.clientX  ? -1 : 1));
                     this.lastEv = ev;
-                    //this.main.updateInfoHTML();
+                }else if( Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove){
+                    this.main._slider.move((ev.clientY > this.lastEv.clientY  ? -1 : 1));
+                    this.lastEv = ev;
                 }
             } else {
                 this.onSelected(ev, (inter)=> {
@@ -832,6 +835,7 @@ class OxiEvents {
 
     private onMouseDown(ev:Event) {
         this.mouse.down = ev;
+        this.lastEv = false;
     }
 
     private onMouseOut(ev:any) {
@@ -1223,6 +1227,7 @@ class OxiControls {
 
         if (app.main.selected.canEdit) {
             div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
+
             app._parent().appendChild(div);
             let childSelected = (child:any)=> {
                     this.app._events.lastInter.object._data = child;
@@ -1367,7 +1372,7 @@ class OxiControls {
                 });
 
             app.model.traverse((child)=> {
-                if (child.type == "Mesh" && child._dataSource ) {
+                if (child.type == "Mesh" && child._dataSource) {
                     child._toolTip = new OxiToolTip(child, app);
                 }
             });
@@ -1387,6 +1392,7 @@ class OxiControls {
                                 childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
                                     this.app._slider.move(dir);
                                 });
+                                childDiv.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, this.app.onEventPrevent);
                                 break;
                             }
                         }
@@ -1403,10 +1409,11 @@ class OxiControls {
                         childDiv.addEventListener((this.app.isMobile ? ENTITY.Config.EVENTS_NAME.TOUCH_END : ENTITY.Config.EVENTS_NAME.CLICK), (e:Event)=> {
                             this.app._slider.move(child._i);
                         });
+                        childDiv.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, this.app.onEventPrevent);
                     });
                 }
             }
-
+            div.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, this.app.onEventPrevent);
             let tooltipParent:any = document.querySelector('.' + ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER);
             if (!tooltipParent) {
                 tooltipParent = document.createElement('div');
@@ -1555,6 +1562,11 @@ class OxiToolTip {
             tooltip.appendChild(sp);
             this.tooltip = tooltip;
             this.tooltipCnt = tooltCnt;
+
+            [tooltip, tooltCnt, sp, ps].forEach((e)=> {
+                e.addEventListener(ENTITY.Config.EVENTS_NAME.DB_CLICK, main.onEventPrevent);
+                e.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, main.onEventPrevent);
+            });
         }
 
         this.mesh = mesh;

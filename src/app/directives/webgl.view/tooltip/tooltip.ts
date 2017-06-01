@@ -49,6 +49,10 @@ export class WTooltip extends AbstractChangesView implements OnInit {
         });
     }
 
+    private   onEventPrevent(event) {
+        event.preventDefault();
+        return false;
+    }
     private initParser(value:any=null) {
         let val = value;
         try {

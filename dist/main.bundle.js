@@ -1644,6 +1644,10 @@ var WTooltip = (function (_super) {
             alertify.error(res && res.message ? res.message : res);
         });
     };
+    WTooltip.prototype.onEventPrevent = function (event) {
+        event.preventDefault();
+        return false;
+    };
     WTooltip.prototype.initParser = function (value) {
         if (value === void 0) { value = null; }
         var val = value;
@@ -1717,6 +1721,8 @@ var Config = (function () {
     };
     Config.EVENTS_NAME = {
         CNTXMENU: 'contextmenu',
+        DB_CLICK: 'dblclick',
+        SELECT_START: 'selectstart',
         CLICK: 'click',
         TOUCH_START: 'touchstart',
         TOUCH_MOVE: 'touchmove',
@@ -4260,6 +4266,7 @@ var OxiAPP = (function () {
                 if (_cm.target)
                     _this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
             }
+            _this.camera.lookAt(_this.controls.target);
             _this.camera.updateProjectionMatrix();
             _this._animation.play();
         };
@@ -4684,12 +4691,16 @@ var OxiAPP = (function () {
     OxiAPP.prototype._offset = function () {
         return this.gl.domElement.getBoundingClientRect();
     };
+    OxiAPP.prototype.onEventPrevent = function (event) {
+        event.preventDefault();
+        return false;
+    };
     OxiAPP.prototype.render = function () {
         if (Pace.running)
             return;
         this.updateInfoHTML();
         this.gl.render(this.scene, this.camera);
-        this.camera.lookAt(this.controls.target);
+        console.log(this.camera.position);
     };
     return OxiAPP;
 }());
@@ -4707,14 +4718,8 @@ var OxiEvents = (function () {
         handler(this.EVENTS_NAME.MOUSE_DOWN, function (e) { return _this.onMouseDown(e); });
         handler(this.EVENTS_NAME.MOUSE_UP, function (e) { return _this.onMouseUp(e); });
         handler(this.EVENTS_NAME.MOUSE_MOVE, function (e) { return _this.onMouseMove(e); });
-        handler('dblclick', function (event) {
-            event.preventDefault();
-            return false;
-        });
-        handler('selectstart', function (event) {
-            event.preventDefault();
-            return false;
-        });
+        handler(this.EVENTS_NAME.DB_CLICK, app.onEventPrevent);
+        handler(this.EVENTS_NAME.SELECT_START, app.onEventPrevent);
         if (!this.canEdit)
             handler(this.EVENTS_NAME.MOUSE_OUT, function (e) { return _this.onMouseOut(e); });
         window.addEventListener('resize', function () { return _this.onWindowResize(); });
@@ -4801,9 +4806,12 @@ var OxiEvents = (function () {
             if (this.mouse.down) {
                 if (!this.lastEv)
                     return this.lastEv = ev;
-                if (Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove ||
-                    Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove) {
-                    this.main._slider.move((ev.clientX > this.lastEv.clientX || ev.clientY > this.lastEv.clientY ? -1 : 1));
+                if (Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove) {
+                    this.main._slider.move((ev.clientX > this.lastEv.clientX ? -1 : 1));
+                    this.lastEv = ev;
+                }
+                else if (Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove) {
+                    this.main._slider.move((ev.clientY > this.lastEv.clientY ? -1 : 1));
                     this.lastEv = ev;
                 }
             }
@@ -4825,6 +4833,7 @@ var OxiEvents = (function () {
     };
     OxiEvents.prototype.onMouseDown = function (ev) {
         this.mouse.down = ev;
+        this.lastEv = false;
     };
     OxiEvents.prototype.onMouseOut = function (ev) {
         if (this.mouse.down)
@@ -5310,6 +5319,7 @@ var OxiControls = (function () {
                                 childDiv.addEventListener((this_2.app.isMobile ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.TOUCH_END : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK), function (e) {
                                     _this.app._slider.move(dir_1);
                                 });
+                                childDiv.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, this_2.app.onEventPrevent);
                                 return "break";
                             }
                         };
@@ -5331,9 +5341,11 @@ var OxiControls = (function () {
                         childDiv.addEventListener((_this.app.isMobile ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.TOUCH_END : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK), function (e) {
                             _this.app._slider.move(child._i);
                         });
+                        childDiv.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, _this.app.onEventPrevent);
                     });
                 }
             }
+            div.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, this.app.onEventPrevent);
             var tooltipParent_1 = document.querySelector('.' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.CONTAINER);
             if (!tooltipParent_1) {
                 tooltipParent_1 = document.createElement('div');
@@ -5464,6 +5476,10 @@ var OxiToolTip = (function () {
             tooltip.appendChild(sp);
             this.tooltip = tooltip;
             this.tooltipCnt = tooltCnt;
+            [tooltip, tooltCnt, sp, ps].forEach(function (e) {
+                e.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.DB_CLICK, main.onEventPrevent);
+                e.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, main.onEventPrevent);
+            });
         }
         this.mesh = mesh;
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
@@ -6899,7 +6915,7 @@ module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"D
 /***/ 832:
 /***/ (function(module, exports) {
 
-module.exports = "<app-template-loader [model]=\"modelData\" *ngIf=\"dataSourceLoaded\"[templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.TOOLTIP\"\n                     #tempLoad></app-template-loader>\n<div [ngClass]=\"ProjClasses.PROJ_TOOLTIP_CONTAINER\" *ngIf=\"dataElem\">\n    <div class=\"cos-info\" *ngFor=\"let item of dataElem\" [ngClass]=\"{'active' : item.active,'act':item.tooltip.active}\" [style.left]=\"item._left\"\n         [style.top]=\"item._top\" (click)=\"item.onclick()\">\n        <div class=\"cos-tooltip\" [ngClass]=\"{'active' : item.tooltip.active}\">\n            <div class=\"cos-tooltip-header\">\n                <span [innerText]=\"item.tooltip.header\"></span>\n            </div>\n            <hr>\n            <div class=\"cos-tooltip-body\">\n                <div class=\"cos-tooltip-body-title\" [innerText]=\"item.tooltip.body.title\"></div>\n            </div>\n        </div>\n\n        <div class=\"cos-label\">\n            <span [innerText]=\"item.label.title\"></span>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<app-template-loader [model]=\"modelData\" *ngIf=\"dataSourceLoaded\"[templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.TOOLTIP\"\n                     #tempLoad></app-template-loader>\n<div [ngClass]=\"ProjClasses.PROJ_TOOLTIP_CONTAINER\" *ngIf=\"dataElem\">\n    <div class=\"cos-info\" *ngFor=\"let item of dataElem\" [ngClass]=\"{'active' : item.active,'act':item.tooltip.active}\"(selectstart)=\"onEventPrevent($event)\" [style.left]=\"item._left\"\n         [style.top]=\"item._top\" (click)=\"item.onclick()\">\n        <div class=\"cos-tooltip\" [ngClass]=\"{'active' : item.tooltip.active}\"(selectstart)=\"onEventPrevent($event)\">\n            <div class=\"cos-tooltip-header\">\n                <span [innerText]=\"item.tooltip.header\"(selectstart)=\"onEventPrevent($event)\"></span>\n            </div>\n            <hr>\n            <div class=\"cos-tooltip-body\">\n                <div class=\"cos-tooltip-body-title\" [innerText]=\"item.tooltip.body.title\"(selectstart)=\"onEventPrevent($event)\"></div>\n            </div>\n        </div>\n\n        <div class=\"cos-label\">\n            <span [innerText]=\"item.label.title\"(selectstart)=\"onEventPrevent($event)\"></span>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 

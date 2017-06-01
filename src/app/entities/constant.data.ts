@@ -12,6 +12,8 @@ export class Config {
     };
     static EVENTS_NAME = {
         CNTXMENU: 'contextmenu',
+        DB_CLICK: 'dblclick',
+        SELECT_START: 'selectstart',
         CLICK: 'click',
         TOUCH_START: 'touchstart',
         TOUCH_MOVE: 'touchmove',
