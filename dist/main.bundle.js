@@ -4563,6 +4563,7 @@ var OxiAPP = (function () {
                     transparent: true,
                     opacity: _this.main.selected.camera.opacity
                 });
+                child.material.opacity0 = child.material.opacity;
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                 //child.name = child.name.toLowerCase();
                 if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
@@ -4717,7 +4718,7 @@ var OxiEvents = (function () {
         handler(this.EVENTS_NAME.MOUSE_DOWN, function (e) { return _this.onMouseDown(e); });
         handler(this.EVENTS_NAME.MOUSE_UP, function (e) { return _this.onMouseUp(e); });
         handler(this.EVENTS_NAME.MOUSE_MOVE, function (e) { return _this.onMouseMove(e); });
-        handler(this.EVENTS_NAME.DB_CLICK, app.onEventPrevent);
+        handler(this.EVENTS_NAME.DB_CLICK, function (e) { return _this.onDbClick(e); });
         handler(this.EVENTS_NAME.SELECT_START, app.onEventPrevent);
         if (!this.canEdit)
             handler(this.EVENTS_NAME.MOUSE_OUT, function (e) { return _this.onMouseOut(e); });
@@ -4837,6 +4838,13 @@ var OxiEvents = (function () {
     OxiEvents.prototype.onMouseOut = function (ev) {
         if (this.mouse.down)
             this.onMouseUp(ev);
+    };
+    OxiEvents.prototype.onDbClick = function (e) {
+        if (this.canEdit) {
+            this.main.controls.target.copy(this.main.scene.position);
+            this.main.controls.update();
+        }
+        this.main.onEventPrevent(e);
     };
     OxiEvents.prototype.onCntxMenu = function (event) {
         event.preventDefault();
@@ -5354,7 +5362,8 @@ var OxiControls = (function () {
             this._tooltips = tooltipParent_1;
             app.model.traverse(function (child) {
                 if (child.type == "Mesh") {
-                    child.material.visible = false;
+                    //child.material.visible = false;
+                    child.material.opacity = 0;
                     child._toolTip = new OxiToolTip(child, app);
                     if (!child._dataSource)
                         tooltipParent_1.appendChild(child._toolTip.tooltip);
@@ -5469,17 +5478,20 @@ var OxiToolTip = (function () {
             spanBody.innerHTML = mesh._data ? mesh._data.name : mesh.name;
             spanHead.innerHTML = mesh.name;
             //tooltip.innerHTML += '<div class="cos-label"><span>0</span></div>';
-            var sp = document.createElement('div');
-            sp.className = 'cos-label';
-            var ps = document.createElement('span');
-            ps.innerText = '0';
-            sp.appendChild(ps);
-            tooltip.appendChild(sp);
+            var sp = void 0, ps = void 0;
+            if (mesh._data && mesh._data.areas) {
+                sp = document.createElement('div');
+                sp.className = 'cos-label';
+                ps = document.createElement('span');
+                sp.appendChild(ps);
+                ps.innerText = mesh._data.areas.length;
+                tooltip.appendChild(sp);
+            }
             this.tooltip = tooltip;
             this.tooltipCnt = tooltCnt;
             [tooltip, tooltCnt, sp, ps].forEach(function (e) {
-                e.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.DB_CLICK, main.onEventPrevent);
-                e.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, main.onEventPrevent);
+                if (e)
+                    e.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, main.onEventPrevent);
             });
         }
         this.mesh = mesh;
@@ -5535,7 +5547,8 @@ var OxiToolTip = (function () {
     }
     OxiToolTip.prototype.show = function (show) {
         if (show === void 0) { show = true; }
-        this.mesh.material.visible = show || this.canEdit;
+        //this.mesh.material.visible = show || this.canEdit;
+        this.mesh.material.opacity = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
         if (this.tooltip) {
             this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
             this.tooltipCnt.className = show ? 'cos-tooltip active' : 'cos-tooltip';

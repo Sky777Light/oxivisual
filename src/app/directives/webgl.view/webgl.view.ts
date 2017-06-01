@@ -527,6 +527,7 @@ class OxiAPP {
                     transparent: true,
                     opacity: this.main.selected.camera.opacity
                 });
+                child.material.opacity0 = child.material.opacity;
                 child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                 //child.name = child.name.toLowerCase();
                 if (child.name.match(ENTITY.Config.IGNORE)) {
@@ -706,7 +707,7 @@ class OxiEvents {
         handler(this.EVENTS_NAME.MOUSE_DOWN, (e)=>this.onMouseDown(e));
         handler(this.EVENTS_NAME.MOUSE_UP, (e)=>this.onMouseUp(e));
         handler(this.EVENTS_NAME.MOUSE_MOVE, (e)=>this.onMouseMove(e));
-        handler(this.EVENTS_NAME.DB_CLICK, app.onEventPrevent);
+        handler(this.EVENTS_NAME.DB_CLICK, (e)=>this.onDbClick(e));
         handler(this.EVENTS_NAME.SELECT_START, app.onEventPrevent);
 
         if (!this.canEdit)handler(this.EVENTS_NAME.MOUSE_OUT, (e)=>this.onMouseOut(e));
@@ -839,6 +840,14 @@ class OxiEvents {
 
     private onMouseOut(ev:any) {
         if (this.mouse.down)this.onMouseUp(ev);
+    }
+
+    private onDbClick(e:any) {
+        if (this.canEdit){
+            this.main.controls.target.copy(this.main.scene.position);
+            this.main.controls.update();
+        }
+        this.main.onEventPrevent(e);
     }
 
     onCntxMenu(event) {
@@ -1422,7 +1431,8 @@ class OxiControls {
             this._tooltips = tooltipParent;
             app.model.traverse((child)=> {
                 if (child.type == "Mesh") {
-                    child.material.visible = false;
+                    //child.material.visible = false;
+                    child.material.opacity = 0;
                     child._toolTip = new OxiToolTip(child, app);
                     if (!child._dataSource)tooltipParent.appendChild(child._toolTip.tooltip);
                     tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
@@ -1555,18 +1565,20 @@ class OxiToolTip {
 
 
             //tooltip.innerHTML += '<div class="cos-label"><span>0</span></div>';
-            let sp = document.createElement('div');
-            sp.className = 'cos-label';
-            let ps = document.createElement('span');
-            ps.innerText = '0';
-            sp.appendChild(ps);
-            tooltip.appendChild(sp);
+            let sp, ps;
+            if (mesh._data && mesh._data.areas) {
+                sp = document.createElement('div');
+                sp.className = 'cos-label';
+                ps = document.createElement('span');
+                sp.appendChild(ps);
+                ps.innerText = mesh._data.areas.length;
+                tooltip.appendChild(sp);
+            }
             this.tooltip = tooltip;
             this.tooltipCnt = tooltCnt;
 
             [tooltip, tooltCnt, sp, ps].forEach((e)=> {
-                e.addEventListener(ENTITY.Config.EVENTS_NAME.DB_CLICK, main.onEventPrevent);
-                e.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, main.onEventPrevent);
+                if (e)e.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, main.onEventPrevent);
             });
         }
 
@@ -1625,7 +1637,9 @@ class OxiToolTip {
     }
 
     show(show:boolean = true) {
-        this.mesh.material.visible = show || this.canEdit;
+        //this.mesh.material.visible = show || this.canEdit;
+        this.mesh.material.opacity = (show || this.canEdit)?this.mesh.material.opacity0: 0;
+
         if (this.tooltip) {
 
             this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
