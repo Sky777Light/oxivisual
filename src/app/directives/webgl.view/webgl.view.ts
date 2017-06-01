@@ -808,10 +808,10 @@ class OxiEvents {
                     Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove
 
                 ) {
-                    this.main._slider.move((ev.clientX > this.lastEv.clientX  ? -1 : 1));
+                    this.main._slider.move((ev.clientX > this.lastEv.clientX ? -1 : 1));
                     this.lastEv = ev;
-                }else if( Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove){
-                    this.main._slider.move((ev.clientY > this.lastEv.clientY  ? -1 : 1));
+                } else if (Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove) {
+                    this.main._slider.move((ev.clientY > this.lastEv.clientY ? -1 : 1));
                     this.lastEv = ev;
                 }
             } else {
@@ -1510,7 +1510,7 @@ class OxiToolTip {
     tooltip:any;
     tooltipCnt:any;
     private mesh:any;
-    private canEdit:boolean=false;
+    private canEdit:boolean = false;
     private _id:number;
 
 
@@ -1574,41 +1574,53 @@ class OxiToolTip {
 
 
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
-        if (mesh._data && !main.main.selected.canEdit) {
-            if (mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
-                mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
-            }
-            mesh.click = ()=> {
-                switch (mesh._data._category) {
-                    case ENTITY.Config.PROJ_DESTINATION.ModelStructure:
-                    {
-                        let _url = mesh._data.projFilesDirname.split("/");
-                        window.location.href += "&area=" + _url[_url.length - 1];
-                        break;
-                    }
-                    case ENTITY.Config.PROJ_DESTINATION.LinkGeneralStructure:
-                    {
-                        window.open(mesh._data.destination);
-                        break;
-                    }
-                    case ENTITY.Config.PROJ_DESTINATION.GeneralStructure:
-                    {
-                        try {
-                            main.main.authServ.safeJS(mesh._data.destination)();
-                        } catch (e) {
-                        }
-
-                        break;
-                    }
+        if (!main.main.selected.canEdit) {
+            if (mesh._data) {
+                if (mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
+                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
                 }
-            };
-            if (mesh._dataSource) {
-                mesh._dataSource.onclick = mesh.click;
-            } else {
-                tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
-            }
+                mesh.click = ()=> {
+                    switch (mesh._data._category) {
+                        case ENTITY.Config.PROJ_DESTINATION.ModelStructure:
+                        {
+                            let _url = mesh._data.projFilesDirname.split("/");
+                            window.location.href += "&area=" + _url[_url.length - 1];
+                            break;
+                        }
+                        case ENTITY.Config.PROJ_DESTINATION.LinkGeneralStructure:
+                        {
+                            window.open(mesh._data.destination);
+                            break;
+                        }
+                        case ENTITY.Config.PROJ_DESTINATION.GeneralStructure:
+                        {
+                            try {
+                                main.main.authServ.safeJS(mesh._data.destination)();
+                            } catch (e) {
+                            }
 
+                            break;
+                        }
+                    }
+                };
+                if (mesh._dataSource) {
+                    mesh._dataSource.onclick = mesh.click;
+                } else {
+                    tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
+                }
+            } else if (mesh._dataSource) {
+
+                if (mesh._dataSource.URL && mesh._dataSource.URL.match(ENTITY.Config.PATTERNS.URL)) {
+                    mesh.click = ()=> {
+                        window.open(mesh._data.destination);
+                    }
+                    mesh._dataSource.onclick = mesh.click;
+                    if (tooltip)tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
+                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                }
+            }
         }
+
 
     }
 

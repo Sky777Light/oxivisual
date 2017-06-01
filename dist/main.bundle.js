@@ -5484,39 +5484,52 @@ var OxiToolTip = (function () {
         }
         this.mesh = mesh;
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
-        if (mesh._data && !main.main.selected.canEdit) {
-            if (mesh._data._category == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure) {
-                mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
-            }
-            mesh.click = function () {
-                switch (mesh._data._category) {
-                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure:
-                        {
-                            var _url = mesh._data.projFilesDirname.split("/");
-                            window.location.href += "&area=" + _url[_url.length - 1];
-                            break;
-                        }
-                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.LinkGeneralStructure:
-                        {
-                            window.open(mesh._data.destination);
-                            break;
-                        }
-                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.GeneralStructure:
-                        {
-                            try {
-                                main.main.authServ.safeJS(mesh._data.destination)();
-                            }
-                            catch (e) {
-                            }
-                            break;
-                        }
+        if (!main.main.selected.canEdit) {
+            if (mesh._data) {
+                if (mesh._data._category == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure) {
+                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
                 }
-            };
-            if (mesh._dataSource) {
-                mesh._dataSource.onclick = mesh.click;
+                mesh.click = function () {
+                    switch (mesh._data._category) {
+                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure:
+                            {
+                                var _url = mesh._data.projFilesDirname.split("/");
+                                window.location.href += "&area=" + _url[_url.length - 1];
+                                break;
+                            }
+                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.LinkGeneralStructure:
+                            {
+                                window.open(mesh._data.destination);
+                                break;
+                            }
+                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.GeneralStructure:
+                            {
+                                try {
+                                    main.main.authServ.safeJS(mesh._data.destination)();
+                                }
+                                catch (e) {
+                                }
+                                break;
+                            }
+                    }
+                };
+                if (mesh._dataSource) {
+                    mesh._dataSource.onclick = mesh.click;
+                }
+                else {
+                    tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
+                }
             }
-            else {
-                tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
+            else if (mesh._dataSource) {
+                if (mesh._dataSource.URL && mesh._dataSource.URL.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PATTERNS.URL)) {
+                    mesh.click = function () {
+                        window.open(mesh._data.destination);
+                    };
+                    mesh._dataSource.onclick = mesh.click;
+                    if (tooltip)
+                        tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
+                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                }
             }
         }
     }
