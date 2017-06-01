@@ -4700,7 +4700,6 @@ var OxiAPP = (function () {
             return;
         this.updateInfoHTML();
         this.gl.render(this.scene, this.camera);
-        console.log(this.camera.position);
     };
     return OxiAPP;
 }());
@@ -5437,7 +5436,9 @@ var OxiControls = (function () {
 }());
 var OxiToolTip = (function () {
     function OxiToolTip(mesh, main) {
+        this.canEdit = false;
         var tooltip;
+        this.canEdit = main.main.selected.canEdit;
         if (mesh._tooltip) {
             for (var i = 0; i < main.infoHTML.length; i++) {
                 if (main.infoHTML[i]._id == mesh._tooltip._id) {
@@ -5521,7 +5522,7 @@ var OxiToolTip = (function () {
     }
     OxiToolTip.prototype.show = function (show) {
         if (show === void 0) { show = true; }
-        this.mesh.material.visible = show;
+        this.mesh.material.visible = show || this.canEdit;
         if (this.tooltip) {
             this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
             this.tooltipCnt.className = show ? 'cos-tooltip active' : 'cos-tooltip';

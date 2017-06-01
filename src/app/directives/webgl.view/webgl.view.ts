@@ -677,7 +677,6 @@ class OxiAPP {
         if (Pace.running) return;
         this.updateInfoHTML();
         this.gl.render(this.scene, this.camera);
-        console.log(this.camera.position);
     }
 
 }
@@ -1511,12 +1510,14 @@ class OxiToolTip {
     tooltip:any;
     tooltipCnt:any;
     private mesh:any;
+    private canEdit:boolean=false;
     private _id:number;
 
 
     constructor(mesh, main:OxiAPP) {
         let tooltip;
 
+        this.canEdit = main.main.selected.canEdit;
         if (mesh._tooltip) {
             for (let i = 0; i < main.infoHTML.length; i++) {
                 if (main.infoHTML[i]._id == mesh._tooltip._id) {
@@ -1612,7 +1613,7 @@ class OxiToolTip {
     }
 
     show(show:boolean = true) {
-        this.mesh.material.visible = show;
+        this.mesh.material.visible = show || this.canEdit;
         if (this.tooltip) {
 
             this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
