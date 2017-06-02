@@ -4193,7 +4193,7 @@ var WebglView = (function () {
         if (!this.inited)
             return this.inited = true;
         if (this.selected.images.length) {
-            this.preview = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + this.selected.images[0];
+            this.preview = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + this.selected.images[this.selected.currentItem || 0];
         }
         else if (this.selected.preview) {
             this.preview = this.selected.preview;

@@ -75,7 +75,7 @@ export class WebglView implements OnInit,OnChanges {
     initWebgl() {
         if (!this.inited) return this.inited = true;
         if (this.selected.images.length) {
-            this.preview = ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + this.selected.images[0];
+            this.preview = ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + this.selected.images[this.selected.currentItem||0];
         } else if (this.selected.preview) {
             this.preview = this.selected.preview;
         }
