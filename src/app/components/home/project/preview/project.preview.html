@@ -12,7 +12,7 @@
                         <img *ngIf="treeView.hide" (click)="treeView.hide=!treeView.hide"
                              src="../assets/img/Fill 2 (1).svg">
                     </td>
-                    <td class="s-tab webgl-item" rowspan="2"
+                    <td class="s-tab webgl-item" rowspan="2" style="text-align: center;"
                         [attr.colspan]="treeView.hide ?2:1">
                         <iframe [src]="dataSrc" frameborder=0 allowfullscreen #ifrm></iframe>
                     </td>

@@ -1,20 +1,12 @@
-<app-template-loader [model]="modelData" *ngIf="dataSourceLoaded"[templateType]="DIR.PROJECT_TEMPLATE._TYPE.TOOLTIP"
+<app-template-loader [model]="modelData" *ngIf="dataSourceLoaded" [templateType]="DIR.PROJECT_TEMPLATE._TYPE.TOOLTIP"
                      #tempLoad></app-template-loader>
 <div [ngClass]="ProjClasses.PROJ_TOOLTIP_CONTAINER" *ngIf="dataElem">
-    <div class="cos-info" *ngFor="let item of dataElem" [ngClass]="{'active' : item.active,'act':item.tooltip.active}"(selectstart)="onEventPrevent($event)" [style.left]="item._left"
+    <div class="cos-info" *ngFor="let item of dataElem; let i = index"
+         [ngClass]="{'active' : item.active,'act':item.tooltip.active}" (selectstart)="onEventPrevent($event)"
+         [style.left]="item._left"
          [style.top]="item._top" (click)="item.onclick()">
-        <div class="cos-tooltip" [ngClass]="{'active' : item.tooltip.active}"(selectstart)="onEventPrevent($event)">
-            <div class="cos-tooltip-header">
-                <span [innerText]="item.tooltip.header"(selectstart)="onEventPrevent($event)"></span>
-            </div>
-            <hr>
-            <div class="cos-tooltip-body">
-                <div class="cos-tooltip-body-title" [innerText]="item.tooltip.body.title"(selectstart)="onEventPrevent($event)"></div>
-            </div>
-        </div>
-
-        <div class="cos-label">
-            <span [innerText]="item.label.title"(selectstart)="onEventPrevent($event)"></span>
-        </div>
+        <template dynamic-component
+                  [componentContext]="{tooltip: item.tooltip}"
+                  [componentTemplate]='item.html'></template>
     </div>
 </div>

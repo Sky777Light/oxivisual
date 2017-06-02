@@ -47,11 +47,37 @@ function my_parser(options) {
                 }
             }
             return temp;
-        },
+        },  createHtml = function (dataSource) {
+                var result = '<div class="cos-info">',
+                    toolttip = '',
+                    label = '',
+                    originalFields = assignElements[1],
+                    toolTipField = originalFields[1].split('.')[0],
+                    labelFiled = originalFields[2].split('.')[0];
+
+                    if (dataSource[toolTipField]) {
+                    toolttip += '<div class="cos-tooltip" [ngClass]="{\'active\' : tooltip.active}">';
+                        var headerT = dataSource[toolTipField][originalFields[0].split('.')[1]],
+                        bodyT = dataSource[toolTipField][originalFields[1].split('.')[1]];
+                        if (headerT) toolttip += '<div class="cos-tooltip-header"><span onselectstart="return false">' + headerT + '</span></div>';
+                        if (bodyT) toolttip += '<div class="cos-tooltip-body"> <div class="cos-tooltip-body-title" onselectstart="return false">' + bodyT + '</div></div>';
+                        toolttip += '</div>';
+                    result += toolttip;
+                    }
+                    if (dataSource[labelFiled]) {
+                    label += '<div class="cos-label">';
+                        var labelTxt = dataSource[toolTipField][originalFields[2].split('.')[1]];
+                        if (labelTxt)label += '<span onselectstart="return false">' + labelTxt + '</span>';
+                        label += '</div>';
+                    result += label;
+                    }
+                    result += '</div>';
+                return result;
+                },
         result = copyAssign(dataSource);
 
         for(var i=0;i< result.length;i++){
-
+            result[i].html = createHtml(dataSource);
             for(var l=0; l < assignElements[1].length; l++){
                 var matchRes = assignElements[1][l].split("."),
                     copyT = result[i];

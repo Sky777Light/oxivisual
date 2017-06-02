@@ -1,4 +1,4 @@
-import {Input,ViewChild,Component,OnInit} from '@angular/core';
+import {Input,ViewChild,Component,OnInit,ViewContainerRef} from '@angular/core';
 import * as ENTITY from '../../../entities/entities';
 import {AbstractChangesView} from '../abstract.changes.view';
 import {AuthService} from "../../../services/services";
@@ -17,8 +17,9 @@ export class WTooltip extends AbstractChangesView implements OnInit {
     private parser:any;
       dataElem:any;
 
-    constructor(private authService:AuthService) {
+    constructor(private authService:AuthService,public vc: ViewContainerRef) {
         super();
+
     }
 
     ngOnInit() {
@@ -58,15 +59,18 @@ export class WTooltip extends AbstractChangesView implements OnInit {
         try {
             if(!value)val= this.htmlTemplate;
             this.parser = this.authService.safeJS(val);
-            this.dataElem = this.parser({dataSource: this.dataSource});
-            if (this.isEdit) {
-                this.dataElem[0].tooltip.active = this.dataElem[0].active = true;
-                this.dataElem[0]._left = 160 + 'px';
-                this.dataElem[0]._top = 220 + 'px';
-            }
-            this.dataElem.forEach((el)=>{
+            let _data= this.parser({dataSource: this.dataSource});
+            _data.forEach((el,i)=>{
+                if (this.isEdit && i==0) {
+                    el.tooltip.active = el.active = true;
+                    el._left = 160 + 'px';
+                    el._top = 220 + 'px';
+                }
                 el.onclick = ()=>{};
             });
+
+            this.dataElem = _data;
+
         } catch (e) {
             alertify.error(e)
         }
