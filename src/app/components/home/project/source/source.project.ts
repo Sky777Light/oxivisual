@@ -118,6 +118,7 @@ export class SourceProject {
         if (area) {
             let _form = new FormData(),
                 filesUpload = [
+                    {a: area.svgDestination, n: ENTITY.Config.FILE.STORAGE.SVG_FILE},
                     {a: area.destination, n: ENTITY.Config.FILE.STORAGE.MODEL_OBJ},
                     {a: area.alignImages, n: ENTITY.Config.FILE.STORAGE.ALIGN_IMG},
                     {a: area.images, n: ENTITY.Config.FILE.STORAGE.PREVIEW_IMG}
@@ -140,6 +141,10 @@ export class SourceProject {
                     area.projFilesDirname = dirStartFrom;
                     area.hasChanges = false;
                     if (area.destination instanceof Array)area.destination = area.destination[0].name;
+                    if (area.svgDestination instanceof Array){
+                        area.svgDestination = area.svgDestination[0].name;
+                       delete area.destination;
+                    }
 
                     ['alignImages', 'images'].forEach((field)=> {
                         for (let f = 0; area[field] && f < area[field].length; f++) {

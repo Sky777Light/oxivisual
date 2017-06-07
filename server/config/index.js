@@ -25,8 +25,8 @@ module.exports = {
 
         }
     },
-    FILE_UPLOAD_EXT: ['.obj', 'image/'],
-    FILE_UPLOAD_ATTR: ['model[]', 'frames[]', 'alignFrames[]', 'structure','preloader[]','tooltip[]','controls[]'],
+    FILE_UPLOAD_EXT: ['.obj', 'image/','.svg'],
+    FILE_UPLOAD_ATTR: ['model[]', 'frames[]', 'alignFrames[]', 'structure','preloader[]','tooltip[]','controls[]','svgs[]'],
     FILE_UPLOAD_ACCEC: parseInt("0777", 8),
     port: process.env.PORT || 3009,
     mongoose: {

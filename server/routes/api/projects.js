@@ -73,7 +73,7 @@ function checkPermissionOnProject(req, res, next) {
         if (req.session.lastEditProject && req.session.lastEditProject.model && req.session.lastEditProject.model.link && req.session.lastEditProject._id == req.body._id) {
             next(req, res);
         } else {
-            Project.findOne({_id: req.body._id}, {_id: 1, model: 1,image:1,link:1}, function (err, project) {
+            Project.findOne({_id: req.body._id}, {_id: 1, model: 1, image: 1, link: 1}, function (err, project) {
                 if (err || !project) {
                     return res.json({
                         status: false,
@@ -115,9 +115,11 @@ function saveProjectFiles(options, req, res, next) {
                 filesName;
             if (!req.files[keys] || !req.files[keys].length)continue;
             switch (keys) {
+                case config.FILE_UPLOAD_ATTR[7]:
                 case config.FILE_UPLOAD_ATTR[0]:
                 {
-                    modelSaved = 'destination';
+                    let isSvg = keys ==  config.FILE_UPLOAD_ATTR[7];
+                    modelSaved = isSvg?'svgDestination':'destination';
                     urlSaveFile = modelDir;
                     let pathF = path.normalize(urlSaveFile);
                     if (fs.existsSync(pathF)) {
@@ -126,7 +128,7 @@ function saveProjectFiles(options, req, res, next) {
                                 curPath = pathF + "/" + file;
                             if (fs.lstatSync(curPath).isDirectory()) {
                             } else {
-                                if (curPath.indexOf(config.FILE_UPLOAD_EXT[0])) {
+                                if (curPath.indexOf((isSvg?config.FILE_UPLOAD_EXT[2]:config.FILE_UPLOAD_EXT[0]))) {
                                     fs.unlinkSync(curPath);
                                     break;
                                 }
@@ -168,6 +170,7 @@ function saveProjectFiles(options, req, res, next) {
                     fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), fs.readFileSync(req.files[keys][0].path));
                     break;
                 }
+
                 case config.FILE_UPLOAD_ATTR[4]:
                 case config.FILE_UPLOAD_ATTR[5]:
                 case config.FILE_UPLOAD_ATTR[6]:
@@ -191,7 +194,6 @@ function saveProjectFiles(options, req, res, next) {
                     buffer = fs.readFileSync(_file.path),
                     _fileName = _file.originalname ? _file.originalname : filesName ? filesName.shift() : '.bak';
                 fs.writeFileSync(urlSaveFile + _fileName, buffer);
-
 
                 if (severalTypes) {
                     if (area && area.images) {
@@ -218,6 +220,20 @@ function saveProjectFiles(options, req, res, next) {
         next(req, res);
     } else {
         next(req, res);
+    }
+}
+function Structure(req, res) {
+    var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + req.session.lastEditProject.model.link + config.DIR.DELIMETER;
+    this.getData = function () {
+        var structure = fs.readFileSync(modelDir + config.DIR.SITE_STRUCTURE, 'utf-8');
+        if (!structure)return res.json({
+            status: false,
+            message: "can`t save template"
+        });
+        return JSON.parse(structure)[0];
+    }
+    this.saveData = function () {
+        fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), JSON.stringify([structure]), 'utf8');
     }
 }
 
@@ -257,7 +273,13 @@ router.put("/project", function (request, responce) {
                     }
 
                     Project.update({_id: req.body._id}, {$set: _sets}, function (err) {
-                        if(req.session.lastEditProject)delete req.session.lastEditProject ;
+                        if (req.session.lastEditProject)delete req.session.lastEditProject;
+                        if (!err && _sets.link) {
+                            var _str = new Structure(req, res),
+                                structure = _str.getData();
+                            structure.dataSource = _sets.link;
+                            _str.saveData();
+                        }
                         return res.json({
                             status: !err,
                             message: err ? (err.message || err) : "Project successfully was changed."
@@ -431,34 +453,36 @@ router.post("/project/template/update", function (request, responce) {
 
 
             var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + req.session.lastEditProject.model.link + config.DIR.DELIMETER;
-            var structure = fs.readFileSync(modelDir + config.DIR.SITE_STRUCTURE, 'utf-8');
-            if (!structure)return res.json({
-                status: false,
-                message: "can`t save template"
-            });
-            structure = JSON.parse(structure)[0];
+            var
+                _str = new Structure(req, res),
+                structure = _str.getData();
             saveProjectFiles({
                 modelDir: modelDir, callback: function (key) {
                     if (!structure.templates)structure.templates = [];
-                    if (structure.templates.length>config.DIR.PROJECT_TEMPLATE.TYPES)return;
+                    if (structure.templates.length > config.DIR.PROJECT_TEMPLATE.TYPES)return;
                     var item = 0;
-                    switch (key){
-                        case config.FILE_UPLOAD_ATTR[4]:{
+                    switch (key) {
+                        case config.FILE_UPLOAD_ATTR[4]:
+                        {
                             item = 2;
                             break;
-                        }case config.FILE_UPLOAD_ATTR[5]:{
+                        }
+                        case config.FILE_UPLOAD_ATTR[5]:
+                        {
                             item = 1;
                             break;
-                        }case config.FILE_UPLOAD_ATTR[6]:{
+                        }
+                        case config.FILE_UPLOAD_ATTR[6]:
+                        {
                             item = 0;
                             break;
                         }
                     }
-                    if (structure.templates.indexOf(item)>-1)return;
+                    if (structure.templates.indexOf(item) > -1)return;
                     structure.templates.push(item)
                 }
             }, req, res, function (reqq, ress) {
-                fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), JSON.stringify([structure]), 'utf8');
+                _str.saveData();
                 return ress.json({
                     status: true,
                     message: "project area was updated"

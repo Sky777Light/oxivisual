@@ -91,6 +91,7 @@ export class OxiCamera extends ProjMain {
     lens:number;
     size:number;
     aspect:number;
+    isSVG:boolean;
 
     constructor(entity:any = {}) {
         super(entity);
@@ -102,6 +103,7 @@ export class OxiCamera extends ProjMain {
         if (!this.frameState)this.frameState = {};
         if (!this.opacity)this.opacity = 0.7;
         if (!this.kompass)this.kompass = new Kompass();
+        if (this.isSVG === undefined)this.isSVG = false;
     }
 }
 export class Kompass extends ProjMain{
@@ -129,6 +131,7 @@ export class GeneralStructure extends ProjMain {
     name:string;
     dataSourceId:any;
     destination:string;
+    svgDestination:string;
     app:any;
     hasChanges:boolean;
     hasRecalcChanges:boolean;

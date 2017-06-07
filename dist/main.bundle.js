@@ -1,6 +1,6 @@
-webpackJsonp([1,4],{
+webpackJsonp([0,4],{
 
-/***/ 146:
+/***/ 151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40,16 +40,43 @@ var User = (function () {
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(223);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Project__ = __webpack_require__(727);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModelStructure__ = __webpack_require__(726);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["f"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constant_data__ = __webpack_require__(375);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["b"]; });
+
+
+
+
+//# sourceMappingURL=entities.js.map
+
+/***/ }),
+
+/***/ 20:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__interfaces_user_interface__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_entities__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__storage_service__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__interfaces_user_interface__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_entities__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -143,39 +170,12 @@ var UserService = (function () {
 
 /***/ }),
 
-/***/ 20:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(217);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Project__ = __webpack_require__(707);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModelStructure__ = __webpack_require__(706);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["b"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["c"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["e"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["f"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constant_data__ = __webpack_require__(364);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["b"]; });
-
-
-
-
-//# sourceMappingURL=entities.js.map
-
-/***/ }),
-
-/***/ 216:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractChangesView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -191,7 +191,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AbstractChangesView = (function () {
     function AbstractChangesView() {
         this.DIR = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR;
-        this.ProjClasses = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */];
+        this.ProjClasses = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */];
         this.callbacks = [];
     }
     AbstractChangesView.prototype.ngOnInit = function () {
@@ -248,7 +248,7 @@ var AbstractChangesView = (function () {
 
 /***/ }),
 
-/***/ 217:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -280,15 +280,15 @@ var Main = (function () {
 
 /***/ }),
 
-/***/ 218:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_service__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -343,13 +343,13 @@ var AuthGuardService = (function () {
 
 /***/ }),
 
-/***/ 219:
+/***/ 225:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(81);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoggedGuardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -386,7 +386,7 @@ var LoggedGuardService = (function () {
 
 /***/ }),
 
-/***/ 350:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -410,8 +410,8 @@ var HomeComponent = (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(824),
-            styles: [__webpack_require__(772)],
+            template: __webpack_require__(853),
+            styles: [__webpack_require__(794)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('slideInOut', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('in', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
@@ -433,12 +433,12 @@ var HomeComponent = (function () {
 
 /***/ }),
 
-/***/ 351:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_project_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BasicProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -461,8 +461,8 @@ var BasicProject = (function () {
     BasicProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-basic-project',
-            template: __webpack_require__(825),
-            styles: [__webpack_require__(773)]
+            template: __webpack_require__(854),
+            styles: [__webpack_require__(795)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_project_service__["a" /* ProjectService */]) === 'function' && _a) || Object])
     ], BasicProject);
@@ -473,15 +473,15 @@ var BasicProject = (function () {
 
 /***/ }),
 
-/***/ 352:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives__ = __webpack_require__(369);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Costumization; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TextAr; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -638,7 +638,7 @@ var Costumization = (function () {
     ], Costumization.prototype, "htmlCode", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("preloader"), 
-        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__directives_directives__["f" /* Preloader */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__directives_directives__["f" /* Preloader */]) === 'function' && _a) || Object)
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__directives_directives__["g" /* Preloader */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__directives_directives__["g" /* Preloader */]) === 'function' && _a) || Object)
     ], Costumization.prototype, "preloader", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("wcontrols"), 
@@ -651,8 +651,8 @@ var Costumization = (function () {
     Costumization = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-costumization',
-            template: __webpack_require__(826),
-            styles: [__webpack_require__(774)]
+            template: __webpack_require__(855),
+            styles: [__webpack_require__(796)]
         }), 
         __metadata('design:paramtypes', [(typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === 'function' && _f) || Object])
     ], Costumization);
@@ -753,13 +753,13 @@ var CodeConfig = (function () {
 
 /***/ }),
 
-/***/ 353:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviewProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -819,8 +819,8 @@ var PreviewProject = (function () {
     PreviewProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-preview',
-            template: __webpack_require__(827),
-            styles: [__webpack_require__(775)]
+            template: __webpack_require__(856),
+            styles: [__webpack_require__(797)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === 'function' && _b) || Object])
     ], PreviewProject);
@@ -831,15 +831,15 @@ var PreviewProject = (function () {
 
 /***/ }),
 
-/***/ 354:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_project_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -887,8 +887,8 @@ var ProjectComponent = (function () {
     ProjectComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project',
-            template: __webpack_require__(828),
-            styles: [__webpack_require__(776)]
+            template: __webpack_require__(857),
+            styles: [__webpack_require__(798)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__services_project_service__["a" /* ProjectService */]) === 'function' && _e) || Object])
     ], ProjectComponent);
@@ -899,13 +899,13 @@ var ProjectComponent = (function () {
 
 /***/ }),
 
-/***/ 355:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_services__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SourceProject; });
 /* unused harmony export ProjTabs */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1003,6 +1003,7 @@ var SourceProject = (function () {
         var _self = this, siteStructure = [];
         if (area) {
             var _form = new FormData(), filesUpload = [
+                { a: area.svgDestination, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.SVG_FILE },
                 { a: area.destination, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.MODEL_OBJ },
                 { a: area.alignImages, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.ALIGN_IMG },
                 { a: area.images, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.PREVIEW_IMG }
@@ -1027,9 +1028,13 @@ var SourceProject = (function () {
                     area.hasChanges = false;
                     if (area.destination instanceof Array)
                         area.destination = area.destination[0].name;
+                    if (area.svgDestination instanceof Array) {
+                        area.svgDestination = area.svgDestination[0].name;
+                        delete area.destination;
+                    }
                     ['alignImages', 'images'].forEach(function (field) {
                         for (var f = 0; area[field] && f < area[field].length; f++) {
-                            if (area[field][f] instanceof __WEBPACK_IMPORTED_MODULE_2__entities_entities__["g" /* ProjFile */] || area[field][f].file)
+                            if (area[field][f] instanceof __WEBPACK_IMPORTED_MODULE_2__entities_entities__["f" /* ProjFile */] || area[field][f].file)
                                 area[field][f] = area[field][f].name;
                         }
                     });
@@ -1087,8 +1092,8 @@ var SourceProject = (function () {
     SourceProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-projects-source',
-            template: __webpack_require__(830),
-            styles: [__webpack_require__(778)]
+            template: __webpack_require__(859),
+            styles: [__webpack_require__(800)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */]) === 'function' && _b) || Object])
     ], SourceProject);
@@ -1109,13 +1114,13 @@ var ProjTabs = (function () {
 
 /***/ }),
 
-/***/ 356:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1150,8 +1155,8 @@ var ProjectsComponent = (function () {
     ProjectsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-projects',
-            template: __webpack_require__(833),
-            styles: [__webpack_require__(781)]
+            template: __webpack_require__(862),
+            styles: [__webpack_require__(803)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _b) || Object])
     ], ProjectsComponent);
@@ -1162,14 +1167,14 @@ var ProjectsComponent = (function () {
 
 /***/ }),
 
-/***/ 357:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1270,8 +1275,8 @@ var UsersComponent = (function () {
     UsersComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-users',
-            template: __webpack_require__(837),
-            styles: [__webpack_require__(785)]
+            template: __webpack_require__(866),
+            styles: [__webpack_require__(807)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object])
     ], UsersComponent);
@@ -1282,13 +1287,13 @@ var UsersComponent = (function () {
 
 /***/ }),
 
-/***/ 358:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interfaces_user_interface__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interfaces_user_interface__ = __webpack_require__(151);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1329,8 +1334,8 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-login',
-            template: __webpack_require__(838),
-            styles: [__webpack_require__(786)]
+            template: __webpack_require__(867),
+            styles: [__webpack_require__(808)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object])
     ], LoginComponent);
@@ -1341,14 +1346,14 @@ var LoginComponent = (function () {
 
 /***/ }),
 
-/***/ 359:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviewSceneComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PreviewSceneService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1419,8 +1424,8 @@ var PreviewSceneComponent = (function () {
     PreviewSceneComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-scene-preview',
-            template: __webpack_require__(839),
-            styles: [__webpack_require__(787)]
+            template: __webpack_require__(868),
+            styles: [__webpack_require__(809)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_common__["Location"]) === 'function' && _b) || Object])
     ], PreviewSceneComponent);
@@ -1443,30 +1448,33 @@ var PreviewSceneService = (function () {
 
 /***/ }),
 
-/***/ 360:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__ = __webpack_require__(705);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__ = __webpack_require__(374);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__ = __webpack_require__(361);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__ = __webpack_require__(370);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__ = __webpack_require__(362);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__ = __webpack_require__(371);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__ = __webpack_require__(373);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tree_tree__ = __webpack_require__(703);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_4__tree_tree__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_4__tree_tree__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__slimscroll_directive__ = __webpack_require__(701);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_5__slimscroll_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__upload_files_upload_file__ = __webpack_require__(704);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_6__upload_files_upload_file__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__templates_loader_templates_loader__ = __webpack_require__(702);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__templates_loader_templates_loader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__safeHtml__ = __webpack_require__(700);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_8__safeHtml__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__ = __webpack_require__(372);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tree_tree__ = __webpack_require__(724);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__ = __webpack_require__(722);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__ = __webpack_require__(725);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__ = __webpack_require__(723);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__safeHtml__ = __webpack_require__(721);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_9__safeHtml__["a"]; });
+
 
 
 
@@ -1480,12 +1488,12 @@ var PreviewSceneService = (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WControls; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1511,8 +1519,8 @@ var WControls = (function (_super) {
     WControls = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-webgl-controls',
-            template: __webpack_require__(840),
-            styles: [__webpack_require__(790)]
+            template: __webpack_require__(869),
+            styles: [__webpack_require__(812)]
         }), 
         __metadata('design:paramtypes', [])
     ], WControls);
@@ -1522,12 +1530,12 @@ var WControls = (function (_super) {
 
 /***/ }),
 
-/***/ 362:
+/***/ 371:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Preloader; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1575,8 +1583,8 @@ var Preloader = (function (_super) {
     Preloader = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-preloader',
-            template: __webpack_require__(841),
-            styles: [__webpack_require__(791)]
+            template: __webpack_require__(870),
+            styles: [__webpack_require__(813)]
         }), 
         __metadata('design:paramtypes', [])
     ], Preloader);
@@ -1586,13 +1594,422 @@ var Preloader = (function (_super) {
 
 /***/ }),
 
-/***/ 363:
+/***/ 372:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric__ = __webpack_require__(817);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fabric__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SVGView; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SVGView = (function () {
+    function SVGView() {
+        this.canEdit = false;
+    }
+    SVGView.prototype.ngOnInit = function () {
+    };
+    SVGView.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.dataSrc = this.selected.svgDestination && this.selected.svgDestination.match('.svg') ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + this.selected.svgDestination : null;
+        var _self = this, domElem = this.dataEl['nativeElement'], handler = (domElem.addEventListener || domElem.attachEvent).bind(domElem);
+        this.canEdit = this.selected.canEdit;
+        fabric.Object.prototype.set({
+            transparentCorners: false,
+            cornerColor: 'rgba(102,153,255,0.5)',
+            cornerSize: 12,
+            padding: 7,
+            dropSelf: function () {
+                this.get('_points').forEach(function (e) {
+                    _self.fabricJS.remove(e);
+                });
+                _self.fabricJS.remove(this);
+                _self.fabricJS.renderAll();
+                _self.toSVG();
+            },
+            clone: function () {
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                for (var i = 0; i < clone.length; i++) {
+                    newObj[clone[i]] = this[clone[i]];
+                }
+                if (!newObj.id)
+                    newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
+                if (this.type == 'polygon') {
+                    newObj.selectable = false;
+                }
+                _self.fabricJS.add(newObj);
+                if (_pn) {
+                    newObj.set('_points', _pn);
+                    for (var i = 0; i < _pn.length; i++) {
+                        _self.fabricJS.remove(_pn[i].parent).remove(_pn[i]).add(_pn[i]);
+                        _pn[i].parent = newObj;
+                    }
+                }
+                return newObj;
+            },
+            getScreenPst: function () {
+                this.onscreenParams = this.getCenterPoint();
+                this.onscreenOffset = _self.glapp.app._offset();
+            }
+        });
+        setTimeout(function () {
+            _this.fabricJS = new fabric.Canvas(_this.dataEl.nativeElement, {
+                selection: true, borderColor: 'red',
+                cornerColor: 'green',
+                cornerSize: 6
+            });
+            _this.curFill = _this.getRandomColor();
+            _this.settings = {
+                CIRCLE: {
+                    radius: 3,
+                    strokeWidth: 5,
+                    stroke: 'red',
+                    selectable: true,
+                    excludeFromExport: true,
+                    hasControls: false,
+                    originX: 'center', originY: 'center'
+                },
+                POLYGON: {
+                    fill: _this.curFill,
+                    opacity: _this.selected.camera.opacity,
+                    selectable: false
+                }
+            };
+            _this.shapes = {
+                POLYGON: 'polygon',
+                CIRCLE: 'circle'
+            };
+            if (_this.dataSrc) {
+                fabric.loadSVGFromURL(_this.dataSrc, function (objects, options) {
+                    if (objects && options) {
+                        setTimeout(function () {
+                            var _loop_1 = function(i) {
+                                if (objects[i].type == _this.shapes.POLYGON) {
+                                    var cur = objects[i], center_1 = cur.getCenterPoint(), _p = cur.get('points').map(function (el) {
+                                        return new fabric.Point(center_1.x + el.x, center_1.y + el.y);
+                                    }), _points = [];
+                                    for (var i_1 = 0, areas = _this.selected.areas; areas && i_1 < areas.length; i_1++) {
+                                        if (areas[i_1]._id.match(cur.id)) {
+                                            cur._data = areas[i_1];
+                                            break;
+                                        }
+                                    }
+                                    for (var i_2 = 0, sources = _this.glapp.preToolTip.dataElem; sources && i_2 < sources.length; i_2++) {
+                                        if (sources[i_2]._id == cur.id || (cur._data && sources[i_2]._id == cur._data.dataSourceId)) {
+                                            cur._dataSource = sources[i_2];
+                                            break;
+                                        }
+                                    }
+                                    if (_this.canEdit) {
+                                        for (var d = 0; d < _p.length; d++) {
+                                            var circle = new fabric.Circle(_this.settings.CIRCLE);
+                                            circle.left = _p[d].x;
+                                            circle.top = _p[d].y;
+                                            circle._iter = d;
+                                            circle.parent = objects[i];
+                                            _points.push(circle);
+                                        }
+                                        cur.set('_points', _points);
+                                    }
+                                    objects[i]._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](objects[i], _this.glapp.app);
+                                    objects[i]._tooltip.update();
+                                    cur.set('points', _p);
+                                    cur.clone();
+                                }
+                            };
+                            for (var i = 0; i < objects.length; i++) {
+                                _loop_1(i);
+                            }
+                            _this.fabricJS.calcOffset().renderAll();
+                        }, 2500);
+                    }
+                    _this.onLoadSVG();
+                });
+            }
+            else {
+                _this.onLoadSVG();
+            }
+        }, 200);
+    };
+    SVGView.prototype.onLoadSVG = function () {
+        var _this = this;
+        var MODES = this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 }, MOUSE = this.MOUSE = { DOWN: 1, UP: 2, CUR: 0 }, mode = this.mode = MODES.ADD, fabricJS = this.fabricJS;
+        if (this.canEdit) {
+            this.upperC = document.getElementsByClassName('upper-canvas')[0];
+            this.eventsData = [
+                { cntx: window, name: 'keyup', callback: function (e) { return _this.onKeyUp(e); } },
+                {
+                    cntx: this.upperC,
+                    name: __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU,
+                    callback: function (e) { return _this.onMouseDown(e); }
+                },
+            ];
+            this.eventsData.forEach(function (el) {
+                fabric.util.addListener(el.cntx, el.name, el.callback);
+            });
+            fabricJS.on('object:selected', function (e) {
+                if (_this.mode != _this.MODES.EDIT)
+                    _this.mode = _this.MODES.NO;
+            });
+            fabricJS.on('before:selection:cleared', function (options) {
+                if (_this.mode != _this.MODES.EDIT)
+                    _this.mode = _this.MODES.ADD;
+            });
+            fabricJS.on("mouse:move", function (event) {
+                var pos = fabricJS.getPointer(event.e);
+                _this.glapp.app._projControls.showControls(event.e, false);
+                if (_this.mode == _this.MODES.NO) {
+                }
+                else if (_this.mode === _this.MODES.EDIT && _this.currentShape) {
+                    var points = _this.currentShape.get("points");
+                    points[points.length - 1].x = pos.x;
+                    points[points.length - 1].y = pos.y;
+                    _this.currentShape.set({
+                        points: points
+                    });
+                    _this.currentShape.clone();
+                    fabricJS.renderAll();
+                }
+            });
+            fabricJS.on("mouse:up", function (event) {
+                _this.MOUSE.CUR = _this.MOUSE.UP;
+                if (_this.mode === _this.MODES.NO && _this.currentShape && _this.currentShape.type == _this.shapes.POLYGON) {
+                    _this.glapp.app._projControls.showAttachPopUp(event.target);
+                }
+            });
+            fabricJS.on("mouse:down", function (event) {
+                _this.MOUSE.CUR = _this.MOUSE.DOWN;
+                var pos = fabricJS.getPointer(event.e), polySet = _this.settings.POLYGON, pointSet = _this.settings.CIRCLE;
+                pointSet.left = pos.x;
+                pointSet.top = pos.y;
+                if (_this.mode == _this.MODES.NO) {
+                    if (_this.currentShape) {
+                    }
+                    else {
+                        _this.mode = _this.MODES.ADD;
+                    }
+                }
+                else if (_this.mode === _this.MODES.ADD) {
+                    var _points_1 = [{
+                            x: pos.x,
+                            y: pos.y
+                        }, {
+                            x: pos.x + 1,
+                            y: pos.y + 1
+                        }];
+                    var circle = new fabric.Circle(pointSet), _pointsSel = [circle];
+                    circle.parent = _this.currentShape = new fabric.Polygon(_points_1, polySet);
+                    circle._iter = 0;
+                    _this.currentShape.set("_points", _pointsSel);
+                    fabricJS.add(_this.currentShape).add(circle).renderAll();
+                    _this.mode = _this.MODES.EDIT;
+                }
+                else if (_this.mode === _this.MODES.EDIT && _this.currentShape && _this.currentShape.type === "polygon") {
+                    var points = _this.currentShape.get("points"), _points = _this.currentShape.get("_points");
+                    points.push({
+                        x: pos.x,
+                        y: pos.y
+                    });
+                    fabricJS.remove(_this.currentShape);
+                    _points.forEach(function (e) {
+                        fabricJS.remove(e);
+                    });
+                    _this.currentShape = new fabric.Polygon(points, polySet);
+                    var circle = new fabric.Circle(pointSet);
+                    circle.parent = _this.currentShape;
+                    circle._iter = _points.length;
+                    _points.push(circle);
+                    _this.currentShape.set("_points", _points);
+                    fabricJS.add(_this.currentShape);
+                    _points.forEach(function (e) {
+                        fabricJS.add(e);
+                    });
+                }
+            });
+            fabricJS.on('object:moving', function (e) {
+                var x = e.e.movementX, y = e.e.movementY, curActiv = e.target;
+                if (curActiv) {
+                    switch (curActiv.type) {
+                        case 'polygon':
+                            {
+                                curActiv.get("_points").forEach(function (obj) {
+                                    obj.set('left', obj.left + x);
+                                    obj.set('top', obj.top + y);
+                                    obj.setCoords();
+                                });
+                                break;
+                            }
+                        case 'circle':
+                            {
+                                var _p = curActiv.parent.get('points');
+                                _p[curActiv._iter].x += x;
+                                _p[curActiv._iter].y += y;
+                                curActiv.parent.clone();
+                                //var bound = curActiv.parent.getBoundingRect();
+                                //curActiv.setTop(curActiv.originalState.top);
+                                //curActiv.setLeft(curActiv.originalState.left);
+                                //curActiv.setScaleX(curActiv.originalState.scaleX);
+                                //curActiv.setScaleY(curActiv.originalState.scaleY);
+                                //curActiv.parent.setCoords();
+                                break;
+                            }
+                    }
+                    fabricJS.renderAll();
+                    _this.toSVG();
+                }
+            });
+            /*fabricJS.on('object:modified', (e)=> {
+             var obj = e.target;
+             var matrix = obj.calcTransformMatrix();
+             if (obj.type == 'polygon') {
+             obj.get("_points").forEach(function (p) {
+             return fabric.util.transformPoint(p, matrix);
+             });
+             fabricJS.renderAll();
+             }
+
+             });*/
+            fabricJS.on('mouse:over', function (e) {
+                if (_this.mode != _this.MODES.NO || !e.target)
+                    return;
+                e.target.opacity = 1;
+                _this.currentShape = e.target;
+                _this.fabricJS.renderAll();
+            });
+            fabricJS.on('mouse:out', function (e) {
+                if (_this.mode != _this.MODES.NO || !e.target)
+                    return;
+                //this.currentShape = null;
+                e.target.opacity = _this.selected.camera.opacity;
+                _this.fabricJS.renderAll();
+            });
+        }
+        else {
+            fabricJS.on('mouse:over', function (e) {
+                if (!e.target)
+                    return;
+                e.target.opacity = 1;
+                _this.currentShape = e.target;
+                if (e.target._tooltip)
+                    e.target._tooltip.show();
+                _this.fabricJS.renderAll();
+            });
+            fabricJS.on('mouse:out', function (e) {
+                if (!e.target)
+                    return;
+                _this.currentShape = null;
+                if (e.target._tooltip)
+                    e.target._tooltip.show(false);
+                e.target.opacity = _this.selected.camera.opacity;
+                _this.fabricJS.renderAll();
+            });
+        }
+    };
+    SVGView.prototype.getRandomColor = function () {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+    SVGView.prototype.toSVG = function () {
+        var svgName = 'models.svg';
+        this.selected.svgDestination = [{
+                name: svgName,
+                file: new File([new Blob([this.fabricJS.toSVG(['name'])], { type: 'text/*' })], svgName)
+            }];
+    };
+    SVGView.prototype.onKeyUp = function (e) {
+        if (e.keyCode === 27 || e.keyCode === 13) {
+            this.onFinishDraw();
+        }
+    };
+    SVGView.prototype.onMouseDown = function (e) {
+        e.preventDefault();
+        if (e.button == 2) {
+            if (this.mode == this.MODES.NO) {
+                this.glapp.app._projControls.showControls(e);
+            }
+            else {
+                this.onFinishDraw();
+            }
+        }
+    };
+    SVGView.prototype.onFinishDraw = function () {
+        if (this.currentShape && this.currentShape.type == 'polygon') {
+            var points = this.currentShape.get('points');
+            points.pop();
+            this.currentShape.set({
+                points: points
+            });
+            this.currentShape.clone();
+            this.toSVG();
+        }
+        this.selected.hasChanges = true;
+        this.curFill = this.getRandomColor();
+        this.mode = this.MODES.NO;
+        this.currentShape = null;
+        this.fabricJS.deactivateAll().renderAll();
+    };
+    SVGView.prototype.ngOnDestroy = function () {
+        delete this.selected.svgDestination;
+        this.eventsData.forEach(function (el) {
+            fabric.util.removeListener(el.cntx, el.name, el.callback);
+        });
+    };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("parentEl"), 
+        __metadata('design:type', Object)
+    ], SVGView.prototype, "parentEl", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("dataEl"), 
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === 'function' && _a) || Object)
+    ], SVGView.prototype, "dataEl", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Object)
+    ], SVGView.prototype, "selected", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__webgl_view__["a" /* WebglView */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__webgl_view__["a" /* WebglView */]) === 'function' && _b) || Object)
+    ], SVGView.prototype, "glapp", void 0);
+    SVGView = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-project-svg-view',
+            template: __webpack_require__(871),
+            styles: [__webpack_require__(814)]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SVGView);
+    return SVGView;
+    var _a, _b;
+}());
+//# sourceMappingURL=svg.draw.js.map
+
+/***/ }),
+
+/***/ 373:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WTooltip; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1688,8 +2105,8 @@ var WTooltip = (function (_super) {
     WTooltip = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-webgl-tooltip',
-            template: __webpack_require__(842),
-            styles: [__webpack_require__(792)]
+            template: __webpack_require__(872),
+            styles: [__webpack_require__(815)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]) === 'function' && _b) || Object])
     ], WTooltip);
@@ -1700,7 +2117,1596 @@ var WTooltip = (function (_super) {
 
 /***/ }),
 
-/***/ 364:
+/***/ 374:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__ = __webpack_require__(720);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controls_controls__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__svg_draw_svg_draw__ = __webpack_require__(372);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WebGLService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebglView; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return OxiToolTip; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var WebGLService = (function () {
+    function WebGLService() {
+        this.navchange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    WebGLService.prototype.emit = function (data) {
+        this.navchange.emit(data);
+    };
+    WebGLService.prototype.subscribe = function (component, callback) {
+        // set 'this' to component when callback is called
+        return this.navchange.subscribe(function (data) {
+            callback.call(component, data);
+        });
+    };
+    WebGLService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [])
+    ], WebGLService);
+    return WebGLService;
+}());
+var WebglView = (function () {
+    function WebglView(location, authServ) {
+        this._id = Date.now();
+        this.inited = false;
+        this.location = location;
+        this.authServ = authServ;
+        this._self = this;
+    }
+    WebglView.prototype.ngOnChanges = function (changes) {
+        if (changes.selected.currentValue.created != changes.selected.previousValue.created)
+            this.initWebgl();
+        if (this.selected)
+            this.selected.glApp = this.app;
+    };
+    WebglView.prototype.ngOnInit = function () {
+        this.initWebgl();
+        if (this.selected)
+            this.selected.glApp = this.app;
+    };
+    WebglView.prototype.initWebgl = function () {
+        if (!this.inited)
+            return this.inited = true;
+        if (this.selected.images.length) {
+            this.preview = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + this.selected.images[this.selected.currentItem || 0];
+        }
+        else if (this.selected.preview) {
+            this.preview = this.selected.preview;
+        }
+        this.app = new OxiAPP(this);
+    };
+    WebglView.prototype.ngOnDestroy = function () {
+        console.log('webgl context ' + this._id + " was clear");
+        this.app._animation.stop();
+    };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("renderParent"), 
+        __metadata('design:type', Object)
+    ], WebglView.prototype, "renderParent", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("preloader"), 
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__["a" /* Preloader */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__["a" /* Preloader */]) === 'function' && _b) || Object)
+    ], WebglView.prototype, "preloader", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("preToolTip"), 
+        __metadata('design:type', (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__["a" /* WTooltip */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__["a" /* WTooltip */]) === 'function' && _e) || Object)
+    ], WebglView.prototype, "preToolTip", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("preControls"), 
+        __metadata('design:type', (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__controls_controls__["a" /* WControls */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__controls_controls__["a" /* WControls */]) === 'function' && _f) || Object)
+    ], WebglView.prototype, "preControls", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("projCnt"), 
+        __metadata('design:type', Object)
+    ], WebglView.prototype, "projCnt", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("svgEl"), 
+        __metadata('design:type', (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_8__svg_draw_svg_draw__["a" /* SVGView */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__svg_draw_svg_draw__["a" /* SVGView */]) === 'function' && _g) || Object)
+    ], WebglView.prototype, "svgEl", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Object)
+    ], WebglView.prototype, "selected", void 0);
+    WebglView = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-project-webgl-view',
+            template: __webpack_require__(873),
+            styles: [__webpack_require__(816)]
+        }), 
+        __metadata('design:paramtypes', [(typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_common__["Location"]) === 'function' && _j) || Object, (typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _k) || Object])
+    ], WebglView);
+    return WebglView;
+    var _b, _e, _f, _g, _j, _k;
+}());
+var OxiAPP = (function () {
+    function OxiAPP(main) {
+        var _this = this;
+        this.isMobile = false;
+        this.imgType = '';
+        this.screen = {};
+        this._files = {};
+        this.curLoadedTemplates = 0;
+        this.infoHTML = [];
+        this.TEMPLATES = {
+            TOOLTIP: 'app-project-webgl-tooltip',
+            CONTROLS: 'app-project-webgl-controls',
+            PRELOADER: 'app-project-preloader'
+        };
+        this.main = main;
+        this.isMobile = this.deviceCheck();
+        this.scene = new THREE.Scene();
+        this.model = new THREE.Object3D();
+        this.scene.add(this.model);
+        var renderer = this.gl = new THREE.WebGLRenderer({
+            antialias: true, alpha: true, clearAlpha: true,
+            sortObjects: false
+        }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405, _self = this;
+        renderer.domElement.className = 'gl-view';
+        if (main.selected.canEdit)
+            main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth * (SCREEN_HEIGHT / SCREEN_WIDTH) + 'px';
+        this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || { style: {} };
+        renderer.setClearColor(0xffffff, 0);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
+        this.controls = main.selected.canEdit ? new THREE.OrbitControls(this.camera, renderer.domElement) : {
+            update: function () {
+            }, target: this.scene.position.clone()
+        };
+        this.controls.enabled = !!this.main.selected.canEdit;
+        if (this.controls.enabled)
+            this.controls.addEventListener('change', function () {
+                main.selected.hasRecalcChanges = main.selected.hasChanges = true;
+                if (main.selected.camera.frameState[main.selected.currentItem])
+                    main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
+                _this.camera.updateProjectionMatrix();
+                _this.dataSave();
+                _this._animation.play();
+            });
+        /*-----------set config data----------*/
+        this.camera.positionDef = new THREE.Vector3(34800, 18600, -600);
+        if (main.selected.camera) {
+            if (main.selected.camera.rotation) {
+                this.camera.rotation.x = main.selected.camera.rotation._x;
+                this.camera.rotation.y = main.selected.camera.rotation._y;
+                this.camera.rotation.z = main.selected.camera.rotation._z;
+            }
+            if (main.selected.camera.position) {
+                this.camera.positionDef.copy(main.selected.camera.position);
+            }
+            if (main.selected.camera.fov) {
+                this.camera.fov = main.selected.camera.fov;
+            }
+            if (main.selected.camera.scale) {
+                this.model.scale.multiplyScalar(main.selected.camera.scale);
+            }
+            if (main.selected.camera.zoom) {
+                this.camera.zoom = main.selected.camera.zoom;
+            }
+            if (main.selected.camera.target) {
+                this.controls.target.copy(main.selected.camera.target);
+            }
+            this.toggleSVG();
+        }
+        this.camera.position.copy(this.camera.positionDef);
+        this.camera.updateProjectionMatrix();
+        var curDist = this.camera.positionDef.distanceTo(this.controls.target), curAngle = Math.acos((this.camera.positionDef.x - this.controls.target.x) / curDist);
+        this.camera.updateView = function (angle) {
+            var _cm = main.selected.camera, _p = _cm.frameState[main.selected.currentItem];
+            if (_p) {
+                _this.camera.position.set(_p.x, _p.y, _p.z);
+                if (_p.target)
+                    _this.controls.target.set(_p.target.x, _p.target.y, _p.target.z);
+            }
+            else {
+                var quaternion = new THREE.Quaternion();
+                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
+                _this.camera.position.copy(_this.camera.positionDef.clone().applyQuaternion(quaternion));
+                if (_cm.target)
+                    _this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
+            }
+            _this.camera.lookAt(_this.controls.target);
+            _this.camera.updateProjectionMatrix();
+            _this._animation.play();
+        };
+        if (this.main.selected.canEdit)
+            this.scene.add(new THREE.AxisHelper(500));
+        //let light = new THREE.DirectionalLight(0xffffff);
+        //light.position.set(1, 1, 1);
+        //this.scene.add(light);
+        THREE.Mesh.prototype.getScreenPst = function () {
+            var mesh = this, m = _self.gl.domElement, offset = _self._offset(), width = m.clientWidth, height = m.clientHeight, widthHalf = width / 2, heightHalf = height / 2, position = new THREE.Vector3();
+            mesh.updateMatrixWorld();
+            mesh.updateMatrix();
+            mesh.geometry.computeBoundingBox();
+            mesh.geometry.computeBoundingSphere();
+            var boundingBox = mesh.geometry.boundingBox;
+            position.subVectors(boundingBox.max, boundingBox.min);
+            position.multiplyScalar(0.5);
+            position.add(boundingBox.min);
+            position.project(_self.camera);
+            position.x = (position.x * widthHalf) + widthHalf + offset.left;
+            position.y = -(position.y * heightHalf) + heightHalf + offset.top;
+            mesh.onscreenParams = position;
+            mesh.onscreenOffset = offset;
+        };
+        this.templates = [main.preToolTip, main.preControls, main.preloader];
+        this.templates.forEach(function (el) {
+            el.callbacks.push(function () {
+                _this.onFinishLoadTemplates();
+            });
+        });
+    }
+    OxiAPP.prototype.onFinishLoadTemplates = function () {
+        var _this = this;
+        var main = this.main;
+        if (++this.curLoadedTemplates == this.templates.length) {
+            setTimeout(function () {
+                _this.loadModel(function () {
+                    _this.checkLoadedImg(function () {
+                        var parentCanvas = _this._container = main.projCnt['nativeElement'], onFinish = function () {
+                            var onEnd = function () {
+                                var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
+                                if (_preloader)
+                                    _preloader.parentNode.removeChild(_preloader);
+                            };
+                            if (_this._slider.isLoaded) {
+                                onEnd();
+                            }
+                            else {
+                                _this._slider.onFinish = function () {
+                                    onEnd();
+                                };
+                            }
+                        };
+                        if (main.preloader.prevImg) {
+                            main.preloader.prevImg['nativeElement'].className += ' active';
+                        }
+                        else {
+                            main.preloader.preloader['nativeElement'].className += ' active';
+                        }
+                        parentCanvas.appendChild(_this.gl.domElement);
+                        _this._projControls = new OxiControls(_this);
+                        _this._slider = new OxiSlider(_this);
+                        _this._events = new OxiEvents(_this);
+                        _this._animation = new OxiAnimation(_this);
+                        var _inter = setTimeout(function () {
+                            Pace.stop();
+                            onFinish();
+                        }, 2000);
+                        Pace.once('done', function (e) {
+                            clearTimeout(_inter);
+                            onFinish();
+                        });
+                    });
+                });
+            }, 100);
+        }
+    };
+    OxiAPP.prototype.loadTemplates = function () {
+    };
+    OxiAPP.prototype.checkLoadedImg = function (callback) {
+        var _this = this;
+        var _self = this, allows = ['1', '2'], checkLow = function () {
+            if (_this.isMobile) {
+                _this.imgType = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.LOW;
+            }
+            callback();
+        };
+        if (this.main.selected.images.length) {
+            var isAllowed = window.localStorage.getItem(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP);
+            if (isAllowed) {
+                if (isAllowed == allows[0]) {
+                    _self.imgType = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP;
+                    callback();
+                }
+                else {
+                    checkLow();
+                }
+            }
+            else {
+                var img_1 = new Image();
+                img_1.onload = function () {
+                    var isAllow = !!(img_1.height > 0 && img_1.width > 0);
+                    window.localStorage.setItem(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP, isAllow ? allows[0] : allows[1]);
+                    if (isAllow) {
+                        _self.imgType = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP;
+                        callback();
+                    }
+                    else {
+                        checkLow();
+                    }
+                };
+                img_1.onerror = function () {
+                    window.localStorage.setItem(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP, allows[1]);
+                    checkLow();
+                };
+                img_1.src = './assets/img/img_large_0_4.webp';
+            }
+        }
+        else {
+            checkLow();
+        }
+    };
+    OxiAPP.prototype.toggleSVG = function () {
+    };
+    OxiAPP.prototype.updateData = function (data) {
+        var _selected = this.main.selected, settings = _selected.camera;
+        _selected.hasChanges = _selected.hasRecalcChanges = true;
+        if (_selected.camera.frameState[_selected.currentItem])
+            _selected.camera.frameState[_selected.currentItem].hasChanges = true;
+        switch (data) {
+            case 'scale':
+                {
+                    this.model.scale.z = this.model.scale.y = this.model.scale.x;
+                    break;
+                }
+            case 'isSvg':
+                {
+                    this.toggleSVG();
+                    break;
+                }
+            case 'opacity':
+                {
+                    if (this.model) {
+                        this.model.traverse(function (child) {
+                            if (child.type == 'Mesh') {
+                                child.material.opacity = settings.opacity;
+                            }
+                        });
+                    }
+                    if (this.main.svgEl) {
+                        this.main.svgEl.fabricJS._objects.forEach(function (el) {
+                            el.opacity = settings.opacity;
+                        });
+                        this.main.svgEl.fabricJS.renderAll();
+                    }
+                    break;
+                }
+            case 'update':
+                {
+                    break;
+                }
+            case 'kompass':
+                this._projControls.kompas.onUpdate();
+                {
+                    break;
+                }
+            case 'cameraPst':
+                {
+                    break;
+                }
+            case 'y':
+            case 'x':
+                {
+                    var val_1 = settings.resolution[data], prop_1 = this._slider._W() / this._slider._H(), isHeight_1 = data == 'y', _px_1 = 'px', elem = [this._slider.container.childNodes];
+                    if (!elem[0] || !elem[0].length)
+                        break;
+                    if (this._slider.alignImgContainer instanceof Node) {
+                        var el = this._slider.alignImgContainer.childNodes;
+                        if (el && el.length)
+                            elem.push(el);
+                    }
+                    elem.forEach(function (lstChilds) {
+                        [].forEach.call(lstChilds, function (el) {
+                            el.style.height = (isHeight_1 ? val_1 : val_1 / prop_1) + _px_1;
+                            el.style.width = (isHeight_1 ? val_1 * prop_1 : val_1) + _px_1;
+                        });
+                    });
+                    this._events.onWindowResize();
+                    break;
+                }
+            case 'size':
+            case 'lens':
+                {
+                    //settings.size =this._slider._W() * 1.1 > window.innerWidth ? (window.innerWidth / this._slider._W()) * 0.9 : 1;
+                    var sizeX = this.gl.domElement.clientWidth, sizeY = this.gl.domElement.clientHeight;
+                    settings.aspect = sizeX / sizeY;
+                    this.camera.setLens(settings.lens * settings.aspect, settings.size);
+                    this.camera.updateProjectionMatrix();
+                    break;
+                }
+            default:
+                {
+                    this.camera.updateProjectionMatrix();
+                }
+        }
+        this.dataSave();
+        this._animation.play();
+    };
+    OxiAPP.prototype.deviceCheck = function () {
+        var check = false;
+        (function (a) {
+            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4)))
+                check = true;
+        })(navigator.userAgent || navigator.vendor || window['opera']);
+        return check;
+    };
+    OxiAPP.prototype.recalc = function () {
+        var _selected = this.main.selected, _c = this.camera.position.clone(), _t = this.controls.target.clone();
+        _selected.camera.frameState = [];
+        _selected.camera.frameState[_selected.currentItem] = {
+            x: _c.x,
+            y: _c.y,
+            z: _c.z,
+            target: { x: _t.x, y: _t.y, z: _t.z }
+        };
+        for (var i = 0; i < _selected.images.length; i++) {
+            if (_selected.currentItem == i)
+                continue;
+            var quaternion = new THREE.Quaternion(), _cmC = _c.clone();
+            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * 10) * Math.PI / 180);
+            _cmC.applyQuaternion(quaternion);
+            _selected.camera.frameState[i] = {
+                x: _cmC.x,
+                y: _cmC.y,
+                z: _cmC.z,
+                target: { x: _t.x, y: _t.y, z: _t.z }
+            };
+        }
+        _selected.hasRecalcChanges = false;
+    };
+    OxiAPP.prototype.dataSave = function () {
+        var old = this.main.selected.camera;
+        if (!(old instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* OxiCamera */])) {
+            this.main.selected.camera = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* OxiCamera */]({
+                position: this.camera.position,
+                rotation: this.camera.rotation,
+                target: this.controls.target,
+                frameState: old.frameState,
+                //resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
+                fov: this.camera.fov,
+                zoom: this.camera.zoom,
+                scale: this.model.scale.x,
+                lens: old.lens,
+                opacity: old.opacity,
+                size: old.size,
+            });
+        }
+        else {
+            old.position = this.camera.position.clone();
+            old.rotation = this.camera.rotation.clone();
+            old.target = this.controls.target.clone();
+            old.fov = this.camera.fov;
+            old.zoom = this.camera.zoom;
+            old.scale = this.model.scale.x;
+        }
+    };
+    OxiAPP.prototype.loadModel = function (callback) {
+        var _this = this;
+        if (callback === void 0) { callback = function () {
+            console.log("load was finished succesed");
+        }; }
+        var _self = this;
+        if (this.main.selected.cash.model) {
+            this._onLoadModel(this.main.selected.cash.model);
+            callback();
+        }
+        else if (this.main.selected.projFilesDirname && this.main.selected.destination && this.main.selected.destination.match('.obj')) {
+            var manager = new THREE.LoadingManager();
+            manager.onProgress = function (item, loaded, total) {
+                //console.log(item, loaded, total);
+            };
+            var onProgress = function (xhr) {
+                if (xhr.lengthComputable) {
+                    _self.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total);
+                }
+            };
+            var onError = function (xhr) {
+                alertify.error(xhr);
+            };
+            var loader = this.loader = this.loader || new THREE.OBJLoader(manager);
+            loader.load(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.main.selected.projFilesDirname + "/" + this.main.selected.destination, function (object) {
+                _this._onLoadModel(object);
+                callback();
+            }, onProgress, onError);
+        }
+        else {
+            callback();
+        }
+    };
+    OxiAPP.prototype._onLoadModel = function (object) {
+        var _this = this;
+        if (this.model.children)
+            for (var i = 0; i < this.model.children.length; i++)
+                this.model.remove(this.model.children[i]);
+        if (this.main.selected.camera.isSVG) {
+        }
+        else {
+            this.model.add(object);
+            object.traverse(function (child) {
+                if (child.type == 'Mesh') {
+                    child.material = new THREE.MeshBasicMaterial({
+                        transparent: true,
+                        opacity: _this.main.selected.camera.opacity
+                    });
+                    child.material.opacity0 = child.material.opacity;
+                    child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
+                    child.renderOrder = 0;
+                    //child.name = child.name.toLowerCase();
+                    if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
+                        child.material.color = new THREE.Color(0, 0, 0);
+                    }
+                    for (var i = 0, areas = _this.main.selected.areas; areas && i < areas.length; i++) {
+                        if (areas[i]._id.match(child.name)) {
+                            child._data = areas[i];
+                            break;
+                        }
+                    }
+                    for (var i = 0, sources = _this.main.preToolTip.dataElem; sources && i < sources.length; i++) {
+                        if (sources[i]._id == child.name || (child._data && sources[i]._id == child._data.dataSourceId)) {
+                            child._dataSource = sources[i];
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+        this.main.selected.cash.model = object;
+    };
+    OxiAPP.prototype.updateInfoHTML = function () {
+        for (var i = 0; i < this.infoHTML.length; i++) {
+            this.infoHTML[i].update();
+        }
+    };
+    //TODO
+    OxiAPP.prototype._deleteArea = function (item) {
+        delete item._data;
+        for (var i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
+            if (areas[i].created == item.created) {
+                delete item._data;
+                break;
+            }
+        }
+    };
+    OxiAPP.prototype._parent = function () {
+        return this.main.renderParent['nativeElement'];
+    };
+    OxiAPP.prototype.onFilesSelected = function (files) {
+        var _self = this, filereader = this._fileReader = this._fileReader || new FileReader(), _flStrg, onFinish;
+        if (!files || !files.length)
+            return console.error("files had not been selected");
+        switch (files[0].category) {
+            case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ:
+                {
+                    _flStrg = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.MODEL_OBJ;
+                    onFinish = function () { return _self._animation.play(); };
+                    break;
+                }
+            case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.PREVIEW_IMG:
+                {
+                    _flStrg = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.PREVIEW_IMG;
+                    this.main.selected.images = [];
+                    onFinish = function () { return _self._slider.addFrames(); };
+                    break;
+                }
+            case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.ALIGN_IMG:
+                {
+                    _flStrg = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.ALIGN_IMG;
+                    this.main.selected.alignImages = [];
+                    onFinish = function () { return _self._slider.addAlignImg(); };
+                    break;
+                }
+        }
+        if (!_flStrg || !onFinish)
+            return console.error("file category is not recognized");
+        this._files[_flStrg] = files;
+        var startFrom = 0;
+        function parseFiles(cur) {
+            if (!cur)
+                return onFinish();
+            switch (cur.category) {
+                case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ:
+                    {
+                        filereader.readAsText(cur);
+                        break;
+                    }
+                case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.PREVIEW_IMG:
+                case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.ALIGN_IMG:
+                    {
+                        filereader.readAsDataURL(cur);
+                        break;
+                    }
+                default:
+                    {
+                        parseFiles(files[startFrom++]);
+                    }
+            }
+            filereader.onloadend = function (e) {
+                switch (cur.category) {
+                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ:
+                        {
+                            var loader = _self.loader = _self.loader || new THREE.OBJLoader();
+                            loader.parse(e.currentTarget.result, function (m) {
+                                _self.main.selected.destination = [new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* ProjFile */]({ file: cur, name: cur.name })];
+                                _self._onLoadModel(m);
+                            });
+                            break;
+                        }
+                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.PREVIEW_IMG:
+                        {
+                            _self.main.selected.images.push(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* ProjFile */]({
+                                file: cur,
+                                name: cur.name,
+                                data: e.currentTarget.result
+                            }));
+                            break;
+                        }
+                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.ALIGN_IMG:
+                        {
+                            _self.main.selected.alignImages.push(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* ProjFile */]({
+                                file: cur,
+                                name: cur.name,
+                                data: e.currentTarget.result
+                            }));
+                            break;
+                        }
+                }
+                parseFiles(files[startFrom++]);
+            };
+        }
+        ;
+        parseFiles(files[startFrom++]);
+    };
+    OxiAPP.prototype._offset = function () {
+        return this.gl.domElement.getBoundingClientRect();
+    };
+    OxiAPP.prototype.onEventPrevent = function (event) {
+        event.preventDefault();
+        return false;
+    };
+    OxiAPP.prototype.render = function () {
+        if (Pace.running)
+            return;
+        this.updateInfoHTML();
+        this.gl.render(this.scene, this.camera);
+    };
+    return OxiAPP;
+}());
+var OxiEvents = (function () {
+    function OxiEvents(app) {
+        var _this = this;
+        this.canEdit = false;
+        this.pathOnMove = 50;
+        var _self = this, elem = app.gl.domElement, handler = (elem.addEventListener || elem.attachEvent).bind(elem);
+        this.canEdit = app.main.selected.canEdit;
+        this.main = app;
+        this.EVENTS_NAME = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME;
+        this.mouse = new OxiMouse(app);
+        this.raycaster = new THREE.Raycaster();
+        handler(this.EVENTS_NAME.MOUSE_DOWN, function (e) { return _this.onMouseDown(e); });
+        handler(this.EVENTS_NAME.MOUSE_UP, function (e) { return _this.onMouseUp(e); });
+        handler(this.EVENTS_NAME.MOUSE_MOVE, function (e) { return _this.onMouseMove(e); });
+        handler(this.EVENTS_NAME.DB_CLICK, function (e) { return _this.onDbClick(e); });
+        handler(this.EVENTS_NAME.SELECT_START, app.onEventPrevent);
+        if (!this.canEdit)
+            handler(this.EVENTS_NAME.MOUSE_OUT, function (e) { return _this.onMouseOut(e); });
+        window.addEventListener('resize', function () { return _this.onWindowResize(); });
+        this.onWindowResize();
+    }
+    OxiEvents.prototype.onWindowResize = function () {
+        var app = this.main, _w = app._slider._W(), _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight, _h = _nat ? _w / _nat : app._slider._H(), _px = 'px', svgEl = this.main.main.svgEl;
+        app.camera.aspect = _w / _h;
+        app.camera.updateProjectionMatrix();
+        app.gl.setSize(_w, _h);
+        app._container.style.height = _h + _px;
+        //app.updateInfoHTML();
+        if (svgEl && svgEl.fabricJS) {
+            var scaleMultiplier = _w / svgEl.fabricJS.width;
+            var objects = svgEl.fabricJS.getObjects();
+            for (var i in objects) {
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+                objects[i].left = objects[i].left * scaleMultiplier;
+                objects[i].top = objects[i].top * scaleMultiplier;
+                objects[i].setCoords();
+            }
+            svgEl.fabricJS.setWidth(_w);
+            svgEl.fabricJS.setHeight(_h);
+            svgEl.fabricJS.calcOffset();
+            svgEl.fabricJS.renderAll();
+        }
+        if (app._animation)
+            app._animation.play();
+    };
+    OxiEvents.prototype.onMouseUp = function (ev) {
+        var _this = this;
+        var _self = this, btn = ev.button;
+        this.mouse.down = this.lastEv = false;
+        this.main._projControls.show(ev, false);
+        switch (btn) {
+            case 0:
+            case 1:
+                {
+                    if (this.canEdit) {
+                        if (this.lastInter)
+                            this.main._projControls.showAttachPopUp(this.lastInter.object);
+                    }
+                    if (this.lastInter && this.lastInter.object.click)
+                        this.lastInter.object.click();
+                    break;
+                }
+            case 2:
+                {
+                    if (this.canEdit) {
+                        this.onSelected(ev, function (inter) {
+                            _this.main._projControls.show(ev);
+                        });
+                    }
+                    break;
+                }
+        }
+        ev.preventDefault();
+    };
+    OxiEvents.prototype.onMouseMove = function (ev) {
+        var _this = this;
+        if (this.lastInter) {
+            this.main._projControls.show(ev, false);
+            this.lastInter = null;
+        }
+        if (this.canEdit) {
+            this.onSelected(ev, function (inter) {
+                _this.main._projControls.show({ x: -1500 }, true, false);
+            });
+        }
+        else {
+            if (this.mouse.down) {
+                if (!this.lastEv)
+                    return this.lastEv = ev;
+                if (Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove) {
+                    this.main._slider.move((ev.clientX > this.lastEv.clientX ? -1 : 1));
+                    this.lastEv = ev;
+                }
+                else if (Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove) {
+                    this.main._slider.move((ev.clientY > this.lastEv.clientY ? -1 : 1));
+                    this.lastEv = ev;
+                }
+            }
+            else {
+                this.onSelected(ev, function (inter) {
+                    _this.main._projControls.show(ev);
+                });
+            }
+        }
+    };
+    OxiEvents.prototype.onSelected = function (ev, callback) {
+        var intersectList = this.inter(ev);
+        if (intersectList && intersectList[0]) {
+            if (intersectList[0].object.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE))
+                return;
+            this.lastInter = intersectList[0];
+            callback(intersectList[0]);
+        }
+    };
+    OxiEvents.prototype.onMouseDown = function (ev) {
+        this.mouse.down = ev;
+        this.lastEv = false;
+    };
+    OxiEvents.prototype.onMouseOut = function (ev) {
+        if (this.mouse.down)
+            this.onMouseUp(ev);
+    };
+    OxiEvents.prototype.onDbClick = function (e) {
+        if (this.canEdit) {
+            this.main.controls.target.copy(this.main.scene.position);
+            this.main.controls.update();
+        }
+        this.main.onEventPrevent(e);
+    };
+    OxiEvents.prototype.onCntxMenu = function (event) {
+        event.preventDefault();
+        return false;
+    };
+    OxiEvents.prototype.inter = function (ev, arg) {
+        if (arg === void 0) { arg = null; }
+        var _self = this, elements = arg && arg.childs ? arg.childs : [_self.main.model];
+        if (this.mouse.down || !elements)
+            return false;
+        if (arg && arg.position) {
+            var direction = new THREE.Vector3().subVectors(arg.target, arg.position);
+            _self.raycaster.set(arg.position, direction.clone().normalize());
+        }
+        else {
+            var mouseVector = _self.mouse.interPoint(ev);
+            _self.raycaster.setFromCamera(mouseVector, _self.main.camera);
+        }
+        return _self.raycaster.intersectObjects(elements, true);
+    };
+    return OxiEvents;
+}());
+var OxiMouse = (function () {
+    function OxiMouse(main) {
+        this.isDown = false;
+        this.main = main;
+    }
+    OxiMouse.prototype.interPoint = function (ev) {
+        var _slider = this.main.gl.domElement, rect = _slider.getBoundingClientRect(), canvasW = _slider.clientWidth, canvasH = _slider.clientHeight, _x = (ev ? ev.clientX : canvasW / 2) - rect.left, _y = (ev ? ev.clientY : canvasH / 2) - rect.top;
+        if (ev && ev.touches) {
+            var firstFing = ev.touches.length ? ev.touches[0] : ev.changedTouches[0];
+            _x = firstFing.clientX;
+            _y = firstFing.clientY;
+        }
+        return new THREE.Vector2(((_x) / canvasW) * 2 - 1, -((_y) / canvasH) * 2 + 1);
+    };
+    OxiMouse.prototype.cumulativeOffset = function (element) {
+        var top = 0, left = 0;
+        do {
+            top += element.offsetTop || 0;
+            left += element.offsetLeft || 0;
+            element = element.offsetParent;
+        } while (element);
+        return {
+            offsetLeft: top,
+            offsetTop: left
+        };
+    };
+    return OxiMouse;
+}());
+var OxiAnimation = (function () {
+    function OxiAnimation(main) {
+        var _this = this;
+        this.canAnimate = false;
+        this.isStop = false;
+        this.lastUpdate = Date.now();
+        this.maxTimeUpdate = 1500;
+        this.id = Date.now();
+        this.animations = [];
+        this.lastIter = 0;
+        this.app = main;
+        this.play();
+        setTimeout(function () {
+            _this.animate();
+        }, 100);
+    }
+    OxiAnimation.prototype.add = function (callback) {
+        this.animations.push(callback);
+    };
+    OxiAnimation.prototype.animate = function () {
+        var _this = this;
+        if (!this.app.gl.domElement.width || this.isStop)
+            return;
+        for (var i = 0; i < this.animations.length; i++) {
+            this.animations[i]();
+        }
+        if (this.canAnimate) {
+            this.canAnimate = this.lastUpdate > Date.now();
+            if (!this.canAnimate || this.lastIter > 2)
+                this.lastIter = 0;
+            this.app.render();
+        }
+        if (this.app._container.clientWidth != this.app._container.lastClientWidth) {
+            this.app._container.lastClientWidth = this.app._container.clientWidth;
+            this.app._events.onWindowResize();
+            this.app._projControls.show({}, false);
+        }
+        requestAnimationFrame(function () {
+            _this.animate();
+        });
+    };
+    OxiAnimation.prototype.play = function (flag) {
+        if (flag === void 0) { flag = true; }
+        this.lastUpdate = Date.now() + (this.maxTimeUpdate);
+        if (this.canAnimate)
+            return;
+        this.canAnimate = flag || !Pace.running;
+        //this.animate();
+    };
+    OxiAnimation.prototype.stop = function () {
+        this.isStop = true;
+        this.canAnimate = false;
+        this.lastIter = 0;
+    };
+    return OxiAnimation;
+}());
+var OxiSlider = (function () {
+    function OxiSlider(app) {
+        this.currentFrame = {};
+        this.currentAlignFrame = {};
+        this.currentPagination = {};
+        this.canEdit = false;
+        this.isDebug = false;
+        this.isLoaded = true;
+        this.canEdit = app.main.selected.canEdit;
+        this.app = app;
+        this.addFrames();
+        if (this.canEdit)
+            this.addAlignImg();
+    }
+    OxiSlider.prototype.addFrames = function () {
+        var _this = this;
+        var _self = this, app = this.app;
+        [this.container, this.imgPagination].forEach(function (domEl) {
+            _this.removeNode(domEl);
+        });
+        var div = this.container = document.createElement('div'), imgPagination = this.imgPagination = document.createElement('ul'), _selected = app.main.selected, _resol = _selected.camera.resolution, _px = 'px', canEdit = this.canEdit;
+        if (!app.main.selected.images || !app.main.selected.images.length)
+            return;
+        imgPagination.className = 'img-pagination';
+        var _loop_1 = function(i) {
+            var img = document.createElement('img'), curImg = app.main.selected.images[i];
+            if (typeof curImg == 'string') {
+                img.src = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + _selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + app.imgType;
+                if (app.imgType == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP) {
+                    var imgD = curImg.split(".");
+                    imgD.pop();
+                    img.src += imgD.join(".") + '.webp';
+                }
+                else {
+                    img.src += curImg;
+                }
+            }
+            else {
+                img.src = curImg.data;
+            }
+            if (parseInt(i) == _selected.currentItem) {
+                img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE;
+                this_1.currentFrame = img;
+                _self.isLoaded = false;
+                img.onload = function () {
+                    if (!_resol.x) {
+                        _resol.x = _self._W();
+                        _resol.y = _self._H();
+                    }
+                    _self.app._events.onWindowResize();
+                    //_self.onResize();
+                    _self.isLoaded = true;
+                    if (_self.onFinish)
+                        _self.onFinish();
+                };
+            }
+            //if (_resol && _resol.x) {
+            //    img.style.width = _resol.x + _px;
+            //    img.style.height = _resol.y + _px;
+            //}
+            div.appendChild(img);
+            if (canEdit) {
+                var item = document.createElement('li');
+                item.innerHTML = (+i + 1) + '';
+                if (+i == _selected.currentItem) {
+                    item.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE;
+                    this_1.currentPagination = item;
+                }
+                item.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function () {
+                    var saveD = function () {
+                        var _c = app.camera.position, _t = app.controls.target;
+                        _selected.camera.frameState[_selected.currentItem] = {
+                            x: _c.x,
+                            y: _c.y,
+                            z: _c.z,
+                            target: { x: _t.x, y: _t.y, z: _t.z }
+                        };
+                    }, anyway = function () {
+                        _this.updateView(i);
+                        _this.app.dataSave();
+                    };
+                    if (!_selected.camera.frameState[_selected.currentItem]) {
+                        saveD();
+                        anyway();
+                    }
+                    else if (_selected.camera.frameState[_selected.currentItem].hasChanges) {
+                        delete _selected.camera.frameState[_selected.currentItem].hasChanges;
+                        new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
+                            title: "The data view for current (" + (+_selected.currentItem + 1) + ") has been changed, accept to save, if cancel will lose",
+                            onOk: function () {
+                                saveD();
+                            },
+                            onCancel: function () {
+                                delete _selected.camera.frameState[_selected.currentItem];
+                            },
+                            onAnyWay: function () {
+                                anyway();
+                            }
+                        });
+                    }
+                    else {
+                        anyway();
+                    }
+                });
+                imgPagination.appendChild(item);
+            }
+        };
+        var this_1 = this;
+        for (var i in app.main.selected.images) {
+            _loop_1(i);
+        }
+        div.style.display = this.isDebug ? 'none' : '';
+        div.className = [__WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].CENTER_CONTAINER, __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].IMG_SLIDER].join(" ");
+        app._container.appendChild(div);
+        if (canEdit) {
+            app._container.appendChild(imgPagination);
+            imgPagination.style.bottom = -imgPagination.clientHeight + 'px';
+        }
+    };
+    OxiSlider.prototype.onResize = function () {
+        var val = this.app.main.selected.camera.resolution, _px = 'px', elem = [this.container.childNodes];
+        if (!elem[0] || !elem[0].length)
+            return;
+        if (this.alignImgContainer instanceof Node) {
+            var el = this.alignImgContainer.childNodes;
+            if (el && el.length)
+                elem.push(el);
+        }
+        elem.forEach(function (lstChilds) {
+            [].forEach.call(lstChilds, function (el) {
+                el.style.height = val.y + _px;
+                el.style.width = val.x + _px;
+            });
+        });
+    };
+    OxiSlider.prototype.addAlignImg = function () {
+        this.removeNode(this.alignImgContainer);
+        if (!this.canEdit)
+            return;
+        var div = this.alignImgContainer = document.createElement('div'), _selected = this.app.main.selected, _resol = _selected.camera.resolution, _px = 'px';
+        for (var i = 0, arr = _selected.alignImages, _length = arr.length; i < _length; i++) {
+            var img = document.createElement('img'), curImg = arr[i];
+            img.src = typeof curImg == 'string' ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + _selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_ALIGN_IMG + curImg : curImg.data;
+            if (i == _selected.currentItem) {
+                img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE;
+                this.currentAlignFrame = img;
+            }
+            //if (_resol && _resol.x) {
+            //    img.style.width = _resol.x + _px;
+            //    img.style.height = _resol.y + _px;
+            //}
+            div.appendChild(img);
+        }
+        div.style.display = this.isDebug ? '' : 'none';
+        div.className = [__WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].CENTER_CONTAINER, __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].IMG_SLIDER].join(" ");
+        this.app._container.appendChild(div);
+    };
+    OxiSlider.prototype.toggleDebug = function () {
+        this.isDebug = !this.isDebug;
+        this.alignImgContainer.style.display = this.isDebug ? '' : 'none';
+        this.container.style.display = !this.isDebug ? '' : 'none';
+    };
+    OxiSlider.prototype.removeNode = function (domEl) {
+        if (!domEl)
+            return;
+        while (domEl.firstChild)
+            domEl.removeChild(domEl.firstChild);
+        if (domEl.parentNode)
+            domEl.parentNode.removeChild(domEl);
+    };
+    OxiSlider.prototype.updateView = function (selectedItem) {
+        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className'] = '';
+        this.app.main.selected.currentItem = selectedItem;
+        this.app.camera.updateView(selectedItem - this.app.main.selected.currentItem0);
+        this.currentFrame = this.container.childNodes[selectedItem];
+        this.currentPagination = this.imgPagination && this.imgPagination.childNodes[selectedItem] ? this.imgPagination.childNodes[selectedItem] : {};
+        this.currentAlignFrame = this.alignImgContainer && this.alignImgContainer.childNodes[selectedItem] ? this.alignImgContainer.childNodes[selectedItem] : {};
+        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className'] = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE;
+        //this.app._events.onMouseOut({});
+        this.app._projControls.show({}, false);
+    };
+    OxiSlider.prototype.move = function (next) {
+        if (next < 0) {
+            if (this.app.main.selected.currentItem < 1) {
+                return this.updateView(this.app.main.selected.images.length - 1);
+            }
+        }
+        else {
+            if (this.app.main.selected.currentItem >= this.app.main.selected.images.length - 1) {
+                return this.updateView(0);
+            }
+        }
+        this.updateView(this.app.main.selected.currentItem + next);
+    };
+    OxiSlider.prototype._W = function () {
+        return this.currentFrame.clientWidth || this.currentFrame.width || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
+    };
+    OxiSlider.prototype._H = function () {
+        return this.currentFrame.clientHeight || this.currentFrame.height || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
+    };
+    OxiSlider.prototype._offsetLeft = function () {
+        return this.container.offsetLeft || this.app._container.offsetLeft;
+    };
+    OxiSlider.prototype._offsetTop = function () {
+        return this.container.offsetTop || this.app._container.offsetTop;
+    };
+    return OxiSlider;
+}());
+var OxiControls = (function () {
+    function OxiControls(app) {
+        var _this = this;
+        var _self = this, div = this.controls = document.createElement('div'), _div = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_CONTROLS_MOVE), _backArea = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_BACK_AREA), kompass = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_COMPASS);
+        this.app = app;
+        if (_div)
+            _div.style.display = 'none';
+        if (_backArea)
+            _backArea.style.display = 'none';
+        if (app.main.selected.canEdit) {
+            div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_CONTROLS;
+            app._parent().appendChild(div);
+            var childSelected_1 = function (child) {
+                var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                _elem._data = child;
+                child._id = _elem.name || _elem.id;
+                child.name = child._id.toUpperCase();
+                child._id += Date.now();
+                if (!_this.app.main.selected.areas) {
+                    _this.app.main.selected.areas = [child];
+                }
+                else {
+                    _this.app.main.selected.areas.push(child);
+                }
+            }, removeChild_1 = function () {
+                var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                for (var i = 0, areas = app.main.selected.areas; i < areas.length; i++) {
+                    if (areas[i]._id == _elem._data._id) {
+                        areas.splice(i, 1);
+                        break;
+                    }
+                }
+                _elem._data = null;
+            };
+            [
+                {
+                    className: 'attach-new', click: function (onFinish) {
+                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        if (_elem._data) {
+                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
+                                onOk: function () {
+                                    removeChild_1();
+                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["h" /* ModelStructure */]());
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["h" /* ModelStructure */]());
+                            onFinish();
+                        }
+                    }, icon: '../assets/img/ic_library_add_white_24px.svg'
+                },
+                {
+                    className: 'attach-link', click: function (onFinish) {
+                        var onChange = function () {
+                            var prompt = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["b" /* Prompt */]({
+                                title: "Input the link",
+                                txt: 'https://google.com',
+                                onOk: function () {
+                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["i" /* LinkGeneralStructure */]({
+                                        destination: prompt.input.value || ''
+                                    }));
+                                    onFinish();
+                                }
+                            });
+                        };
+                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        if (_elem._data) {
+                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
+                                onOk: function () {
+                                    onChange();
+                                    removeChild_1();
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            onChange();
+                        }
+                    }, icon: '../assets/img/ic_link_white_24px.svg'
+                },
+                {
+                    className: 'attach-js', click: function (onFinish) {
+                        var onChange = function () {
+                            var prompt = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["b" /* Prompt */]({
+                                title: "Please input js code",
+                                txt: 'alert("TEST")',
+                                onOk: function (input) {
+                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["j" /* GeneralStructure */]({
+                                        destination: prompt.input.value || ''
+                                    }));
+                                    onFinish();
+                                }
+                            });
+                        };
+                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        if (_elem._data) {
+                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
+                                onOk: function () {
+                                    onChange();
+                                    removeChild_1();
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            onChange();
+                        }
+                    }, icon: '../assets/img/JS.svg'
+                },
+                {
+                    className: 'cntrls-close', click: function (onFinish) {
+                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        if (_elem._data) {
+                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
+                                title: "This area has a structure (" + _elem._data.name + "), if ok will remove!!!",
+                                onOk: function () {
+                                    removeChild_1();
+                                    if (app.main.selected.camera.isSVG)
+                                        _elem.dropSelf();
+                                },
+                                onAnyWay: function () {
+                                    onFinish();
+                                }
+                            });
+                        }
+                        else {
+                            if (app.main.selected.camera.isSVG)
+                                _elem.dropSelf();
+                            onFinish();
+                        }
+                    }, icon: '../assets/img/ic_close_white_24px.svg'
+                }
+            ].forEach(function (el, item) {
+                var domEl = document.createElement('div');
+                domEl.className = el.className;
+                domEl.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
+                    el.click(function () { return _this.show(e, false); });
+                    app.main.selected.hasChanges = true;
+                });
+                div.appendChild(domEl);
+                var icon = document.createElement('img');
+                icon.src = el.icon;
+                icon.setAttribute('fillColor', '#ffffff');
+                icon.setAttribute('fill', '#ffffff');
+                icon.style.color = '#ffffff';
+                domEl.appendChild(icon);
+            });
+            app.model.traverse(function (child) {
+                if (child.type == "Mesh" && child._dataSource) {
+                    child._toolTip = new OxiToolTip(child, app);
+                }
+            });
+        }
+        else {
+            if (this.app.main.selected.images.length > 1) {
+                var arrows = [{ _c: 'left', _i: -1 }, { _c: 'right', _i: 1 }];
+                if (_div) {
+                    div = _div;
+                    _div.style.display = '';
+                    for (var i = 0; i < _div.childNodes.length; i++) {
+                        var childDiv = _div.childNodes[i];
+                        var _loop_2 = function(u) {
+                            if (childDiv.localName == 'div') {
+                                var dir_1 = arrows.splice(u, 1)[0]._i;
+                                childDiv.addEventListener((this_2.app.isMobile ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.TOUCH_END : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK), function (e) {
+                                    _this.app._slider.move(dir_1);
+                                });
+                                childDiv.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, this_2.app.onEventPrevent);
+                                return "break";
+                            }
+                        };
+                        var this_2 = this;
+                        for (var u = 0; u < arrows.length; u++) {
+                            var state_2 = _loop_2(u);
+                            if (state_2 === "break") break;
+                        }
+                    }
+                }
+                else {
+                    div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_CONTROLS_MOVE;
+                    app._container.appendChild(div);
+                    arrows.forEach(function (child) {
+                        var childDiv = document.createElement('div');
+                        childDiv.className = child._c;
+                        childDiv.style.backgroundImage = 'url("assets/img/left_arrow.png")';
+                        div.appendChild(childDiv);
+                        childDiv.addEventListener((_this.app.isMobile ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.TOUCH_END : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK), function (e) {
+                            _this.app._slider.move(child._i);
+                        });
+                        childDiv.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, _this.app.onEventPrevent);
+                    });
+                }
+            }
+            div.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, this.app.onEventPrevent);
+            app.model.traverse(function (child) {
+                if (child.type == "Mesh") {
+                    //child.material.visible = false;
+                    child.material.opacity = 0;
+                    child._toolTip = new OxiToolTip(child, app);
+                }
+            });
+            var path = this.app.main.location.path(), areas_1 = path.split(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0]);
+            if (areas_1.length > 1) {
+                var back = _backArea;
+                if (!back) {
+                    back = document.createElement('div');
+                    back.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_BACK_AREA;
+                    back.style.backgroundImage = "url('assets/img/android-system-back.png')";
+                    app._container.appendChild(back);
+                }
+                else {
+                    back.style.display = '';
+                }
+                areas_1.pop();
+                back.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
+                    e.preventDefault();
+                    window.location.href = window.location.origin + (areas_1.length > 1 ? areas_1.join(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0]) : areas_1.join(''));
+                });
+                back.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU, function (e) { return app._events.onCntxMenu(e); }, false);
+            }
+        }
+        div.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU, function (e) { return app._events.onCntxMenu(e); }, false);
+        if (!kompass) {
+            kompass = document.createElement('div');
+            kompass.className = 'kompass';
+            kompass.style.backgroundImage = 'url("assets/img/kompas.png")';
+            app._container.appendChild(kompass);
+        }
+        this.kompas = kompass;
+        kompass.onUpdate = function () {
+            kompass.style.display = !_self.app.main.selected.camera.kompass.enabled ? 'none' : '';
+            kompass.style.transform = 'rotate(' + (_self.app.main.selected.currentItem * __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].ANGLE_STEP + app.main.selected.camera.kompass.angle) + 'deg)';
+        };
+        kompass.onUpdate();
+    }
+    OxiControls.prototype.show = function (pos, flag, fl) {
+        if (flag === void 0) { flag = true; }
+        if (fl === void 0) { fl = true; }
+        var canEdit = this.app.main.selected.canEdit;
+        if (this.kompas)
+            this.kompas.onUpdate();
+        var _inter = this.app._events.lastInter;
+        if (_inter) {
+            _inter = _inter.object;
+            if (_inter._toolTip)
+                _inter._toolTip.show(flag);
+            if (!_inter.material.defColor)
+                _inter.material.defColor = _inter.material.color.clone();
+            if (!_inter.material.onSelectColor)
+                _inter.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
+            _inter.material.color = flag ? _inter.material.onSelectColor : _inter.material.defColor;
+            _inter.material.transparent = fl;
+            _inter.renderOrder = flag ? 100 : 0;
+        }
+        this.showControls(pos, flag);
+        this.app._animation.play();
+        //this.app.updateInfoHTML();
+    };
+    OxiControls.prototype.showControls = function (pos, flag) {
+        if (flag === void 0) { flag = true; }
+        var canEdit = this.app.main.selected.canEdit;
+        if (flag) {
+            if (this.controls.className.indexOf(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE) < 0) {
+                this.controls.className += " " + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE;
+            }
+        }
+        else {
+            this.controls.className = this.controls.className.replace(" " + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].ACTIVE, '');
+        }
+        if (canEdit) {
+            var _d = document.querySelector('app-aside');
+            if (_d) {
+                _d = _d.getBoundingClientRect();
+            }
+            this.controls.style.left = ((pos.clientX || pos.x) - 15 - (_d.right ? _d.right : 0)) + 'px';
+            this.controls.style.top = ((pos.clientY || pos.y) - this.controls.clientHeight / 2 - 15) + 'px';
+        }
+        else {
+        }
+    };
+    OxiControls.prototype.showAttachPopUp = function (elem) {
+        var _this = this;
+        if (!elem || !elem._data)
+            return alertify.error('please create area for this element, on right click');
+        var _mesh = elem, _dialog = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["c" /* Dialog */]({ title: 'Attach data source' });
+        var _loop_3 = function(i, _a) {
+            if (_a[i].active)
+                return "continue";
+            var d = document.createElement('div'), spa = document.createElement('span'), btn = document.createElement('button');
+            btn.addEventListener('click', function () {
+                if (_mesh._dataSource) {
+                    _mesh._dataSource.active = false;
+                }
+                _mesh._data.dataSourceId = _a[i]._id;
+                _mesh._dataSource = _a[i];
+                _mesh._tooltip = new OxiToolTip(_mesh, _this.app);
+                _dialog.anyWay();
+                _this.app._animation.play();
+            });
+            btn.innerText = 'Attach';
+            spa.innerText = _a[i]._id;
+            d.className = "my-dialog";
+            d.appendChild(spa);
+            d.appendChild(btn);
+            _dialog.body.appendChild(d);
+        };
+        for (var i = 0, _a = this.app.main.preToolTip.dataElem; i < _a.length; i++) {
+            _loop_3(i, _a);
+        }
+    };
+    return OxiControls;
+}());
+var OxiToolTip = (function () {
+    function OxiToolTip(mesh, main) {
+        this.canEdit = false;
+        var tooltip;
+        var tooltipParent = main._preloaderStatus._tooltips;
+        if (!tooltipParent) {
+            tooltipParent = document.querySelector('.' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_TOOLTIPS.CONTAINER);
+            if (!tooltipParent) {
+                tooltipParent = document.createElement('div');
+                tooltipParent.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_TOOLTIPS.CONTAINER;
+                main._parent().appendChild(tooltipParent);
+            }
+            main._preloaderStatus._tooltips = tooltipParent;
+            tooltipParent.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU, function (e) { return main._events.onCntxMenu(e); }, false);
+        }
+        this.canEdit = main.main.selected.canEdit;
+        if (mesh._tooltip) {
+            for (var i = 0; i < main.infoHTML.length; i++) {
+                if (main.infoHTML[i]._id == mesh._tooltip._id) {
+                    main.infoHTML.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        this._id = Date.now() * Math.random();
+        main.infoHTML.push(this);
+        if (mesh._dataSource) {
+            mesh._dataSource.active = true;
+        }
+        else {
+            tooltip = document.createElement('div');
+            var tooltCnt = document.createElement('div'), head = document.createElement('div'), spanHead = document.createElement('span'), spanBody = document.createElement('div'), body = document.createElement('div');
+            body.appendChild(spanBody);
+            head.appendChild(spanHead);
+            tooltCnt.appendChild(head);
+            tooltCnt.appendChild(document.createElement('hr'));
+            tooltCnt.appendChild(body);
+            tooltip.appendChild(tooltCnt);
+            tooltip.className = 'cos-info active';
+            tooltCnt.className = 'cos-tooltip';
+            body.className = 'cos-tooltip-body';
+            spanBody.className = 'cos-tooltip-body-title';
+            head.className = 'cos-tooltip-header';
+            spanBody.innerHTML = mesh._data ? mesh._data.name : mesh.name;
+            spanHead.innerHTML = mesh.name;
+            //tooltip.innerHTML += '<div class="cos-label"><span>0</span></div>';
+            var sp = void 0, ps = void 0;
+            if (mesh._data && mesh._data.areas) {
+                sp = document.createElement('div');
+                sp.className = 'cos-label';
+                ps = document.createElement('span');
+                sp.appendChild(ps);
+                ps.innerText = mesh._data.areas.length;
+                tooltip.appendChild(sp);
+            }
+            this.tooltip = tooltip;
+            this.tooltipCnt = tooltCnt;
+            [tooltip, tooltCnt, sp, ps].forEach(function (e) {
+                if (e)
+                    e.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, main.onEventPrevent);
+            });
+        }
+        this.mesh = mesh;
+        if (!mesh.material)
+            mesh.material = {};
+        mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
+        if (!main.main.selected.canEdit) {
+            if (mesh._data || mesh._dataSource) {
+                if (mesh._data._category == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure) {
+                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                }
+                mesh.click = function () {
+                    switch (mesh._data._category) {
+                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure:
+                            {
+                                var _url = mesh._data.projFilesDirname.split("/");
+                                window.location.href += "&area=" + _url[_url.length - 1];
+                                break;
+                            }
+                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.LinkGeneralStructure:
+                            {
+                                window.open(mesh._data.destination);
+                                break;
+                            }
+                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.GeneralStructure:
+                            {
+                                try {
+                                    main.main.authServ.safeJS(mesh._data.destination)();
+                                }
+                                catch (e) {
+                                }
+                                break;
+                            }
+                    }
+                };
+                if (mesh._dataSource) {
+                    mesh._dataSource.onclick = mesh.click;
+                }
+                else {
+                    tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
+                }
+            }
+            else if (mesh._dataSource) {
+                if (mesh._dataSource.URL && mesh._dataSource.URL.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PATTERNS.URL)) {
+                    mesh.click = function () {
+                        window.open(mesh._dataSource.URL);
+                    };
+                    mesh._dataSource.onclick = mesh.click;
+                    if (tooltip)
+                        tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
+                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                }
+            }
+        }
+        if (!mesh._dataSource)
+            tooltipParent.appendChild(tooltip);
+    }
+    OxiToolTip.prototype.show = function (show) {
+        if (show === void 0) { show = true; }
+        //this.mesh.material.visible = show || this.canEdit;
+        this.mesh.material.opacity = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        if (this.tooltip) {
+            this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
+            this.tooltipCnt.className = show ? 'cos-tooltip active' : 'cos-tooltip';
+        }
+        else {
+            this.mesh._dataSource.tooltip.active = !!show;
+        }
+        this.update();
+    };
+    OxiToolTip.prototype.update = function () {
+        this.mesh.getScreenPst();
+        if (this.tooltip) {
+            this.tooltip.style.left = this.mesh.onscreenParams.x + 'px';
+            this.tooltip.style.top = this.mesh.onscreenParams.y + 'px';
+        }
+        else {
+            this.mesh._dataSource._left = (this.mesh.onscreenParams.x - this.mesh.onscreenOffset.left) + 'px';
+            this.mesh._dataSource._top = (this.mesh.onscreenParams.y - this.mesh.onscreenOffset.top) + 'px';
+        }
+    };
+    OxiToolTip.prototype.htmlToElement = function (html) {
+        var template = document.createElement('template');
+        template.innerHTML = html;
+        return template.content.firstChild;
+    };
+    return OxiToolTip;
+}());
+//# sourceMappingURL=webgl.view.js.map
+
+/***/ }),
+
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1713,6 +3719,9 @@ var Config = (function () {
         if (min === void 0) { min = 0; }
         if (max === void 0) { max = Date.now(); }
         return Math.round(min + Math.random() * (max - min));
+    };
+    Config.randomstr = function () {
+        return Math.random().toString(36).replace(/[^a-z]+/g, '');
     };
     Config.SITE_STRUCTURE = '/site_structure.json';
     Config.PROJ_LOC = 'uploads/projects/';
@@ -1751,7 +3760,8 @@ var Config = (function () {
             ALIGN_IMG: 'alignFrames[]',
             PRELOADER: 'preloader[]',
             CONTROLS: 'controls[]',
-            TOOLTIP: 'tooltip[]'
+            TOOLTIP: 'tooltip[]',
+            SVG_FILE: 'svgs[]'
         },
         DIR: {
             DELIMETER: "/",
@@ -1812,12 +3822,12 @@ var ProjClasses = (function () {
 
 /***/ }),
 
-/***/ 37:
+/***/ 38:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShareService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1857,13 +3867,27 @@ var ShareService = (function () {
 
 /***/ }),
 
-/***/ 50:
+/***/ 390:
+/***/ (function(module, exports) {
+
+function webpackEmptyContext(req) {
+	throw new Error("Cannot find module '" + req + "'.");
+}
+webpackEmptyContext.keys = function() { return []; };
+webpackEmptyContext.resolve = webpackEmptyContext;
+module.exports = webpackEmptyContext;
+webpackEmptyContext.id = 390;
+
+
+/***/ }),
+
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(81);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1937,7 +3961,7 @@ var AuthService = (function () {
 
 /***/ }),
 
-/***/ 571:
+/***/ 592:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -1946,20 +3970,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 571;
+webpackEmptyContext.id = 592;
 
 
 /***/ }),
 
-/***/ 572:
+/***/ 593:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(690);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(730);
 
 
 
@@ -1972,14 +3996,14 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 62:
+/***/ 65:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2091,7 +4115,7 @@ var ProjectService = (function () {
 
 /***/ }),
 
-/***/ 689:
+/***/ 710:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2114,8 +4138,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(821),
-            styles: [__webpack_require__(769)],
+            template: __webpack_require__(850),
+            styles: [__webpack_require__(791)],
             host: { 'window:beforeunload': 'beforeClose' }
         }), 
         __metadata('design:paramtypes', [])
@@ -2126,48 +4150,48 @@ var AppComponent = (function () {
 
 /***/ }),
 
-/***/ 690:
+/***/ 711:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__ = __webpack_require__(803);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_codemirror__ = __webpack_require__(819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__ = __webpack_require__(829);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_codemirror__ = __webpack_require__(845);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_codemirror___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_codemirror__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index__ = __webpack_require__(733);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__router__ = __webpack_require__(709);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_storage_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_auth_guard_service__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_logged_guard_service__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_share_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pipes_name_pipe__ = __webpack_require__(708);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_component__ = __webpack_require__(689);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_login_login_component__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_home_aside_aside_component__ = __webpack_require__(691);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_home_users_users_component__ = __webpack_require__(357);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_header_header_component__ = __webpack_require__(692);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_home_users_user_card_user_card_component__ = __webpack_require__(698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_home_users_new_user_new_user_component__ = __webpack_require__(697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__ = __webpack_require__(695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_home_projects_view_view_project__ = __webpack_require__(696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_home_projects_edit_edit_project__ = __webpack_require__(694);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_home_project_project_component__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_home_project_source_source_project__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__services_project_service__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives_directives__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_home_project_source_edit_view_edit_view__ = __webpack_require__(693);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__router__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_storage_service__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_auth_guard_service__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_logged_guard_service__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_share_service__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pipes_name_pipe__ = __webpack_require__(728);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_component__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_login_login_component__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_home_aside_aside_component__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_home_users_users_component__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_header_header_component__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_home_users_user_card_user_card_component__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_home_users_new_user_new_user_component__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__ = __webpack_require__(716);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_home_projects_view_view_project__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_home_projects_edit_edit_project__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_home_project_project_component__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_home_project_source_source_project__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__services_project_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives_directives__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_home_project_source_edit_view_edit_view__ = __webpack_require__(714);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__ = __webpack_require__(368);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2237,17 +4261,18 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_33__directives_directives__["c" /* WebglView */],
                 __WEBPACK_IMPORTED_MODULE_33__directives_directives__["d" /* WControls */],
                 __WEBPACK_IMPORTED_MODULE_33__directives_directives__["e" /* WTooltip */],
+                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["f" /* SVGView */],
                 __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__["a" /* TextAr */],
                 __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__["a" /* PreviewSceneComponent */],
                 __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__["a" /* PreviewProject */],
                 __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__["b" /* Costumization */],
-                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["f" /* Preloader */],
-                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["g" /* HtmlDirective */],
-                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["h" /* TemplatesLoader */],
+                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["g" /* Preloader */],
+                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["h" /* HtmlDirective */],
+                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["i" /* TemplatesLoader */],
                 //AbstractTemplateProject,
                 __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__["a" /* NewProjectComponent */],
-                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["i" /* MTree */],
-                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["j" /* MNode */],
+                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["j" /* MTree */],
+                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["k" /* MNode */],
                 __WEBPACK_IMPORTED_MODULE_25__components_home_projects_view_view_project__["a" /* ViewProject */],
                 __WEBPACK_IMPORTED_MODULE_28__components_home_project_source_source_project__["a" /* SourceProject */],
                 __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__["a" /* BasicProject */],
@@ -2269,7 +4294,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_12__services_logged_guard_service__["a" /* LoggedGuardService */],
                 __WEBPACK_IMPORTED_MODULE_10__services_user_service__["a" /* UserService */],
                 __WEBPACK_IMPORTED_MODULE_13__services_share_service__["a" /* ShareService */],
-                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["k" /* WebGLService */],
+                __WEBPACK_IMPORTED_MODULE_33__directives_directives__["l" /* WebGLService */],
                 __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__["b" /* PreviewSceneService */],
                 __WEBPACK_IMPORTED_MODULE_32__services_project_service__["a" /* ProjectService */]
             ],
@@ -2283,13 +4308,13 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 691:
+/***/ 712:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsideComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2343,8 +4368,8 @@ var AsideComponent = (function () {
     AsideComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-aside',
-            template: __webpack_require__(822),
-            styles: [__webpack_require__(770)]
+            template: __webpack_require__(851),
+            styles: [__webpack_require__(792)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === 'function' && _b) || Object])
     ], AsideComponent);
@@ -2355,14 +4380,14 @@ var AsideComponent = (function () {
 
 /***/ }),
 
-/***/ 692:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(8);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2421,8 +4446,8 @@ var HeaderComponent = (function () {
     HeaderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-header',
-            template: __webpack_require__(823),
-            styles: [__webpack_require__(771)]
+            template: __webpack_require__(852),
+            styles: [__webpack_require__(793)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_common__["Location"]) === 'function' && _d) || Object])
     ], HeaderComponent);
@@ -2433,12 +4458,12 @@ var HeaderComponent = (function () {
 
 /***/ }),
 
-/***/ 693:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2462,8 +4487,8 @@ var EditView = (function () {
     EditView = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-edit-view',
-            template: __webpack_require__(829),
-            styles: [__webpack_require__(777)]
+            template: __webpack_require__(858),
+            styles: [__webpack_require__(799)]
         }), 
         __metadata('design:paramtypes', [])
     ], EditView);
@@ -2473,14 +4498,14 @@ var EditView = (function () {
 
 /***/ }),
 
-/***/ 694:
+/***/ 715:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_share_service__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_share_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2559,8 +4584,8 @@ var EditProject = (function () {
     EditProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-edit',
-            template: __webpack_require__(831),
-            styles: [__webpack_require__(779)]
+            template: __webpack_require__(860),
+            styles: [__webpack_require__(801)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_share_service__["a" /* ShareService */]) === 'function' && _c) || Object])
     ], EditProject);
@@ -2571,14 +4596,14 @@ var EditProject = (function () {
 
 /***/ }),
 
-/***/ 695:
+/***/ 716:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2685,8 +4710,8 @@ var NewProjectComponent = (function () {
     NewProjectComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-project',
-            template: __webpack_require__(832),
-            styles: [__webpack_require__(780)]
+            template: __webpack_require__(861),
+            styles: [__webpack_require__(802)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */]) === 'function' && _c) || Object])
     ], NewProjectComponent);
@@ -2697,13 +4722,13 @@ var NewProjectComponent = (function () {
 
 /***/ }),
 
-/***/ 696:
+/***/ 717:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2767,8 +4792,8 @@ var ViewProject = (function () {
     ViewProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-view',
-            template: __webpack_require__(834),
-            styles: [__webpack_require__(782)]
+            template: __webpack_require__(863),
+            styles: [__webpack_require__(804)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */]) === 'function' && _b) || Object])
     ], ViewProject);
@@ -2779,14 +4804,14 @@ var ViewProject = (function () {
 
 /***/ }),
 
-/***/ 697:
+/***/ 718:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__interfaces_user_interface__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__interfaces_user_interface__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewUserComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2871,8 +4896,8 @@ var NewUserComponent = (function () {
     NewUserComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-user',
-            template: __webpack_require__(835),
-            styles: [__webpack_require__(783)]
+            template: __webpack_require__(864),
+            styles: [__webpack_require__(805)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object])
     ], NewUserComponent);
@@ -2883,14 +4908,14 @@ var NewUserComponent = (function () {
 
 /***/ }),
 
-/***/ 698:
+/***/ 719:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__interfaces_user_interface__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__interfaces_user_interface__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserCardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3020,8 +5045,8 @@ var UserCardComponent = (function () {
     UserCardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-card',
-            template: __webpack_require__(836),
-            styles: [__webpack_require__(784)]
+            template: __webpack_require__(865),
+            styles: [__webpack_require__(806)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === 'function' && _b) || Object])
     ], UserCardComponent);
@@ -3032,13 +5057,13 @@ var UserCardComponent = (function () {
 
 /***/ }),
 
-/***/ 699:
+/***/ 720:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Dialog; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Confirm; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Prompt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Dialog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Confirm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Prompt; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -3137,7 +5162,7 @@ var Prompt = (function (_super) {
 
 /***/ }),
 
-/***/ 700:
+/***/ 721:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3180,7 +5205,7 @@ var HtmlDirective = (function () {
 
 /***/ }),
 
-/***/ 701:
+/***/ 722:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3834,13 +5859,13 @@ var SlimScroll = (function () {
 
 /***/ }),
 
-/***/ 702:
+/***/ 723:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemplatesLoader; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3926,7 +5951,7 @@ var TemplatesLoader = (function () {
 
 /***/ }),
 
-/***/ 703:
+/***/ 724:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4011,7 +6036,7 @@ var MTree = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'tree',
             template: "\n<ul class=\"tree-webgl-view first\" >\n\t\t<node *ngFor=\"let item of data\" [arrow]=\"1\" [classes]=\"'main'\" [parent]=\"item\" [mainParent]=\"mainParent\" [item]=\"item\"></node>\n</ul>\n",
-            styles: [__webpack_require__(788)]
+            styles: [__webpack_require__(810)]
         }), 
         __metadata('design:paramtypes', [])
     ], MTree);
@@ -4021,7 +6046,7 @@ var MTree = (function () {
 
 /***/ }),
 
-/***/ 704:
+/***/ 725:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4111,7 +6136,7 @@ var UploadFile = (function () {
             template: '<input type="file" accept="{{accept}}"   [(ngModel)]="filesModel" #filesModels="ngModel" class="hidden" #fileUpload>' +
                 ' <label [class.full-op]="filesModels.invalid"  [hidden] = "filesModels.valid">{{title}} is required</label> ' +
                 '<div #btnFile class="btn-def">{{title}}</div>  <div class="list-files" *ngIf="files" [innerHTML]="files.toString()"></div>',
-            styles: [__webpack_require__(789)]
+            styles: [__webpack_require__(811)]
         }), 
         __metadata('design:paramtypes', [])
     ], UploadFile);
@@ -4121,1533 +6146,12 @@ var UploadFile = (function () {
 
 /***/ }),
 
-/***/ 705:
+/***/ 726:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__ = __webpack_require__(699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controls_controls__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__ = __webpack_require__(362);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WebGLService; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebglView; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-var WebGLService = (function () {
-    function WebGLService() {
-        this.navchange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-    }
-    WebGLService.prototype.emit = function (data) {
-        this.navchange.emit(data);
-    };
-    WebGLService.prototype.subscribe = function (component, callback) {
-        // set 'this' to component when callback is called
-        return this.navchange.subscribe(function (data) {
-            callback.call(component, data);
-        });
-    };
-    WebGLService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [])
-    ], WebGLService);
-    return WebGLService;
-}());
-var WebglView = (function () {
-    function WebglView(location, authServ) {
-        this._id = Date.now();
-        this.inited = false;
-        this.location = location;
-        this.authServ = authServ;
-    }
-    WebglView.prototype.ngOnChanges = function (changes) {
-        if (changes.selected.currentValue.created != changes.selected.previousValue.created)
-            this.initWebgl();
-        if (this.selected)
-            this.selected.glApp = this.app;
-    };
-    WebglView.prototype.ngOnInit = function () {
-        this.initWebgl();
-        if (this.selected)
-            this.selected.glApp = this.app;
-    };
-    WebglView.prototype.initWebgl = function () {
-        if (!this.inited)
-            return this.inited = true;
-        if (this.selected.images.length) {
-            this.preview = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + this.selected.images[this.selected.currentItem || 0];
-        }
-        else if (this.selected.preview) {
-            this.preview = this.selected.preview;
-        }
-        this.app = new OxiAPP(this);
-    };
-    WebglView.prototype.ngOnDestroy = function () {
-        console.log('webgl context ' + this._id + " was clear");
-        this.app._animation.stop();
-    };
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("renderParent"), 
-        __metadata('design:type', Object)
-    ], WebglView.prototype, "renderParent", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("preloader"), 
-        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__["a" /* Preloader */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__["a" /* Preloader */]) === 'function' && _b) || Object)
-    ], WebglView.prototype, "preloader", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("preToolTip"), 
-        __metadata('design:type', (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__["a" /* WTooltip */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__["a" /* WTooltip */]) === 'function' && _e) || Object)
-    ], WebglView.prototype, "preToolTip", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("preControls"), 
-        __metadata('design:type', (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__controls_controls__["a" /* WControls */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__controls_controls__["a" /* WControls */]) === 'function' && _f) || Object)
-    ], WebglView.prototype, "preControls", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("projCnt"), 
-        __metadata('design:type', Object)
-    ], WebglView.prototype, "projCnt", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
-        __metadata('design:type', Object)
-    ], WebglView.prototype, "selected", void 0);
-    WebglView = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-project-webgl-view',
-            template: __webpack_require__(843),
-            styles: [__webpack_require__(793)]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_common__["Location"]) === 'function' && _g) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _j) || Object])
-    ], WebglView);
-    return WebglView;
-    var _b, _e, _f, _g, _j;
-}());
-var OxiAPP = (function () {
-    function OxiAPP(main) {
-        var _this = this;
-        this.isMobile = false;
-        this.imgType = '';
-        this.screen = {};
-        this._files = {};
-        this.curLoadedTemplates = 0;
-        this.infoHTML = [];
-        this.TEMPLATES = {
-            TOOLTIP: 'app-project-webgl-tooltip',
-            CONTROLS: 'app-project-webgl-controls',
-            PRELOADER: 'app-project-preloader'
-        };
-        this.main = main;
-        this.scene = new THREE.Scene();
-        this.model = new THREE.Object3D();
-        this.scene.add(this.model);
-        var renderer = this.gl = new THREE.WebGLRenderer({
-            antialias: true, alpha: true, clearAlpha: true,
-            sortObjects: false
-        }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405, _self = this;
-        if (main.selected.canEdit)
-            main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth * (SCREEN_HEIGHT / SCREEN_WIDTH) + 'px';
-        this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || { style: {} };
-        renderer.setClearColor(0xffffff, 0);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        this.isMobile = this.deviceCheck();
-        this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
-        this.controls = main.selected.canEdit ? new THREE.OrbitControls(this.camera, renderer.domElement) : {
-            update: function () {
-            }, target: this.scene.position.clone()
-        };
-        this.controls.enabled = !!this.main.selected.canEdit;
-        if (this.controls.enabled)
-            this.controls.addEventListener('change', function () {
-                main.selected.hasRecalcChanges = main.selected.hasChanges = true;
-                if (main.selected.camera.frameState[main.selected.currentItem])
-                    main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
-                _this.camera.updateProjectionMatrix();
-                _this.dataSave();
-                _this._animation.play();
-            });
-        /*-----------set config data----------*/
-        this.camera.positionDef = new THREE.Vector3(34800, 18600, -600);
-        if (main.selected.camera) {
-            if (main.selected.camera.rotation) {
-                this.camera.rotation.x = main.selected.camera.rotation._x;
-                this.camera.rotation.y = main.selected.camera.rotation._y;
-                this.camera.rotation.z = main.selected.camera.rotation._z;
-            }
-            if (main.selected.camera.position) {
-                this.camera.positionDef.copy(main.selected.camera.position);
-            }
-            if (main.selected.camera.fov) {
-                this.camera.fov = main.selected.camera.fov;
-            }
-            if (main.selected.camera.scale) {
-                this.model.scale.multiplyScalar(main.selected.camera.scale);
-            }
-            if (main.selected.camera.zoom) {
-                this.camera.zoom = main.selected.camera.zoom;
-            }
-            if (main.selected.camera.target) {
-                this.controls.target.copy(main.selected.camera.target);
-            }
-        }
-        this.camera.position.copy(this.camera.positionDef);
-        this.camera.updateProjectionMatrix();
-        var curDist = this.camera.positionDef.distanceTo(this.controls.target), curAngle = Math.acos((this.camera.positionDef.x - this.controls.target.x) / curDist);
-        this.camera.updateView = function (angle) {
-            var _cm = main.selected.camera, _p = _cm.frameState[main.selected.currentItem];
-            if (_p) {
-                _this.camera.position.set(_p.x, _p.y, _p.z);
-                if (_p.target)
-                    _this.controls.target.set(_p.target.x, _p.target.y, _p.target.z);
-            }
-            else {
-                var quaternion = new THREE.Quaternion();
-                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
-                _this.camera.position.copy(_this.camera.positionDef.clone().applyQuaternion(quaternion));
-                if (_cm.target)
-                    _this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
-            }
-            _this.camera.lookAt(_this.controls.target);
-            _this.camera.updateProjectionMatrix();
-            _this._animation.play();
-        };
-        if (this.main.selected.canEdit)
-            this.scene.add(new THREE.AxisHelper(500));
-        //let light = new THREE.DirectionalLight(0xffffff);
-        //light.position.set(1, 1, 1);
-        //this.scene.add(light);
-        THREE.Mesh.prototype.getScreenPst = function () {
-            var mesh = this, m = _self.gl.domElement, offset = _self._offset(), width = m.clientWidth, height = m.clientHeight, widthHalf = width / 2, heightHalf = height / 2, position = new THREE.Vector3();
-            mesh.updateMatrixWorld();
-            mesh.updateMatrix();
-            mesh.geometry.computeBoundingBox();
-            mesh.geometry.computeBoundingSphere();
-            var boundingBox = mesh.geometry.boundingBox;
-            position.subVectors(boundingBox.max, boundingBox.min);
-            position.multiplyScalar(0.5);
-            position.add(boundingBox.min);
-            position.project(_self.camera);
-            position.x = (position.x * widthHalf) + widthHalf + offset.left;
-            position.y = -(position.y * heightHalf) + heightHalf + offset.top;
-            mesh.onscreenParams = position;
-            mesh.onscreenOffset = offset;
-        };
-        this.templates = [main.preToolTip, main.preControls, main.preloader];
-        this.templates.forEach(function (el) {
-            el.callbacks.push(function () {
-                _this.onFinishLoadTemplates();
-            });
-        });
-    }
-    OxiAPP.prototype.onFinishLoadTemplates = function () {
-        var _this = this;
-        var main = this.main;
-        if (++this.curLoadedTemplates == this.templates.length) {
-            setTimeout(function () {
-                _this.loadModel(function () {
-                    _this.checkLoadedImg(function () {
-                        var parentCanvas = _this._container = main.projCnt['nativeElement'], onFinish = function () {
-                            var onEnd = function () {
-                                var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
-                                if (_preloader)
-                                    _preloader.parentNode.removeChild(_preloader);
-                            };
-                            if (_this._slider.isLoaded) {
-                                onEnd();
-                            }
-                            else {
-                                _this._slider.onFinish = function () {
-                                    onEnd();
-                                };
-                            }
-                        };
-                        if (main.preloader.prevImg) {
-                            main.preloader.prevImg['nativeElement'].className += ' active';
-                        }
-                        else {
-                            main.preloader.preloader['nativeElement'].className += ' active';
-                        }
-                        parentCanvas.appendChild(_this.gl.domElement);
-                        _this._projControls = new OxiControls(_this);
-                        _this._slider = new OxiSlider(_this);
-                        _this._events = new OxiEvents(_this);
-                        _this._animation = new OxiAnimation(_this);
-                        var _inter = setTimeout(function () {
-                            Pace.stop();
-                            onFinish();
-                        }, 2000);
-                        Pace.once('done', function (e) {
-                            clearTimeout(_inter);
-                            onFinish();
-                        });
-                    });
-                });
-            }, 100);
-        }
-    };
-    OxiAPP.prototype.loadTemplates = function () {
-    };
-    OxiAPP.prototype.checkLoadedImg = function (callback) {
-        var _this = this;
-        var _self = this, allows = ['1', '2'], checkLow = function () {
-            if (_this.isMobile) {
-                _this.imgType = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.LOW;
-            }
-            callback();
-        };
-        if (this.main.selected.images.length) {
-            var isAllowed = window.localStorage.getItem(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP);
-            if (isAllowed) {
-                if (isAllowed == allows[0]) {
-                    _self.imgType = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP;
-                    callback();
-                }
-                else {
-                    checkLow();
-                }
-            }
-            else {
-                var img_1 = new Image();
-                img_1.onload = function () {
-                    var isAllow = !!(img_1.height > 0 && img_1.width > 0);
-                    window.localStorage.setItem(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP, isAllow ? allows[0] : allows[1]);
-                    if (isAllow) {
-                        _self.imgType = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP;
-                        callback();
-                    }
-                    else {
-                        checkLow();
-                    }
-                };
-                img_1.onerror = function () {
-                    window.localStorage.setItem(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP, allows[1]);
-                    checkLow();
-                };
-                img_1.src = './assets/img/img_large_0_4.webp';
-            }
-        }
-        else {
-            checkLow();
-        }
-    };
-    OxiAPP.prototype.updateData = function (data) {
-        var _selected = this.main.selected, settings = _selected.camera;
-        _selected.hasChanges = _selected.hasRecalcChanges = true;
-        if (_selected.camera.frameState[_selected.currentItem])
-            _selected.camera.frameState[_selected.currentItem].hasChanges = true;
-        switch (data) {
-            case 'scale':
-                {
-                    this.model.scale.z = this.model.scale.y = this.model.scale.x;
-                    break;
-                }
-            case 'opacity':
-                {
-                    this.model.traverse(function (child) {
-                        if (child.type == 'Mesh') {
-                            child.material.opacity = settings.opacity;
-                        }
-                    });
-                    break;
-                }
-            case 'update':
-                {
-                    break;
-                }
-            case 'kompass':
-                this._projControls.kompas.onUpdate();
-                {
-                    break;
-                }
-            case 'cameraPst':
-                {
-                    break;
-                }
-            case 'y':
-            case 'x':
-                {
-                    var val_1 = settings.resolution[data], prop_1 = this._slider._W() / this._slider._H(), isHeight_1 = data == 'y', _px_1 = 'px', elem = [this._slider.container.childNodes];
-                    if (!elem[0] || !elem[0].length)
-                        break;
-                    if (this._slider.alignImgContainer instanceof Node) {
-                        var el = this._slider.alignImgContainer.childNodes;
-                        if (el && el.length)
-                            elem.push(el);
-                    }
-                    elem.forEach(function (lstChilds) {
-                        [].forEach.call(lstChilds, function (el) {
-                            el.style.height = (isHeight_1 ? val_1 : val_1 / prop_1) + _px_1;
-                            el.style.width = (isHeight_1 ? val_1 * prop_1 : val_1) + _px_1;
-                        });
-                    });
-                    this._events.onWindowResize();
-                    break;
-                }
-            case 'size':
-            case 'lens':
-                {
-                    //settings.size =this._slider._W() * 1.1 > window.innerWidth ? (window.innerWidth / this._slider._W()) * 0.9 : 1;
-                    var sizeX = this.gl.domElement.clientWidth, sizeY = this.gl.domElement.clientHeight;
-                    settings.aspect = sizeX / sizeY;
-                    this.camera.setLens(settings.lens * settings.aspect, settings.size);
-                    this.camera.updateProjectionMatrix();
-                    break;
-                }
-            default:
-                {
-                    this.camera.updateProjectionMatrix();
-                }
-        }
-        this.dataSave();
-        this._animation.play();
-    };
-    OxiAPP.prototype.deviceCheck = function () {
-        var check = false;
-        (function (a) {
-            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4)))
-                check = true;
-        })(navigator.userAgent || navigator.vendor || window['opera']);
-        return check;
-    };
-    OxiAPP.prototype.recalc = function () {
-        var _selected = this.main.selected, _c = this.camera.position.clone(), _t = this.controls.target.clone();
-        _selected.camera.frameState = [];
-        _selected.camera.frameState[_selected.currentItem] = {
-            x: _c.x,
-            y: _c.y,
-            z: _c.z,
-            target: { x: _t.x, y: _t.y, z: _t.z }
-        };
-        for (var i = 0; i < _selected.images.length; i++) {
-            if (_selected.currentItem == i)
-                continue;
-            var quaternion = new THREE.Quaternion(), _cmC = _c.clone();
-            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * 10) * Math.PI / 180);
-            _cmC.applyQuaternion(quaternion);
-            _selected.camera.frameState[i] = {
-                x: _cmC.x,
-                y: _cmC.y,
-                z: _cmC.z,
-                target: { x: _t.x, y: _t.y, z: _t.z }
-            };
-        }
-        _selected.hasRecalcChanges = false;
-    };
-    OxiAPP.prototype.dataSave = function () {
-        var old = this.main.selected.camera;
-        if (!(old instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* OxiCamera */])) {
-            this.main.selected.camera = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* OxiCamera */]({
-                position: this.camera.position,
-                rotation: this.camera.rotation,
-                target: this.controls.target,
-                frameState: old.frameState,
-                //resolution: new ENTITY.Vector3({x: this._slider._W(), y: this._slider._H()}),
-                fov: this.camera.fov,
-                zoom: this.camera.zoom,
-                scale: this.model.scale.x,
-                lens: old.lens,
-                opacity: old.opacity,
-                size: old.size,
-            });
-        }
-        else {
-            old.position = this.camera.position.clone();
-            old.rotation = this.camera.rotation.clone();
-            old.target = this.controls.target.clone();
-            old.fov = this.camera.fov;
-            old.zoom = this.camera.zoom;
-            old.scale = this.model.scale.x;
-        }
-    };
-    OxiAPP.prototype.loadModel = function (callback) {
-        var _this = this;
-        if (callback === void 0) { callback = function () {
-            console.log("load was finished succesed");
-        }; }
-        var _self = this;
-        if (this.main.selected.cash.model) {
-            this._onLoadModel(this.main.selected.cash.model);
-            callback();
-        }
-        else if (this.main.selected.projFilesDirname && this.main.selected.destination) {
-            var manager = new THREE.LoadingManager();
-            manager.onProgress = function (item, loaded, total) {
-                //console.log(item, loaded, total);
-            };
-            var onProgress = function (xhr) {
-                if (xhr.lengthComputable) {
-                    _self.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total);
-                }
-            };
-            var onError = function (xhr) {
-                alertify.error(xhr);
-            };
-            var loader = this.loader = this.loader || new THREE.OBJLoader(manager);
-            loader.load(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.main.selected.projFilesDirname + "/" + this.main.selected.destination, function (object) {
-                _this._onLoadModel(object);
-                callback();
-            }, onProgress, onError);
-        }
-        else {
-            callback();
-        }
-    };
-    OxiAPP.prototype._onLoadModel = function (object) {
-        var _this = this;
-        if (this.model.children)
-            for (var i = 0; i < this.model.children.length; i++)
-                this.model.remove(this.model.children[i]);
-        this.model.add(object);
-        object.traverse(function (child) {
-            if (child.type == 'Mesh') {
-                child.material = new THREE.MeshBasicMaterial({
-                    transparent: true,
-                    opacity: _this.main.selected.camera.opacity
-                });
-                child.material.opacity0 = child.material.opacity;
-                child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
-                child.renderOrder = 0;
-                //child.name = child.name.toLowerCase();
-                if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
-                    child.material.color = new THREE.Color(0, 0, 0);
-                }
-                for (var i = 0, areas = _this.main.selected.areas; areas && i < areas.length; i++) {
-                    if (areas[i]._id.match(child.name)) {
-                        child._data = areas[i];
-                        break;
-                    }
-                }
-                for (var i = 0, sources = _this.main.preToolTip.dataElem; sources && i < sources.length; i++) {
-                    if (sources[i]._id == child.name || (child._data && sources[i]._id == child._data.dataSourceId)) {
-                        child._dataSource = sources[i];
-                        break;
-                    }
-                }
-            }
-        });
-        this.main.selected.cash.model = object;
-    };
-    OxiAPP.prototype.updateInfoHTML = function () {
-        for (var i = 0; i < this.infoHTML.length; i++) {
-            this.infoHTML[i].update();
-        }
-    };
-    //TODO
-    OxiAPP.prototype._deleteArea = function (item) {
-        delete item._data;
-        for (var i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
-            if (areas[i].created == item.created) {
-                delete item._data;
-                break;
-            }
-        }
-    };
-    OxiAPP.prototype._parent = function () {
-        return this.main.renderParent['nativeElement'];
-    };
-    OxiAPP.prototype.onFilesSelected = function (files) {
-        var _self = this, filereader = this._fileReader = this._fileReader || new FileReader(), _flStrg, onFinish;
-        if (!files || !files.length)
-            return console.error("files had not been selected");
-        switch (files[0].category) {
-            case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ:
-                {
-                    _flStrg = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.MODEL_OBJ;
-                    onFinish = function () { return _self._animation.play(); };
-                    break;
-                }
-            case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.PREVIEW_IMG:
-                {
-                    _flStrg = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.PREVIEW_IMG;
-                    this.main.selected.images = [];
-                    onFinish = function () { return _self._slider.addFrames(); };
-                    break;
-                }
-            case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.ALIGN_IMG:
-                {
-                    _flStrg = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.ALIGN_IMG;
-                    this.main.selected.alignImages = [];
-                    onFinish = function () { return _self._slider.addAlignImg(); };
-                    break;
-                }
-        }
-        if (!_flStrg || !onFinish)
-            return console.error("file category is not recognized");
-        this._files[_flStrg] = files;
-        var startFrom = 0;
-        function parseFiles(cur) {
-            if (!cur)
-                return onFinish();
-            switch (cur.category) {
-                case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ:
-                    {
-                        filereader.readAsText(cur);
-                        break;
-                    }
-                case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.PREVIEW_IMG:
-                case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.ALIGN_IMG:
-                    {
-                        filereader.readAsDataURL(cur);
-                        break;
-                    }
-                default:
-                    {
-                        parseFiles(files[startFrom++]);
-                    }
-            }
-            filereader.onloadend = function (e) {
-                switch (cur.category) {
-                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ:
-                        {
-                            var loader = _self.loader = _self.loader || new THREE.OBJLoader();
-                            loader.parse(e.currentTarget.result, function (m) {
-                                _self.main.selected.destination = [new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjFile */]({ file: cur, name: cur.name })];
-                                _self._onLoadModel(m);
-                            });
-                            break;
-                        }
-                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.PREVIEW_IMG:
-                        {
-                            _self.main.selected.images.push(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjFile */]({
-                                file: cur,
-                                name: cur.name,
-                                data: e.currentTarget.result
-                            }));
-                            break;
-                        }
-                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.ALIGN_IMG:
-                        {
-                            _self.main.selected.alignImages.push(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjFile */]({
-                                file: cur,
-                                name: cur.name,
-                                data: e.currentTarget.result
-                            }));
-                            break;
-                        }
-                }
-                parseFiles(files[startFrom++]);
-            };
-        }
-        ;
-        parseFiles(files[startFrom++]);
-    };
-    OxiAPP.prototype._offset = function () {
-        return this.gl.domElement.getBoundingClientRect();
-    };
-    OxiAPP.prototype.onEventPrevent = function (event) {
-        event.preventDefault();
-        return false;
-    };
-    OxiAPP.prototype.render = function () {
-        if (Pace.running)
-            return;
-        this.updateInfoHTML();
-        this.gl.render(this.scene, this.camera);
-    };
-    return OxiAPP;
-}());
-var OxiEvents = (function () {
-    function OxiEvents(app) {
-        var _this = this;
-        this.canEdit = false;
-        this.pathOnMove = 50;
-        var _self = this, elem = app.gl.domElement, handler = (elem.addEventListener || elem.attachEvent).bind(elem);
-        this.canEdit = app.main.selected.canEdit;
-        this.main = app;
-        this.EVENTS_NAME = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME;
-        this.mouse = new OxiMouse(app);
-        this.raycaster = new THREE.Raycaster();
-        handler(this.EVENTS_NAME.MOUSE_DOWN, function (e) { return _this.onMouseDown(e); });
-        handler(this.EVENTS_NAME.MOUSE_UP, function (e) { return _this.onMouseUp(e); });
-        handler(this.EVENTS_NAME.MOUSE_MOVE, function (e) { return _this.onMouseMove(e); });
-        handler(this.EVENTS_NAME.DB_CLICK, function (e) { return _this.onDbClick(e); });
-        handler(this.EVENTS_NAME.SELECT_START, app.onEventPrevent);
-        if (!this.canEdit)
-            handler(this.EVENTS_NAME.MOUSE_OUT, function (e) { return _this.onMouseOut(e); });
-        window.addEventListener('resize', function () { return _this.onWindowResize(); });
-        this.onWindowResize();
-    }
-    OxiEvents.prototype.onWindowResize = function () {
-        var app = this.main, _w = app._slider._W(), _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight, _h = _nat ? _w / _nat : app._slider._H();
-        app.camera.aspect = _w / _h;
-        app.camera.updateProjectionMatrix();
-        app.gl.setSize(_w, _h);
-        app._container.style.height = _h + 'px';
-        //app.updateInfoHTML();
-        if (app._animation)
-            app._animation.play();
-    };
-    OxiEvents.prototype.onMouseUp = function (ev) {
-        var _this = this;
-        var _self = this, btn = ev.button;
-        this.mouse.down = this.lastEv = false;
-        this.main._projControls.show(ev, false);
-        switch (btn) {
-            case 0:
-            case 1:
-                {
-                    if (this.canEdit) {
-                        if (!this.lastInter)
-                            return;
-                        if (this.lastInter && !this.lastInter.object._data)
-                            return alert('please create area for this element, on right click');
-                        var _mesh_1 = this.lastInter.object, _dialog_1 = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Dialog */]({ title: 'Attach data source' });
-                        var _loop_1 = function(i, _a) {
-                            if (_a[i].active)
-                                return "continue";
-                            var d = document.createElement('div'), spa = document.createElement('span'), btn_1 = document.createElement('button');
-                            btn_1.addEventListener('click', function () {
-                                if (_mesh_1._dataSource) {
-                                    _mesh_1._dataSource.active = false;
-                                }
-                                _mesh_1._data.dataSourceId = _a[i]._id;
-                                _mesh_1._dataSource = _a[i];
-                                _mesh_1._tooltip = new OxiToolTip(_mesh_1, _self.main);
-                                _dialog_1.anyWay();
-                                _this.main._animation.play();
-                            });
-                            btn_1.innerText = 'Attach';
-                            spa.innerText = _a[i]._id;
-                            d.className = "my-dialog";
-                            d.appendChild(spa);
-                            d.appendChild(btn_1);
-                            _dialog_1.body.appendChild(d);
-                        };
-                        for (var i = 0, _a = this.main.main.preToolTip.dataElem; i < _a.length; i++) {
-                            _loop_1(i, _a);
-                        }
-                    }
-                    if (this.lastInter && this.lastInter.object.click)
-                        this.lastInter.object.click();
-                    break;
-                }
-            case 2:
-                {
-                    if (this.canEdit) {
-                        this.onSelected(ev, function (inter) {
-                            _this.main._projControls.show(ev);
-                        });
-                    }
-                    break;
-                }
-        }
-        ev.preventDefault();
-    };
-    OxiEvents.prototype.onMouseMove = function (ev) {
-        var _this = this;
-        if (this.lastInter) {
-            this.main._projControls.show(ev, false);
-            this.lastInter = null;
-        }
-        if (this.canEdit) {
-            this.onSelected(ev, function (inter) {
-                _this.main._projControls.show({ x: -1500 }, true, false);
-            });
-        }
-        else {
-            if (this.mouse.down) {
-                if (!this.lastEv)
-                    return this.lastEv = ev;
-                if (Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove) {
-                    this.main._slider.move((ev.clientX > this.lastEv.clientX ? -1 : 1));
-                    this.lastEv = ev;
-                }
-                else if (Math.abs(ev.clientY - this.lastEv.clientY) > this.pathOnMove) {
-                    this.main._slider.move((ev.clientY > this.lastEv.clientY ? -1 : 1));
-                    this.lastEv = ev;
-                }
-            }
-            else {
-                this.onSelected(ev, function (inter) {
-                    _this.main._projControls.show(ev);
-                });
-            }
-        }
-    };
-    OxiEvents.prototype.onSelected = function (ev, callback) {
-        var intersectList = this.inter(ev);
-        if (intersectList && intersectList[0]) {
-            if (intersectList[0].object.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE))
-                return;
-            this.lastInter = intersectList[0];
-            callback(intersectList[0]);
-        }
-    };
-    OxiEvents.prototype.onMouseDown = function (ev) {
-        this.mouse.down = ev;
-        this.lastEv = false;
-    };
-    OxiEvents.prototype.onMouseOut = function (ev) {
-        if (this.mouse.down)
-            this.onMouseUp(ev);
-    };
-    OxiEvents.prototype.onDbClick = function (e) {
-        if (this.canEdit) {
-            this.main.controls.target.copy(this.main.scene.position);
-            this.main.controls.update();
-        }
-        this.main.onEventPrevent(e);
-    };
-    OxiEvents.prototype.onCntxMenu = function (event) {
-        event.preventDefault();
-        return false;
-    };
-    OxiEvents.prototype.inter = function (ev, arg) {
-        if (arg === void 0) { arg = null; }
-        var _self = this, elements = arg && arg.childs ? arg.childs : [_self.main.model];
-        if (this.mouse.down || !elements)
-            return false;
-        if (arg && arg.position) {
-            var direction = new THREE.Vector3().subVectors(arg.target, arg.position);
-            _self.raycaster.set(arg.position, direction.clone().normalize());
-        }
-        else {
-            var mouseVector = _self.mouse.interPoint(ev);
-            _self.raycaster.setFromCamera(mouseVector, _self.main.camera);
-        }
-        return _self.raycaster.intersectObjects(elements, true);
-    };
-    return OxiEvents;
-}());
-var OxiMouse = (function () {
-    function OxiMouse(main) {
-        this.isDown = false;
-        this.main = main;
-    }
-    OxiMouse.prototype.interPoint = function (ev) {
-        var _slider = this.main.gl.domElement, rect = _slider.getBoundingClientRect(), canvasW = _slider.clientWidth, canvasH = _slider.clientHeight, _x = (ev ? ev.clientX : canvasW / 2) - rect.left, _y = (ev ? ev.clientY : canvasH / 2) - rect.top;
-        if (ev && ev.touches) {
-            var firstFing = ev.touches.length ? ev.touches[0] : ev.changedTouches[0];
-            _x = firstFing.clientX;
-            _y = firstFing.clientY;
-        }
-        return new THREE.Vector2(((_x) / canvasW) * 2 - 1, -((_y) / canvasH) * 2 + 1);
-    };
-    OxiMouse.prototype.cumulativeOffset = function (element) {
-        var top = 0, left = 0;
-        do {
-            top += element.offsetTop || 0;
-            left += element.offsetLeft || 0;
-            element = element.offsetParent;
-        } while (element);
-        return {
-            offsetLeft: top,
-            offsetTop: left
-        };
-    };
-    return OxiMouse;
-}());
-var OxiAnimation = (function () {
-    function OxiAnimation(main) {
-        var _this = this;
-        this.canAnimate = false;
-        this.isStop = false;
-        this.lastUpdate = Date.now();
-        this.maxTimeUpdate = 1500;
-        this.id = Date.now();
-        this.animations = [];
-        this.lastIter = 0;
-        this.app = main;
-        this.play();
-        setTimeout(function () {
-            _this.animate();
-        }, 100);
-    }
-    OxiAnimation.prototype.add = function (callback) {
-        this.animations.push(callback);
-    };
-    OxiAnimation.prototype.animate = function () {
-        var _this = this;
-        if (!this.app.gl.domElement.width || this.isStop)
-            return;
-        for (var i = 0; i < this.animations.length; i++) {
-            this.animations[i]();
-        }
-        if (this.canAnimate) {
-            this.canAnimate = this.lastUpdate > Date.now();
-            if (!this.canAnimate || this.lastIter > 2)
-                this.lastIter = 0;
-            this.app.render();
-        }
-        if (this.app._container.clientWidth != this.app._container.lastClientWidth) {
-            this.app._container.lastClientWidth = this.app._container.clientWidth;
-            this.app._events.onWindowResize();
-            this.app._projControls.show({}, false);
-        }
-        requestAnimationFrame(function () {
-            _this.animate();
-        });
-    };
-    OxiAnimation.prototype.play = function (flag) {
-        if (flag === void 0) { flag = true; }
-        this.lastUpdate = Date.now() + (this.maxTimeUpdate);
-        if (this.canAnimate)
-            return;
-        this.canAnimate = flag || !Pace.running;
-        //this.animate();
-    };
-    OxiAnimation.prototype.stop = function () {
-        this.isStop = true;
-        this.canAnimate = false;
-        this.lastIter = 0;
-    };
-    return OxiAnimation;
-}());
-var OxiSlider = (function () {
-    function OxiSlider(app) {
-        this.currentFrame = {};
-        this.currentAlignFrame = {};
-        this.currentPagination = {};
-        this.canEdit = false;
-        this.isDebug = false;
-        this.isLoaded = true;
-        this.canEdit = app.main.selected.canEdit;
-        this.app = app;
-        this.addFrames();
-        if (this.canEdit)
-            this.addAlignImg();
-    }
-    OxiSlider.prototype.addFrames = function () {
-        var _this = this;
-        var _self = this, app = this.app;
-        [this.container, this.imgPagination].forEach(function (domEl) {
-            _this.removeNode(domEl);
-        });
-        var div = this.container = document.createElement('div'), imgPagination = this.imgPagination = document.createElement('ul'), _selected = app.main.selected, _resol = _selected.camera.resolution, _px = 'px', canEdit = this.canEdit;
-        if (!app.main.selected.images || !app.main.selected.images.length)
-            return;
-        var _loop_2 = function(i) {
-            var img = document.createElement('img'), curImg = app.main.selected.images[i];
-            if (typeof curImg == 'string') {
-                img.src = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + _selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_PREVIEW + app.imgType;
-                if (app.imgType == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PREVIEW.WEBP) {
-                    var imgD = curImg.split(".");
-                    imgD.pop();
-                    img.src += imgD.join(".") + '.webp';
-                }
-                else {
-                    img.src += curImg;
-                }
-            }
-            else {
-                img.src = curImg.data;
-            }
-            if (parseInt(i) == _selected.currentItem) {
-                img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
-                this_1.currentFrame = img;
-                _self.isLoaded = false;
-                img.onload = function () {
-                    if (!_resol.x) {
-                        _resol.x = _self._W();
-                        _resol.y = _self._H();
-                    }
-                    _self.app._events.onWindowResize();
-                    //_self.onResize();
-                    _self.isLoaded = true;
-                    if (_self.onFinish)
-                        _self.onFinish();
-                };
-            }
-            //if (_resol && _resol.x) {
-            //    img.style.width = _resol.x + _px;
-            //    img.style.height = _resol.y + _px;
-            //}
-            div.appendChild(img);
-            if (canEdit) {
-                var item = document.createElement('li');
-                item.innerHTML = (+i + 1) + '';
-                if (+i == _selected.currentItem) {
-                    item.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
-                    this_1.currentPagination = item;
-                }
-                item.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function () {
-                    var saveD = function () {
-                        var _c = app.camera.position, _t = app.controls.target;
-                        _selected.camera.frameState[_selected.currentItem] = {
-                            x: _c.x,
-                            y: _c.y,
-                            z: _c.z,
-                            target: { x: _t.x, y: _t.y, z: _t.z }
-                        };
-                    }, anyway = function () {
-                        _this.updateView(i);
-                        _this.app.dataSave();
-                    };
-                    if (!_selected.camera.frameState[_selected.currentItem]) {
-                        saveD();
-                        anyway();
-                    }
-                    else if (_selected.camera.frameState[_selected.currentItem].hasChanges) {
-                        delete _selected.camera.frameState[_selected.currentItem].hasChanges;
-                        new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["b" /* Confirm */]({
-                            title: "The data view for current (" + (+_selected.currentItem + 1) + ") has been changed, accept to save, if cancel will lose",
-                            onOk: function () {
-                                saveD();
-                            },
-                            onCancel: function () {
-                                delete _selected.camera.frameState[_selected.currentItem];
-                            },
-                            onAnyWay: function () {
-                                anyway();
-                            }
-                        });
-                    }
-                    else {
-                        anyway();
-                    }
-                });
-                imgPagination.appendChild(item);
-            }
-        };
-        var this_1 = this;
-        for (var i in app.main.selected.images) {
-            _loop_2(i);
-        }
-        div.style.display = this.isDebug ? 'none' : '';
-        div.className = [__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].CENTER_CONTAINER, __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].IMG_SLIDER].join(" ");
-        app._container.appendChild(div);
-        if (canEdit) {
-            app._container.appendChild(imgPagination);
-            imgPagination.style.bottom = -imgPagination.clientHeight + 'px';
-        }
-    };
-    OxiSlider.prototype.onResize = function () {
-        var val = this.app.main.selected.camera.resolution, _px = 'px', elem = [this.container.childNodes];
-        if (!elem[0] || !elem[0].length)
-            return;
-        if (this.alignImgContainer instanceof Node) {
-            var el = this.alignImgContainer.childNodes;
-            if (el && el.length)
-                elem.push(el);
-        }
-        elem.forEach(function (lstChilds) {
-            [].forEach.call(lstChilds, function (el) {
-                el.style.height = val.y + _px;
-                el.style.width = val.x + _px;
-            });
-        });
-    };
-    OxiSlider.prototype.addAlignImg = function () {
-        this.removeNode(this.alignImgContainer);
-        if (!this.canEdit)
-            return;
-        var div = this.alignImgContainer = document.createElement('div'), _selected = this.app.main.selected, _resol = _selected.camera.resolution, _px = 'px';
-        for (var i = 0, arr = _selected.alignImages, _length = arr.length; i < _length; i++) {
-            var img = document.createElement('img'), curImg = arr[i];
-            img.src = typeof curImg == 'string' ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + _selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.PROJECT_ALIGN_IMG + curImg : curImg.data;
-            if (i == _selected.currentItem) {
-                img.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
-                this.currentAlignFrame = img;
-            }
-            //if (_resol && _resol.x) {
-            //    img.style.width = _resol.x + _px;
-            //    img.style.height = _resol.y + _px;
-            //}
-            div.appendChild(img);
-        }
-        div.style.display = this.isDebug ? '' : 'none';
-        div.className = [__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].CENTER_CONTAINER, __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].IMG_SLIDER].join(" ");
-        this.app._container.appendChild(div);
-    };
-    OxiSlider.prototype.toggleDebug = function () {
-        this.isDebug = !this.isDebug;
-        this.alignImgContainer.style.display = this.isDebug ? '' : 'none';
-        this.container.style.display = !this.isDebug ? '' : 'none';
-    };
-    OxiSlider.prototype.removeNode = function (domEl) {
-        if (!domEl)
-            return;
-        while (domEl.firstChild)
-            domEl.removeChild(domEl.firstChild);
-        if (domEl.parentNode)
-            domEl.parentNode.removeChild(domEl);
-    };
-    OxiSlider.prototype.updateView = function (selectedItem) {
-        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className'] = '';
-        this.app.main.selected.currentItem = selectedItem;
-        this.app.camera.updateView(selectedItem - this.app.main.selected.currentItem0);
-        this.currentFrame = this.container.childNodes[selectedItem];
-        this.currentPagination = this.imgPagination && this.imgPagination.childNodes[selectedItem] ? this.imgPagination.childNodes[selectedItem] : {};
-        this.currentAlignFrame = this.alignImgContainer && this.alignImgContainer.childNodes[selectedItem] ? this.alignImgContainer.childNodes[selectedItem] : {};
-        this.currentFrame['className'] = this.currentAlignFrame['className'] = this.currentPagination['className'] = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
-        //this.app._events.onMouseOut({});
-        this.app._projControls.show({}, false);
-    };
-    OxiSlider.prototype.move = function (next) {
-        if (next < 0) {
-            if (this.app.main.selected.currentItem < 1) {
-                return this.updateView(this.app.main.selected.images.length - 1);
-            }
-        }
-        else {
-            if (this.app.main.selected.currentItem >= this.app.main.selected.images.length - 1) {
-                return this.updateView(0);
-            }
-        }
-        this.updateView(this.app.main.selected.currentItem + next);
-    };
-    OxiSlider.prototype._W = function () {
-        return this.currentFrame.clientWidth || this.currentFrame.width || this.container.clientWidth || this.app.main.selected.camera.resolution.x || this.app.screen.width;
-    };
-    OxiSlider.prototype._H = function () {
-        return this.currentFrame.clientHeight || this.currentFrame.height || this.container.clientHeight || this.app.main.selected.camera.resolution.y || this.app.screen.height;
-    };
-    OxiSlider.prototype._offsetLeft = function () {
-        return this.container.offsetLeft || this.app._container.offsetLeft;
-    };
-    OxiSlider.prototype._offsetTop = function () {
-        return this.container.offsetTop || this.app._container.offsetTop;
-    };
-    return OxiSlider;
-}());
-var OxiControls = (function () {
-    function OxiControls(app) {
-        var _this = this;
-        var _self = this, div = this.controls = document.createElement('div'), _div = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_CONTROLS_MOVE), _backArea = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_BACK_AREA), kompass = document.querySelector(app.TEMPLATES.CONTROLS + ' .' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_COMPASS);
-        this.app = app;
-        if (_div)
-            _div.style.display = 'none';
-        if (_backArea)
-            _backArea.style.display = 'none';
-        if (app.main.selected.canEdit) {
-            div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_CONTROLS;
-            app._parent().appendChild(div);
-            var childSelected_1 = function (child) {
-                _this.app._events.lastInter.object._data = child;
-                child._id = _this.app._events.lastInter.object.name;
-                child.name = child._id.toUpperCase();
-                child._id += Date.now();
-                if (!_this.app.main.selected.areas) {
-                    _this.app.main.selected.areas = [child];
-                }
-                else {
-                    _this.app.main.selected.areas.push(child);
-                }
-            }, removeChild_1 = function () {
-                for (var i = 0, areas = _this.app.main.selected.areas; i < areas.length; i++) {
-                    if (areas[i]._id == _this.app._events.lastInter.object._data._id) {
-                        areas.splice(i, 1);
-                        break;
-                    }
-                }
-                _this.app._events.lastInter.object._data = null;
-            };
-            [
-                {
-                    className: 'attach-new', click: function (onFinish) {
-                        if (_this.app._events.lastInter.object._data) {
-                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["b" /* Confirm */]({
-                                title: "This area had already a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
-                                onOk: function () {
-                                    removeChild_1();
-                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["h" /* ModelStructure */]());
-                                },
-                                onAnyWay: function () {
-                                    onFinish();
-                                }
-                            });
-                        }
-                        else {
-                            childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["h" /* ModelStructure */]());
-                            onFinish();
-                        }
-                    }, icon: '../assets/img/ic_library_add_white_24px.svg'
-                },
-                {
-                    className: 'attach-link', click: function (onFinish) {
-                        var onChange = function () {
-                            var prompt = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["c" /* Prompt */]({
-                                title: "Input the link",
-                                txt: 'https://google.com',
-                                onOk: function () {
-                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["i" /* LinkGeneralStructure */]({
-                                        destination: prompt.input.value || ''
-                                    }));
-                                    onFinish();
-                                }
-                            });
-                        };
-                        if (_this.app._events.lastInter.object._data) {
-                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["b" /* Confirm */]({
-                                title: "This area had already a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
-                                onOk: function () {
-                                    onChange();
-                                    removeChild_1();
-                                },
-                                onAnyWay: function () {
-                                    onFinish();
-                                }
-                            });
-                        }
-                        else {
-                            onChange();
-                        }
-                    }, icon: '../assets/img/ic_link_white_24px.svg'
-                },
-                {
-                    className: 'attach-js', click: function (onFinish) {
-                        var onChange = function () {
-                            var prompt = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["c" /* Prompt */]({
-                                title: "Please input js code",
-                                txt: 'alert("TEST")',
-                                onOk: function (input) {
-                                    childSelected_1(new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["j" /* GeneralStructure */]({
-                                        destination: prompt.input.value || ''
-                                    }));
-                                    onFinish();
-                                }
-                            });
-                        };
-                        if (_this.app._events.lastInter.object._data) {
-                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["b" /* Confirm */]({
-                                title: "This area had already a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
-                                onOk: function () {
-                                    onChange();
-                                    removeChild_1();
-                                },
-                                onAnyWay: function () {
-                                    onFinish();
-                                }
-                            });
-                        }
-                        else {
-                            onChange();
-                        }
-                    }, icon: '../assets/img/JS.svg'
-                },
-                {
-                    className: 'cntrls-close', click: function (onFinish) {
-                        if (_this.app._events.lastInter.object._data) {
-                            new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["b" /* Confirm */]({
-                                title: "This area has a structure (" + _this.app._events.lastInter.object._data.name + "), if ok will remove!!!",
-                                onOk: function () {
-                                    removeChild_1();
-                                },
-                                onAnyWay: function () {
-                                    onFinish();
-                                }
-                            });
-                        }
-                        else {
-                            onFinish();
-                        }
-                    }, icon: '../assets/img/ic_close_white_24px.svg'
-                }
-            ].forEach(function (el, item) {
-                var domEl = document.createElement('div');
-                domEl.className = el.className;
-                domEl.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
-                    el.click(function () { return _this.show(e, false); });
-                    app.main.selected.hasChanges = true;
-                });
-                div.appendChild(domEl);
-                var icon = document.createElement('img');
-                icon.src = el.icon;
-                icon.setAttribute('fillColor', '#ffffff');
-                icon.setAttribute('fill', '#ffffff');
-                icon.style.color = '#ffffff';
-                domEl.appendChild(icon);
-            });
-            app.model.traverse(function (child) {
-                if (child.type == "Mesh" && child._dataSource) {
-                    child._toolTip = new OxiToolTip(child, app);
-                }
-            });
-        }
-        else {
-            if (this.app.main.selected.images.length > 1) {
-                var arrows = [{ _c: 'left', _i: -1 }, { _c: 'right', _i: 1 }];
-                if (_div) {
-                    div = _div;
-                    _div.style.display = '';
-                    for (var i = 0; i < _div.childNodes.length; i++) {
-                        var childDiv = _div.childNodes[i];
-                        var _loop_3 = function(u) {
-                            if (childDiv.localName == 'div') {
-                                var dir_1 = arrows.splice(u, 1)[0]._i;
-                                childDiv.addEventListener((this_2.app.isMobile ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.TOUCH_END : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK), function (e) {
-                                    _this.app._slider.move(dir_1);
-                                });
-                                childDiv.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, this_2.app.onEventPrevent);
-                                return "break";
-                            }
-                        };
-                        var this_2 = this;
-                        for (var u = 0; u < arrows.length; u++) {
-                            var state_3 = _loop_3(u);
-                            if (state_3 === "break") break;
-                        }
-                    }
-                }
-                else {
-                    div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_CONTROLS_MOVE;
-                    app._container.appendChild(div);
-                    arrows.forEach(function (child) {
-                        var childDiv = document.createElement('div');
-                        childDiv.className = child._c;
-                        childDiv.style.backgroundImage = 'url("assets/img/left_arrow.png")';
-                        div.appendChild(childDiv);
-                        childDiv.addEventListener((_this.app.isMobile ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.TOUCH_END : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK), function (e) {
-                            _this.app._slider.move(child._i);
-                        });
-                        childDiv.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, _this.app.onEventPrevent);
-                    });
-                }
-            }
-            div.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, this.app.onEventPrevent);
-            var tooltipParent_1 = document.querySelector('.' + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.CONTAINER);
-            if (!tooltipParent_1) {
-                tooltipParent_1 = document.createElement('div');
-                tooltipParent_1.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_TOOLTIPS.CONTAINER;
-                app._parent().appendChild(tooltipParent_1);
-            }
-            this._tooltips = tooltipParent_1;
-            app.model.traverse(function (child) {
-                if (child.type == "Mesh") {
-                    //child.material.visible = false;
-                    child.material.opacity = 0;
-                    child._toolTip = new OxiToolTip(child, app);
-                    if (!child._dataSource)
-                        tooltipParent_1.appendChild(child._toolTip.tooltip);
-                    tooltipParent_1.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU, function (e) { return app._events.onCntxMenu(e); }, false);
-                }
-            });
-            var path = this.app.main.location.path(), areas_1 = path.split(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0]);
-            if (areas_1.length > 1) {
-                var back = _backArea;
-                if (!back) {
-                    back = document.createElement('div');
-                    back.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].PROJ_BACK_AREA;
-                    back.style.backgroundImage = "url('assets/img/android-system-back.png')";
-                    app._container.appendChild(back);
-                }
-                else {
-                    back.style.display = '';
-                }
-                areas_1.pop();
-                back.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) {
-                    e.preventDefault();
-                    window.location.href = window.location.origin + (areas_1.length > 1 ? areas_1.join(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DMNS[0]) : areas_1.join(''));
-                });
-                back.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU, function (e) { return app._events.onCntxMenu(e); }, false);
-            }
-        }
-        div.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU, function (e) { return app._events.onCntxMenu(e); }, false);
-        if (!kompass) {
-            kompass = document.createElement('div');
-            kompass.className = 'kompass';
-            kompass.style.backgroundImage = 'url("assets/img/kompas.png")';
-            app._container.appendChild(kompass);
-        }
-        this.kompas = kompass;
-        kompass.onUpdate = function () {
-            kompass.style.display = !_self.app.main.selected.camera.kompass.enabled ? 'none' : '';
-            kompass.style.transform = 'rotate(' + (_self.app.main.selected.currentItem * __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].ANGLE_STEP + app.main.selected.camera.kompass.angle) + 'deg)';
-        };
-        kompass.onUpdate();
-    }
-    OxiControls.prototype.show = function (pos, flag, fl) {
-        if (flag === void 0) { flag = true; }
-        if (fl === void 0) { fl = true; }
-        var canEdit = this.app.main.selected.canEdit;
-        if (this.kompas)
-            this.kompas.onUpdate();
-        var _inter = this.app._events.lastInter;
-        if (_inter) {
-            _inter = _inter.object;
-            if (_inter._toolTip)
-                _inter._toolTip.show(flag);
-            if (!_inter.material.defColor)
-                _inter.material.defColor = _inter.material.color.clone();
-            if (!_inter.material.onSelectColor)
-                _inter.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
-            _inter.material.color = flag ? _inter.material.onSelectColor : _inter.material.defColor;
-            _inter.material.transparent = fl;
-            _inter.renderOrder = flag ? 100 : 0;
-        }
-        if (flag) {
-            if (this.controls.className.indexOf(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE) < 0) {
-                this.controls.className += " " + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE;
-            }
-        }
-        else {
-            this.controls.className = this.controls.className.replace(" " + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["e" /* ProjClasses */].ACTIVE, '');
-        }
-        if (canEdit) {
-            var _d = document.querySelector('app-aside');
-            if (_d) {
-                _d = _d.getBoundingClientRect();
-            }
-            this.controls.style.left = ((pos.clientX || pos.x) - 15 - (_d.right ? _d.right : 0)) + 'px';
-            this.controls.style.top = ((pos.clientY || pos.y) - this.controls.clientHeight / 2 - 15) + 'px';
-        }
-        else {
-        }
-        this.app._animation.play();
-        //this.app.updateInfoHTML();
-    };
-    return OxiControls;
-}());
-var OxiToolTip = (function () {
-    function OxiToolTip(mesh, main) {
-        this.canEdit = false;
-        var tooltip;
-        this.canEdit = main.main.selected.canEdit;
-        if (mesh._tooltip) {
-            for (var i = 0; i < main.infoHTML.length; i++) {
-                if (main.infoHTML[i]._id == mesh._tooltip._id) {
-                    main.infoHTML.splice(i, 1);
-                    break;
-                }
-            }
-        }
-        this._id = Date.now() * Math.random();
-        main.infoHTML.push(this);
-        if (mesh._dataSource) {
-            mesh._dataSource.active = true;
-        }
-        else {
-            tooltip = document.createElement('div');
-            var tooltCnt = document.createElement('div'), head = document.createElement('div'), spanHead = document.createElement('span'), spanBody = document.createElement('div'), body = document.createElement('div');
-            body.appendChild(spanBody);
-            head.appendChild(spanHead);
-            tooltCnt.appendChild(head);
-            tooltCnt.appendChild(document.createElement('hr'));
-            tooltCnt.appendChild(body);
-            tooltip.appendChild(tooltCnt);
-            tooltip.className = 'cos-info active';
-            tooltCnt.className = 'cos-tooltip';
-            body.className = 'cos-tooltip-body';
-            spanBody.className = 'cos-tooltip-body-title';
-            head.className = 'cos-tooltip-header';
-            spanBody.innerHTML = mesh._data ? mesh._data.name : mesh.name;
-            spanHead.innerHTML = mesh.name;
-            //tooltip.innerHTML += '<div class="cos-label"><span>0</span></div>';
-            var sp = void 0, ps = void 0;
-            if (mesh._data && mesh._data.areas) {
-                sp = document.createElement('div');
-                sp.className = 'cos-label';
-                ps = document.createElement('span');
-                sp.appendChild(ps);
-                ps.innerText = mesh._data.areas.length;
-                tooltip.appendChild(sp);
-            }
-            this.tooltip = tooltip;
-            this.tooltipCnt = tooltCnt;
-            [tooltip, tooltCnt, sp, ps].forEach(function (e) {
-                if (e)
-                    e.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.SELECT_START, main.onEventPrevent);
-            });
-        }
-        this.mesh = mesh;
-        mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
-        if (!main.main.selected.canEdit) {
-            if (mesh._data) {
-                if (mesh._data._category == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure) {
-                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
-                }
-                mesh.click = function () {
-                    switch (mesh._data._category) {
-                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure:
-                            {
-                                var _url = mesh._data.projFilesDirname.split("/");
-                                window.location.href += "&area=" + _url[_url.length - 1];
-                                break;
-                            }
-                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.LinkGeneralStructure:
-                            {
-                                window.open(mesh._data.destination);
-                                break;
-                            }
-                        case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.GeneralStructure:
-                            {
-                                try {
-                                    main.main.authServ.safeJS(mesh._data.destination)();
-                                }
-                                catch (e) {
-                                }
-                                break;
-                            }
-                    }
-                };
-                if (mesh._dataSource) {
-                    mesh._dataSource.onclick = mesh.click;
-                }
-                else {
-                    tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
-                }
-            }
-            else if (mesh._dataSource) {
-                if (mesh._dataSource.URL && mesh._dataSource.URL.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PATTERNS.URL)) {
-                    mesh.click = function () {
-                        window.open(mesh._dataSource.URL);
-                    };
-                    mesh._dataSource.onclick = mesh.click;
-                    if (tooltip)
-                        tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
-                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
-                }
-            }
-        }
-    }
-    OxiToolTip.prototype.show = function (show) {
-        if (show === void 0) { show = true; }
-        //this.mesh.material.visible = show || this.canEdit;
-        this.mesh.material.opacity = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
-        if (this.tooltip) {
-            this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
-            this.tooltipCnt.className = show ? 'cos-tooltip active' : 'cos-tooltip';
-        }
-        else {
-            this.mesh._dataSource.tooltip.active = !!show;
-        }
-        this.update();
-    };
-    OxiToolTip.prototype.update = function () {
-        this.mesh.getScreenPst();
-        if (this.tooltip) {
-            this.tooltip.style.left = this.mesh.onscreenParams.x + 'px';
-            this.tooltip.style.top = this.mesh.onscreenParams.y + 'px';
-        }
-        else {
-            this.mesh._dataSource._left = (this.mesh.onscreenParams.x - this.mesh.onscreenOffset.left) + 'px';
-            this.mesh._dataSource._top = (this.mesh.onscreenParams.y - this.mesh.onscreenOffset.top) + 'px';
-        }
-    };
-    OxiToolTip.prototype.htmlToElement = function (html) {
-        var template = document.createElement('template');
-        template.innerHTML = html;
-        return template.content.firstChild;
-    };
-    return OxiToolTip;
-}());
-//# sourceMappingURL=webgl.view.js.map
-
-/***/ }),
-
-/***/ 706:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constant_data__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constant_data__ = __webpack_require__(375);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjMain; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ProjFile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return OxiCamera; });
@@ -5747,6 +6251,8 @@ var OxiCamera = (function (_super) {
             this.opacity = 0.7;
         if (!this.kompass)
             this.kompass = new Kompass();
+        if (this.isSVG === undefined)
+            this.isSVG = false;
     }
     return OxiCamera;
 }(ProjMain));
@@ -5817,11 +6323,11 @@ var ModelStructure = (function (_super) {
 
 /***/ }),
 
-/***/ 707:
+/***/ 727:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(223);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ProjectModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Project; });
 var __extends = (this && this.__extends) || function (d, b) {
@@ -5850,12 +6356,12 @@ var Project = (function (_super) {
 
 /***/ }),
 
-/***/ 708:
+/***/ 728:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_share_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NamePipe; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5955,23 +6461,23 @@ var NamePipe = (function () {
 
 /***/ }),
 
-/***/ 709:
+/***/ 729:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_logged_guard_service__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_guard_service__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_home_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_home_projects_projects_component__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_home_users_users_component__ = __webpack_require__(357);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_project_project_component__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home_project_basic_basic_project__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_home_project_source_source_project__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_project_costumization_costumization__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_home_project_preview_preview__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_preview_preview_project__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_logged_guard_service__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_guard_service__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_home_component__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_home_projects_projects_component__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_home_users_users_component__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_project_project_component__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home_project_basic_basic_project__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_home_project_source_source_project__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_project_costumization_costumization__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_home_project_preview_preview__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_preview_preview_project__ = __webpack_require__(368);
 /* unused harmony export routes */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
 
@@ -6058,7 +6564,7 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* RouterModule 
 
 /***/ }),
 
-/***/ 710:
+/***/ 730:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6074,39 +6580,10 @@ var environment = {
 
 /***/ }),
 
-/***/ 76:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_service__ = __webpack_require__(50);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__auth_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_guard_service__ = __webpack_require__(218);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_service__ = __webpack_require__(62);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__project_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logged_guard_service__ = __webpack_require__(219);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__share_service__ = __webpack_require__(37);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__storage_service__ = __webpack_require__(77);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(18);
-/* unused harmony namespace reexport */
-
-
-
-
-
-
-
-//# sourceMappingURL=services.js.map
-
-/***/ }),
-
-/***/ 769:
+/***/ 791:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -6121,7 +6598,360 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 77:
+/***/ 792:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-aside {\n  position: fixed;\n  z-index: 2000;\n  top: 0;\n  left: 0;\n  display: inline-block;\n  float: left;\n  width: 260px;\n  height: 100%;\n  background-color: #ffffff;\n  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n  app-aside header {\n    width: 100%;\n    height: 160px;\n    background-color: #1976D2;\n    padding: 20px;\n    color: #ffffff; }\n    app-aside header .asd-hd-top {\n      width: 100%;\n      height: 64px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-aside header .asd-hd-top .asd-name-in {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        width: 60px;\n        height: 60px;\n        border-radius: 50%;\n        background: no-repeat;\n        background-position: 50% 50%;\n        background-size: auto 100%;\n        background-color: #ffffff;\n        font-family: Roboto-Light;\n        font-size: 20px;\n        color: #181818; }\n      app-aside header .asd-hd-top .asd-status-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: end;\n            -ms-flex-align: end;\n                align-items: flex-end; }\n        app-aside header .asd-hd-top .asd-status-wrap i {\n          height: 16px;\n          width: 20px;\n          line-height: 0.7; }\n        app-aside header .asd-hd-top .asd-status-wrap .asd-status {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-orient: vertical;\n          -webkit-box-direction: normal;\n              -ms-flex-direction: column;\n                  flex-direction: column;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n          width: 80px;\n          height: 24px;\n          background-color: rgba(255, 255, 255, 0.1);\n          border-radius: 100px;\n          font-size: 12px;\n          font-family: Roboto-Medium; }\n    app-aside header .asd-hd-bot {\n      width: 100%;\n      height: 60px;\n      padding-top: 21px;\n      font-size: 14px; }\n      app-aside header .asd-hd-bot .asd-email-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-aside header .asd-hd-bot .asd-email-wrap .asd-email {\n          font-family: Roboto-Light;\n          opacity: 0.4; }\n  app-aside .pop-up {\n    width: 100%;\n    height: 160px;\n    padding: 20px 0;\n    border-bottom: 2px solid #D6D5D5;\n    box-shadow: none;\n    border-radius: 0; }\n    app-aside .pop-up .pop-up-item i {\n      margin-right: 32px; }\n    app-aside .pop-up .pop-up-item .pop-up-num {\n      font-size: 13px; }\n    app-aside .pop-up .asd-active {\n      color: #1976D2;\n      background-color: rgba(25, 118, 210, 0.1); }\n  app-aside footer {\n    width: 100%;\n    height: calc( 100% - 320px);\n    padding: 20px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    font-size: 15px;\n    color: #9B9B9B; }\n    app-aside footer .asd-logout {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      app-aside footer .asd-logout i {\n        margin-right: 30px; }\n    app-aside footer .asd-terms {\n      width: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-aside footer .asd-terms a {\n        text-decoration: underline;\n        font-size: 13px;\n        color: #9B9B9B; }\n      app-aside footer .asd-terms img {\n        width: 88px;\n        -webkit-filter: invert(40%) grayscale(100%);\n                filter: invert(40%) grayscale(100%); }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 793:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: calc(100% - 70px);\n  height: 90px;\n  padding: 0 30px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-item-align: end;\n      align-self: flex-end;\n  -webkit-transition: margin .4s ease-in-out, width .4s ease-in-out;\n  transition: margin .4s ease-in-out, width .4s ease-in-out; }\n  app-header .header-wrap {\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-header .header-wrap span {\n      white-space: nowrap; }\n    app-header .header-wrap .header-tag {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 24px;\n      color: #444444;\n      line-height: 1; }\n      app-header .header-wrap .header-tag i {\n        margin-right: 24px; }\n      app-header .header-wrap .header-tag span {\n        font-size: 12px;\n        color: #FFA000; }\n      app-header .header-wrap .header-tag .arr-info {\n        color: #9B9B9B;\n        margin-left: 10px; }\n      app-header .header-wrap .header-tag .header-title-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -webkit-box-align: start;\n            -ms-flex-align: start;\n                align-items: flex-start; }\n    app-header .header-wrap .header-main {\n      width: 100%;\n      height: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: end;\n          -ms-flex-pack: end;\n              justify-content: flex-end; }\n      app-header .header-wrap .header-main .header-search {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        height: 40px;\n        width: 100%;\n        min-width: 150px;\n        margin: 0 60px;\n        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12); }\n        app-header .header-wrap .header-main .header-search input {\n          width: 100%;\n          font-size: 16px; }\n          app-header .header-wrap .header-main .header-search input::-webkit-input-placeholder {\n            color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-search input::-moz-placeholder {\n            color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-search input:-ms-input-placeholder {\n            color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-search input:-moz-placeholder {\n            color: #4D4D4E; }\n      app-header .header-wrap .header-main .header-sort {\n        height: 100%;\n        width: 270px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        font-size: 15px; }\n        app-header .header-wrap .header-main .header-sort .sort-select {\n          position: relative;\n          margin-left: 20px;\n          width: 184px;\n          height: 40px;\n          box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);\n          border-radius: 2px;\n          color: #9B9B9B;\n          -webkit-transition: box-shadow .3s;\n          transition: box-shadow .3s; }\n          app-header .header-wrap .header-main .header-sort .sort-select .sort-present {\n            width: 100%;\n            height: 100%;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between;\n            padding: 0 20px;\n            cursor: pointer; }\n          app-header .header-wrap .header-main .header-sort .sort-select .pop-up {\n            width: 184px;\n            position: absolute;\n            z-index: 200;\n            top: 45px; }\n            app-header .header-wrap .header-main .header-sort .sort-select .pop-up .pop-up-item {\n              height: 30px;\n              padding: 5px 20px; }\n              app-header .header-wrap .header-main .header-sort .sort-select .pop-up .pop-up-item .sort-selected {\n                color: #EBEBEB; }\n          app-header .header-wrap .header-main .header-sort .sort-select:hover {\n            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1); }\n        app-header .header-wrap .header-main .header-sort .sort-active {\n          color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-sort .sort-active i {\n            color: #1976D2; }\n      app-header .header-wrap .header-main .pop-up-icon {\n        height: 40px;\n        width: 40px; }\n        app-header .header-wrap .header-main .pop-up-icon .set-icon {\n          font-size: 29px; }\n        app-header .header-wrap .header-main .pop-up-icon .pop-up {\n          position: absolute;\n          z-index: 100;\n          right: 0;\n          top: 50px;\n          width: 200px;\n          height: 100px; }\n      app-header .header-wrap .header-main .header-main-mnu {\n        margin: 0 10px;\n        height: 100%;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex; }\n        app-header .header-wrap .header-main .header-main-mnu .mnu-item {\n          height: 100%;\n          cursor: pointer;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center;\n          padding: 0 20px;\n          border: 3px solid transparent; }\n          app-header .header-wrap .header-main .header-main-mnu .mnu-item:hover {\n            color: #1976D2; }\n        app-header .header-wrap .header-main .header-main-mnu .mnu-item-active {\n          color: #1976D2;\n          border-bottom-color: #1976D2; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 794:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-home {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative; }\n  app-home .main-content {\n    display: inline-block;\n    width: 100%;\n    height: calc(100% - 90px);\n    border-top: 2px solid #EBEBEB;\n    -webkit-transition: margin .4s ease-in-out, width .4s ease-in-out;\n    transition: margin .4s ease-in-out, width .4s ease-in-out;\n    overflow: auto; }\n  app-home .openedMenu {\n    margin-left: 260px;\n    width: calc(100% - 260px); }\n  app-home .menu-btn {\n    cursor: pointer;\n    position: absolute;\n    z-index: 1000;\n    top: 20px;\n    left: 20px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    width: 50px;\n    height: 50px;\n    color: #ffffff;\n    border-radius: 50%;\n    background-color: #1976D2;\n    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);\n    visibility: visible;\n    opacity: 1;\n    -webkit-transition: opacity .3s, visibility 0s .3s;\n    transition: opacity .3s, visibility 0s .3s; }\n  app-home .menu-btn-hide {\n    visibility: hidden;\n    opacity: 0; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 795:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-basic-project {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n  app-basic-project .half-basic-l, app-basic-project .half-basic-r {\n    width: 50%;\n    height: 100%;\n    padding-top: 60px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n    app-basic-project .half-basic-l .basic-cont-wrap, app-basic-project .half-basic-r .basic-cont-wrap {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-inf, app-basic-project .half-basic-l .basic-cont-wrap .basic-prev, app-basic-project .half-basic-r .basic-cont-wrap .basic-inf, app-basic-project .half-basic-r .basic-cont-wrap .basic-prev {\n        font-size: 18px;\n        color: #444444; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-inf, app-basic-project .half-basic-r .basic-cont-wrap .basic-inf {\n        padding: 0 30px;\n        margin-bottom: 15px; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-prev, app-basic-project .half-basic-r .basic-cont-wrap .basic-prev {\n        padding: 0 10px;\n        margin-bottom: 40px; }\n      app-basic-project .half-basic-l .basic-cont-wrap app-project-view, app-basic-project .half-basic-r .basic-cont-wrap app-project-view {\n        width: 380px; }\n      app-basic-project .half-basic-l .basic-cont-wrap app-new-project .new-form, app-basic-project .half-basic-r .basic-cont-wrap app-new-project .new-form {\n        padding: 0 30px; }\n  app-basic-project .half-basic-r {\n    border-left: 2px solid #EBEBEB;\n    background-color: rgba(235, 235, 235, 0.3); }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 796:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.costumization {\n  padding: 0 10px;\n  color: #444444;\n  font-size: 16px;\n  line-height: 18px; }\n  .costumization .cos-preview {\n    padding: 20px;\n    height: calc(100vh - 93px);\n    overflow: auto; }\n  .costumization .cos-edit-body {\n    padding: 20px 15px;\n    overflow: auto;\n    background: #fdfdfd;\n    border: 1px solid #EBEBEB;\n    border-top: none;\n    height: calc(100vh - 152px);\n    min-height: 420px; }\n    .costumization .cos-edit-body .cos-item {\n      width: 0;\n      height: 0;\n      -webkit-transform: translateY(-60%);\n              transform: translateY(-60%);\n      position: absolute;\n      left: 0;\n      z-index: 0;\n      padding: 10px 15px;\n      opacity: 0;\n      -webkit-transition: opacity,-webkit-transform 0.2s linear;\n      transition: opacity,-webkit-transform 0.2s linear;\n      transition: opacity,transform 0.2s linear;\n      transition: opacity,transform 0.2s linear,-webkit-transform 0.2s linear; }\n      .costumization .cos-edit-body .cos-item.active {\n        opacity: 1;\n        -webkit-transform: translateY(0);\n                transform: translateY(0);\n        width: 100%;\n        z-index: 1; }\n      .costumization .cos-edit-body .cos-item .w3-bar .w3-button:hover {\n        color: #fff;\n        background: #d6d6d6; }\n      .costumization .cos-edit-body .cos-item .w3-bar .w3-button.active {\n        color: #fff;\n        background-color: #5D5D5E;\n        border-radius: 2px 2px 0 0; }\n      .costumization .cos-edit-body .cos-item .cos-code {\n        overflow: auto;\n        display: none;\n        min-height: 350px;\n        width: 100%; }\n        .costumization .cos-edit-body .cos-item .cos-code.active {\n          display: block; }\n  .costumization .cos-row {\n    padding: 0;\n    margin: 0; }\n    .costumization .cos-row:nth-child(2) {\n      background: #fdfdfd; }\n  .costumization .cos-header {\n    padding: 20px 15px;\n    border-bottom: 1px solid #EBEBEB; }\n    .costumization .cos-header.cos-t {\n      border-right: 1px solid #EBEBEB;\n      border-left: 1px solid #EBEBEB; }\n    .costumization .cos-header .btn-def {\n      float: right;\n      cursor: pointer;\n      color: #328AFB; }\n      .costumization .cos-header .btn-def:hover {\n        color: #77BBFF; }\n  .costumization .cos-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    position: absolute;\n    z-index: 2;\n    width: 100%;\n    background: #fff; }\n    .costumization .cos-list li {\n      background: #fff;\n      padding: 20px 15px;\n      -webkit-transition: color,0.2s linear,-webkit-transform;\n      transition: color,0.2s linear,-webkit-transform;\n      transition: transform,color,0.2s linear;\n      transition: transform,color,0.2s linear,-webkit-transform;\n      border-bottom: 1px solid #EBEBEB;\n      cursor: pointer; }\n      .costumization .cos-list li:hover {\n        border-color: #1976D2;\n        border-right: 1px solid;\n        color: #1976D2;\n        -webkit-transform: translateX(10px);\n                transform: translateX(10px); }\n        .costumization .cos-list li:hover polygon {\n          fill: #1976D2; }\n      .costumization .cos-list li.active {\n        border-color: #1976D2;\n        color: #1976D2; }\n      .costumization .cos-list li .mailicon {\n        float: right; }\n\n.w3-light-grey, .w3-hover-light-grey:hover, .w3-light-gray, .w3-hover-light-gray:hover {\n  color: #000 !important;\n  background-color: #f1f1f1 !important; }\n\n.w3-border-bottom {\n  border-bottom: 1px solid #ccc !important; }\n\n.w3-bar {\n  width: 100%;\n  overflow: hidden; }\n\n.w3-container:after, .w3-container:before, .w3-panel:after, .w3-panel:before, .w3-row:after, .w3-row:before, .w3-row-padding:after, .w3-row-padding:before, .w3-cell-row:before, .w3-cell-row:after, .w3-clear:after, .w3-clear:before, .w3-bar:before, .w3-bar:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.w3-bar .w3-button {\n  white-space: normal; }\n\n.w3-bar .w3-bar-item {\n  padding: 8px 16px;\n  float: left;\n  width: auto;\n  border: none;\n  outline: none;\n  display: block; }\n\n.w3-dark-grey, .w3-hover-dark-grey:hover, .w3-dark-gray, .w3-hover-dark-gray:hover {\n  color: #fff !important;\n  background-color: #616161 !important; }\n\n.w3-btn, .w3-button {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\n.w3-btn, .w3-button {\n  border: none;\n  display: inline-block;\n  outline: 0;\n  padding: 8px 16px;\n  vertical-align: middle;\n  overflow: hidden;\n  text-decoration: none;\n  color: inherit;\n  background-color: inherit;\n  text-align: center;\n  cursor: pointer;\n  white-space: nowrap; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 797:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "iframe {\n  width: 1109.5px;\n  height: 624px;\n  vertical-align: middle;\n  top: 0;\n  min-height: 600px; }\n\n.tabs-view .model-config .inp-form input {\n  font-size: 12px;\n  padding: 10px 2px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 798:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "app-project {\n  height: 100%;\n  width: 100%; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 799:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.model-config .row {\n  margin: 5px 0; }\n\n.model-config .inp-form input[type=checkbox] {\n  -webkit-transform: scale(2.5);\n          transform: scale(2.5);\n  width: initial;\n  display: block;\n  margin-top: 10px;\n  margin-left: 10px;\n  cursor: pointer; }\n\n.model-config .inp-form.col-lg-12 {\n  margin: 20px 0; }\n\n.model-config .inp-form label.full-op {\n  right: inherit; }\n\n.model-config .upload-list {\n  padding: 10px 0; }\n  .model-config .upload-list app-file-upload {\n    margin: 5px 0; }\n    .model-config .upload-list app-file-upload .btn-def, .model-config .upload-list app-file-upload .list-files {\n      width: 50%;\n      float: left; }\n    .model-config .upload-list app-file-upload .btn-def {\n      padding: 10px;\n      background: #ffffff; }\n    .model-config .upload-list app-file-upload .list-files {\n      padding: 13px 10px; }\n\n.model-config .files-top-block {\n  border-bottom: 1px solid #EBEBEB;\n  margin: 20px 0;\n  display: inline-block;\n  padding: 0 10px;\n  width: 100%;\n  margin-top: 10px; }\n  .model-config .files-top-block .input-wrap input {\n    margin-top: 0; }\n\n.bottom-block {\n  padding: 0 10px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 80:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_service__ = __webpack_require__(51);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__auth_service__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_guard_service__ = __webpack_require__(224);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_service__ = __webpack_require__(65);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__project_service__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logged_guard_service__ = __webpack_require__(225);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__share_service__ = __webpack_require__(38);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__storage_service__ = __webpack_require__(81);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(20);
+/* unused harmony namespace reexport */
+
+
+
+
+
+
+
+//# sourceMappingURL=services.js.map
+
+/***/ }),
+
+/***/ 800:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.my-btn {\n  padding: 0 6px 0 6px;\n  margin: 6px 8px 6px 8px;\n  border-radius: 3px;\n  font-size: 14px;\n  text-align: center;\n  text-transform: uppercase;\n  border: none;\n  outline: none;\n  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15); }\n  .my-btn.round {\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    background: #FFA000;\n    color: #ffffff;\n    float: right; }\n    .my-btn.round i {\n      display: table;\n      margin: auto; }\n  .my-btn:active {\n    margin-top: 15px; }\n  .my-btn:hover {\n    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3); }\n\n.source-creating {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n  .source-creating .input-wrap {\n    margin-bottom: 30px; }\n\n.tabs-view .tabs-blocks {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex; }\n\n.tabs-view .my-table tr:nth-child(1) td {\n  padding: 20px 30px; }\n  .tabs-view .my-table tr:nth-child(1) td.webgl-item {\n    padding: 0; }\n\n.tabs-view .my-table tr:nth-child(2) td {\n  height: calc(100vh - 160px);\n  overflow: auto; }\n\n.tabs-view .my-table td {\n  max-width: 0px;\n  padding: 10px 0;\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  vertical-align: top; }\n  .tabs-view .my-table td .source-creating {\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    position: relative;\n    background: #ffffff;\n    padding: 30px;\n    z-index: 3; }\n  .tabs-view .my-table td.s-tab {\n    background: rgba(128, 128, 128, 0.1); }\n    .tabs-view .my-table td.s-tab.webgl-item {\n      background: gray;\n      padding: 0;\n      margin: 0;\n      max-height: calc(100vh - 230px);\n      vertical-align: middle; }\n      .tabs-view .my-table td.s-tab.webgl-itemtd {\n        padding: 0; }\n    .tabs-view .my-table td.s-tab .add-btn {\n      position: relative;\n      outline: none;\n      border: none;\n      float: right;\n      right: 30px;\n      bottom: 0; }\n  .tabs-view .my-table td .webgl-view {\n    padding: 0;\n    margin: 0; }\n\n.tabs-view .my-table .tabs-header {\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  border-bottom: 2px solid #EBEBEB; }\n  .tabs-view .my-table .tabs-header:nth-child(1) {\n    width: 305px; }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    width: 370px; }\n  .tabs-view .my-table .tabs-header .temp-data {\n    display: inline-table;\n    width: 100%;\n    vertical-align: top; }\n    .tabs-view .my-table .tabs-header .temp-data .temp-header {\n      display: table-cell;\n      padding: 20px;\n      border-bottom: 2px solid #EBEBEB; }\n    .tabs-view .my-table .tabs-header .temp-data .tabs-body {\n      display: table-row; }\n      .tabs-view .my-table .tabs-header .temp-data .tabs-body .body-data {\n        display: block;\n        padding: 20px;\n        height: calc(100vh - 163px); }\n  .tabs-view .my-table .tabs-header .title, .tabs-view .my-table .tabs-header .text-btn {\n    display: inline; }\n  .tabs-view .my-table .tabs-header .title {\n    float: left; }\n  .tabs-view .my-table .tabs-header .text-btn {\n    float: right;\n    text-transform: uppercase;\n    cursor: pointer;\n    font-size: 16px;\n    color: #328AFB;\n    font-weight: 500;\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s; }\n    .tabs-view .my-table .tabs-header .text-btn:hover {\n      opacity: 0.6; }\n  .tabs-view .my-table .tabs-header.no-width {\n    width: 10px;\n    text-align: center;\n    padding: 20px; }\n  .tabs-view .my-table .tabs-header img:hover {\n    cursor: pointer;\n    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    background: rgba(128, 128, 128, 0.1); }\n\n.tabs-view .model-config .inp-form input {\n  width: 100%;\n  background: #ffffff;\n  font-size: 22px;\n  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13); }\n  .tabs-view .model-config .inp-form input[disabled] {\n    background: #CACACA; }\n\n.center-container {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(0, -50%);\n          transform: translate(0, -50%);\n  z-index: 2;\n  width: 100%;\n  height: 100%; }\n\n.img-slider-container img {\n  display: none;\n  width: 100%;\n  margin: auto; }\n  .img-slider-container img.active {\n    display: block; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 801:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.edit-form {\n  padding: 35px 30px 25px 30px; }\n  .edit-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    .edit-form .main-info .item-form {\n      width: 100%; }\n    .edit-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      .edit-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      .edit-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      .edit-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  .edit-form .new-btns {\n    margin-top: 62px; }\n  .edit-form .text-btn {\n    text-transform: uppercase; }\n    .edit-form .text-btn:hover {\n      cursor: pointer;\n      color: #328AFB; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 802:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-project .new-form {\n  width: 420px;\n  height: 580px;\n  padding: 35px 30px 25px 30px; }\n  app-new-project .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    app-new-project .new-form .main-info .item-form {\n      width: 100%; }\n    app-new-project .new-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      app-new-project .new-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      app-new-project .new-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      app-new-project .new-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  app-new-project .new-form .new-btns {\n    margin-top: 62px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 803:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-projects, .edit-form {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-projects main, .edit-form main {\n    width: 100%;\n    height: 100%;\n    padding: 30px 20px; }\n    app-projects main .projects-wrap, .edit-form main .projects-wrap {\n      width: 100%;\n      height: calc(100% - 56px); }\n      app-projects main .projects-wrap .projects-list, .edit-form main .projects-wrap .projects-list {\n        height: 100%;\n        width: 100%; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 804:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-project-view {\n  padding: 0 10px 20px 10px;\n  height: 300px; }\n  app-project-view .project {\n    width: 100%;\n    height: 100%;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);\n    border-radius: 2px; }\n    app-project-view .project .project-content {\n      position: relative;\n      width: 100%;\n      height: 220px;\n      padding: 20px 0;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      color: #ffffff;\n      border-radius: 2px;\n      background-position: 50% 50%;\n      background-size: cover;\n      background-color: #4D4D4E;\n      font-size: 14px; }\n      app-project-view .project .project-content .project-ctrl-wrap {\n        width: 100%;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        padding: 0 0 0 20px; }\n        app-project-view .project .project-content .project-ctrl-wrap .unpublished {\n          font-weight: 500;\n          color: #FFA000; }\n        app-project-view .project .project-content .project-ctrl-wrap .project-ctrl {\n          width: 100%;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: end;\n              -ms-flex-pack: end;\n                  justify-content: flex-end;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon {\n            margin: 0 12px;\n            color: #ffffff; }\n            app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon .pop-up {\n              position: absolute;\n              z-index: 100;\n              right: 0;\n              top: 35px;\n              width: 170px;\n              height: 100px; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon-active {\n            background-color: #9B9B9B; }\n      app-project-view .project .project-content .no-img {\n        cursor: default;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        opacity: 0.2;\n        font-size: 38px;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%); }\n      app-project-view .project .project-content .project-info {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        padding: 0 20px; }\n        app-project-view .project .project-content .project-info .project-title {\n          font-size: 24px; }\n        app-project-view .project .project-content .project-info .project-created {\n          opacity: 0.5; }\n    app-project-view .project .img-true {\n      background: -webkit-linear-gradient(top, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background-color: rgba(0, 0, 0, 0.3);\n      background-size: cover; }\n    app-project-view .project .project-bot {\n      width: 100%;\n      height: 60px;\n      padding: 15px 20px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 14px; }\n      app-project-view .project .project-bot .project-admin {\n        color: #9B9B9B;\n        width: 44px; }\n      app-project-view .project .project-bot .project-users {\n        width: calc(100% - 44px);\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-project-view .project .project-bot .project-users .project-user {\n          width: 50%;\n          padding-left: 20px;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-name {\n            width: calc(100% - 40px);\n            margin-left: 10px;\n            overflow: hidden;\n            text-overflow: ellipsis;\n            white-space: nowrap; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-img {\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            color: #4A4A4A;\n            width: 30px;\n            height: 30px;\n            border-radius: 50%;\n            background: no-repeat;\n            background-position: 50% 50%;\n            background-size: auto 100%;\n            background-color: #EBEBEB; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 805:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-user .new-form {\n  width: 460px;\n  height: 540px; }\n  app-new-user .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    app-new-user .new-form .main-info .item-photo {\n      padding-top: 30px;\n      width: 130px;\n      height: 200px; }\n      app-new-user .new-form .main-info .item-photo .photo {\n        width: 130px;\n        height: 130px; }\n    app-new-user .new-form .main-info .item-form {\n      width: 240px;\n      margin-left: 30px; }\n  app-new-user .new-form .user-status {\n    width: 100%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    margin: 50px 0 58px; }\n    app-new-user .new-form .user-status .user-status-item {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 16px;\n      color: #4A4A4A; }\n      app-new-user .new-form .user-status .user-status-item span {\n        margin-left: 12px; }\n      app-new-user .new-form .user-status .user-status-item .selected-status {\n        color: #1976D2; }\n    app-new-user .new-form .user-status label {\n      position: absolute;\n      width: 100%;\n      left: 0;\n      top: 30px;\n      text-align: center;\n      color: #ff0000;\n      font-size: 12px;\n      opacity: 0;\n      -webkit-transition: opacity .5s;\n      transition: opacity .5s;\n      border-top: 2px solid #ff0000; }\n    app-new-user .new-form .user-status .err-status {\n      opacity: 1; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 806:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-user-card {\n  height: 420px;\n  width: 100%; }\n  app-user-card .user-card, app-user-card .user-card-foot {\n    padding: 0 30px 0 27px;\n    border-bottom: 2px solid #EBEBEB; }\n  app-user-card .user-card {\n    height: 340px;\n    width: 100%; }\n    app-user-card .user-card .user-card-head {\n      width: 100%;\n      height: 80px;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      app-user-card .user-card .user-card-head .user-card-hd-name {\n        font-size: 24px;\n        color: #444444; }\n      app-user-card .user-card .user-card-head .user-card-hd-status {\n        font-size: 14px;\n        font-style: italic;\n        color: #9B9B9B;\n        margin-left: 10px; }\n      app-user-card .user-card .user-card-head .pop-up-icon {\n        height: 40px;\n        width: 40px; }\n        app-user-card .user-card .user-card-head .pop-up-icon .pop-up {\n          position: absolute;\n          z-index: 100;\n          right: 0;\n          top: 50px;\n          width: 200px;\n          height: 215px; }\n      app-user-card .user-card .user-card-head .user-card-created-date {\n        position: absolute;\n        line-height: 0.7;\n        bottom: 0px;\n        font-size: 14px;\n        color: #9B9B9B; }\n    app-user-card .user-card .user-card-body {\n      width: 100%;\n      height: 260px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      app-user-card .user-card .user-card-body .item-photo {\n        padding-top: 35px;\n        width: 120px;\n        height: 100%; }\n      app-user-card .user-card .user-card-body .item-form {\n        width: 320px;\n        margin-left: 60px; }\n  app-user-card .user-card-foot {\n    height: 80px;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-user-card .user-card-foot .user-ft-l {\n      margin-right: 15px; }\n    app-user-card .user-card-foot .user-ft-r {\n      margin-left: 15px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 807:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: 100%; }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: calc(100% - 86px);\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-item-img-wrap {\n              cursor: pointer;\n              float: left;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: center;\n                  -ms-flex-pack: center;\n                      justify-content: center;\n              font-size: 14px;\n              color: #4A4A4A;\n              width: 39px;\n              height: 39px;\n              border-radius: 50%;\n              background: no-repeat;\n              background-position: 50% 50%;\n              background-size: auto 100%;\n              background-color: #EBEBEB; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap {\n              height: 100%;\n              width: calc(100% - 39px);\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap {\n                margin-left: 15px;\n                width: 100%; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name {\n                  display: -webkit-inline-box;\n                  display: -ms-inline-flexbox;\n                  display: inline-flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name i {\n                    margin-left: 10px;\n                    font-size: 21px;\n                    line-height: 0.7; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name span {\n                    display: block;\n                    float: left; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name .new-title {\n                    margin-left: 10px;\n                    color: #FFA000; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-status {\n                  font-size: 14px;\n                  font-family: Roboto-Light;\n                  color: #9B9B9B;\n                  font-style: italic; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl {\n                float: right;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon {\n                  margin-right: 20px; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon .pop-up {\n                    position: absolute;\n                    z-index: 100;\n                    right: 0;\n                    top: 35px;\n                    width: 170px;\n                    height: 100px; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 808:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center, app-login .login-form .log-in .chkbx-wrap #remember-int i {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-login {\n  background-color: #1976D2;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0; }\n  app-login .login-logo {\n    width: 165px;\n    height: 30px;\n    position: absolute;\n    left: 50%;\n    top: 16.6%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n    app-login .login-logo img {\n      width: 100%;\n      height: 100%; }\n  app-login .login-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    width: 380px;\n    height: 280px;\n    padding: 30px;\n    box-sizing: border-box;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n    app-login .login-form .login-text {\n      font-size: 24px;\n      color: #444444; }\n    app-login .login-form .item-form {\n      width: 320px; }\n    app-login .login-form .log-in {\n      margin-top: 45px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-login .login-form .log-in .chkbx-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-login .login-form .log-in .chkbx-wrap #remember-int {\n          position: relative;\n          float: left;\n          width: 18px;\n          height: 18px;\n          border: 1px solid #4D4D4E;\n          border-radius: 3px;\n          cursor: pointer; }\n        app-login .login-form .log-in .chkbx-wrap label[for=remember-int] {\n          margin-left: 10px;\n          font-size: 15px;\n          cursor: pointer; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 809:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 81:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6168,334 +6998,10 @@ var StorageService = (function () {
 
 /***/ }),
 
-/***/ 770:
+/***/ 810:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-aside {\n  position: fixed;\n  z-index: 2000;\n  top: 0;\n  left: 0;\n  display: inline-block;\n  float: left;\n  width: 260px;\n  height: 100%;\n  background-color: #ffffff;\n  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n  app-aside header {\n    width: 100%;\n    height: 160px;\n    background-color: #1976D2;\n    padding: 20px;\n    color: #ffffff; }\n    app-aside header .asd-hd-top {\n      width: 100%;\n      height: 64px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-aside header .asd-hd-top .asd-name-in {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        width: 60px;\n        height: 60px;\n        border-radius: 50%;\n        background: no-repeat;\n        background-position: 50% 50%;\n        background-size: auto 100%;\n        background-color: #ffffff;\n        font-family: Roboto-Light;\n        font-size: 20px;\n        color: #181818; }\n      app-aside header .asd-hd-top .asd-status-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: end;\n            -ms-flex-align: end;\n                align-items: flex-end; }\n        app-aside header .asd-hd-top .asd-status-wrap i {\n          height: 16px;\n          width: 20px;\n          line-height: 0.7; }\n        app-aside header .asd-hd-top .asd-status-wrap .asd-status {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-orient: vertical;\n          -webkit-box-direction: normal;\n              -ms-flex-direction: column;\n                  flex-direction: column;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n          width: 80px;\n          height: 24px;\n          background-color: rgba(255, 255, 255, 0.1);\n          border-radius: 100px;\n          font-size: 12px;\n          font-family: Roboto-Medium; }\n    app-aside header .asd-hd-bot {\n      width: 100%;\n      height: 60px;\n      padding-top: 21px;\n      font-size: 14px; }\n      app-aside header .asd-hd-bot .asd-email-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-aside header .asd-hd-bot .asd-email-wrap .asd-email {\n          font-family: Roboto-Light;\n          opacity: 0.4; }\n  app-aside .pop-up {\n    width: 100%;\n    height: 160px;\n    padding: 20px 0;\n    border-bottom: 2px solid #D6D5D5;\n    box-shadow: none;\n    border-radius: 0; }\n    app-aside .pop-up .pop-up-item i {\n      margin-right: 32px; }\n    app-aside .pop-up .pop-up-item .pop-up-num {\n      font-size: 13px; }\n    app-aside .pop-up .asd-active {\n      color: #1976D2;\n      background-color: rgba(25, 118, 210, 0.1); }\n  app-aside footer {\n    width: 100%;\n    height: calc( 100% - 320px);\n    padding: 20px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    font-size: 15px;\n    color: #9B9B9B; }\n    app-aside footer .asd-logout {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      app-aside footer .asd-logout i {\n        margin-right: 30px; }\n    app-aside footer .asd-terms {\n      width: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-aside footer .asd-terms a {\n        text-decoration: underline;\n        font-size: 13px;\n        color: #9B9B9B; }\n      app-aside footer .asd-terms img {\n        width: 88px;\n        -webkit-filter: invert(40%) grayscale(100%);\n                filter: invert(40%) grayscale(100%); }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 771:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: calc(100% - 70px);\n  height: 90px;\n  padding: 0 30px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-item-align: end;\n      align-self: flex-end;\n  -webkit-transition: margin .4s ease-in-out, width .4s ease-in-out;\n  transition: margin .4s ease-in-out, width .4s ease-in-out; }\n  app-header .header-wrap {\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-header .header-wrap span {\n      white-space: nowrap; }\n    app-header .header-wrap .header-tag {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 24px;\n      color: #444444;\n      line-height: 1; }\n      app-header .header-wrap .header-tag i {\n        margin-right: 24px; }\n      app-header .header-wrap .header-tag span {\n        font-size: 12px;\n        color: #FFA000; }\n      app-header .header-wrap .header-tag .arr-info {\n        color: #9B9B9B;\n        margin-left: 10px; }\n      app-header .header-wrap .header-tag .header-title-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -webkit-box-align: start;\n            -ms-flex-align: start;\n                align-items: flex-start; }\n    app-header .header-wrap .header-main {\n      width: 100%;\n      height: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: end;\n          -ms-flex-pack: end;\n              justify-content: flex-end; }\n      app-header .header-wrap .header-main .header-search {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        height: 40px;\n        width: 100%;\n        min-width: 150px;\n        margin: 0 60px;\n        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12); }\n        app-header .header-wrap .header-main .header-search input {\n          width: 100%;\n          font-size: 16px; }\n          app-header .header-wrap .header-main .header-search input::-webkit-input-placeholder {\n            color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-search input::-moz-placeholder {\n            color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-search input:-ms-input-placeholder {\n            color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-search input:-moz-placeholder {\n            color: #4D4D4E; }\n      app-header .header-wrap .header-main .header-sort {\n        height: 100%;\n        width: 270px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        font-size: 15px; }\n        app-header .header-wrap .header-main .header-sort .sort-select {\n          position: relative;\n          margin-left: 20px;\n          width: 184px;\n          height: 40px;\n          box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);\n          border-radius: 2px;\n          color: #9B9B9B;\n          -webkit-transition: box-shadow .3s;\n          transition: box-shadow .3s; }\n          app-header .header-wrap .header-main .header-sort .sort-select .sort-present {\n            width: 100%;\n            height: 100%;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between;\n            padding: 0 20px;\n            cursor: pointer; }\n          app-header .header-wrap .header-main .header-sort .sort-select .pop-up {\n            width: 184px;\n            position: absolute;\n            z-index: 200;\n            top: 45px; }\n            app-header .header-wrap .header-main .header-sort .sort-select .pop-up .pop-up-item {\n              height: 30px;\n              padding: 5px 20px; }\n              app-header .header-wrap .header-main .header-sort .sort-select .pop-up .pop-up-item .sort-selected {\n                color: #EBEBEB; }\n          app-header .header-wrap .header-main .header-sort .sort-select:hover {\n            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1); }\n        app-header .header-wrap .header-main .header-sort .sort-active {\n          color: #4D4D4E; }\n          app-header .header-wrap .header-main .header-sort .sort-active i {\n            color: #1976D2; }\n      app-header .header-wrap .header-main .pop-up-icon {\n        height: 40px;\n        width: 40px; }\n        app-header .header-wrap .header-main .pop-up-icon .set-icon {\n          font-size: 29px; }\n        app-header .header-wrap .header-main .pop-up-icon .pop-up {\n          position: absolute;\n          z-index: 100;\n          right: 0;\n          top: 50px;\n          width: 200px;\n          height: 100px; }\n      app-header .header-wrap .header-main .header-main-mnu {\n        margin: 0 10px;\n        height: 100%;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex; }\n        app-header .header-wrap .header-main .header-main-mnu .mnu-item {\n          height: 100%;\n          cursor: pointer;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center;\n          padding: 0 20px;\n          border: 3px solid transparent; }\n          app-header .header-wrap .header-main .header-main-mnu .mnu-item:hover {\n            color: #1976D2; }\n        app-header .header-wrap .header-main .header-main-mnu .mnu-item-active {\n          color: #1976D2;\n          border-bottom-color: #1976D2; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 772:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-home {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative; }\n  app-home .main-content {\n    display: inline-block;\n    width: 100%;\n    height: calc(100% - 90px);\n    border-top: 2px solid #EBEBEB;\n    -webkit-transition: margin .4s ease-in-out, width .4s ease-in-out;\n    transition: margin .4s ease-in-out, width .4s ease-in-out;\n    overflow: auto; }\n  app-home .openedMenu {\n    margin-left: 260px;\n    width: calc(100% - 260px); }\n  app-home .menu-btn {\n    cursor: pointer;\n    position: absolute;\n    z-index: 1000;\n    top: 20px;\n    left: 20px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    width: 50px;\n    height: 50px;\n    color: #ffffff;\n    border-radius: 50%;\n    background-color: #1976D2;\n    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);\n    visibility: visible;\n    opacity: 1;\n    -webkit-transition: opacity .3s, visibility 0s .3s;\n    transition: opacity .3s, visibility 0s .3s; }\n  app-home .menu-btn-hide {\n    visibility: hidden;\n    opacity: 0; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 773:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-basic-project {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n  app-basic-project .half-basic-l, app-basic-project .half-basic-r {\n    width: 50%;\n    height: 100%;\n    padding-top: 60px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n    app-basic-project .half-basic-l .basic-cont-wrap, app-basic-project .half-basic-r .basic-cont-wrap {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-inf, app-basic-project .half-basic-l .basic-cont-wrap .basic-prev, app-basic-project .half-basic-r .basic-cont-wrap .basic-inf, app-basic-project .half-basic-r .basic-cont-wrap .basic-prev {\n        font-size: 18px;\n        color: #444444; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-inf, app-basic-project .half-basic-r .basic-cont-wrap .basic-inf {\n        padding: 0 30px;\n        margin-bottom: 15px; }\n      app-basic-project .half-basic-l .basic-cont-wrap .basic-prev, app-basic-project .half-basic-r .basic-cont-wrap .basic-prev {\n        padding: 0 10px;\n        margin-bottom: 40px; }\n      app-basic-project .half-basic-l .basic-cont-wrap app-project-view, app-basic-project .half-basic-r .basic-cont-wrap app-project-view {\n        width: 380px; }\n      app-basic-project .half-basic-l .basic-cont-wrap app-new-project .new-form, app-basic-project .half-basic-r .basic-cont-wrap app-new-project .new-form {\n        padding: 0 30px; }\n  app-basic-project .half-basic-r {\n    border-left: 2px solid #EBEBEB;\n    background-color: rgba(235, 235, 235, 0.3); }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 774:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.costumization {\n  padding: 0 10px;\n  color: #444444;\n  font-size: 16px;\n  line-height: 18px; }\n  .costumization .cos-preview {\n    padding: 20px;\n    height: calc(100vh - 93px);\n    overflow: auto; }\n  .costumization .cos-edit-body {\n    padding: 20px 15px;\n    overflow: auto;\n    background: #fdfdfd;\n    border: 1px solid #EBEBEB;\n    border-top: none;\n    height: calc(100vh - 152px);\n    min-height: 420px; }\n    .costumization .cos-edit-body .cos-item {\n      width: 0;\n      height: 0;\n      -webkit-transform: translateY(-60%);\n              transform: translateY(-60%);\n      position: absolute;\n      left: 0;\n      z-index: 0;\n      padding: 10px 15px;\n      opacity: 0;\n      -webkit-transition: opacity,-webkit-transform 0.2s linear;\n      transition: opacity,-webkit-transform 0.2s linear;\n      transition: opacity,transform 0.2s linear;\n      transition: opacity,transform 0.2s linear,-webkit-transform 0.2s linear; }\n      .costumization .cos-edit-body .cos-item.active {\n        opacity: 1;\n        -webkit-transform: translateY(0);\n                transform: translateY(0);\n        width: 100%;\n        z-index: 1; }\n      .costumization .cos-edit-body .cos-item .w3-bar .w3-button:hover {\n        color: #fff;\n        background: #d6d6d6; }\n      .costumization .cos-edit-body .cos-item .w3-bar .w3-button.active {\n        color: #fff;\n        background-color: #5D5D5E;\n        border-radius: 2px 2px 0 0; }\n      .costumization .cos-edit-body .cos-item .cos-code {\n        overflow: auto;\n        display: none;\n        min-height: 350px;\n        width: 100%; }\n        .costumization .cos-edit-body .cos-item .cos-code.active {\n          display: block; }\n  .costumization .cos-row {\n    padding: 0;\n    margin: 0; }\n    .costumization .cos-row:nth-child(2) {\n      background: #fdfdfd; }\n  .costumization .cos-header {\n    padding: 20px 15px;\n    border-bottom: 1px solid #EBEBEB; }\n    .costumization .cos-header.cos-t {\n      border-right: 1px solid #EBEBEB;\n      border-left: 1px solid #EBEBEB; }\n    .costumization .cos-header .btn-def {\n      float: right;\n      cursor: pointer;\n      color: #328AFB; }\n      .costumization .cos-header .btn-def:hover {\n        color: #77BBFF; }\n  .costumization .cos-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    position: absolute;\n    z-index: 2;\n    width: 100%;\n    background: #fff; }\n    .costumization .cos-list li {\n      background: #fff;\n      padding: 20px 15px;\n      -webkit-transition: color,0.2s linear,-webkit-transform;\n      transition: color,0.2s linear,-webkit-transform;\n      transition: transform,color,0.2s linear;\n      transition: transform,color,0.2s linear,-webkit-transform;\n      border-bottom: 1px solid #EBEBEB;\n      cursor: pointer; }\n      .costumization .cos-list li:hover {\n        border-color: #1976D2;\n        border-right: 1px solid;\n        color: #1976D2;\n        -webkit-transform: translateX(10px);\n                transform: translateX(10px); }\n        .costumization .cos-list li:hover polygon {\n          fill: #1976D2; }\n      .costumization .cos-list li.active {\n        border-color: #1976D2;\n        color: #1976D2; }\n      .costumization .cos-list li .mailicon {\n        float: right; }\n\n.w3-light-grey, .w3-hover-light-grey:hover, .w3-light-gray, .w3-hover-light-gray:hover {\n  color: #000 !important;\n  background-color: #f1f1f1 !important; }\n\n.w3-border-bottom {\n  border-bottom: 1px solid #ccc !important; }\n\n.w3-bar {\n  width: 100%;\n  overflow: hidden; }\n\n.w3-container:after, .w3-container:before, .w3-panel:after, .w3-panel:before, .w3-row:after, .w3-row:before, .w3-row-padding:after, .w3-row-padding:before, .w3-cell-row:before, .w3-cell-row:after, .w3-clear:after, .w3-clear:before, .w3-bar:before, .w3-bar:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.w3-bar .w3-button {\n  white-space: normal; }\n\n.w3-bar .w3-bar-item {\n  padding: 8px 16px;\n  float: left;\n  width: auto;\n  border: none;\n  outline: none;\n  display: block; }\n\n.w3-dark-grey, .w3-hover-dark-grey:hover, .w3-dark-gray, .w3-hover-dark-gray:hover {\n  color: #fff !important;\n  background-color: #616161 !important; }\n\n.w3-btn, .w3-button {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\n.w3-btn, .w3-button {\n  border: none;\n  display: inline-block;\n  outline: 0;\n  padding: 8px 16px;\n  vertical-align: middle;\n  overflow: hidden;\n  text-decoration: none;\n  color: inherit;\n  background-color: inherit;\n  text-align: center;\n  cursor: pointer;\n  white-space: nowrap; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 775:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "iframe {\n  width: 1109.5px;\n  height: 624px;\n  vertical-align: middle;\n  top: 0;\n  min-height: 600px; }\n\n.tabs-view .model-config .inp-form input {\n  font-size: 12px;\n  padding: 10px 2px; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 776:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "app-project {\n  height: 100%;\n  width: 100%; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 777:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.model-config .row {\n  margin: 5px 0; }\n\n.model-config .inp-form input[type=checkbox] {\n  -webkit-transform: scale(2.5);\n          transform: scale(2.5);\n  width: initial;\n  display: block;\n  margin-top: 10px;\n  margin-left: 10px;\n  cursor: pointer; }\n\n.model-config .inp-form.col-lg-12 {\n  margin: 20px 0; }\n\n.model-config .inp-form label.full-op {\n  right: inherit; }\n\n.model-config .upload-list {\n  padding: 10px 0; }\n  .model-config .upload-list app-file-upload {\n    margin: 5px 0; }\n    .model-config .upload-list app-file-upload .btn-def, .model-config .upload-list app-file-upload .list-files {\n      width: 50%;\n      float: left; }\n    .model-config .upload-list app-file-upload .btn-def {\n      padding: 10px;\n      background: #ffffff; }\n    .model-config .upload-list app-file-upload .list-files {\n      padding: 13px 10px; }\n\n.model-config .files-top-block {\n  border-bottom: 1px solid #EBEBEB;\n  margin: 20px 0;\n  display: inline-block;\n  padding: 0 10px;\n  width: 100%;\n  margin-top: 10px; }\n  .model-config .files-top-block .input-wrap input {\n    margin-top: 0; }\n\n.bottom-block {\n  padding: 0 10px; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 778:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.my-btn {\n  padding: 0 6px 0 6px;\n  margin: 6px 8px 6px 8px;\n  border-radius: 3px;\n  font-size: 14px;\n  text-align: center;\n  text-transform: uppercase;\n  border: none;\n  outline: none;\n  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15); }\n  .my-btn.round {\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    background: #FFA000;\n    color: #ffffff;\n    float: right; }\n    .my-btn.round i {\n      display: table;\n      margin: auto; }\n  .my-btn:active {\n    margin-top: 15px; }\n  .my-btn:hover {\n    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3); }\n\n.source-creating {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n  .source-creating .input-wrap {\n    margin-bottom: 30px; }\n\n.tabs-view .tabs-blocks {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex; }\n\n.tabs-view .my-table tr:nth-child(1) td {\n  padding: 20px 30px; }\n  .tabs-view .my-table tr:nth-child(1) td.webgl-item {\n    padding: 0; }\n\n.tabs-view .my-table tr:nth-child(2) td {\n  height: calc(100vh - 160px);\n  overflow: auto; }\n\n.tabs-view .my-table td {\n  max-width: 0px;\n  padding: 10px 0;\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  vertical-align: top; }\n  .tabs-view .my-table td .source-creating {\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    position: relative;\n    background: #ffffff;\n    padding: 30px;\n    z-index: 3; }\n  .tabs-view .my-table td.s-tab {\n    background: rgba(128, 128, 128, 0.1); }\n    .tabs-view .my-table td.s-tab.webgl-item {\n      background: gray;\n      padding: 0;\n      margin: 0;\n      max-height: calc(100vh - 230px);\n      vertical-align: middle; }\n      .tabs-view .my-table td.s-tab.webgl-itemtd {\n        padding: 0; }\n    .tabs-view .my-table td.s-tab .add-btn {\n      position: relative;\n      outline: none;\n      border: none;\n      float: right;\n      right: 30px;\n      bottom: 0; }\n  .tabs-view .my-table td .webgl-view {\n    padding: 0;\n    margin: 0; }\n\n.tabs-view .my-table .tabs-header {\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  border-bottom: 2px solid #EBEBEB; }\n  .tabs-view .my-table .tabs-header:nth-child(1) {\n    width: 305px; }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    width: 370px; }\n  .tabs-view .my-table .tabs-header .temp-data {\n    display: inline-table;\n    width: 100%;\n    vertical-align: top; }\n    .tabs-view .my-table .tabs-header .temp-data .temp-header {\n      display: table-cell;\n      padding: 20px;\n      border-bottom: 2px solid #EBEBEB; }\n    .tabs-view .my-table .tabs-header .temp-data .tabs-body {\n      display: table-row; }\n      .tabs-view .my-table .tabs-header .temp-data .tabs-body .body-data {\n        display: block;\n        padding: 20px;\n        height: calc(100vh - 163px); }\n  .tabs-view .my-table .tabs-header .title, .tabs-view .my-table .tabs-header .text-btn {\n    display: inline; }\n  .tabs-view .my-table .tabs-header .title {\n    float: left; }\n  .tabs-view .my-table .tabs-header .text-btn {\n    float: right;\n    text-transform: uppercase;\n    cursor: pointer;\n    font-size: 16px;\n    color: #328AFB;\n    font-weight: 500;\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s; }\n    .tabs-view .my-table .tabs-header .text-btn:hover {\n      opacity: 0.6; }\n  .tabs-view .my-table .tabs-header.no-width {\n    width: 10px;\n    text-align: center;\n    padding: 20px; }\n  .tabs-view .my-table .tabs-header img:hover {\n    cursor: pointer;\n    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    background: rgba(128, 128, 128, 0.1); }\n\n.tabs-view .model-config .inp-form input {\n  width: 100%;\n  background: #ffffff;\n  font-size: 22px;\n  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13); }\n  .tabs-view .model-config .inp-form input[disabled] {\n    background: #CACACA; }\n\n.center-container {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(0, -50%);\n          transform: translate(0, -50%);\n  z-index: 2;\n  width: 100%;\n  height: 100%; }\n\n.img-slider-container img {\n  display: none;\n  width: 100%;\n  margin: auto; }\n  .img-slider-container img.active {\n    display: block; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 779:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.edit-form {\n  padding: 35px 30px 25px 30px; }\n  .edit-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    .edit-form .main-info .item-form {\n      width: 100%; }\n    .edit-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      .edit-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      .edit-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      .edit-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  .edit-form .new-btns {\n    margin-top: 62px; }\n  .edit-form .text-btn {\n    text-transform: uppercase; }\n    .edit-form .text-btn:hover {\n      cursor: pointer;\n      color: #328AFB; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 780:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-project .new-form {\n  width: 420px;\n  height: 580px;\n  padding: 35px 30px 25px 30px; }\n  app-new-project .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    app-new-project .new-form .main-info .item-form {\n      width: 100%; }\n    app-new-project .new-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      app-new-project .new-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      app-new-project .new-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      app-new-project .new-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  app-new-project .new-form .new-btns {\n    margin-top: 62px; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 781:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-projects, .edit-form {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-projects main, .edit-form main {\n    width: 100%;\n    height: 100%;\n    padding: 30px 20px; }\n    app-projects main .projects-wrap, .edit-form main .projects-wrap {\n      width: 100%;\n      height: calc(100% - 56px); }\n      app-projects main .projects-wrap .projects-list, .edit-form main .projects-wrap .projects-list {\n        height: 100%;\n        width: 100%; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 782:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-project-view {\n  padding: 0 10px 20px 10px;\n  height: 300px; }\n  app-project-view .project {\n    width: 100%;\n    height: 100%;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);\n    border-radius: 2px; }\n    app-project-view .project .project-content {\n      position: relative;\n      width: 100%;\n      height: 220px;\n      padding: 20px 0;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      color: #ffffff;\n      border-radius: 2px;\n      background-position: 50% 50%;\n      background-size: cover;\n      background-color: #4D4D4E;\n      font-size: 14px; }\n      app-project-view .project .project-content .project-ctrl-wrap {\n        width: 100%;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        padding: 0 0 0 20px; }\n        app-project-view .project .project-content .project-ctrl-wrap .unpublished {\n          font-weight: 500;\n          color: #FFA000; }\n        app-project-view .project .project-content .project-ctrl-wrap .project-ctrl {\n          width: 100%;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: end;\n              -ms-flex-pack: end;\n                  justify-content: flex-end;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon {\n            margin: 0 12px;\n            color: #ffffff; }\n            app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon .pop-up {\n              position: absolute;\n              z-index: 100;\n              right: 0;\n              top: 35px;\n              width: 170px;\n              height: 100px; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon-active {\n            background-color: #9B9B9B; }\n      app-project-view .project .project-content .no-img {\n        cursor: default;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        opacity: 0.2;\n        font-size: 38px;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%); }\n      app-project-view .project .project-content .project-info {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        padding: 0 20px; }\n        app-project-view .project .project-content .project-info .project-title {\n          font-size: 24px; }\n        app-project-view .project .project-content .project-info .project-created {\n          opacity: 0.5; }\n    app-project-view .project .img-true {\n      background: -webkit-linear-gradient(top, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background-color: rgba(0, 0, 0, 0.3);\n      background-size: cover; }\n    app-project-view .project .project-bot {\n      width: 100%;\n      height: 60px;\n      padding: 15px 20px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 14px; }\n      app-project-view .project .project-bot .project-admin {\n        color: #9B9B9B;\n        width: 44px; }\n      app-project-view .project .project-bot .project-users {\n        width: calc(100% - 44px);\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-project-view .project .project-bot .project-users .project-user {\n          width: 50%;\n          padding-left: 20px;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-name {\n            width: calc(100% - 40px);\n            margin-left: 10px;\n            overflow: hidden;\n            text-overflow: ellipsis;\n            white-space: nowrap; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-img {\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            color: #4A4A4A;\n            width: 30px;\n            height: 30px;\n            border-radius: 50%;\n            background: no-repeat;\n            background-position: 50% 50%;\n            background-size: auto 100%;\n            background-color: #EBEBEB; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 783:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-user .new-form {\n  width: 460px;\n  height: 540px; }\n  app-new-user .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    app-new-user .new-form .main-info .item-photo {\n      padding-top: 30px;\n      width: 130px;\n      height: 200px; }\n      app-new-user .new-form .main-info .item-photo .photo {\n        width: 130px;\n        height: 130px; }\n    app-new-user .new-form .main-info .item-form {\n      width: 240px;\n      margin-left: 30px; }\n  app-new-user .new-form .user-status {\n    width: 100%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    margin: 50px 0 58px; }\n    app-new-user .new-form .user-status .user-status-item {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 16px;\n      color: #4A4A4A; }\n      app-new-user .new-form .user-status .user-status-item span {\n        margin-left: 12px; }\n      app-new-user .new-form .user-status .user-status-item .selected-status {\n        color: #1976D2; }\n    app-new-user .new-form .user-status label {\n      position: absolute;\n      width: 100%;\n      left: 0;\n      top: 30px;\n      text-align: center;\n      color: #ff0000;\n      font-size: 12px;\n      opacity: 0;\n      -webkit-transition: opacity .5s;\n      transition: opacity .5s;\n      border-top: 2px solid #ff0000; }\n    app-new-user .new-form .user-status .err-status {\n      opacity: 1; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 784:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-user-card {\n  height: 420px;\n  width: 100%; }\n  app-user-card .user-card, app-user-card .user-card-foot {\n    padding: 0 30px 0 27px;\n    border-bottom: 2px solid #EBEBEB; }\n  app-user-card .user-card {\n    height: 340px;\n    width: 100%; }\n    app-user-card .user-card .user-card-head {\n      width: 100%;\n      height: 80px;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      app-user-card .user-card .user-card-head .user-card-hd-name {\n        font-size: 24px;\n        color: #444444; }\n      app-user-card .user-card .user-card-head .user-card-hd-status {\n        font-size: 14px;\n        font-style: italic;\n        color: #9B9B9B;\n        margin-left: 10px; }\n      app-user-card .user-card .user-card-head .pop-up-icon {\n        height: 40px;\n        width: 40px; }\n        app-user-card .user-card .user-card-head .pop-up-icon .pop-up {\n          position: absolute;\n          z-index: 100;\n          right: 0;\n          top: 50px;\n          width: 200px;\n          height: 215px; }\n      app-user-card .user-card .user-card-head .user-card-created-date {\n        position: absolute;\n        line-height: 0.7;\n        bottom: 0px;\n        font-size: 14px;\n        color: #9B9B9B; }\n    app-user-card .user-card .user-card-body {\n      width: 100%;\n      height: 260px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      app-user-card .user-card .user-card-body .item-photo {\n        padding-top: 35px;\n        width: 120px;\n        height: 100%; }\n      app-user-card .user-card .user-card-body .item-form {\n        width: 320px;\n        margin-left: 60px; }\n  app-user-card .user-card-foot {\n    height: 80px;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-user-card .user-card-foot .user-ft-l {\n      margin-right: 15px; }\n    app-user-card .user-card-foot .user-ft-r {\n      margin-left: 15px; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 785:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: 100%; }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: calc(100% - 86px);\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-item-img-wrap {\n              cursor: pointer;\n              float: left;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: center;\n                  -ms-flex-pack: center;\n                      justify-content: center;\n              font-size: 14px;\n              color: #4A4A4A;\n              width: 39px;\n              height: 39px;\n              border-radius: 50%;\n              background: no-repeat;\n              background-position: 50% 50%;\n              background-size: auto 100%;\n              background-color: #EBEBEB; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap {\n              height: 100%;\n              width: calc(100% - 39px);\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap {\n                margin-left: 15px;\n                width: 100%; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name {\n                  display: -webkit-inline-box;\n                  display: -ms-inline-flexbox;\n                  display: inline-flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name i {\n                    margin-left: 10px;\n                    font-size: 21px;\n                    line-height: 0.7; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name span {\n                    display: block;\n                    float: left; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name .new-title {\n                    margin-left: 10px;\n                    color: #FFA000; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-status {\n                  font-size: 14px;\n                  font-family: Roboto-Light;\n                  color: #9B9B9B;\n                  font-style: italic; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl {\n                float: right;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon {\n                  margin-right: 20px; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon .pop-up {\n                    position: absolute;\n                    z-index: 100;\n                    right: 0;\n                    top: 35px;\n                    width: 170px;\n                    height: 100px; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 786:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center, app-login .login-form .log-in .chkbx-wrap #remember-int i {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-login {\n  background-color: #1976D2;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0; }\n  app-login .login-logo {\n    width: 165px;\n    height: 30px;\n    position: absolute;\n    left: 50%;\n    top: 16.6%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n    app-login .login-logo img {\n      width: 100%;\n      height: 100%; }\n  app-login .login-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    width: 380px;\n    height: 280px;\n    padding: 30px;\n    box-sizing: border-box;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n    app-login .login-form .login-text {\n      font-size: 24px;\n      color: #444444; }\n    app-login .login-form .item-form {\n      width: 320px; }\n    app-login .login-form .log-in {\n      margin-top: 45px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-login .login-form .log-in .chkbx-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-login .login-form .log-in .chkbx-wrap #remember-int {\n          position: relative;\n          float: left;\n          width: 18px;\n          height: 18px;\n          border: 1px solid #4D4D4E;\n          border-radius: 3px;\n          cursor: pointer; }\n        app-login .login-form .log-in .chkbx-wrap label[for=remember-int] {\n          margin-left: 10px;\n          font-size: 15px;\n          cursor: pointer; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 787:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 788:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -6510,10 +7016,10 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 789:
+/***/ 811:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -6528,10 +7034,10 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 790:
+/***/ 812:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -6546,10 +7052,10 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 791:
+/***/ 813:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -6564,10 +7070,28 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 792:
+/***/ 814:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)();
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, ".svg-view canvas {\n  width: 100%;\n  height: 100%; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 815:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -6582,15 +7106,15 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 793:
+/***/ 816:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.webgl-view {\n  border-radius: 10px; }\n  .webgl-view.preview .center-container.THREEJS {\n    max-width: 100vw;\n    height: 100%;\n    position: absolute; }\n  .webgl-view .back-area {\n    position: absolute;\n    z-index: 1000000;\n    bottom: 10px;\n    right: 10px;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n    width: 50px;\n    height: 50px;\n    background-size: contain;\n    background-repeat: no-repeat;\n    cursor: pointer; }\n  .webgl-view .THREEJS canvas {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n    transform: translate(-50%, -50%);\n    z-index: 2;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n  .webgl-view ul {\n    text-align: center;\n    margin: auto;\n    padding: 10px 0;\n    z-index: 10;\n    width: 100%;\n    position: absolute; }\n    .webgl-view ul li {\n      display: inline-block;\n      padding: 5px;\n      background: #000000;\n      color: #ffffff;\n      border-radius: 5px;\n      margin: 5px;\n      cursor: pointer;\n      -webkit-transition: background, 0.5s;\n      transition: background, 0.5s;\n      z-index: 3; }\n      .webgl-view ul li.active {\n        border: 1px solid #77BBFF; }\n      .webgl-view ul li:hover {\n        background: #7E7E7E; }\n  .webgl-view .kompass {\n    position: absolute;\n    left: 10px;\n    bottom: 10px;\n    width: 78px;\n    height: 78px;\n    background-size: contain;\n    background-repeat: no-repeat; }\n  .webgl-view .oxi-controls-move {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    bottom: 0;\n    z-index: 99; }\n    .webgl-view .oxi-controls-move div {\n      display: inline-block;\n      padding: 10px;\n      margin: 10px 30px;\n      cursor: pointer;\n      width: 42px;\n      background-size: contain; }\n      .webgl-view .oxi-controls-move div.right {\n        -webkit-transform: rotate3d(0, 1, 0, 180deg);\n                transform: rotate3d(0, 1, 0, 180deg); }\n      .webgl-view .oxi-controls-move div:hover {\n        opacity: 0.7; }\n  .webgl-view .oxi-controls {\n    width: 150px;\n    display: none;\n    position: absolute;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    z-index: 4; }\n    .webgl-view .oxi-controls.active {\n      display: block; }\n    .webgl-view .oxi-controls div {\n      width: 50px;\n      height: 50px;\n      background: #000000;\n      opacity: 0.5;\n      -webkit-transition: opacity 0.5s, -webkit-transform;\n      transition: opacity 0.5s, -webkit-transform;\n      transition: transform, opacity 0.5s;\n      transition: transform, opacity 0.5s, -webkit-transform;\n      border-radius: 50%;\n      cursor: pointer;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .webgl-view .oxi-controls div img {\n        fill: #ffffff;\n        margin: auto; }\n      .webgl-view .oxi-controls div:hover {\n        opacity: 1;\n        -webkit-transform: scale(1.2);\n                transform: scale(1.2); }\n      .webgl-view .oxi-controls div:nth-child(1), .webgl-view .oxi-controls div:nth-child(4) {\n        margin: auto; }\n      .webgl-view .oxi-controls div.attach-js {\n        right: 0;\n        position: absolute;\n        top: 33%; }\n  .webgl-view .center-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .webgl-view .center-container.THREEJS {\n      max-width: 70vw;\n      height: 100%;\n      margin: auto;\n      position: relative;\n      left: 0;\n      top: 0;\n      -webkit-transform: translate(0);\n              transform: translate(0);\n      text-align: center; }\n      .webgl-view .center-container.THREEJS .tooltip-container .cos-info .cos-label {\n        display: -webkit-inline-box !important;\n        display: -ms-inline-flexbox !important;\n        display: inline-flex !important; }\n      .webgl-view .center-container.THREEJS canvas {\n        margin: auto; }\n    .webgl-view .center-container.img-slider-container {\n      z-index: -1;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%); }\n  .webgl-view .oxi-tooltips {\n    position: absolute;\n    top: 0;\n    left: 0; }\n    .webgl-view .oxi-tooltips .tooltip {\n      display: none;\n      opacity: 1;\n      position: absolute;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%);\n      cursor: pointer;\n      background: #ffffff; }\n      .webgl-view .oxi-tooltips .tooltip .header {\n        text-transform: uppercase;\n        padding: 10px 5px; }\n      .webgl-view .oxi-tooltips .tooltip .body {\n        display: none; }\n      .webgl-view .oxi-tooltips .tooltip.active {\n        display: block; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.webgl-view {\n  border-radius: 10px; }\n  .webgl-view .proj_logo {\n    z-index: 1; }\n  .webgl-view.preview .center-container.THREEJS {\n    max-width: 100vw;\n    height: 100%;\n    position: absolute; }\n  .webgl-view .back-area {\n    position: absolute;\n    z-index: 1000000;\n    bottom: 10px;\n    right: 10px;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n    width: 50px;\n    height: 50px;\n    background-size: contain;\n    background-repeat: no-repeat;\n    cursor: pointer; }\n  .webgl-view .THREEJS .gl-view {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n    transform: translate(-50%, -50%);\n    z-index: 2;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n  .webgl-view .THREEJS.svg-active .gl-view, .webgl-view .THREEJS.svg-active .oxi-controls-move, .webgl-view .THREEJS.svg-active .img-pagination {\n    display: none !important; }\n  .webgl-view ul {\n    text-align: center;\n    margin: auto;\n    padding: 10px 0;\n    z-index: 10;\n    width: 100%;\n    position: absolute; }\n    .webgl-view ul li {\n      display: inline-block;\n      padding: 5px;\n      background: #000000;\n      color: #ffffff;\n      border-radius: 5px;\n      margin: 5px;\n      cursor: pointer;\n      -webkit-transition: background, 0.5s;\n      transition: background, 0.5s;\n      z-index: 3; }\n      .webgl-view ul li.active {\n        border: 1px solid #77BBFF; }\n      .webgl-view ul li:hover {\n        background: #7E7E7E; }\n  .webgl-view .kompass {\n    position: absolute;\n    left: 10px;\n    bottom: 10px;\n    width: 78px;\n    height: 78px;\n    background-size: contain;\n    background-repeat: no-repeat; }\n  .webgl-view .oxi-controls-move {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    bottom: 0;\n    z-index: 99; }\n    .webgl-view .oxi-controls-move div {\n      display: inline-block;\n      padding: 10px;\n      margin: 10px 30px;\n      cursor: pointer;\n      width: 42px;\n      background-size: contain; }\n      .webgl-view .oxi-controls-move div.right {\n        -webkit-transform: rotate3d(0, 1, 0, 180deg);\n                transform: rotate3d(0, 1, 0, 180deg); }\n      .webgl-view .oxi-controls-move div:hover {\n        opacity: 0.7; }\n  .webgl-view .oxi-controls {\n    width: 150px;\n    display: none;\n    position: absolute;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    z-index: 4; }\n    .webgl-view .oxi-controls.active {\n      display: block; }\n    .webgl-view .oxi-controls div {\n      width: 50px;\n      height: 50px;\n      background: #000000;\n      opacity: 0.5;\n      -webkit-transition: opacity 0.5s, -webkit-transform;\n      transition: opacity 0.5s, -webkit-transform;\n      transition: transform, opacity 0.5s;\n      transition: transform, opacity 0.5s, -webkit-transform;\n      border-radius: 50%;\n      cursor: pointer;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .webgl-view .oxi-controls div img {\n        fill: #ffffff;\n        margin: auto; }\n      .webgl-view .oxi-controls div:hover {\n        opacity: 1;\n        -webkit-transform: scale(1.2);\n                transform: scale(1.2); }\n      .webgl-view .oxi-controls div:nth-child(1), .webgl-view .oxi-controls div:nth-child(4) {\n        margin: auto; }\n      .webgl-view .oxi-controls div.attach-js {\n        right: 0;\n        position: absolute;\n        top: 33%; }\n  .webgl-view .center-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .webgl-view .center-container.THREEJS {\n      max-width: 70vw;\n      height: 100%;\n      margin: auto;\n      position: relative;\n      left: 0;\n      top: 0;\n      -webkit-transform: translate(0);\n              transform: translate(0);\n      text-align: center; }\n      .webgl-view .center-container.THREEJS .tooltip-container .cos-info .cos-label {\n        display: -webkit-inline-box !important;\n        display: -ms-inline-flexbox !important;\n        display: inline-flex !important; }\n      .webgl-view .center-container.THREEJS .gl-view {\n        margin: auto; }\n    .webgl-view .center-container.img-slider-container {\n      z-index: -1;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%); }\n  .webgl-view .oxi-tooltips {\n    position: absolute;\n    top: 0;\n    left: 0; }\n    .webgl-view .oxi-tooltips .tooltip {\n      display: none;\n      opacity: 1;\n      position: absolute;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%);\n      cursor: pointer;\n      background: #ffffff; }\n      .webgl-view .oxi-tooltips .tooltip .header {\n        text-transform: uppercase;\n        padding: 10px 5px; }\n      .webgl-view .oxi-tooltips .tooltip .body {\n        display: none; }\n      .webgl-view .oxi-tooltips .tooltip.active {\n        display: block; }\n", ""]);
 
 // exports
 
@@ -6600,240 +7124,240 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 795:
+/***/ 821:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 379,
-	"./af.js": 379,
-	"./ar": 386,
-	"./ar-dz": 380,
-	"./ar-dz.js": 380,
-	"./ar-kw": 381,
-	"./ar-kw.js": 381,
-	"./ar-ly": 382,
-	"./ar-ly.js": 382,
-	"./ar-ma": 383,
-	"./ar-ma.js": 383,
-	"./ar-sa": 384,
-	"./ar-sa.js": 384,
-	"./ar-tn": 385,
-	"./ar-tn.js": 385,
-	"./ar.js": 386,
-	"./az": 387,
-	"./az.js": 387,
-	"./be": 388,
-	"./be.js": 388,
-	"./bg": 389,
-	"./bg.js": 389,
-	"./bn": 390,
-	"./bn.js": 390,
-	"./bo": 391,
-	"./bo.js": 391,
-	"./br": 392,
-	"./br.js": 392,
-	"./bs": 393,
-	"./bs.js": 393,
-	"./ca": 394,
-	"./ca.js": 394,
-	"./cs": 395,
-	"./cs.js": 395,
-	"./cv": 396,
-	"./cv.js": 396,
-	"./cy": 397,
-	"./cy.js": 397,
-	"./da": 398,
-	"./da.js": 398,
-	"./de": 401,
-	"./de-at": 399,
-	"./de-at.js": 399,
-	"./de-ch": 400,
-	"./de-ch.js": 400,
-	"./de.js": 401,
-	"./dv": 402,
-	"./dv.js": 402,
-	"./el": 403,
-	"./el.js": 403,
-	"./en-au": 404,
-	"./en-au.js": 404,
-	"./en-ca": 405,
-	"./en-ca.js": 405,
-	"./en-gb": 406,
-	"./en-gb.js": 406,
-	"./en-ie": 407,
-	"./en-ie.js": 407,
-	"./en-nz": 408,
-	"./en-nz.js": 408,
-	"./eo": 409,
-	"./eo.js": 409,
-	"./es": 411,
-	"./es-do": 410,
-	"./es-do.js": 410,
-	"./es.js": 411,
-	"./et": 412,
-	"./et.js": 412,
-	"./eu": 413,
-	"./eu.js": 413,
-	"./fa": 414,
-	"./fa.js": 414,
-	"./fi": 415,
-	"./fi.js": 415,
-	"./fo": 416,
-	"./fo.js": 416,
-	"./fr": 419,
-	"./fr-ca": 417,
-	"./fr-ca.js": 417,
-	"./fr-ch": 418,
-	"./fr-ch.js": 418,
-	"./fr.js": 419,
-	"./fy": 420,
-	"./fy.js": 420,
-	"./gd": 421,
-	"./gd.js": 421,
-	"./gl": 422,
-	"./gl.js": 422,
-	"./gom-latn": 423,
-	"./gom-latn.js": 423,
-	"./he": 424,
-	"./he.js": 424,
-	"./hi": 425,
-	"./hi.js": 425,
-	"./hr": 426,
-	"./hr.js": 426,
-	"./hu": 427,
-	"./hu.js": 427,
-	"./hy-am": 428,
-	"./hy-am.js": 428,
-	"./id": 429,
-	"./id.js": 429,
-	"./is": 430,
-	"./is.js": 430,
-	"./it": 431,
-	"./it.js": 431,
-	"./ja": 432,
-	"./ja.js": 432,
-	"./jv": 433,
-	"./jv.js": 433,
-	"./ka": 434,
-	"./ka.js": 434,
-	"./kk": 435,
-	"./kk.js": 435,
-	"./km": 436,
-	"./km.js": 436,
-	"./kn": 437,
-	"./kn.js": 437,
-	"./ko": 438,
-	"./ko.js": 438,
-	"./ky": 439,
-	"./ky.js": 439,
-	"./lb": 440,
-	"./lb.js": 440,
-	"./lo": 441,
-	"./lo.js": 441,
-	"./lt": 442,
-	"./lt.js": 442,
-	"./lv": 443,
-	"./lv.js": 443,
-	"./me": 444,
-	"./me.js": 444,
-	"./mi": 445,
-	"./mi.js": 445,
-	"./mk": 446,
-	"./mk.js": 446,
-	"./ml": 447,
-	"./ml.js": 447,
-	"./mr": 448,
-	"./mr.js": 448,
-	"./ms": 450,
-	"./ms-my": 449,
-	"./ms-my.js": 449,
-	"./ms.js": 450,
-	"./my": 451,
-	"./my.js": 451,
-	"./nb": 452,
-	"./nb.js": 452,
-	"./ne": 453,
-	"./ne.js": 453,
-	"./nl": 455,
-	"./nl-be": 454,
-	"./nl-be.js": 454,
-	"./nl.js": 455,
-	"./nn": 456,
-	"./nn.js": 456,
-	"./pa-in": 457,
-	"./pa-in.js": 457,
-	"./pl": 458,
-	"./pl.js": 458,
-	"./pt": 460,
-	"./pt-br": 459,
-	"./pt-br.js": 459,
-	"./pt.js": 460,
-	"./ro": 461,
-	"./ro.js": 461,
-	"./ru": 462,
-	"./ru.js": 462,
-	"./sd": 463,
-	"./sd.js": 463,
-	"./se": 464,
-	"./se.js": 464,
-	"./si": 465,
-	"./si.js": 465,
-	"./sk": 466,
-	"./sk.js": 466,
-	"./sl": 467,
-	"./sl.js": 467,
-	"./sq": 468,
-	"./sq.js": 468,
-	"./sr": 470,
-	"./sr-cyrl": 469,
-	"./sr-cyrl.js": 469,
-	"./sr.js": 470,
-	"./ss": 471,
-	"./ss.js": 471,
-	"./sv": 472,
-	"./sv.js": 472,
-	"./sw": 473,
-	"./sw.js": 473,
-	"./ta": 474,
-	"./ta.js": 474,
-	"./te": 475,
-	"./te.js": 475,
-	"./tet": 476,
-	"./tet.js": 476,
-	"./th": 477,
-	"./th.js": 477,
-	"./tl-ph": 478,
-	"./tl-ph.js": 478,
-	"./tlh": 479,
-	"./tlh.js": 479,
-	"./tr": 480,
-	"./tr.js": 480,
-	"./tzl": 481,
-	"./tzl.js": 481,
-	"./tzm": 483,
-	"./tzm-latn": 482,
-	"./tzm-latn.js": 482,
-	"./tzm.js": 483,
-	"./uk": 484,
-	"./uk.js": 484,
-	"./ur": 485,
-	"./ur.js": 485,
-	"./uz": 487,
-	"./uz-latn": 486,
-	"./uz-latn.js": 486,
-	"./uz.js": 487,
-	"./vi": 488,
-	"./vi.js": 488,
-	"./x-pseudo": 489,
-	"./x-pseudo.js": 489,
-	"./yo": 490,
-	"./yo.js": 490,
-	"./zh-cn": 491,
-	"./zh-cn.js": 491,
-	"./zh-hk": 492,
-	"./zh-hk.js": 492,
-	"./zh-tw": 493,
-	"./zh-tw.js": 493
+	"./af": 393,
+	"./af.js": 393,
+	"./ar": 400,
+	"./ar-dz": 394,
+	"./ar-dz.js": 394,
+	"./ar-kw": 395,
+	"./ar-kw.js": 395,
+	"./ar-ly": 396,
+	"./ar-ly.js": 396,
+	"./ar-ma": 397,
+	"./ar-ma.js": 397,
+	"./ar-sa": 398,
+	"./ar-sa.js": 398,
+	"./ar-tn": 399,
+	"./ar-tn.js": 399,
+	"./ar.js": 400,
+	"./az": 401,
+	"./az.js": 401,
+	"./be": 402,
+	"./be.js": 402,
+	"./bg": 403,
+	"./bg.js": 403,
+	"./bn": 404,
+	"./bn.js": 404,
+	"./bo": 405,
+	"./bo.js": 405,
+	"./br": 406,
+	"./br.js": 406,
+	"./bs": 407,
+	"./bs.js": 407,
+	"./ca": 408,
+	"./ca.js": 408,
+	"./cs": 409,
+	"./cs.js": 409,
+	"./cv": 410,
+	"./cv.js": 410,
+	"./cy": 411,
+	"./cy.js": 411,
+	"./da": 412,
+	"./da.js": 412,
+	"./de": 415,
+	"./de-at": 413,
+	"./de-at.js": 413,
+	"./de-ch": 414,
+	"./de-ch.js": 414,
+	"./de.js": 415,
+	"./dv": 416,
+	"./dv.js": 416,
+	"./el": 417,
+	"./el.js": 417,
+	"./en-au": 418,
+	"./en-au.js": 418,
+	"./en-ca": 419,
+	"./en-ca.js": 419,
+	"./en-gb": 420,
+	"./en-gb.js": 420,
+	"./en-ie": 421,
+	"./en-ie.js": 421,
+	"./en-nz": 422,
+	"./en-nz.js": 422,
+	"./eo": 423,
+	"./eo.js": 423,
+	"./es": 425,
+	"./es-do": 424,
+	"./es-do.js": 424,
+	"./es.js": 425,
+	"./et": 426,
+	"./et.js": 426,
+	"./eu": 427,
+	"./eu.js": 427,
+	"./fa": 428,
+	"./fa.js": 428,
+	"./fi": 429,
+	"./fi.js": 429,
+	"./fo": 430,
+	"./fo.js": 430,
+	"./fr": 433,
+	"./fr-ca": 431,
+	"./fr-ca.js": 431,
+	"./fr-ch": 432,
+	"./fr-ch.js": 432,
+	"./fr.js": 433,
+	"./fy": 434,
+	"./fy.js": 434,
+	"./gd": 435,
+	"./gd.js": 435,
+	"./gl": 436,
+	"./gl.js": 436,
+	"./gom-latn": 437,
+	"./gom-latn.js": 437,
+	"./he": 438,
+	"./he.js": 438,
+	"./hi": 439,
+	"./hi.js": 439,
+	"./hr": 440,
+	"./hr.js": 440,
+	"./hu": 441,
+	"./hu.js": 441,
+	"./hy-am": 442,
+	"./hy-am.js": 442,
+	"./id": 443,
+	"./id.js": 443,
+	"./is": 444,
+	"./is.js": 444,
+	"./it": 445,
+	"./it.js": 445,
+	"./ja": 446,
+	"./ja.js": 446,
+	"./jv": 447,
+	"./jv.js": 447,
+	"./ka": 448,
+	"./ka.js": 448,
+	"./kk": 449,
+	"./kk.js": 449,
+	"./km": 450,
+	"./km.js": 450,
+	"./kn": 451,
+	"./kn.js": 451,
+	"./ko": 452,
+	"./ko.js": 452,
+	"./ky": 453,
+	"./ky.js": 453,
+	"./lb": 454,
+	"./lb.js": 454,
+	"./lo": 455,
+	"./lo.js": 455,
+	"./lt": 456,
+	"./lt.js": 456,
+	"./lv": 457,
+	"./lv.js": 457,
+	"./me": 458,
+	"./me.js": 458,
+	"./mi": 459,
+	"./mi.js": 459,
+	"./mk": 460,
+	"./mk.js": 460,
+	"./ml": 461,
+	"./ml.js": 461,
+	"./mr": 462,
+	"./mr.js": 462,
+	"./ms": 464,
+	"./ms-my": 463,
+	"./ms-my.js": 463,
+	"./ms.js": 464,
+	"./my": 465,
+	"./my.js": 465,
+	"./nb": 466,
+	"./nb.js": 466,
+	"./ne": 467,
+	"./ne.js": 467,
+	"./nl": 469,
+	"./nl-be": 468,
+	"./nl-be.js": 468,
+	"./nl.js": 469,
+	"./nn": 470,
+	"./nn.js": 470,
+	"./pa-in": 471,
+	"./pa-in.js": 471,
+	"./pl": 472,
+	"./pl.js": 472,
+	"./pt": 474,
+	"./pt-br": 473,
+	"./pt-br.js": 473,
+	"./pt.js": 474,
+	"./ro": 475,
+	"./ro.js": 475,
+	"./ru": 476,
+	"./ru.js": 476,
+	"./sd": 477,
+	"./sd.js": 477,
+	"./se": 478,
+	"./se.js": 478,
+	"./si": 479,
+	"./si.js": 479,
+	"./sk": 480,
+	"./sk.js": 480,
+	"./sl": 481,
+	"./sl.js": 481,
+	"./sq": 482,
+	"./sq.js": 482,
+	"./sr": 484,
+	"./sr-cyrl": 483,
+	"./sr-cyrl.js": 483,
+	"./sr.js": 484,
+	"./ss": 485,
+	"./ss.js": 485,
+	"./sv": 486,
+	"./sv.js": 486,
+	"./sw": 487,
+	"./sw.js": 487,
+	"./ta": 488,
+	"./ta.js": 488,
+	"./te": 489,
+	"./te.js": 489,
+	"./tet": 490,
+	"./tet.js": 490,
+	"./th": 491,
+	"./th.js": 491,
+	"./tl-ph": 492,
+	"./tl-ph.js": 492,
+	"./tlh": 493,
+	"./tlh.js": 493,
+	"./tr": 494,
+	"./tr.js": 494,
+	"./tzl": 495,
+	"./tzl.js": 495,
+	"./tzm": 497,
+	"./tzm-latn": 496,
+	"./tzm-latn.js": 496,
+	"./tzm.js": 497,
+	"./uk": 498,
+	"./uk.js": 498,
+	"./ur": 499,
+	"./ur.js": 499,
+	"./uz": 501,
+	"./uz-latn": 500,
+	"./uz-latn.js": 500,
+	"./uz.js": 501,
+	"./vi": 502,
+	"./vi.js": 502,
+	"./x-pseudo": 503,
+	"./x-pseudo.js": 503,
+	"./yo": 504,
+	"./yo.js": 504,
+	"./zh-cn": 505,
+	"./zh-cn.js": 505,
+	"./zh-hk": 506,
+	"./zh-hk.js": 506,
+	"./zh-tw": 507,
+	"./zh-tw.js": 507
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -6849,179 +7373,214 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 795;
+webpackContext.id = 821;
 
 
 /***/ }),
 
-/***/ 821:
+/***/ 850:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"app-wrap\">\n    <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
-/***/ 822:
+/***/ 851:
 /***/ (function(module, exports) {
 
 module.exports = "<header *ngIf=\"user\">\n  <div class=\"asd-hd-top\">\n    <div class=\"asd-name-in\"  [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\">\n      <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n    </div>\n    <div class=\"asd-status-wrap\">\n      <i class=\"material-icons\" (click)=\"closeMenu()\">arrow_back</i>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'super'\">Super user</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'admin'\">Client-admin</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'user'\">Client-user</div>\n    </div>\n  </div>\n  <div class=\"asd-hd-bot\">\n    <div class=\"asd-name\">{{user.firstName}} {{user.secondName}}</div>\n    <div class=\"asd-email-wrap\">\n      <div class=\"asd-email\">{{user.email}}</div>\n      <i class=\"material-icons\">arrow_drop_down</i>\n    </div>\n  </div>\n</header>\n\n<div class=\"pop-up\" *ngIf=\"User.projects\">\n  <div class=\"pop-up-item\" routerLink=\"/projects\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">folder</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Projects</span>\n      <span class=\"pop-up-num\">{{User.projects.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/users\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">people</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Users</span>\n      <span class=\"pop-up-num\">{{User.users.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/settings\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">settings</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Settings</span>\n    </div>\n  </div>\n</div>\n\n<footer>\n  <div class=\"asd-logout\">\n    <i class=\"material-icons\" (click)=\"logOut()\">exit_to_app</i>\n    <div class=\"text-wrap pointer\" (click)=\"logOut()\">\n      Log out\n    </div>\n  </div>\n  <div class=\"asd-terms\">\n    <img src=\"../../../assets/img/logo.png\" alt=\"\">\n    <a href=\"#\">Terms</a>\n  </div>\n</footer>\n"
 
 /***/ }),
 
-/***/ 823:
+/***/ 852:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"header-wrap\">\n  <div class=\"header-tag\">\n    <i class=\"material-icons\" [routerLink]=\"['/projects']\" *ngIf=\"headerData._id\" #backProject>arrow_back</i>\n    <div class=\"header-title-wrap\">\n      <div class=\"header-title\">{{headerData.title}}<span class=\"arr-info\" *ngIf=\"!headerData._id\">{{'( ' + headerData.arrLength + ' )'}}</span></div>\n      <span class=\"published\" *ngIf=\"!headerData.published && headerData._id\" >Unpublished</span>\n    </div>\n  </div>\n  <div class=\"header-main\"  *ngIf=\"!headerData._id\">\n    <div class=\"header-search\">\n      <input type=\"text\" placeholder=\"Search\" [(ngModel)]=\"headerData.searchName\">\n    </div>\n    <div class=\"header-sort\">\n      <span>Sorted by:</span>\n      <div class=\"sort-select\" (window:mouseup)=\"sortActive = false\">\n        <div class=\"sort-present\" [class.sort-active]=\"sortActive\" (click)=\"sortActive = !sortActive\">\n          <span>{{headerData.sortType}}</span>\n          <i class=\"material-icons\" >arrow_drop_down</i>\n        </div>\n        <div class=\"pop-up\" [hidden]=\"!sortActive\">\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'A-Z'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'A-Z'\">A-Z</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Z-A'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Z-A'\">Z-A</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Newest to older'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Newest to older'\">Newest to older</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Older to newest'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Older to newest'\">Older to newest</span>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"header-main\"  *ngIf=\"headerData._id\">\n    <div class=\"header-main-mnu\">\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/basic']\" routerLinkActive=\"mnu-item-active\">Basic</div>\n      <div class=\"mnu-item\">Admins</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/source']\" routerLinkActive=\"mnu-item-active\">Source</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/preview']\" routerLinkActive=\"mnu-item-active\">Preview</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/costumization']\" routerLinkActive=\"mnu-item-active\">Costumization</div>\n    </div>\n    <!--<div class=\"publish-btn\" [class.publish-btn-active]=\"headerData.published\" [class.publish-btn-disable]=\"headerData.published\" (click)=\"deactivate()\"><span>{{headerData.published?\"Deactivate\":\"Publish\"}}</span></div>-->\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"headerSettings\">\n      <i class=\"material-icons set-icon\" (click)=\"headerSettings = !headerSettings\" (window:mouseup)=\"headerSettings = false\">more_vert</i>\n      <div class=\"pop-up\" [hidden]=\"!headerSettings\">\n        <div class=\"pop-up-item\" [hidden]=\"!headerData.published\" (click)=\"deactivate()\">\n          <i class=\"material-icons\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"headerData.published\" (click)=\"deactivate()\">\n          <i class=\"material-icons\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
-/***/ 824:
+/***/ 853:
 /***/ (function(module, exports) {
 
 module.exports = "<app-header [class.openedMenu]=\"openMenu == 'in' \"></app-header>\n<app-aside [@slideInOut]=\"openMenu\" [(menu)]=\"openMenu\"></app-aside>\n\n<main class=\"main-content\" [class.openedMenu]=\"openMenu == 'in' \">\n    <router-outlet></router-outlet>\n</main>\n<div class=\"menu-btn\" [class.menu-btn-hide]=\"openMenu == 'in' \" (click)=\"openMenu='in'\">\n    <i class=\"material-icons\">menu</i>\n</div>\n\n"
 
 /***/ }),
 
-/***/ 825:
+/***/ 854:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"half-basic-l\">\n    <div class=\"basic-cont-wrap\">\n        <div class=\"basic-inf\">Basic information:</div>\n        <app-new-project [project]=\"project\" [Create]=\"false\"></app-new-project>\n    </div>\n</div>\n<div class=\"half-basic-r\">\n    <div class=\"basic-cont-wrap\">\n        <div class=\"basic-prev\">Live preview:</div>\n        <app-project-view [project]=\"project\" [Editable]=\"false\"></app-project-view>\n    </div>\n</div>\n"
 
 /***/ }),
 
-/***/ 826:
+/***/ 855:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"costumization\" *ngIf=\"!project.model || !project.model.link\"><h2>You have to add some area!!!</h2></div>\n<div class=\"costumization\" *ngIf=\"project.model && project.model.link\">\n    <div class=\"cos-row col-lg-2\">\n        <div class=\"row cos-header\">Element list:</div>\n        <ul class=\"cos-list\">\n            <li *ngFor=\"let item of menuList;  let ind = index\" [ngClass]=\"{'active':item.active}\"\n                (click)=\"selectCurItem(item,menuList,ind)\">\n                {{item.title}}\n                <div class=\"mailicon\">\n                    <svg width=\"6px\" height=\"9px\" viewBox=\"0 0 6 9\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"\n                         xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                        <defs></defs>\n                        <g id=\"Website\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n                            <g id=\"Super-User---project-creator---Publishing-\"\n                               transform=\"translate(-1298.000000, -396.000000)\" fill=\"#181818\">\n                                <g id=\"tooltip\" transform=\"translate(1048.000000, 370.000000)\">\n                                    <g id=\"Page-1\" transform=\"translate(245.000000, 23.000000)\">\n                                        <polygon id=\"Fill-2-Copy\"\n                                                 points=\"5.72666642 10.8933327 8.77999947 7.83333286 5.72666642 4.77333294 6.66666627 3.8333331 10.666666 7.83333286 6.66666627 11.8333326\"></polygon>\n                                    </g>\n                                </g>\n                            </g>\n                        </g>\n                    </svg>\n                </div>\n            </li>\n        </ul>\n    </div>\n    <div class=\"cos-row col-lg-3\">\n        <div class=\"row cos-header cos-t\">Customization <span class=\"btn-def\"\n                                                              (click)=\"saveChanges()\">SAVE CHANGES</span>\n        </div>\n        <div class=\"cos-edit-body\">\n\n            <div class=\"cos-item\" [ngClass]=\"{'active':menuList[0].active}\">\n\n            </div>\n\n            <div class=\"cos-item\" *ngFor=\"let menuL of menuList;  let ind = index\" [ngClass]=\"{'active':menuL.active}\">\n                <div class=\"cos-tabs w3-bar w3-black\">\n                    <button *ngFor=\"let mtab of tabList[ind]\" (click)=\"selectCurItem(mtab , tabList[ind])\"\n                            [ngClass]=\"{'active':mtab.active}\" class=\"w3-bar-item w3-button\"\n                            [innerText]=\"mtab.title\"></button>\n                </div>\n                <app-project-text-code-mirror *ngFor=\"let mtab of tabList[ind]\" class=\"cos-code\"\n                                              [ngClass]=\"{'active':mtab.active}\" [config]=\"mtab\"></app-project-text-code-mirror>\n\n            </div>\n\n        </div>\n    </div>\n    <div class=\"cos-row col-lg-7\">\n        <div class=\"cos-preview webgl-view\" *ngIf=\"menuList[0].active && curItem\">\n            <app-project-webgl-controls [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                        #wcontrols></app-project-webgl-controls>\n        </div>\n        <div class=\"cos-preview\" *ngIf=\"menuList[1].active\">\n            <app-project-webgl-tooltip [isEdit]=\"1\" [modelData]=\"modelData\" [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                       #wtooltip></app-project-webgl-tooltip>\n        </div>\n        <div class=\"cos-preview\" *ngIf=\"menuList[2].active\">\n            <app-project-preloader [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                   #preloader></app-project-preloader>\n        </div>\n\n    </div>\n</div>"
 
 /***/ }),
 
-/***/ 827:
+/***/ 856:
 /***/ (function(module, exports) {
 
 module.exports = "<div *ngIf=\"dataSrc\">\n    <div class=\"tabs-view\">\n        <div class=\"tabs-blocks col-lg-12\">\n            <table class=\"my-table col-lg-12\">\n                <tbody>\n                <tr>\n                    <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                        <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                            <span class=\"title\">Project Share</span>\n                            <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                        </div>\n                        <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                             src=\"../assets/img/Fill 2 (1).svg\">\n                    </td>\n                    <td class=\"s-tab webgl-item\" rowspan=\"2\" style=\"text-align: center;\"\n                        [attr.colspan]=\"treeView.hide ?2:1\">\n                        <iframe [src]=\"dataSrc\" frameborder=0 allowfullscreen #ifrm></iframe>\n                    </td>\n                </tr>\n                <tr>\n                    <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"treeView.hide?2:1\" class=\"s-tab\">\n                        <div class=\"tabs-body\">\n                            <div class=\"body-data\">\n                                <div class=\"model-config\">\n                                    <form class=\"item-form\" novalidate>\n                                        <div class=\"bottom-block\">\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>Link</label>\n                                                    <input name=\"link\" type=\"text\" [(attr.value)]=\"data.link\">\n                                                </div>\n                                            </div>\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>HTML</label>\n                                                    <input name=\"linkH\" type=\"text\"\n                                                           [(attr.value)]=\"data.ifr\">\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                                <textarea style=\"opacity: 0\" [innerText]=\"urlC\" #textAr></textarea>\n\n                                <div class=\"add-btn\" (click)=\"copyUrl()\">\n                                    <i class=\"material-icons\">save</i>\n\n                                    <div class=\"span-hover\">\n                                        <span>Click to copy link</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                    <td *ngIf=\"treeView.hide\"></td>\n                </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
 
 /***/ }),
 
-/***/ 828:
+/***/ 857:
 /***/ (function(module, exports) {
 
 module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
-/***/ 829:
+/***/ 858:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\" ></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"  ></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\" [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"  ></app-file-upload>\n\n                    <div class=\"add-btn\" *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\" (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\" >\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\" >\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\" >\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\" >\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Scale</label>\n                        <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\" step=\"0.1\"\n                               [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Current</label>\n                        <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\" min=\"0\"\n                               max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Frames</label>\n                        <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                               [ngModel]=\"modelStructure.images.length\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera X</label>\n                        <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera Y</label>\n                        <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                    </div>\n                    <div class=\"inp-form col-lg-4\">\n                        <label>Camera Z</label>\n                        <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Fov</label>\n                        <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Size</label>\n                        <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                               (change)=\"modelStructure.glApp.updateData('size')\"\n                               step=\"0.1\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Lens</label>\n                        <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                               [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Zoom</label>\n                        <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                               [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges\" (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
+module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"!modelStructure.camera.isSVG\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\"\n                                     [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <div class=\"add-btn\"\n                         *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\"\n                         (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>SVG(*)</label>\n                        <input name=\"isSVG\" type=\"checkbox\"\n                               [(ngModel)]=\"modelStructure.camera.isSVG\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\">\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div *ngIf=\"!modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Scale</label>\n                            <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\"\n                                   step=\"0.1\"\n                                   [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Current</label>\n                            <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\"\n                                   min=\"0\"\n                                   max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Frames</label>\n                            <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                                   [ngModel]=\"modelStructure.images.length\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera X</label>\n                            <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Y</label>\n                            <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Z</label>\n                            <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Fov</label>\n                            <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Size</label>\n                            <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                                   (change)=\"modelStructure.glApp.updateData('size')\"\n                                   step=\"0.1\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Lens</label>\n                            <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                                   [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Zoom</label>\n                            <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG\" (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
-/***/ 830:
+/***/ 859:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"source-project\"  >\n    <div *ngIf=\"!project.model.link\" class=\"source-creating col-lg-3\">\n        <span>Parent creating:</span>\n\n        <form class=\"item-form\" #createForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" #parentName=\"ngModel\" name=\"parentName\" placeholder=\"Parent`s Name\"\n                       [(ngModel)]=\"project.model.name\" required autofocus>\n                <label [class.full-op]=\"parentName.invalid && parentName.touched\">The Parent`s Name is required!</label>\n            </div>\n            <div class=\"upload-list col-lg-12\">\n                <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\" [required]=\"1\" [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\" class=\"col-lg-6\"\n                                 #modelObj></app-file-upload>\n                <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\" [required]=\"1\" [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\" [accept]=\"'image/*'\"\n                                 class=\"col-lg-6\" #framesObj></app-file-upload>\n            </div>\n\n            <div class=\"new-btns\">\n                <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n                <span class=\"right-btn text-btn\" (click)=\"create(createForm)\">create</span>\n                <!--<input type=\"submit\"  class=\"right-btn text-btn\" class=\"btn btn-default\" value=\"create\" />-->\n            </div>\n        </form>\n\n    </div>\n    <div *ngIf=\"project.model.link\">\n        <div class=\"tabs-view\">\n            <div class=\"tabs-blocks col-lg-12\">\n                <table class=\"my-table col-lg-12\">\n                    <tbody>\n                    <tr>\n                        <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                            <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                                <span class=\"title\">Project Map</span>\n                                <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"tabs-header s-tab\" [ngClass]=\"{'no-width':sceneConfig.hide}\" #sceneConfig>\n                            <div class=\"temp-header\" *ngIf=\"!sceneConfig.hide\">\n                                <span class=\"title\">Preferences</span>\n                                <span class=\"text-btn\" (click)=\"sceneConfig.hide=!sceneConfig.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"sceneConfig.hide\" (click)=\"sceneConfig.hide=!sceneConfig.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"s-tab webgl-item\" rowspan=\"2\"\n                            [attr.colspan]=\"sceneConfig.hide && treeView.hide ?3:1\">\n                            <app-project-webgl-view *ngIf=\"selectedChild && selectedChild._category == 2\" [selected]=\"selectedChild\">-----WEBGL------</app-project-webgl-view>\n                        </td>\n                    </tr>\n                    <tr>\n                        <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"sceneConfig.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <tree   [mainParent] = \"instance\" [data]=\"project.model.data\"></tree>\n                                </div>\n                            </div>\n                        </td>\n                        <td *ngIf=\"!sceneConfig.hide\" class=\"s-tab\" [attr.colspan]=\"treeView.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <app-project-edit-view  *ngIf=\"selectedChild\" [modelStructure]=\"selectedChild\" ></app-project-edit-view>\n                                </div>\n                            </div>\n\n                        </td>\n                        <td *ngIf=\"sceneConfig.hide && treeView.hide\"></td>\n                    </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
-/***/ 831:
+/***/ 860:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"edit-form\" style=\"width: 420px;height: 580px;\">\n    <span class=\"tag-text\">{{title}}:</span>\n    \n    <div class=\"main-info\">\n        <form class=\"item-form\">\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.link\" [class.input-error]=\"!resol.link\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.link = true\">\n                <label [class.full-op]=\"!resol.link\">This input requires a value!</label>\n            </div>\n        </form>\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\n            </label>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"!project.image\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">540*330 px</span>\n        </div>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n        <span class=\"right-btn text-btn\" (click)=\"accept()\">accept</span>\n    </div>\n</div>\n"
 
 /***/ }),
 
-/***/ 832:
+/***/ 861:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\">\n    <span class=\"tag-text\">{{title}}</span>\n    <div class=\"main-info\">\n        <form class=\"item-form\" #createViewForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\n            </div>\n            <div class=\"input-wrap\">\n\n                <input [class.input-fill]=\"project.link\" [class.input-error]=\"destination1.invalid && (destination1.touched || createViewForm.clicked)\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"\n                       name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                       [pattern]=\"_CONFIG.PATTERNS.URL\" >\n                <label [class.full-op]=\"destination1.invalid && (destination1.touched|| createViewForm.clicked)\">The\n                    Destionation is required and must be an url!</label>\n            </div>\n        </form>\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\n            </label>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image == false\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image != false\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">540*330 px</span>\n        </div>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"false-btn\" (click)=\"Create ? cancel() : reset()\">cancel</span>\n        <span class=\"true-btn\" (click)=\"accept(createViewForm)\">{{Create ? 'accept' : 'save'}}</span>\n    </div>\n</div>"
 
 /***/ }),
 
-/***/ 833:
+/***/ 862:
 /***/ (function(module, exports) {
 
 module.exports = "<main>\n    <div class=\"projects-wrap\">\n        <div class=\"projects-list  row\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"9px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n            <app-project-view class=\"project-wrap col-xs-12 col-sm-6 col-lg-4 col-exlg-3\" *ngFor=\"let project of User.projects | namefilter: header.searchName: header.sortType\" [project]=\"project\" ></app-project-view>\n        </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewProject = true\" [hidden]=\"createNewProject\">\n        <i class=\"material-icons\">add</i>\n        <div class=\"span-hover\">\n            <span>Add a new project</span>\n        </div>\n    </div>\n</main>\n\n<app-new-project class=\"add-new\" [(openedState)]=\"createNewProject\" [title]=\"'Create a new project:'\" *ngIf=\"createNewProject\"></app-new-project>"
 
 /***/ }),
 
-/***/ 834:
+/***/ 863:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"project\" [routerLink]=\"['/project', (project._id || 0)]\"  routerLinkActive=\"active\">\n    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\" [class.img-true]=\"project.image\">\n        <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\n        <div class=\"project-ctrl-wrap\">\n            <span class=\"unpublished\" [hidden]=\"project.published\">Unpublished</span>\n            <div class=\"project-ctrl\">\n                <i class=\"material-icons\" >edit</i>\n                <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openedPopUp\">\n                    <i class=\"material-icons\" (click)=\"openPopUp($event)\"  >more_vert</i>\n                    <div class=\"pop-up\" [hidden]=\"!openedPopUp\">\n\n                        <div class=\"pop-up-item\"   (click)=\"deactivateProject($event)\">\n                            <i class=\"material-icons\" [innerText]=\"project.published?'visibility':'visibility_off'\"></i>\n                            <div class=\"pop-up-row-name\">\n                                <span [innerText]=\"project.published?'Deactivate':'Activate'\"></span>\n                            </div>\n                        </div>\n                        <div class=\"pop-up-item\" (click)=\"deleteProject($event)\">\n                            <i class=\"material-icons\">delete</i>\n                            <div class=\"pop-up-row-name\">\n                                <span>Delete</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"project-info\">\n            <div class=\"project-title\">{{project.title}}</div>\n            <div class=\"project-created\">Created: {{project.created | date: 'dd.MM.yyyy' }}</div>\n        </div>\n    </div>\n    <div class=\"project-bot\">\n        <span class=\"project-admin\">Admin:</span>\n        <div class=\"project-users\">\n            <div class=\"project-user\">\n                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\n                    <span>AF</span>\n                </div>\n                <span class=\"project-user-name\">Jennifer Carasdsdfd</span>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
-/***/ 835:
+/***/ 864:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\">\n  <span class=\"tag-text\">Creating a new user:</span>\n  <div class=\"main-info\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + tempNewUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempNewUser.avatar != false\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar == false\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar != false\">\n        <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n      </div>\n      <span class=\"photo-info\">300*300 px</span>\n    </div>\n    <form class=\"item-form\">\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.input-error]=\"!resol.email || message.email\" placeholder=\"Email\" [(ngModel)]=\"tempNewUser.email\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.email = true; message.email = ''\">\n        <label [class.full-op]=\"!resol.email\">This input requires a value!</label>\n        <label [class.full-op]=\"message.email\">{{message.email}}</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-error]=\"!resol.firstName\"  placeholder=\"First name\" [(ngModel)]=\"tempNewUser.firstName\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.firstName = true\">\n        <label [class.full-op]=\"!resol.firstName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-error]=\"!resol.secondName\"  placeholder=\"Last name\" [(ngModel)]=\"tempNewUser.secondName\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.secondName = true\">\n        <label [class.full-op]=\"!resol.secondName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-error]=\"!resol.password\" placeholder=\"Password\" [(ngModel)]=\"tempNewUser.password\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.password = true; message.password = ''\">\n        <label [class.full-op]=\"!resol.password\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-error]=\"!resol.passwordRepeat || message.password\" placeholder=\"Repeat password\" [(ngModel)]=\"tempNewUser.passwordRepeat\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.passwordRepeat = true; message.password = ''\">\n        <label [class.full-op]=\"!resol.passwordRepeat\">This input requires a value!</label>\n        <label [class.full-op]=\"message.password\">Password is incorrect</label>\n      </div>\n    </form>\n  </div>\n  <div class=\"user-status\">\n    <div class=\"user-status-item\" *ngIf=\"User.role == 'super'\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'super'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'super'\" (click)=\"tempNewUser.role = 'super'; resol.role = true\">radio_button_unchecked</i>\n      <span>Superuser</span>\n    </div>\n    <div class=\"user-status-item\" *ngIf=\"User.role == 'super'\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'admin'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'admin'\" (click)=\"tempNewUser.role = 'admin'; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-admin</span>\n    </div>\n    <div class=\"user-status-item\" *ngIf=\"User.role !== 'user'\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'user'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'user'\" (click)=\"tempNewUser.role = 'user'; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-user</span>\n    </div>\n    <label [class.err-status]=\"!resol.role\">Select user status</label>\n  </div>\n  <div class=\"new-btns\">\n    <span class=\"false-btn\" (click)=\"cancel()\">cancel</span>\n    <span class=\"true-btn\" (click)=\"accept()\">accept</span>\n  </div>\n</div>\n"
 
 /***/ }),
 
-/***/ 836:
+/***/ 865:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n    <div>\n      <span class=\"user-card-hd-name\">{{tempUser.firstName}} {{tempUser.secondName}}</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'super'\">superuser</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'admin'\">client-admin</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'user'\">client-user</span>\n    </div>\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openMenu\" [hidden]=\"!canEdit\">\n      <i class=\"material-icons\" (click)=\"openMenu = !openMenu\" (window:mouseup)=\"openMenu = false\">more_vert</i>\n      <div class=\"pop-up\" [class.hidden]=\"!openMenu\">\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">folder</i>\n          <div class=\"pop-up-row-name\">\n            <span>Projects</span>\n            <span class=\"pop-up-num\">{{tempUser.projects.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">people</i>\n          <div class=\"pop-up-row-name\">\n            <span>Users</span>\n            <span class=\"pop-up-num\">{{tempUser.users.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = false\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = true\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\">\n          <i class=\"material-icons\">lock</i>\n          <div class=\"pop-up-row-name\">\n            <span>Change password</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n    <span class=\"user-card-created-date\">Created: {{tempUser.created | date: 'dd.MM.yyyy' }}</span>\n  </div>\n  <div class=\"user-card-body\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [class.curs-dis]=\"!canEdit\" [ngStyle]=\"{'background-image': 'url(' + tempUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempUser.avatar\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"!canEdit\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n    </div>\n    <form class=\"item-form\">\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.no-changable]=\"!canEdit\" [class.input-error]=\"!resol.email || message\" placeholder=\"Email\" [(ngModel)]=\"tempUser.email\" [ngModelOptions]=\"{standalone: true}\" [readonly]=\"!canEdit\" (focus)=\"resol.email = true; message =''\">\n        <label [class.full-op]=\"!resol.email\">This input requires a value!</label>\n        <label [class.full-op]=\"message\">{{message}}</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.no-changable]=\"!canEdit\" [class.input-error]=\"!resol.firstName\" placeholder=\"First name\" [(ngModel)]=\"tempUser.firstName\" [ngModelOptions]=\"{standalone: true}\" [readonly]=\"!canEdit\" (focus)=\"resol.firstName = true\">\n        <label [class.full-op]=\"!resol.firstName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.no-changable]=\"!canEdit\" [class.input-error]=\"!resol.secondName\" placeholder=\"Last name\" [(ngModel)]=\"tempUser.secondName\" [ngModelOptions]=\"{standalone: true}\" [readonly]=\"!canEdit\" (focus)=\"resol.secondName = true\">\n        <label [class.full-op]=\"!resol.secondName\">This input requires a value!</label>\n      </div>\n    </form>\n  </div>\n</div>\n<div class=\"user-card-foot\" [hidden]=\"!canEdit\">\n  <span class=\"user-ft-l false-btn\" (click)=\"reset()\">Reset</span>\n  <span class=\"user-ft-r true-btn\" (click)=\"changeUser()\">save changes</span>\n</div>"
 
 /***/ }),
 
-/***/ 837:
+/***/ 866:
 /***/ (function(module, exports) {
 
 module.exports = "<main class=\"row\">\n  <div class=\"user-list-wrap col-md-4\">\n\n    <div class=\"user-list\">\n      <div class=\"slimscroll-wrap\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n        <div class=\"user-list-item\" [class.deactive]=\"!user.active\" [class.selected-user]=\"selectedUser === user\" *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\n          <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\" (click)=\"selectUser(user, false)\">\n            <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n          </div>\n          <div class=\"user-list-item-wrap\">\n            <div class=\"user-name-wrap\">\n              <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n                <span>{{user.firstName}} {{user.secondName}}</span>\n                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n              </div>\n              <br>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'super'\">Super user</span>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'admin'\">Client-admin</span>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'user'\">Client-user</span>\n            </div>\n            <div class=\"user-ctrl\">\n              <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n              <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"settingsUser === user\">\n                <i class=\"material-icons\" (click)=\"settingsUser = user\" (window:mouseup)=\"settingsUser = null\">more_vert</i>\n                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\n                  <div class=\"pop-up-item\" [hidden]=\"!user.active\" (click)=\"deactivateUser(user)\">\n                    <i class=\"material-icons\">visibility_off</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Deactivate</span>\n                    </div>\n                  </div>\n                  <div class=\"pop-up-item\" [hidden]=\"user.active\" (click)=\"deactivateUser(user)\">\n                    <i class=\"material-icons\">visibility</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Activate</span>\n                    </div>\n                  </div>\n                  <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\n                    <i class=\"material-icons\">delete</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Delete</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewUser = true\" [hidden]=\"createNewUser\">\n      <i class=\"material-icons\">add</i>\n      <div class=\"span-hover\">\n        <span>Add a new user</span>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"user-card-wrap col-md-8\">\n    <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" [hidden]=\"!selectedUser\"></app-user-card>\n    <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n  </div>\n\n</main>\n\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\" ></app-new-user>\n"
 
 /***/ }),
 
-/***/ 838:
+/***/ 867:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/logo.png\" alt=\"\">\n</div>\n<div class=\"login-form\">\n  <label class=\"login-text\">Log in:</label>\n  <form class=\"item-form\" (keydown)=\"keyDown($event)\">\n    <div class=\"input-wrap\">\n      <input id=\"login-name\" [class.input-error]=\"!resol.email || message\" type=\"text\" [(ngModel)]=\"user.email\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Username / email\" (focus)=\"resol.email = true; message = ''\">\n      <label for=\"login-name\" [class.full-op]=\"!resol.email\">This input requires a value!</label>\n      <label for=\"login-name\" [class.full-op]=\"message\">{{message}}</label>\n    </div>\n    <div class=\"input-wrap\">\n      <input id=\"login-pass\" [class.input-error]=\"!resol.password || message\" type=\"password\" [(ngModel)]=\"user.password\" [ngModelOptions]=\"{standalone: true}\" maxlength=\"15\" placeholder=\"Password\" (focus)=\"resol.password = true; message = ''\">\n      <label for=\"login-pass\" [class.full-op]=\"!resol.password\">This input requires a value!</label>\n      <label for=\"login-pass\" [class.full-op]=\"message\">{{message}}</label>\n    </div>\n  </form>\n  <div class=\"log-in\">\n    <div class=\"chkbx-wrap\">\n      <div id=\"remember-int\" (click)=\"remember = !remember\">\n        <i class=\"material-icons\" [hidden]=\"!remember\">done</i>\n      </div>\n      <label for=\"remember-int\" (click)=\"remember = !remember\">Remember password</label>\n    </div>\n    <span class=\"true-btn\" (click)=\"logIn()\">ACCEPT</span>\n  </div>\n</div>"
 
 /***/ }),
 
-/***/ 839:
+/***/ 868:
 /***/ (function(module, exports) {
 
 module.exports = "<div>\n    <app-project-webgl-view *ngIf=\"selected\" [selected]=\"selected\"></app-project-webgl-view>\n</div>"
 
 /***/ }),
 
-/***/ 840:
+/***/ 869:
 /***/ (function(module, exports) {
 
 module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.CONTROLS\" #tempLoad></app-template-loader>\n<link rel=\"stylesheet\" *ngIf=\"cssUrl\" [href]=\"cssUrl\">\n<div class=\"oxi-controls-container\" [innerHTML]=\"htmlTemplate\"></div>"
 
 /***/ }),
 
-/***/ 841:
+/***/ 870:
 /***/ (function(module, exports) {
 
 module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.PRELOADER\" #tempLoad></app-template-loader>\n<!--<link rel=\"stylesheet\" *ngIf=\"cssUrl\" [href]=\"cssUrl\">-->\n<div class=\"preloader-back\" #preloader>\n    <img *ngIf = \"preview\" [src]=\"preview\" class=\"preview\" (load)=\"onPreloaderLoad()\" #prevImg>\n    <div class=\"preloader-data\" [innerHTML]=\"htmlTemplate\"></div>\n</div>\n"
 
 /***/ }),
 
-/***/ 842:
+/***/ 871:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"svg-view\"   #parentEl>\n    <canvas  #dataEl></canvas>\n</div>"
+
+/***/ }),
+
+/***/ 872:
 /***/ (function(module, exports) {
 
 module.exports = "<app-template-loader [model]=\"modelData\" *ngIf=\"dataSourceLoaded\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.TOOLTIP\"\n                     #tempLoad></app-template-loader>\n<div [ngClass]=\"ProjClasses.PROJ_TOOLTIP_CONTAINER\" *ngIf=\"dataElem\">\n    <div class=\"cos-info\" *ngFor=\"let item of dataElem; let i = index\"\n         [ngClass]=\"{'active' : item.active,'act':item.tooltip.active}\" (selectstart)=\"onEventPrevent($event)\"\n         [style.left]=\"item._left\"\n         [style.top]=\"item._top\" (click)=\"item.onclick()\">\n        <template dynamic-component\n                  [componentContext]=\"{tooltip: item.tooltip}\"\n                  [componentTemplate]='item.html'></template>\n    </div>\n</div>\n"
 
 /***/ }),
 
-/***/ 843:
+/***/ 873:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"webgl-view\" [ngClass]=\"{'preview':selected && !selected.canEdit}\" #renderParent>\n    <div class=\"center-container THREEJS\" #projCnt>\n        <app-project-preloader [preview]=\"preview\" [modelData]=\"selected.parent\" #preloader></app-project-preloader>\n        <app-project-webgl-controls [modelData]=\"selected.parent\" #preControls></app-project-webgl-controls>\n        <app-project-webgl-tooltip  [modelData]=\"selected.parent\" #preToolTip ></app-project-webgl-tooltip>\n    </div>\n</div>\n"
+module.exports = "<div class=\"webgl-view\" [ngClass]=\"{'preview':selected && !selected.canEdit}\" #renderParent>\n    <div class=\"center-container THREEJS\" [ngClass]=\"{'svg-active':selected.camera.isSVG}\" #projCnt>\n        <app-project-preloader [preview]=\"preview\" [modelData]=\"selected.parent\" #preloader></app-project-preloader>\n        <app-project-webgl-controls [modelData]=\"selected.parent\" #preControls></app-project-webgl-controls>\n        <app-project-webgl-tooltip  [modelData]=\"selected.parent\" #preToolTip ></app-project-webgl-tooltip>\n        <app-project-svg-view  [selected]=\"selected\" [glapp]=\"_self\" *ngIf=\"selected.camera.isSVG\" #svgEl></app-project-svg-view>\n    </div>\n</div>\n"
 
 /***/ }),
 
-/***/ 881:
+/***/ 918:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 919:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 920:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 921:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 923:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(572);
+module.exports = __webpack_require__(593);
 
 
 /***/ })
 
-},[881]);
+},[923]);
 //# sourceMappingURL=main.bundle.js.map

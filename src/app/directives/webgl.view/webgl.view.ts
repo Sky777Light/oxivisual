@@ -6,6 +6,7 @@ import {Confirm,Prompt,Dialog} from '../dialogs/dialog';
 import {WTooltip} from './tooltip/tooltip';
 import {WControls} from './controls/controls';
 import {Preloader} from './preloader/preloader';
+import {SVGView} from './svg.draw/svg.draw';
 
 declare var alertify:any;
 declare var THREE:any;
@@ -38,6 +39,7 @@ export class WebGLService {
 export class WebglView implements OnInit,OnChanges {
 
     preview:string;
+    _self:WebglView;
     @ViewChild("renderParent")
         renderParent:HTMLElement;
     @ViewChild("preloader")
@@ -48,6 +50,8 @@ export class WebglView implements OnInit,OnChanges {
         preControls:WControls;
     @ViewChild("projCnt")
         projCnt:any;
+    @ViewChild("svgEl")
+        svgEl:SVGView;
     @Input() selected:any;
 
     app:OxiAPP;
@@ -59,6 +63,7 @@ export class WebglView implements OnInit,OnChanges {
     constructor(location:Location, authServ:AuthService) {
         this.location = location;
         this.authServ = authServ;
+        this._self = this;
     }
 
     ngOnChanges(changes) {
@@ -75,7 +80,7 @@ export class WebglView implements OnInit,OnChanges {
     initWebgl() {
         if (!this.inited) return this.inited = true;
         if (this.selected.images.length) {
-            this.preview = ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + this.selected.images[this.selected.currentItem||0];
+            this.preview = ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + ENTITY.Config.FILE.DIR.PROJECT_PREVIEW + this.selected.images[this.selected.currentItem || 0];
         } else if (this.selected.preview) {
             this.preview = this.selected.preview;
         }
@@ -121,6 +126,8 @@ class OxiAPP {
 
     constructor(main:WebglView) {
         this.main = main;
+        this.isMobile = this.deviceCheck();
+
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
         this.scene.add(this.model);
@@ -131,14 +138,15 @@ class OxiAPP {
             SCREEN_WIDTH = this.screen.width = 720,
             SCREEN_HEIGHT = this.screen.height = 405,
             _self = this;
+        renderer.domElement.className = 'gl-view';
 
-        if(main.selected.canEdit)main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth * (SCREEN_HEIGHT / SCREEN_WIDTH) + 'px';
+        if (main.selected.canEdit)main.projCnt.nativeElement.style.height = main.projCnt.nativeElement.clientWidth * (SCREEN_HEIGHT / SCREEN_WIDTH) + 'px';
         this._preloaderStatus = document.querySelector('.preloader-data.preloader-status') || {style: {}};
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-        this.isMobile = this.deviceCheck();
+
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
 
         this.controls = main.selected.canEdit ? new THREE.OrbitControls(this.camera, renderer.domElement) : {
@@ -177,6 +185,7 @@ class OxiAPP {
             if (main.selected.camera.target) {
                 this.controls.target.copy(main.selected.camera.target);
             }
+            this.toggleSVG();
         }
 
 
@@ -338,6 +347,9 @@ class OxiAPP {
         }
     }
 
+    private toggleSVG() {
+    }
+
     updateData(data) {
         let _selected = this.main.selected,
             settings = _selected.camera;
@@ -349,14 +361,29 @@ class OxiAPP {
                 this.model.scale.z = this.model.scale.y = this.model.scale.x;
                 break;
             }
+            case'isSvg':
+            {
+                this.toggleSVG();
+                break;
+            }
 
             case'opacity':
             {
-                this.model.traverse((child)=> {
-                    if (child.type == 'Mesh') {
-                        child.material.opacity = settings.opacity;
-                    }
-                });
+                if (this.model) {
+                    this.model.traverse((child)=> {
+                        if (child.type == 'Mesh') {
+                            child.material.opacity = settings.opacity;
+                        }
+                    });
+                }
+                if (this.main.svgEl) {
+                    this.main.svgEl.fabricJS._objects.forEach((el:any)=> {
+                        el.opacity = settings.opacity;
+                    });
+                    this.main.svgEl.fabricJS.renderAll();
+
+                }
+
                 break;
             }
             case'update':
@@ -492,7 +519,7 @@ class OxiAPP {
         if (this.main.selected.cash.model) {
             this._onLoadModel(this.main.selected.cash.model);
             callback();
-        } else if (this.main.selected.projFilesDirname && this.main.selected.destination) {
+        } else if (this.main.selected.projFilesDirname && this.main.selected.destination && this.main.selected.destination.match('.obj')) {
             let manager = new THREE.LoadingManager();
             manager.onProgress = function (item, loaded, total) {
                 //console.log(item, loaded, total);
@@ -523,35 +550,40 @@ class OxiAPP {
 
     _onLoadModel(object) {
         if (this.model.children)for (let i = 0; i < this.model.children.length; i++)this.model.remove(this.model.children[i]);
-        this.model.add(object);
-        object.traverse((child)=> {
-            if (child.type == 'Mesh') {
-                child.material = new THREE.MeshBasicMaterial({
-                    transparent: true,
-                    opacity: this.main.selected.camera.opacity
-                });
-                child.material.opacity0 = child.material.opacity;
-                child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
-                child.renderOrder = 0;
-                //child.name = child.name.toLowerCase();
-                if (child.name.match(ENTITY.Config.IGNORE)) {
-                    child.material.color = new THREE.Color(0, 0, 0);
-                }
+        if (this.main.selected.camera.isSVG) {
 
-                for (let i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
-                    if (areas[i]._id.match(child.name)) {
-                        child._data = areas[i];
-                        break;
+        } else {
+            this.model.add(object);
+            object.traverse((child)=> {
+                if (child.type == 'Mesh') {
+                    child.material = new THREE.MeshBasicMaterial({
+                        transparent: true,
+                        opacity: this.main.selected.camera.opacity
+                    });
+                    child.material.opacity0 = child.material.opacity;
+                    child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
+                    child.renderOrder = 0;
+                    //child.name = child.name.toLowerCase();
+                    if (child.name.match(ENTITY.Config.IGNORE)) {
+                        child.material.color = new THREE.Color(0, 0, 0);
+                    }
+
+                    for (let i = 0, areas = this.main.selected.areas; areas && i < areas.length; i++) {
+                        if (areas[i]._id.match(child.name)) {
+                            child._data = areas[i];
+                            break;
+                        }
+                    }
+                    for (let i = 0, sources = this.main.preToolTip.dataElem; sources && i < sources.length; i++) {
+                        if (sources[i]._id == child.name || (child._data && sources[i]._id == child._data.dataSourceId)) {
+                            child._dataSource = sources[i];
+                            break;
+                        }
                     }
                 }
-                for (let i = 0, sources = this.main.preToolTip.dataElem; sources && i < sources.length; i++) {
-                    if (sources[i]._id == child.name || (child._data && sources[i]._id == child._data.dataSourceId)) {
-                        child._dataSource = sources[i];
-                        break;
-                    }
-                }
-            }
-        });
+            });
+        }
+
         this.main.selected.cash.model = object;
     }
 
@@ -724,13 +756,34 @@ class OxiEvents {
         let app = this.main,
             _w = app._slider._W(),
             _nat = app._slider.currentFrame.naturalWidth / app._slider.currentFrame.naturalHeight,
-            _h = _nat ? _w / _nat : app._slider._H();
+            _h = _nat ? _w / _nat : app._slider._H(),
+            _px = 'px',
+            svgEl = this.main.main.svgEl
+            ;
 
         app.camera.aspect = _w / _h;
         app.camera.updateProjectionMatrix();
         app.gl.setSize(_w, _h);
-        app._container.style.height = _h + 'px';
+        app._container.style.height = _h + _px;
         //app.updateInfoHTML();
+        if (svgEl && svgEl.fabricJS) {
+
+
+            var scaleMultiplier = _w / svgEl.fabricJS.width;
+            var objects = svgEl.fabricJS.getObjects();
+            for (var i in objects) {
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+                objects[i].left = objects[i].left * scaleMultiplier;
+                objects[i].top = objects[i].top * scaleMultiplier;
+                objects[i].setCoords();
+            }
+
+            svgEl.fabricJS.setWidth(_w);
+            svgEl.fabricJS.setHeight(_h);
+            svgEl.fabricJS.calcOffset();
+            svgEl.fabricJS.renderAll();
+        }
         if (app._animation)app._animation.play();
     }
 
@@ -747,34 +800,7 @@ class OxiEvents {
             {
 
                 if (this.canEdit) {
-                    if (!this.lastInter)return;
-                    if (this.lastInter && !this.lastInter.object._data)return alert('please create area for this element, on right click');
-                    let _mesh = this.lastInter.object,
-                        _dialog:any = new Dialog({title: 'Attach data source'});
-                    for (let i = 0, _a = this.main.main.preToolTip.dataElem; i < _a.length; i++) {
-                        if (_a[i].active)continue;
-                        let d = document.createElement('div'),
-                            spa = document.createElement('span'),
-                            btn = document.createElement('button');
-                        btn.addEventListener('click', ()=> {
-                            if (_mesh._dataSource) {
-                                _mesh._dataSource.active = false;
-                            }
-                            _mesh._data.dataSourceId = _a[i]._id;
-                            _mesh._dataSource = _a[i];
-                            _mesh._tooltip = new OxiToolTip(_mesh, _self.main);
-                            _dialog.anyWay();
-                            this.main._animation.play();
-                        });
-                        btn.innerText = 'Attach';
-                        spa.innerText = _a[i]._id;
-                        d.className = "my-dialog";
-                        d.appendChild(spa);
-                        d.appendChild(btn);
-
-                        _dialog.body.appendChild(d);
-
-                    }
+                    if (this.lastInter)this.main._projControls.showAttachPopUp(this.lastInter.object);
                 }
                 if (this.lastInter && this.lastInter.object.click)this.lastInter.object.click();
                 break;
@@ -1018,7 +1044,7 @@ class OxiSlider {
             canEdit = this.canEdit;
 
         if (!app.main.selected.images || !app.main.selected.images.length) return;
-
+        imgPagination.className = 'img-pagination';
         for (let i in app.main.selected.images) {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
@@ -1242,10 +1268,10 @@ class OxiControls {
 
             app._parent().appendChild(div);
             let childSelected = (child:any)=> {
-                    this.app._events.lastInter.object._data = child;
-                    child._id = this.app._events.lastInter.object.name;
+                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    _elem._data = child;
+                    child._id = _elem.name || _elem.id;
                     child.name = child._id.toUpperCase();
-
                     child._id += Date.now();
 
                     if (!this.app.main.selected.areas) {
@@ -1255,22 +1281,23 @@ class OxiControls {
                     }
                 },
                 removeChild = ()=> {
-                    for (let i = 0, areas = this.app.main.selected.areas; i < areas.length; i++) {
-                        if (areas[i]._id == this.app._events.lastInter.object._data._id) {
+                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    for (let i = 0, areas = app.main.selected.areas; i < areas.length; i++) {
+                        if (areas[i]._id == _elem._data._id) {
                             areas.splice(i, 1);
                             break;
                         }
                     }
-                    this.app._events.lastInter.object._data = null;
+                    _elem._data = null;
                 };
             [
 
                 {
                     className: 'attach-new', click: (onFinish)=> {
-
-                    if (this.app._events.lastInter.object._data) {
+                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    if (_elem._data) {
                         new Confirm({
-                            title: "This area had already a structure (" + this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                            title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
                             onOk: ()=> {
                                 removeChild();
                                 childSelected(new ENTITY.ModelStructure());
@@ -1300,9 +1327,11 @@ class OxiControls {
                             }
                         });
                     };
-                    if (this.app._events.lastInter.object._data) {
+                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+
+                    if (_elem._data) {
                         new Confirm({
-                            title: "This area had already a structure (" + this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                            title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
                             onOk: ()=> {
                                 onChange();
                                 removeChild();
@@ -1333,9 +1362,11 @@ class OxiControls {
                             }
                         });
                     };
-                    if (this.app._events.lastInter.object._data) {
+                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+
+                    if (_elem._data) {
                         new Confirm({
-                            title: "This area had already a structure (" + this.app._events.lastInter.object._data.name + "), if ok will resave!!!",
+                            title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
                             onOk: ()=> {
                                 onChange();
                                 removeChild();
@@ -1352,17 +1383,21 @@ class OxiControls {
                 },
                 {
                     className: 'cntrls-close', click: (onFinish)=> {
-                    if (this.app._events.lastInter.object._data) {
+                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+
+                    if (_elem._data) {
                         new Confirm({
-                            title: "This area has a structure (" + this.app._events.lastInter.object._data.name + "), if ok will remove!!!",
+                            title: "This area has a structure (" + _elem._data.name + "), if ok will remove!!!",
                             onOk: ()=> {
                                 removeChild();
+                                if(app.main.selected.camera.isSVG)_elem.dropSelf();
                             },
                             onAnyWay: ()=> {
                                 onFinish();
                             }
                         });
                     } else {
+                        if(app.main.selected.camera.isSVG)_elem.dropSelf();
                         onFinish();
                     }
                 }, icon: '../assets/img/ic_close_white_24px.svg'
@@ -1426,20 +1461,13 @@ class OxiControls {
                 }
             }
             div.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, this.app.onEventPrevent);
-            let tooltipParent:any = document.querySelector('.' + ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER);
-            if (!tooltipParent) {
-                tooltipParent = document.createElement('div');
-                tooltipParent.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER;
-                app._parent().appendChild(tooltipParent);
-            }
-            this._tooltips = tooltipParent;
+
             app.model.traverse((child)=> {
                 if (child.type == "Mesh") {
                     //child.material.visible = false;
                     child.material.opacity = 0;
                     child._toolTip = new OxiToolTip(child, app);
-                    if (!child._dataSource)tooltipParent.appendChild(child._toolTip.tooltip);
-                    tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>app._events.onCntxMenu(e), false);
+
                 }
             });
 
@@ -1497,8 +1525,16 @@ class OxiControls {
             //if (this.app._events.lastInter.object._data && flag)return;
         }
 
-        if (flag) {
 
+        this.showControls(pos, flag);
+        this.app._animation.play();
+        //this.app.updateInfoHTML();
+    }
+
+    showControls(pos, flag:boolean = true) {
+        let canEdit = this.app.main.selected.canEdit;
+
+        if (flag) {
             if (this.controls.className.indexOf(ENTITY.ProjClasses.ACTIVE) < 0) {
                 this.controls.className += " " + ENTITY.ProjClasses.ACTIVE;
             }
@@ -1518,12 +1554,39 @@ class OxiControls {
 
         }
 
-        this.app._animation.play();
-        //this.app.updateInfoHTML();
     }
 
+    showAttachPopUp(elem) {
+        if (!elem || !elem._data)return alertify.error('please create area for this element, on right click');
+        let _mesh = elem,
+            _dialog:any = new Dialog({title: 'Attach data source'});
+        for (let i = 0, _a = this.app.main.preToolTip.dataElem; i < _a.length; i++) {
+            if (_a[i].active)continue;
+            let d = document.createElement('div'),
+                spa = document.createElement('span'),
+                btn = document.createElement('button');
+            btn.addEventListener('click', ()=> {
+                if (_mesh._dataSource) {
+                    _mesh._dataSource.active = false;
+                }
+                _mesh._data.dataSourceId = _a[i]._id;
+                _mesh._dataSource = _a[i];
+                _mesh._tooltip = new OxiToolTip(_mesh, this.app);
+                _dialog.anyWay();
+                this.app._animation.play();
+            });
+            btn.innerText = 'Attach';
+            spa.innerText = _a[i]._id;
+            d.className = "my-dialog";
+            d.appendChild(spa);
+            d.appendChild(btn);
+
+            _dialog.body.appendChild(d);
+
+        }
+    }
 }
-class OxiToolTip {
+export class OxiToolTip {
     tooltip:any;
     tooltipCnt:any;
     private mesh:any;
@@ -1533,6 +1596,18 @@ class OxiToolTip {
 
     constructor(mesh, main:OxiAPP) {
         let tooltip;
+        let tooltipParent:any = main._preloaderStatus._tooltips;
+        if(!tooltipParent){
+              tooltipParent  = document.querySelector('.' + ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER);
+            if (!tooltipParent) {
+                tooltipParent = document.createElement('div');
+                tooltipParent.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER;
+                main._parent().appendChild(tooltipParent);
+            }
+            main._preloaderStatus._tooltips = tooltipParent;
+            tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>main._events.onCntxMenu(e), false);
+        }
+
 
         this.canEdit = main.main.selected.canEdit;
         if (mesh._tooltip) {
@@ -1588,13 +1663,11 @@ class OxiToolTip {
                 if (e)e.addEventListener(ENTITY.Config.EVENTS_NAME.SELECT_START, main.onEventPrevent);
             });
         }
-
         this.mesh = mesh;
-
-
+        if(!mesh.material)mesh.material={};
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
         if (!main.main.selected.canEdit) {
-            if (mesh._data) {
+            if (mesh._data || mesh._dataSource) {
                 if (mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
                     mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
                 }
@@ -1640,6 +1713,7 @@ class OxiToolTip {
             }
         }
 
+        if (!mesh._dataSource)tooltipParent.appendChild( tooltip);
 
     }
 

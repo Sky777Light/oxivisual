@@ -2,9 +2,11 @@
 
 .webgl-view
   border-radius: 10px
+  .proj_logo
+    z-index: 1
   &.preview
     .center-container
-     &.THREEJS
+      &.THREEJS
         max-width: 100vw
         height: 100%
         position: absolute
@@ -20,7 +22,7 @@
     background-repeat: no-repeat
     cursor: pointer
   .THREEJS
-    canvas
+    .gl-view
       position: absolute
       top: 50%
       left: 50%
@@ -28,6 +30,9 @@
       transform: translate(-50%, -50%)
       z-index: 2
       display: flex
+    &.svg-active
+      .gl-view, .oxi-controls-move, .img-pagination
+        display: none !important
   ul
     text-align: center
     margin: auto
@@ -118,8 +123,8 @@
       .tooltip-container
         .cos-info
           .cos-label
-            display: inline-flex!important
-      canvas
+            display: inline-flex !important
+      .gl-view
         margin: auto
     &.img-slider-container
       z-index: -1

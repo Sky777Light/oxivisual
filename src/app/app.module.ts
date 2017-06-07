@@ -37,10 +37,9 @@ import {BasicProject} from "./components/home/project/basic/basic.project";
 import {Costumization,TextAr} from "./components/home/project/costumization/costumization";
 import {PreviewProject} from "./components/home/project/preview/preview";
 import {ProjectService} from "./services/project.service";
-import {WebglView,WTooltip,WControls,WebGLService,UploadFile,MNode,MTree,SlimScroll,Preloader,TemplatesLoader,HtmlDirective} from "./directives/directives";
+import {WebglView,SVGView,WTooltip,WControls,WebGLService,UploadFile,MNode,MTree,SlimScroll,Preloader,TemplatesLoader,HtmlDirective} from "./directives/directives";
 import {EditView} from "./components/home/project/source/edit.view/edit.view";
 import {PreviewSceneComponent,PreviewSceneService} from "./components/preview/preview.project";
-
 declare var webpack:any;
 
 @NgModule({
@@ -62,6 +61,7 @@ declare var webpack:any;
     WebglView,
     WControls,
     WTooltip,
+    SVGView,
     TextAr,
     PreviewSceneComponent,
     PreviewProject,

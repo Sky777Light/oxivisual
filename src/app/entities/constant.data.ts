@@ -36,7 +36,8 @@ export class Config {
             ALIGN_IMG: 'alignFrames[]',
             PRELOADER: 'preloader[]',
             CONTROLS: 'controls[]',
-            TOOLTIP: 'tooltip[]'
+            TOOLTIP: 'tooltip[]',
+            SVG_FILE: 'svgs[]'
         },
         DIR: {
             DELIMETER: "/",
@@ -76,6 +77,9 @@ export class Config {
 
     static randomInteger(min=0, max=Date.now()) {
         return Math.round(min + Math.random() * (max - min))
+    }
+    static randomstr(){
+        return Math.random().toString(36).replace(/[^a-z]+/g, '');
     }
 
 

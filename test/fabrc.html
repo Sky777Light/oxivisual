@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../src/assets/libs/fabric.js"></script>
+</head>
+<body>
+<canvas id="c" width="600" height="600"></canvas>
+<script>
+    /**
+     * fabric.js template for bug reports
+     *
+     * Please update the name of the jsfiddle (see Fiddle Options).
+     * This templates uses latest dev verison of fabric.js (https://rawgithub.com/kangax/fabric.js/master/dist/all.js).
+     */
+
+// initialize fabric canvas and assign to global windows object for debug
+    var canvas = window._canvas = new fabric.Canvas(document.getElementById('c'));
+
+    // Do some initializing stuff
+    fabric.Object.prototype.set({
+        transparentCorners: false,
+        cornerColor: 'rgba(102,153,255,0.5)',
+        cornerSize: 12,
+        padding: 7
+    });
+
+    // ADD YOUR CODE HERE
+    var mode = "add",
+            currentShape;
+
+    canvas.observe("mouse:move", function (event) {
+        var pos = canvas.getPointer(event.e);
+        if (mode === "edit" && currentShape) {
+            var points = currentShape.get("points");
+            points[points.length - 1].x = pos.x;
+            points[points.length - 1].y = pos.y;
+            currentShape.set({
+                points: points
+            });
+            canvas.renderAll();
+
+        }
+    });
+
+    canvas.observe("mouse:down", function (event) {
+        var pos = canvas.getPointer(event.e);
+
+        if (mode === "add") {
+            var polygon = new fabric.Polygon([{
+                x: pos.x,
+                y: pos.y
+            }, {
+                x: pos.x + 0.5,
+                y: pos.y + 0.5
+            }], {
+                fill: 'blue',
+                opacity: 0.5,
+                selectable: false
+            });
+            currentShape = polygon;
+            canvas.add(currentShape);
+            mode = "edit";
+        } else if (mode === "edit" && currentShape && currentShape.type === "polygon") {
+            var points = currentShape.get("points");
+            points.push({
+                x: pos.x,
+                y: pos.y
+            });
+            canvas.remove(currentShape);
+            currentShape = new fabric.Polygon(points, {
+                fill: 'blue',
+                opacity: 0.5,
+                selectable: false
+            });
+            canvas.add(currentShape);
+        }
+    });
+
+    fabric.util.addListener(window, 'keyup', function (e) {
+        if (e.keyCode === 27) {
+            if (mode === 'edit' || mode === 'add') {
+                mode = 'normal';
+                var points = currentShape.get('points');
+                canvas.remove(currentShape);
+                currentShape = new fabric.Polygon(points, {
+                    fill: 'blue',
+                    opacity: 0.5,
+                    selectable: true
+                });
+                canvas.add(currentShape);
+            } else {
+                mode = 'add';
+            }
+            currentShape = null;
+        }
+    })
+</script>
+</body>
+</html>
