@@ -1625,7 +1625,10 @@ var SVGView = (function () {
     };
     SVGView.prototype.ngAfterViewInit = function () {
         var _this = this;
-        this.dataSrc = this.selected.svgDestination && this.selected.svgDestination.match('.svg') ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + this.selected.svgDestination : null;
+        var svg = this.selected.svgDestination;
+        if (svg && svg.name)
+            svg = svg.name;
+        this.dataSrc = svg && svg.match('.svg') ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + svg : null;
         var _self = this, domElem = this.dataEl['nativeElement'], handler = (domElem.addEventListener || domElem.attachEvent).bind(domElem);
         this.canEdit = this.selected.canEdit;
         fabric.Object.prototype.set({
@@ -1994,8 +1997,10 @@ var SVGView = (function () {
             objects = options.objects;
         }
         for (var i = 0; i < objects.length; i++) {
-            objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
-            objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
+            if (objects[i].type == this.shapes.POLYGON) {
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
+            }
             objects[i].left = objects[i].left * scaleMultiplierX;
             objects[i].top = objects[i].top * scaleMultiplierY;
             objects[i].setCoords();

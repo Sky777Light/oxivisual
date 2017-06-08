@@ -41,7 +41,9 @@ export class SVGView implements OnInit,AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.dataSrc = this.selected.svgDestination && this.selected.svgDestination.match('.svg') ? ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + this.selected.svgDestination : null;
+        let svg = this.selected.svgDestination;
+        if(svg && svg.name)svg = svg.name;
+        this.dataSrc = svg && svg.match('.svg') ? ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER +svg : null;
         let _self = this,
             domElem = this.dataEl['nativeElement'],
             handler = (domElem.addEventListener || domElem.attachEvent).bind(domElem);
@@ -61,7 +63,7 @@ export class SVGView implements OnInit,AfterViewInit {
             },
             clone: function (isHard) {
                 let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'],
-                    hardClone = [ 'scaleX', 'scaleY', 'left', 'top'],
+                    hardClone = ['scaleX', 'scaleY', 'left', 'top'],
                     self = this,
                     _pn = this.get('_points'),
                     _points = this.get('points'),
@@ -70,7 +72,7 @@ export class SVGView implements OnInit,AfterViewInit {
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
-                if(isHard || this.hardClone)   {
+                if (isHard || this.hardClone) {
                     for (var i = 0; i < hardClone.length; i++) {
                         newObj[hardClone[i]] = this[hardClone[i]];
                     }
@@ -443,8 +445,10 @@ export class SVGView implements OnInit,AfterViewInit {
         }
 
         for (let i = 0; i < objects.length; i++) {
-            objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
-            objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
+            if (objects[i].type == this.shapes.POLYGON) {
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
+            }
             objects[i].left = objects[i].left * scaleMultiplierX;
             objects[i].top = objects[i].top * scaleMultiplierY;
             objects[i].setCoords();
