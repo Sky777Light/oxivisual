@@ -100,7 +100,7 @@ function checkPermissionOnProject(req, res, next) {
 function saveProjectFiles(options, req, res, next) {
 
     if (req.files) {
-        let keyses = config.FILE_UPLOAD_ATTR,
+        var keyses = config.FILE_UPLOAD_ATTR,
             modelDir = options.modelDir,
             area = options.area;
 
@@ -118,10 +118,10 @@ function saveProjectFiles(options, req, res, next) {
                 case config.FILE_UPLOAD_ATTR[7]:
                 case config.FILE_UPLOAD_ATTR[0]:
                 {
-                    let isSvg = keys ==  config.FILE_UPLOAD_ATTR[7];
+                    var isSvg = keys ==  config.FILE_UPLOAD_ATTR[7];
                     modelSaved = isSvg?'svgDestination':'destination';
                     urlSaveFile = modelDir;
-                    let pathF = path.normalize(urlSaveFile);
+                    var pathF = path.normalize(urlSaveFile);
                     if (fs.existsSync(pathF)) {
                         for (var u = 0, files = fs.readdirSync(urlSaveFile); u < files.length; u++) {
                             var file = files[u],
@@ -199,7 +199,7 @@ function saveProjectFiles(options, req, res, next) {
                     if (area && area.images) {
                         area.images.push(_fileName);
                     }
-                    let separator = ".",
+                    var separator = ".",
                         fileName = _fileName.split(separator);
                     fileName.pop();
                     webp.cwebp(_file.path, urlSaveFile + severalTypes[0] + fileName.join(separator) + '.webp', "-q 50", function (status) {
