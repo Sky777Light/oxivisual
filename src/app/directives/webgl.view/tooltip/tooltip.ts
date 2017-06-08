@@ -25,14 +25,13 @@ export class WTooltip extends AbstractChangesView implements OnInit {
     ngOnInit() {
 
         if (!this.modelData || !this.modelData.dataSource)return alertify.error('Data source is not defined');
-        this.authService.post(this.modelData.dataSource, null, {hasAuthHeader: false}).subscribe((res:any)=> {
+        this.authService.get(this.modelData.dataSource, {hasAuthHeader: false}).subscribe((res:any)=> {
             try {
                 this.dataSource = JSON.parse(res._body);
                 this.dataSourceLoaded = true;
             } catch (e) {
                 alertify.error(e);
             } finally {
-
                 setTimeout(()=>{
                     if (this.htmlTemplate) {
                         this.initParser();

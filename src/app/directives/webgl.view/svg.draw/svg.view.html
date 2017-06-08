@@ -1,3 +1,9 @@
 <div class="svg-view"   #parentEl>
     <canvas  #dataEl></canvas>
+    <div class="add-btn" *ngIf="selected.canEdit" >
+        <i class="material-icons">help</i>
+        <div class="span-hover">
+            <span>Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area</span>
+        </div>
+    </div>
 </div>

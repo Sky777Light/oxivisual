@@ -17,11 +17,10 @@ export class AuthService {
     headers.append('Authorization', token);
   }
 
-
-  get(url) {
+  get(url,options:any={hasAuthHeader:true}) {
     let headers = new Headers({'Content-Type': 'application/json'});
 
-    this.createAuthorizationHeader(headers);
+    if(options.hasAuthHeader)this.createAuthorizationHeader(headers);
     return this.http.get(url, new RequestOptions({ headers: headers }));
   }
 

@@ -1641,10 +1641,16 @@ var SVGView = (function () {
                 _self.fabricJS.renderAll();
                 _self.toSVG();
             },
-            clone: function () {
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+            clone: function (isHard) {
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY', 'left', 'top'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
+                }
+                if (isHard || this.hardClone) {
+                    for (var i = 0; i < hardClone.length; i++) {
+                        newObj[hardClone[i]] = this[hardClone[i]];
+                    }
+                    newObj.hardClone = true;
                 }
                 if (!newObj.id)
                     newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
@@ -1696,46 +1702,49 @@ var SVGView = (function () {
             if (_this.dataSrc) {
                 fabric.loadSVGFromURL(_this.dataSrc, function (objects, options) {
                     if (objects && options) {
-                        setTimeout(function () {
-                            var _loop_1 = function(i) {
-                                if (objects[i].type == _this.shapes.POLYGON) {
-                                    var cur = objects[i], center_1 = cur.getCenterPoint(), _p = cur.get('points').map(function (el) {
-                                        return new fabric.Point(center_1.x + el.x, center_1.y + el.y);
-                                    }), _points = [];
-                                    for (var i_1 = 0, areas = _this.selected.areas; areas && i_1 < areas.length; i_1++) {
-                                        if (areas[i_1]._id.match(cur.id)) {
-                                            cur._data = areas[i_1];
-                                            break;
-                                        }
+                        //setTimeout(()=> {
+                        options.objects = objects;
+                        _this.resize(false, false, options);
+                        var scaleMultiplierX = _this.fabricJS.width / options.width, scaleMultiplierY = _this.fabricJS.height / options.height;
+                        var _loop_1 = function(i) {
+                            if (objects[i].type == _this.shapes.POLYGON) {
+                                var cur = objects[i], center_1 = cur.getCenterPoint(), _p = cur.get('points').map(function (el) {
+                                    return new fabric.Point(center_1.x + el.x, center_1.y + el.y);
+                                }), _points = [];
+                                for (var i_1 = 0, areas = _this.selected.areas; areas && i_1 < areas.length; i_1++) {
+                                    if (areas[i_1]._id.match(cur.id)) {
+                                        cur._data = areas[i_1];
+                                        break;
                                     }
-                                    for (var i_2 = 0, sources = _this.glapp.preToolTip.dataElem; sources && i_2 < sources.length; i_2++) {
-                                        if (sources[i_2]._id == cur.id || (cur._data && sources[i_2]._id == cur._data.dataSourceId)) {
-                                            cur._dataSource = sources[i_2];
-                                            break;
-                                        }
-                                    }
-                                    if (_this.canEdit) {
-                                        for (var d = 0; d < _p.length; d++) {
-                                            var circle = new fabric.Circle(_this.settings.CIRCLE);
-                                            circle.left = _p[d].x;
-                                            circle.top = _p[d].y;
-                                            circle._iter = d;
-                                            circle.parent = objects[i];
-                                            _points.push(circle);
-                                        }
-                                        cur.set('_points', _points);
-                                    }
-                                    objects[i]._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](objects[i], _this.glapp.app);
-                                    objects[i]._tooltip.update();
-                                    cur.set('points', _p);
-                                    cur.clone();
                                 }
-                            };
-                            for (var i = 0; i < objects.length; i++) {
-                                _loop_1(i);
+                                for (var i_2 = 0, sources = _this.glapp.preToolTip.dataElem; sources && i_2 < sources.length; i_2++) {
+                                    if (sources[i_2]._id == cur.id || (cur._data && sources[i_2]._id == cur._data.dataSourceId)) {
+                                        cur._dataSource = sources[i_2];
+                                        break;
+                                    }
+                                }
+                                if (_this.canEdit) {
+                                    for (var d = 0; d < _p.length; d++) {
+                                        var circle = new fabric.Circle(_this.settings.CIRCLE);
+                                        circle.left = (-center_1.x + _p[d].x) * scaleMultiplierX + center_1.x;
+                                        circle.top = (-center_1.y + _p[d].y) * scaleMultiplierY + center_1.y;
+                                        circle._iter = d;
+                                        circle.parent = objects[i];
+                                        _points.push(circle);
+                                    }
+                                    cur.set('_points', _points);
+                                }
+                                cur.opacity = _this.selected.camera.opacity;
+                                cur.set('points', _p);
+                                var cloneCur = cur.clone(true);
+                                cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _this.glapp.app);
+                                cloneCur._tooltip.update();
                             }
-                            _this.fabricJS.calcOffset().renderAll();
-                        }, 2500);
+                        };
+                        for (var i = 0; i < objects.length; i++) {
+                            _loop_1(i);
+                        }
+                        _this.fabricJS.calcOffset().renderAll();
                     }
                     _this.onLoadSVG();
                 });
@@ -1788,7 +1797,10 @@ var SVGView = (function () {
             fabricJS.on("mouse:up", function (event) {
                 _this.MOUSE.CUR = _this.MOUSE.UP;
                 if (_this.mode === _this.MODES.NO && _this.currentShape && _this.currentShape.type == _this.shapes.POLYGON) {
-                    _this.glapp.app._projControls.showAttachPopUp(event.target);
+                    if (!_this.glapp.app._projControls.showAttachPopUp(event.target)) {
+                        _this.mode = _this.MODES.ADD;
+                        _this.currentShape = false;
+                    }
                 }
             });
             fabricJS.on("mouse:down", function (event) {
@@ -1872,17 +1884,16 @@ var SVGView = (function () {
                     _this.toSVG();
                 }
             });
-            /*fabricJS.on('object:modified', (e)=> {
-             var obj = e.target;
-             var matrix = obj.calcTransformMatrix();
-             if (obj.type == 'polygon') {
-             obj.get("_points").forEach(function (p) {
-             return fabric.util.transformPoint(p, matrix);
-             });
-             fabricJS.renderAll();
-             }
-
-             });*/
+            fabricJS.on('object:modified', function (e) {
+                var obj = e.target;
+                var matrix = obj.calcTransformMatrix();
+                if (obj.type == 'polygon') {
+                    obj.get("_points").forEach(function (p) {
+                        return fabric.util.transformPoint(p, matrix);
+                    });
+                    fabricJS.renderAll();
+                }
+            });
             fabricJS.on('mouse:over', function (e) {
                 if (_this.mode != _this.MODES.NO || !e.target)
                     return;
@@ -1916,6 +1927,12 @@ var SVGView = (function () {
                     e.target._tooltip.show(false);
                 e.target.opacity = _this.selected.camera.opacity;
                 _this.fabricJS.renderAll();
+            });
+            fabricJS.on('mouse:up', function (e) {
+                if (!e.target)
+                    return;
+                if (e.target.click)
+                    e.target.click();
             });
         }
     };
@@ -1966,8 +1983,33 @@ var SVGView = (function () {
         this.currentShape = null;
         this.fabricJS.deactivateAll().renderAll();
     };
+    SVGView.prototype.resize = function (_w, _h, options) {
+        if (options === void 0) { options = null; }
+        if (!this.fabricJS)
+            return;
+        var scaleMultiplierX = _w / this.fabricJS.width, scaleMultiplierY = _h / this.fabricJS.height, objects = this.fabricJS._objects;
+        if (options) {
+            scaleMultiplierX = this.fabricJS.width / options.width;
+            scaleMultiplierY = this.fabricJS.height / options.height;
+            objects = options.objects;
+        }
+        for (var i = 0; i < objects.length; i++) {
+            objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
+            objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
+            objects[i].left = objects[i].left * scaleMultiplierX;
+            objects[i].top = objects[i].top * scaleMultiplierY;
+            objects[i].setCoords();
+            if (objects[i]._tooltip)
+                objects[i]._tooltip.show(false);
+        }
+        if (_w)
+            this.fabricJS.setWidth(_w);
+        if (_h)
+            this.fabricJS.setHeight(_h);
+        this.fabricJS.calcOffset().renderAll();
+    };
     SVGView.prototype.ngOnDestroy = function () {
-        delete this.selected.svgDestination;
+        //delete this.selected.svgDestination;
         this.eventsData.forEach(function (el) {
             fabric.util.removeListener(el.cntx, el.name, el.callback);
         });
@@ -2040,7 +2082,7 @@ var WTooltip = (function (_super) {
         var _this = this;
         if (!this.modelData || !this.modelData.dataSource)
             return alertify.error('Data source is not defined');
-        this.authService.post(this.modelData.dataSource, null, { hasAuthHeader: false }).subscribe(function (res) {
+        this.authService.get(this.modelData.dataSource, { hasAuthHeader: false }).subscribe(function (res) {
             try {
                 _this.dataSource = JSON.parse(res._body);
                 _this.dataSourceLoaded = true;
@@ -2816,21 +2858,8 @@ var OxiEvents = (function () {
         app.gl.setSize(_w, _h);
         app._container.style.height = _h + _px;
         //app.updateInfoHTML();
-        if (svgEl && svgEl.fabricJS) {
-            var scaleMultiplier = _w / svgEl.fabricJS.width;
-            var objects = svgEl.fabricJS.getObjects();
-            for (var i in objects) {
-                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-                objects[i].left = objects[i].left * scaleMultiplier;
-                objects[i].top = objects[i].top * scaleMultiplier;
-                objects[i].setCoords();
-            }
-            svgEl.fabricJS.setWidth(_w);
-            svgEl.fabricJS.setHeight(_h);
-            svgEl.fabricJS.calcOffset();
-            svgEl.fabricJS.renderAll();
-        }
+        if (svgEl)
+            svgEl.resize(_w, _h);
         if (app._animation)
             app._animation.play();
     };
@@ -3524,8 +3553,10 @@ var OxiControls = (function () {
     };
     OxiControls.prototype.showAttachPopUp = function (elem) {
         var _this = this;
-        if (!elem || !elem._data)
-            return alertify.error('please create area for this element, on right click');
+        if (!elem || !elem._data) {
+            alertify.error('please create area for this element, on right click');
+            return false;
+        }
         var _mesh = elem, _dialog = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["c" /* Dialog */]({ title: 'Attach data source' });
         var _loop_3 = function(i, _a) {
             if (_a[i].active)
@@ -3551,6 +3582,7 @@ var OxiControls = (function () {
         for (var i = 0, _a = this.app.main.preToolTip.dataElem; i < _a.length; i++) {
             _loop_3(i, _a);
         }
+        return true;
     };
     return OxiControls;
 }());
@@ -3910,9 +3942,11 @@ var AuthService = (function () {
         var token = this.storageService.get("token") || this.storageService.getSession("token");
         headers.append('Authorization', token);
     };
-    AuthService.prototype.get = function (url) {
+    AuthService.prototype.get = function (url, options) {
+        if (options === void 0) { options = { hasAuthHeader: true }; }
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({ 'Content-Type': 'application/json' });
-        this.createAuthorizationHeader(headers);
+        if (options.hasAuthHeader)
+            this.createAuthorizationHeader(headers);
         return this.http.get(url, new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: headers }));
     };
     AuthService.prototype.post = function (url, data, options) {
@@ -7423,7 +7457,7 @@ module.exports = "<div class=\"costumization\" *ngIf=\"!project.model || !projec
 /***/ 856:
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"dataSrc\">\n    <div class=\"tabs-view\">\n        <div class=\"tabs-blocks col-lg-12\">\n            <table class=\"my-table col-lg-12\">\n                <tbody>\n                <tr>\n                    <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                        <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                            <span class=\"title\">Project Share</span>\n                            <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                        </div>\n                        <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                             src=\"../assets/img/Fill 2 (1).svg\">\n                    </td>\n                    <td class=\"s-tab webgl-item\" rowspan=\"2\" style=\"text-align: center;\"\n                        [attr.colspan]=\"treeView.hide ?2:1\">\n                        <iframe [src]=\"dataSrc\" frameborder=0 allowfullscreen #ifrm></iframe>\n                    </td>\n                </tr>\n                <tr>\n                    <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"treeView.hide?2:1\" class=\"s-tab\">\n                        <div class=\"tabs-body\">\n                            <div class=\"body-data\">\n                                <div class=\"model-config\">\n                                    <form class=\"item-form\" novalidate>\n                                        <div class=\"bottom-block\">\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>Link</label>\n                                                    <input name=\"link\" type=\"text\" [(attr.value)]=\"data.link\">\n                                                </div>\n                                            </div>\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>HTML</label>\n                                                    <input name=\"linkH\" type=\"text\"\n                                                           [(attr.value)]=\"data.ifr\">\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                                <textarea style=\"opacity: 0\" [innerText]=\"urlC\" #textAr></textarea>\n\n                                <div class=\"add-btn\" (click)=\"copyUrl()\">\n                                    <i class=\"material-icons\">save</i>\n\n                                    <div class=\"span-hover\">\n                                        <span>Click to copy link</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                    <td *ngIf=\"treeView.hide\"></td>\n                </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
+module.exports = "<div *ngIf=\"dataSrc\">\n    <div class=\"tabs-view\">\n        <div class=\"tabs-blocks col-lg-12\">\n            <table class=\"my-table col-lg-12\">\n                <tbody>\n                <tr>\n                    <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                        <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                            <span class=\"title\">Project Share</span>\n                            <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                        </div>\n                        <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                             src=\"../assets/img/Fill 2 (1).svg\">\n                    </td>\n                    <td class=\"s-tab webgl-item\" rowspan=\"2\" style=\"text-align: center;\"\n                        [attr.colspan]=\"treeView.hide ?2:1\">\n                        <iframe [src]=\"dataSrc\" frameborder=0 allowfullscreen #ifrm></iframe>\n                    </td>\n                </tr>\n                <tr>\n                    <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"treeView.hide?2:1\" class=\"s-tab\">\n                        <div class=\"tabs-body\">\n                            <div class=\"body-data\">\n                                <div class=\"model-config\">\n                                    <form class=\"item-form\" novalidate>\n                                        <div class=\"bottom-block\">\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>Link</label>\n                                                    <input name=\"link\" type=\"text\" [(attr.value)]=\"data.link\">\n                                                </div>\n                                            </div>\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>HTML</label>\n                                                    <input name=\"linkH\" type=\"text\"\n                                                           [(attr.value)]=\"data.ifr\">\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                                <textarea style=\"opacity: 0\" [innerText]=\"urlC\" #textAr></textarea>\n\n                                <div class=\"add-btn\" (click)=\"copyUrl()\">\n                                    <i class=\"material-icons\">save</i>\n\n                                    <div class=\"span-hover\">\n                                        <span>Click to copy link</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                    <td *ngIf=\"treeView.hide\"></td>\n                </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
 
 /***/ }),
 
@@ -7528,7 +7562,7 @@ module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"D
 /***/ 871:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"svg-view\"   #parentEl>\n    <canvas  #dataEl></canvas>\n</div>"
+module.exports = "<div class=\"svg-view\"   #parentEl>\n    <canvas  #dataEl></canvas>\n    <div class=\"add-btn\" *ngIf=\"selected.canEdit\" >\n        <i class=\"material-icons\">help</i>\n        <div class=\"span-hover\">\n            <span>Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area</span>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 

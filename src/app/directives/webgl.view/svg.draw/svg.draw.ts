@@ -59,8 +59,9 @@ export class SVGView implements OnInit,AfterViewInit {
                 _self.fabricJS.renderAll();
                 _self.toSVG();
             },
-            clone: function () {
-                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material'],
+            clone: function (isHard) {
+                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'],
+                    hardClone = [ 'scaleX', 'scaleY', 'left', 'top'],
                     self = this,
                     _pn = this.get('_points'),
                     _points = this.get('points'),
@@ -69,7 +70,12 @@ export class SVGView implements OnInit,AfterViewInit {
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
-
+                if(isHard || this.hardClone)   {
+                    for (var i = 0; i < hardClone.length; i++) {
+                        newObj[hardClone[i]] = this[hardClone[i]];
+                    }
+                    newObj.hardClone = true;
+                }
 
                 if (!newObj.id)newObj.set('id', ENTITY.Config.randomstr());
 
@@ -93,6 +99,7 @@ export class SVGView implements OnInit,AfterViewInit {
             getScreenPst: function () {
                 this.onscreenParams = this.getCenterPoint();
                 this.onscreenOffset = _self.glapp.app._offset();
+
             }
         });
 
@@ -117,6 +124,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     fill: this.curFill,
                     opacity: this.selected.camera.opacity,
                     selectable: false
+
                 }
             };
             this.shapes = {
@@ -127,49 +135,54 @@ export class SVGView implements OnInit,AfterViewInit {
             if (this.dataSrc) {
                 fabric.loadSVGFromURL(this.dataSrc, (objects, options)=> {
                     if (objects && options) {
-                        setTimeout(()=> {
-                            for (let i = 0; i < objects.length; i++) {
-                                if (objects[i].type == this.shapes.POLYGON) {
-                                    let cur = objects[i],
-                                        center = cur.getCenterPoint(),
-                                        _p = cur.get('points').map((el)=> {
-                                            return new fabric.Point(center.x + el.x, center.y + el.y);
-                                        }),
-                                        _points = [];
+                        //setTimeout(()=> {
+                        options.objects = objects;
+                        this.resize(false, false, options);
+                        let scaleMultiplierX = this.fabricJS.width / options.width,
+                            scaleMultiplierY = this.fabricJS.height / options.height;
+                        for (let i = 0; i < objects.length; i++) {
+                            if (objects[i].type == this.shapes.POLYGON) {
+                                let cur = objects[i],
+                                    center = cur.getCenterPoint(),
+                                    _p = cur.get('points').map((el)=> {
+                                        return new fabric.Point(center.x + el.x, center.y + el.y);
+                                    }),
+                                    _points = [];
 
-                                    for (let i = 0, areas = this.selected.areas; areas && i < areas.length; i++) {
-                                        if (areas[i]._id.match(cur.id)) {
-                                            cur._data = areas[i];
-                                            break;
-                                        }
+                                for (let i = 0, areas = this.selected.areas; areas && i < areas.length; i++) {
+                                    if (areas[i]._id.match(cur.id)) {
+                                        cur._data = areas[i];
+                                        break;
                                     }
-                                    for (let i = 0, sources = this.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
-                                        if (sources[i]._id == cur.id || (cur._data && sources[i]._id == cur._data.dataSourceId)) {
-                                            cur._dataSource = sources[i];
-                                            break;
-                                        }
-                                    }
-
-                                    if (this.canEdit) {
-                                        for (let d = 0; d < _p.length; d++) {
-                                            let circle = new fabric.Circle(this.settings.CIRCLE);
-                                            circle.left = _p[d].x;
-                                            circle.top = _p[d].y;
-                                            circle._iter = d;
-                                            circle.parent = objects[i];
-                                            _points.push(circle);
-                                        }
-                                        cur.set('_points', _points);
-                                    }
-                                    objects[i]._tooltip = new OxiToolTip(objects[i], this.glapp.app);
-                                    objects[i]._tooltip.update();
-                                    cur.set('points', _p);
-                                    cur.clone();
                                 }
-                            }
+                                for (let i = 0, sources = this.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
+                                    if (sources[i]._id == cur.id || (cur._data && sources[i]._id == cur._data.dataSourceId)) {
+                                        cur._dataSource = sources[i];
+                                        break;
+                                    }
+                                }
 
-                            this.fabricJS.calcOffset().renderAll();
-                        }, 2500);
+                                if (this.canEdit) {
+                                    for (let d = 0; d < _p.length; d++) {
+                                        let circle = new fabric.Circle(this.settings.CIRCLE);
+                                        circle.left = (-center.x + _p[d].x) * scaleMultiplierX + center.x;
+                                        circle.top = (-center.y + _p[d].y) * scaleMultiplierY + center.y;
+                                        circle._iter = d;
+                                        circle.parent = objects[i];
+                                        _points.push(circle);
+                                    }
+                                    cur.set('_points', _points);
+                                }
+
+                                cur.opacity = this.selected.camera.opacity;
+                                cur.set('points', _p);
+                                let cloneCur = cur.clone(true);
+                                cloneCur._tooltip = new OxiToolTip(cloneCur, this.glapp.app);
+                                cloneCur._tooltip.update();
+                            }
+                        }
+                        this.fabricJS.calcOffset().renderAll();
+                        //}, 100);
                     }
                     this.onLoadSVG();
                 });
@@ -222,7 +235,10 @@ export class SVGView implements OnInit,AfterViewInit {
             fabricJS.on("mouse:up", (event:any)=> {
                 this.MOUSE.CUR = this.MOUSE.UP;
                 if (this.mode === this.MODES.NO && this.currentShape && this.currentShape.type == this.shapes.POLYGON) {
-                    this.glapp.app._projControls.showAttachPopUp(event.target);
+                    if (!this.glapp.app._projControls.showAttachPopUp(event.target)) {
+                        this.mode = this.MODES.ADD;
+                        this.currentShape = false;
+                    }
                 }
             });
             fabricJS.on("mouse:down", (event:any)=> {
@@ -315,17 +331,17 @@ export class SVGView implements OnInit,AfterViewInit {
                 }
 
             });
-            /*fabricJS.on('object:modified', (e)=> {
-             var obj = e.target;
-             var matrix = obj.calcTransformMatrix();
-             if (obj.type == 'polygon') {
-             obj.get("_points").forEach(function (p) {
-             return fabric.util.transformPoint(p, matrix);
-             });
-             fabricJS.renderAll();
-             }
+            fabricJS.on('object:modified', (e)=> {
+                var obj = e.target;
+                var matrix = obj.calcTransformMatrix();
+                if (obj.type == 'polygon') {
+                    obj.get("_points").forEach(function (p) {
+                        return fabric.util.transformPoint(p, matrix);
+                    });
+                    fabricJS.renderAll();
+                }
 
-             });*/
+            });
             fabricJS.on('mouse:over', (e)=> {
                 if (this.mode != this.MODES.NO || !e.target)return;
                 e.target.opacity = 1;
@@ -340,7 +356,7 @@ export class SVGView implements OnInit,AfterViewInit {
             });
         } else {
             fabricJS.on('mouse:over', (e)=> {
-                if ( !e.target)return;
+                if (!e.target)return;
                 e.target.opacity = 1;
                 this.currentShape = e.target;
                 if (e.target._tooltip)e.target._tooltip.show();
@@ -352,6 +368,10 @@ export class SVGView implements OnInit,AfterViewInit {
                 if (e.target._tooltip)e.target._tooltip.show(false);
                 e.target.opacity = this.selected.camera.opacity;
                 this.fabricJS.renderAll();
+            });
+            fabricJS.on('mouse:up', (e)=> {
+                if (!e.target)return;
+                if (e.target.click)e.target.click();
             });
         }
     }
@@ -409,9 +429,35 @@ export class SVGView implements OnInit,AfterViewInit {
         this.fabricJS.deactivateAll().renderAll();
     }
 
+    resize(_w, _h, options:any = null) {
+
+        if (!this.fabricJS)return;
+        let scaleMultiplierX = _w / this.fabricJS.width,
+            scaleMultiplierY = _h / this.fabricJS.height,
+            objects = this.fabricJS._objects;
+
+        if (options) {
+            scaleMultiplierX = this.fabricJS.width / options.width;
+            scaleMultiplierY = this.fabricJS.height / options.height;
+            objects = options.objects;
+        }
+
+        for (let i = 0; i < objects.length; i++) {
+            objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
+            objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
+            objects[i].left = objects[i].left * scaleMultiplierX;
+            objects[i].top = objects[i].top * scaleMultiplierY;
+            objects[i].setCoords();
+            if (objects[i]._tooltip)objects[i]._tooltip.show(false);
+        }
+        if (_w)this.fabricJS.setWidth(_w);
+        if (_h)this.fabricJS.setHeight(_h);
+        this.fabricJS.calcOffset().renderAll();
+    }
+
     ngOnDestroy() {
 
-        delete this.selected.svgDestination;
+        //delete this.selected.svgDestination;
         this.eventsData.forEach((el)=> {
             fabric.util.removeListener(el.cntx, el.name, el.callback);
         });

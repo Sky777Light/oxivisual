@@ -766,24 +766,7 @@ class OxiEvents {
         app.gl.setSize(_w, _h);
         app._container.style.height = _h + _px;
         //app.updateInfoHTML();
-        if (svgEl && svgEl.fabricJS) {
-
-
-            var scaleMultiplier = _w / svgEl.fabricJS.width;
-            var objects = svgEl.fabricJS.getObjects();
-            for (var i in objects) {
-                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-                objects[i].left = objects[i].left * scaleMultiplier;
-                objects[i].top = objects[i].top * scaleMultiplier;
-                objects[i].setCoords();
-            }
-
-            svgEl.fabricJS.setWidth(_w);
-            svgEl.fabricJS.setHeight(_h);
-            svgEl.fabricJS.calcOffset();
-            svgEl.fabricJS.renderAll();
-        }
+        if (svgEl)  svgEl.resize(_w, _h);
         if (app._animation)app._animation.play();
     }
 
@@ -1390,14 +1373,14 @@ class OxiControls {
                             title: "This area has a structure (" + _elem._data.name + "), if ok will remove!!!",
                             onOk: ()=> {
                                 removeChild();
-                                if(app.main.selected.camera.isSVG)_elem.dropSelf();
+                                if (app.main.selected.camera.isSVG)_elem.dropSelf();
                             },
                             onAnyWay: ()=> {
                                 onFinish();
                             }
                         });
                     } else {
-                        if(app.main.selected.camera.isSVG)_elem.dropSelf();
+                        if (app.main.selected.camera.isSVG)_elem.dropSelf();
                         onFinish();
                     }
                 }, icon: '../assets/img/ic_close_white_24px.svg'
@@ -1557,7 +1540,10 @@ class OxiControls {
     }
 
     showAttachPopUp(elem) {
-        if (!elem || !elem._data)return alertify.error('please create area for this element, on right click');
+        if (!elem || !elem._data){
+            alertify.error('please create area for this element, on right click');
+            return false;
+        }
         let _mesh = elem,
             _dialog:any = new Dialog({title: 'Attach data source'});
         for (let i = 0, _a = this.app.main.preToolTip.dataElem; i < _a.length; i++) {
@@ -1584,6 +1570,7 @@ class OxiControls {
             _dialog.body.appendChild(d);
 
         }
+        return true;
     }
 }
 export class OxiToolTip {
@@ -1597,8 +1584,8 @@ export class OxiToolTip {
     constructor(mesh, main:OxiAPP) {
         let tooltip;
         let tooltipParent:any = main._preloaderStatus._tooltips;
-        if(!tooltipParent){
-              tooltipParent  = document.querySelector('.' + ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER);
+        if (!tooltipParent) {
+            tooltipParent = document.querySelector('.' + ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER);
             if (!tooltipParent) {
                 tooltipParent = document.createElement('div');
                 tooltipParent.className = ENTITY.ProjClasses.PROJ_TOOLTIPS.CONTAINER;
@@ -1664,7 +1651,7 @@ export class OxiToolTip {
             });
         }
         this.mesh = mesh;
-        if(!mesh.material)mesh.material={};
+        if (!mesh.material)mesh.material = {};
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
         if (!main.main.selected.canEdit) {
             if (mesh._data || mesh._dataSource) {
@@ -1713,7 +1700,7 @@ export class OxiToolTip {
             }
         }
 
-        if (!mesh._dataSource)tooltipParent.appendChild( tooltip);
+        if (!mesh._dataSource)tooltipParent.appendChild(tooltip);
 
     }
 
@@ -1728,7 +1715,6 @@ export class OxiToolTip {
         } else {
             this.mesh._dataSource.tooltip.active = !!show;
         }
-
         this.update();
     }
 

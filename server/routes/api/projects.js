@@ -230,10 +230,11 @@ function Structure(req, res) {
             status: false,
             message: "can`t save template"
         });
-        return JSON.parse(structure)[0];
+        this.structure =JSON.parse(structure)[0];
+        return  this.structure;
     }
     this.saveData = function () {
-        fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), JSON.stringify([structure]), 'utf8');
+        fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), JSON.stringify([this.structure]), 'utf8');
     }
 }
 
@@ -273,13 +274,14 @@ router.put("/project", function (request, responce) {
                     }
 
                     Project.update({_id: req.body._id}, {$set: _sets}, function (err) {
-                        if (req.session.lastEditProject)delete req.session.lastEditProject;
                         if (!err && _sets.link) {
                             var _str = new Structure(req, res),
                                 structure = _str.getData();
                             structure.dataSource = _sets.link;
                             _str.saveData();
+
                         }
+                        if (req.session.lastEditProject)delete req.session.lastEditProject;
                         return res.json({
                             status: !err,
                             message: err ? (err.message || err) : "Project successfully was changed."
