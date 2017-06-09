@@ -1669,8 +1669,7 @@ var SVGView = (function () {
                 _self.toSVG();
             },
             clone: function (isHard) {
-                var _this = this;
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY', 'left', 'top'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
@@ -1679,11 +1678,6 @@ var SVGView = (function () {
                         newObj[hardClone[i]] = this[hardClone[i]];
                     }
                     newObj.hardClone = true;
-                    if (isHard) {
-                        ['left', 'top'].forEach(function (field) {
-                            newObj[field] = _this[field];
-                        });
-                    }
                 }
                 if (!newObj.id)
                     newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
@@ -1919,7 +1913,7 @@ var SVGView = (function () {
                     _this.toSVG();
                 }
             });
-            fabricJS.on('object:modified', function (e) {
+            /*fabricJS.on('object:modified', (e)=> {
                 var obj = e.target;
                 var matrix = obj.calcTransformMatrix();
                 if (obj.type == 'polygon') {
@@ -1928,7 +1922,8 @@ var SVGView = (function () {
                     });
                     fabricJS.renderAll();
                 }
-            });
+
+            });*/
             fabricJS.on('mouse:over', function (e) {
                 if (_this.mode != _this.MODES.NO || !e.target)
                     return;

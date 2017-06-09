@@ -63,8 +63,8 @@ export class SVGView implements OnInit,AfterViewInit {
                 _self.toSVG();
             },
             clone: function (isHard) {
-                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'],
-                    hardClone = ['scaleX', 'scaleY'],
+                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click'],
+                    hardClone = ['scaleX', 'scaleY','left', 'top'],
                     self = this,
                     _pn = this.get('_points'),
                     _points = this.get('points'),
@@ -78,11 +78,11 @@ export class SVGView implements OnInit,AfterViewInit {
                         newObj[hardClone[i]] = this[hardClone[i]];
                     }
                     newObj.hardClone = true;
-                    if (isHard) {
-                        ['left', 'top'].forEach((field)=> {
-                            newObj[field] = this[field];
-                        });
-                    }
+                    //if (isHard) {
+                    //    [].forEach((field)=> {
+                    //        newObj[field] = this[field];
+                    //    });
+                    //}
                 }
 
                 if (!newObj.id)newObj.set('id', ENTITY.Config.randomstr());
@@ -341,7 +341,7 @@ export class SVGView implements OnInit,AfterViewInit {
                 }
 
             });
-            fabricJS.on('object:modified', (e)=> {
+            /*fabricJS.on('object:modified', (e)=> {
                 var obj = e.target;
                 var matrix = obj.calcTransformMatrix();
                 if (obj.type == 'polygon') {
@@ -351,7 +351,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     fabricJS.renderAll();
                 }
 
-            });
+            });*/
             fabricJS.on('mouse:over', (e)=> {
                 if (this.mode != this.MODES.NO || !e.target)return;
                 e.target.opacity = 1;
