@@ -1972,7 +1972,7 @@ var SVGView = (function () {
         setTimeout(function () {
             if (_this.glapp.app && _this.glapp.app._events)
                 _this.glapp.app._events.onWindowResize();
-        }, 2100);
+        }, 100);
     };
     SVGView.prototype.getRandomColor = function () {
         var letters = '0123456789ABCDEF';
@@ -2337,6 +2337,7 @@ var OxiAPP = (function () {
         this.imgType = '';
         this.screen = {};
         this._files = {};
+        this.allLoad = false;
         this.curLoadedTemplates = 0;
         this.infoHTML = [];
         this.TEMPLATES = {
@@ -2459,6 +2460,7 @@ var OxiAPP = (function () {
                         var parentCanvas = _this._container = main.projCnt['nativeElement'], onFinish = function () {
                             var onEnd = function () {
                                 _this._animation.play();
+                                _this.allLoad = true;
                                 var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
                                 if (_preloader)
                                     _preloader.parentNode.removeChild(_preloader);
@@ -7636,7 +7638,7 @@ module.exports = "<app-template-loader [model]=\"modelData\" *ngIf=\"dataSourceL
 /***/ 873:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"webgl-view\" [ngClass]=\"{'preview':selected && !selected.canEdit}\" #renderParent>\n    <div class=\"center-container THREEJS\" [ngClass]=\"{'svg-active':selected.camera.isSVG}\" #projCnt>\n        <app-project-preloader [preview]=\"preview\" [modelData]=\"selected.parent\" #preloader></app-project-preloader>\n        <app-project-webgl-controls [modelData]=\"selected.parent\" #preControls></app-project-webgl-controls>\n        <app-project-webgl-tooltip  [modelData]=\"selected.parent\" #preToolTip ></app-project-webgl-tooltip>\n        <app-project-svg-view  [selected]=\"selected\" [glapp]=\"_self\" *ngIf=\"selected.camera.isSVG\" #svgEl></app-project-svg-view>\n    </div>\n</div>\n"
+module.exports = "<div class=\"webgl-view\" [ngClass]=\"{'preview':selected && !selected.canEdit}\" #renderParent>\n    <div class=\"center-container THREEJS\" [ngClass]=\"{'svg-active':selected.camera.isSVG}\" #projCnt>\n        <app-project-preloader [preview]=\"preview\" [modelData]=\"selected.parent\" #preloader ></app-project-preloader>\n        <app-project-webgl-controls [modelData]=\"selected.parent\" #preControls></app-project-webgl-controls>\n        <app-project-webgl-tooltip  [modelData]=\"selected.parent\" #preToolTip ></app-project-webgl-tooltip>\n        <app-project-svg-view  [selected]=\"selected\" [glapp]=\"_self\" *ngIf=\"selected.camera.isSVG && app.allLoad\" #svgEl></app-project-svg-view>\n    </div>\n</div>\n"
 
 /***/ }),
 

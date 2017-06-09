@@ -115,6 +115,7 @@ class OxiAPP {
     _fileReader:FileReader;
     _container:any;
     _preloaderStatus:any;
+    allLoad:boolean=false;
     private curLoadedTemplates:number = 0;
     private templates:Array<any>;
     infoHTML:Array<OxiToolTip> = [];
@@ -263,6 +264,7 @@ class OxiAPP {
                             onFinish = ()=> {
                                 let onEnd = ()=> {
                                     this._animation.play();
+                                    this.allLoad = true;
                                     let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
                                     if (_preloader)_preloader.parentNode.removeChild(_preloader);
                                 };
