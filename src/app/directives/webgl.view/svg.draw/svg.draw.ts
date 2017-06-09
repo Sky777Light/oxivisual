@@ -386,7 +386,7 @@ export class SVGView implements OnInit,AfterViewInit {
 
         setTimeout(()=>{
             if(this.glapp.app && this.glapp.app._events) this.glapp.app._events.onWindowResize();
-        },100)
+        },2100)
     }
 
     private  getRandomColor() {

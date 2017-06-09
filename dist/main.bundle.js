@@ -1972,7 +1972,7 @@ var SVGView = (function () {
         setTimeout(function () {
             if (_this.glapp.app && _this.glapp.app._events)
                 _this.glapp.app._events.onWindowResize();
-        }, 100);
+        }, 2100);
     };
     SVGView.prototype.getRandomColor = function () {
         var letters = '0123456789ABCDEF';
