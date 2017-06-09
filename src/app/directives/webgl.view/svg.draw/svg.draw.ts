@@ -64,7 +64,7 @@ export class SVGView implements OnInit,AfterViewInit {
             },
             clone: function (isHard) {
                 let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click'],
-                    hardClone = ['scaleX', 'scaleY','left', 'top'],
+                    hardClone = ['scaleX', 'scaleY'],
                     self = this,
                     _pn = this.get('_points'),
                     _points = this.get('points'),
@@ -78,11 +78,11 @@ export class SVGView implements OnInit,AfterViewInit {
                         newObj[hardClone[i]] = this[hardClone[i]];
                     }
                     newObj.hardClone = true;
-                    //if (isHard) {
-                    //    [].forEach((field)=> {
-                    //        newObj[field] = this[field];
-                    //    });
-                    //}
+                    if (isHard) {
+                        ['left', 'top'].forEach((field)=> {
+                            newObj[field] = this[field];
+                        });
+                    }
                 }
 
                 if (!newObj.id)newObj.set('id', ENTITY.Config.randomstr());
@@ -206,7 +206,6 @@ export class SVGView implements OnInit,AfterViewInit {
             mode = this.mode = MODES.ADD,
             fabricJS = this.fabricJS;
 
-        if(this.glapp.app && this.glapp.app._events) this.glapp.app._events.onWindowResize();
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
             this.eventsData = [
@@ -384,6 +383,10 @@ export class SVGView implements OnInit,AfterViewInit {
                 if (e.target.click)e.target.click();
             });
         }
+
+        setTimeout(()=>{
+            if(this.glapp.app && this.glapp.app._events) this.glapp.app._events.onWindowResize();
+        },100)
     }
 
     private  getRandomColor() {

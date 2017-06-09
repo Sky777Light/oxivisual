@@ -1669,7 +1669,8 @@ var SVGView = (function () {
                 _self.toSVG();
             },
             clone: function (isHard) {
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY', 'left', 'top'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                var _this = this;
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
@@ -1678,6 +1679,11 @@ var SVGView = (function () {
                         newObj[hardClone[i]] = this[hardClone[i]];
                     }
                     newObj.hardClone = true;
+                    if (isHard) {
+                        ['left', 'top'].forEach(function (field) {
+                            newObj[field] = _this[field];
+                        });
+                    }
                 }
                 if (!newObj.id)
                     newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
@@ -1784,8 +1790,6 @@ var SVGView = (function () {
     SVGView.prototype.onLoadSVG = function () {
         var _this = this;
         var MODES = this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 }, MOUSE = this.MOUSE = { DOWN: 1, UP: 2, CUR: 0 }, mode = this.mode = MODES.ADD, fabricJS = this.fabricJS;
-        if (this.glapp.app && this.glapp.app._events)
-            this.glapp.app._events.onWindowResize();
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
             this.eventsData = [
@@ -1965,6 +1969,10 @@ var SVGView = (function () {
                     e.target.click();
             });
         }
+        setTimeout(function () {
+            if (_this.glapp.app && _this.glapp.app._events)
+                _this.glapp.app._events.onWindowResize();
+        }, 100);
     };
     SVGView.prototype.getRandomColor = function () {
         var letters = '0123456789ABCDEF';
