@@ -42,8 +42,8 @@ export class SVGView implements OnInit,AfterViewInit {
 
     ngAfterViewInit() {
         let svg = this.selected.svgDestination;
-        if(svg && svg.name)svg = svg.name;
-        this.dataSrc = svg && svg.match('.svg') ? ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER +svg : null;
+        if (svg instanceof Array)svg = svg[0].name;
+        this.dataSrc = svg && svg.match('.svg') ? ENTITY.Config.PROJ_LOC + this.selected.projFilesDirname + ENTITY.Config.FILE.DIR.DELIMETER + svg : null;
         let _self = this,
             domElem = this.dataEl['nativeElement'],
             handler = (domElem.addEventListener || domElem.attachEvent).bind(domElem);
@@ -57,13 +57,14 @@ export class SVGView implements OnInit,AfterViewInit {
                 this.get('_points').forEach((e)=> {
                     _self.fabricJS.remove(e);
                 });
+                if (this._dataSource)this._dataSource.active = false;
                 _self.fabricJS.remove(this);
                 _self.fabricJS.renderAll();
                 _self.toSVG();
             },
             clone: function (isHard) {
                 let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'],
-                    hardClone = ['scaleX', 'scaleY', 'left', 'top'],
+                    hardClone = ['scaleX', 'scaleY'],
                     self = this,
                     _pn = this.get('_points'),
                     _points = this.get('points'),
@@ -77,6 +78,11 @@ export class SVGView implements OnInit,AfterViewInit {
                         newObj[hardClone[i]] = this[hardClone[i]];
                     }
                     newObj.hardClone = true;
+                    if (isHard) {
+                        ['left', 'top'].forEach((field)=> {
+                            newObj[field] = this[field];
+                        });
+                    }
                 }
 
                 if (!newObj.id)newObj.set('id', ENTITY.Config.randomstr());
@@ -167,8 +173,8 @@ export class SVGView implements OnInit,AfterViewInit {
                                 if (this.canEdit) {
                                     for (let d = 0; d < _p.length; d++) {
                                         let circle = new fabric.Circle(this.settings.CIRCLE);
-                                        circle.left = (-center.x + _p[d].x) * scaleMultiplierX + center.x;
-                                        circle.top = (-center.y + _p[d].y) * scaleMultiplierY + center.y;
+                                        circle.left = (-center.x + _p[d].x  ) * scaleMultiplierX + center.x;
+                                        circle.top = (-center.y + _p[d].y ) * scaleMultiplierY + center.y;
                                         circle._iter = d;
                                         circle.parent = objects[i];
                                         _points.push(circle);
@@ -200,6 +206,7 @@ export class SVGView implements OnInit,AfterViewInit {
             mode = this.mode = MODES.ADD,
             fabricJS = this.fabricJS;
 
+        if(this.glapp.app && this.glapp.app._events) this.glapp.app._events.onWindowResize();
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
             this.eventsData = [
@@ -324,6 +331,7 @@ export class SVGView implements OnInit,AfterViewInit {
                             //curActiv.setScaleX(curActiv.originalState.scaleX);
                             //curActiv.setScaleY(curActiv.originalState.scaleY);
                             //curActiv.parent.setCoords();
+
                             break;
                         }
                     }
@@ -392,7 +400,8 @@ export class SVGView implements OnInit,AfterViewInit {
         this.selected.svgDestination = [{
             name: svgName,
             file: new File([new Blob([this.fabricJS.toSVG(['name'])], {type: 'text/*'})], svgName)
-        }]
+        }];
+        this.selected.hasChanges = true;
     }
 
     private onKeyUp(e) {
@@ -404,7 +413,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private onMouseDown(e) {
         e.preventDefault();
         if (e.button == 2) {
-            if (this.mode == this.MODES.NO) {
+            if (this.mode == this.MODES.NO && this.currentShape) {
                 this.glapp.app._projControls.showControls(e);
             } else {
                 this.onFinishDraw();
@@ -424,20 +433,23 @@ export class SVGView implements OnInit,AfterViewInit {
             this.toSVG();
         }
 
-        this.selected.hasChanges = true;
+
         this.curFill = this.getRandomColor();
         this.mode = this.MODES.NO;
         this.currentShape = null;
         this.fabricJS.deactivateAll().renderAll();
     }
 
-    resize(_w, _h, options:any = null) {
-
+    resize(_w=null, _h=null, options:any = null) {
         if (!this.fabricJS)return;
+        if (!_w && this.glapp.app._container)_w = this.glapp.app._container.clientWidth;
+        if (!_h && this.glapp.app._container)_h = this.glapp.app._container.clientHeight;
         let scaleMultiplierX = _w / this.fabricJS.width,
             scaleMultiplierY = _h / this.fabricJS.height,
             objects = this.fabricJS._objects;
 
+        if (_w)this.fabricJS.setWidth(_w);
+        if (_h)this.fabricJS.setHeight(_h);
         if (options) {
             scaleMultiplierX = this.fabricJS.width / options.width;
             scaleMultiplierY = this.fabricJS.height / options.height;
@@ -451,16 +463,14 @@ export class SVGView implements OnInit,AfterViewInit {
             }
             objects[i].left = objects[i].left * scaleMultiplierX;
             objects[i].top = objects[i].top * scaleMultiplierY;
-            objects[i].setCoords();
+
             if (objects[i]._tooltip)objects[i]._tooltip.show(false);
         }
-        if (_w)this.fabricJS.setWidth(_w);
-        if (_h)this.fabricJS.setHeight(_h);
+
         this.fabricJS.calcOffset().renderAll();
     }
 
     ngOnDestroy() {
-
         //delete this.selected.svgDestination;
         this.eventsData.forEach((el)=> {
             fabric.util.removeListener(el.cntx, el.name, el.callback);

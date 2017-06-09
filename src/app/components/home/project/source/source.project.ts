@@ -123,6 +123,11 @@ export class SourceProject {
                     {a: area.alignImages, n: ENTITY.Config.FILE.STORAGE.ALIGN_IMG},
                     {a: area.images, n: ENTITY.Config.FILE.STORAGE.PREVIEW_IMG}
                 ];
+            if(area.camera.isSVG){
+                filesUpload.splice(1,1);
+            } else{
+                filesUpload.splice(0,1);
+            }
             _form.append('dir', dirStartFrom);
             _form.append('destination', area.destination);
             _form.append('_id', this.project._id);
@@ -140,12 +145,22 @@ export class SourceProject {
                 if (res.status) {
                     area.projFilesDirname = dirStartFrom;
                     area.hasChanges = false;
-                    if (area.destination instanceof Array)area.destination = area.destination[0].name;
+                    if (area.destination instanceof Array){
+                        area.destination = area.destination[0].name;
+                        if(area.camera.isSVG){
+                            delete area.destination;
+                        } else{
+                            delete area.svgDestination;
+                        }
+                    }
                     if (area.svgDestination instanceof Array){
                         area.svgDestination = area.svgDestination[0].name;
-                       delete area.destination;
+                        if(area.camera.isSVG){
+                            delete area.destination;
+                        } else{
+                            delete area.svgDestination;
+                        }
                     }
-
                     ['alignImages', 'images'].forEach((field)=> {
                         for (let f = 0; area[field] && f < area[field].length; f++) {
                             if (area[field][f] instanceof ENTITY.ProjFile || area[field][f].file)area[field][f] = area[field][f].name;

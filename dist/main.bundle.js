@@ -1008,6 +1008,12 @@ var SourceProject = (function () {
                 { a: area.alignImages, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.ALIGN_IMG },
                 { a: area.images, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.PREVIEW_IMG }
             ];
+            if (area.camera.isSVG) {
+                filesUpload.splice(1, 1);
+            }
+            else {
+                filesUpload.splice(0, 1);
+            }
             _form.append('dir', dirStartFrom);
             _form.append('destination', area.destination);
             _form.append('_id', this.project._id);
@@ -1026,11 +1032,23 @@ var SourceProject = (function () {
                 if (res.status) {
                     area.projFilesDirname = dirStartFrom;
                     area.hasChanges = false;
-                    if (area.destination instanceof Array)
+                    if (area.destination instanceof Array) {
                         area.destination = area.destination[0].name;
+                        if (area.camera.isSVG) {
+                            delete area.destination;
+                        }
+                        else {
+                            delete area.svgDestination;
+                        }
+                    }
                     if (area.svgDestination instanceof Array) {
                         area.svgDestination = area.svgDestination[0].name;
-                        delete area.destination;
+                        if (area.camera.isSVG) {
+                            delete area.destination;
+                        }
+                        else {
+                            delete area.svgDestination;
+                        }
                     }
                     ['alignImages', 'images'].forEach(function (field) {
                         for (var f = 0; area[field] && f < area[field].length; f++) {
@@ -1626,8 +1644,8 @@ var SVGView = (function () {
     SVGView.prototype.ngAfterViewInit = function () {
         var _this = this;
         var svg = this.selected.svgDestination;
-        if (svg && svg.name)
-            svg = svg.name;
+        if (svg instanceof Array)
+            svg = svg[0].name;
         this.dataSrc = svg && svg.match('.svg') ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.selected.projFilesDirname + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + svg : null;
         var _self = this, domElem = this.dataEl['nativeElement'], handler = (domElem.addEventListener || domElem.attachEvent).bind(domElem);
         this.canEdit = this.selected.canEdit;
@@ -1640,12 +1658,15 @@ var SVGView = (function () {
                 this.get('_points').forEach(function (e) {
                     _self.fabricJS.remove(e);
                 });
+                if (this._dataSource)
+                    this._dataSource.active = false;
                 _self.fabricJS.remove(this);
                 _self.fabricJS.renderAll();
                 _self.toSVG();
             },
             clone: function (isHard) {
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY', 'left', 'top'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                var _this = this;
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', 'dataSource', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
@@ -1654,6 +1675,11 @@ var SVGView = (function () {
                         newObj[hardClone[i]] = this[hardClone[i]];
                     }
                     newObj.hardClone = true;
+                    if (isHard) {
+                        ['left', 'top'].forEach(function (field) {
+                            newObj[field] = _this[field];
+                        });
+                    }
                 }
                 if (!newObj.id)
                     newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
@@ -1760,6 +1786,8 @@ var SVGView = (function () {
     SVGView.prototype.onLoadSVG = function () {
         var _this = this;
         var MODES = this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 }, MOUSE = this.MOUSE = { DOWN: 1, UP: 2, CUR: 0 }, mode = this.mode = MODES.ADD, fabricJS = this.fabricJS;
+        if (this.glapp.app && this.glapp.app._events)
+            this.glapp.app._events.onWindowResize();
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
             this.eventsData = [
@@ -1953,6 +1981,7 @@ var SVGView = (function () {
                 name: svgName,
                 file: new File([new Blob([this.fabricJS.toSVG(['name'])], { type: 'text/*' })], svgName)
             }];
+        this.selected.hasChanges = true;
     };
     SVGView.prototype.onKeyUp = function (e) {
         if (e.keyCode === 27 || e.keyCode === 13) {
@@ -1962,7 +1991,7 @@ var SVGView = (function () {
     SVGView.prototype.onMouseDown = function (e) {
         e.preventDefault();
         if (e.button == 2) {
-            if (this.mode == this.MODES.NO) {
+            if (this.mode == this.MODES.NO && this.currentShape) {
                 this.glapp.app._projControls.showControls(e);
             }
             else {
@@ -1980,17 +2009,26 @@ var SVGView = (function () {
             this.currentShape.clone();
             this.toSVG();
         }
-        this.selected.hasChanges = true;
         this.curFill = this.getRandomColor();
         this.mode = this.MODES.NO;
         this.currentShape = null;
         this.fabricJS.deactivateAll().renderAll();
     };
     SVGView.prototype.resize = function (_w, _h, options) {
+        if (_w === void 0) { _w = null; }
+        if (_h === void 0) { _h = null; }
         if (options === void 0) { options = null; }
         if (!this.fabricJS)
             return;
+        if (!_w && this.glapp.app._container)
+            _w = this.glapp.app._container.clientWidth;
+        if (!_h && this.glapp.app._container)
+            _h = this.glapp.app._container.clientHeight;
         var scaleMultiplierX = _w / this.fabricJS.width, scaleMultiplierY = _h / this.fabricJS.height, objects = this.fabricJS._objects;
+        if (_w)
+            this.fabricJS.setWidth(_w);
+        if (_h)
+            this.fabricJS.setHeight(_h);
         if (options) {
             scaleMultiplierX = this.fabricJS.width / options.width;
             scaleMultiplierY = this.fabricJS.height / options.height;
@@ -2003,14 +2041,9 @@ var SVGView = (function () {
             }
             objects[i].left = objects[i].left * scaleMultiplierX;
             objects[i].top = objects[i].top * scaleMultiplierY;
-            objects[i].setCoords();
             if (objects[i]._tooltip)
                 objects[i]._tooltip.show(false);
         }
-        if (_w)
-            this.fabricJS.setWidth(_w);
-        if (_h)
-            this.fabricJS.setHeight(_h);
         this.fabricJS.calcOffset().renderAll();
     };
     SVGView.prototype.ngOnDestroy = function () {
@@ -2310,7 +2343,8 @@ var OxiAPP = (function () {
         this.model = new THREE.Object3D();
         this.scene.add(this.model);
         var renderer = this.gl = new THREE.WebGLRenderer({
-            antialias: true, alpha: true, clearAlpha: true,
+            antialias: true, alpha: true,
+            clearAlpha: true,
             sortObjects: false
         }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405, _self = this;
         renderer.domElement.className = 'gl-view';
@@ -2358,7 +2392,6 @@ var OxiAPP = (function () {
             if (main.selected.camera.target) {
                 this.controls.target.copy(main.selected.camera.target);
             }
-            this.toggleSVG();
         }
         this.camera.position.copy(this.camera.positionDef);
         this.camera.updateProjectionMatrix();
@@ -2418,6 +2451,7 @@ var OxiAPP = (function () {
                     _this.checkLoadedImg(function () {
                         var parentCanvas = _this._container = main.projCnt['nativeElement'], onFinish = function () {
                             var onEnd = function () {
+                                _this._animation.play();
                                 var _preloader = document.querySelector(_this.TEMPLATES.PRELOADER);
                                 if (_preloader)
                                     _preloader.parentNode.removeChild(_preloader);
@@ -2501,6 +2535,20 @@ var OxiAPP = (function () {
         }
     };
     OxiAPP.prototype.toggleSVG = function () {
+        if (this.main.svgEl) {
+            this.main.svgEl.fabricJS._objects.forEach(function (el) {
+                if (el._dataSource) {
+                    el._dataSource.active = false;
+                }
+            });
+        }
+        else {
+            this.model.traverse(function (el) {
+                if (el._dataSource) {
+                    el._dataSource.active = false;
+                }
+            });
+        }
     };
     OxiAPP.prototype.updateData = function (data) {
         var _selected = this.main.selected, settings = _selected.camera;
@@ -2513,7 +2561,7 @@ var OxiAPP = (function () {
                     this.model.scale.z = this.model.scale.y = this.model.scale.x;
                     break;
                 }
-            case 'isSvg':
+            case 'isSVG':
                 {
                     this.toggleSVG();
                     break;
@@ -7476,7 +7524,7 @@ module.exports = "<router-outlet></router-outlet>"
 /***/ 858:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"!modelStructure.camera.isSVG\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\"\n                                     [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <div class=\"add-btn\"\n                         *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\"\n                         (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>SVG(*)</label>\n                        <input name=\"isSVG\" type=\"checkbox\"\n                               [(ngModel)]=\"modelStructure.camera.isSVG\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\">\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div *ngIf=\"!modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Scale</label>\n                            <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\"\n                                   step=\"0.1\"\n                                   [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Current</label>\n                            <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\"\n                                   min=\"0\"\n                                   max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Frames</label>\n                            <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                                   [ngModel]=\"modelStructure.images.length\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera X</label>\n                            <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Y</label>\n                            <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Z</label>\n                            <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Fov</label>\n                            <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Size</label>\n                            <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                                   (change)=\"modelStructure.glApp.updateData('size')\"\n                                   step=\"0.1\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Lens</label>\n                            <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                                   [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Zoom</label>\n                            <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG\" (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
+module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"!modelStructure.camera.isSVG\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\"\n                                     [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <div class=\"add-btn\"\n                         *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\"\n                         (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>SVG(*)</label>\n                        <input name=\"isSVG\" type=\"checkbox\" (change)=\"modelStructure.glApp.updateData('isSVG')\"\n                               [(ngModel)]=\"modelStructure.camera.isSVG\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\">\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div *ngIf=\"!modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Scale</label>\n                            <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\"\n                                   step=\"0.1\"\n                                   [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Current</label>\n                            <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\"\n                                   min=\"0\"\n                                   max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Frames</label>\n                            <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                                   [ngModel]=\"modelStructure.images.length\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera X</label>\n                            <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Y</label>\n                            <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Z</label>\n                            <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Fov</label>\n                            <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Size</label>\n                            <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                                   (change)=\"modelStructure.glApp.updateData('size')\"\n                                   step=\"0.1\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Lens</label>\n                            <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                                   [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Zoom</label>\n                            <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG\" (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 

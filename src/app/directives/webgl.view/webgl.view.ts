@@ -132,7 +132,8 @@ class OxiAPP {
         this.model = new THREE.Object3D();
         this.scene.add(this.model);
         let renderer = this.gl = new THREE.WebGLRenderer({
-                antialias: true, alpha: true, clearAlpha: true,
+                antialias: true, alpha: true,
+                clearAlpha: true,
                 sortObjects: false
             }),
             SCREEN_WIDTH = this.screen.width = 720,
@@ -185,7 +186,6 @@ class OxiAPP {
             if (main.selected.camera.target) {
                 this.controls.target.copy(main.selected.camera.target);
             }
-            this.toggleSVG();
         }
 
 
@@ -262,6 +262,7 @@ class OxiAPP {
 
                             onFinish = ()=> {
                                 let onEnd = ()=> {
+                                    this._animation.play();
                                     let _preloader = document.querySelector(this.TEMPLATES.PRELOADER);
                                     if (_preloader)_preloader.parentNode.removeChild(_preloader);
                                 };
@@ -289,7 +290,6 @@ class OxiAPP {
                             Pace.stop();
                             onFinish();
                         }, 2000);
-
                         Pace.once('done', (e)=> {
                             clearTimeout(_inter);
                             onFinish();
@@ -348,6 +348,20 @@ class OxiAPP {
     }
 
     private toggleSVG() {
+        if(this.main.svgEl){
+            this.main.svgEl.fabricJS._objects.forEach((el:any)=>{
+                if(el._dataSource){
+                    el._dataSource.active = false;
+                }
+            });
+        }else{
+            this.model.traverse((el:any)=>{
+                if(el._dataSource){
+                    el._dataSource.active = false;
+                }
+            });
+        }
+
     }
 
     updateData(data) {
@@ -361,7 +375,7 @@ class OxiAPP {
                 this.model.scale.z = this.model.scale.y = this.model.scale.x;
                 break;
             }
-            case'isSvg':
+            case'isSVG':
             {
                 this.toggleSVG();
                 break;
@@ -536,7 +550,6 @@ class OxiAPP {
             let onError = function (xhr) {
                 alertify.error(xhr)
             };
-
 
             let loader = this.loader = this.loader || new THREE.OBJLoader(manager);
             loader.load(ENTITY.Config.PROJ_LOC + this.main.selected.projFilesDirname + "/" + this.main.selected.destination, (object)=> {

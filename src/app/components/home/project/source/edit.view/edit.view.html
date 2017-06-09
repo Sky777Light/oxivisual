@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="inp-form col-lg-3">
                         <label>SVG(*)</label>
-                        <input name="isSVG" type="checkbox"
+                        <input name="isSVG" type="checkbox" (change)="modelStructure.glApp.updateData('isSVG')"
                                [(ngModel)]="modelStructure.camera.isSVG">
                     </div>
                 </div>
