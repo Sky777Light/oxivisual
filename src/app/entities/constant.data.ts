@@ -11,6 +11,10 @@ export class Config {
         ProjFile: 5,
     };
     static EVENTS_NAME = {
+        KEY:{
+            DOWN:'keydown',
+            UP:'keyup',
+        },
         CNTXMENU: 'contextmenu',
         DB_CLICK: 'dblclick',
         SELECT_START: 'selectstart',

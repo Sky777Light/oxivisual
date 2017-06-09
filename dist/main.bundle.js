@@ -1642,6 +1642,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SVGView = (function () {
     function SVGView() {
         this.canEdit = false;
+        this.MODES = {};
+        this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 };
+        this.MOUSE = { DOWN: 1, UP: 2, CUR: 0, GROUP: 3 };
+        this.mode = this.MODES.ADD;
     }
     SVGView.prototype.ngOnInit = function () {
     };
@@ -1654,23 +1658,44 @@ var SVGView = (function () {
         var _self = this, domElem = this.dataEl['nativeElement'], handler = (domElem.addEventListener || domElem.attachEvent).bind(domElem);
         this.canEdit = this.selected.canEdit;
         fabric.Object.prototype.set({
+            selectable: false,
             transparentCorners: false,
             cornerColor: 'rgba(102,153,255,0.5)',
             cornerSize: 12,
             padding: 7,
+            _add: function (e) {
+                e._parent = this;
+                //if(this.type == _self.shapes.GROUP){
+                return this.addWithUpdate(e);
+                //}else{
+                //
+                //    return this.add(e);
+                //}
+            },
             dropSelf: function () {
+                var _this = this;
                 this.get('_points').forEach(function (e) {
-                    _self.fabricJS.remove(e);
+                    if (_this._parent) {
+                        _this._parent.remove(e);
+                    }
+                    else {
+                        _self.fabricJS.remove(e);
+                    }
                 });
                 if (this._dataSource)
                     this._dataSource.active = false;
-                _self.fabricJS.remove(this);
+                if (this._parent) {
+                    this._parent.remove(this);
+                }
+                else {
+                    _self.fabricJS.remove(this);
+                }
                 _self.fabricJS.renderAll();
                 _self.toSVG();
             },
             clone: function (isHard) {
                 var _this = this;
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click'], hardClone = ['scaleX', 'scaleY'], self = this, _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable'], hardClone = ['scaleX', 'scaleY'], _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
@@ -1687,14 +1712,26 @@ var SVGView = (function () {
                 }
                 if (!newObj.id)
                     newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
-                if (this.type == 'polygon') {
-                    newObj.selectable = false;
+                //if (this.type == _self.shapes.POLYGON) {
+                //    newObj.selectable = false;
+                //var matrix = this.calcTransformMatrix();
+                //newObj.set('transformMatrix',this.calcTransformMatrix());
+                //}
+                if (this._parent) {
+                    this._parent._add(newObj);
+                    if (this._parent.type == _self.shapes.GROUP) {
+                    }
                 }
-                _self.fabricJS.add(newObj);
+                else {
+                    _self.fabricJS._add(newObj);
+                }
                 if (_pn) {
                     newObj.set('_points', _pn);
                     for (var i = 0; i < _pn.length; i++) {
-                        _self.fabricJS.remove(_pn[i].parent).remove(_pn[i]).add(_pn[i]);
+                        if (_pn[i]._parent) {
+                            _pn[i]._parent.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
+                        }
+                        _self.fabricJS.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
                         _pn[i].parent = newObj;
                     }
                 }
@@ -1703,6 +1740,12 @@ var SVGView = (function () {
             getScreenPst: function () {
                 this.onscreenParams = this.getCenterPoint();
                 this.onscreenOffset = _self.glapp.app._offset();
+            }
+        });
+        fabric.Canvas.prototype.set({
+            _add: function (e) {
+                e._parent = this;
+                return this.add(e);
             }
         });
         setTimeout(function () {
@@ -1720,7 +1763,8 @@ var SVGView = (function () {
                     selectable: true,
                     excludeFromExport: true,
                     hasControls: false,
-                    originX: 'center', originY: 'center'
+                    originX: 'center',
+                    originY: 'center'
                 },
                 POLYGON: {
                     fill: _this.curFill,
@@ -1729,57 +1773,72 @@ var SVGView = (function () {
                 }
             };
             _this.shapes = {
+                GROUP: 'group',
                 POLYGON: 'polygon',
                 CIRCLE: 'circle'
             };
             if (_this.dataSrc) {
-                fabric.loadSVGFromURL(_this.dataSrc, function (objects, options) {
-                    if (objects && options) {
-                        //setTimeout(()=> {
-                        options.objects = objects;
-                        _this.resize(false, false, options);
-                        var scaleMultiplierX = _this.fabricJS.width / options.width, scaleMultiplierY = _this.fabricJS.height / options.height;
-                        var _loop_1 = function(i) {
-                            if (objects[i].type == _this.shapes.POLYGON) {
-                                var cur = objects[i], center_1 = cur.getCenterPoint(), _p = cur.get('points').map(function (el) {
-                                    return new fabric.Point(center_1.x + el.x, center_1.y + el.y);
-                                }), _points = [];
-                                for (var i_1 = 0, areas = _this.selected.areas; areas && i_1 < areas.length; i_1++) {
-                                    if (areas[i_1]._id.match(cur.id)) {
-                                        cur._data = areas[i_1];
-                                        break;
+                _this.glapp.authServ.get(_this.dataSrc, { hasAuthHeader: false }).subscribe(function (res) {
+                    _this.parseSVG(res._body, (function (objects, options) {
+                        if (objects && options) {
+                            (function parseAndInsert(objects, options) {
+                                if (options === void 0) { options = null; }
+                                options.objects = objects;
+                                _self.resize(false, false, options);
+                                var scaleMultiplierX = _self.fabricJS.width / options.width, scaleMultiplierY = _self.fabricJS.height / options.height;
+                                var _loop_1 = function(itm) {
+                                    var cur = objects[itm];
+                                    if (cur.type == _self.shapes.POLYGON) {
+                                        var center_1 = cur.getCenterPoint(), _p = cur.get('points').map(function (el) {
+                                            return new fabric.Point(center_1.x + el.x, center_1.y + el.y);
+                                        }), _points = [];
+                                        if (_self.canEdit) {
+                                            for (var d = 0; d < _p.length; d++) {
+                                                var circle = new fabric.Circle(_self.settings.CIRCLE);
+                                                circle.left = (-center_1.x + _p[d].x) * scaleMultiplierX + center_1.x;
+                                                circle.top = (-center_1.y + _p[d].y) * scaleMultiplierY + center_1.y;
+                                                circle._iter = d;
+                                                circle.parent = cur;
+                                                _points.push(circle);
+                                            }
+                                            cur.set('_points', _points);
+                                        }
+                                        cur.set('points', _p);
                                     }
-                                }
-                                for (var i_2 = 0, sources = _this.glapp.preToolTip.dataElem; sources && i_2 < sources.length; i_2++) {
-                                    if (sources[i_2]._id == cur.id || (cur._data && sources[i_2]._id == cur._data.dataSourceId)) {
-                                        cur._dataSource = sources[i_2];
-                                        break;
+                                    else if (cur.type == _self.shapes.GROUP) {
+                                        parseAndInsert(cur._objects, options);
                                     }
-                                }
-                                if (_this.canEdit) {
-                                    for (var d = 0; d < _p.length; d++) {
-                                        var circle = new fabric.Circle(_this.settings.CIRCLE);
-                                        circle.left = (-center_1.x + _p[d].x) * scaleMultiplierX + center_1.x;
-                                        circle.top = (-center_1.y + _p[d].y) * scaleMultiplierY + center_1.y;
-                                        circle._iter = d;
-                                        circle.parent = objects[i];
-                                        _points.push(circle);
+                                    for (var i = 0, areas = _self.selected.areas; areas && i < areas.length; i++) {
+                                        if (areas[i]._id.match(cur.id)) {
+                                            cur._data = areas[i];
+                                            break;
+                                        }
                                     }
-                                    cur.set('_points', _points);
+                                    for (var i = 0, sources = _self.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
+                                        if (sources[i]._id == cur.id || (cur._data && sources[i]._id == cur._data.dataSourceId)) {
+                                            cur._dataSource = sources[i];
+                                            break;
+                                        }
+                                    }
+                                    cur.opacity = _self.selected.camera.opacity;
+                                    if (!cur._parent) {
+                                        var cloneCur = cur.clone(true);
+                                        cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _self.glapp.app);
+                                        cloneCur._tooltip.update();
+                                        _self.fabricJS._add(cloneCur);
+                                    }
+                                    else {
+                                        _self.fabricJS._add(cur);
+                                    }
+                                };
+                                for (var itm = 0; itm < objects.length; itm++) {
+                                    _loop_1(itm);
                                 }
-                                cur.opacity = _this.selected.camera.opacity;
-                                cur.set('points', _p);
-                                var cloneCur = cur.clone(true);
-                                cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _this.glapp.app);
-                                cloneCur._tooltip.update();
-                            }
-                        };
-                        for (var i = 0; i < objects.length; i++) {
-                            _loop_1(i);
+                            })(objects, options);
+                            _this.fabricJS.calcOffset().renderAll();
                         }
-                        _this.fabricJS.calcOffset().renderAll();
-                    }
-                    _this.onLoadSVG();
+                        _this.onLoadSVG();
+                    }));
                 });
             }
             else {
@@ -1789,11 +1848,13 @@ var SVGView = (function () {
     };
     SVGView.prototype.onLoadSVG = function () {
         var _this = this;
-        var MODES = this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 }, MOUSE = this.MOUSE = { DOWN: 1, UP: 2, CUR: 0 }, mode = this.mode = MODES.ADD, fabricJS = this.fabricJS;
+        var fabricJS = this.fabricJS;
+        console.log(this.fabricJS);
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
             this.eventsData = [
-                { cntx: window, name: 'keyup', callback: function (e) { return _this.onKeyUp(e); } },
+                { cntx: window, name: __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.KEY.UP, callback: function (e) { return _this.onKeyUp(e); } },
+                { cntx: window, name: __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.KEY.DOWN, callback: function (e) { return _this.onKeyDown(e); } },
                 {
                     cntx: this.upperC,
                     name: __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CNTXMENU,
@@ -1829,7 +1890,7 @@ var SVGView = (function () {
             });
             fabricJS.on("mouse:up", function (event) {
                 _this.MOUSE.CUR = _this.MOUSE.UP;
-                if (_this.mode === _this.MODES.NO && _this.currentShape && _this.currentShape.type == _this.shapes.POLYGON) {
+                if (_this.mode === _this.MODES.NO && _this.currentShape && [_this.shapes.POLYGON, _this.shapes.GROUP].indexOf(_this.currentShape.type) > -1) {
                     if (!_this.glapp.app._projControls.showAttachPopUp(event.target)) {
                         _this.mode = _this.MODES.ADD;
                         _this.currentShape = false;
@@ -1841,7 +1902,10 @@ var SVGView = (function () {
                 var pos = fabricJS.getPointer(event.e), polySet = _this.settings.POLYGON, pointSet = _this.settings.CIRCLE;
                 pointSet.left = pos.x;
                 pointSet.top = pos.y;
-                if (_this.mode == _this.MODES.NO) {
+                if (_this.mode == _this.MODES.GROUP) {
+                    _this.curGroup.add(event.target);
+                }
+                else if (_this.mode == _this.MODES.NO) {
                     if (_this.currentShape) {
                     }
                     else {
@@ -1860,7 +1924,7 @@ var SVGView = (function () {
                     circle.parent = _this.currentShape = new fabric.Polygon(_points_1, polySet);
                     circle._iter = 0;
                     _this.currentShape.set("_points", _pointsSel);
-                    fabricJS.add(_this.currentShape).add(circle).renderAll();
+                    fabricJS._add(_this.currentShape)._add(circle).renderAll();
                     _this.mode = _this.MODES.EDIT;
                 }
                 else if (_this.mode === _this.MODES.EDIT && _this.currentShape && _this.currentShape.type === "polygon") {
@@ -1869,9 +1933,9 @@ var SVGView = (function () {
                         x: pos.x,
                         y: pos.y
                     });
-                    fabricJS.remove(_this.currentShape);
+                    _this.currentShape._parent.remove(_this.currentShape);
                     _points.forEach(function (e) {
-                        fabricJS.remove(e);
+                        e._parent.remove(e);
                     });
                     _this.currentShape = new fabric.Polygon(points, polySet);
                     var circle = new fabric.Circle(pointSet);
@@ -1879,9 +1943,9 @@ var SVGView = (function () {
                     circle._iter = _points.length;
                     _points.push(circle);
                     _this.currentShape.set("_points", _points);
-                    fabricJS.add(_this.currentShape);
+                    fabricJS._add(_this.currentShape);
                     _points.forEach(function (e) {
-                        fabricJS.add(e);
+                        fabricJS._add(e);
                     });
                 }
             });
@@ -1918,16 +1982,16 @@ var SVGView = (function () {
                 }
             });
             /*fabricJS.on('object:modified', (e)=> {
-                var obj = e.target;
-                var matrix = obj.calcTransformMatrix();
-                if (obj.type == 'polygon') {
-                    obj.get("_points").forEach(function (p) {
-                        return fabric.util.transformPoint(p, matrix);
-                    });
-                    fabricJS.renderAll();
-                }
+             var obj = e.target;
+             var matrix = obj.calcTransformMatrix();
+             if (obj.type == 'polygon') {
+             obj.get("_points").forEach(function (p) {
+             return fabric.util.transformPoint(p, matrix);
+             });
+             fabricJS.renderAll();
+             }
 
-            });*/
+             });*/
             fabricJS.on('mouse:over', function (e) {
                 if (_this.mode != _this.MODES.NO || !e.target)
                     return;
@@ -1991,8 +2055,21 @@ var SVGView = (function () {
         this.selected.hasChanges = true;
     };
     SVGView.prototype.onKeyUp = function (e) {
+        if (this.curGroup) {
+            this.curGroup.make();
+            this.curGroup = null;
+        }
+        this.mode = this.MODES.NO;
         if (e.keyCode === 27 || e.keyCode === 13) {
             this.onFinishDraw();
+        }
+    };
+    SVGView.prototype.onKeyDown = function (e) {
+        if (e.keyCode == 16) {
+            this.mode = this.MODES.GROUP;
+            if (!this.curGroup) {
+                this.curGroup = new SVGGroup(this);
+            }
         }
     };
     SVGView.prototype.onMouseDown = function (e) {
@@ -2059,6 +2136,100 @@ var SVGView = (function () {
             fabric.util.removeListener(el.cntx, el.name, el.callback);
         });
     };
+    SVGView.prototype.componentToHex = function (c) {
+        var hex = c.toString(16);
+        return hex.length == 1 ? "0" + hex : hex;
+    };
+    SVGView.prototype.rgbToHex = function (arr) {
+        return "#" + this.componentToHex(arr[0]) + this.componentToHex(arr[1]) + this.componentToHex(arr[2]);
+    };
+    SVGView.prototype.parseSVG = function (svg, callback) {
+        var _self = this, parser = new DOMParser(), doc = parser.parseFromString(svg, "image/svg+xml"), allElem = [], options = {}, _svg = doc.childNodes[1], parseDom = (function parseDom(_el, parent) {
+            if (parent === void 0) { parent = null; }
+            var _loop_2 = function(i) {
+                var e = _el.childNodes[i], elem;
+                if (e.nodeName == _self.shapes.POLYGON) {
+                    elem = new fabric.Polygon(e.attributes.points.textContent.split(" ").map(function (el) {
+                        var _d = el.split(",");
+                        return { x: _d[0], y: _d[1] };
+                    }), _self.settings.POLYGON);
+                    if (parent) {
+                        parent.add(elem);
+                        elem._parent = parent;
+                    }
+                }
+                else if (e.nodeName == 'g') {
+                    elem = new fabric.Group();
+                    if (e.childNodes.length) {
+                        parseDom(e, elem);
+                    }
+                }
+                if (elem) {
+                    if (!elem._parent)
+                        allElem.push(elem);
+                    var _loop_3 = function(attr) {
+                        var cntn = e.attributes[attr].textContent, _field = e.attributes[attr].localName;
+                        switch (_field) {
+                            case 'id':
+                                {
+                                    elem[_field] = cntn;
+                                    break;
+                                }
+                            case 'style':
+                                {
+                                    cntn.split(";").forEach(function (e) {
+                                        if (!e || !e.trim().length)
+                                            return;
+                                        var _el = e.split(":"), _f = _el[0].trim();
+                                        switch (_f) {
+                                            case 'opacity':
+                                                {
+                                                    elem[_f] = parseFloat(_el[1]);
+                                                    break;
+                                                }
+                                            case 'fill':
+                                                {
+                                                    elem[_f] = _self.rgbToHex(_el[1].split(",").map(function (e) {
+                                                        return +e.replace(/[^0-9.]/g, "");
+                                                    }));
+                                                    break;
+                                                }
+                                        }
+                                    });
+                                    break;
+                                }
+                            case 'transform':
+                                {
+                                    var _f_1 = ['left', "top", "scaleX", "scaleY"];
+                                    cntn.split(" ").forEach(function (e, key) {
+                                        elem[_f_1[key]] = parseFloat(e.replace(/[^0-9.]/g, ""));
+                                    });
+                                    break;
+                                }
+                        }
+                    };
+                    for (var attr in e.attributes) {
+                        _loop_3(attr);
+                    }
+                }
+            };
+            for (var i = 0; i < _el.childNodes.length; i++) {
+                _loop_2(i);
+            }
+        })(_svg);
+        for (var attr in _svg.attributes) {
+            var _fN = _svg.attributes[attr].localName;
+            switch (_fN) {
+                case 'height':
+                case 'width':
+                    {
+                        options[_fN] = parseFloat(_svg.attributes[attr].textContent);
+                        break;
+                    }
+            }
+        }
+        callback(allElem, options);
+    };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("parentEl"), 
         __metadata('design:type', Object)
@@ -2085,6 +2256,61 @@ var SVGView = (function () {
     ], SVGView);
     return SVGView;
     var _a, _b;
+}());
+var SVGGroup = (function () {
+    function SVGGroup(canvas) {
+        this.group = []; //new fabric.Group({selectable: false});
+        this.editPoints = [];
+        this.canvas = canvas;
+        this.color = this.canvas.getRandomColor();
+    }
+    SVGGroup.prototype.add = function (element) {
+        var _this = this;
+        if (element && element.type == this.canvas.shapes.POLYGON) {
+            element.fill = this.color;
+            [element].concat(element.get('_points')).forEach(function (elem) {
+                elem._parent.remove(elem);
+                elem._data = elem._dataSource = elem._tooltip = null;
+                if (elem.type == element.type) {
+                    _this.group.push(elem);
+                }
+                else {
+                    _this.editPoints.push(elem);
+                }
+            });
+            this.canvas.fabricJS.renderAll();
+        }
+    };
+    SVGGroup.prototype.childs = function () {
+        return this.group;
+    };
+    SVGGroup.prototype.clone = function (from) {
+        var _this = this;
+        if (from._parent) {
+            from._parent.remove(from);
+        }
+        else {
+            this.canvas.fabricJS.remove(from);
+        }
+        from._objects.forEach(function (el) {
+            _this.add(el);
+        });
+        return this.make();
+    };
+    SVGGroup.prototype.make = function () {
+        var group = new fabric.Group(this.childs(), { selectable: false });
+        group.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
+        this.group.forEach(function (e) {
+            e._parent = group;
+        });
+        this.canvas.fabricJS._add(group);
+        this.editPoints.forEach(function (el) {
+            el._parent._add(el);
+        });
+        this.canvas.fabricJS.renderAll();
+        return group;
+    };
+    return SVGGroup;
 }());
 //# sourceMappingURL=svg.draw.js.map
 
@@ -3829,6 +4055,10 @@ var Config = (function () {
         ProjFile: 5,
     };
     Config.EVENTS_NAME = {
+        KEY: {
+            DOWN: 'keydown',
+            UP: 'keyup',
+        },
         CNTXMENU: 'contextmenu',
         DB_CLICK: 'dblclick',
         SELECT_START: 'selectstart',
@@ -7174,7 +7404,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".svg-view canvas {\n  width: 100%;\n  height: 100%; }\n", ""]);
+exports.push([module.i, ".svg-view canvas {\n  width: 100%;\n  height: 100%; }\n\n.svg-view .log-info {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  font-size: 12px; }\n\n.svg-view .help-info {\n  position: fixed;\n  right: 10px;\n  top: 20px;\n  cursor: pointer; }\n  .svg-view .help-info * {\n    margin: 0;\n    padding: 0; }\n  .svg-view .help-info .h1 {\n    position: relative;\n    right: 0;\n    cursor: pointer; }\n    .svg-view .help-info .h1:hover {\n      color: yellowgreen; }\n  .svg-view .help-info p {\n    position: absolute;\n    right: 10px;\n    width: 0;\n    height: 0;\n    -webkit-transition: opacity , 0.2s linear;\n    transition: opacity , 0.2s linear;\n    opacity: 0;\n    background: #fff4c2; }\n    .svg-view .help-info p.active {\n      width: 250px;\n      height: inherit;\n      opacity: 1; }\n", ""]);
 
 // exports
 
@@ -7624,7 +7854,7 @@ module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"D
 /***/ 871:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"svg-view\"   #parentEl>\n    <canvas  #dataEl></canvas>\n    <div class=\"add-btn\" *ngIf=\"selected.canEdit\" >\n        <i class=\"material-icons\">help</i>\n        <div class=\"span-hover\">\n            <span>Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area</span>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"svg-view\" #parentEl>\n    <canvas #dataEl></canvas>\n    <div *ngIf=\"selected.canEdit\">\n        <div class=\"help-info\">\n            <h1 (mouseover)=\"help=!help\" (mouseout)=\"help=!help\">?</h1>\n                <p class=\"help-text\" [ngClass]=\"{'active':help}\">Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area</p>\n        </div>\n        <div class=\"log-info\">\n            <p *ngIf=\"mode == MODES.ADD || mode == MODES.EDIT\">drawing mode</p>\n            <p *ngIf=\"mode == MODES.NO\">selecting mode</p>\n            <p *ngIf=\"mode == MODES.GROUP\">grouping mode</p>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
