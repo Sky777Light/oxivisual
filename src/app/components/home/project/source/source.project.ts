@@ -45,7 +45,7 @@ export class SourceProject {
             if (p.data)this.select(p.data[0]);
             delete this.project['select'];
         }
-        if (this.project.model && this.project.model.data && this.project.model.data.length){
+        if (this.project.model && this.project.model.data && this.project.model.data.length) {
             this.project.select(this.project.model);
         }
     }
@@ -113,7 +113,8 @@ export class SourceProject {
 
     private uploadStructure(area:any, callback, dirStartFrom) {
         let _self = this,
-            siteStructure = [];
+            siteStructure = [],
+            isModel = area._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure;
 
         if (area) {
             let _form = new FormData(),
@@ -123,11 +124,14 @@ export class SourceProject {
                     {a: area.alignImages, n: ENTITY.Config.FILE.STORAGE.ALIGN_IMG},
                     {a: area.images, n: ENTITY.Config.FILE.STORAGE.PREVIEW_IMG}
                 ];
-            if(area.camera.isSVG){
-                filesUpload.splice(1,1);
-            } else{
-                filesUpload.splice(0,1);
+            if (isModel) {
+                if (area.camera.isSVG) {
+                    filesUpload.splice(1, 1);
+                } else {
+                    filesUpload.splice(0, 1);
+                }
             }
+
             _form.append('dir', dirStartFrom);
             _form.append('destination', area.destination);
             _form.append('_id', this.project._id);
@@ -145,27 +149,29 @@ export class SourceProject {
                 if (res.status) {
                     area.projFilesDirname = dirStartFrom;
                     area.hasChanges = false;
-                    if (area.destination instanceof Array){
-                        area.destination = area.destination[0].name;
-                        if(area.camera.isSVG){
-                            delete area.destination;
-                        } else{
-                            delete area.svgDestination;
+                    if (isModel) {
+                        if (area.destination instanceof Array) {
+                            area.destination = area.destination[0].name;
+                            if (area.camera.isSVG) {
+                                delete area.destination;
+                            } else {
+                                delete area.svgDestination;
+                            }
                         }
+                        if (area.svgDestination instanceof Array) {
+                            area.svgDestination = area.svgDestination[0].name;
+                            if (area.camera.isSVG) {
+                                delete area.destination;
+                            } else {
+                                delete area.svgDestination;
+                            }
+                        }
+                        ['alignImages', 'images'].forEach((field)=> {
+                            for (let f = 0; area[field] && f < area[field].length; f++) {
+                                if (area[field][f] instanceof ENTITY.ProjFile || area[field][f].file)area[field][f] = area[field][f].name;
+                            }
+                        });
                     }
-                    if (area.svgDestination instanceof Array){
-                        area.svgDestination = area.svgDestination[0].name;
-                        if(area.camera.isSVG){
-                            delete area.destination;
-                        } else{
-                            delete area.svgDestination;
-                        }
-                    }
-                    ['alignImages', 'images'].forEach((field)=> {
-                        for (let f = 0; area[field] && f < area[field].length; f++) {
-                            if (area[field][f] instanceof ENTITY.ProjFile || area[field][f].file)area[field][f] = area[field][f].name;
-                        }
-                    });
                 } else {
                     alertify.error(res.message);
                 }
@@ -196,10 +202,10 @@ export class SourceProject {
         if (this.selectedChild) {
             this.selectedChild._selected = !this.selectedChild._selected;
             if (this.selectedChild.glApp)this.selectedChild.glApp = this.selectedChild.parent = null;
-            if(!this.selectedChild.preview)this.selectedChild.preview = this.project.image;
+            if (!this.selectedChild.preview)this.selectedChild.preview = this.project.image;
         }
         this.selectedChild = null;
-        setTimeout(()=>{
+        setTimeout(()=> {
             this.selectedChild = child;
             child.sourcesApp = this;
             child.parent = this.project.model.data[0];

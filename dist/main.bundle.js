@@ -1000,7 +1000,7 @@ var SourceProject = (function () {
         }, data.projFilesDirname);
     };
     SourceProject.prototype.uploadStructure = function (area, callback, dirStartFrom) {
-        var _self = this, siteStructure = [];
+        var _self = this, siteStructure = [], isModel = area._category == __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure;
         if (area) {
             var _form = new FormData(), filesUpload = [
                 { a: area.svgDestination, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.SVG_FILE },
@@ -1008,11 +1008,13 @@ var SourceProject = (function () {
                 { a: area.alignImages, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.ALIGN_IMG },
                 { a: area.images, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.PREVIEW_IMG }
             ];
-            if (area.camera.isSVG) {
-                filesUpload.splice(1, 1);
-            }
-            else {
-                filesUpload.splice(0, 1);
+            if (isModel) {
+                if (area.camera.isSVG) {
+                    filesUpload.splice(1, 1);
+                }
+                else {
+                    filesUpload.splice(0, 1);
+                }
             }
             _form.append('dir', dirStartFrom);
             _form.append('destination', area.destination);
@@ -1032,30 +1034,32 @@ var SourceProject = (function () {
                 if (res.status) {
                     area.projFilesDirname = dirStartFrom;
                     area.hasChanges = false;
-                    if (area.destination instanceof Array) {
-                        area.destination = area.destination[0].name;
-                        if (area.camera.isSVG) {
-                            delete area.destination;
+                    if (isModel) {
+                        if (area.destination instanceof Array) {
+                            area.destination = area.destination[0].name;
+                            if (area.camera.isSVG) {
+                                delete area.destination;
+                            }
+                            else {
+                                delete area.svgDestination;
+                            }
                         }
-                        else {
-                            delete area.svgDestination;
+                        if (area.svgDestination instanceof Array) {
+                            area.svgDestination = area.svgDestination[0].name;
+                            if (area.camera.isSVG) {
+                                delete area.destination;
+                            }
+                            else {
+                                delete area.svgDestination;
+                            }
                         }
+                        ['alignImages', 'images'].forEach(function (field) {
+                            for (var f = 0; area[field] && f < area[field].length; f++) {
+                                if (area[field][f] instanceof __WEBPACK_IMPORTED_MODULE_2__entities_entities__["f" /* ProjFile */] || area[field][f].file)
+                                    area[field][f] = area[field][f].name;
+                            }
+                        });
                     }
-                    if (area.svgDestination instanceof Array) {
-                        area.svgDestination = area.svgDestination[0].name;
-                        if (area.camera.isSVG) {
-                            delete area.destination;
-                        }
-                        else {
-                            delete area.svgDestination;
-                        }
-                    }
-                    ['alignImages', 'images'].forEach(function (field) {
-                        for (var f = 0; area[field] && f < area[field].length; f++) {
-                            if (area[field][f] instanceof __WEBPACK_IMPORTED_MODULE_2__entities_entities__["f" /* ProjFile */] || area[field][f].file)
-                                area[field][f] = area[field][f].name;
-                        }
-                    });
                 }
                 else {
                     alertify.error(res.message);
