@@ -361,7 +361,7 @@ export class SVGView implements OnInit,AfterViewInit {
             _deltaX =  this.zoomDelta,
             _deltaY = _deltaX * this.curImgZoom.height / this.curImgZoom.width,
             zCnvs = this.zoomer['nativeElement'],
-            _offset  =event.e.currentTarget.getBoundingClientRect();
+            _offset  =event.e.target.getBoundingClientRect();
         this.updateImgZoomer();
         zCnvs.getContext('2d').drawImage(this.curImgZoom, event.e.clientX-_offset.left - _deltaX, event.e.clientY-_offset.top - _deltaY, 2 * _deltaX, 2 * _deltaY, 0, 0, zCnvs.width, zCnvs.height)
 
