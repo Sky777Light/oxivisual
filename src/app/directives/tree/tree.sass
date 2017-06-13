@@ -6,7 +6,8 @@ tree
       background: $text-color-gray
   ul
     &.tree-webgl-view
-      border-left: 1px solid #D6D5D5
+      border: none
+      border-left: 1px solid $deactive
       margin-left: 15px
       &.first
         border: none
@@ -14,12 +15,25 @@ tree
       .left-arrow
         position: absolute
         width: 15px
-        border-top: 1px solid #D6D5D5
+        border-top: 1px solid $deactive
         transform: translate(-100%,-33px)
+        &.end-list
+          transform: translate(-17px, -65px) rotate(0deg)
+          width: 0
+          border-right: 1px solid $deactive
+          height: 33px
+    /* z-index: 100000000; */
+    /* top: 0; */
+    border-right: 1px solid $deactive
   .tree-webgl-view
     list-style-type: none
-    padding: 0 15px
+    padding: 0
     margin: 10px 0
+    li
+      padding: 0px 16px
+      margin-left: -1px
+      &.last-item
+        border-left: 1px solid #ffffff
     .iconButton
       color: $black
       padding: 10px

@@ -11,7 +11,7 @@ import {
 @Component({
     selector: 'node',
     template: `
-<li>
+<li [ngClass]="{'last-item':lastE}">
 
 	<div class ="iconButton"   [ngClass]="item._selected?classes+' active':classes"  #iconBtn>
 	    <a  (click)="select(item )" >{{item.name}}</a>
@@ -20,6 +20,7 @@ import {
         </div>
 	</div>
 	<div *ngIf="!arrow" class="left-arrow"></div>
+	<div *ngIf="!arrow && lastE" class="left-arrow end-list"></div>
 
 	    <div class="pop-up bla-t" [hidden]="!showPopUp" *ngIf="showPopUp" (click)="showPopUp = !showPopUp" >
             <div class="pop-up-item"  *ngIf="item.areas && item.areas.length" (click)="IsExpanded = !IsExpanded">
@@ -37,7 +38,7 @@ import {
         </div>
 	<div *ngIf="IsExpanded">
         <ul *ngIf="item.areas" class="tree-webgl-view">
-              <node  *ngFor="let subitem of item.areas;"  [_iter]="index" [classes]="subitem._category===0?'js-code':subitem._category==1?'link':'' " [mainParent]="mainParent"  [parent]="item" [item]="subitem"></node>
+              <node  *ngFor="let subitem of item.areas; let itT = index"  [_iter]="index" [classes]="subitem._category===0?'js-code':subitem._category==1?'link':'' " [mainParent]="mainParent"  [parent]="item" [item]="subitem" [lastE]="itT == item.areas.length-1"></node>
         </ul>
 	</div>
 </li>
@@ -45,6 +46,7 @@ import {
 })
 export class MNode {
     @Input() classes:any;
+    @Input() lastE:boolean;
     @Input() arrow:any;
     @Input() item:any;
     @Input() parent:any;
@@ -72,8 +74,8 @@ export class MNode {
 @Component({
     selector: 'tree',
     template: `
-<ul class="tree-webgl-view first" >
-		<node *ngFor="let item of data" [arrow]="1" [classes]="'main'" [parent]="item" [mainParent]="mainParent" [item]="item"></node>
+<ul class="tree-webgl-view first"  >
+		<node *ngFor="let item of data" [arrow]="1" [classes]="'main'" [parent]="item" [mainParent]="mainParent" [item]="item"     ></node>
 </ul>
 `,
     styleUrls: ['./tree.sass']
@@ -81,4 +83,5 @@ export class MNode {
 export class MTree {
     @Input() data:any[];
     @Input() mainParent:any;
+
 }

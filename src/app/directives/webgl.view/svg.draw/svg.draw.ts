@@ -59,23 +59,27 @@ export class SVGView implements OnInit,AfterViewInit {
             cornerSize: 12,
             padding: 7,
             _add: function (e) {
-
                 e._parent = this;
-                //if(this.type == _self.shapes.GROUP){
                 return this.addWithUpdate(e);
+
                 //}else{
                 //
-                //    return this.add(e);
+                //
                 //}
             },
             dropSelf: function () {
-                this.get('_points').forEach((e)=> {
-                    if (this._parent) {
-                        this._parent.remove(e);
-                    } else {
-                        _self.fabricJS.remove(e);
-                    }
-                });
+                if(this._objects){
+                    while(this._objects.length) this._objects[0].dropSelf();
+
+                }else{
+                    this.get('_points').forEach((e)=> {
+                        if (e._parent) {
+                            e._parent.remove(e);
+                        } else {
+                            _self.fabricJS.remove(e);
+                        }
+                    });
+                }
                 if (this._dataSource)this._dataSource.active = false;
                 if (this._parent) {
                     this._parent.remove(this);
@@ -84,9 +88,10 @@ export class SVGView implements OnInit,AfterViewInit {
                 }
                 _self.fabricJS.renderAll();
                 _self.toSVG();
+
             },
             clone: function (isHard) {
-                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable'],
+                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'],
                     hardClone = ['scaleX', 'scaleY'],
                     _pn = this.get('_points'),
                     _points = this.get('points'),
@@ -102,7 +107,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     newObj.hardClone = true;
                     if (isHard) {
                         ['left', 'top'].forEach((field)=> {
-                            newObj[field] = this[field];
+                            newObj[field] =  this[field];
                         });
                     }
                 }
@@ -114,6 +119,7 @@ export class SVGView implements OnInit,AfterViewInit {
                 //var matrix = this.calcTransformMatrix();
                 //newObj.set('transformMatrix',this.calcTransformMatrix());
                 //}
+
 
                 if (this._parent) {
                     this._parent._add(newObj);
@@ -133,18 +139,63 @@ export class SVGView implements OnInit,AfterViewInit {
                     for (var i = 0; i < _pn.length; i++) {
                         if (_pn[i]._parent) {
                             _pn[i]._parent.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
+                        } else {
+                            _self.fabricJS.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
                         }
-                        _self.fabricJS.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
+
+
                         _pn[i].parent = newObj;
                     }
                 }
 
+                if (this._parent) this._parent.remove(this);
                 return newObj;
             },
             getScreenPst: function () {
                 this.onscreenParams = this.getCenterPoint();
                 this.onscreenOffset = _self.glapp.app._offset();
 
+            },
+            getBoundingBox: function () {
+                if (this.type == _self.shapes.POLYGON) {
+                    let points = this.get('points'),
+                        xMin, xMax, yMin, yMax;
+
+                    xMin = xMax = yMin = yMax = 0;
+                    for (let i = 0; i < points.length; i++) {
+                        let x = points[i].x,
+                            y = points[i].y;
+
+                        if (x < xMin) {
+                            xMin = x;
+                        }
+                        if (x > xMax) {
+                            xMax = x;
+                        }
+
+                        if (y < yMin) {
+                            yMin = y;
+                        }
+                        if (y > yMax) {
+                            yMax = y;
+                        }
+                    }
+
+                    this.width = xMax - xMin;
+                    this.height = yMax - yMin;
+                    if (this._parent) {
+
+                        this.minX = this._parent.left - xMin;
+                        this.minY = this._parent.top - yMin;
+                    } else {
+                        this.minX = xMin;
+                        this.minY = yMin;
+
+                    }
+                    this.left += this.minX;
+                    this.top += this.minY;
+
+                }
             }
         });
         fabric.Canvas.prototype.set({
@@ -186,67 +237,93 @@ export class SVGView implements OnInit,AfterViewInit {
             };
 
             if (this.dataSrc) {
-                this.glapp.authServ.get(this.dataSrc, {hasAuthHeader: false}).subscribe((res:any)=> {
-                    this.parseSVG(res._body, ((objects, options)=> {
-                        if (objects && options) {
-                            (function parseAndInsert(objects, options = null) {
-                                options.objects = objects;
+                fabric.loadSVGFromURL(this.dataSrc, (o, options)=> {
+
+                    this.glapp.authServ.get(this.dataSrc, {hasAuthHeader: false}).subscribe((res:any)=> {
+                        this.parseSVG(res._body, ((_objects, _options)=> {
+                            if (o && options) {
+
+                                options.objects = o;
                                 _self.resize(false, false, options);
                                 let scaleMultiplierX = _self.fabricJS.width / options.width,
-                                    scaleMultiplierY = _self.fabricJS.height / options.height;
-                                for (let itm = 0; itm < objects.length; itm++) {
-                                    let cur = objects[itm];
+                                    scaleMultiplierY = _self.fabricJS.height / options.height,
+                                    outs = [], groups = [];
+                                for (let itm = 0, maxL = o.length; itm < maxL; itm++) {
+                                    let cur = o[itm];
                                     if (cur.type == _self.shapes.POLYGON) {
                                         let center = cur.getCenterPoint(),
-                                            _p = cur.get('points').map((el)=> {
-                                                return new fabric.Point(center.x + el.x, center.y + el.y);
-                                            }),
-                                            _points = [];
-                                        if (_self.canEdit) {
-                                            for (let d = 0; d < _p.length; d++) {
-                                                let circle = new fabric.Circle(_self.settings.CIRCLE);
-                                                circle.left = (-center.x + _p[d].x  ) * scaleMultiplierX + center.x;
-                                                circle.top = (-center.y + _p[d].y ) * scaleMultiplierY + center.y;
-                                                circle._iter = d;
-                                                circle.parent = cur;
-                                                _points.push(circle);
-                                            }
-                                            cur.set('_points', _points);
-                                        }
-                                        cur.set('points', _p);
-                                    } else if (cur.type == _self.shapes.GROUP) {
-                                        parseAndInsert(cur._objects, options);
-                                    }
+                                            _points = [],
+                                            _p = cur.get('points').map((el, d)=> {
+                                                let _pC = new fabric.Point(center.x + el.x, center.y + el.y);
+                                                if (_self.canEdit) {
+                                                    let circle = new fabric.Circle(_self.settings.CIRCLE);
+                                                    circle.left = (el.x) * scaleMultiplierX + center.x;
+                                                    circle.top = (el.y) * scaleMultiplierY + center.y;
+                                                    circle._iter = d;
+                                                    circle.parent = cur;
+                                                    _points.push(circle);
+                                                }
+                                                return _pC;
+                                            });
 
+                                        if (_points.length) cur.set('_points', _points);
+                                        cur.set('points', _p);
+                                        outs.push(cur);
+                                    } else if (cur.type == _self.shapes.GROUP) {
+                                        //_self.fabricJS._add(cur);
+                                        //parseAndInsert(cur._objects, options);
+
+                                    }
+                                    let cloneCur = cur.clone(true);
+                                    for (let u = 0; u < _objects.length; u++) {
+                                        if (cloneCur.id == _objects[u].id) {
+                                            let _c = _objects.splice(u, 1)[0];
+                                            if (_c.group) {
+                                                let _group;
+                                                for (let g = 0; g < groups.length; g++) {
+                                                    if (_c.group.id == groups[g].id) {
+                                                        _group = groups[g];
+                                                        break;
+                                                    }
+                                                }
+                                                if (!_group) {
+                                                    _group = new SVGGroup(_self, _c.group.id);
+                                                    groups.push(_group);
+                                                }
+                                                _group.add(cloneCur);
+                                                cloneCur = _group;
+                                            }
+                                            break;
+                                        }
+                                    }
                                     for (let i = 0, areas = _self.selected.areas; areas && i < areas.length; i++) {
-                                        if (areas[i]._id.match(cur.id)) {
-                                            cur._data = areas[i];
+                                        if (areas[i]._id.match(cloneCur.id)) {
+                                            cloneCur._data = areas[i];
                                             break;
                                         }
                                     }
                                     for (let i = 0, sources = _self.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
-                                        if (sources[i]._id == cur.id || (cur._data && sources[i]._id == cur._data.dataSourceId)) {
-                                            cur._dataSource = sources[i];
+                                        if (sources[i]._id == cloneCur.id || (cloneCur._data && sources[i]._id == cloneCur._data.dataSourceId)) {
+                                            cloneCur._dataSource = sources[i];
                                             break;
                                         }
                                     }
-                                    cur.opacity = _self.selected.camera.opacity;
-                                    if (!cur._parent) {
-                                        let cloneCur = cur.clone(true);
-                                        cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
-                                        cloneCur._tooltip.update();
-                                        _self.fabricJS._add(cloneCur);
-                                    }else{
-                                        _self.fabricJS._add(cur);
-                                    }
+                                    cloneCur.opacity = _self.selected.camera.opacity;
 
+                                    if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
                                 }
-                            })(objects, options);
-
-                            this.fabricJS.calcOffset().renderAll();
-                        }
-                        this.onLoadSVG();
-                    }));
+                                for (let g = 0; g < groups.length; g++) {
+                                    let _n = groups[g].make();
+                                    for (let f =0,args =   ['_data','_dataSource','id'];f<args.length;f++) {
+                                        _n[args[f]] = groups[g][args[f]];
+                                    }
+                                    _n._tooltip = new OxiToolTip(_n, _self.glapp.app);
+                                }
+                                this.fabricJS.calcOffset().renderAll();
+                            }
+                            this.onLoadSVG();
+                        }));
+                    });
                 });
             } else {
                 this.onLoadSVG();
@@ -257,7 +334,6 @@ export class SVGView implements OnInit,AfterViewInit {
     private onLoadSVG() {
         let fabricJS = this.fabricJS;
 
-        console.log(this.fabricJS);
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
             this.eventsData = [
@@ -409,6 +485,9 @@ export class SVGView implements OnInit,AfterViewInit {
             fabricJS.on('mouse:over', (e)=> {
                 if (this.mode != this.MODES.NO || !e.target)return;
                 e.target.opacity = 1;
+                if (e.target._objects)e.target._objects.forEach((el:any)=> {
+                    el.opacity = 1
+                });
                 this.currentShape = e.target;
                 this.fabricJS.renderAll();
             });
@@ -416,6 +495,9 @@ export class SVGView implements OnInit,AfterViewInit {
                 if (this.mode != this.MODES.NO || !e.target)return;
                 //this.currentShape = null;
                 e.target.opacity = this.selected.camera.opacity;
+                if (e.target._objects)e.target._objects.forEach((el:any)=> {
+                    el.opacity = e.target.opacity
+                });
                 this.fabricJS.renderAll();
             });
         } else {
@@ -466,6 +548,7 @@ export class SVGView implements OnInit,AfterViewInit {
         if (this.curGroup) {
             this.curGroup.make();
             this.curGroup = null;
+            this.toSVG();
         }
         this.mode = this.MODES.NO;
         if (e.keyCode === 27 || e.keyCode === 13) {
@@ -507,7 +590,7 @@ export class SVGView implements OnInit,AfterViewInit {
         }
 
 
-        this.curFill = this.getRandomColor();
+        this.curFill = this.settings.POLYGON.fill = this.getRandomColor();
         this.mode = this.MODES.NO;
         this.currentShape = null;
         this.fabricJS.deactivateAll().renderAll();
@@ -515,6 +598,7 @@ export class SVGView implements OnInit,AfterViewInit {
 
     resize(_w = null, _h = null, options:any = null) {
         if (!this.fabricJS)return;
+        let _self = this;
         if (!_w && this.glapp.app._container)_w = this.glapp.app._container.clientWidth;
         if (!_h && this.glapp.app._container)_h = this.glapp.app._container.clientHeight;
         let scaleMultiplierX = _w / this.fabricJS.width,
@@ -530,15 +614,16 @@ export class SVGView implements OnInit,AfterViewInit {
         }
 
         for (let i = 0; i < objects.length; i++) {
-            if (objects[i].type == this.shapes.POLYGON) {
-                objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
-                objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
-            }
-            objects[i].left = objects[i].left * scaleMultiplierX;
-            objects[i].top = objects[i].top * scaleMultiplierY;
 
+            if (objects[i].type != _self.shapes.CIRCLE) {
+                objects[i].scaleX *= scaleMultiplierX;
+                objects[i].scaleY *= scaleMultiplierY;
+            }
+            objects[i].left *= scaleMultiplierX;
+            objects[i].top *= scaleMultiplierY;
             if (objects[i]._tooltip)objects[i]._tooltip.show(false);
         }
+
 
         this.fabricJS.calcOffset().renderAll();
     }
@@ -559,6 +644,10 @@ export class SVGView implements OnInit,AfterViewInit {
         return "#" + this.componentToHex(arr[0]) + this.componentToHex(arr[1]) + this.componentToHex(arr[2]);
     }
 
+    private getBoundingBox(points) {
+
+    }
+
     private parseSVG(svg, callback) {
         let
             _self = this, parser = new DOMParser(),
@@ -569,69 +658,104 @@ export class SVGView implements OnInit,AfterViewInit {
             parseDom = (function parseDom(_el, parent = null) {
                 for (let i = 0; i < _el.childNodes.length; i++) {
                     let e:any = _el.childNodes[i],
-                        elem;
+                        elem,
+                        setAttr = function setAttr(elem) {
+                            if (elem) {
+
+                                if (elem === 2) {
+                                    elem = {};
+                                } else {
+                                    if (parent) {
+                                        parent._add(elem);
+                                    } //else {
+                                    //_self.fabricJS._add(elem);
+                                    allElem.push(elem);
+                                    //}
+                                }
+
+                                for (let attr in e.attributes) {
+                                    let cntn = e.attributes[attr].textContent,
+                                        _field = e.attributes[attr].localName;
+                                    switch (_field) {
+                                        case 'id':
+                                        {
+                                            elem[_field] = cntn;
+                                            break;
+                                        }
+                                        case 'style':
+                                        {
+                                            cntn.split(";").forEach((e)=> {
+                                                if (!e || !e.trim().length)return;
+                                                let _el = e.split(":"),
+                                                    _f = _el[0].trim();
+                                                switch (_f) {
+                                                    case 'opacity':
+                                                    {
+                                                        elem[_f] = parseFloat(_el[1]);
+                                                        break;
+                                                    }
+                                                    case 'fill':
+                                                    {
+                                                        elem[_f] = _el[1].trim();
+                                                        /*_self.rgbToHex(_el[1].split(",").map((e)=> {
+                                                         return +e.replace(/[^0-9.]/g, "")
+                                                         }));*/
+                                                        break;
+                                                    }
+                                                }
+                                            });
+                                            break;
+                                        }
+                                        case 'transform':
+                                        {
+                                            let _f = ['left', "top", "scaleX", "scaleY"];
+                                            cntn.split(" ").forEach((e:any, key)=> {
+                                                if (!_f[key] || !e)return;
+                                                elem[_f[key]] = /*(parent && key < 2 ? parent[_f[key]] : 0) +*/ parseFloat(e.replace(/[^-0-9.]/g, ""));
+                                            });
+                                            break;
+                                        }
+                                    }
+                                }
+
+
+                                if (!elem.id)elem.id = ENTITY.Config.randomstr();
+                                elem.getBoundingBox();
+                                return elem;
+
+
+                            }
+                        }
+
                     if (e.nodeName == _self.shapes.POLYGON) {
+                        //let _elem = setAttr(2),
+                        //    _pX = parent ? parent._left : 0,
+                        //    _pY = parent ? parent._top : 0,
+                        //    _cX = parent ? _elem._left : 0,
+                        //    _cY = parent ? _elem._top : 0;
+
                         elem = new fabric.Polygon(e.attributes.points.textContent.split(" ").map((el)=> {
                             let _d = el.split(",");
-                            return {x: _d[0], y: _d[1]}
+                            if (_d.length < 2)return null;
+                            return new fabric.Point(parseFloat(_d[0]), parseFloat(_d[1]));
+                        }).filter((e)=> {
+                            if (e)return e;
                         }), _self.settings.POLYGON);
-                        if (parent) {
-                            parent.add(elem);
-                            elem._parent = parent;
-                        }
+
+                        setAttr(elem);
+
                     } else if (e.nodeName == 'g') {
                         elem = new fabric.Group();
                         if (e.childNodes.length) {
+
+                            setAttr(elem);
                             parseDom(e, elem);
                         }
                     }
-                    if (elem) {
-                        if (!elem._parent)allElem.push(elem);
-                        for (let attr in e.attributes) {
-                            let cntn = e.attributes[attr].textContent,
-                                _field = e.attributes[attr].localName;
-                            switch (_field) {
-                                case 'id':
-                                {
-                                    elem[_field] = cntn;
-                                    break;
-                                }
-                                case 'style':
-                                {
-                                    cntn.split(";").forEach((e)=> {
-                                        if (!e || !e.trim().length)return;
-                                        let _el = e.split(":"),
-                                            _f = _el[0].trim();
-                                        switch (_f) {
-                                            case 'opacity':
-                                            {
-                                                elem[_f] = parseFloat(_el[1]);
-                                                break;
-                                            }
-                                            case 'fill':
-                                            {
-                                                elem[_f] = _self.rgbToHex(_el[1].split(",").map((e)=> {
-                                                    return +e.replace(/[^0-9.]/g, "")
-                                                }));
-                                                break;
-                                            }
-                                        }
-                                    });
-                                    break;
-                                }
-                                case 'transform':
-                                {
-                                    let _f = ['left', "top", "scaleX", "scaleY"];
-                                    cntn.split(" ").forEach((e:any, key)=> {
-                                        elem[_f[key]] = parseFloat(e.replace(/[^0-9.]/g, ""));
-                                    });
-                                    break;
-                                }
-                            }
-                        }
-                    }
+
                 }
             })(_svg);
+
 
         for (let attr in _svg.attributes) {
             let _fN = _svg.attributes[attr].localName;
@@ -653,21 +777,29 @@ export class SVGView implements OnInit,AfterViewInit {
 class SVGGroup {
     group:Array<any>;
     editPoints:Array<any>;
+    private id:any;
     private canvas:any;
     private color:any;
 
-    constructor(canvas:any) {
+    constructor(canvas:any, id = ENTITY.Config.randomstr()) {
         this.group = [];//new fabric.Group({selectable: false});
         this.editPoints = [];
         this.canvas = canvas;
+        this.id = id;
         this.color = this.canvas.getRandomColor()
+    }
+
+    getScreenPst() {
+        return {x: 0, y: 0};
     }
 
     add(element) {
         if (element && element.type == this.canvas.shapes.POLYGON) {
             element.fill = this.color;
             [element].concat(element.get('_points')).forEach((elem:any)=> {
+                if(!elem)return;
                 elem._parent.remove(elem);
+                if (elem._dataSource)elem._dataSource.active = false;
                 elem._data = elem._dataSource = elem._tooltip = null;
                 if (elem.type == element.type) {
                     this.group.push(elem);
@@ -699,7 +831,7 @@ class SVGGroup {
 
     make() {
         let group = new fabric.Group(this.childs(), {selectable: false});
-        group.set('id', ENTITY.Config.randomstr());
+        group.set('id', this.id);
         this.group.forEach((e:any)=> {
             e._parent = group;
         });

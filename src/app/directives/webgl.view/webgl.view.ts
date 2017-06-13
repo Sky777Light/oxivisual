@@ -147,10 +147,7 @@ class OxiAPP {
         renderer.setClearColor(0xffffff, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-
-
         this.camera = new THREE.PerspectiveCamera(30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 200000);
-
         this.controls = main.selected.canEdit ? new THREE.OrbitControls(this.camera, renderer.domElement) : {
             update: ()=> {
             }, target: this.scene.position.clone()
@@ -163,7 +160,6 @@ class OxiAPP {
             this.dataSave();
             this._animation.play();
         });
-
         /*-----------set config data----------*/
         this.camera.positionDef = new THREE.Vector3(34800, 18600, -600);
         if (main.selected.camera) {
@@ -188,8 +184,6 @@ class OxiAPP {
                 this.controls.target.copy(main.selected.camera.target);
             }
         }
-
-
         this.camera.position.copy(this.camera.positionDef);
         this.camera.updateProjectionMatrix();
 
@@ -1268,7 +1262,7 @@ class OxiControls {
             let childSelected = (child:any)=> {
                     let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
                     _elem._data = child;
-                    child._id = _elem.name || _elem.id;
+                    child._id = _elem.name || _elem.id ||"";
                     child.name = child._id.toUpperCase();
                     child._id += Date.now();
 
@@ -1716,6 +1710,7 @@ export class OxiToolTip {
         }
 
         if (!mesh._dataSource)tooltipParent.appendChild(tooltip);
+        this.update();
 
     }
 

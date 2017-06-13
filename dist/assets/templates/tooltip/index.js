@@ -56,7 +56,7 @@ function my_parser(options) {
                 labelFiled = originalFields[2].split('.')[0];
 
             if (dataSource[toolTipField]) {
-                toolttip += '<div class="cos-tooltip" [ngClass]="{\'active\' : active}">';
+                toolttip += '<div class="cos-tooltip" [ngClass]="{\'active\' : tooltip.active}">';
                 var headerT = dataSource[toolTipField][originalFields[0].split('.')[1]],
                     bodyT = dataSource[toolTipField][originalFields[1].split('.')[1]][originalFields[1].split('.')[2]];
                 if (headerT) toolttip += '<div class="cos-tooltip-header"><span onselectstart="return false">' + headerT + '</span></div>';

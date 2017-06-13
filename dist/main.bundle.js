@@ -1665,23 +1665,27 @@ var SVGView = (function () {
             padding: 7,
             _add: function (e) {
                 e._parent = this;
-                //if(this.type == _self.shapes.GROUP){
                 return this.addWithUpdate(e);
                 //}else{
                 //
-                //    return this.add(e);
+                //
                 //}
             },
             dropSelf: function () {
-                var _this = this;
-                this.get('_points').forEach(function (e) {
-                    if (_this._parent) {
-                        _this._parent.remove(e);
-                    }
-                    else {
-                        _self.fabricJS.remove(e);
-                    }
-                });
+                if (this._objects) {
+                    while (this._objects.length)
+                        this._objects[0].dropSelf();
+                }
+                else {
+                    this.get('_points').forEach(function (e) {
+                        if (e._parent) {
+                            e._parent.remove(e);
+                        }
+                        else {
+                            _self.fabricJS.remove(e);
+                        }
+                    });
+                }
                 if (this._dataSource)
                     this._dataSource.active = false;
                 if (this._parent) {
@@ -1695,7 +1699,7 @@ var SVGView = (function () {
             },
             clone: function (isHard) {
                 var _this = this;
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable'], hardClone = ['scaleX', 'scaleY'], _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'], hardClone = ['scaleX', 'scaleY'], _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
@@ -1731,15 +1735,52 @@ var SVGView = (function () {
                         if (_pn[i]._parent) {
                             _pn[i]._parent.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
                         }
-                        _self.fabricJS.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
+                        else {
+                            _self.fabricJS.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
+                        }
                         _pn[i].parent = newObj;
                     }
                 }
+                if (this._parent)
+                    this._parent.remove(this);
                 return newObj;
             },
             getScreenPst: function () {
                 this.onscreenParams = this.getCenterPoint();
                 this.onscreenOffset = _self.glapp.app._offset();
+            },
+            getBoundingBox: function () {
+                if (this.type == _self.shapes.POLYGON) {
+                    var points = this.get('points'), xMin = void 0, xMax = void 0, yMin = void 0, yMax = void 0;
+                    xMin = xMax = yMin = yMax = 0;
+                    for (var i = 0; i < points.length; i++) {
+                        var x = points[i].x, y = points[i].y;
+                        if (x < xMin) {
+                            xMin = x;
+                        }
+                        if (x > xMax) {
+                            xMax = x;
+                        }
+                        if (y < yMin) {
+                            yMin = y;
+                        }
+                        if (y > yMax) {
+                            yMax = y;
+                        }
+                    }
+                    this.width = xMax - xMin;
+                    this.height = yMax - yMin;
+                    if (this._parent) {
+                        this.minX = this._parent.left - xMin;
+                        this.minY = this._parent.top - yMin;
+                    }
+                    else {
+                        this.minX = xMin;
+                        this.minY = yMin;
+                    }
+                    this.left += this.minX;
+                    this.top += this.minY;
+                }
             }
         });
         fabric.Canvas.prototype.set({
@@ -1778,67 +1819,88 @@ var SVGView = (function () {
                 CIRCLE: 'circle'
             };
             if (_this.dataSrc) {
-                _this.glapp.authServ.get(_this.dataSrc, { hasAuthHeader: false }).subscribe(function (res) {
-                    _this.parseSVG(res._body, (function (objects, options) {
-                        if (objects && options) {
-                            (function parseAndInsert(objects, options) {
-                                if (options === void 0) { options = null; }
-                                options.objects = objects;
+                fabric.loadSVGFromURL(_this.dataSrc, function (o, options) {
+                    _this.glapp.authServ.get(_this.dataSrc, { hasAuthHeader: false }).subscribe(function (res) {
+                        _this.parseSVG(res._body, (function (_objects, _options) {
+                            if (o && options) {
+                                options.objects = o;
                                 _self.resize(false, false, options);
-                                var scaleMultiplierX = _self.fabricJS.width / options.width, scaleMultiplierY = _self.fabricJS.height / options.height;
-                                var _loop_1 = function(itm) {
-                                    var cur = objects[itm];
+                                var scaleMultiplierX_1 = _self.fabricJS.width / options.width, scaleMultiplierY_1 = _self.fabricJS.height / options.height, outs = [], groups = [];
+                                var _loop_1 = function(itm, maxL) {
+                                    var cur = o[itm];
                                     if (cur.type == _self.shapes.POLYGON) {
-                                        var center_1 = cur.getCenterPoint(), _p = cur.get('points').map(function (el) {
-                                            return new fabric.Point(center_1.x + el.x, center_1.y + el.y);
-                                        }), _points = [];
-                                        if (_self.canEdit) {
-                                            for (var d = 0; d < _p.length; d++) {
+                                        var center_1 = cur.getCenterPoint(), _points_1 = [], _p = cur.get('points').map(function (el, d) {
+                                            var _pC = new fabric.Point(center_1.x + el.x, center_1.y + el.y);
+                                            if (_self.canEdit) {
                                                 var circle = new fabric.Circle(_self.settings.CIRCLE);
-                                                circle.left = (-center_1.x + _p[d].x) * scaleMultiplierX + center_1.x;
-                                                circle.top = (-center_1.y + _p[d].y) * scaleMultiplierY + center_1.y;
+                                                circle.left = (el.x) * scaleMultiplierX_1 + center_1.x;
+                                                circle.top = (el.y) * scaleMultiplierY_1 + center_1.y;
                                                 circle._iter = d;
                                                 circle.parent = cur;
-                                                _points.push(circle);
+                                                _points_1.push(circle);
                                             }
-                                            cur.set('_points', _points);
-                                        }
+                                            return _pC;
+                                        });
+                                        if (_points_1.length)
+                                            cur.set('_points', _points_1);
                                         cur.set('points', _p);
+                                        outs.push(cur);
                                     }
                                     else if (cur.type == _self.shapes.GROUP) {
-                                        parseAndInsert(cur._objects, options);
+                                    }
+                                    var cloneCur = cur.clone(true);
+                                    for (var u = 0; u < _objects.length; u++) {
+                                        if (cloneCur.id == _objects[u].id) {
+                                            var _c = _objects.splice(u, 1)[0];
+                                            if (_c.group) {
+                                                var _group = void 0;
+                                                for (var g = 0; g < groups.length; g++) {
+                                                    if (_c.group.id == groups[g].id) {
+                                                        _group = groups[g];
+                                                        break;
+                                                    }
+                                                }
+                                                if (!_group) {
+                                                    _group = new SVGGroup(_self, _c.group.id);
+                                                    groups.push(_group);
+                                                }
+                                                _group.add(cloneCur);
+                                                cloneCur = _group;
+                                            }
+                                            break;
+                                        }
                                     }
                                     for (var i = 0, areas = _self.selected.areas; areas && i < areas.length; i++) {
-                                        if (areas[i]._id.match(cur.id)) {
-                                            cur._data = areas[i];
+                                        if (areas[i]._id.match(cloneCur.id)) {
+                                            cloneCur._data = areas[i];
                                             break;
                                         }
                                     }
                                     for (var i = 0, sources = _self.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
-                                        if (sources[i]._id == cur.id || (cur._data && sources[i]._id == cur._data.dataSourceId)) {
-                                            cur._dataSource = sources[i];
+                                        if (sources[i]._id == cloneCur.id || (cloneCur._data && sources[i]._id == cloneCur._data.dataSourceId)) {
+                                            cloneCur._dataSource = sources[i];
                                             break;
                                         }
                                     }
-                                    cur.opacity = _self.selected.camera.opacity;
-                                    if (!cur._parent) {
-                                        var cloneCur = cur.clone(true);
+                                    cloneCur.opacity = _self.selected.camera.opacity;
+                                    if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)
                                         cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _self.glapp.app);
-                                        cloneCur._tooltip.update();
-                                        _self.fabricJS._add(cloneCur);
-                                    }
-                                    else {
-                                        _self.fabricJS._add(cur);
-                                    }
                                 };
-                                for (var itm = 0; itm < objects.length; itm++) {
-                                    _loop_1(itm);
+                                for (var itm = 0, maxL = o.length; itm < maxL; itm++) {
+                                    _loop_1(itm, maxL);
                                 }
-                            })(objects, options);
-                            _this.fabricJS.calcOffset().renderAll();
-                        }
-                        _this.onLoadSVG();
-                    }));
+                                for (var g = 0; g < groups.length; g++) {
+                                    var _n = groups[g].make();
+                                    for (var f = 0, args = ['_data', '_dataSource', 'id']; f < args.length; f++) {
+                                        _n[args[f]] = groups[g][args[f]];
+                                    }
+                                    _n._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](_n, _self.glapp.app);
+                                }
+                                _this.fabricJS.calcOffset().renderAll();
+                            }
+                            _this.onLoadSVG();
+                        }));
+                    });
                 });
             }
             else {
@@ -1849,7 +1911,6 @@ var SVGView = (function () {
     SVGView.prototype.onLoadSVG = function () {
         var _this = this;
         var fabricJS = this.fabricJS;
-        console.log(this.fabricJS);
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
             this.eventsData = [
@@ -1913,7 +1974,7 @@ var SVGView = (function () {
                     }
                 }
                 else if (_this.mode === _this.MODES.ADD) {
-                    var _points_1 = [{
+                    var _points_2 = [{
                             x: pos.x,
                             y: pos.y
                         }, {
@@ -1921,7 +1982,7 @@ var SVGView = (function () {
                             y: pos.y + 1
                         }];
                     var circle = new fabric.Circle(pointSet), _pointsSel = [circle];
-                    circle.parent = _this.currentShape = new fabric.Polygon(_points_1, polySet);
+                    circle.parent = _this.currentShape = new fabric.Polygon(_points_2, polySet);
                     circle._iter = 0;
                     _this.currentShape.set("_points", _pointsSel);
                     fabricJS._add(_this.currentShape)._add(circle).renderAll();
@@ -1996,6 +2057,10 @@ var SVGView = (function () {
                 if (_this.mode != _this.MODES.NO || !e.target)
                     return;
                 e.target.opacity = 1;
+                if (e.target._objects)
+                    e.target._objects.forEach(function (el) {
+                        el.opacity = 1;
+                    });
                 _this.currentShape = e.target;
                 _this.fabricJS.renderAll();
             });
@@ -2004,6 +2069,10 @@ var SVGView = (function () {
                     return;
                 //this.currentShape = null;
                 e.target.opacity = _this.selected.camera.opacity;
+                if (e.target._objects)
+                    e.target._objects.forEach(function (el) {
+                        el.opacity = e.target.opacity;
+                    });
                 _this.fabricJS.renderAll();
             });
         }
@@ -2058,6 +2127,7 @@ var SVGView = (function () {
         if (this.curGroup) {
             this.curGroup.make();
             this.curGroup = null;
+            this.toSVG();
         }
         this.mode = this.MODES.NO;
         if (e.keyCode === 27 || e.keyCode === 13) {
@@ -2093,7 +2163,7 @@ var SVGView = (function () {
             this.currentShape.clone();
             this.toSVG();
         }
-        this.curFill = this.getRandomColor();
+        this.curFill = this.settings.POLYGON.fill = this.getRandomColor();
         this.mode = this.MODES.NO;
         this.currentShape = null;
         this.fabricJS.deactivateAll().renderAll();
@@ -2104,6 +2174,7 @@ var SVGView = (function () {
         if (options === void 0) { options = null; }
         if (!this.fabricJS)
             return;
+        var _self = this;
         if (!_w && this.glapp.app._container)
             _w = this.glapp.app._container.clientWidth;
         if (!_h && this.glapp.app._container)
@@ -2119,12 +2190,12 @@ var SVGView = (function () {
             objects = options.objects;
         }
         for (var i = 0; i < objects.length; i++) {
-            if (objects[i].type == this.shapes.POLYGON) {
-                objects[i].scaleX = objects[i].scaleX * scaleMultiplierX;
-                objects[i].scaleY = objects[i].scaleY * scaleMultiplierY;
+            if (objects[i].type != _self.shapes.CIRCLE) {
+                objects[i].scaleX *= scaleMultiplierX;
+                objects[i].scaleY *= scaleMultiplierY;
             }
-            objects[i].left = objects[i].left * scaleMultiplierX;
-            objects[i].top = objects[i].top * scaleMultiplierY;
+            objects[i].left *= scaleMultiplierX;
+            objects[i].top *= scaleMultiplierY;
             if (objects[i]._tooltip)
                 objects[i]._tooltip.show(false);
         }
@@ -2143,73 +2214,99 @@ var SVGView = (function () {
     SVGView.prototype.rgbToHex = function (arr) {
         return "#" + this.componentToHex(arr[0]) + this.componentToHex(arr[1]) + this.componentToHex(arr[2]);
     };
+    SVGView.prototype.getBoundingBox = function (points) {
+    };
     SVGView.prototype.parseSVG = function (svg, callback) {
         var _self = this, parser = new DOMParser(), doc = parser.parseFromString(svg, "image/svg+xml"), allElem = [], options = {}, _svg = doc.childNodes[1], parseDom = (function parseDom(_el, parent) {
             if (parent === void 0) { parent = null; }
             var _loop_2 = function(i) {
-                var e = _el.childNodes[i], elem;
+                var e = _el.childNodes[i], elem = void 0, setAttr = function setAttr(elem) {
+                    if (elem) {
+                        if (elem === 2) {
+                            elem = {};
+                        }
+                        else {
+                            if (parent) {
+                                parent._add(elem);
+                            } //else {
+                            //_self.fabricJS._add(elem);
+                            allElem.push(elem);
+                        }
+                        var _loop_3 = function(attr) {
+                            var cntn = e.attributes[attr].textContent, _field = e.attributes[attr].localName;
+                            switch (_field) {
+                                case 'id':
+                                    {
+                                        elem[_field] = cntn;
+                                        break;
+                                    }
+                                case 'style':
+                                    {
+                                        cntn.split(";").forEach(function (e) {
+                                            if (!e || !e.trim().length)
+                                                return;
+                                            var _el = e.split(":"), _f = _el[0].trim();
+                                            switch (_f) {
+                                                case 'opacity':
+                                                    {
+                                                        elem[_f] = parseFloat(_el[1]);
+                                                        break;
+                                                    }
+                                                case 'fill':
+                                                    {
+                                                        elem[_f] = _el[1].trim();
+                                                        /*_self.rgbToHex(_el[1].split(",").map((e)=> {
+                                                         return +e.replace(/[^0-9.]/g, "")
+                                                         }));*/
+                                                        break;
+                                                    }
+                                            }
+                                        });
+                                        break;
+                                    }
+                                case 'transform':
+                                    {
+                                        var _f_1 = ['left', "top", "scaleX", "scaleY"];
+                                        cntn.split(" ").forEach(function (e, key) {
+                                            if (!_f_1[key] || !e)
+                                                return;
+                                            elem[_f_1[key]] = parseFloat(e.replace(/[^-0-9.]/g, ""));
+                                        });
+                                        break;
+                                    }
+                            }
+                        };
+                        for (var attr in e.attributes) {
+                            _loop_3(attr);
+                        }
+                        if (!elem.id)
+                            elem.id = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr();
+                        elem.getBoundingBox();
+                        return elem;
+                    }
+                };
                 if (e.nodeName == _self.shapes.POLYGON) {
+                    //let _elem = setAttr(2),
+                    //    _pX = parent ? parent._left : 0,
+                    //    _pY = parent ? parent._top : 0,
+                    //    _cX = parent ? _elem._left : 0,
+                    //    _cY = parent ? _elem._top : 0;
                     elem = new fabric.Polygon(e.attributes.points.textContent.split(" ").map(function (el) {
                         var _d = el.split(",");
-                        return { x: _d[0], y: _d[1] };
+                        if (_d.length < 2)
+                            return null;
+                        return new fabric.Point(parseFloat(_d[0]), parseFloat(_d[1]));
+                    }).filter(function (e) {
+                        if (e)
+                            return e;
                     }), _self.settings.POLYGON);
-                    if (parent) {
-                        parent.add(elem);
-                        elem._parent = parent;
-                    }
+                    setAttr(elem);
                 }
                 else if (e.nodeName == 'g') {
                     elem = new fabric.Group();
                     if (e.childNodes.length) {
+                        setAttr(elem);
                         parseDom(e, elem);
-                    }
-                }
-                if (elem) {
-                    if (!elem._parent)
-                        allElem.push(elem);
-                    var _loop_3 = function(attr) {
-                        var cntn = e.attributes[attr].textContent, _field = e.attributes[attr].localName;
-                        switch (_field) {
-                            case 'id':
-                                {
-                                    elem[_field] = cntn;
-                                    break;
-                                }
-                            case 'style':
-                                {
-                                    cntn.split(";").forEach(function (e) {
-                                        if (!e || !e.trim().length)
-                                            return;
-                                        var _el = e.split(":"), _f = _el[0].trim();
-                                        switch (_f) {
-                                            case 'opacity':
-                                                {
-                                                    elem[_f] = parseFloat(_el[1]);
-                                                    break;
-                                                }
-                                            case 'fill':
-                                                {
-                                                    elem[_f] = _self.rgbToHex(_el[1].split(",").map(function (e) {
-                                                        return +e.replace(/[^0-9.]/g, "");
-                                                    }));
-                                                    break;
-                                                }
-                                        }
-                                    });
-                                    break;
-                                }
-                            case 'transform':
-                                {
-                                    var _f_1 = ['left', "top", "scaleX", "scaleY"];
-                                    cntn.split(" ").forEach(function (e, key) {
-                                        elem[_f_1[key]] = parseFloat(e.replace(/[^0-9.]/g, ""));
-                                    });
-                                    break;
-                                }
-                        }
-                    };
-                    for (var attr in e.attributes) {
-                        _loop_3(attr);
                     }
                 }
             };
@@ -2258,18 +2355,27 @@ var SVGView = (function () {
     var _a, _b;
 }());
 var SVGGroup = (function () {
-    function SVGGroup(canvas) {
+    function SVGGroup(canvas, id) {
+        if (id === void 0) { id = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr(); }
         this.group = []; //new fabric.Group({selectable: false});
         this.editPoints = [];
         this.canvas = canvas;
+        this.id = id;
         this.color = this.canvas.getRandomColor();
     }
+    SVGGroup.prototype.getScreenPst = function () {
+        return { x: 0, y: 0 };
+    };
     SVGGroup.prototype.add = function (element) {
         var _this = this;
         if (element && element.type == this.canvas.shapes.POLYGON) {
             element.fill = this.color;
             [element].concat(element.get('_points')).forEach(function (elem) {
+                if (!elem)
+                    return;
                 elem._parent.remove(elem);
+                if (elem._dataSource)
+                    elem._dataSource.active = false;
                 elem._data = elem._dataSource = elem._tooltip = null;
                 if (elem.type == element.type) {
                     _this.group.push(elem);
@@ -2299,7 +2405,7 @@ var SVGGroup = (function () {
     };
     SVGGroup.prototype.make = function () {
         var group = new fabric.Group(this.childs(), { selectable: false });
-        group.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
+        group.set('id', this.id);
         this.group.forEach(function (e) {
             e._parent = group;
         });
@@ -3563,7 +3669,7 @@ var OxiControls = (function () {
             var childSelected_1 = function (child) {
                 var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
                 _elem._data = child;
-                child._id = _elem.name || _elem.id;
+                child._id = _elem.name || _elem.id || "";
                 child.name = child._id.toUpperCase();
                 child._id += Date.now();
                 if (!_this.app.main.selected.areas) {
@@ -3990,6 +4096,7 @@ var OxiToolTip = (function () {
         }
         if (!mesh._dataSource)
             tooltipParent.appendChild(tooltip);
+        this.update();
     }
     OxiToolTip.prototype.show = function (show) {
         if (show === void 0) { show = true; }
@@ -6316,6 +6423,10 @@ var MNode = (function () {
     ], MNode.prototype, "classes", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Boolean)
+    ], MNode.prototype, "lastE", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Object)
     ], MNode.prototype, "arrow", void 0);
     __decorate([
@@ -6341,7 +6452,7 @@ var MNode = (function () {
     MNode = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'node',
-            template: "\n<li>\n\n\t<div class =\"iconButton\"   [ngClass]=\"item._selected?classes+' active':classes\"  #iconBtn>\n\t    <a  (click)=\"select(item )\" >{{item.name}}</a>\n\t    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"showPopUp\">\n          <i class=\"material-icons set-icon\" (click)=\"showPopUp = !showPopUp\">more_vert</i>\n        </div>\n\t</div>\n\t<div *ngIf=\"!arrow\" class=\"left-arrow\"></div>\n\n\t    <div class=\"pop-up bla-t\" [hidden]=\"!showPopUp\" *ngIf=\"showPopUp\" (click)=\"showPopUp = !showPopUp\" >\n            <div class=\"pop-up-item\"  *ngIf=\"item.areas && item.areas.length\" (click)=\"IsExpanded = !IsExpanded\">\n              <i class=\"material-icons\">visibility</i>\n              <div class=\"pop-up-row-name\">\n                <span>{{IsExpanded?\"Hide\":\"Expand\"}}</span>\n              </div>\n            </div>\n            <div class=\"pop-up-item\" (click)=\"delete()\" *ngIf=\"item._id != parent._id\">\n              <i class=\"material-icons\">delete</i>\n              <div class=\"pop-up-row-name\">\n                <span>Delete</span>\n              </div>\n            </div>\n        </div>\n\t<div *ngIf=\"IsExpanded\">\n        <ul *ngIf=\"item.areas\" class=\"tree-webgl-view\">\n              <node  *ngFor=\"let subitem of item.areas;\"  [_iter]=\"index\" [classes]=\"subitem._category===0?'js-code':subitem._category==1?'link':'' \" [mainParent]=\"mainParent\"  [parent]=\"item\" [item]=\"subitem\"></node>\n        </ul>\n\t</div>\n</li>\n"
+            template: "\n<li [ngClass]=\"{'last-item':lastE}\">\n\n\t<div class =\"iconButton\"   [ngClass]=\"item._selected?classes+' active':classes\"  #iconBtn>\n\t    <a  (click)=\"select(item )\" >{{item.name}}</a>\n\t    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"showPopUp\">\n          <i class=\"material-icons set-icon\" (click)=\"showPopUp = !showPopUp\">more_vert</i>\n        </div>\n\t</div>\n\t<div *ngIf=\"!arrow\" class=\"left-arrow\"></div>\n\t<div *ngIf=\"!arrow && lastE\" class=\"left-arrow end-list\"></div>\n\n\t    <div class=\"pop-up bla-t\" [hidden]=\"!showPopUp\" *ngIf=\"showPopUp\" (click)=\"showPopUp = !showPopUp\" >\n            <div class=\"pop-up-item\"  *ngIf=\"item.areas && item.areas.length\" (click)=\"IsExpanded = !IsExpanded\">\n              <i class=\"material-icons\">visibility</i>\n              <div class=\"pop-up-row-name\">\n                <span>{{IsExpanded?\"Hide\":\"Expand\"}}</span>\n              </div>\n            </div>\n            <div class=\"pop-up-item\" (click)=\"delete()\" *ngIf=\"item._id != parent._id\">\n              <i class=\"material-icons\">delete</i>\n              <div class=\"pop-up-row-name\">\n                <span>Delete</span>\n              </div>\n            </div>\n        </div>\n\t<div *ngIf=\"IsExpanded\">\n        <ul *ngIf=\"item.areas\" class=\"tree-webgl-view\">\n              <node  *ngFor=\"let subitem of item.areas; let itT = index\"  [_iter]=\"index\" [classes]=\"subitem._category===0?'js-code':subitem._category==1?'link':'' \" [mainParent]=\"mainParent\"  [parent]=\"item\" [item]=\"subitem\" [lastE]=\"itT == item.areas.length-1\"></node>\n        </ul>\n\t</div>\n</li>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], MNode);
@@ -6361,7 +6472,7 @@ var MTree = (function () {
     MTree = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'tree',
-            template: "\n<ul class=\"tree-webgl-view first\" >\n\t\t<node *ngFor=\"let item of data\" [arrow]=\"1\" [classes]=\"'main'\" [parent]=\"item\" [mainParent]=\"mainParent\" [item]=\"item\"></node>\n</ul>\n",
+            template: "\n<ul class=\"tree-webgl-view first\"  >\n\t\t<node *ngFor=\"let item of data\" [arrow]=\"1\" [classes]=\"'main'\" [parent]=\"item\" [mainParent]=\"mainParent\" [item]=\"item\"     ></node>\n</ul>\n",
             styles: [__webpack_require__(810)]
         }), 
         __metadata('design:paramtypes', [])
@@ -7332,7 +7443,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\ntree .parent .iconButton {\n  background: #7E7E7E; }\n\ntree ul.tree-webgl-view {\n  border-left: 1px solid #D6D5D5;\n  margin-left: 15px; }\n  tree ul.tree-webgl-view.first {\n    border: none;\n    margin: 0; }\n  tree ul.tree-webgl-view .left-arrow {\n    position: absolute;\n    width: 15px;\n    border-top: 1px solid #D6D5D5;\n    -webkit-transform: translate(-100%, -33px);\n            transform: translate(-100%, -33px); }\n\ntree .tree-webgl-view {\n  list-style-type: none;\n  padding: 0 15px;\n  margin: 10px 0; }\n  tree .tree-webgl-view .iconButton {\n    color: #000000;\n    padding: 10px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);\n    max-width: 140px;\n    text-overflow: ellipsis;\n    display: block;\n    overflow: hidden;\n    cursor: pointer;\n    margin: 10px 0;\n    border-radius: 2px; }\n    tree .tree-webgl-view .iconButton:hover {\n      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3); }\n    tree .tree-webgl-view .iconButton.active {\n      border: 2px solid #77BBFF; }\n    tree .tree-webgl-view .iconButton.main {\n      background: #4D4D4E; }\n    tree .tree-webgl-view .iconButton.link {\n      background: #EBEBEB; }\n    tree .tree-webgl-view .iconButton.js-code {\n      background: #D6D5D5; }\n    tree .tree-webgl-view .iconButton a {\n      padding-top: 7px;\n      color: #000000;\n      float: left;\n      text-overflow: ellipsis;\n      overflow: hidden;\n      width: 70%; }\n    tree .tree-webgl-view .iconButton .pop-up-icon {\n      float: right; }\n    tree .tree-webgl-view .iconButton li {\n      margin: 30px 0; }\n\ntree .pop-up {\n  margin-right: -10px;\n  margin-top: -20px; }\n  tree .pop-up.bla-t {\n    position: absolute;\n    z-index: 1; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\ntree .parent .iconButton {\n  background: #7E7E7E; }\n\ntree ul {\n  /* z-index: 100000000; */\n  /* top: 0; */\n  border-right: 1px solid #D6D5D5; }\n  tree ul.tree-webgl-view {\n    border: none;\n    border-left: 1px solid #D6D5D5;\n    margin-left: 15px; }\n    tree ul.tree-webgl-view.first {\n      border: none;\n      margin: 0; }\n    tree ul.tree-webgl-view .left-arrow {\n      position: absolute;\n      width: 15px;\n      border-top: 1px solid #D6D5D5;\n      -webkit-transform: translate(-100%, -33px);\n              transform: translate(-100%, -33px); }\n      tree ul.tree-webgl-view .left-arrow.end-list {\n        -webkit-transform: translate(-17px, -65px) rotate(0deg);\n                transform: translate(-17px, -65px) rotate(0deg);\n        width: 0;\n        border-right: 1px solid #D6D5D5;\n        height: 33px; }\n\ntree .tree-webgl-view {\n  list-style-type: none;\n  padding: 0;\n  margin: 10px 0; }\n  tree .tree-webgl-view li {\n    padding: 0px 16px;\n    margin-left: -1px; }\n    tree .tree-webgl-view li.last-item {\n      border-left: 1px solid #ffffff; }\n  tree .tree-webgl-view .iconButton {\n    color: #000000;\n    padding: 10px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);\n    max-width: 140px;\n    text-overflow: ellipsis;\n    display: block;\n    overflow: hidden;\n    cursor: pointer;\n    margin: 10px 0;\n    border-radius: 2px; }\n    tree .tree-webgl-view .iconButton:hover {\n      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3); }\n    tree .tree-webgl-view .iconButton.active {\n      border: 2px solid #77BBFF; }\n    tree .tree-webgl-view .iconButton.main {\n      background: #4D4D4E; }\n    tree .tree-webgl-view .iconButton.link {\n      background: #EBEBEB; }\n    tree .tree-webgl-view .iconButton.js-code {\n      background: #D6D5D5; }\n    tree .tree-webgl-view .iconButton a {\n      padding-top: 7px;\n      color: #000000;\n      float: left;\n      text-overflow: ellipsis;\n      overflow: hidden;\n      width: 70%; }\n    tree .tree-webgl-view .iconButton .pop-up-icon {\n      float: right; }\n    tree .tree-webgl-view .iconButton li {\n      margin: 30px 0; }\n\ntree .pop-up {\n  margin-right: -10px;\n  margin-top: -20px; }\n  tree .pop-up.bla-t {\n    position: absolute;\n    z-index: 1; }\n", ""]);
 
 // exports
 
@@ -7404,7 +7515,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".svg-view canvas {\n  width: 100%;\n  height: 100%; }\n\n.svg-view .log-info {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  font-size: 12px; }\n\n.svg-view .help-info {\n  position: fixed;\n  right: 10px;\n  top: 20px;\n  cursor: pointer; }\n  .svg-view .help-info * {\n    margin: 0;\n    padding: 0; }\n  .svg-view .help-info .h1 {\n    position: relative;\n    right: 0;\n    cursor: pointer; }\n    .svg-view .help-info .h1:hover {\n      color: yellowgreen; }\n  .svg-view .help-info p {\n    position: absolute;\n    right: 10px;\n    width: 0;\n    height: 0;\n    -webkit-transition: opacity , 0.2s linear;\n    transition: opacity , 0.2s linear;\n    opacity: 0;\n    background: #fff4c2; }\n    .svg-view .help-info p.active {\n      width: 250px;\n      height: inherit;\n      opacity: 1; }\n", ""]);
+exports.push([module.i, ".svg-view canvas {\n  width: 100%;\n  height: 100%; }\n\n.svg-view .log-info {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  font-size: 12px; }\n\n.svg-view .help-info {\n  position: fixed;\n  right: 10px;\n  top: 20px;\n  cursor: pointer; }\n  .svg-view .help-info h1 {\n    position: relative;\n    right: 0;\n    cursor: pointer;\n    padding: 10px; }\n    .svg-view .help-info h1:hover {\n      color: yellowgreen; }\n  .svg-view .help-info p {\n    position: absolute;\n    right: 10px;\n    width: 0;\n    height: 0;\n    -webkit-transition: opacity, 0.2s linear;\n    transition: opacity, 0.2s linear;\n    opacity: 0;\n    background: #fff4c2; }\n    .svg-view .help-info p.active {\n      width: 250px;\n      height: inherit;\n      opacity: 1; }\n\n.svg-view * {\n  margin: 0;\n  padding: 0; }\n", ""]);
 
 // exports
 
@@ -7854,7 +7965,7 @@ module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"D
 /***/ 871:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"svg-view\" #parentEl>\n    <canvas #dataEl></canvas>\n    <div *ngIf=\"selected.canEdit\">\n        <div class=\"help-info\">\n            <h1 (mouseover)=\"help=!help\" (mouseout)=\"help=!help\">?</h1>\n                <p class=\"help-text\" [ngClass]=\"{'active':help}\">Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area</p>\n        </div>\n        <div class=\"log-info\">\n            <p *ngIf=\"mode == MODES.ADD || mode == MODES.EDIT\">drawing mode</p>\n            <p *ngIf=\"mode == MODES.NO\">selecting mode</p>\n            <p *ngIf=\"mode == MODES.GROUP\">grouping mode</p>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"svg-view\" #parentEl>\n    <canvas #dataEl></canvas>\n    <div *ngIf=\"selected.canEdit\">\n        <div class=\"help-info\">\n            <h1 (mouseover)=\"help=!help\" (mouseout)=\"help=!help\">?</h1>\n                <p class=\"help-text\" [ngClass]=\"{'active':help}\">Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area, hold SHIFT and click on polygon to make group from polygons</p>\n        </div>\n        <div class=\"log-info\">\n            <p *ngIf=\"mode == MODES.ADD || mode == MODES.EDIT\">drawing/edit mode</p>\n            <p *ngIf=\"mode == MODES.NO\">selecting mode</p>\n            <p *ngIf=\"mode == MODES.GROUP\">grouping mode</p>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
