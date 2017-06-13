@@ -92,6 +92,7 @@ export class OxiCamera extends ProjMain {
     size:number;
     aspect:number;
     isSVG:boolean;
+    showZoomHelper:boolean;
 
     constructor(entity:any = {}) {
         super(entity);
@@ -104,6 +105,7 @@ export class OxiCamera extends ProjMain {
         if (!this.opacity)this.opacity = 0.7;
         if (!this.kompass)this.kompass = new Kompass();
         if (this.isSVG === undefined)this.isSVG = false;
+        if (this.showZoomHelper === undefined)this.showZoomHelper = true;
     }
 }
 export class Kompass extends ProjMain{

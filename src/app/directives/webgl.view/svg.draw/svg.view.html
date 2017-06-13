@@ -1,6 +1,15 @@
 <div class="svg-view" #parentEl>
     <canvas #dataEl></canvas>
     <div *ngIf="selected.canEdit">
+
+        <div [ngClass] ="{'active': showHelpZoomer}" class="zoomer-c" >
+            <div class="left-border"></div>
+            <div class="top-border"></div>
+            <canvas #zoomer></canvas>
+        </div>
+
+        <canvas  class="buffer-c"   #bufferC></canvas>
+
         <div class="help-info">
             <h1 (mouseover)="help=!help" (mouseout)="help=!help">?</h1>
                 <p class="help-text" [ngClass]="{'active':help}">Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area, hold SHIFT and click on polygon to make group from polygons</p>

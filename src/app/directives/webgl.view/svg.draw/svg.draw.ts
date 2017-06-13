@@ -15,10 +15,13 @@ export class SVGView implements OnInit,AfterViewInit {
 
     private dataSrc:string;
     private canEdit:boolean = false;
+    private zoomDelta:number = 10;
     currentShape:any;
     private curKeyCode:number;
+    private showHelpZoomer:boolean=false;
     private curFill:any;
     private curGroup:any;
+    private curImgZoom:any;
     private mode:any;
     private MODES:any = {};
     private MOUSE:any;
@@ -29,6 +32,10 @@ export class SVGView implements OnInit,AfterViewInit {
     fabricJS:any;
     @ViewChild("parentEl")
         parentEl:HTMLElement;
+    @ViewChild("zoomer")
+        zoomer:HTMLElement;
+    @ViewChild("bufferC")
+        bufferC:HTMLElement;
     @ViewChild("dataEl")
         dataEl:ElementRef;
     @Input() selected:any;
@@ -38,6 +45,7 @@ export class SVGView implements OnInit,AfterViewInit {
         this.MODES = {EDIT: 1, ADD: 2, NORMAL: 3, NO: 4};
         this.MOUSE = {DOWN: 1, UP: 2, CUR: 0, GROUP: 3};
         this.mode = this.MODES.ADD;
+        this.curImgZoom = new Image();
     }
 
 
@@ -68,10 +76,10 @@ export class SVGView implements OnInit,AfterViewInit {
                 //}
             },
             dropSelf: function () {
-                if(this._objects){
-                    while(this._objects.length) this._objects[0].dropSelf();
+                if (this._objects) {
+                    while (this._objects.length) this._objects[0].dropSelf();
 
-                }else{
+                } else {
                     this.get('_points').forEach((e)=> {
                         if (e._parent) {
                             e._parent.remove(e);
@@ -107,7 +115,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     newObj.hardClone = true;
                     if (isHard) {
                         ['left', 'top'].forEach((field)=> {
-                            newObj[field] =  this[field];
+                            newObj[field] = this[field];
                         });
                     }
                 }
@@ -314,7 +322,7 @@ export class SVGView implements OnInit,AfterViewInit {
                                 }
                                 for (let g = 0; g < groups.length; g++) {
                                     let _n = groups[g].make();
-                                    for (let f =0,args =   ['_data','_dataSource','id'];f<args.length;f++) {
+                                    for (let f = 0, args = ['_data', '_dataSource', 'id']; f < args.length; f++) {
                                         _n[args[f]] = groups[g][args[f]];
                                     }
                                     _n._tooltip = new OxiToolTip(_n, _self.glapp.app);
@@ -331,8 +339,37 @@ export class SVGView implements OnInit,AfterViewInit {
         }, 200);
     }
 
+    private updateImgZoomer() {
+
+        let _self = this,
+            img = new Image();
+        img.onload = function () {
+
+            let _bCnvc = _self.bufferC['nativeElement'],
+                _cnvs = _bCnvc.getContext('2d');
+            _cnvs.drawImage(_self.glapp.app._slider.isDebug ? _self.glapp.app._slider.currentAlignFrame : _self.glapp.app._slider.currentFrame, 0, 0, _bCnvc.width, _bCnvc.height);
+            _cnvs.drawImage(img, 0, 0);
+            _self.curImgZoom.src = _bCnvc.toDataURL();
+
+        }
+        img.src = this.fabricJS.toDataURL();
+    }
+    private drawZoom(event){
+        this.showHelpZoomer = [this.MODES.EDIT,this.MODES.DRAW].indexOf(this.mode) < 0 && this.selected.camera.showZoomHelper;
+        if(!this.showHelpZoomer)return;
+        let
+            _deltaX =  this.zoomDelta,
+            _deltaY = _deltaX * this.curImgZoom.height / this.curImgZoom.width,
+            zCnvs = this.zoomer['nativeElement'],
+            _offset  =event.e.currentTarget.getBoundingClientRect();
+        this.updateImgZoomer();
+        zCnvs.getContext('2d').drawImage(this.curImgZoom, event.e.clientX-_offset.left - _deltaX, event.e.clientY-_offset.top - _deltaY, 2 * _deltaX, 2 * _deltaY, 0, 0, zCnvs.width, zCnvs.height)
+
+    }
+
     private onLoadSVG() {
-        let fabricJS = this.fabricJS;
+        let _self = this,
+            fabricJS = this.fabricJS;
 
         if (this.canEdit) {
             this.upperC = document.getElementsByClassName('upper-canvas')[0];
@@ -354,6 +391,11 @@ export class SVGView implements OnInit,AfterViewInit {
             fabricJS.on('before:selection:cleared', (options)=> {
                 if (this.mode != this.MODES.EDIT)this.mode = this.MODES.ADD;
             });
+            fabricJS.on('mouse:wheel',(event)=>{
+                this.zoomDelta += (event.e.deltaY || event.e.detail || event.e.wheelDelta)/10;
+                this.drawZoom(event);
+                event.e.preventDefault();
+            });
             fabricJS.on("mouse:move", (event)=> {
                 let pos = fabricJS.getPointer(event.e);
                 this.glapp.app._projControls.showControls(event.e, false);
@@ -368,6 +410,10 @@ export class SVGView implements OnInit,AfterViewInit {
                     this.currentShape.clone();
                     fabricJS.renderAll();
                 }
+
+                this.drawZoom(event);
+
+
             });
             fabricJS.on("mouse:up", (event:any)=> {
                 this.MOUSE.CUR = this.MOUSE.UP;
@@ -624,7 +670,16 @@ export class SVGView implements OnInit,AfterViewInit {
             if (objects[i]._tooltip)objects[i]._tooltip.show(false);
         }
 
-
+        if (this.zoomer) {
+            let _cnvs = this.zoomer['nativeElement'],
+                _bCnvs = this.bufferC['nativeElement'];
+            _bCnvs.width = _w;
+            _bCnvs.height = _h;
+            _cnvs.width = _w * 0.2;
+            _cnvs.height = _h * 0.2;
+            _cnvs.style.width = _w * 0.2 + 'px';
+            _cnvs.style.height = _h * 0.2 + 'px';
+        }
         this.fabricJS.calcOffset().renderAll();
     }
 
@@ -797,7 +852,7 @@ class SVGGroup {
         if (element && element.type == this.canvas.shapes.POLYGON) {
             element.fill = this.color;
             [element].concat(element.get('_points')).forEach((elem:any)=> {
-                if(!elem)return;
+                if (!elem)return;
                 elem._parent.remove(elem);
                 if (elem._dataSource)elem._dataSource.active = false;
                 elem._data = elem._dataSource = elem._tooltip = null;
