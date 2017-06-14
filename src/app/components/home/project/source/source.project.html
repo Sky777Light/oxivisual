@@ -9,7 +9,7 @@
                 <label [class.full-op]="parentName.invalid && parentName.touched">The Parent`s Name is required!</label>
             </div>
             <div class="upload-list col-lg-12">
-                <app-file-upload [title]="'Upload model'" [accept]="'.obj'" [required]="1" [category]="_CONFIG.FILE.TYPE.MODEL_OBJ" class="col-lg-6"
+                <app-file-upload [title]="'Upload obj/svg'" [accept]="'.obj,.svg'" [required]="1" [category]="[]" class="col-lg-6"
                                  #modelObj></app-file-upload>
                 <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'" [required]="1" [category]="_CONFIG.FILE.TYPE.PREVIEW_IMG" [accept]="'image/*'"
                                  class="col-lg-6" #framesObj></app-file-upload>

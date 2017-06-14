@@ -22,6 +22,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private curFill:any;
     private curGroup:any;
     private curImgZoom:any;
+    private curImgBufferZoom:any;
     private mode:any;
     private MODES:any = {};
     private MOUSE:any;
@@ -46,10 +47,19 @@ export class SVGView implements OnInit,AfterViewInit {
         this.MOUSE = {DOWN: 1, UP: 2, CUR: 0, GROUP: 3};
         this.mode = this.MODES.ADD;
         this.curImgZoom = new Image();
+        this.curImgBufferZoom = new Image();
     }
 
 
     ngOnInit() {
+    }
+
+    reload(data) {
+        fabric.loadSVGFromString(data, (o, _options)=> {
+            this.parseSVG(data, ((_objects)=> {
+                this.onFinishParse(o, _options, _objects);
+            }));
+        });
     }
 
     ngAfterViewInit() {
@@ -101,12 +111,13 @@ export class SVGView implements OnInit,AfterViewInit {
 
             },
             clone: function (isHard) {
-                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'],
+                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects', 'scaleX0', 'scaleY0', 'left0', 'top0'],
                     hardClone = ['scaleX', 'scaleY'],
                     _pn = this.get('_points'),
                     _points = this.get('points'),
                     newObj = new this.constructor(_points);
 
+                if (this._parent) this._parent.remove(this);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
@@ -165,7 +176,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     }
                 }
 
-                if (this._parent) this._parent.remove(this);
+
                 return newObj;
             },
             getScreenPst: function () {
@@ -261,86 +272,8 @@ export class SVGView implements OnInit,AfterViewInit {
                 fabric.loadSVGFromURL(this.dataSrc, (o, options)=> {
 
                     this.glapp.authServ.get(this.dataSrc, {hasAuthHeader: false}).subscribe((res:any)=> {
-                        this.parseSVG(res._body, ((_objects, _options)=> {
-                            if (o && options) {
-                                options.objects = o;
-                                _self.resize(false, false, options);
-                                let scaleMultiplierX = _self.fabricJS.width / options.width,
-                                    scaleMultiplierY = _self.fabricJS.height / options.height,
-                                    outs = [], groups = [];
-                                for (let itm = 0, maxL = o.length; itm < maxL; itm++) {
-                                    let cur = o[itm];
-                                    if (cur.type == _self.shapes.POLYGON) {
-                                        let center = cur.getCenterPoint(),
-                                            _points = [],
-                                            _p = cur.get('points').map((el, d)=> {
-                                                let _pC = new fabric.Point(center.x + el.x, center.y + el.y);
-                                                if (_self.canEdit) {
-                                                    let circle = new fabric.Circle(_self.settings.CIRCLE);
-                                                    circle.left = (el.x) * scaleMultiplierX + center.x;
-                                                    circle.top = (el.y) * scaleMultiplierY + center.y;
-                                                    circle._iter = d;
-                                                    circle.parent = cur;
-                                                    _points.push(circle);
-                                                }
-                                                return _pC;
-                                            });
-
-                                        if (_points.length) cur.set('_points', _points);
-                                        cur.set('points', _p);
-                                        outs.push(cur);
-                                    } else if (cur.type == _self.shapes.GROUP) {
-                                        //_self.fabricJS._add(cur);
-                                        //parseAndInsert(cur._objects, options);
-
-                                    }
-                                    let cloneCur = cur.clone(true);
-                                    for (let u = 0; u < _objects.length; u++) {
-                                        if (cloneCur.id == _objects[u].id) {
-                                            let _c = _objects.splice(u, 1)[0];
-                                            if (_c.group) {
-                                                let _group;
-                                                for (let g = 0; g < groups.length; g++) {
-                                                    if (_c.group.id == groups[g].id) {
-                                                        _group = groups[g];
-                                                        break;
-                                                    }
-                                                }
-                                                if (!_group) {
-                                                    _group = new SVGGroup(_self, _c.group.id);
-                                                    groups.push(_group);
-                                                }
-                                                _group.add(cloneCur);
-                                                cloneCur = _group;
-                                            }
-                                            break;
-                                        }
-                                    }
-                                    for (let i = 0, areas = _self.selected.areas; areas && i < areas.length; i++) {
-                                        if (areas[i]._id.match(cloneCur.id)) {
-                                            cloneCur._data = areas[i];
-                                            break;
-                                        }
-                                    }
-                                    for (let i = 0, sources = _self.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
-                                        if (sources[i]._id == cloneCur.id || (cloneCur._data && sources[i]._id == cloneCur._data.dataSourceId)) {
-                                            cloneCur._dataSource = sources[i];
-                                            break;
-                                        }
-                                    }
-                                    cloneCur.opacity = _self.selected.camera.opacity;
-
-                                    if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
-                                }
-                                for (let g = 0; g < groups.length; g++) {
-                                    let _n = groups[g].make();
-                                    for (let f = 0, args = ['_data', '_dataSource', 'id']; f < args.length; f++) {
-                                        _n[args[f]] = groups[g][args[f]];
-                                    }
-                                    _n._tooltip = new OxiToolTip(_n, _self.glapp.app);
-                                }
-                                this.fabricJS.calcOffset().renderAll();
-                            }
+                        this.parseSVG(res._body, ((_objects)=> {
+                            _self.onFinishParse(o, options, _objects);
                             this.onLoadSVG();
                         }));
                     });
@@ -351,21 +284,98 @@ export class SVGView implements OnInit,AfterViewInit {
         }, 200);
     }
 
-    private updateImgZoomer(callback) {
+    private onFinishParse(o, options, _objects) {
+        let _self = this;
+        if (o && options) {
+            options.objects = o;
+            _self.resize(false, false, options);
+            let scaleMultiplierX = _self.fabricJS.width / options.width,
+                scaleMultiplierY = _self.fabricJS.height / options.height,
+                outs = [], groups = [];
+            for (let itm = 0, maxL = o.length; itm < maxL; itm++) {
+                let cur = o[itm];
+                if (cur.type == _self.shapes.POLYGON) {
+                    let center = cur.getCenterPoint(),
+                        _points = [],
+                        _p = cur.get('points').map((el, d)=> {
+                            let _pC = new fabric.Point(center.x + el.x, center.y + el.y);
+                            if (_self.canEdit) {
+                                let circle = new fabric.Circle(_self.settings.CIRCLE);
+                                circle.left = (el.x) * scaleMultiplierX + center.x;
+                                circle.top = (el.y) * scaleMultiplierY + center.y;
+                                circle._iter = d;
+                                circle.parent = cur;
+                                _points.push(circle);
+                            }
+                            return _pC;
+                        });
 
-        let _self = this,
-            img = new Image();
-        img.onload = function () {
+                    if (_points.length) cur.set('_points', _points);
+                    cur.set('points', _p);
+                    outs.push(cur);
+                } else if (cur.type == _self.shapes.GROUP) {
+                    //_self.fabricJS._add(cur);
+                    //parseAndInsert(cur._objects, options);
 
-            let _bCnvc = _self.bufferC['nativeElement'],
-                _cnvs = _bCnvc.getContext('2d');
-            _cnvs.drawImage(_self.glapp.app._slider.isDebug ? _self.glapp.app._slider.currentAlignFrame : _self.glapp.app._slider.currentFrame, 0, 0, _bCnvc.width, _bCnvc.height);
-            _cnvs.drawImage(img, 0, 0);
-            _self.curImgZoom.src = _bCnvc.toDataURL();
-            if (callback)callback();
+                }
+                let cloneCur = cur.clone(true);
+                for (let u = 0; u < _objects.length; u++) {
+                    if (cloneCur.id == _objects[u].id) {
+                        let _c = _objects.splice(u, 1)[0];
+                        if (_c.group) {
+                            let _group;
+                            for (let g = 0; g < groups.length; g++) {
+                                if (_c.group.id == groups[g].id) {
+                                    _group = groups[g];
+                                    break;
+                                }
+                            }
+                            if (!_group) {
+                                _group = new SVGGroup(_self, _c.group.id);
+                                groups.push(_group);
+                            }
+                            _group.add(cloneCur);
+                            cloneCur = _group;
+                        }
+                        break;
+                    }
+                }
+                for (let i = 0, areas = _self.selected.areas; areas && i < areas.length; i++) {
+                    if (areas[i]._id.match(cloneCur.id)) {
+                        cloneCur._data = areas[i];
+                        break;
+                    }
+                }
+                for (let i = 0, sources = _self.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
+                    if (sources[i]._id == cloneCur.id || (cloneCur._data && sources[i]._id == cloneCur._data.dataSourceId)) {
+                        cloneCur._dataSource = sources[i];
+                        break;
+                    }
+                }
+                cloneCur.opacity = _self.selected.camera.opacity;
 
+                if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
+            }
+            for (let g = 0; g < groups.length; g++) {
+                let _n = groups[g].make();
+                for (let f = 0, args = ['_data', '_dataSource', 'id']; f < args.length; f++) {
+                    _n[args[f]] = groups[g][args[f]];
+                }
+                _n._tooltip = new OxiToolTip(_n, _self.glapp.app);
+            }
+            this.fabricJS.calcOffset().renderAll();
         }
-        img.src = this.fabricJS.toDataURL();
+    }
+
+    private updateImgZoomer(callback) {
+        let _self = this;
+        this.curImgBufferZoom.src = this.fabricJS.toDataURL();
+        let _bCnvc = _self.bufferC['nativeElement'],
+            _cnvs = _bCnvc.getContext('2d');
+        _cnvs.drawImage(_self.glapp.app._slider.isDebug ? _self.glapp.app._slider.currentAlignFrame : _self.glapp.app._slider.currentFrame, 0, 0, _bCnvc.width, _bCnvc.height);
+        _cnvs.drawImage(_self.curImgBufferZoom, 0, 0);
+        _self.curImgZoom.src = _bCnvc.toDataURL();
+        if (callback)callback();
     }
 
     private drawZoom(event) {
@@ -683,13 +693,16 @@ export class SVGView implements OnInit,AfterViewInit {
         }
 
         for (let i = 0; i < objects.length; i++) {
+            //['scaleX', 'scaleY', 'left', 'top'].forEach((e)=> {
+            //    if (!objects[i][e + "0"])objects[i][e + "0"] = objects[i][e];
+            //});
 
             if (objects[i].type != _self.shapes.CIRCLE) {
                 objects[i].scaleX *= scaleMultiplierX;
                 objects[i].scaleY *= scaleMultiplierY;
             }
-            objects[i].left *= scaleMultiplierX;
-            objects[i].top *= scaleMultiplierY;
+            objects[i].left *=scaleMultiplierX;
+            objects[i].top *=  scaleMultiplierY;
             objects[i].setCoords();
             if (objects[i]._tooltip)objects[i]._tooltip.show(false);
         }

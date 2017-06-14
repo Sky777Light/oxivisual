@@ -89,7 +89,7 @@ export class WebglView implements OnInit,OnChanges {
     }
 
     ngOnDestroy() {
-        console.log('webgl context ' + this._id + " was clear");
+        //console.log('webgl context ' + this._id + " was clear");
         this.app._animation.stop();
     }
 
@@ -115,7 +115,7 @@ class OxiAPP {
     _fileReader:FileReader;
     _container:any;
     _preloaderStatus:any;
-    allLoad:boolean=false;
+    allLoad:boolean = false;
     private curLoadedTemplates:number = 0;
     private templates:Array<any>;
     infoHTML:Array<OxiToolTip> = [];
@@ -344,15 +344,15 @@ class OxiAPP {
     }
 
     private toggleSVG() {
-        if(this.main.svgEl){
-            this.main.svgEl.fabricJS._objects.forEach((el:any)=>{
-                if(el._dataSource){
+        if (this.main.svgEl) {
+            this.main.svgEl.fabricJS._objects.forEach((el:any)=> {
+                if (el._dataSource) {
                     el._dataSource.active = false;
                 }
             });
-        }else{
-            this.model.traverse((el:any)=>{
-                if(el._dataSource){
+        } else {
+            this.model.traverse((el:any)=> {
+                if (el._dataSource) {
                     el._dataSource.active = false;
                 }
             });
@@ -530,30 +530,24 @@ class OxiAPP {
             this._onLoadModel(this.main.selected.cash.model);
             callback();
         } else if (this.main.selected.projFilesDirname && this.main.selected.destination && this.main.selected.destination.match('.obj')) {
-            let manager = new THREE.LoadingManager();
-            manager.onProgress = function (item, loaded, total) {
-                //console.log(item, loaded, total);
-            };
-
-
-            let onProgress = function (xhr) {
-                if (xhr.lengthComputable) {
-                    _self.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total);
-                    //console.log((percentComplete).toFixed(2) + '% downloaded');
-                }
-            };
-
-            let onError = function (xhr) {
-                alertify.error(xhr)
-            };
-
-            let loader = this.loader = this.loader || new THREE.OBJLoader(manager);
+            let loader = this.loader = this.loader || new THREE.OBJLoader();
             loader.load(ENTITY.Config.PROJ_LOC + this.main.selected.projFilesDirname + "/" + this.main.selected.destination, (object)=> {
                 this._onLoadModel(object);
                 callback();
-            }, onProgress, onError);
+            }, (e)=>this.onProgress(e), (e)=>this.onError(e));
         } else {
             callback();
+        }
+    }
+
+    private onError(xhr) {
+        alertify.error(xhr);
+    }
+
+    private onProgress(xhr) {
+        if (xhr.lengthComputable) {
+            this.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total);
+            //console.log((xhr.loaded / xhr.total).toFixed(2) + '% downloaded');
         }
     }
 
@@ -647,8 +641,15 @@ class OxiAPP {
                 onFinish = ()=>_self._slider.addAlignImg();
                 break;
             }
+            case ENTITY.Config.FILE.TYPE.MODEL_SVG:
+            {
+                _flStrg = ENTITY.Config.FILE.STORAGE.SVG_FILE;
+                onFinish = ()=> {
+                };
+                break;
+            }
         }
-        if (!_flStrg || !onFinish)return console.error("file category is not recognized");
+        if (!_flStrg || !onFinish)return alertify.error("file category is not recognized");
 
         this._files[_flStrg] = files;
         let startFrom = 0;
@@ -657,6 +658,7 @@ class OxiAPP {
             if (!cur) return onFinish();
 
             switch (cur.category) {
+                case ENTITY.Config.FILE.TYPE.MODEL_SVG:
                 case ENTITY.Config.FILE.TYPE.MODEL_OBJ:
                 {
                     filereader.readAsText(cur);
@@ -683,6 +685,11 @@ class OxiAPP {
                             _self.main.selected.destination = [new ENTITY.ProjFile({file: cur, name: cur.name})];
                             _self._onLoadModel(m);
                         });
+                        break;
+                    }
+                    case ENTITY.Config.FILE.TYPE.MODEL_SVG:
+                    {
+                        _self.main.svgEl.reload(e.currentTarget.result);
                         break;
                     }
                     case ENTITY.Config.FILE.TYPE.PREVIEW_IMG:
@@ -1262,7 +1269,7 @@ class OxiControls {
             let childSelected = (child:any)=> {
                     let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
                     _elem._data = child;
-                    child._id = _elem.name || _elem.id ||"";
+                    child._id = _elem.name || _elem.id || "";
                     child.name = child._id.toUpperCase();
                     child._id += Date.now();
 
@@ -1549,7 +1556,7 @@ class OxiControls {
     }
 
     showAttachPopUp(elem) {
-        if (!elem || !elem._data){
+        if (!elem || !elem._data) {
             alertify.error('please create area for this element, on right click');
             return false;
         }

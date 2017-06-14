@@ -18,6 +18,11 @@
                                      [required]="'1'" class="col-lg-12" [files]="[modelStructure.destination]"
                                      [inject]="modelStructure.glApp"
                                      *ngIf="!modelStructure.camera.isSVG"></app-file-upload>
+                    <app-file-upload [title]="'Upload svg'" [accept]="'.svg'"
+                                     [category]="_CONFIG.FILE.TYPE.MODEL_SVG"
+                                     [required]="'1'" class="col-lg-12" [files]="[modelStructure.svgDestination]"
+                                     [inject]="modelStructure.glApp"
+                                     *ngIf="modelStructure.camera.isSVG"></app-file-upload>
 
                     <app-file-upload [title]="'Upload frames'" [multiple]="'multiple'"
                                      [category]="_CONFIG.FILE.TYPE.PREVIEW_IMG"

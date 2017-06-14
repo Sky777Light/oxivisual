@@ -31,7 +31,8 @@ export class Config {
         TYPE: {
             MODEL_OBJ: 1,
             PREVIEW_IMG: 2,
-            ALIGN_IMG: 3
+            ALIGN_IMG: 3,
+            MODEL_SVG: 4
         },
         STORAGE: {
             SITE_STRUCTURE: 'structure',

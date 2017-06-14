@@ -4,7 +4,7 @@ import { NgForm} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {UserService,AuthService,ProjectService} from "../../../../services/services";
 import * as ENTITY from "../../../../entities/entities";
-import {MTree} from "../../../../directives/tree/tree";
+import {MTree,UploadFile} from "../../../../directives/directives";
 
 declare var alertify:any;
 
@@ -23,9 +23,9 @@ export class SourceProject {
     editview:boolean = false;
 
     @ViewChild("modelObj")
-        modelObj:HTMLElement;
+        modelObj:UploadFile;
     @ViewChild("framesObj")
-        framesObj:HTMLElement;
+        framesObj:UploadFile;
 
     constructor(private projectService:ProjectService, private authService:AuthService) {
         this.instance = this;
@@ -56,10 +56,10 @@ export class SourceProject {
 
         let myForm = new FormData(),
             fileReader = new FileReader(),
-            filesUpload = [{a: this.modelObj, n: ENTITY.Config.FILE.STORAGE.MODEL_OBJ}, {
-                a: this.framesObj,
-                n: ENTITY.Config.FILE.STORAGE.PREVIEW_IMG
-            }];
+            filesUpload = [
+                {a: this.modelObj, n: (this.modelObj.category == ENTITY.Config.FILE.TYPE.MODEL_OBJ? ENTITY.Config.FILE.STORAGE.MODEL_OBJ:ENTITY.Config.FILE.STORAGE.SVG_FILE)},
+                {a: this.framesObj, n: ENTITY.Config.FILE.STORAGE.PREVIEW_IMG}
+            ];
         myForm.append('name', this.project.model.name);
         myForm.append('_id', this.project._id);
         myForm.append('preview', this.project.image);

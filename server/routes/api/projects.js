@@ -110,7 +110,7 @@ function saveProjectFiles(options, req, res, next) {
         for (var key = 0; key < keyses.length; key++) {
             var urlSaveFile,
                 severalTypes,
-                modelSaved,
+                modelSaved = null,
                 keys = keyses[key],
                 filesName;
             if (!req.files[keys] || !req.files[keys].length)continue;
@@ -118,8 +118,9 @@ function saveProjectFiles(options, req, res, next) {
                 case config.FILE_UPLOAD_ATTR[7]:
                 case config.FILE_UPLOAD_ATTR[0]:
                 {
-                    var isSvg = keys ==  config.FILE_UPLOAD_ATTR[7];
-                    modelSaved = isSvg?'svgDestination':'destination';
+                    var isSvg = keys == config.FILE_UPLOAD_ATTR[7];
+                    modelSaved = isSvg ? 'svgDestination' : 'destination';
+                    if (isSvg && area && area.camera && !area.camera.isSVG) area.camera.isSVG = true;
                     urlSaveFile = modelDir;
                     var pathF = path.normalize(urlSaveFile);
                     if (fs.existsSync(pathF)) {
@@ -128,9 +129,8 @@ function saveProjectFiles(options, req, res, next) {
                                 curPath = pathF + "/" + file;
                             if (fs.lstatSync(curPath).isDirectory()) {
                             } else {
-                                if (curPath.indexOf((isSvg?config.FILE_UPLOAD_EXT[2]:config.FILE_UPLOAD_EXT[0]))) {
+                                if (curPath.indexOf((isSvg ? config.FILE_UPLOAD_EXT[2] : config.FILE_UPLOAD_EXT[0]))) {
                                     fs.unlinkSync(curPath);
-                                    break;
                                 }
                             }
                         }
@@ -193,8 +193,9 @@ function saveProjectFiles(options, req, res, next) {
                 var _file = req.files[keys][i],
                     buffer = fs.readFileSync(_file.path),
                     _fileName = _file.originalname ? _file.originalname : filesName ? filesName.shift() : '.bak';
-                fs.writeFileSync(urlSaveFile + _fileName, buffer);
 
+                if (area && modelSaved)area[modelSaved] = _fileName;
+                fs.writeFileSync(urlSaveFile + _fileName, buffer);
                 if (severalTypes) {
                     if (area && area.images) {
                         area.images.push(_fileName);
@@ -211,10 +212,7 @@ function saveProjectFiles(options, req, res, next) {
                             lenna.resize(720, Jimp.AUTO).quality(50).write(url); // save
                         }
                     })(urlSaveFile + severalTypes[1] + _fileName));
-                } else {
-                    if (area && modelSaved)area[modelSaved] = _fileName;
                 }
-
             }
         }
         next(req, res);
@@ -230,8 +228,8 @@ function Structure(req, res) {
             status: false,
             message: "can`t save template"
         });
-        this.structure =JSON.parse(structure)[0];
-        return  this.structure;
+        this.structure = JSON.parse(structure)[0];
+        return this.structure;
     }
     this.saveData = function () {
         fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), JSON.stringify([this.structure]), 'utf8');
@@ -376,7 +374,7 @@ router.post("/project", function (req, res) {
 router.post("/project/model/create", function (req, res) {
     var modelName = req.body.name,
         id_project = req.body._id;
-    if (!modelName || !id_project || !req.files[config.FILE_UPLOAD_ATTR[0]] || !req.files[config.FILE_UPLOAD_ATTR[1]]) {
+    if (!modelName || !id_project || !(req.files[config.FILE_UPLOAD_ATTR[0]] || req.files[config.FILE_UPLOAD_ATTR[7]]) || !req.files[config.FILE_UPLOAD_ATTR[1]]) {
         return res.json({
             status: false,
             message: "something got incorect!!!"
@@ -388,6 +386,7 @@ router.post("/project/model/create", function (req, res) {
                     name: modelName,
                     projFilesDirname: /*modelName + "_" +*/ randomString(),
                     created: Date.now(),
+                    camera: {_category: 3},
                     _category: 2,
                     images: []
                 },

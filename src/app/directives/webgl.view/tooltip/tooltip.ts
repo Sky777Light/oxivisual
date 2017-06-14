@@ -20,6 +20,7 @@ export class WTooltip extends AbstractChangesView implements OnInit {
     constructor(private authService:AuthService,public vc: ViewContainerRef) {
         super();
 
+        this.dataElem=[];
     }
 
     ngOnInit() {
@@ -45,11 +46,11 @@ export class WTooltip extends AbstractChangesView implements OnInit {
                 });
             }
         }, (res)=> {
-            alertify.error(res && res.message ? res.message : res);
+            alertify.error("Incorrect dataSource: "+res && res.message ? res.message : res);
         });
     }
 
-    private   onEventPrevent(event) {
+    private  onEventPrevent(event) {
         event.preventDefault();
         return false;
     }
@@ -71,7 +72,7 @@ export class WTooltip extends AbstractChangesView implements OnInit {
             this.dataElem = _data;
 
         } catch (e) {
-            alertify.error(e)
+            alertify.error("Incorrect dataSource: "+e)
         }
     }
 

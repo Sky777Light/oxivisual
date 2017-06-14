@@ -1,4 +1,5 @@
 import {Component,Input,ViewChild,OnInit} from '@angular/core';
+import * as ENTITY from '../../entities/entities';
 
 @Component({
     selector: 'app-file-upload',
@@ -9,7 +10,7 @@ import {Component,Input,ViewChild,OnInit} from '@angular/core';
 })
 export class UploadFile implements OnInit {
     @Input() accept:string = '';
-    @Input() category:string;
+    @Input() category:any;
     @Input() multiple:string;
     @Input() required:string;
     @Input() title:string;
@@ -35,8 +36,26 @@ export class UploadFile implements OnInit {
             this.files = [];
 
             for (let i = 0; i < files.length; i++) {
-                if(this.category) files[i].category = this.category;
-                if (files[i].name.match(this.accept) || files[i].type.match(this.accept))this.files.push(files[i]);
+                if(this.category) {
+                    if(this.category instanceof Array){
+                        let _fType = files[i].name.split(".");
+                        _fType = _fType[_fType.length-1];
+                        files[i].category = this.category = ENTITY.Config.FILE.STORAGE.SVG_FILE.match(_fType)?ENTITY.Config.FILE.TYPE.MODEL_SVG:ENTITY.Config.FILE.TYPE.MODEL_OBJ;
+
+                    }else{
+                        files[i].category = this.category;
+                    }
+
+                }
+
+                let _multiaC = this.accept.split(",");
+                if(_multiaC.length > 1){
+                    _multiaC.forEach((e)=>{
+                        if (files[i].name.match(e) || files[i].type.match(e))this.files.push(files[i]);
+                    });
+                }else{
+                    if (files[i].name.match(this.accept) || files[i].type.match(this.accept))this.files.push(files[i]);
+                }
             }
 
             if (!this.files.length || !this.inject || !this.inject.onFilesSelected)return;

@@ -40,11 +40,11 @@ var User = (function () {
 
 /***/ }),
 
-/***/ 19:
+/***/ 16:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(224);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Project__ = __webpack_require__(727);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["a"]; });
@@ -76,7 +76,7 @@ var User = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__interfaces_user_interface__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_entities__ = __webpack_require__(16);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -174,8 +174,48 @@ var UserService = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__ = __webpack_require__(374);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__ = __webpack_require__(370);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__ = __webpack_require__(371);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__ = __webpack_require__(373);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__ = __webpack_require__(372);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tree_tree__ = __webpack_require__(724);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__ = __webpack_require__(722);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__ = __webpack_require__(725);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__ = __webpack_require__(723);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__safeHtml__ = __webpack_require__(721);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_9__safeHtml__["a"]; });
+
+
+
+
+
+
+
+
+
+
+//# sourceMappingURL=directives.js.map
+
+/***/ }),
+
+/***/ 223:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractChangesView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -199,13 +239,20 @@ var AbstractChangesView = (function () {
         if (this.htmlTemplate) {
         }
         else {
-            this.tempLoad.callbacks.push(function () {
-                //this.cssUrl =  this.tempLoad.cssUrl;
-                _this.htmlTemplate = _this.tempLoad.htmlTemplate;
-                for (var i = 0; i < _this.callbacks.length; i++) {
-                    _this.callbacks[i]();
+            if (this.tempLoad) {
+                this.tempLoad.callbacks.push(function () {
+                    //this.cssUrl =  this.tempLoad.cssUrl;
+                    _this.htmlTemplate = _this.tempLoad.htmlTemplate;
+                    for (var i = 0; i < _this.callbacks.length; i++) {
+                        _this.callbacks[i]();
+                    }
+                });
+            }
+            else {
+                for (var i = 0; i < this.callbacks.length; i++) {
+                    this.callbacks[i]();
                 }
-            });
+            }
         }
         if (this.parent && this.parent.onLoadTemplate)
             setTimeout(function () { return _this.parent.onLoadTemplate(_this.constructor.name.toLowerCase()); }, 100);
@@ -248,7 +295,7 @@ var AbstractChangesView = (function () {
 
 /***/ }),
 
-/***/ 223:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -280,7 +327,7 @@ var Main = (function () {
 
 /***/ }),
 
-/***/ 224:
+/***/ 225:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -343,7 +390,7 @@ var AuthGuardService = (function () {
 
 /***/ }),
 
-/***/ 225:
+/***/ 226:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -386,7 +433,7 @@ var LoggedGuardService = (function () {
 
 /***/ }),
 
-/***/ 359:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -433,7 +480,7 @@ var HomeComponent = (function () {
 
 /***/ }),
 
-/***/ 360:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -473,15 +520,15 @@ var BasicProject = (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Costumization; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TextAr; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -753,7 +800,7 @@ var CodeConfig = (function () {
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -831,7 +878,7 @@ var PreviewProject = (function () {
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -899,13 +946,14 @@ var ProjectComponent = (function () {
 
 /***/ }),
 
-/***/ 364:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_services__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_directives__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SourceProject; });
 /* unused harmony export ProjTabs */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -917,6 +965,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -949,10 +998,10 @@ var SourceProject = (function () {
         var _this = this;
         if (form.invalid)
             return alertify.error('Please fill all inputs correctly');
-        var myForm = new FormData(), fileReader = new FileReader(), filesUpload = [{ a: this.modelObj, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.MODEL_OBJ }, {
-                a: this.framesObj,
-                n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.PREVIEW_IMG
-            }];
+        var myForm = new FormData(), fileReader = new FileReader(), filesUpload = [
+            { a: this.modelObj, n: (this.modelObj.category == __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ ? __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.MODEL_OBJ : __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.SVG_FILE) },
+            { a: this.framesObj, n: __WEBPACK_IMPORTED_MODULE_2__entities_entities__["c" /* Config */].FILE.STORAGE.PREVIEW_IMG }
+        ];
         myForm.append('name', this.project.model.name);
         myForm.append('_id', this.project._id);
         myForm.append('preview', this.project.image);
@@ -1105,11 +1154,11 @@ var SourceProject = (function () {
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("modelObj"), 
-        __metadata('design:type', Object)
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__directives_directives__["b" /* UploadFile */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__directives_directives__["b" /* UploadFile */]) === 'function' && _a) || Object)
     ], SourceProject.prototype, "modelObj", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("framesObj"), 
-        __metadata('design:type', Object)
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__directives_directives__["b" /* UploadFile */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__directives_directives__["b" /* UploadFile */]) === 'function' && _b) || Object)
     ], SourceProject.prototype, "framesObj", void 0);
     SourceProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -1117,10 +1166,10 @@ var SourceProject = (function () {
             template: __webpack_require__(859),
             styles: [__webpack_require__(800)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */]) === 'function' && _d) || Object])
     ], SourceProject);
     return SourceProject;
-    var _a, _b;
+    var _a, _b, _c, _d;
 }());
 var ProjTabs = (function () {
     function ProjTabs(source) {
@@ -1136,7 +1185,7 @@ var ProjTabs = (function () {
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1189,7 +1238,7 @@ var ProjectsComponent = (function () {
 
 /***/ }),
 
-/***/ 366:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1309,7 +1358,7 @@ var UsersComponent = (function () {
 
 /***/ }),
 
-/***/ 367:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1368,14 +1417,14 @@ var LoginComponent = (function () {
 
 /***/ }),
 
-/***/ 368:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(16);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviewSceneComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PreviewSceneService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1470,52 +1519,12 @@ var PreviewSceneService = (function () {
 
 /***/ }),
 
-/***/ 369:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__ = __webpack_require__(374);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__ = __webpack_require__(370);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__ = __webpack_require__(371);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__ = __webpack_require__(373);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__ = __webpack_require__(372);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tree_tree__ = __webpack_require__(724);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__ = __webpack_require__(722);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__ = __webpack_require__(725);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__ = __webpack_require__(723);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__safeHtml__ = __webpack_require__(721);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_9__safeHtml__["a"]; });
-
-
-
-
-
-
-
-
-
-
-//# sourceMappingURL=directives.js.map
-
-/***/ }),
-
 /***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(223);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WControls; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1557,7 +1566,7 @@ var WControls = (function (_super) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(223);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Preloader; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -1621,7 +1630,7 @@ var Preloader = (function (_super) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view__ = __webpack_require__(374);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric__ = __webpack_require__(817);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fabric__);
@@ -1649,8 +1658,17 @@ var SVGView = (function () {
         this.MOUSE = { DOWN: 1, UP: 2, CUR: 0, GROUP: 3 };
         this.mode = this.MODES.ADD;
         this.curImgZoom = new Image();
+        this.curImgBufferZoom = new Image();
     }
     SVGView.prototype.ngOnInit = function () {
+    };
+    SVGView.prototype.reload = function (data) {
+        var _this = this;
+        fabric.loadSVGFromString(data, function (o, _options) {
+            _this.parseSVG(data, (function (_objects) {
+                _this.onFinishParse(o, _options, _objects);
+            }));
+        });
     };
     SVGView.prototype.ngAfterViewInit = function () {
         var _this = this;
@@ -1707,7 +1725,9 @@ var SVGView = (function () {
             },
             clone: function (isHard) {
                 var _this = this;
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'], hardClone = ['scaleX', 'scaleY'], _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects', 'scaleX0', 'scaleY0', 'left0', 'top0'], hardClone = ['scaleX', 'scaleY'], _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
+                if (this._parent)
+                    this._parent.remove(this);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
@@ -1750,8 +1770,6 @@ var SVGView = (function () {
                         _pn[i].parent = newObj;
                     }
                 }
-                if (this._parent)
-                    this._parent.remove(this);
                 return newObj;
             },
             getScreenPst: function () {
@@ -1834,83 +1852,8 @@ var SVGView = (function () {
             if (_this.dataSrc) {
                 fabric.loadSVGFromURL(_this.dataSrc, function (o, options) {
                     _this.glapp.authServ.get(_this.dataSrc, { hasAuthHeader: false }).subscribe(function (res) {
-                        _this.parseSVG(res._body, (function (_objects, _options) {
-                            if (o && options) {
-                                options.objects = o;
-                                _self.resize(false, false, options);
-                                var scaleMultiplierX_1 = _self.fabricJS.width / options.width, scaleMultiplierY_1 = _self.fabricJS.height / options.height, outs = [], groups = [];
-                                var _loop_1 = function(itm, maxL) {
-                                    var cur = o[itm];
-                                    if (cur.type == _self.shapes.POLYGON) {
-                                        var center_1 = cur.getCenterPoint(), _points_1 = [], _p = cur.get('points').map(function (el, d) {
-                                            var _pC = new fabric.Point(center_1.x + el.x, center_1.y + el.y);
-                                            if (_self.canEdit) {
-                                                var circle = new fabric.Circle(_self.settings.CIRCLE);
-                                                circle.left = (el.x) * scaleMultiplierX_1 + center_1.x;
-                                                circle.top = (el.y) * scaleMultiplierY_1 + center_1.y;
-                                                circle._iter = d;
-                                                circle.parent = cur;
-                                                _points_1.push(circle);
-                                            }
-                                            return _pC;
-                                        });
-                                        if (_points_1.length)
-                                            cur.set('_points', _points_1);
-                                        cur.set('points', _p);
-                                        outs.push(cur);
-                                    }
-                                    else if (cur.type == _self.shapes.GROUP) {
-                                    }
-                                    var cloneCur = cur.clone(true);
-                                    for (var u = 0; u < _objects.length; u++) {
-                                        if (cloneCur.id == _objects[u].id) {
-                                            var _c = _objects.splice(u, 1)[0];
-                                            if (_c.group) {
-                                                var _group = void 0;
-                                                for (var g = 0; g < groups.length; g++) {
-                                                    if (_c.group.id == groups[g].id) {
-                                                        _group = groups[g];
-                                                        break;
-                                                    }
-                                                }
-                                                if (!_group) {
-                                                    _group = new SVGGroup(_self, _c.group.id);
-                                                    groups.push(_group);
-                                                }
-                                                _group.add(cloneCur);
-                                                cloneCur = _group;
-                                            }
-                                            break;
-                                        }
-                                    }
-                                    for (var i = 0, areas = _self.selected.areas; areas && i < areas.length; i++) {
-                                        if (areas[i]._id.match(cloneCur.id)) {
-                                            cloneCur._data = areas[i];
-                                            break;
-                                        }
-                                    }
-                                    for (var i = 0, sources = _self.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
-                                        if (sources[i]._id == cloneCur.id || (cloneCur._data && sources[i]._id == cloneCur._data.dataSourceId)) {
-                                            cloneCur._dataSource = sources[i];
-                                            break;
-                                        }
-                                    }
-                                    cloneCur.opacity = _self.selected.camera.opacity;
-                                    if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)
-                                        cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _self.glapp.app);
-                                };
-                                for (var itm = 0, maxL = o.length; itm < maxL; itm++) {
-                                    _loop_1(itm, maxL);
-                                }
-                                for (var g = 0; g < groups.length; g++) {
-                                    var _n = groups[g].make();
-                                    for (var f = 0, args = ['_data', '_dataSource', 'id']; f < args.length; f++) {
-                                        _n[args[f]] = groups[g][args[f]];
-                                    }
-                                    _n._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](_n, _self.glapp.app);
-                                }
-                                _this.fabricJS.calcOffset().renderAll();
-                            }
+                        _this.parseSVG(res._body, (function (_objects) {
+                            _self.onFinishParse(o, options, _objects);
                             _this.onLoadSVG();
                         }));
                     });
@@ -1921,17 +1864,94 @@ var SVGView = (function () {
             }
         }, 200);
     };
+    SVGView.prototype.onFinishParse = function (o, options, _objects) {
+        var _self = this;
+        if (o && options) {
+            options.objects = o;
+            _self.resize(false, false, options);
+            var scaleMultiplierX_1 = _self.fabricJS.width / options.width, scaleMultiplierY_1 = _self.fabricJS.height / options.height, outs = [], groups = [];
+            var _loop_1 = function(itm, maxL) {
+                var cur = o[itm];
+                if (cur.type == _self.shapes.POLYGON) {
+                    var center_1 = cur.getCenterPoint(), _points_1 = [], _p = cur.get('points').map(function (el, d) {
+                        var _pC = new fabric.Point(center_1.x + el.x, center_1.y + el.y);
+                        if (_self.canEdit) {
+                            var circle = new fabric.Circle(_self.settings.CIRCLE);
+                            circle.left = (el.x) * scaleMultiplierX_1 + center_1.x;
+                            circle.top = (el.y) * scaleMultiplierY_1 + center_1.y;
+                            circle._iter = d;
+                            circle.parent = cur;
+                            _points_1.push(circle);
+                        }
+                        return _pC;
+                    });
+                    if (_points_1.length)
+                        cur.set('_points', _points_1);
+                    cur.set('points', _p);
+                    outs.push(cur);
+                }
+                else if (cur.type == _self.shapes.GROUP) {
+                }
+                var cloneCur = cur.clone(true);
+                for (var u = 0; u < _objects.length; u++) {
+                    if (cloneCur.id == _objects[u].id) {
+                        var _c = _objects.splice(u, 1)[0];
+                        if (_c.group) {
+                            var _group = void 0;
+                            for (var g = 0; g < groups.length; g++) {
+                                if (_c.group.id == groups[g].id) {
+                                    _group = groups[g];
+                                    break;
+                                }
+                            }
+                            if (!_group) {
+                                _group = new SVGGroup(_self, _c.group.id);
+                                groups.push(_group);
+                            }
+                            _group.add(cloneCur);
+                            cloneCur = _group;
+                        }
+                        break;
+                    }
+                }
+                for (var i = 0, areas = _self.selected.areas; areas && i < areas.length; i++) {
+                    if (areas[i]._id.match(cloneCur.id)) {
+                        cloneCur._data = areas[i];
+                        break;
+                    }
+                }
+                for (var i = 0, sources = _self.glapp.preToolTip.dataElem; sources && i < sources.length; i++) {
+                    if (sources[i]._id == cloneCur.id || (cloneCur._data && sources[i]._id == cloneCur._data.dataSourceId)) {
+                        cloneCur._dataSource = sources[i];
+                        break;
+                    }
+                }
+                cloneCur.opacity = _self.selected.camera.opacity;
+                if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)
+                    cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _self.glapp.app);
+            };
+            for (var itm = 0, maxL = o.length; itm < maxL; itm++) {
+                _loop_1(itm, maxL);
+            }
+            for (var g = 0; g < groups.length; g++) {
+                var _n = groups[g].make();
+                for (var f = 0, args = ['_data', '_dataSource', 'id']; f < args.length; f++) {
+                    _n[args[f]] = groups[g][args[f]];
+                }
+                _n._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](_n, _self.glapp.app);
+            }
+            this.fabricJS.calcOffset().renderAll();
+        }
+    };
     SVGView.prototype.updateImgZoomer = function (callback) {
-        var _self = this, img = new Image();
-        img.onload = function () {
-            var _bCnvc = _self.bufferC['nativeElement'], _cnvs = _bCnvc.getContext('2d');
-            _cnvs.drawImage(_self.glapp.app._slider.isDebug ? _self.glapp.app._slider.currentAlignFrame : _self.glapp.app._slider.currentFrame, 0, 0, _bCnvc.width, _bCnvc.height);
-            _cnvs.drawImage(img, 0, 0);
-            _self.curImgZoom.src = _bCnvc.toDataURL();
-            if (callback)
-                callback();
-        };
-        img.src = this.fabricJS.toDataURL();
+        var _self = this;
+        this.curImgBufferZoom.src = this.fabricJS.toDataURL();
+        var _bCnvc = _self.bufferC['nativeElement'], _cnvs = _bCnvc.getContext('2d');
+        _cnvs.drawImage(_self.glapp.app._slider.isDebug ? _self.glapp.app._slider.currentAlignFrame : _self.glapp.app._slider.currentFrame, 0, 0, _bCnvc.width, _bCnvc.height);
+        _cnvs.drawImage(_self.curImgBufferZoom, 0, 0);
+        _self.curImgZoom.src = _bCnvc.toDataURL();
+        if (callback)
+            callback();
     };
     SVGView.prototype.drawZoom = function (event) {
         var _this = this;
@@ -2238,6 +2258,9 @@ var SVGView = (function () {
             objects = options.objects;
         }
         for (var i = 0; i < objects.length; i++) {
+            //['scaleX', 'scaleY', 'left', 'top'].forEach((e)=> {
+            //    if (!objects[i][e + "0"])objects[i][e + "0"] = objects[i][e];
+            //});
             if (objects[i].type != _self.shapes.CIRCLE) {
                 objects[i].scaleX *= scaleMultiplierX;
                 objects[i].scaleY *= scaleMultiplierY;
@@ -2527,7 +2550,7 @@ var SVGGroup = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WTooltip; });
 var __extends = (this && this.__extends) || function (d, b) {
@@ -2554,6 +2577,7 @@ var WTooltip = (function (_super) {
         this.authService = authService;
         this.vc = vc;
         this.dataSourceLoaded = false;
+        this.dataElem = [];
     }
     WTooltip.prototype.ngOnInit = function () {
         var _this = this;
@@ -2581,7 +2605,7 @@ var WTooltip = (function (_super) {
                 });
             }
         }, function (res) {
-            alertify.error(res && res.message ? res.message : res);
+            alertify.error("Incorrect dataSource: " + res && res.message ? res.message : res);
         });
     };
     WTooltip.prototype.onEventPrevent = function (event) {
@@ -2608,7 +2632,7 @@ var WTooltip = (function (_super) {
             this.dataElem = _data;
         }
         catch (e) {
-            alertify.error(e);
+            alertify.error("Incorrect dataSource: " + e);
         }
     };
     WTooltip.prototype.updateAfterInput = function (value) {
@@ -2641,7 +2665,7 @@ var WTooltip = (function (_super) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__ = __webpack_require__(720);
@@ -2720,7 +2744,7 @@ var WebglView = (function () {
         this.app = new OxiAPP(this);
     };
     WebglView.prototype.ngOnDestroy = function () {
-        console.log('webgl context ' + this._id + " was clear");
+        //console.log('webgl context ' + this._id + " was clear");
         this.app._animation.stop();
     };
     __decorate([
@@ -3144,26 +3168,22 @@ var OxiAPP = (function () {
             callback();
         }
         else if (this.main.selected.projFilesDirname && this.main.selected.destination && this.main.selected.destination.match('.obj')) {
-            var manager = new THREE.LoadingManager();
-            manager.onProgress = function (item, loaded, total) {
-                //console.log(item, loaded, total);
-            };
-            var onProgress = function (xhr) {
-                if (xhr.lengthComputable) {
-                    _self.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total);
-                }
-            };
-            var onError = function (xhr) {
-                alertify.error(xhr);
-            };
-            var loader = this.loader = this.loader || new THREE.OBJLoader(manager);
+            var loader = this.loader = this.loader || new THREE.OBJLoader();
             loader.load(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.main.selected.projFilesDirname + "/" + this.main.selected.destination, function (object) {
                 _this._onLoadModel(object);
                 callback();
-            }, onProgress, onError);
+            }, function (e) { return _this.onProgress(e); }, function (e) { return _this.onError(e); });
         }
         else {
             callback();
+        }
+    };
+    OxiAPP.prototype.onError = function (xhr) {
+        alertify.error(xhr);
+    };
+    OxiAPP.prototype.onProgress = function (xhr) {
+        if (xhr.lengthComputable) {
+            this.main.preloader.onUpdatePreloaderStatus(xhr.loaded / xhr.total);
         }
     };
     OxiAPP.prototype._onLoadModel = function (object) {
@@ -3248,15 +3268,23 @@ var OxiAPP = (function () {
                     onFinish = function () { return _self._slider.addAlignImg(); };
                     break;
                 }
+            case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_SVG:
+                {
+                    _flStrg = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.SVG_FILE;
+                    onFinish = function () {
+                    };
+                    break;
+                }
         }
         if (!_flStrg || !onFinish)
-            return console.error("file category is not recognized");
+            return alertify.error("file category is not recognized");
         this._files[_flStrg] = files;
         var startFrom = 0;
         function parseFiles(cur) {
             if (!cur)
                 return onFinish();
             switch (cur.category) {
+                case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_SVG:
                 case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ:
                     {
                         filereader.readAsText(cur);
@@ -3282,6 +3310,11 @@ var OxiAPP = (function () {
                                 _self.main.selected.destination = [new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["f" /* ProjFile */]({ file: cur, name: cur.name })];
                                 _self._onLoadModel(m);
                             });
+                            break;
+                        }
+                    case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_SVG:
+                        {
+                            _self.main.svgEl.reload(e.currentTarget.result);
                             break;
                         }
                     case __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.PREVIEW_IMG:
@@ -4282,7 +4315,8 @@ var Config = (function () {
         TYPE: {
             MODEL_OBJ: 1,
             PREVIEW_IMG: 2,
-            ALIGN_IMG: 3
+            ALIGN_IMG: 3,
+            MODEL_SVG: 4
         },
         STORAGE: {
             SITE_STRUCTURE: 'structure',
@@ -4534,7 +4568,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectService; });
@@ -4689,7 +4723,7 @@ var AppComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__ = __webpack_require__(829);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_codemirror__ = __webpack_require__(845);
@@ -4700,31 +4734,31 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_storage_service__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_user_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_auth_guard_service__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_logged_guard_service__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_auth_guard_service__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_logged_guard_service__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_share_service__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pipes_name_pipe__ = __webpack_require__(728);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_component__ = __webpack_require__(710);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_login_login_component__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_login_login_component__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_home_aside_aside_component__ = __webpack_require__(712);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_home_users_users_component__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_home_users_users_component__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_header_header_component__ = __webpack_require__(713);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_home_users_user_card_user_card_component__ = __webpack_require__(719);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_home_users_new_user_new_user_component__ = __webpack_require__(718);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__ = __webpack_require__(716);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_home_projects_view_view_project__ = __webpack_require__(717);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_home_projects_edit_edit_project__ = __webpack_require__(715);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_home_project_project_component__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_home_project_source_source_project__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_home_project_project_component__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_home_project_source_source_project__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__services_project_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives_directives__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives_directives__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_home_project_source_edit_view_edit_view__ = __webpack_require__(714);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__ = __webpack_require__(369);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4996,7 +5030,7 @@ var HeaderComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5037,7 +5071,7 @@ var EditView = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_share_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5135,7 +5169,7 @@ var EditProject = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5260,7 +5294,7 @@ var NewProjectComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6397,7 +6431,7 @@ var SlimScroll = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemplatesLoader; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6588,6 +6622,7 @@ var MTree = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadFile; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6598,6 +6633,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 var UploadFile = (function () {
     function UploadFile() {
@@ -6611,11 +6647,31 @@ var UploadFile = (function () {
             if (!files.length)
                 return;
             _this.files = [];
+            var _loop_1 = function(i) {
+                if (_this.category) {
+                    if (_this.category instanceof Array) {
+                        var _fType = files[i].name.split(".");
+                        _fType = _fType[_fType.length - 1];
+                        files[i].category = _this.category = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.STORAGE.SVG_FILE.match(_fType) ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_SVG : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].FILE.TYPE.MODEL_OBJ;
+                    }
+                    else {
+                        files[i].category = _this.category;
+                    }
+                }
+                var _multiaC = _this.accept.split(",");
+                if (_multiaC.length > 1) {
+                    _multiaC.forEach(function (e) {
+                        if (files[i].name.match(e) || files[i].type.match(e))
+                            _this.files.push(files[i]);
+                    });
+                }
+                else {
+                    if (files[i].name.match(_this.accept) || files[i].type.match(_this.accept))
+                        _this.files.push(files[i]);
+                }
+            };
             for (var i = 0; i < files.length; i++) {
-                if (_this.category)
-                    files[i].category = _this.category;
-                if (files[i].name.match(_this.accept) || files[i].type.match(_this.accept))
-                    _this.files.push(files[i]);
+                _loop_1(i);
             }
             if (!_this.files.length || !_this.inject || !_this.inject.onFilesSelected)
                 return;
@@ -6637,7 +6693,7 @@ var UploadFile = (function () {
     ], UploadFile.prototype, "accept", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
-        __metadata('design:type', String)
+        __metadata('design:type', Object)
     ], UploadFile.prototype, "category", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
@@ -6687,7 +6743,7 @@ var UploadFile = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constant_data__ = __webpack_require__(375);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjMain; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ProjFile; });
@@ -6866,7 +6922,7 @@ var ModelStructure = (function (_super) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(224);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ProjectModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Project; });
 var __extends = (this && this.__extends) || function (d, b) {
@@ -7005,18 +7061,18 @@ var NamePipe = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_logged_guard_service__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_guard_service__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_home_component__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_home_projects_projects_component__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_home_users_users_component__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_project_project_component__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home_project_basic_basic_project__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_home_project_source_source_project__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_project_costumization_costumization__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_home_project_preview_preview__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_preview_preview_project__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_logged_guard_service__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_guard_service__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_home_component__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_home_projects_projects_component__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_home_users_users_component__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_project_project_component__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home_project_basic_basic_project__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_home_project_source_source_project__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_project_costumization_costumization__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_home_project_preview_preview__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_preview_preview_project__ = __webpack_require__(369);
 /* unused harmony export routes */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
 
@@ -7287,11 +7343,11 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_service__ = __webpack_require__(51);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__auth_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_guard_service__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_guard_service__ = __webpack_require__(225);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_service__ = __webpack_require__(65);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__project_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logged_guard_service__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logged_guard_service__ = __webpack_require__(226);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__share_service__ = __webpack_require__(38);
 /* unused harmony namespace reexport */
@@ -7976,14 +8032,14 @@ module.exports = "<router-outlet></router-outlet>"
 /***/ 858:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"!modelStructure.camera.isSVG\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\"\n                                     [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <div class=\"add-btn\"\n                         *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\"\n                         (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>SVG(*)</label>\n                        <input name=\"isSVG\" type=\"checkbox\" (change)=\"modelStructure.glApp.updateData('isSVG')\"\n                               [(ngModel)]=\"modelStructure.camera.isSVG\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\" *ngIf=\"modelStructure.camera.isSVG\">\n                        <label>Zoom Helper(*)</label>\n                        <input name=\"showZoomHelper\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('showZoomHelper')\"\n                               [(ngModel)]=\"modelStructure.camera.showZoomHelper\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\">\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div *ngIf=\"!modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Scale</label>\n                            <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\"\n                                   step=\"0.1\"\n                                   [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Current</label>\n                            <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\"\n                                   min=\"0\"\n                                   max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Frames</label>\n                            <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                                   [ngModel]=\"modelStructure.images.length\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera X</label>\n                            <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Y</label>\n                            <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Z</label>\n                            <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Fov</label>\n                            <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Size</label>\n                            <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                                   (change)=\"modelStructure.glApp.updateData('size')\"\n                                   step=\"0.1\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Lens</label>\n                            <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                                   [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Zoom</label>\n                            <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG\"\n             (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
+module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"!modelStructure.camera.isSVG\"></app-file-upload>\n                    <app-file-upload [title]=\"'Upload svg'\" [accept]=\"'.svg'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_SVG\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.svgDestination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"modelStructure.camera.isSVG\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\"\n                                     [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <div class=\"add-btn\"\n                         *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\"\n                         (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>SVG(*)</label>\n                        <input name=\"isSVG\" type=\"checkbox\" (change)=\"modelStructure.glApp.updateData('isSVG')\"\n                               [(ngModel)]=\"modelStructure.camera.isSVG\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\" *ngIf=\"modelStructure.camera.isSVG\">\n                        <label>Zoom Helper(*)</label>\n                        <input name=\"showZoomHelper\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('showZoomHelper')\"\n                               [(ngModel)]=\"modelStructure.camera.showZoomHelper\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\">\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div *ngIf=\"!modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Scale</label>\n                            <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\"\n                                   step=\"0.1\"\n                                   [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Current</label>\n                            <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\"\n                                   min=\"0\"\n                                   max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Frames</label>\n                            <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                                   [ngModel]=\"modelStructure.images.length\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera X</label>\n                            <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Y</label>\n                            <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Z</label>\n                            <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Fov</label>\n                            <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Size</label>\n                            <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                                   (change)=\"modelStructure.glApp.updateData('size')\"\n                                   step=\"0.1\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Lens</label>\n                            <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                                   [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Zoom</label>\n                            <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG\"\n             (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
 /***/ 859:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"source-project\"  >\n    <div *ngIf=\"!project.model.link\" class=\"source-creating col-lg-3\">\n        <span>Parent creating:</span>\n\n        <form class=\"item-form\" #createForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" #parentName=\"ngModel\" name=\"parentName\" placeholder=\"Parent`s Name\"\n                       [(ngModel)]=\"project.model.name\" required autofocus>\n                <label [class.full-op]=\"parentName.invalid && parentName.touched\">The Parent`s Name is required!</label>\n            </div>\n            <div class=\"upload-list col-lg-12\">\n                <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\" [required]=\"1\" [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\" class=\"col-lg-6\"\n                                 #modelObj></app-file-upload>\n                <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\" [required]=\"1\" [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\" [accept]=\"'image/*'\"\n                                 class=\"col-lg-6\" #framesObj></app-file-upload>\n            </div>\n\n            <div class=\"new-btns\">\n                <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n                <span class=\"right-btn text-btn\" (click)=\"create(createForm)\">create</span>\n                <!--<input type=\"submit\"  class=\"right-btn text-btn\" class=\"btn btn-default\" value=\"create\" />-->\n            </div>\n        </form>\n\n    </div>\n    <div *ngIf=\"project.model.link\">\n        <div class=\"tabs-view\">\n            <div class=\"tabs-blocks col-lg-12\">\n                <table class=\"my-table col-lg-12\">\n                    <tbody>\n                    <tr>\n                        <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                            <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                                <span class=\"title\">Project Map</span>\n                                <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"tabs-header s-tab\" [ngClass]=\"{'no-width':sceneConfig.hide}\" #sceneConfig>\n                            <div class=\"temp-header\" *ngIf=\"!sceneConfig.hide\">\n                                <span class=\"title\">Preferences</span>\n                                <span class=\"text-btn\" (click)=\"sceneConfig.hide=!sceneConfig.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"sceneConfig.hide\" (click)=\"sceneConfig.hide=!sceneConfig.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"s-tab webgl-item\" rowspan=\"2\"\n                            [attr.colspan]=\"sceneConfig.hide && treeView.hide ?3:1\">\n                            <app-project-webgl-view *ngIf=\"selectedChild && selectedChild._category == 2\" [selected]=\"selectedChild\">-----WEBGL------</app-project-webgl-view>\n                        </td>\n                    </tr>\n                    <tr>\n                        <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"sceneConfig.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <tree   [mainParent] = \"instance\" [data]=\"project.model.data\"></tree>\n                                </div>\n                            </div>\n                        </td>\n                        <td *ngIf=\"!sceneConfig.hide\" class=\"s-tab\" [attr.colspan]=\"treeView.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <app-project-edit-view  *ngIf=\"selectedChild\" [modelStructure]=\"selectedChild\" ></app-project-edit-view>\n                                </div>\n                            </div>\n\n                        </td>\n                        <td *ngIf=\"sceneConfig.hide && treeView.hide\"></td>\n                    </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"source-project\"  >\n    <div *ngIf=\"!project.model.link\" class=\"source-creating col-lg-3\">\n        <span>Parent creating:</span>\n\n        <form class=\"item-form\" #createForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" #parentName=\"ngModel\" name=\"parentName\" placeholder=\"Parent`s Name\"\n                       [(ngModel)]=\"project.model.name\" required autofocus>\n                <label [class.full-op]=\"parentName.invalid && parentName.touched\">The Parent`s Name is required!</label>\n            </div>\n            <div class=\"upload-list col-lg-12\">\n                <app-file-upload [title]=\"'Upload obj/svg'\" [accept]=\"'.obj,.svg'\" [required]=\"1\" [category]=\"[]\" class=\"col-lg-6\"\n                                 #modelObj></app-file-upload>\n                <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\" [required]=\"1\" [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\" [accept]=\"'image/*'\"\n                                 class=\"col-lg-6\" #framesObj></app-file-upload>\n            </div>\n\n            <div class=\"new-btns\">\n                <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n                <span class=\"right-btn text-btn\" (click)=\"create(createForm)\">create</span>\n                <!--<input type=\"submit\"  class=\"right-btn text-btn\" class=\"btn btn-default\" value=\"create\" />-->\n            </div>\n        </form>\n\n    </div>\n    <div *ngIf=\"project.model.link\">\n        <div class=\"tabs-view\">\n            <div class=\"tabs-blocks col-lg-12\">\n                <table class=\"my-table col-lg-12\">\n                    <tbody>\n                    <tr>\n                        <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                            <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                                <span class=\"title\">Project Map</span>\n                                <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"tabs-header s-tab\" [ngClass]=\"{'no-width':sceneConfig.hide}\" #sceneConfig>\n                            <div class=\"temp-header\" *ngIf=\"!sceneConfig.hide\">\n                                <span class=\"title\">Preferences</span>\n                                <span class=\"text-btn\" (click)=\"sceneConfig.hide=!sceneConfig.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"sceneConfig.hide\" (click)=\"sceneConfig.hide=!sceneConfig.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"s-tab webgl-item\" rowspan=\"2\"\n                            [attr.colspan]=\"sceneConfig.hide && treeView.hide ?3:1\">\n                            <app-project-webgl-view *ngIf=\"selectedChild && selectedChild._category == 2\" [selected]=\"selectedChild\">-----WEBGL------</app-project-webgl-view>\n                        </td>\n                    </tr>\n                    <tr>\n                        <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"sceneConfig.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <tree   [mainParent] = \"instance\" [data]=\"project.model.data\"></tree>\n                                </div>\n                            </div>\n                        </td>\n                        <td *ngIf=\"!sceneConfig.hide\" class=\"s-tab\" [attr.colspan]=\"treeView.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <app-project-edit-view  *ngIf=\"selectedChild\" [modelStructure]=\"selectedChild\" ></app-project-edit-view>\n                                </div>\n                            </div>\n\n                        </td>\n                        <td *ngIf=\"sceneConfig.hide && treeView.hide\"></td>\n                    </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 

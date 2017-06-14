@@ -29,13 +29,19 @@ export class AbstractChangesView implements OnInit  {
         if(this.htmlTemplate){
 
         }else{
-            this.tempLoad.callbacks.push(()=>{
-                //this.cssUrl =  this.tempLoad.cssUrl;
-                this.htmlTemplate = this.tempLoad.htmlTemplate;
+            if(this.tempLoad){
+                this.tempLoad.callbacks.push(()=>{
+                    //this.cssUrl =  this.tempLoad.cssUrl;
+                    this.htmlTemplate = this.tempLoad.htmlTemplate;
+                    for (let i = 0; i < this.callbacks.length; i++) {
+                        this.callbacks[i]();
+                    }
+                });
+            }else{
                 for (let i = 0; i < this.callbacks.length; i++) {
                     this.callbacks[i]();
                 }
-            });
+            }
         }
         if(this.parent && this.parent.onLoadTemplate)setTimeout(()=>this.parent.onLoadTemplate(this.constructor.name.toLowerCase()),100);
     }
