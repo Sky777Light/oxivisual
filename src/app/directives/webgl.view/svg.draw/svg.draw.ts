@@ -18,7 +18,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private zoomDelta:number = 10;
     currentShape:any;
     private curKeyCode:number;
-    private showHelpZoomer:boolean=false;
+    private showHelpZoomer:boolean = false;
     private curFill:any;
     private curGroup:any;
     private curImgZoom:any;
@@ -27,8 +27,8 @@ export class SVGView implements OnInit,AfterViewInit {
     private MOUSE:any;
     private upperC:any;
     private eventsData:any;
-    private shapes:any;
-    private settings:any;
+    shapes:any;
+    settings:any;
     fabricJS:any;
     @ViewChild("parentEl")
         parentEl:HTMLElement;
@@ -67,18 +67,20 @@ export class SVGView implements OnInit,AfterViewInit {
             cornerSize: 12,
             padding: 7,
             _add: function (e) {
+                this.remove(e);
                 e._parent = this;
                 return this.addWithUpdate(e);
-
-                //}else{
-                //
-                //
-                //}
             },
             dropSelf: function () {
                 if (this._objects) {
                     while (this._objects.length) this._objects[0].dropSelf();
 
+                } else if (this.type == _self.shapes.CIRCLE) {
+                    if (this._parent) {
+                        this._parent.remove(this);
+                    } else {
+                        _self.fabricJS.remove(this);
+                    }
                 } else {
                     this.get('_points').forEach((e)=> {
                         if (e._parent) {
@@ -103,11 +105,12 @@ export class SVGView implements OnInit,AfterViewInit {
                     hardClone = ['scaleX', 'scaleY'],
                     _pn = this.get('_points'),
                     _points = this.get('points'),
-                    newObj = new this.constructor(_points)
-                    ;
+                    newObj = new this.constructor(_points);
+
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
+                newObj.perPixelTargetFind = !_self.selected.canEdit;
                 if (isHard || this.hardClone) {
                     for (var i = 0; i < hardClone.length; i++) {
                         newObj[hardClone[i]] = this[hardClone[i]];
@@ -117,6 +120,12 @@ export class SVGView implements OnInit,AfterViewInit {
                         ['left', 'top'].forEach((field)=> {
                             newObj[field] = this[field];
                         });
+                        //newObj.set('points', _points.map((e)=>{
+                        //    e.x+=this.left;
+                        //    e.y+=this.top;
+                        //   return e;
+                        //}));
+                        //newObj.setCoords();
                     }
                 }
 
@@ -234,8 +243,12 @@ export class SVGView implements OnInit,AfterViewInit {
                 POLYGON: {
                     fill: this.curFill,
                     opacity: this.selected.camera.opacity,
-                    selectable: false
+                    selectable: false,
+                    perPixelTargetFind: !this.selected.canEdit
 
+                }, GROUP: {
+                    selectable: false,
+                    perPixelTargetFind: !this.selected.canEdit
                 }
             };
             this.shapes = {
@@ -250,7 +263,6 @@ export class SVGView implements OnInit,AfterViewInit {
                     this.glapp.authServ.get(this.dataSrc, {hasAuthHeader: false}).subscribe((res:any)=> {
                         this.parseSVG(res._body, ((_objects, _options)=> {
                             if (o && options) {
-
                                 options.objects = o;
                                 _self.resize(false, false, options);
                                 let scaleMultiplierX = _self.fabricJS.width / options.width,
@@ -339,7 +351,7 @@ export class SVGView implements OnInit,AfterViewInit {
         }, 200);
     }
 
-    private updateImgZoomer() {
+    private updateImgZoomer(callback) {
 
         let _self = this,
             img = new Image();
@@ -350,20 +362,24 @@ export class SVGView implements OnInit,AfterViewInit {
             _cnvs.drawImage(_self.glapp.app._slider.isDebug ? _self.glapp.app._slider.currentAlignFrame : _self.glapp.app._slider.currentFrame, 0, 0, _bCnvc.width, _bCnvc.height);
             _cnvs.drawImage(img, 0, 0);
             _self.curImgZoom.src = _bCnvc.toDataURL();
+            if (callback)callback();
 
         }
         img.src = this.fabricJS.toDataURL();
     }
-    private drawZoom(event){
-        this.showHelpZoomer = [this.MODES.EDIT,this.MODES.DRAW].indexOf(this.mode) < 0 && this.selected.camera.showZoomHelper;
-        if(!this.showHelpZoomer)return;
+
+    private drawZoom(event) {
+        this.showHelpZoomer = [this.MODES.EDIT, this.MODES.ADD].indexOf(this.mode) > -1 && this.selected.camera.showZoomHelper;
+        if (!this.showHelpZoomer)return;
         let
-            _deltaX =  this.zoomDelta,
+            _deltaX = this.zoomDelta,
             _deltaY = _deltaX * this.curImgZoom.height / this.curImgZoom.width,
             zCnvs = this.zoomer['nativeElement'],
-            _offset  =event.e.target.getBoundingClientRect();
-        this.updateImgZoomer();
-        zCnvs.getContext('2d').drawImage(this.curImgZoom, event.e.clientX-_offset.left - _deltaX, event.e.clientY-_offset.top - _deltaY, 2 * _deltaX, 2 * _deltaY, 0, 0, zCnvs.width, zCnvs.height)
+            _offset = event.e.target.getBoundingClientRect();
+        this.updateImgZoomer(()=> {
+            zCnvs.getContext('2d').drawImage(this.curImgZoom, event.e.clientX - _offset.left - _deltaX, event.e.clientY - _offset.top - _deltaY, 2 * _deltaX, 2 * _deltaY, 0, 0, zCnvs.width, zCnvs.height)
+        });
+
 
     }
 
@@ -391,8 +407,8 @@ export class SVGView implements OnInit,AfterViewInit {
             fabricJS.on('before:selection:cleared', (options)=> {
                 if (this.mode != this.MODES.EDIT)this.mode = this.MODES.ADD;
             });
-            fabricJS.on('mouse:wheel',(event)=>{
-                this.zoomDelta += (event.e.deltaY || event.e.detail || event.e.wheelDelta)/10;
+            fabricJS.on('mouse:wheel', (event)=> {
+                this.zoomDelta += (event.e.deltaY || event.e.detail || event.e.wheelDelta) / 10;
                 this.drawZoom(event);
                 event.e.preventDefault();
             });
@@ -499,7 +515,9 @@ export class SVGView implements OnInit,AfterViewInit {
                                 _p = curActiv.parent.get('points');
                             _p[curActiv._iter].x += x;
                             _p[curActiv._iter].y += y;
-
+                            //curActiv.parent.set('points',_p);
+                            //curActiv.parent.setCoords();
+                            //curActiv.parent._parent._add(curActiv.parent);
                             curActiv.parent.clone();
                             //var bound = curActiv.parent.getBoundingRect();
                             //curActiv.setTop(curActiv.originalState.top);
@@ -549,17 +567,22 @@ export class SVGView implements OnInit,AfterViewInit {
         } else {
             fabricJS.on('mouse:over', (e)=> {
                 if (!e.target)return;
-                e.target.opacity = 1;
-                this.currentShape = e.target;
-                if (e.target._tooltip)e.target._tooltip.show();
-                this.fabricJS.renderAll();
+                this.intersectingCheck(e.target, ()=> {
+                    e.target.opacity = 1;
+                    this.currentShape = e.target;
+                    if (e.target._tooltip)e.target._tooltip.show();
+                    this.fabricJS.renderAll();
+                });
             });
             fabricJS.on('mouse:out', (e)=> {
                 if (!e.target)return;
-                this.currentShape = null;
-                if (e.target._tooltip)e.target._tooltip.show(false);
-                e.target.opacity = this.selected.camera.opacity;
-                this.fabricJS.renderAll();
+                this.intersectingCheck(e.target, ()=> {
+                    this.currentShape = null;
+                    if (e.target._tooltip)e.target._tooltip.show(false);
+                    e.target.opacity = this.selected.camera.opacity;
+                    this.fabricJS.renderAll();
+                });
+
             });
             fabricJS.on('mouse:up', (e)=> {
                 if (!e.target)return;
@@ -667,6 +690,7 @@ export class SVGView implements OnInit,AfterViewInit {
             }
             objects[i].left *= scaleMultiplierX;
             objects[i].top *= scaleMultiplierY;
+            objects[i].setCoords();
             if (objects[i]._tooltip)objects[i]._tooltip.show(false);
         }
 
@@ -827,16 +851,54 @@ export class SVGView implements OnInit,AfterViewInit {
 
     }
 
+    private   intersectingCheck(activeObject, onSuccess) {
+        activeObject.setCoords();
+        if (typeof activeObject.refreshLast != 'boolean') {
+            activeObject.refreshLast = true
+        }
+        ;
+
+        //loop canvas objects
+        activeObject.canvas.forEachObject(function (targ) {
+            if (targ === activeObject) return; //bypass self
+
+            //check intersections with every object in canvas
+            if (activeObject.intersectsWithObject(targ)
+                || activeObject.isContainedWithinObject(targ)
+                || targ.isContainedWithinObject(activeObject)) {
+                //objects are intersecting - deny saving last non-intersection position and break loop
+
+                if (typeof activeObject.lastLeft == 'number') {
+                    activeObject.left = activeObject.lastLeft;
+                    activeObject.top = activeObject.lastTop;
+                    activeObject.refreshLast = false;
+                    return;
+                }
+            }
+            else {
+                activeObject.refreshLast = true;
+            }
+        });
+
+        if (activeObject.refreshLast) {
+            //save last non-intersecting position if possible
+            activeObject.lastLeft = activeObject.left;
+            activeObject.lastTop = activeObject.top;
+        }
+        if (onSuccess)onSuccess();
+
+    }
+
 }
 
 class SVGGroup {
     group:Array<any>;
     editPoints:Array<any>;
     private id:any;
-    private canvas:any;
+    private canvas:SVGView;
     private color:any;
 
-    constructor(canvas:any, id = ENTITY.Config.randomstr()) {
+    constructor(canvas:SVGView, id = ENTITY.Config.randomstr()) {
         this.group = [];//new fabric.Group({selectable: false});
         this.editPoints = [];
         this.canvas = canvas;
@@ -885,7 +947,7 @@ class SVGGroup {
     }
 
     make() {
-        let group = new fabric.Group(this.childs(), {selectable: false});
+        let group = new fabric.Group(this.childs(), this.canvas.settings.GROUP);
         group.set('id', this.id);
         this.group.forEach((e:any)=> {
             e._parent = group;

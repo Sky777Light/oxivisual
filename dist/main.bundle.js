@@ -1667,17 +1667,22 @@ var SVGView = (function () {
             cornerSize: 12,
             padding: 7,
             _add: function (e) {
+                this.remove(e);
                 e._parent = this;
                 return this.addWithUpdate(e);
-                //}else{
-                //
-                //
-                //}
             },
             dropSelf: function () {
                 if (this._objects) {
                     while (this._objects.length)
                         this._objects[0].dropSelf();
+                }
+                else if (this.type == _self.shapes.CIRCLE) {
+                    if (this._parent) {
+                        this._parent.remove(this);
+                    }
+                    else {
+                        _self.fabricJS.remove(this);
+                    }
                 }
                 else {
                     this.get('_points').forEach(function (e) {
@@ -1706,6 +1711,7 @@ var SVGView = (function () {
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
+                newObj.perPixelTargetFind = !_self.selected.canEdit;
                 if (isHard || this.hardClone) {
                     for (var i = 0; i < hardClone.length; i++) {
                         newObj[hardClone[i]] = this[hardClone[i]];
@@ -1813,7 +1819,11 @@ var SVGView = (function () {
                 POLYGON: {
                     fill: _this.curFill,
                     opacity: _this.selected.camera.opacity,
-                    selectable: false
+                    selectable: false,
+                    perPixelTargetFind: !_this.selected.canEdit
+                }, GROUP: {
+                    selectable: false,
+                    perPixelTargetFind: !_this.selected.canEdit
                 }
             };
             _this.shapes = {
@@ -1911,23 +1921,27 @@ var SVGView = (function () {
             }
         }, 200);
     };
-    SVGView.prototype.updateImgZoomer = function () {
+    SVGView.prototype.updateImgZoomer = function (callback) {
         var _self = this, img = new Image();
         img.onload = function () {
             var _bCnvc = _self.bufferC['nativeElement'], _cnvs = _bCnvc.getContext('2d');
             _cnvs.drawImage(_self.glapp.app._slider.isDebug ? _self.glapp.app._slider.currentAlignFrame : _self.glapp.app._slider.currentFrame, 0, 0, _bCnvc.width, _bCnvc.height);
             _cnvs.drawImage(img, 0, 0);
             _self.curImgZoom.src = _bCnvc.toDataURL();
+            if (callback)
+                callback();
         };
         img.src = this.fabricJS.toDataURL();
     };
     SVGView.prototype.drawZoom = function (event) {
-        this.showHelpZoomer = [this.MODES.EDIT, this.MODES.DRAW].indexOf(this.mode) < 0 && this.selected.camera.showZoomHelper;
+        var _this = this;
+        this.showHelpZoomer = [this.MODES.EDIT, this.MODES.ADD].indexOf(this.mode) > -1 && this.selected.camera.showZoomHelper;
         if (!this.showHelpZoomer)
             return;
         var _deltaX = this.zoomDelta, _deltaY = _deltaX * this.curImgZoom.height / this.curImgZoom.width, zCnvs = this.zoomer['nativeElement'], _offset = event.e.target.getBoundingClientRect();
-        this.updateImgZoomer();
-        zCnvs.getContext('2d').drawImage(this.curImgZoom, event.e.clientX - _offset.left - _deltaX, event.e.clientY - _offset.top - _deltaY, 2 * _deltaX, 2 * _deltaY, 0, 0, zCnvs.width, zCnvs.height);
+        this.updateImgZoomer(function () {
+            zCnvs.getContext('2d').drawImage(_this.curImgZoom, event.e.clientX - _offset.left - _deltaX, event.e.clientY - _offset.top - _deltaY, 2 * _deltaX, 2 * _deltaY, 0, 0, zCnvs.width, zCnvs.height);
+        });
     };
     SVGView.prototype.onLoadSVG = function () {
         var _this = this;
@@ -2055,6 +2069,9 @@ var SVGView = (function () {
                                 var _p = curActiv.parent.get('points');
                                 _p[curActiv._iter].x += x;
                                 _p[curActiv._iter].y += y;
+                                //curActiv.parent.set('points',_p);
+                                //curActiv.parent.setCoords();
+                                //curActiv.parent._parent._add(curActiv.parent);
                                 curActiv.parent.clone();
                                 //var bound = curActiv.parent.getBoundingRect();
                                 //curActiv.setTop(curActiv.originalState.top);
@@ -2107,20 +2124,24 @@ var SVGView = (function () {
             fabricJS.on('mouse:over', function (e) {
                 if (!e.target)
                     return;
-                e.target.opacity = 1;
-                _this.currentShape = e.target;
-                if (e.target._tooltip)
-                    e.target._tooltip.show();
-                _this.fabricJS.renderAll();
+                _this.intersectingCheck(e.target, function () {
+                    e.target.opacity = 1;
+                    _this.currentShape = e.target;
+                    if (e.target._tooltip)
+                        e.target._tooltip.show();
+                    _this.fabricJS.renderAll();
+                });
             });
             fabricJS.on('mouse:out', function (e) {
                 if (!e.target)
                     return;
-                _this.currentShape = null;
-                if (e.target._tooltip)
-                    e.target._tooltip.show(false);
-                e.target.opacity = _this.selected.camera.opacity;
-                _this.fabricJS.renderAll();
+                _this.intersectingCheck(e.target, function () {
+                    _this.currentShape = null;
+                    if (e.target._tooltip)
+                        e.target._tooltip.show(false);
+                    e.target.opacity = _this.selected.camera.opacity;
+                    _this.fabricJS.renderAll();
+                });
             });
             fabricJS.on('mouse:up', function (e) {
                 if (!e.target)
@@ -2223,6 +2244,7 @@ var SVGView = (function () {
             }
             objects[i].left *= scaleMultiplierX;
             objects[i].top *= scaleMultiplierY;
+            objects[i].setCoords();
             if (objects[i]._tooltip)
                 objects[i]._tooltip.show(false);
         }
@@ -2363,6 +2385,40 @@ var SVGView = (function () {
         }
         callback(allElem, options);
     };
+    SVGView.prototype.intersectingCheck = function (activeObject, onSuccess) {
+        activeObject.setCoords();
+        if (typeof activeObject.refreshLast != 'boolean') {
+            activeObject.refreshLast = true;
+        }
+        ;
+        //loop canvas objects
+        activeObject.canvas.forEachObject(function (targ) {
+            if (targ === activeObject)
+                return; //bypass self
+            //check intersections with every object in canvas
+            if (activeObject.intersectsWithObject(targ)
+                || activeObject.isContainedWithinObject(targ)
+                || targ.isContainedWithinObject(activeObject)) {
+                //objects are intersecting - deny saving last non-intersection position and break loop
+                if (typeof activeObject.lastLeft == 'number') {
+                    activeObject.left = activeObject.lastLeft;
+                    activeObject.top = activeObject.lastTop;
+                    activeObject.refreshLast = false;
+                    return;
+                }
+            }
+            else {
+                activeObject.refreshLast = true;
+            }
+        });
+        if (activeObject.refreshLast) {
+            //save last non-intersecting position if possible
+            activeObject.lastLeft = activeObject.left;
+            activeObject.lastTop = activeObject.top;
+        }
+        if (onSuccess)
+            onSuccess();
+    };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("parentEl"), 
         __metadata('design:type', Object)
@@ -2448,7 +2504,7 @@ var SVGGroup = (function () {
         return this.make();
     };
     SVGGroup.prototype.make = function () {
-        var group = new fabric.Group(this.childs(), { selectable: false });
+        var group = new fabric.Group(this.childs(), this.canvas.settings.GROUP);
         group.set('id', this.id);
         this.group.forEach(function (e) {
             e._parent = group;
@@ -8011,7 +8067,7 @@ module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"D
 /***/ 871:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"svg-view\" #parentEl>\n    <canvas #dataEl></canvas>\n    <div *ngIf=\"selected.canEdit\">\n\n        <div [ngClass] =\"{'active': showHelpZoomer}\" class=\"zoomer-c\" >\n            <div class=\"left-border\"></div>\n            <div class=\"top-border\"></div>\n            <canvas #zoomer></canvas>\n        </div>\n\n        <canvas  class=\"buffer-c\"   #bufferC></canvas>\n\n        <div class=\"help-info\">\n            <h1 (mouseover)=\"help=!help\" (mouseout)=\"help=!help\">?</h1>\n                <p class=\"help-text\" [ngClass]=\"{'active':help}\">Press ESC or right click to finish draw, mouse in to hover draw area, mouse right down to create new area, mouse left down to attach loaded area, hold SHIFT and click on polygon to make group from polygons</p>\n        </div>\n        <div class=\"log-info\">\n            <p *ngIf=\"mode == MODES.ADD || mode == MODES.EDIT\">drawing/edit mode</p>\n            <p *ngIf=\"mode == MODES.NO\">selecting mode</p>\n            <p *ngIf=\"mode == MODES.GROUP\">grouping mode</p>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"svg-view\" #parentEl>\n    <canvas #dataEl></canvas>\n    <div *ngIf=\"selected.canEdit\">\n\n        <div [ngClass] =\"{'active': showHelpZoomer}\" class=\"zoomer-c\" >\n            <div class=\"left-border\"></div>\n            <div class=\"top-border\"></div>\n            <canvas #zoomer></canvas>\n        </div>\n\n        <canvas  class=\"buffer-c\"   #bufferC></canvas>\n\n        <div class=\"help-info\">\n            <h1 (mouseover)=\"help=!help\" (mouseout)=\"help=!help\">?</h1>\n                <p class=\"help-text\" [ngClass]=\"{'active':help}\">Press ESC or right click to finish draw, mouse in - to hover draw area, mouse right down - to switch to draw mode, mouse left down - to attach loaded area, hold SHIFT and click on polygon to make group from polygons</p>\n        </div>\n        <div class=\"log-info\">\n            <p *ngIf=\"mode == MODES.ADD || mode == MODES.EDIT\">drawing/edit mode</p>\n            <p *ngIf=\"mode == MODES.NO\">selecting mode</p>\n            <p *ngIf=\"mode == MODES.GROUP\">grouping mode</p>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
