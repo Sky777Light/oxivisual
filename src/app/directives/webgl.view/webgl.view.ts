@@ -1266,8 +1266,11 @@ class OxiControls {
             div.className = ENTITY.ProjClasses.PROJ_CONTROLS;
 
             app._parent().appendChild(div);
-            let childSelected = (child:any)=> {
-                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+            let
+                getSelected = ()=> {
+                    return app.main.selected.camera.isSVG ? app.main.svgEl.lastSelectedShape : this.app._events.lastInter.object;
+                }, childSelected = (child:any)=> {
+                    let _elem = getSelected();
                     _elem._data = child;
                     child._id = _elem.name || _elem.id || "";
                     child.name = child._id.toUpperCase();
@@ -1280,7 +1283,7 @@ class OxiControls {
                     }
                 },
                 removeChild = ()=> {
-                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    let _elem =  getSelected();
                     for (let i = 0, areas = app.main.selected.areas; i < areas.length; i++) {
                         if (areas[i]._id == _elem._data._id) {
                             areas.splice(i, 1);
@@ -1293,7 +1296,7 @@ class OxiControls {
 
                 {
                     className: 'attach-new', click: (onFinish)=> {
-                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    let _elem = getSelected();
                     if (_elem._data) {
                         new Confirm({
                             title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
@@ -1326,7 +1329,7 @@ class OxiControls {
                             }
                         });
                     };
-                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    let _elem = getSelected();
 
                     if (_elem._data) {
                         new Confirm({
@@ -1361,7 +1364,7 @@ class OxiControls {
                             }
                         });
                     };
-                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    let _elem = getSelected();
 
                     if (_elem._data) {
                         new Confirm({
@@ -1382,7 +1385,7 @@ class OxiControls {
                 },
                 {
                     className: 'cntrls-close', click: (onFinish)=> {
-                    let _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : this.app._events.lastInter.object;
+                    let _elem = getSelected();
 
                     if (_elem._data) {
                         new Confirm({

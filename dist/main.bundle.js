@@ -1651,6 +1651,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SVGView = (function () {
     function SVGView() {
         this.canEdit = false;
+        this.isFinish = false;
         this.zoomDelta = 10;
         this.showHelpZoomer = false;
         this.MODES = {};
@@ -1723,37 +1724,25 @@ var SVGView = (function () {
                 _self.fabricJS.renderAll();
                 _self.toSVG();
             },
-            clone: function (isHard) {
+            _clone: function (isHard) {
                 var _this = this;
-                var clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects', 'scaleX0', 'scaleY0', 'left0', 'top0'], hardClone = ['scaleX', 'scaleY'], _pn = this.get('_points'), _points = this.get('points'), newObj = new this.constructor(_points);
-                if (this._parent)
-                    this._parent.remove(this);
+                this.setCoords();
+                var clone = ['fill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'], _pn = this.get('_points');
+                var _points = isHard || this._hasUpdate ? this.get('points') : this.get('points').map(function (el, d) {
+                    var _pC = new fabric.Point((el.x) * _this.scaleX0, (el.y) * _this.scaleY0);
+                    //this.left = this.top = 0;
+                    _this._hasUpdate /*= this.scaleX0 = this.scaleY0 = this.scaleY = this.scaleX */ = 1;
+                    //console.log(this.scaleX0, this.scaleY0);
+                    return _pC;
+                }), newObj = new this.constructor(_points);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
                 newObj.perPixelTargetFind = !_self.selected.canEdit;
-                if (isHard || this.hardClone) {
-                    for (var i = 0; i < hardClone.length; i++) {
-                        newObj[hardClone[i]] = this[hardClone[i]];
-                    }
-                    newObj.hardClone = true;
-                    if (isHard) {
-                        ['left', 'top'].forEach(function (field) {
-                            newObj[field] = _this[field];
-                        });
-                    }
-                }
                 if (!newObj.id)
                     newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
-                //if (this.type == _self.shapes.POLYGON) {
-                //    newObj.selectable = false;
-                //var matrix = this.calcTransformMatrix();
-                //newObj.set('transformMatrix',this.calcTransformMatrix());
-                //}
                 if (this._parent) {
                     this._parent._add(newObj);
-                    if (this._parent.type == _self.shapes.GROUP) {
-                    }
                 }
                 else {
                     _self.fabricJS._add(newObj);
@@ -1770,6 +1759,13 @@ var SVGView = (function () {
                         _pn[i].parent = newObj;
                     }
                 }
+                if (this._parent) {
+                    this._parent.remove(this);
+                }
+                else {
+                    _self.fabricJS.remove(this);
+                }
+                newObj.setCoords();
                 return newObj;
             },
             getScreenPst: function () {
@@ -1812,6 +1808,7 @@ var SVGView = (function () {
         });
         fabric.Canvas.prototype.set({
             _add: function (e) {
+                this.remove(e);
                 e._parent = this;
                 return this.add(e);
             }
@@ -1873,12 +1870,14 @@ var SVGView = (function () {
             var _loop_1 = function(itm, maxL) {
                 var cur = o[itm];
                 if (cur.type == _self.shapes.POLYGON) {
-                    var center_1 = cur.getCenterPoint(), _points_1 = [], _p = cur.get('points').map(function (el, d) {
-                        var _pC = new fabric.Point(center_1.x + el.x, center_1.y + el.y);
+                    var center_1 = cur.getCenterPoint(), _points_1 = [], points0 = cur.get('points'), _p = points0.concat([]).map(function (el, d) {
+                        cur.left = cur.top = 0;
+                        cur.scaleX = cur.scaleY = 1;
+                        var _pC = new fabric.Point(center_1.x + el.x * scaleMultiplierX_1, center_1.y + el.y * scaleMultiplierY_1);
                         if (_self.canEdit) {
                             var circle = new fabric.Circle(_self.settings.CIRCLE);
-                            circle.left = (el.x) * scaleMultiplierX_1 + center_1.x;
-                            circle.top = (el.y) * scaleMultiplierY_1 + center_1.y;
+                            circle.left = _pC.x;
+                            circle.top = _pC.y;
                             circle._iter = d;
                             circle.parent = cur;
                             _points_1.push(circle);
@@ -1888,11 +1887,13 @@ var SVGView = (function () {
                     if (_points_1.length)
                         cur.set('_points', _points_1);
                     cur.set('points', _p);
+                    cur.set('points0', points0);
+                    cur.set('_center', center_1);
                     outs.push(cur);
                 }
                 else if (cur.type == _self.shapes.GROUP) {
                 }
-                var cloneCur = cur.clone(true);
+                var cloneCur = cur._clone(true);
                 for (var u = 0; u < _objects.length; u++) {
                     if (cloneCur.id == _objects[u].id) {
                         var _c = _objects.splice(u, 1)[0];
@@ -2005,7 +2006,7 @@ var SVGView = (function () {
                     _this.currentShape.set({
                         points: points
                     });
-                    _this.currentShape.clone();
+                    _this.currentShape._clone(true);
                     fabricJS.renderAll();
                 }
                 _this.drawZoom(event);
@@ -2077,11 +2078,11 @@ var SVGView = (function () {
                     switch (curActiv.type) {
                         case 'polygon':
                             {
-                                curActiv.get("_points").forEach(function (obj) {
-                                    obj.set('left', obj.left + x);
-                                    obj.set('top', obj.top + y);
-                                    obj.setCoords();
-                                });
+                                //curActiv.get("_points").forEach((obj)=> {
+                                //    obj.set('left', obj.left + x);
+                                //    obj.set('top', obj.top + y);
+                                //    obj.setCoords();
+                                //});
                                 break;
                             }
                         case 'circle':
@@ -2091,8 +2092,9 @@ var SVGView = (function () {
                                 _p[curActiv._iter].y += y;
                                 //curActiv.parent.set('points',_p);
                                 //curActiv.parent.setCoords();
+                                //curActiv.parent._parent.remove(curActiv.parent)._add(curActiv.parent);
                                 //curActiv.parent._parent._add(curActiv.parent);
-                                curActiv.parent.clone();
+                                curActiv.parent._clone(true);
                                 //var bound = curActiv.parent.getBoundingRect();
                                 //curActiv.setTop(curActiv.originalState.top);
                                 //curActiv.setLeft(curActiv.originalState.left);
@@ -2102,7 +2104,7 @@ var SVGView = (function () {
                                 break;
                             }
                     }
-                    fabricJS.renderAll();
+                    fabricJS.calcOffset().renderAll();
                     _this.toSVG();
                 }
             });
@@ -2131,7 +2133,7 @@ var SVGView = (function () {
             fabricJS.on('mouse:out', function (e) {
                 if (_this.mode != _this.MODES.NO || !e.target)
                     return;
-                //this.currentShape = null;
+                _this.currentShape = null;
                 e.target.opacity = _this.selected.camera.opacity;
                 if (e.target._objects)
                     e.target._objects.forEach(function (el) {
@@ -2170,9 +2172,13 @@ var SVGView = (function () {
                     e.target.click();
             });
         }
+        fabricJS.on("after:render", function () {
+            fabricJS.calcOffset();
+        });
         setTimeout(function () {
             if (_this.glapp.app && _this.glapp.app._events)
                 _this.glapp.app._events.onWindowResize();
+            _this.isFinish = true;
         }, 100);
     };
     SVGView.prototype.getRandomColor = function () {
@@ -2212,9 +2218,11 @@ var SVGView = (function () {
     };
     SVGView.prototype.onMouseDown = function (e) {
         e.preventDefault();
+        this.lastSelectedShape = null;
         if (e.button == 2) {
             if (this.mode == this.MODES.NO && this.currentShape) {
                 this.glapp.app._projControls.showControls(e);
+                this.lastSelectedShape = this.currentShape;
             }
             else {
                 this.onFinishDraw();
@@ -2222,13 +2230,13 @@ var SVGView = (function () {
         }
     };
     SVGView.prototype.onFinishDraw = function () {
-        if (this.currentShape && this.currentShape.type == 'polygon') {
+        if (this.currentShape && this.currentShape.type == this.shapes.POLYGON) {
             var points = this.currentShape.get('points');
             points.pop();
             this.currentShape.set({
                 points: points
             });
-            this.currentShape.clone();
+            this.currentShape._clone(true);
             this.toSVG();
         }
         this.curFill = this.settings.POLYGON.fill = this.getRandomColor();
@@ -2247,7 +2255,7 @@ var SVGView = (function () {
             _w = this.glapp.app._container.clientWidth;
         if (!_h && this.glapp.app._container)
             _h = this.glapp.app._container.clientHeight;
-        var scaleMultiplierX = _w / this.fabricJS.width, scaleMultiplierY = _h / this.fabricJS.height, objects = this.fabricJS._objects;
+        var scaleMultiplierX = _w / this.fabricJS.width, scaleMultiplierY = _h / this.fabricJS.height, scaleX0 = scaleMultiplierX, scaleY0 = scaleMultiplierY, objects = this.fabricJS._objects, prevW = this.fabricJS.width, prevH = this.fabricJS.height;
         if (_w)
             this.fabricJS.setWidth(_w);
         if (_h)
@@ -2257,20 +2265,11 @@ var SVGView = (function () {
             scaleMultiplierY = this.fabricJS.height / options.height;
             objects = options.objects;
         }
-        for (var i = 0; i < objects.length; i++) {
-            //['scaleX', 'scaleY', 'left', 'top'].forEach((e)=> {
-            //    if (!objects[i][e + "0"])objects[i][e + "0"] = objects[i][e];
-            //});
-            if (objects[i].type != _self.shapes.CIRCLE) {
-                objects[i].scaleX *= scaleMultiplierX;
-                objects[i].scaleY *= scaleMultiplierY;
-            }
-            objects[i].left *= scaleMultiplierX;
-            objects[i].top *= scaleMultiplierY;
-            objects[i].setCoords();
-            if (objects[i]._tooltip)
-                objects[i]._tooltip.show(false);
+        else {
+            scaleX0 = _w / prevW;
+            scaleY0 = _h / prevH;
         }
+        this.resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
         if (this.zoomer) {
             var _cnvs = this.zoomer['nativeElement'], _bCnvs = this.bufferC['nativeElement'];
             _bCnvs.width = _w;
@@ -2281,6 +2280,30 @@ var SVGView = (function () {
             _cnvs.style.height = _h * 0.2 + 'px';
         }
         this.fabricJS.calcOffset().renderAll();
+    };
+    SVGView.prototype.resizeElements = function (objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY) {
+        for (var i = 0, list = objects.concat([]); i < list.length; i++) {
+            var cur = list[i];
+            cur.scaleX0 = scaleX0;
+            cur.scaleY0 = scaleY0;
+            cur._hasUpdate = 0;
+            cur.left *= scaleMultiplierX;
+            cur.top *= scaleMultiplierY;
+            if (cur.type != this.shapes.CIRCLE) {
+                cur.scaleX *= scaleMultiplierX;
+                cur.scaleY *= scaleMultiplierY;
+            }
+            if (cur._tooltip)
+                cur._tooltip.show(false);
+            if (this.isFinish) {
+                if (cur.type == this.shapes.POLYGON) {
+                    cur._clone();
+                }
+                else if (cur.type == this.shapes.GROUP) {
+                    this.resizeElements(cur._objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
+                }
+            }
+        }
     };
     SVGView.prototype.ngOnDestroy = function () {
         //delete this.selected.svgDestination;
@@ -2484,7 +2507,7 @@ var SVGGroup = (function () {
         this.editPoints = [];
         this.canvas = canvas;
         this.id = id;
-        this.color = this.canvas.getRandomColor();
+        //this.color = this.canvas.getRandomColor()
     }
     SVGGroup.prototype.getScreenPst = function () {
         return { x: 0, y: 0 };
@@ -2492,6 +2515,8 @@ var SVGGroup = (function () {
     SVGGroup.prototype.add = function (element) {
         var _this = this;
         if (element && element.type == this.canvas.shapes.POLYGON) {
+            if (!this.color)
+                this.color = element.fill;
             element.fill = this.color;
             [element].concat(element.get('_points')).forEach(function (elem) {
                 if (!elem)
@@ -3799,8 +3824,10 @@ var OxiControls = (function () {
         if (app.main.selected.canEdit) {
             div.className = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["g" /* ProjClasses */].PROJ_CONTROLS;
             app._parent().appendChild(div);
-            var childSelected_1 = function (child) {
-                var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+            var getSelected_1 = function () {
+                return app.main.selected.camera.isSVG ? app.main.svgEl.lastSelectedShape : _this.app._events.lastInter.object;
+            }, childSelected_1 = function (child) {
+                var _elem = getSelected_1();
                 _elem._data = child;
                 child._id = _elem.name || _elem.id || "";
                 child.name = child._id.toUpperCase();
@@ -3812,7 +3839,7 @@ var OxiControls = (function () {
                     _this.app.main.selected.areas.push(child);
                 }
             }, removeChild_1 = function () {
-                var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                var _elem = getSelected_1();
                 for (var i = 0, areas = app.main.selected.areas; i < areas.length; i++) {
                     if (areas[i]._id == _elem._data._id) {
                         areas.splice(i, 1);
@@ -3824,7 +3851,7 @@ var OxiControls = (function () {
             [
                 {
                     className: 'attach-new', click: function (onFinish) {
-                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        var _elem = getSelected_1();
                         if (_elem._data) {
                             new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
                                 title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
@@ -3857,7 +3884,7 @@ var OxiControls = (function () {
                                 }
                             });
                         };
-                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        var _elem = getSelected_1();
                         if (_elem._data) {
                             new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
                                 title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
@@ -3889,7 +3916,7 @@ var OxiControls = (function () {
                                 }
                             });
                         };
-                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        var _elem = getSelected_1();
                         if (_elem._data) {
                             new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
                                 title: "This area had already a structure (" + _elem._data.name + "), if ok will resave!!!",
@@ -3909,7 +3936,7 @@ var OxiControls = (function () {
                 },
                 {
                     className: 'cntrls-close', click: function (onFinish) {
-                        var _elem = app.main.selected.camera.isSVG ? app.main.svgEl.currentShape : _this.app._events.lastInter.object;
+                        var _elem = getSelected_1();
                         if (_elem._data) {
                             new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["a" /* Confirm */]({
                                 title: "This area has a structure (" + _elem._data.name + "), if ok will remove!!!",

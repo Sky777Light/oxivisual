@@ -15,8 +15,10 @@ export class SVGView implements OnInit,AfterViewInit {
 
     private dataSrc:string;
     private canEdit:boolean = false;
+    private isFinish:boolean = false;
     private zoomDelta:number = 10;
     currentShape:any;
+    lastSelectedShape:any;
     private curKeyCode:number;
     private showHelpZoomer:boolean = false;
     private curFill:any;
@@ -78,6 +80,7 @@ export class SVGView implements OnInit,AfterViewInit {
             padding: 7,
             _add: function (e) {
                 this.remove(e);
+
                 e._parent = this;
                 return this.addWithUpdate(e);
             },
@@ -110,54 +113,29 @@ export class SVGView implements OnInit,AfterViewInit {
                 _self.toSVG();
 
             },
-            clone: function (isHard) {
-                let clone = ['fill', 'opacity', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects', 'scaleX0', 'scaleY0', 'left0', 'top0'],
-                    hardClone = ['scaleX', 'scaleY'],
-                    _pn = this.get('_points'),
-                    _points = this.get('points'),
+            _clone: function (isHard) {
+
+                this.setCoords();
+                let clone = ['fill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'],
+                    _pn = this.get('_points');
+                let _points = isHard || this._hasUpdate ? this.get('points') : this.get('points').map((el, d)=> {
+                        let _pC = new fabric.Point((el.x) * this.scaleX0, (el.y) * this.scaleY0);
+                        //this.left = this.top = 0;
+                        this._hasUpdate /*= this.scaleX0 = this.scaleY0 = this.scaleY = this.scaleX */ = 1;
+                        //console.log(this.scaleX0, this.scaleY0);
+                        return _pC;
+                    }),
                     newObj = new this.constructor(_points);
 
-                if (this._parent) this._parent.remove(this);
                 for (var i = 0; i < clone.length; i++) {
                     newObj[clone[i]] = this[clone[i]];
                 }
                 newObj.perPixelTargetFind = !_self.selected.canEdit;
-                if (isHard || this.hardClone) {
-                    for (var i = 0; i < hardClone.length; i++) {
-                        newObj[hardClone[i]] = this[hardClone[i]];
-                    }
-                    newObj.hardClone = true;
-                    if (isHard) {
-                        ['left', 'top'].forEach((field)=> {
-                            newObj[field] = this[field];
-                        });
-                        //newObj.set('points', _points.map((e)=>{
-                        //    e.x+=this.left;
-                        //    e.y+=this.top;
-                        //   return e;
-                        //}));
-                        //newObj.setCoords();
-                    }
-                }
-
                 if (!newObj.id)newObj.set('id', ENTITY.Config.randomstr());
-
-                //if (this.type == _self.shapes.POLYGON) {
-                //    newObj.selectable = false;
-                //var matrix = this.calcTransformMatrix();
-                //newObj.set('transformMatrix',this.calcTransformMatrix());
-                //}
 
 
                 if (this._parent) {
                     this._parent._add(newObj);
-                    if (this._parent.type == _self.shapes.GROUP) {
-                        //    let s = new SVGGroup(_self);
-                        //    this._parent = s.clone(this._parent);
-                        //    //console.log(this._parent.type);
-                    }
-
-
                 } else {
                     _self.fabricJS._add(newObj);
                 }
@@ -170,13 +148,15 @@ export class SVGView implements OnInit,AfterViewInit {
                         } else {
                             _self.fabricJS.remove(_pn[i].parent).remove(_pn[i])._add(_pn[i]);
                         }
-
-
                         _pn[i].parent = newObj;
                     }
                 }
-
-
+                if (this._parent) {
+                    this._parent.remove(this);
+                } else {
+                    _self.fabricJS.remove(this);
+                }
+                newObj.setCoords();
                 return newObj;
             },
             getScreenPst: function () {
@@ -228,6 +208,7 @@ export class SVGView implements OnInit,AfterViewInit {
         });
         fabric.Canvas.prototype.set({
             _add: function (e) {
+                this.remove(e);
                 e._parent = this;
                 return this.add(e);
             }
@@ -297,28 +278,32 @@ export class SVGView implements OnInit,AfterViewInit {
                 if (cur.type == _self.shapes.POLYGON) {
                     let center = cur.getCenterPoint(),
                         _points = [],
-                        _p = cur.get('points').map((el, d)=> {
-                            let _pC = new fabric.Point(center.x + el.x, center.y + el.y);
+                        points0 = cur.get('points'),
+                        _p = points0.concat([]).map((el, d)=> {
+
+                            cur.left = cur.top = 0;
+                            cur.scaleX = cur.scaleY = 1;
+                            let _pC = new fabric.Point(center.x + el.x * scaleMultiplierX, center.y + el.y * scaleMultiplierY);
                             if (_self.canEdit) {
                                 let circle = new fabric.Circle(_self.settings.CIRCLE);
-                                circle.left = (el.x) * scaleMultiplierX + center.x;
-                                circle.top = (el.y) * scaleMultiplierY + center.y;
+                                circle.left = _pC.x;
+                                circle.top = _pC.y;
                                 circle._iter = d;
                                 circle.parent = cur;
                                 _points.push(circle);
                             }
                             return _pC;
                         });
-
                     if (_points.length) cur.set('_points', _points);
                     cur.set('points', _p);
+                    cur.set('points0', points0);
+                    cur.set('_center', center);
                     outs.push(cur);
                 } else if (cur.type == _self.shapes.GROUP) {
                     //_self.fabricJS._add(cur);
                     //parseAndInsert(cur._objects, options);
-
                 }
-                let cloneCur = cur.clone(true);
+                let cloneCur = cur._clone(true);
                 for (let u = 0; u < _objects.length; u++) {
                     if (cloneCur.id == _objects[u].id) {
                         let _c = _objects.splice(u, 1)[0];
@@ -433,7 +418,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     this.currentShape.set({
                         points: points
                     });
-                    this.currentShape.clone();
+                    this.currentShape._clone(true);
                     fabricJS.renderAll();
                 }
 
@@ -480,6 +465,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     this.currentShape.set("_points", _pointsSel);
                     fabricJS._add(this.currentShape)._add(circle).renderAll();
                     this.mode = this.MODES.EDIT;
+
                 } else if (this.mode === this.MODES.EDIT && this.currentShape && this.currentShape.type === "polygon") {
                     var points = this.currentShape.get("points"),
                         _points = this.currentShape.get("_points");
@@ -512,11 +498,11 @@ export class SVGView implements OnInit,AfterViewInit {
                     switch (curActiv.type) {
                         case 'polygon':
                         {
-                            curActiv.get("_points").forEach((obj)=> {
-                                obj.set('left', obj.left + x);
-                                obj.set('top', obj.top + y);
-                                obj.setCoords();
-                            });
+                            //curActiv.get("_points").forEach((obj)=> {
+                            //    obj.set('left', obj.left + x);
+                            //    obj.set('top', obj.top + y);
+                            //    obj.setCoords();
+                            //});
                             break;
                         }
                         case 'circle':
@@ -527,20 +513,20 @@ export class SVGView implements OnInit,AfterViewInit {
                             _p[curActiv._iter].y += y;
                             //curActiv.parent.set('points',_p);
                             //curActiv.parent.setCoords();
+                            //curActiv.parent._parent.remove(curActiv.parent)._add(curActiv.parent);
                             //curActiv.parent._parent._add(curActiv.parent);
-                            curActiv.parent.clone();
+                            curActiv.parent._clone(true);
                             //var bound = curActiv.parent.getBoundingRect();
                             //curActiv.setTop(curActiv.originalState.top);
                             //curActiv.setLeft(curActiv.originalState.left);
                             //curActiv.setScaleX(curActiv.originalState.scaleX);
                             //curActiv.setScaleY(curActiv.originalState.scaleY);
                             //curActiv.parent.setCoords();
-
                             break;
                         }
                     }
 
-                    fabricJS.renderAll();
+                    fabricJS.calcOffset().renderAll();
                     this.toSVG();
                 }
 
@@ -567,7 +553,7 @@ export class SVGView implements OnInit,AfterViewInit {
             });
             fabricJS.on('mouse:out', (e)=> {
                 if (this.mode != this.MODES.NO || !e.target)return;
-                //this.currentShape = null;
+                this.currentShape = null;
                 e.target.opacity = this.selected.camera.opacity;
                 if (e.target._objects)e.target._objects.forEach((el:any)=> {
                     el.opacity = e.target.opacity
@@ -599,9 +585,12 @@ export class SVGView implements OnInit,AfterViewInit {
                 if (e.target.click)e.target.click();
             });
         }
-
+        fabricJS.on("after:render", function () {
+            fabricJS.calcOffset();
+        });
         setTimeout(()=> {
             if (this.glapp.app && this.glapp.app._events) this.glapp.app._events.onWindowResize();
+            this.isFinish = true;
         }, 100)
     }
 
@@ -647,9 +636,11 @@ export class SVGView implements OnInit,AfterViewInit {
 
     private onMouseDown(e) {
         e.preventDefault();
+        this.lastSelectedShape =  null;
         if (e.button == 2) {
             if (this.mode == this.MODES.NO && this.currentShape) {
                 this.glapp.app._projControls.showControls(e);
+                this.lastSelectedShape =  this.currentShape;
             } else {
                 this.onFinishDraw();
             }
@@ -658,13 +649,14 @@ export class SVGView implements OnInit,AfterViewInit {
     }
 
     private onFinishDraw() {
-        if (this.currentShape && this.currentShape.type == 'polygon') {
+        if (this.currentShape && this.currentShape.type == this.shapes.POLYGON) {
             let points = this.currentShape.get('points');
             points.pop();
             this.currentShape.set({
                 points: points
             });
-            this.currentShape.clone();
+
+            this.currentShape._clone(true);
             this.toSVG();
         }
 
@@ -682,30 +674,27 @@ export class SVGView implements OnInit,AfterViewInit {
         if (!_h && this.glapp.app._container)_h = this.glapp.app._container.clientHeight;
         let scaleMultiplierX = _w / this.fabricJS.width,
             scaleMultiplierY = _h / this.fabricJS.height,
-            objects = this.fabricJS._objects;
+            scaleX0 = scaleMultiplierX,
+            scaleY0 = scaleMultiplierY,
+            objects = this.fabricJS._objects,
+            prevW = this.fabricJS.width,
+            prevH = this.fabricJS.height
+            ;
+
 
         if (_w)this.fabricJS.setWidth(_w);
         if (_h)this.fabricJS.setHeight(_h);
+
         if (options) {
             scaleMultiplierX = this.fabricJS.width / options.width;
             scaleMultiplierY = this.fabricJS.height / options.height;
             objects = options.objects;
-        }
+        } else {
+            scaleX0 = _w / prevW;
+            scaleY0 = _h / prevH;
 
-        for (let i = 0; i < objects.length; i++) {
-            //['scaleX', 'scaleY', 'left', 'top'].forEach((e)=> {
-            //    if (!objects[i][e + "0"])objects[i][e + "0"] = objects[i][e];
-            //});
-
-            if (objects[i].type != _self.shapes.CIRCLE) {
-                objects[i].scaleX *= scaleMultiplierX;
-                objects[i].scaleY *= scaleMultiplierY;
-            }
-            objects[i].left *=scaleMultiplierX;
-            objects[i].top *=  scaleMultiplierY;
-            objects[i].setCoords();
-            if (objects[i]._tooltip)objects[i]._tooltip.show(false);
         }
+        this.resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
 
         if (this.zoomer) {
             let _cnvs = this.zoomer['nativeElement'],
@@ -718,6 +707,34 @@ export class SVGView implements OnInit,AfterViewInit {
             _cnvs.style.height = _h * 0.2 + 'px';
         }
         this.fabricJS.calcOffset().renderAll();
+    }
+
+    private resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY) {
+        for (let i = 0, list = objects.concat([]); i < list.length; i++) {
+            let cur = list[i];
+            cur.scaleX0 = scaleX0;
+            cur.scaleY0 = scaleY0;
+            cur._hasUpdate = 0;
+            cur.left *= scaleMultiplierX;
+            cur.top *= scaleMultiplierY;
+            if (cur.type != this.shapes.CIRCLE) {
+                cur.scaleX *= scaleMultiplierX;
+                cur.scaleY *= scaleMultiplierY;
+            }
+
+            if (cur._tooltip)cur._tooltip.show(false);
+            if (this.isFinish) {
+                if (cur.type == this.shapes.POLYGON) {
+                    cur._clone();
+                }
+                else if (cur.type == this.shapes.GROUP) {
+                    this.resizeElements(cur._objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
+                }
+
+            }
+
+
+        }
     }
 
     ngOnDestroy() {
@@ -916,7 +933,7 @@ class SVGGroup {
         this.editPoints = [];
         this.canvas = canvas;
         this.id = id;
-        this.color = this.canvas.getRandomColor()
+        //this.color = this.canvas.getRandomColor()
     }
 
     getScreenPst() {
@@ -925,6 +942,7 @@ class SVGGroup {
 
     add(element) {
         if (element && element.type == this.canvas.shapes.POLYGON) {
+            if (!this.color)this.color = element.fill;
             element.fill = this.color;
             [element].concat(element.get('_points')).forEach((elem:any)=> {
                 if (!elem)return;
