@@ -1937,7 +1937,7 @@ var SVGView = (function () {
                 if (!orCloner.defFill)
                     orCloner.defFill = orCloner.fill;
                 if (!orCloner.hoverFill)
-                    orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length ? _self.COLORS[0] : _self.COLORS[1];
+                    orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length || cloneCur._dataSource ? _self.COLORS[0] : _self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)
                     cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _self.glapp.app);
             };
@@ -2159,7 +2159,7 @@ var SVGView = (function () {
                 _this.intersectingCheck(e.target, function () {
                     _this.currentShape = e.target;
                     if (e.target.type == _this.shapes.GROUP) {
-                        var isGreen_1 = e.target._data && e.target._data.areas && e.target._data.areas.length;
+                        var isGreen_1 = e.target._data && e.target._data.areas && e.target._data.areas.length || e.target._dataSource;
                         e.target._objects.forEach(function (el) {
                             if (!el.defFill)
                                 el.defFill = el.fill;
@@ -2293,8 +2293,8 @@ var SVGView = (function () {
         if (_h)
             this.fabricJS.setHeight(_h);
         if (options) {
-            scaleMultiplierX = this.fabricJS.width / options.width;
-            scaleMultiplierY = this.fabricJS.height / options.height;
+            scaleMultiplierX = scaleX0 = this.fabricJS.width / options.width;
+            scaleMultiplierY = scaleY0 = this.fabricJS.height / options.height;
             objects = options.objects;
         }
         else {

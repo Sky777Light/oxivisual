@@ -344,7 +344,7 @@ export class SVGView implements OnInit,AfterViewInit {
                 }
                 orCloner.opacity =   _self.canEdit ? _self.selected.camera.opacity : _self.defOpacity;
                 if (!orCloner.defFill) orCloner.defFill = orCloner.fill;
-                if (!orCloner.hoverFill)orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length ?_self.COLORS[0]:_self.COLORS[1];
+                if (!orCloner.hoverFill)orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length || cloneCur._dataSource?_self.COLORS[0]:_self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
             }
             for (let g = 0; g < groups.length; g++) {
@@ -572,7 +572,7 @@ export class SVGView implements OnInit,AfterViewInit {
                 this.intersectingCheck(e.target, ()=> {
                     this.currentShape = e.target;
                     if (e.target.type == this.shapes.GROUP) {
-                        let isGreen = e.target._data && e.target._data.areas && e.target._data.areas.length;
+                        let isGreen = e.target._data && e.target._data.areas && e.target._data.areas.length||  e.target._dataSource;
                         e.target._objects.forEach((el)=> {
                             if (!el.defFill)el.defFill = el.fill;
                             if (!el.hoverFill)el.hoverFill = isGreen ? _self.COLORS[0]:_self.COLORS[1];
@@ -712,8 +712,8 @@ export class SVGView implements OnInit,AfterViewInit {
         if (_h)this.fabricJS.setHeight(_h);
 
         if (options) {
-            scaleMultiplierX = this.fabricJS.width / options.width;
-            scaleMultiplierY = this.fabricJS.height / options.height;
+            scaleMultiplierX =scaleX0= this.fabricJS.width / options.width;
+            scaleMultiplierY =scaleY0= this.fabricJS.height / options.height;
             objects = options.objects;
         } else {
             scaleX0 = _w / prevW;
