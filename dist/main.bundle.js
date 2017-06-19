@@ -1654,7 +1654,9 @@ var SVGView = (function () {
         this.isFinish = false;
         this.zoomDelta = 10;
         this.showHelpZoomer = false;
+        this.COLORS = ['#0000ff', "#ff0000"];
         this.MODES = {};
+        this.defOpacity = 0.1;
         this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 };
         this.MOUSE = { DOWN: 1, UP: 2, CUR: 0, GROUP: 3 };
         this.mode = this.MODES.ADD;
@@ -1704,14 +1706,16 @@ var SVGView = (function () {
                     }
                 }
                 else {
-                    this.get('_points').forEach(function (e) {
-                        if (e._parent) {
-                            e._parent.remove(e);
-                        }
-                        else {
-                            _self.fabricJS.remove(e);
-                        }
-                    });
+                    var _p = this.get('_points');
+                    if (_p)
+                        _p.forEach(function (e) {
+                            if (e._parent) {
+                                e._parent.remove(e);
+                            }
+                            else {
+                                _self.fabricJS.remove(e);
+                            }
+                        });
                 }
                 if (this._dataSource)
                     this._dataSource.active = false;
@@ -1727,7 +1731,7 @@ var SVGView = (function () {
             _clone: function (isHard) {
                 var _this = this;
                 this.setCoords();
-                var clone = ['fill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'], _pn = this.get('_points');
+                var clone = ['fill', 'hoverFill', 'defFill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'], _pn = this.get('_points');
                 var _points = isHard || this._hasUpdate ? this.get('points') : this.get('points').map(function (el, d) {
                     var _pC = new fabric.Point((el.x) * _this.scaleX0, (el.y) * _this.scaleY0);
                     //this.left = this.top = 0;
@@ -1822,7 +1826,8 @@ var SVGView = (function () {
             _this.curFill = _this.getRandomColor();
             _this.settings = {
                 CIRCLE: {
-                    radius: 3,
+                    radius: 1,
+                    opacity: 0.75,
                     strokeWidth: 5,
                     stroke: 'red',
                     selectable: true,
@@ -1893,7 +1898,8 @@ var SVGView = (function () {
                 }
                 else if (cur.type == _self.shapes.GROUP) {
                 }
-                var cloneCur = cur._clone(true);
+                var orCloner = void 0, cloneCur = cur._clone(true);
+                orCloner = cloneCur;
                 for (var u = 0; u < _objects.length; u++) {
                     if (cloneCur.id == _objects[u].id) {
                         var _c = _objects.splice(u, 1)[0];
@@ -1927,7 +1933,11 @@ var SVGView = (function () {
                         break;
                     }
                 }
-                cloneCur.opacity = _self.selected.camera.opacity;
+                orCloner.opacity = _self.canEdit ? _self.selected.camera.opacity : _self.defOpacity;
+                if (!orCloner.defFill)
+                    orCloner.defFill = orCloner.fill;
+                if (!orCloner.hoverFill)
+                    orCloner.hoverFill = orCloner._data && orCloner._data.areas && orCloner._data.areas.length ? _self.COLORS[0] : _self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)
                     cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _self.glapp.app);
             };
@@ -2147,8 +2157,21 @@ var SVGView = (function () {
                 if (!e.target)
                     return;
                 _this.intersectingCheck(e.target, function () {
-                    e.target.opacity = 1;
                     _this.currentShape = e.target;
+                    if (e.target.type == _this.shapes.GROUP) {
+                        var isGreen_1 = e.target._data && e.target._data.areas && e.target._data.areas.length;
+                        e.target._objects.forEach(function (el) {
+                            if (!el.defFill)
+                                el.defFill = el.fill;
+                            if (!el.hoverFill)
+                                el.hoverFill = isGreen_1 ? _self.COLORS[0] : _self.COLORS[1];
+                            el.set('fill', el.hoverFill);
+                            el.set('opacity', _this.selected.camera.opacity);
+                        });
+                    }
+                    else {
+                        e.target.set('fill', e.target.hoverFill).set('opacity', _this.selected.camera.opacity).setCoords();
+                    }
                     if (e.target._tooltip)
                         e.target._tooltip.show();
                     _this.fabricJS.renderAll();
@@ -2161,7 +2184,16 @@ var SVGView = (function () {
                     _this.currentShape = null;
                     if (e.target._tooltip)
                         e.target._tooltip.show(false);
-                    e.target.opacity = _this.selected.camera.opacity;
+                    if (e.target.type == _this.shapes.GROUP) {
+                        e.target._objects.forEach(function (el) {
+                            el.set('fill', el.defFill);
+                            el.set('opacity', _self.defOpacity);
+                        });
+                    }
+                    else {
+                        e.target.set('fill', e.target.defFill);
+                        e.target.set('opacity', _self.defOpacity);
+                    }
                     _this.fabricJS.renderAll();
                 });
             });

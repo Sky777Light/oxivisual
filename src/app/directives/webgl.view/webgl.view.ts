@@ -94,8 +94,6 @@ export class WebglView implements OnInit,OnChanges {
     }
 
 }
-
-
 class OxiAPP {
     isMobile:boolean = false;
     imgType:string = '';
@@ -1283,7 +1281,7 @@ class OxiControls {
                     }
                 },
                 removeChild = ()=> {
-                    let _elem =  getSelected();
+                    let _elem = getSelected();
                     for (let i = 0, areas = app.main.selected.areas; i < areas.length; i++) {
                         if (areas[i]._id == _elem._data._id) {
                             areas.splice(i, 1);

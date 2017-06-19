@@ -26,9 +26,11 @@ export class SVGView implements OnInit,AfterViewInit {
     private curImgZoom:any;
     private curImgBufferZoom:any;
     private mode:any;
+    private COLORS = ['#0000ff' , "#ff0000"];
     private MODES:any = {};
     private MOUSE:any;
     private upperC:any;
+    private defOpacity:number = 0.1;
     private eventsData:any;
     shapes:any;
     settings:any;
@@ -95,7 +97,8 @@ export class SVGView implements OnInit,AfterViewInit {
                         _self.fabricJS.remove(this);
                     }
                 } else {
-                    this.get('_points').forEach((e)=> {
+                    let _p = this.get('_points');
+                    if (_p)_p.forEach((e)=> {
                         if (e._parent) {
                             e._parent.remove(e);
                         } else {
@@ -116,7 +119,7 @@ export class SVGView implements OnInit,AfterViewInit {
             _clone: function (isHard) {
 
                 this.setCoords();
-                let clone = ['fill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'],
+                let clone = ['fill', 'hoverFill', 'defFill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'],
                     _pn = this.get('_points');
                 let _points = isHard || this._hasUpdate ? this.get('points') : this.get('points').map((el, d)=> {
                         let _pC = new fabric.Point((el.x) * this.scaleX0, (el.y) * this.scaleY0);
@@ -223,7 +226,8 @@ export class SVGView implements OnInit,AfterViewInit {
             this.curFill = this.getRandomColor();
             this.settings = {
                 CIRCLE: {
-                    radius: 3,
+                    radius: 1,
+                    opacity: 0.75,
                     strokeWidth: 5,
                     stroke: 'red',
                     selectable: true,
@@ -303,7 +307,8 @@ export class SVGView implements OnInit,AfterViewInit {
                     //_self.fabricJS._add(cur);
                     //parseAndInsert(cur._objects, options);
                 }
-                let cloneCur = cur._clone(true);
+                let orCloner,cloneCur   = cur._clone(true);
+                orCloner = cloneCur;
                 for (let u = 0; u < _objects.length; u++) {
                     if (cloneCur.id == _objects[u].id) {
                         let _c = _objects.splice(u, 1)[0];
@@ -337,8 +342,9 @@ export class SVGView implements OnInit,AfterViewInit {
                         break;
                     }
                 }
-                cloneCur.opacity = _self.selected.camera.opacity;
-
+                orCloner.opacity =   _self.canEdit ? _self.selected.camera.opacity : _self.defOpacity;
+                if (!orCloner.defFill) orCloner.defFill = orCloner.fill;
+                if (!orCloner.hoverFill)orCloner.hoverFill = orCloner._data && orCloner._data.areas && orCloner._data.areas.length ?_self.COLORS[0]:_self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
             }
             for (let g = 0; g < groups.length; g++) {
@@ -564,8 +570,19 @@ export class SVGView implements OnInit,AfterViewInit {
             fabricJS.on('mouse:over', (e)=> {
                 if (!e.target)return;
                 this.intersectingCheck(e.target, ()=> {
-                    e.target.opacity = 1;
                     this.currentShape = e.target;
+                    if (e.target.type == this.shapes.GROUP) {
+                        let isGreen = e.target._data && e.target._data.areas && e.target._data.areas.length;
+                        e.target._objects.forEach((el)=> {
+                            if (!el.defFill)el.defFill = el.fill;
+                            if (!el.hoverFill)el.hoverFill = isGreen ? _self.COLORS[0]:_self.COLORS[1];
+                            el.set('fill', el.hoverFill);
+                            el.set('opacity', this.selected.camera.opacity);
+                        });
+
+                    } else {
+                        e.target.set('fill', e.target.hoverFill).set('opacity', this.selected.camera.opacity).setCoords();
+                    }
                     if (e.target._tooltip)e.target._tooltip.show();
                     this.fabricJS.renderAll();
                 });
@@ -575,7 +592,16 @@ export class SVGView implements OnInit,AfterViewInit {
                 this.intersectingCheck(e.target, ()=> {
                     this.currentShape = null;
                     if (e.target._tooltip)e.target._tooltip.show(false);
-                    e.target.opacity = this.selected.camera.opacity;
+
+                    if (e.target.type == this.shapes.GROUP) {
+                        e.target._objects.forEach((el)=> {
+                            el.set('fill', el.defFill);
+                            el.set('opacity', _self.defOpacity);
+                        })
+                    } else {
+                        e.target.set('fill', e.target.defFill);
+                        e.target.set('opacity', _self.defOpacity);
+                    }
                     this.fabricJS.renderAll();
                 });
 
@@ -636,11 +662,11 @@ export class SVGView implements OnInit,AfterViewInit {
 
     private onMouseDown(e) {
         e.preventDefault();
-        this.lastSelectedShape =  null;
+        this.lastSelectedShape = null;
         if (e.button == 2) {
             if (this.mode == this.MODES.NO && this.currentShape) {
                 this.glapp.app._projControls.showControls(e);
-                this.lastSelectedShape =  this.currentShape;
+                this.lastSelectedShape = this.currentShape;
             } else {
                 this.onFinishDraw();
             }
