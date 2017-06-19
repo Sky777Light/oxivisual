@@ -17,6 +17,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private canEdit:boolean = false;
     private isFinish:boolean = false;
     private zoomDelta:number = 10;
+    private scaleDelta:number = 0.998;
     private options:any = {};
     currentShape:any;
     lastSelectedShape:any;
@@ -258,8 +259,8 @@ export class SVGView implements OnInit,AfterViewInit {
             if (this.dataSrc) {
                 fabric.loadSVGFromURL(this.dataSrc, (o, options)=> {
                     this.options = options;
-                    options.width *= 0.999;
-                    options.height *= 0.999;
+                    options.width *= this.scaleDelta;
+                    options.height *= this.scaleDelta;
                     this.glapp.authServ.get(this.dataSrc, {hasAuthHeader: false}).subscribe((res:any)=> {
                         this.parseSVG(res._body, ((_objects)=> {
                             _self.onFinishParse(o, options, _objects);
