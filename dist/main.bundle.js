@@ -1856,6 +1856,8 @@ var SVGView = (function () {
             if (_this.dataSrc) {
                 fabric.loadSVGFromURL(_this.dataSrc, function (o, options) {
                     _this.options = options;
+                    options.width *= 0.999;
+                    options.height *= 0.999;
                     _this.glapp.authServ.get(_this.dataSrc, { hasAuthHeader: false }).subscribe(function (res) {
                         _this.parseSVG(res._body, (function (_objects) {
                             _self.onFinishParse(o, options, _objects);
@@ -2321,8 +2323,8 @@ var SVGView = (function () {
             cur.scaleX0 = scaleX0;
             cur.scaleY0 = scaleY0;
             cur._hasUpdate = 0;
-            cur.left *= scaleMultiplierX;
-            cur.top *= scaleMultiplierY;
+            cur.left = ((cur.left * scaleMultiplierX));
+            cur.top = (cur.top * scaleMultiplierY);
             if (cur.type != this.shapes.CIRCLE) {
                 cur.scaleX *= scaleMultiplierX;
                 cur.scaleY *= scaleMultiplierY;

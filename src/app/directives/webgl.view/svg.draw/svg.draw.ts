@@ -258,6 +258,8 @@ export class SVGView implements OnInit,AfterViewInit {
             if (this.dataSrc) {
                 fabric.loadSVGFromURL(this.dataSrc, (o, options)=> {
                     this.options = options;
+                    options.width *= 0.999;
+                    options.height *= 0.999;
                     this.glapp.authServ.get(this.dataSrc, {hasAuthHeader: false}).subscribe((res:any)=> {
                         this.parseSVG(res._body, ((_objects)=> {
                             _self.onFinishParse(o, options, _objects);
@@ -740,8 +742,8 @@ export class SVGView implements OnInit,AfterViewInit {
             cur.scaleX0 = scaleX0;
             cur.scaleY0 = scaleY0;
             cur._hasUpdate = 0;
-            cur.left *= scaleMultiplierX;
-            cur.top *= scaleMultiplierY;
+            cur.left  = ((cur.left *scaleMultiplierX));
+            cur.top =  (cur.top *scaleMultiplierY);
             if (cur.type != this.shapes.CIRCLE) {
                 cur.scaleX *= scaleMultiplierX;
                 cur.scaleY *= scaleMultiplierY;
