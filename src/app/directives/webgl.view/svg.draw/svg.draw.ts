@@ -17,6 +17,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private canEdit:boolean = false;
     private isFinish:boolean = false;
     private zoomDelta:number = 10;
+    private options:any = {};
     currentShape:any;
     lastSelectedShape:any;
     private curKeyCode:number;
@@ -26,7 +27,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private curImgZoom:any;
     private curImgBufferZoom:any;
     private mode:any;
-    private COLORS = ['#00ff00' , "#ff0000"];
+    private COLORS = ['#00ff00', "#ff0000"];
     private MODES:any = {};
     private MOUSE:any;
     private upperC:any;
@@ -60,6 +61,7 @@ export class SVGView implements OnInit,AfterViewInit {
 
     reload(data) {
         fabric.loadSVGFromString(data, (o, _options)=> {
+            this.options = _options;
             this.parseSVG(data, ((_objects)=> {
                 this.onFinishParse(o, _options, _objects);
             }));
@@ -255,7 +257,7 @@ export class SVGView implements OnInit,AfterViewInit {
 
             if (this.dataSrc) {
                 fabric.loadSVGFromURL(this.dataSrc, (o, options)=> {
-
+                    this.options = options;
                     this.glapp.authServ.get(this.dataSrc, {hasAuthHeader: false}).subscribe((res:any)=> {
                         this.parseSVG(res._body, ((_objects)=> {
                             _self.onFinishParse(o, options, _objects);
@@ -307,7 +309,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     //_self.fabricJS._add(cur);
                     //parseAndInsert(cur._objects, options);
                 }
-                let orCloner,cloneCur   = cur._clone(true);
+                let orCloner, cloneCur = cur._clone(true);
                 orCloner = cloneCur;
                 for (let u = 0; u < _objects.length; u++) {
                     if (cloneCur.id == _objects[u].id) {
@@ -342,9 +344,9 @@ export class SVGView implements OnInit,AfterViewInit {
                         break;
                     }
                 }
-                orCloner.opacity =   _self.canEdit ? _self.selected.camera.opacity : _self.defOpacity;
+                orCloner.opacity = _self.canEdit ? _self.selected.camera.opacity : _self.defOpacity;
                 if (!orCloner.defFill) orCloner.defFill = orCloner.fill;
-                if (!orCloner.hoverFill)orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length || cloneCur._dataSource?_self.COLORS[0]:_self.COLORS[1];
+                if (!orCloner.hoverFill)orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length || cloneCur._dataSource ? _self.COLORS[0] : _self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
             }
             for (let g = 0; g < groups.length; g++) {
@@ -572,10 +574,10 @@ export class SVGView implements OnInit,AfterViewInit {
                 this.intersectingCheck(e.target, ()=> {
                     this.currentShape = e.target;
                     if (e.target.type == this.shapes.GROUP) {
-                        let isGreen = e.target._data && e.target._data.areas && e.target._data.areas.length||  e.target._dataSource;
+                        let isGreen = e.target._data && e.target._data.areas && e.target._data.areas.length || e.target._dataSource;
                         e.target._objects.forEach((el)=> {
                             if (!el.defFill)el.defFill = el.fill;
-                            if (!el.hoverFill)el.hoverFill = isGreen ? _self.COLORS[0]:_self.COLORS[1];
+                            if (!el.hoverFill)el.hoverFill = isGreen ? _self.COLORS[0] : _self.COLORS[1];
                             el.set('fill', el.hoverFill);
                             el.set('opacity', this.selected.camera.opacity);
                         });
@@ -695,7 +697,6 @@ export class SVGView implements OnInit,AfterViewInit {
 
     resize(_w = null, _h = null, options:any = null) {
         if (!this.fabricJS)return;
-        let _self = this;
         if (!_w && this.glapp.app._container)_w = this.glapp.app._container.clientWidth;
         if (!_h && this.glapp.app._container)_h = this.glapp.app._container.clientHeight;
         let scaleMultiplierX = _w / this.fabricJS.width,
@@ -704,16 +705,15 @@ export class SVGView implements OnInit,AfterViewInit {
             scaleY0 = scaleMultiplierY,
             objects = this.fabricJS._objects,
             prevW = this.fabricJS.width,
-            prevH = this.fabricJS.height
-            ;
+            prevH = this.fabricJS.height;
 
 
         if (_w)this.fabricJS.setWidth(_w);
         if (_h)this.fabricJS.setHeight(_h);
-
+        console.log(prevW, prevH, _w, _h);
         if (options) {
-            scaleMultiplierX =scaleX0= this.fabricJS.width / options.width;
-            scaleMultiplierY =scaleY0= this.fabricJS.height / options.height;
+            scaleMultiplierX = scaleX0 = this.fabricJS.width / options.width;
+            scaleMultiplierY = scaleY0 = this.fabricJS.height / options.height;
             objects = options.objects;
         } else {
             scaleX0 = _w / prevW;
@@ -943,6 +943,51 @@ export class SVGView implements OnInit,AfterViewInit {
         }
         if (onSuccess)onSuccess();
 
+    }
+
+
+    exportJSON(e) {
+        e.preventDefault();
+        let
+            _self = this,
+            fileName = 'export',
+            itr = 0,
+            pathesStore = [],
+            scale = 100,
+            xR = scale / _self.fabricJS.width,
+            yR = scale / _self.fabricJS.height,
+            round = 2;
+
+
+        (function parse(elmnts) {
+            if (elmnts._objects) {
+                parse(elmnts._objects);
+            } else {
+
+                elmnts.forEach((e)=> {
+                    if (e.type == _self.shapes.POLYGON) {
+                        pathesStore.push({id: "a" + itr++, path: e.points});
+                    }
+                });
+            }
+        })(this.fabricJS._objects);
+
+
+        pathesStore.forEach(function (o:any, i) {
+            o.path = o.path.reduce((p, c, n)=> {
+                    let s = p;
+                    if (p instanceof fabric.Point) s = "M " + (c.x * xR).toFixed(round) + "," + (c.y * yR).toFixed(round);
+                    return s + " L " + (c.x * xR).toFixed(round) + "," + (c.y * yR).toFixed(round)
+                }) + " Z";
+        });
+        let file = new File([JSON.stringify(pathesStore)], fileName, {type: 'text/json'}),
+            a = document.createElement('a');
+        a.setAttribute('href', URL.createObjectURL(file));
+        a.download = fileName + '.json';
+        a.innerHTML = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 
 }

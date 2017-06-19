@@ -93,6 +93,13 @@
                                [ngModel]="modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight">
                     </div>
                 </div>
+                <div *ngIf="modelStructure.camera.isSVG">
+                    <div class="row">
+                        <div class="inp-form col-lg-4">
+                            <a href="#" (click)="modelStructure.glApp.main.svgEl.exportJSON($event)">export JSON</a>
+                        </div>
+                    </div>
+                </div>
                 <div *ngIf="!modelStructure.camera.isSVG">
                     <div class="row">
                         <div class="inp-form col-lg-4">
@@ -156,6 +163,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <div *ngIf="modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure">
