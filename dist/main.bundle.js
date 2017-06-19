@@ -2294,7 +2294,6 @@ var SVGView = (function () {
             this.fabricJS.setWidth(_w);
         if (_h)
             this.fabricJS.setHeight(_h);
-        console.log(prevW, prevH, _w, _h);
         if (options) {
             scaleMultiplierX = scaleX0 = this.fabricJS.width / options.width;
             scaleMultiplierY = scaleY0 = this.fabricJS.height / options.height;
@@ -2504,16 +2503,14 @@ var SVGView = (function () {
         e.preventDefault();
         var _self = this, fileName = 'export', itr = 0, pathesStore = [], scale = 100, xR = scale / _self.fabricJS.width, yR = scale / _self.fabricJS.height, round = 2;
         (function parse(elmnts) {
-            if (elmnts._objects) {
-                parse(elmnts._objects);
-            }
-            else {
-                elmnts.forEach(function (e) {
-                    if (e.type == _self.shapes.POLYGON) {
-                        pathesStore.push({ id: "a" + itr++, path: e.points });
-                    }
-                });
-            }
+            elmnts.forEach(function (e) {
+                if (e.type == _self.shapes.POLYGON) {
+                    pathesStore.push({ id: "a" + itr++, path: e.points });
+                }
+                else if (e._objects) {
+                    parse(e._objects);
+                }
+            });
         })(this.fabricJS._objects);
         pathesStore.forEach(function (o, i) {
             o.path = o.path.reduce(function (p, c, n) {

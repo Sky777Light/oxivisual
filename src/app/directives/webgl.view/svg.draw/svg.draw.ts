@@ -710,7 +710,6 @@ export class SVGView implements OnInit,AfterViewInit {
 
         if (_w)this.fabricJS.setWidth(_w);
         if (_h)this.fabricJS.setHeight(_h);
-        console.log(prevW, prevH, _w, _h);
         if (options) {
             scaleMultiplierX = scaleX0 = this.fabricJS.width / options.width;
             scaleMultiplierY = scaleY0 = this.fabricJS.height / options.height;
@@ -960,16 +959,13 @@ export class SVGView implements OnInit,AfterViewInit {
 
 
         (function parse(elmnts) {
-            if (elmnts._objects) {
-                parse(elmnts._objects);
-            } else {
-
-                elmnts.forEach((e)=> {
-                    if (e.type == _self.shapes.POLYGON) {
-                        pathesStore.push({id: "a" + itr++, path: e.points});
-                    }
-                });
-            }
+            elmnts.forEach((e)=> {
+                if (e.type == _self.shapes.POLYGON) {
+                    pathesStore.push({id: "a" + itr++, path: e.points});
+                } else if (e._objects) {
+                    parse(e._objects);
+                }
+            });
         })(this.fabricJS._objects);
 
 
