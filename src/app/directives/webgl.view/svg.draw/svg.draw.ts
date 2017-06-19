@@ -344,7 +344,7 @@ export class SVGView implements OnInit,AfterViewInit {
                 }
                 orCloner.opacity =   _self.canEdit ? _self.selected.camera.opacity : _self.defOpacity;
                 if (!orCloner.defFill) orCloner.defFill = orCloner.fill;
-                if (!orCloner.hoverFill)orCloner.hoverFill = orCloner._data && orCloner._data.areas && orCloner._data.areas.length ?_self.COLORS[0]:_self.COLORS[1];
+                if (!orCloner.hoverFill)orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length ?_self.COLORS[0]:_self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
             }
             for (let g = 0; g < groups.length; g++) {
