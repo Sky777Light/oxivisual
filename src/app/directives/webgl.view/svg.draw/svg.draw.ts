@@ -17,7 +17,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private canEdit:boolean = false;
     private isFinish:boolean = false;
     private zoomDelta:number = 10;
-    private scaleDelta:number = 0.988;
+    private scaleDelta:number = 1.1;
     private options:any = {};
     currentShape:any;
     lastSelectedShape:any;
