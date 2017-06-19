@@ -1653,6 +1653,7 @@ var SVGView = (function () {
         this.canEdit = false;
         this.isFinish = false;
         this.zoomDelta = 10;
+        this.scaleDelta = 0.988;
         this.options = {};
         this.showHelpZoomer = false;
         this.COLORS = ['#00ff00', "#ff0000"];
@@ -1856,8 +1857,8 @@ var SVGView = (function () {
             if (_this.dataSrc) {
                 fabric.loadSVGFromURL(_this.dataSrc, function (o, options) {
                     _this.options = options;
-                    options.width *= 0.999;
-                    options.height *= 0.999;
+                    options.width *= _this.scaleDelta;
+                    options.height *= _this.scaleDelta;
                     _this.glapp.authServ.get(_this.dataSrc, { hasAuthHeader: false }).subscribe(function (res) {
                         _this.parseSVG(res._body, (function (_objects) {
                             _self.onFinishParse(o, options, _objects);
