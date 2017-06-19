@@ -26,7 +26,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private curImgZoom:any;
     private curImgBufferZoom:any;
     private mode:any;
-    private COLORS = ['#0000ff' , "#ff0000"];
+    private COLORS = ['#00ff00' , "#ff0000"];
     private MODES:any = {};
     private MOUSE:any;
     private upperC:any;

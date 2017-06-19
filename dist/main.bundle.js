@@ -1654,7 +1654,7 @@ var SVGView = (function () {
         this.isFinish = false;
         this.zoomDelta = 10;
         this.showHelpZoomer = false;
-        this.COLORS = ['#0000ff', "#ff0000"];
+        this.COLORS = ['#00ff00', "#ff0000"];
         this.MODES = {};
         this.defOpacity = 0.1;
         this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 };
@@ -1937,7 +1937,7 @@ var SVGView = (function () {
                 if (!orCloner.defFill)
                     orCloner.defFill = orCloner.fill;
                 if (!orCloner.hoverFill)
-                    orCloner.hoverFill = orCloner._data && orCloner._data.areas && orCloner._data.areas.length ? _self.COLORS[0] : _self.COLORS[1];
+                    orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length ? _self.COLORS[0] : _self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)
                     cloneCur._tooltip = new __WEBPACK_IMPORTED_MODULE_2__webgl_view__["c" /* OxiToolTip */](cloneCur, _self.glapp.app);
             };
