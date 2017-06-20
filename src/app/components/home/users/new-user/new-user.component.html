@@ -43,19 +43,19 @@
     </form>
   </div>
   <div class="user-status">
-    <div class="user-status-item" *ngIf="User.role == 'super'">
-      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== 'super'">radio_button_checked</i>
-      <i class="material-icons" [hidden]="tempNewUser.role === 'super'" (click)="tempNewUser.role = 'super'; resol.role = true">radio_button_unchecked</i>
+    <div class="user-status-item" *ngIf="User.role == config.USER_ROLE.SUPER">
+      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.SUPER">radio_button_checked</i>
+      <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.SUPER" (click)="tempNewUser.role = config.USER_ROLE.SUPER; resol.role = true">radio_button_unchecked</i>
       <span>Superuser</span>
     </div>
-    <div class="user-status-item" *ngIf="User.role == 'super'">
-      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== 'admin'">radio_button_checked</i>
-      <i class="material-icons" [hidden]="tempNewUser.role === 'admin'" (click)="tempNewUser.role = 'admin'; resol.role = true">radio_button_unchecked</i>
+    <div class="user-status-item" *ngIf="User.role == config.USER_ROLE.SUPER">
+      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.ADMIN">radio_button_checked</i>
+      <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.ADMIN" (click)="tempNewUser.role = config.USER_ROLE.ADMIN; resol.role = true">radio_button_unchecked</i>
       <span>Client-admin</span>
     </div>
-    <div class="user-status-item" *ngIf="User.role !== 'user'">
-      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== 'user'">radio_button_checked</i>
-      <i class="material-icons" [hidden]="tempNewUser.role === 'user'" (click)="tempNewUser.role = 'user'; resol.role = true">radio_button_unchecked</i>
+    <div class="user-status-item" *ngIf="User.role !== config.USER_ROLE.ADMIN">
+      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.USER">radio_button_checked</i>
+      <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.USER" (click)="tempNewUser.role = config.USER_ROLE.USER; resol.role = true">radio_button_unchecked</i>
       <span>Client-user</span>
     </div>
     <label [class.err-status]="!resol.role">Select user status</label>

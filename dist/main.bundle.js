@@ -1,5 +1,32 @@
 webpackJsonp([0,4],{
 
+/***/ 15:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(224);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Project__ = __webpack_require__(727);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModelStructure__ = __webpack_require__(726);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["f"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constant_data__ = __webpack_require__(375);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["b"]; });
+
+
+
+
+//# sourceMappingURL=entities.js.map
+
+/***/ }),
+
 /***/ 151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -40,33 +67,6 @@ var User = (function () {
 
 /***/ }),
 
-/***/ 16:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(224);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Project__ = __webpack_require__(727);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModelStructure__ = __webpack_require__(726);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["b"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["c"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["e"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["f"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constant_data__ = __webpack_require__(375);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["b"]; });
-
-
-
-
-//# sourceMappingURL=entities.js.map
-
-/***/ }),
-
 /***/ 20:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -76,7 +76,7 @@ var User = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__interfaces_user_interface__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_entities__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -99,21 +99,24 @@ var UserService = (function () {
         this.authService = authService;
         this.router = router;
         this.User = new __WEBPACK_IMPORTED_MODULE_4__interfaces_user_interface__["a" /* User */]();
+        this.config = __WEBPACK_IMPORTED_MODULE_5__entities_entities__["c" /* Config */];
     }
     UserService.prototype.logIn = function (remember, user, done) {
         var _this = this;
         this.authService.post('/auth/login', user).subscribe(function (response) {
             var res = JSON.parse(response._body);
             if (res.status) {
+                alertify.success(res.message);
                 remember ? _this.storageService.set('token', res.token) : _this.storageService.setSession('token', res.token);
                 _this.router.navigate(['/']);
             }
             else {
+                alertify.error(res.message);
                 if (done)
                     done(res.message);
             }
-            alertify.success(res.message);
-        }, function (error) { });
+        }, function (error) {
+        });
     };
     UserService.prototype.logOut = function () {
         var _this = this;
@@ -126,7 +129,8 @@ var UserService = (function () {
             }
             alertify.success(res.message);
             _this.router.navigate(['/login']);
-        }, function (error) { });
+        }, function (error) {
+        });
     };
     UserService.prototype.setUser = function (user) {
         this.User = user;
@@ -215,7 +219,7 @@ var UserService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractChangesView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -527,7 +531,7 @@ var BasicProject = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Costumization; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TextAr; });
@@ -828,8 +832,8 @@ var PreviewProject = (function () {
     }
     PreviewProject.prototype.ngOnInit = function () {
         var _this = this;
-        var project = this.projectService.getProject(), _self = this, link = "preview?scene=" + project.model.link;
-        this.dataSrc = project.model && project.model.link ? this.sanitizer.bypassSecurityTrustResourceUrl(link) : null;
+        var project = this.projectService.getProject(), _self = this, link = "preview?scene=" + project._id;
+        this.dataSrc = project._id ? this.sanitizer.bypassSecurityTrustResourceUrl(link) : null;
         if (this.dataSrc) {
             var chekIfIframeCreated = setInterval(function () {
                 if (_this.ifrm) {
@@ -952,7 +956,7 @@ var ProjectComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_services__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_directives__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SourceProject; });
 /* unused harmony export ProjTabs */
@@ -1365,6 +1369,7 @@ var UsersComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interfaces_user_interface__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1378,28 +1383,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
     function LoginComponent(userService) {
         this.userService = userService;
         this.remember = true;
+        this.submitted = false;
         this.message = '';
         this.resol = {
             email: true,
             password: true
         };
         this.user = new __WEBPACK_IMPORTED_MODULE_2__interfaces_user_interface__["a" /* User */]();
+        this.config = __WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */];
     }
-    LoginComponent.prototype.logIn = function () {
+    LoginComponent.prototype.logIn = function (invalid) {
         var _this = this;
-        if (!this.userService.resolUser(this.resol, this.user))
-            return false;
+        this.submitted = true;
+        if (invalid)
+            return alertify.error('please fill all inputs correctlly');
         this.userService.logIn(this.remember, this.user, function (message) {
             _this.message = message;
         });
     };
-    LoginComponent.prototype.keyDown = function ($event) {
+    LoginComponent.prototype.keyDown = function ($event, invalid) {
         if ($event.keyCode == 13) {
-            this.logIn();
+            this.logIn(invalid);
         }
     };
     LoginComponent = __decorate([
@@ -1424,7 +1433,7 @@ var LoginComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviewSceneComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PreviewSceneService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1455,27 +1464,38 @@ var PreviewSceneComponent = (function () {
         main = main.split(dmens[1])[1];
         if (!main)
             return alertify.error("No project scene exist");
-        this.authService.get(__WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].PROJ_LOC + main + __WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].SITE_STRUCTURE).subscribe(function (res) {
-            if (!res.status || res._body.match('!doctype html')) {
-                alertify.error("No project found");
+        this.authService.post('public/project/isactive', { id: main }).subscribe(function (resp) {
+            resp = resp.json();
+            if (!resp.status) {
+                alertify.error(resp.message || "No project found");
+            }
+            else if (resp.project.published && resp.project.model) {
+                _this.authService.get(__WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].PROJ_LOC + resp.project.model.link + __WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].FILE.DIR.DELIMETER + __WEBPACK_IMPORTED_MODULE_3__entities_entities__["c" /* Config */].SITE_STRUCTURE).subscribe(function (res) {
+                    if (!res.status || res._body.match('!doctype html')) {
+                        alertify.error("No project found");
+                    }
+                    else {
+                        _this.model.data = [];
+                        for (var _data = res.json(), i = 0; i < _data.length; i++) {
+                            _this.model.data.push(__WEBPACK_IMPORTED_MODULE_3__entities_entities__["d" /* ProjMain */].inject(_data[i]));
+                            if (areas.length > 1) {
+                                var curIArea = areas[areas.length - 1].split(dmens[1])[1];
+                                if (!curIArea)
+                                    return alertify.error("Something went wrong");
+                                _this.checkChild(_this.model.data[i], curIArea, function (c) { return _this.select(c); });
+                            }
+                            else
+                                _this.select(_this.model.data[i]);
+                        }
+                    }
+                }, function (e) {
+                    console.log(e);
+                }, function () {
+                });
             }
             else {
-                _this.model.data = [];
-                for (var _data = res.json(), i = 0; i < _data.length; i++) {
-                    _this.model.data.push(__WEBPACK_IMPORTED_MODULE_3__entities_entities__["d" /* ProjMain */].inject(_data[i]));
-                    if (areas.length > 1) {
-                        var curIArea = areas[areas.length - 1].split(dmens[1])[1];
-                        if (!curIArea)
-                            return alertify.error("Something went wrong");
-                        _this.checkChild(_this.model.data[i], curIArea, function (c) { return _this.select(c); });
-                    }
-                    else
-                        _this.select(_this.model.data[i]);
-                }
+                alertify.error("project not available");
             }
-        }, function (e) {
-            console.log(e);
-        }, function () {
         });
     };
     PreviewSceneComponent.prototype.checkChild = function (child, curIArea, calback) {
@@ -1630,7 +1650,7 @@ var Preloader = (function (_super) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view__ = __webpack_require__(374);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric__ = __webpack_require__(817);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fabric__);
@@ -1653,7 +1673,7 @@ var SVGView = (function () {
         this.canEdit = false;
         this.isFinish = false;
         this.zoomDelta = 10;
-        this.scaleDelta = 1.002;
+        this.scaleDelta = 1.00152;
         this.options = {};
         this.showHelpZoomer = false;
         this.COLORS = ['#00ff00', "#ff0000"];
@@ -1701,6 +1721,8 @@ var SVGView = (function () {
                         this._objects[0].dropSelf();
                 }
                 else if (this.type == _self.shapes.CIRCLE) {
+                    if (this.parent)
+                        return this.parent.dropSelf();
                     if (this._parent) {
                         this._parent.remove(this);
                     }
@@ -2697,7 +2719,7 @@ var WTooltip = (function (_super) {
                 });
             }
         }, function (res) {
-            alertify.error("Incorrect dataSource: " + res && res.message ? res.message : res);
+            console.error("Incorrect dataSource: " + res && res.message ? res.message : res);
         });
     };
     WTooltip.prototype.onEventPrevent = function (event) {
@@ -2724,7 +2746,7 @@ var WTooltip = (function (_super) {
             this.dataElem = _data;
         }
         catch (e) {
-            alertify.error("Incorrect dataSource: " + e);
+            console.error("Incorrect dataSource: " + e);
         }
     };
     WTooltip.prototype.updateAfterInput = function (value) {
@@ -2757,7 +2779,7 @@ var WTooltip = (function (_super) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__ = __webpack_require__(720);
@@ -4470,7 +4492,8 @@ var Config = (function () {
         }
     };
     Config.PATTERNS = {
-        URL: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+        URL: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
+        EMAIL: /\S+@\S+\.\S+/
     };
     Config.IGNORE = 'ignore';
     Config.ANGLE_STEP = 10;
@@ -4479,6 +4502,11 @@ var Config = (function () {
             HTML: './assets/defaults/preloader/index.html',
             CSS: './assets/defaults/preloader/style.css'
         }
+    };
+    Config.USER_ROLE = {
+        SUPER: 1,
+        ADMIN: 2,
+        USER: 3
     };
     return Config;
 }());
@@ -4687,7 +4715,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectService; });
@@ -5149,7 +5177,7 @@ var HeaderComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5190,7 +5218,7 @@ var EditView = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_share_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5288,7 +5316,7 @@ var EditProject = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5413,7 +5441,7 @@ var NewProjectComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5498,6 +5526,7 @@ var ViewProject = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__interfaces_user_interface__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_entities__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewUserComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5508,6 +5537,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -5526,6 +5556,8 @@ var NewUserComponent = (function () {
             role: true
         };
         this.User = this.userService.getUser();
+        this.config = __WEBPACK_IMPORTED_MODULE_4__entities_entities__["c" /* Config */];
+        console.log(this);
     }
     NewUserComponent.prototype.ngOnInit = function () {
         this.message.email = '';
@@ -5627,6 +5659,7 @@ var UserCardComponent = (function () {
             email: true
         };
         this.message = '';
+        this.submitted = false;
         this.tempUser = new __WEBPACK_IMPORTED_MODULE_1__interfaces_user_interface__["a" /* User */]();
         //popup menu
         this.openMenu = false;
@@ -5649,7 +5682,8 @@ var UserCardComponent = (function () {
                 user.projects = res.res.projects;
             }
             _this.tempUser = Object.assign({}, user);
-        }, function (error) { });
+        }, function (error) {
+        });
     };
     //photo change
     UserCardComponent.prototype.loadPhoto = function ($event) {
@@ -5678,7 +5712,8 @@ var UserCardComponent = (function () {
                 _this.user.active = _this.tempUser.active;
             }
             alertify.success(res.message);
-        }, function (error) { });
+        }, function (error) {
+        });
     };
     UserCardComponent.prototype.delete = function () {
         var _this = this;
@@ -5690,13 +5725,15 @@ var UserCardComponent = (function () {
                 _this.userChange.emit(null);
             }
             alertify.success(res.message);
-        }, function (error) { });
+        }, function (error) {
+        });
     };
     //change user
-    UserCardComponent.prototype.changeUser = function () {
+    UserCardComponent.prototype.changeUser = function (invalid) {
         var _this = this;
-        if (!this.userService.resolUser(this.resol, this.tempUser))
-            return false;
+        this.submitted = true;
+        if (invalid)
+            return alertify.error('please fill all inputs correct');
         this.authService.put('/api/users/user', this.tempUser).subscribe(function (res) {
             res = res.json();
             if (res.status) {
@@ -5705,13 +5742,16 @@ var UserCardComponent = (function () {
                 _this.user.email = _this.tempUser.email;
                 _this.user.active = _this.tempUser.active;
                 _this.user.avatar = res.res.avatar;
+                _this.submitted = false;
+                alertify.success(res.message);
             }
             else {
                 if (res.email)
                     _this.message = res.message;
+                alertify.error(_this.message);
             }
-            alertify.success(res.message);
-        }, function (error) { });
+        }, function (error) {
+        });
     };
     UserCardComponent.prototype.reset = function () {
         this.tempUser = Object.assign({}, this.user);
@@ -6550,7 +6590,7 @@ var SlimScroll = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemplatesLoader; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6705,7 +6745,7 @@ var MNode = (function () {
     MNode = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'node',
-            template: "\n<li [ngClass]=\"{'last-item':lastE}\">\n\n\t<div class =\"iconButton\"   [ngClass]=\"item._selected?classes+' active':classes\"  #iconBtn>\n\t    <a  (click)=\"select(item )\" >{{item.name}}</a>\n\t    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"showPopUp\">\n          <i class=\"material-icons set-icon\" (click)=\"showPopUp = !showPopUp\">more_vert</i>\n        </div>\n\t</div>\n\t<div *ngIf=\"!arrow\" class=\"left-arrow\"></div>\n\t<div *ngIf=\"!arrow && lastE\" class=\"left-arrow end-list\"></div>\n\n\t    <div class=\"pop-up bla-t\" [hidden]=\"!showPopUp\" *ngIf=\"showPopUp\" (click)=\"showPopUp = !showPopUp\" >\n            <div class=\"pop-up-item\"  *ngIf=\"item.areas && item.areas.length\" (click)=\"IsExpanded = !IsExpanded\">\n              <i class=\"material-icons\">visibility</i>\n              <div class=\"pop-up-row-name\">\n                <span>{{IsExpanded?\"Hide\":\"Expand\"}}</span>\n              </div>\n            </div>\n            <div class=\"pop-up-item\" (click)=\"delete()\" *ngIf=\"item._id != parent._id\">\n              <i class=\"material-icons\">delete</i>\n              <div class=\"pop-up-row-name\">\n                <span>Delete</span>\n              </div>\n            </div>\n        </div>\n\t<div *ngIf=\"IsExpanded\">\n        <ul *ngIf=\"item.areas\" class=\"tree-webgl-view\">\n              <node  *ngFor=\"let subitem of item.areas; let itT = index\"  [_iter]=\"index\" [classes]=\"subitem._category===0?'js-code':subitem._category==1?'link':'' \" [mainParent]=\"mainParent\"  [parent]=\"item\" [item]=\"subitem\" [lastE]=\"itT == item.areas.length-1\"></node>\n        </ul>\n\t</div>\n</li>\n"
+            template: "\n<li [ngClass]=\"{'last-item':lastE}\">\n\n\t<div class =\"iconButton\"   [ngClass]=\"item._selected?classes+' active':classes\"  #iconBtn>\n\t    <a  (click)=\"select(item )\" >{{item.name}}</a>\n\t    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"showPopUp\">\n          <i class=\"material-icons set-icon\" (click)=\"showPopUp = !showPopUp\">more_vert</i>\n        </div>\n\t</div>\n\t<div *ngIf=\"!arrow\" class=\"left-arrow\"></div>\n\t<div *ngIf=\"!arrow && lastE\" class=\"left-arrow end-list\"></div>\n\n\t    <div class=\"pop-up bla-t\" [hidden]=\"!showPopUp\" *ngIf=\"showPopUp\" (click)=\"showPopUp = !showPopUp\" (window:mouseup)=\"showPopUp = !showPopUp\">\n            <div class=\"pop-up-item\"  *ngIf=\"item.areas && item.areas.length\" (click)=\"IsExpanded = !IsExpanded\">\n              <i class=\"material-icons\">visibility</i>\n              <div class=\"pop-up-row-name\">\n                <span>{{IsExpanded?\"Hide\":\"Expand\"}}</span>\n              </div>\n            </div>\n            <div class=\"pop-up-item\" (click)=\"delete()\" *ngIf=\"item._id != parent._id\">\n              <i class=\"material-icons\">delete</i>\n              <div class=\"pop-up-row-name\">\n                <span>Delete</span>\n              </div>\n            </div>\n        </div>\n\t<div *ngIf=\"IsExpanded\">\n        <ul *ngIf=\"item.areas\" class=\"tree-webgl-view\">\n              <node  *ngFor=\"let subitem of item.areas; let itT = index\"  [_iter]=\"index\" [classes]=\"subitem._category===0?'js-code':subitem._category==1?'link':'' \" [mainParent]=\"mainParent\"  [parent]=\"item\" [item]=\"subitem\" [lastE]=\"itT == item.areas.length-1\"></node>\n        </ul>\n\t</div>\n</li>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], MNode);
@@ -6725,7 +6765,7 @@ var MTree = (function () {
     MTree = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'tree',
-            template: "\n<ul class=\"tree-webgl-view first\"  >\n\t\t<node *ngFor=\"let item of data\" [arrow]=\"1\" [classes]=\"'main'\" [parent]=\"item\" [mainParent]=\"mainParent\" [item]=\"item\"     ></node>\n</ul>\n",
+            template: "\n<ul class=\"tree-webgl-view first\" slimScroll  >\n\t\t<node *ngFor=\"let item of data\" [arrow]=\"1\" [classes]=\"'main'\" [parent]=\"item\" [mainParent]=\"mainParent\" [item]=\"item\"     ></node>\n</ul>\n",
             styles: [__webpack_require__(810)]
         }), 
         __metadata('design:paramtypes', [])
@@ -6741,7 +6781,7 @@ var MTree = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadFile; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8193,28 +8233,28 @@ module.exports = "<div class=\"project\" [routerLink]=\"['/project', (project._i
 /***/ 864:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\">\n  <span class=\"tag-text\">Creating a new user:</span>\n  <div class=\"main-info\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + tempNewUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempNewUser.avatar != false\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar == false\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar != false\">\n        <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n      </div>\n      <span class=\"photo-info\">300*300 px</span>\n    </div>\n    <form class=\"item-form\">\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.input-error]=\"!resol.email || message.email\" placeholder=\"Email\" [(ngModel)]=\"tempNewUser.email\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.email = true; message.email = ''\">\n        <label [class.full-op]=\"!resol.email\">This input requires a value!</label>\n        <label [class.full-op]=\"message.email\">{{message.email}}</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-error]=\"!resol.firstName\"  placeholder=\"First name\" [(ngModel)]=\"tempNewUser.firstName\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.firstName = true\">\n        <label [class.full-op]=\"!resol.firstName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-error]=\"!resol.secondName\"  placeholder=\"Last name\" [(ngModel)]=\"tempNewUser.secondName\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.secondName = true\">\n        <label [class.full-op]=\"!resol.secondName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-error]=\"!resol.password\" placeholder=\"Password\" [(ngModel)]=\"tempNewUser.password\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.password = true; message.password = ''\">\n        <label [class.full-op]=\"!resol.password\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-error]=\"!resol.passwordRepeat || message.password\" placeholder=\"Repeat password\" [(ngModel)]=\"tempNewUser.passwordRepeat\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.passwordRepeat = true; message.password = ''\">\n        <label [class.full-op]=\"!resol.passwordRepeat\">This input requires a value!</label>\n        <label [class.full-op]=\"message.password\">Password is incorrect</label>\n      </div>\n    </form>\n  </div>\n  <div class=\"user-status\">\n    <div class=\"user-status-item\" *ngIf=\"User.role == 'super'\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'super'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'super'\" (click)=\"tempNewUser.role = 'super'; resol.role = true\">radio_button_unchecked</i>\n      <span>Superuser</span>\n    </div>\n    <div class=\"user-status-item\" *ngIf=\"User.role == 'super'\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'admin'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'admin'\" (click)=\"tempNewUser.role = 'admin'; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-admin</span>\n    </div>\n    <div class=\"user-status-item\" *ngIf=\"User.role !== 'user'\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== 'user'\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === 'user'\" (click)=\"tempNewUser.role = 'user'; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-user</span>\n    </div>\n    <label [class.err-status]=\"!resol.role\">Select user status</label>\n  </div>\n  <div class=\"new-btns\">\n    <span class=\"false-btn\" (click)=\"cancel()\">cancel</span>\n    <span class=\"true-btn\" (click)=\"accept()\">accept</span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\">\n  <span class=\"tag-text\">Creating a new user:</span>\n  <div class=\"main-info\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + tempNewUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempNewUser.avatar != false\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar == false\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n      <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar != false\">\n        <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n      </div>\n      <span class=\"photo-info\">300*300 px</span>\n    </div>\n    <form class=\"item-form\">\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.input-error]=\"!resol.email || message.email\" placeholder=\"Email\" [(ngModel)]=\"tempNewUser.email\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.email = true; message.email = ''\">\n        <label [class.full-op]=\"!resol.email\">This input requires a value!</label>\n        <label [class.full-op]=\"message.email\">{{message.email}}</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-error]=\"!resol.firstName\"  placeholder=\"First name\" [(ngModel)]=\"tempNewUser.firstName\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.firstName = true\">\n        <label [class.full-op]=\"!resol.firstName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.input-error]=\"!resol.secondName\"  placeholder=\"Last name\" [(ngModel)]=\"tempNewUser.secondName\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.secondName = true\">\n        <label [class.full-op]=\"!resol.secondName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-error]=\"!resol.password\" placeholder=\"Password\" [(ngModel)]=\"tempNewUser.password\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.password = true; message.password = ''\">\n        <label [class.full-op]=\"!resol.password\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"password\" [class.input-error]=\"!resol.passwordRepeat || message.password\" placeholder=\"Repeat password\" [(ngModel)]=\"tempNewUser.passwordRepeat\" [ngModelOptions]=\"{standalone: true}\" (focus)=\"resol.passwordRepeat = true; message.password = ''\">\n        <label [class.full-op]=\"!resol.passwordRepeat\">This input requires a value!</label>\n        <label [class.full-op]=\"message.password\">Password is incorrect</label>\n      </div>\n    </form>\n  </div>\n  <div class=\"user-status\">\n    <div class=\"user-status-item\" *ngIf=\"User.role == config.USER_ROLE.SUPER\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.SUPER\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.SUPER\" (click)=\"tempNewUser.role = config.USER_ROLE.SUPER; resol.role = true\">radio_button_unchecked</i>\n      <span>Superuser</span>\n    </div>\n    <div class=\"user-status-item\" *ngIf=\"User.role == config.USER_ROLE.SUPER\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.ADMIN\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.ADMIN\" (click)=\"tempNewUser.role = config.USER_ROLE.ADMIN; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-admin</span>\n    </div>\n    <div class=\"user-status-item\" *ngIf=\"User.role !== config.USER_ROLE.ADMIN\">\n      <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.USER\">radio_button_checked</i>\n      <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.USER\" (click)=\"tempNewUser.role = config.USER_ROLE.USER; resol.role = true\">radio_button_unchecked</i>\n      <span>Client-user</span>\n    </div>\n    <label [class.err-status]=\"!resol.role\">Select user status</label>\n  </div>\n  <div class=\"new-btns\">\n    <span class=\"false-btn\" (click)=\"cancel()\">cancel</span>\n    <span class=\"true-btn\" (click)=\"accept()\">accept</span>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 865:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n    <div>\n      <span class=\"user-card-hd-name\">{{tempUser.firstName}} {{tempUser.secondName}}</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'super'\">superuser</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'admin'\">client-admin</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'user'\">client-user</span>\n    </div>\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openMenu\" [hidden]=\"!canEdit\">\n      <i class=\"material-icons\" (click)=\"openMenu = !openMenu\" (window:mouseup)=\"openMenu = false\">more_vert</i>\n      <div class=\"pop-up\" [class.hidden]=\"!openMenu\">\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">folder</i>\n          <div class=\"pop-up-row-name\">\n            <span>Projects</span>\n            <span class=\"pop-up-num\">{{tempUser.projects.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">people</i>\n          <div class=\"pop-up-row-name\">\n            <span>Users</span>\n            <span class=\"pop-up-num\">{{tempUser.users.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = false\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = true\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\">\n          <i class=\"material-icons\">lock</i>\n          <div class=\"pop-up-row-name\">\n            <span>Change password</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n    <span class=\"user-card-created-date\">Created: {{tempUser.created | date: 'dd.MM.yyyy' }}</span>\n  </div>\n  <div class=\"user-card-body\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [class.curs-dis]=\"!canEdit\" [ngStyle]=\"{'background-image': 'url(' + tempUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempUser.avatar\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"!canEdit\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n    </div>\n    <form class=\"item-form\">\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.no-changable]=\"!canEdit\" [class.input-error]=\"!resol.email || message\" placeholder=\"Email\" [(ngModel)]=\"tempUser.email\" [ngModelOptions]=\"{standalone: true}\" [readonly]=\"!canEdit\" (focus)=\"resol.email = true; message =''\">\n        <label [class.full-op]=\"!resol.email\">This input requires a value!</label>\n        <label [class.full-op]=\"message\">{{message}}</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.no-changable]=\"!canEdit\" [class.input-error]=\"!resol.firstName\" placeholder=\"First name\" [(ngModel)]=\"tempUser.firstName\" [ngModelOptions]=\"{standalone: true}\" [readonly]=\"!canEdit\" (focus)=\"resol.firstName = true\">\n        <label [class.full-op]=\"!resol.firstName\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.no-changable]=\"!canEdit\" [class.input-error]=\"!resol.secondName\" placeholder=\"Last name\" [(ngModel)]=\"tempUser.secondName\" [ngModelOptions]=\"{standalone: true}\" [readonly]=\"!canEdit\" (focus)=\"resol.secondName = true\">\n        <label [class.full-op]=\"!resol.secondName\">This input requires a value!</label>\n      </div>\n    </form>\n  </div>\n</div>\n<div class=\"user-card-foot\" [hidden]=\"!canEdit\">\n  <span class=\"user-ft-l false-btn\" (click)=\"reset()\">Reset</span>\n  <span class=\"user-ft-r true-btn\" (click)=\"changeUser()\">save changes</span>\n</div>"
+module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n    <div>\n      <span class=\"user-card-hd-name\">{{tempUser.firstName}} {{tempUser.secondName}}</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'super'\">superuser</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'admin'\">client-admin</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'user'\">client-user</span>\n    </div>\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openMenu\" [hidden]=\"!canEdit\">\n      <i class=\"material-icons\" (click)=\"openMenu = !openMenu\" (window:mouseup)=\"openMenu = false\">more_vert</i>\n      <div class=\"pop-up\" [class.hidden]=\"!openMenu\">\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">folder</i>\n          <div class=\"pop-up-row-name\">\n            <span>Projects</span>\n            <span class=\"pop-up-num\">{{tempUser.projects.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">people</i>\n          <div class=\"pop-up-row-name\">\n            <span>Users</span>\n            <span class=\"pop-up-num\">{{tempUser.users.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = false\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = true\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\">\n          <i class=\"material-icons\">lock</i>\n          <div class=\"pop-up-row-name\">\n            <span>Change password</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n    <span class=\"user-card-created-date\">Created: {{tempUser.created | date: 'dd.MM.yyyy' }}</span>\n  </div>\n  <div class=\"user-card-body\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [class.curs-dis]=\"!canEdit\" [ngStyle]=\"{'background-image': 'url(' + tempUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempUser.avatar\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"!canEdit\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n    </div>\n    <form class=\"item-form\" #editViewForm=\"ngForm\" >\n      <div class=\"input-wrap\">\n        <input type=\"email\" [class.no-changable]=\"!canEdit\" placeholder=\"Email\" #email=\"ngModel\" [class.input-error]=\"email.invalid && (email.touched || submitted)\"  [(ngModel)]=\"tempUser.email\" [readonly]=\"!canEdit\" [pattern]=\"userService.config.PATTERNS.EMAIL\"  maxlength=\"20\" required>\n        <label  [class.full-op]=\"email.invalid && (email.touched|| submitted)\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.no-changable]=\"!canEdit\" #firstName=\"ngModel\" [class.input-error]=\"firstName.invalid && (firstName.touched || submitted)\"  placeholder=\"First name\" [(ngModel)]=\"tempUser.firstName\"  [readonly]=\"!canEdit\" maxlength=\"20\" required>\n        <label [class.full-op]=\"firstName.invalid && (firstName.touched || submitted)\">This input requires a value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" [class.no-changable]=\"!canEdit\" #secondName=\"ngModel\" [class.input-error]=\"secondName.invalid && (secondName.touched || submitted)\" placeholder=\"Last name\" [(ngModel)]=\"tempUser.secondName\" [readonly]=\"!canEdit\"  maxlength=\"20\" required>\n        <label [class.full-op]=\"secondName.invalid && (secondName.touched || submitted)\">This input requires a value!</label>\n      </div>\n\n      <!--<div *ngIf=\"User._id === user._id && canEdit\">-->\n        <!--<div class=\"input-wrap\">-->\n          <!--<input type=\"password\"   #psw1=\"ngModel\"   placeholder=\"New Password\" [(ngModel)]=\"tempUser.psw1\"  maxlength=\"20\" [required]=\"tempUser.psw2\" [class.input-error]=\"psw1.invalid && (psw1.touched ||psw2.touched || submitted)\"  >-->\n          <!--<label [class.full-op]=\"psw1.invalid && (psw1.touched || submitted || psw2.touched)\">This input requires a value!</label>-->\n        <!--</div>-->\n        <!--<div class=\"input-wrap\">-->\n          <!--<input type=\"password\"   #psw2=\"ngModel\"   placeholder=\"Repeat Password\" [(ngModel)]=\"tempUser.psw2\"  maxlength=\"20\" [required]=\"tempUser.psw1\" [class.input-error]=\"psw2.invalid && (psw1.touched ||psw2.touched || submitted)\" >-->\n          <!--<label [class.full-op]=\"psw1.invalid && (psw1.touched || submitted || psw2.touched) \">This input requires a value!</label>-->\n          <!--<label [class.full-op]=\"tempUser.psw2 != tempUser.psw1\">Passwords didn`t match</label>-->\n        <!--</div>-->\n      <!--</div>-->\n    </form>\n  </div>\n</div>\n<div class=\"user-card-foot\" [hidden]=\"!canEdit\">\n  <span class=\"user-ft-l false-btn\" (click)=\"reset()\">Reset</span>\n  <span class=\"user-ft-r true-btn\" (click)=\"changeUser(editViewForm.invalid)\">save changes</span>\n</div>"
 
 /***/ }),
 
 /***/ 866:
 /***/ (function(module, exports) {
 
-module.exports = "<main class=\"row\">\n  <div class=\"user-list-wrap col-md-4\">\n\n    <div class=\"user-list\">\n      <div class=\"slimscroll-wrap\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n        <div class=\"user-list-item\" [class.deactive]=\"!user.active\" [class.selected-user]=\"selectedUser === user\" *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\n          <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\" (click)=\"selectUser(user, false)\">\n            <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n          </div>\n          <div class=\"user-list-item-wrap\">\n            <div class=\"user-name-wrap\">\n              <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n                <span>{{user.firstName}} {{user.secondName}}</span>\n                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n              </div>\n              <br>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'super'\">Super user</span>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'admin'\">Client-admin</span>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == 'user'\">Client-user</span>\n            </div>\n            <div class=\"user-ctrl\">\n              <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n              <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"settingsUser === user\">\n                <i class=\"material-icons\" (click)=\"settingsUser = user\" (window:mouseup)=\"settingsUser = null\">more_vert</i>\n                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\n                  <div class=\"pop-up-item\" [hidden]=\"!user.active\" (click)=\"deactivateUser(user)\">\n                    <i class=\"material-icons\">visibility_off</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Deactivate</span>\n                    </div>\n                  </div>\n                  <div class=\"pop-up-item\" [hidden]=\"user.active\" (click)=\"deactivateUser(user)\">\n                    <i class=\"material-icons\">visibility</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Activate</span>\n                    </div>\n                  </div>\n                  <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\n                    <i class=\"material-icons\">delete</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Delete</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewUser = true\" [hidden]=\"createNewUser\">\n      <i class=\"material-icons\">add</i>\n      <div class=\"span-hover\">\n        <span>Add a new user</span>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"user-card-wrap col-md-8\">\n    <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" [hidden]=\"!selectedUser\"></app-user-card>\n    <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n  </div>\n\n</main>\n\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\" ></app-new-user>\n"
+module.exports = "<main class=\"row\">\n  <div class=\"user-list-wrap col-md-4\">\n\n    <div class=\"user-list\">\n      <div class=\"slimscroll-wrap\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n        <div class=\"user-list-item\" [class.deactive]=\"!user.active\" [class.selected-user]=\"selectedUser === user\" *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\n          <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\" (click)=\"selectUser(user, false)\">\n            <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n          </div>\n          <div class=\"user-list-item-wrap\">\n            <div class=\"user-name-wrap\">\n              <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n                <span>{{user.firstName}} {{user.secondName}}</span>\n                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n              </div>\n              <br>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role == userService.config.USER_ROLE.SUPER\">Super user</span>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role ==  userService.config.USER_ROLE.ADMIN\">Client-admin</span>\n              <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\" *ngIf=\"user.role ==  userService.config.USER_ROLE.USER\">Client-user</span>\n            </div>\n            <div class=\"user-ctrl\">\n              <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n              <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"settingsUser === user\">\n                <i class=\"material-icons\" (click)=\"settingsUser = user\" (window:mouseup)=\"settingsUser = null\">more_vert</i>\n                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\n                  <div class=\"pop-up-item\" [hidden]=\"!user.active\" (click)=\"deactivateUser(user)\">\n                    <i class=\"material-icons\">visibility_off</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Deactivate</span>\n                    </div>\n                  </div>\n                  <div class=\"pop-up-item\" [hidden]=\"user.active\" (click)=\"deactivateUser(user)\">\n                    <i class=\"material-icons\">visibility</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Activate</span>\n                    </div>\n                  </div>\n                  <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\n                    <i class=\"material-icons\">delete</i>\n                    <div class=\"pop-up-row-name\">\n                      <span>Delete</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewUser = true\" [hidden]=\"createNewUser\">\n      <i class=\"material-icons\">add</i>\n      <div class=\"span-hover\">\n        <span>Add a new user</span>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"user-card-wrap col-md-8\">\n    <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" [hidden]=\"!selectedUser\"></app-user-card>\n    <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n  </div>\n\n</main>\n\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\" ></app-new-user>\n"
 
 /***/ }),
 
 /***/ 867:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/logo.png\" alt=\"\">\n</div>\n<div class=\"login-form\">\n  <label class=\"login-text\">Log in:</label>\n  <form class=\"item-form\" (keydown)=\"keyDown($event)\">\n    <div class=\"input-wrap\">\n      <input id=\"login-name\" [class.input-error]=\"!resol.email || message\" type=\"text\" [(ngModel)]=\"user.email\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Username / email\" (focus)=\"resol.email = true; message = ''\">\n      <label for=\"login-name\" [class.full-op]=\"!resol.email\">This input requires a value!</label>\n      <label for=\"login-name\" [class.full-op]=\"message\">{{message}}</label>\n    </div>\n    <div class=\"input-wrap\">\n      <input id=\"login-pass\" [class.input-error]=\"!resol.password || message\" type=\"password\" [(ngModel)]=\"user.password\" [ngModelOptions]=\"{standalone: true}\" maxlength=\"15\" placeholder=\"Password\" (focus)=\"resol.password = true; message = ''\">\n      <label for=\"login-pass\" [class.full-op]=\"!resol.password\">This input requires a value!</label>\n      <label for=\"login-pass\" [class.full-op]=\"message\">{{message}}</label>\n    </div>\n  </form>\n  <div class=\"log-in\">\n    <div class=\"chkbx-wrap\">\n      <div id=\"remember-int\" (click)=\"remember = !remember\">\n        <i class=\"material-icons\" [hidden]=\"!remember\">done</i>\n      </div>\n      <label for=\"remember-int\" (click)=\"remember = !remember\">Remember password</label>\n    </div>\n    <span class=\"true-btn\" (click)=\"logIn()\">ACCEPT</span>\n  </div>\n</div>"
+module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/logo.png\" alt=\"\">\n</div>\n<div class=\"login-form\">\n  <label class=\"login-text\">Log in:</label>\n  <form class=\"item-form\" #editViewForm=\"ngForm\"  (keydown)=\"keyDown($event,editViewForm.invalid)\"  >\n    <div class=\"input-wrap\">\n      <input id=\"login-name\" name=\"login\" #email=\"ngModel\" [class.input-error]=\"email.invalid && (email.touched || submitted)\" type=\"email\" [(ngModel)]=\"user.email\"   [pattern]=\"config.PATTERNS.EMAIL\"  maxlength=\"20\" placeholder=\"Username / email\" required>\n      <label for=\"login-name\" [class.full-op]=\"email.invalid && (email.touched|| submitted)\">This input requires a value!</label>\n    </div>\n    <div class=\"input-wrap\">\n      <input id=\"login-pass\" name=\"usrPsw\" #password =\"ngModel\"  [class.input-error]=\"password.invalid && (password.touched|| submitted)\" type=\"password\" [(ngModel)]=\"user.password\"  maxlength=\"15\" placeholder=\"Password\" required>\n      <label for=\"login-pass\" [class.full-op]=\"password.invalid && (password.touched || submitted)\">This input requires a value!</label>\n    </div>\n  </form>\n  <div class=\"log-in\">\n    <div class=\"chkbx-wrap\">\n      <div id=\"remember-int\" (click)=\"remember = !remember\">\n        <i class=\"material-icons\" [hidden]=\"!remember\">done</i>\n      </div>\n      <label for=\"remember-int\" (click)=\"remember = !remember\">Remember password  </label>\n    </div>\n    <span class=\"true-btn\" (click)=\"logIn(editViewForm.invalid)\">ACCEPT</span>\n  </div>\n</div>"
 
 /***/ }),
 

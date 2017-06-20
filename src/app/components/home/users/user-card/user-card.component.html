@@ -62,24 +62,35 @@
         <span (click)="removePhoto()">Remove</span>
       </div>
     </div>
-    <form class="item-form">
+    <form class="item-form" #editViewForm="ngForm" >
       <div class="input-wrap">
-        <input type="email" [class.no-changable]="!canEdit" [class.input-error]="!resol.email || message" placeholder="Email" [(ngModel)]="tempUser.email" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.email = true; message =''">
-        <label [class.full-op]="!resol.email">This input requires a value!</label>
-        <label [class.full-op]="message">{{message}}</label>
+        <input type="email" [class.no-changable]="!canEdit" placeholder="Email" #email="ngModel" [class.input-error]="email.invalid && (email.touched || submitted)"  [(ngModel)]="tempUser.email" [readonly]="!canEdit" [pattern]="userService.config.PATTERNS.EMAIL"  maxlength="20" required>
+        <label  [class.full-op]="email.invalid && (email.touched|| submitted)">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.no-changable]="!canEdit" [class.input-error]="!resol.firstName" placeholder="First name" [(ngModel)]="tempUser.firstName" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.firstName = true">
-        <label [class.full-op]="!resol.firstName">This input requires a value!</label>
+        <input type="text" [class.no-changable]="!canEdit" #firstName="ngModel" [class.input-error]="firstName.invalid && (firstName.touched || submitted)"  placeholder="First name" [(ngModel)]="tempUser.firstName"  [readonly]="!canEdit" maxlength="20" required>
+        <label [class.full-op]="firstName.invalid && (firstName.touched || submitted)">This input requires a value!</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.no-changable]="!canEdit" [class.input-error]="!resol.secondName" placeholder="Last name" [(ngModel)]="tempUser.secondName" [ngModelOptions]="{standalone: true}" [readonly]="!canEdit" (focus)="resol.secondName = true">
-        <label [class.full-op]="!resol.secondName">This input requires a value!</label>
+        <input type="text" [class.no-changable]="!canEdit" #secondName="ngModel" [class.input-error]="secondName.invalid && (secondName.touched || submitted)" placeholder="Last name" [(ngModel)]="tempUser.secondName" [readonly]="!canEdit"  maxlength="20" required>
+        <label [class.full-op]="secondName.invalid && (secondName.touched || submitted)">This input requires a value!</label>
       </div>
+
+      <!--<div *ngIf="User._id === user._id && canEdit">-->
+        <!--<div class="input-wrap">-->
+          <!--<input type="password"   #psw1="ngModel"   placeholder="New Password" [(ngModel)]="tempUser.psw1"  maxlength="20" [required]="tempUser.psw2" [class.input-error]="psw1.invalid && (psw1.touched ||psw2.touched || submitted)"  >-->
+          <!--<label [class.full-op]="psw1.invalid && (psw1.touched || submitted || psw2.touched)">This input requires a value!</label>-->
+        <!--</div>-->
+        <!--<div class="input-wrap">-->
+          <!--<input type="password"   #psw2="ngModel"   placeholder="Repeat Password" [(ngModel)]="tempUser.psw2"  maxlength="20" [required]="tempUser.psw1" [class.input-error]="psw2.invalid && (psw1.touched ||psw2.touched || submitted)" >-->
+          <!--<label [class.full-op]="psw1.invalid && (psw1.touched || submitted || psw2.touched) ">This input requires a value!</label>-->
+          <!--<label [class.full-op]="tempUser.psw2 != tempUser.psw1">Passwords didn`t match</label>-->
+        <!--</div>-->
+      <!--</div>-->
     </form>
   </div>
 </div>
 <div class="user-card-foot" [hidden]="!canEdit">
   <span class="user-ft-l false-btn" (click)="reset()">Reset</span>
-  <span class="user-ft-r true-btn" (click)="changeUser()">save changes</span>
+  <span class="user-ft-r true-btn" (click)="changeUser(editViewForm.invalid)">save changes</span>
 </div>

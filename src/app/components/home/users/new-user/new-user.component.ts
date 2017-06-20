@@ -3,7 +3,7 @@ import * as USER from  "../../../../interfaces/user.interface";
 import {ShareService} from "../../../../services/share.service";
 import {Resol} from "../../../../interfaces/resol.interface";
 import {UserService} from "../../../../services/user.service";
-
+import * as ENTITY from "../../../../entities/entities";
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
@@ -12,6 +12,7 @@ import {UserService} from "../../../../services/user.service";
 export class NewUserComponent {
 
   private User: USER.IUser;
+  private config: any;
 
   @Input()message;
 
@@ -31,6 +32,8 @@ export class NewUserComponent {
       private userService: UserService
   ){
     this.User = this.userService.getUser();
+    this.config = ENTITY.Config;
+    console.log(this);
   }
 
   ngOnInit(){

@@ -22,7 +22,7 @@ import {
 	<div *ngIf="!arrow" class="left-arrow"></div>
 	<div *ngIf="!arrow && lastE" class="left-arrow end-list"></div>
 
-	    <div class="pop-up bla-t" [hidden]="!showPopUp" *ngIf="showPopUp" (click)="showPopUp = !showPopUp" >
+	    <div class="pop-up bla-t" [hidden]="!showPopUp" *ngIf="showPopUp" (click)="showPopUp = !showPopUp" (window:mouseup)="showPopUp = !showPopUp">
             <div class="pop-up-item"  *ngIf="item.areas && item.areas.length" (click)="IsExpanded = !IsExpanded">
               <i class="material-icons">visibility</i>
               <div class="pop-up-row-name">
@@ -74,7 +74,7 @@ export class MNode {
 @Component({
     selector: 'tree',
     template: `
-<ul class="tree-webgl-view first"  >
+<ul class="tree-webgl-view first" slimScroll  >
 		<node *ngFor="let item of data" [arrow]="1" [classes]="'main'" [parent]="item" [mainParent]="mainParent" [item]="item"     ></node>
 </ul>
 `,

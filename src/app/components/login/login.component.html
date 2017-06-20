@@ -3,16 +3,14 @@
 </div>
 <div class="login-form">
   <label class="login-text">Log in:</label>
-  <form class="item-form" (keydown)="keyDown($event)">
+  <form class="item-form" #editViewForm="ngForm"  (keydown)="keyDown($event,editViewForm.invalid)"  >
     <div class="input-wrap">
-      <input id="login-name" [class.input-error]="!resol.email || message" type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Username / email" (focus)="resol.email = true; message = ''">
-      <label for="login-name" [class.full-op]="!resol.email">This input requires a value!</label>
-      <label for="login-name" [class.full-op]="message">{{message}}</label>
+      <input id="login-name" name="login" #email="ngModel" [class.input-error]="email.invalid && (email.touched || submitted)" type="email" [(ngModel)]="user.email"   [pattern]="config.PATTERNS.EMAIL"  maxlength="20" placeholder="Username / email" required>
+      <label for="login-name" [class.full-op]="email.invalid && (email.touched|| submitted)">This input requires a value!</label>
     </div>
     <div class="input-wrap">
-      <input id="login-pass" [class.input-error]="!resol.password || message" type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" maxlength="15" placeholder="Password" (focus)="resol.password = true; message = ''">
-      <label for="login-pass" [class.full-op]="!resol.password">This input requires a value!</label>
-      <label for="login-pass" [class.full-op]="message">{{message}}</label>
+      <input id="login-pass" name="usrPsw" #password ="ngModel"  [class.input-error]="password.invalid && (password.touched|| submitted)" type="password" [(ngModel)]="user.password"  maxlength="15" placeholder="Password" required>
+      <label for="login-pass" [class.full-op]="password.invalid && (password.touched || submitted)">This input requires a value!</label>
     </div>
   </form>
   <div class="log-in">
@@ -20,8 +18,8 @@
       <div id="remember-int" (click)="remember = !remember">
         <i class="material-icons" [hidden]="!remember">done</i>
       </div>
-      <label for="remember-int" (click)="remember = !remember">Remember password</label>
+      <label for="remember-int" (click)="remember = !remember">Remember password  </label>
     </div>
-    <span class="true-btn" (click)="logIn()">ACCEPT</span>
+    <span class="true-btn" (click)="logIn(editViewForm.invalid)">ACCEPT</span>
   </div>
 </div>

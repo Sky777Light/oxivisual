@@ -32,25 +32,35 @@ export class PreviewSceneComponent{
 
         main = main.split(dmens[1])[1];
         if(!main)return alertify.error("No project scene exist");
-        this.authService.get(ENTITY.Config.PROJ_LOC+main + ENTITY.Config.SITE_STRUCTURE).subscribe((res:any) => {
-            if(!res.status || res._body.match('!doctype html')){
-                alertify.error("No project found");
-            }else{
-                this.model.data = [];
-                for(let _data = res.json(),i =0;i<_data.length;i++){
-                    this.model.data.push(ENTITY.ProjMain.inject(_data[i]));
-                    if(areas.length>1){
-                        let curIArea = areas[areas.length-1].split(dmens[1])[1];
-                        if(!curIArea)return alertify.error("Something went wrong");
-                        this.checkChild(this.model.data[i],curIArea,(c)=>this.select(c));
-                    }else this.select(this.model.data[i]);
-                }
-            }
+        this.authService.post('public/project/isactive',{id:main}).subscribe((resp:any) => {
+            resp = resp.json();
+            if(!resp.status  ){
+                alertify.error(resp.message||"No project found");
+            }else if(resp.project.published && resp.project.model){
+                this.authService.get(ENTITY.Config.PROJ_LOC+resp.project.model.link + ENTITY.Config.FILE.DIR.DELIMETER+ ENTITY.Config.SITE_STRUCTURE).subscribe((res:any) => {
+                    if(!res.status || res._body.match('!doctype html')){
+                        alertify.error("No project found");
+                    }else{
+                        this.model.data = [];
+                        for(let _data = res.json(),i =0;i<_data.length;i++){
+                            this.model.data.push(ENTITY.ProjMain.inject(_data[i]));
+                            if(areas.length>1){
+                                let curIArea = areas[areas.length-1].split(dmens[1])[1];
+                                if(!curIArea)return alertify.error("Something went wrong");
+                                this.checkChild(this.model.data[i],curIArea,(c)=>this.select(c));
+                            }else this.select(this.model.data[i]);
+                        }
+                    }
 
-        },(e)=>{
-            console.log(e);
-        },()=>{
+                },(e)=>{
+                    console.log(e);
+                },()=>{
+                });
+            }else{
+                alertify.error("project not available");
+            }
         });
+
     }
     private checkChild(child,curIArea,calback){
         if(child.projFilesDirname.indexOf(curIArea)>-1){

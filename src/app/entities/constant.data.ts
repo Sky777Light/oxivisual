@@ -11,9 +11,9 @@ export class Config {
         ProjFile: 5,
     };
     static EVENTS_NAME = {
-        KEY:{
-            DOWN:'keydown',
-            UP:'keyup',
+        KEY: {
+            DOWN: 'keydown',
+            UP: 'keyup',
         },
         CNTXMENU: 'contextmenu',
         DB_CLICK: 'dblclick',
@@ -69,7 +69,8 @@ export class Config {
 
     };
     static PATTERNS:any = {
-        URL:/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+        URL: /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
+        EMAIL: /\S+@\S+\.\S+/
     };
     static IGNORE:string = 'ignore';
     static ANGLE_STEP:number = 10;
@@ -79,11 +80,17 @@ export class Config {
             CSS: './assets/defaults/preloader/style.css'
         }
     }
+    static USER_ROLE:any = {
+        SUPER: 1,
+        ADMIN: 2,
+        USER: 3
+    }
 
-    static randomInteger(min=0, max=Date.now()) {
+    static randomInteger(min = 0, max = Date.now()) {
         return Math.round(min + Math.random() * (max - min))
     }
-    static randomstr(){
+
+    static randomstr() {
         return Math.random().toString(36).replace(/[^a-z]+/g, '');
     }
 

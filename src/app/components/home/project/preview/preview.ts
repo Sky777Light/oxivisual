@@ -26,8 +26,8 @@ export class PreviewProject {
     ngOnInit() {
         let project = this.projectService.getProject(),
             _self = this,
-            link  = "preview?scene=" + project.model.link;
-        this.dataSrc = project.model && project.model.link ? this.sanitizer.bypassSecurityTrustResourceUrl(link) : null;
+            link  = "preview?scene=" + project._id;
+        this.dataSrc = project._id ? this.sanitizer.bypassSecurityTrustResourceUrl(link) : null;
         if( this.dataSrc){
             var chekIfIframeCreated = setInterval(()=>{
                 if(this.ifrm){

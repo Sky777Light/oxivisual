@@ -46,7 +46,7 @@ export class WTooltip extends AbstractChangesView implements OnInit {
                 });
             }
         }, (res)=> {
-            alertify.error("Incorrect dataSource: "+res && res.message ? res.message : res);
+            console.error("Incorrect dataSource: "+res && res.message ? res.message : res);
         });
     }
 
@@ -72,7 +72,7 @@ export class WTooltip extends AbstractChangesView implements OnInit {
             this.dataElem = _data;
 
         } catch (e) {
-            alertify.error("Incorrect dataSource: "+e)
+            console.error("Incorrect dataSource: "+e)
         }
     }
 

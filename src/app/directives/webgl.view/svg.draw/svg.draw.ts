@@ -17,7 +17,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private canEdit:boolean = false;
     private isFinish:boolean = false;
     private zoomDelta:number = 10;
-    private scaleDelta:number = 1.002;
+    private scaleDelta:number = 1.00152;
     private options:any = {};
     currentShape:any;
     lastSelectedShape:any;
@@ -95,6 +95,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     while (this._objects.length) this._objects[0].dropSelf();
 
                 } else if (this.type == _self.shapes.CIRCLE) {
+                    if (this.parent)return this.parent.dropSelf();
                     if (this._parent) {
                         this._parent.remove(this);
                     } else {
@@ -723,7 +724,7 @@ export class SVGView implements OnInit,AfterViewInit {
             scaleY0 = _h / prevH;
 
         }
-        if(!(scaleX0 == 1 && scaleY0 ==1 && scaleMultiplierX ==1 && scaleMultiplierY == 1))  this.resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
+        if (!(scaleX0 == 1 && scaleY0 == 1 && scaleMultiplierX == 1 && scaleMultiplierY == 1))  this.resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
 
         if (this.zoomer) {
             let _cnvs = this.zoomer['nativeElement'],

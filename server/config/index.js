@@ -37,7 +37,7 @@ module.exports = {
         expiresIn: "24h"
     },
     superadmin: {
-        email: "superuser",
+        email: "superuser@gmail.com",
         password: "superpass"
     },
     help: {
@@ -58,8 +58,8 @@ module.exports = {
         }
     },
     USER_ROLE: {
-        ADMIN: 1,
-        SUPER: 0,
-        USER: 2
+        SUPER: 1,
+        ADMIN: 2,
+        USER: 3
     }
 };

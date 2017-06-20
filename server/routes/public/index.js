@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const config = require("../../config");
-const fs = require("fs");
+const Project = require("../../models/project");
 
 router.all("/", function (req, res) {
     if(req.body.projectDir ){
@@ -18,8 +18,28 @@ router.all("/", function (req, res) {
 
 });
 
-//router.post("/project/model/create", function (req, res) {
-//
-//});
+router.post("/project/isactive", function (req, res) {
+    if(!req.body.id){
+        return res.json({
+            status: false,
+            message: "forgot something"
+        });
+    }else {
+        Project.findOne({_id: req.body.id}, {_id: 1, "model.link": 1,published:1}, function (err, project) {
+            if (err || !project) {
+                return res.json({
+                    status: false,
+                    message: err || "Undefined error, no project found."
+                });
+            } else {
+                return res.json({
+                    status: true,
+                    project: project
+                });
+            }
+        });
+    }
+
+});
 
 module.exports = router;
