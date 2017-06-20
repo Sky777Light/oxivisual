@@ -53,6 +53,30 @@
         border-left: 20px solid transparent
         border-right: 20px solid transparent
         border-top: 20px solid $white
+    &.tooltip-align-right
+      &:after
+        transform: rotate(90deg)
+        margin-left: 18px
+      .cos-tooltip
+        transform-origin: left
+        left: 160px
+        top: -95px
+    &.tooltip-align-bottom
+      &:after
+        transform: rotate(180deg)
+        margin-top: -15px
+      .cos-tooltip
+        transform-origin: top
+        left: 0px
+        top: 0px
+    &.tooltip-align-left
+      &:after
+        transform: rotate(-90deg)
+        margin-left: 0px
+      .cos-tooltip
+        transform-origin: right
+        left: -158px
+        top: -95px
     hr
       padding: 0
       margin: 0 10px

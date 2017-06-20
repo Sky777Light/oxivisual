@@ -2,7 +2,7 @@
                      #tempLoad></app-template-loader>
 <div [ngClass]="ProjClasses.PROJ_TOOLTIP_CONTAINER" *ngIf="dataElem">
     <div class="cos-info" *ngFor="let item of dataElem; let i = index"
-         [ngClass]="{'active' : item.active,'act':item.tooltip.active}" (selectstart)="onEventPrevent($event)"
+         [ngClass]="{'active' : item.active,'act':item.tooltip.active,'tooltip-align-left':item.alignLeft,'tooltip-align-right':item.alignRight,'tooltip-align-bottom':item.alignBottom}" (selectstart)="onEventPrevent($event)"
          [style.left]="item._left"
          [style.top]="item._top" (click)="item.onclick()">
         <template dynamic-component

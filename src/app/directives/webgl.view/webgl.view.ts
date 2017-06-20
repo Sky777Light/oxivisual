@@ -1594,6 +1594,7 @@ export class OxiToolTip {
     tooltip:any;
     tooltipCnt:any;
     private mesh:any;
+    private main:OxiAPP;
     private canEdit:boolean = false;
     private _id:number;
 
@@ -1611,7 +1612,7 @@ export class OxiToolTip {
             main._preloaderStatus._tooltips = tooltipParent;
             tooltipParent.addEventListener(ENTITY.Config.EVENTS_NAME.CNTXMENU, (e)=>main._events.onCntxMenu(e), false);
         }
-
+        this.main = main;
 
         this.canEdit = main.main.selected.canEdit;
         if (mesh._tooltip) {
@@ -1738,13 +1739,34 @@ export class OxiToolTip {
 
     update() {
         this.mesh.getScreenPst();
+
         if (this.tooltip) {
             this.tooltip.style.left = this.mesh.onscreenParams.x + 'px';
             this.tooltip.style.top = this.mesh.onscreenParams.y + 'px';
+            this.tooltip.className += this.checkPst(this.mesh.onscreenParams.x, this.mesh.onscreenParams.y);
         } else {
+
             this.mesh._dataSource._left = (this.mesh.onscreenParams.x - this.mesh.onscreenOffset.left) + 'px';
             this.mesh._dataSource._top = (this.mesh.onscreenParams.y - this.mesh.onscreenOffset.top) + 'px';
+            this.checkPst(this.mesh.onscreenParams.x, this.mesh.onscreenParams.y, this.mesh._dataSource);
         }
+    }
+
+    private checkPst(x, y, dataSource = null) {
+        let minX = 0, minY = 0, maxX = this.main._slider._W(), maxY = this.main._slider._H(), tootlipWidth = 280, tooltipHeight = 160,
+            classes = [' tooltip-align-left', ' tooltip-align-right', ' tooltip-align-bottom'];
+        if (dataSource) dataSource.alignLeft = dataSource.alignRight = dataSource.alignBottom = false;
+        if (x + tootlipWidth > maxX) {
+            if (dataSource)dataSource.alignLeft = true;
+            return classes[0];
+        } else if (x - tootlipWidth < minX) {
+            if (dataSource)dataSource.alignRight = true;
+            return classes[1];
+        } else if (y - tooltipHeight < minY) {
+            if (dataSource)dataSource.alignBottom = true;
+            return classes[2];
+        }
+        return '';
     }
 
     private   htmlToElement(html) {

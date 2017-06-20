@@ -17,7 +17,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private canEdit:boolean = false;
     private isFinish:boolean = false;
     private zoomDelta:number = 10;
-    private scaleDelta:number = 1.002;
+    private scaleDelta:number = 1.0025;
     private options:any = {};
     currentShape:any;
     lastSelectedShape:any;
@@ -62,6 +62,7 @@ export class SVGView implements OnInit,AfterViewInit {
 
     reload(data) {
         fabric.loadSVGFromString(data, (o, _options)=> {
+
             this.options = _options;
             this.parseSVG(data, ((_objects)=> {
                 this.onFinishParse(o, _options, _objects);
@@ -722,7 +723,7 @@ export class SVGView implements OnInit,AfterViewInit {
             scaleY0 = _h / prevH;
 
         }
-        this.resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
+        if(!(scaleX0 == 1 && scaleY0 ==1 && scaleMultiplierX ==1 && scaleMultiplierY == 1))  this.resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY);
 
         if (this.zoomer) {
             let _cnvs = this.zoomer['nativeElement'],
@@ -738,13 +739,14 @@ export class SVGView implements OnInit,AfterViewInit {
     }
 
     private resizeElements(objects, scaleX0, scaleY0, scaleMultiplierX, scaleMultiplierY) {
+
         for (let i = 0, list = objects.concat([]); i < list.length; i++) {
             let cur = list[i];
             cur.scaleX0 = scaleX0;
             cur.scaleY0 = scaleY0;
             cur._hasUpdate = 0;
-            cur.left  = ((cur.left *scaleMultiplierX));
-            cur.top =  (cur.top *scaleMultiplierY);
+            cur.left = ((cur.left * scaleMultiplierX));
+            cur.top = (cur.top * scaleMultiplierY);
             if (cur.type != this.shapes.CIRCLE) {
                 cur.scaleX *= scaleMultiplierX;
                 cur.scaleY *= scaleMultiplierY;
