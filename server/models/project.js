@@ -11,7 +11,7 @@ const projectSchema = new Schema({
     link: NotEmptyString,
     image: EmtyStr,
     owner: {
-        type: Schema.Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User'
     },
     created: {

@@ -50,6 +50,7 @@ export class ProjectService {
             res = res.json();
             if (res.status) {
                 let user = this.userService.getUser();
+                res.res.owner = user;
                 user.projects.push(res.res);
             }
             alertify.success(res.message);

@@ -42,10 +42,11 @@ const userSchema = new Schema({
         type: String,
         default: ''
     },
-    users: {
-        type: Array,
+    users: [{
+        type: Types.ObjectId,
+        ref: 'User',
         default: []
-    },
+    }],
     projects: [{
         type: Types.ObjectId,
         ref: 'Project',

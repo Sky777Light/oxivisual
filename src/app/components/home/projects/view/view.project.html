@@ -37,7 +37,7 @@
                 <div class="project-user-img" [ngStyle]="{'background-image': 'url(asfd)'}">
                     <span>AF</span>
                 </div>
-                <span class="project-user-name">Jennifer Carasdsdfd</span>
+                <span class="project-user-name" [innerHTML]="project.owner.firstName+' '+project.owner.secondName"></span>
             </div>
         </div>
     </div>

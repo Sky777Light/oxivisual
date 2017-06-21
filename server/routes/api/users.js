@@ -92,18 +92,19 @@ router.get("/user/:id", function (req, res) {
             })
         },
         function (user, done) {
+            var _populate = ['owner', 'firstName secondName'];
             if (user.role === config.USER_ROLE.SUPER) {
-                Project.find({}, function (err, projects) {
+                Project.find({}).populate(_populate[0],_populate[1]).exec( function (err, projects) {
                     user.projects = projects;
                     done(err, user);
-                })
+                });
             } else if (user.role === config.USER_ROLE.ADMIN) {
-                Project.find({owner: user._id}, function (err, projects) {
+                Project.find({owner: user._id}).populate(_populate[0],_populate[1]).exec(function (err, projects) {
                     user.projects = projects;
                     done(err, user);
-                })
+                });
             } else if (user.role === config.USER_ROLE.USER) {
-                Project.find({owner: user.parent}, function (err, projects) {
+                Project.find({owner: user.parent}).populate(_populate[0],_populate[1]).exec( function (err, projects) {
                     user.projects = projects;
                     done(err, user);
                 })
