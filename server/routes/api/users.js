@@ -151,7 +151,15 @@ router.put("/user", function (req, res) {
         var result = 'User was changed ';
         async.waterfall([
             function (done) {
-                User.findOne({_id: req.body._id}, {}, function (err, user) {
+                User.findOne({_id: req.body._id}, {
+                    'email': 1,
+                    'firstName': 1,
+                    'secondName': 1,
+                    'created': 1,
+                    'role': 1,
+                    'active': 1,
+                    'avatar': 1
+                }, function (err, user) {
                     if (err) {
                         return done({status: false, message: "Undefined error, no user found."}, null);
                     } else if (!user) {
@@ -229,7 +237,9 @@ router.put("/user", function (req, res) {
                     } else {
                         return res.json({
                             status: true,
-                            res: user,
+                            res: {
+                                avatar: user.avatar
+                            },
                             message: result
                         })
                     }

@@ -115,7 +115,7 @@ export class UserCardComponent {
                 this.submitted = false;
                 this.tempUser.password = this.tempUser.oldPassword = this.tempUser.psw2=null;
                 if(res.res){
-                    this.user.avatar = res.res.avatar;
+                    this.user.avatar = this.tempUser.avatar = res.res.avatar;
                 }
                 alertify.success(res.message);
             } else {

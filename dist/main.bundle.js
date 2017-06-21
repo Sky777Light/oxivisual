@@ -5757,7 +5757,7 @@ var UserCardComponent = (function () {
                 _this.submitted = false;
                 _this.tempUser.password = _this.tempUser.oldPassword = _this.tempUser.psw2 = null;
                 if (res.res) {
-                    _this.user.avatar = res.res.avatar;
+                    _this.user.avatar = _this.tempUser.avatar = res.res.avatar;
                 }
                 alertify.success(res.message);
             }
