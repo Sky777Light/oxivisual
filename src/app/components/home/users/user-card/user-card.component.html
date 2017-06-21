@@ -64,29 +64,34 @@
     </div>
     <form class="item-form" #editViewForm="ngForm" >
       <div class="input-wrap">
-        <input type="email" [class.no-changable]="!canEdit" placeholder="Email" #email="ngModel" [class.input-error]="email.invalid && (email.touched || submitted)"  [(ngModel)]="tempUser.email" [readonly]="!canEdit" [pattern]="userService.config.PATTERNS.EMAIL"  maxlength="20" required>
-        <label  [class.full-op]="email.invalid && (email.touched|| submitted)">This input requires a value!</label>
+        <input type="email" name="email" [class.no-changable]="!canEdit" placeholder="Email" #email="ngModel" [class.input-error]="email.invalid && (email.touched || submitted)"  [(ngModel)]="tempUser.email" [readonly]="!canEdit" [pattern]="userService.config.PATTERNS.EMAIL"  maxlength="20" required>
+        <label  [class.full-op]="email.invalid && (email.touched|| submitted)">This input requires an email value!</label>
       </div>
       <div class="input-wrap">
-        <input type="text" [class.no-changable]="!canEdit" #firstName="ngModel" [class.input-error]="firstName.invalid && (firstName.touched || submitted)"  placeholder="First name" [(ngModel)]="tempUser.firstName"  [readonly]="!canEdit" maxlength="20" required>
+        <input type="text" name="firstname"[class.no-changable]="!canEdit" #firstName="ngModel" [class.input-error]="firstName.invalid && (firstName.touched || submitted)"  placeholder="First name" [(ngModel)]="tempUser.firstName"  [readonly]="!canEdit" maxlength="20" required>
         <label [class.full-op]="firstName.invalid && (firstName.touched || submitted)">This input requires a value!</label>
       </div>
+
       <div class="input-wrap">
-        <input type="text" [class.no-changable]="!canEdit" #secondName="ngModel" [class.input-error]="secondName.invalid && (secondName.touched || submitted)" placeholder="Last name" [(ngModel)]="tempUser.secondName" [readonly]="!canEdit"  maxlength="20" required>
+        <input type="text" name="secondname" [class.no-changable]="!canEdit" #secondName="ngModel" [class.input-error]="secondName.invalid && (secondName.touched || submitted)" placeholder="Last name" [(ngModel)]="tempUser.secondName" [readonly]="!canEdit"  maxlength="20" required>
         <label [class.full-op]="secondName.invalid && (secondName.touched || submitted)">This input requires a value!</label>
       </div>
 
-      <!--<div *ngIf="User._id === user._id && canEdit">-->
-        <!--<div class="input-wrap">-->
-          <!--<input type="password"   #psw1="ngModel"   placeholder="New Password" [(ngModel)]="tempUser.psw1"  maxlength="20" [required]="tempUser.psw2" [class.input-error]="psw1.invalid && (psw1.touched ||psw2.touched || submitted)"  >-->
-          <!--<label [class.full-op]="psw1.invalid && (psw1.touched || submitted || psw2.touched)">This input requires a value!</label>-->
-        <!--</div>-->
-        <!--<div class="input-wrap">-->
-          <!--<input type="password"   #psw2="ngModel"   placeholder="Repeat Password" [(ngModel)]="tempUser.psw2"  maxlength="20" [required]="tempUser.psw1" [class.input-error]="psw2.invalid && (psw1.touched ||psw2.touched || submitted)" >-->
-          <!--<label [class.full-op]="psw1.invalid && (psw1.touched || submitted || psw2.touched) ">This input requires a value!</label>-->
-          <!--<label [class.full-op]="tempUser.psw2 != tempUser.psw1">Passwords didn`t match</label>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div *ngIf="User._id === user._id && canEdit">
+        <div class="input-wrap">
+          <input type="password" name="oldPassword"  #oldPassword="ngModel"   placeholder="Old Password" [(ngModel)]="tempUser.oldPassword"  maxlength="20" [required]="!!tempUser.password" [class.input-error]="oldPassword.invalid && (oldPassword.touched  || submitted)"  >
+          <label [class.full-op]="oldPassword.invalid && (oldPassword.touched || submitted)">This input requires a value!</label>
+        </div>
+        <div class="input-wrap">
+          <input type="password" name="psw1"  #psw1="ngModel"   placeholder="New Password" [(ngModel)]="tempUser.password"  maxlength="20" [required]="!!tempUser.psw2 || !!tempUser.oldPassword" [class.input-error]="psw1.invalid && (psw1.touched  || submitted)"  >
+          <label [class.full-op]="psw1.invalid && (psw1.touched || submitted)">This input requires a value!</label>
+        </div>
+        <div class="input-wrap">
+          <input type="password"  name="psw2"  #psw2="ngModel"   placeholder="Repeat Password" [(ngModel)]="tempUser.psw2"  maxlength="20" [required]="!!tempUser.password" [class.input-error]="(psw2.invalid||psw1.invalid||( tempUser.password && tempUser.psw2 &&tempUser.psw2 != tempUser.password)) && (psw2.touched || submitted )" >
+          <label [class.full-op]="psw2.invalid && ( submitted || psw2.touched) ">This input requires a value!</label>
+          <label [class.full-op]="(!!tempUser.password ||!!tempUser.psw2) && tempUser.password != tempUser.psw2 && (psw2.touched || submitted)&&!psw2.invalid ">Passwords didn`t match </label>
+        </div>
+      </div>
     </form>
   </div>
 </div>

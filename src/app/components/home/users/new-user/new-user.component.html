@@ -1,67 +1,95 @@
 <div class="block-bg" (click)="cancel()"></div>
 
-<div class="new-form">
-  <span class="tag-text">Creating a new user:</span>
-  <div class="main-info">
-    <div class="item-photo">
-      <label class="photo" [ngStyle]="{'background-image': 'url(' + tempNewUser.avatar + ')'}">
-        <input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)">
-        <i class="material-icons" [hidden]="tempNewUser.avatar != false">crop_original</i>
-      </label>
-      <div class="photo-ctrl" [hidden]="tempNewUser.avatar == false">
-        <label>Upload<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
-        <span (click)="removePhoto()">Remove</span>
-      </div>
-      <div class="photo-ctrl" [hidden]="tempNewUser.avatar != false">
-        <label>Upload image<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
-      </div>
-      <span class="photo-info">300*300 px</span>
+<div class="new-form" (keydown)="keyDown($event,createUserForm.invalid)">
+    <span class="tag-text">Creating a new user:</span>
+
+    <div class="main-info">
+        <div class="item-photo">
+            <label class="photo" [ngStyle]="{'background-image': 'url(' + tempNewUser.avatar + ')'}">
+                <input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)">
+                <i class="material-icons" [hidden]="tempNewUser.avatar != false">crop_original</i>
+            </label>
+
+            <div class="photo-ctrl" [hidden]="tempNewUser.avatar == false">
+                <label>Upload<input type="file" capture="camera" accept="image/*" (change)="loadPhoto($event)"></label>
+                <span (click)="removePhoto()">Remove</span>
+            </div>
+            <div class="photo-ctrl" [hidden]="tempNewUser.avatar != false">
+                <label>Upload image<input type="file" capture="camera" accept="image/*"
+                                          (change)="loadPhoto($event)"></label>
+            </div>
+            <span class="photo-info">300*300 px</span>
+        </div>
+        <form class="item-form" #createUserForm="ngForm">
+            <div class="input-wrap">
+                <input type="email" name="email" #email="ngModel"
+                       [class.input-error]="email.invalid && (email.touched || submitted)" placeholder="Email"
+                       [(ngModel)]="tempNewUser.email" [pattern]="userService.config.PATTERNS.EMAIL" maxlength="20"
+                       required>
+
+                <div *ngIf="email.touched || submitted">
+                    <label [class.full-op]="email.invalid ">This input requires an email value!</label>
+                    <label [class.full-op]="message.email">{{message.email}}</label>
+                </div>
+
+            </div>
+            <div class="input-wrap">
+                <input type="text" name="firstName" #firstName="ngModel"
+                       [class.input-error]="firstName.invalid && (firstName.touched || submitted)"
+                       placeholder="First name" [(ngModel)]="tempNewUser.firstName" maxlength="20" required>
+                <label [class.full-op]="firstName.invalid && (firstName.touched || submitted)">This input requires a
+                    value!</label>
+            </div>
+            <div class="input-wrap">
+                <input type="text" name="secondName" #secondName="ngModel"
+                       [class.input-error]="secondName.invalid && (secondName.touched || submitted)"
+                       placeholder="Last name" [(ngModel)]="tempNewUser.secondName" maxlength="20" required>
+                <label [class.full-op]="secondName.invalid && (secondName.touched || submitted)">This input requires a
+                    value!</label>
+            </div>
+            <div class="input-wrap">
+                <input type="password" name="psw1" #psw1="ngModel"
+                       [class.input-error]="psw1.invalid && (psw1.touched || submitted)" placeholder="Password"
+                       [(ngModel)]="tempNewUser.password" maxlength="20" required>
+                <label [class.full-op]="psw1.invalid && (psw1.touched || submitted)">This input requires a
+                    value!</label>
+            </div>
+            <div class="input-wrap">
+                <input type="password" name="psw1" #psw2="ngModel"
+                       [class.input-error]="(psw2.invalid || tempNewUser.passwordRepeat != tempNewUser.password) && (psw2.touched || submitted)" placeholder="Repeat password"
+                       [(ngModel)]="tempNewUser.passwordRepeat" maxlength="20" required>
+
+                <div *ngIf="psw2.touched || submitted">
+                    <label [class.full-op]="psw2.invalid ">This input requires a value! </label>
+                    <label [class.full-op]="tempNewUser.passwordRepeat != tempNewUser.password ">Passwords didn`t
+                        match </label>
+                </div>
+            </div>
+        </form>
     </div>
-    <form class="item-form">
-      <div class="input-wrap">
-        <input type="email" [class.input-error]="!resol.email || message.email" placeholder="Email" [(ngModel)]="tempNewUser.email" [ngModelOptions]="{standalone: true}"  (focus)="resol.email = true; message.email = ''">
-        <label [class.full-op]="!resol.email">This input requires a value!</label>
-        <label [class.full-op]="message.email">{{message.email}}</label>
-      </div>
-      <div class="input-wrap">
-        <input type="text" [class.input-error]="!resol.firstName"  placeholder="First name" [(ngModel)]="tempNewUser.firstName" [ngModelOptions]="{standalone: true}"  (focus)="resol.firstName = true">
-        <label [class.full-op]="!resol.firstName">This input requires a value!</label>
-      </div>
-      <div class="input-wrap">
-        <input type="text" [class.input-error]="!resol.secondName"  placeholder="Last name" [(ngModel)]="tempNewUser.secondName" [ngModelOptions]="{standalone: true}" (focus)="resol.secondName = true">
-        <label [class.full-op]="!resol.secondName">This input requires a value!</label>
-      </div>
-      <div class="input-wrap">
-        <input type="password" [class.input-error]="!resol.password" placeholder="Password" [(ngModel)]="tempNewUser.password" [ngModelOptions]="{standalone: true}" (focus)="resol.password = true; message.password = ''">
-        <label [class.full-op]="!resol.password">This input requires a value!</label>
-      </div>
-      <div class="input-wrap">
-        <input type="password" [class.input-error]="!resol.passwordRepeat || message.password" placeholder="Repeat password" [(ngModel)]="tempNewUser.passwordRepeat" [ngModelOptions]="{standalone: true}" (focus)="resol.passwordRepeat = true; message.password = ''">
-        <label [class.full-op]="!resol.passwordRepeat">This input requires a value!</label>
-        <label [class.full-op]="message.password">Password is incorrect</label>
-      </div>
-    </form>
-  </div>
-  <div class="user-status">
-    <div class="user-status-item" *ngIf="User.role == config.USER_ROLE.SUPER">
-      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.SUPER">radio_button_checked</i>
-      <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.SUPER" (click)="tempNewUser.role = config.USER_ROLE.SUPER; resol.role = true">radio_button_unchecked</i>
-      <span>Superuser</span>
+    <div class="user-status">
+        <div class="user-status-item" *ngIf="User.role == config.USER_ROLE.SUPER">
+            <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.SUPER">radio_button_checked</i>
+            <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.SUPER"
+               (click)="tempNewUser.role = config.USER_ROLE.SUPER; resol.role = true">radio_button_unchecked</i>
+            <span>Superuser</span>
+        </div>
+        <div class="user-status-item" *ngIf="User.role == config.USER_ROLE.SUPER">
+            <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.ADMIN">radio_button_checked</i>
+            <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.ADMIN"
+               (click)="tempNewUser.role = config.USER_ROLE.ADMIN; resol.role = true">radio_button_unchecked</i>
+            <span>Client-admin</span>
+        </div>
+        <div class="user-status-item" *ngIf="User.role !== config.USER_ROLE.ADMIN">
+            <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.USER">radio_button_checked</i>
+            <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.USER"
+               (click)="tempNewUser.role = config.USER_ROLE.USER; resol.role = true">radio_button_unchecked</i>
+            <span>Client-user</span>
+        </div>
+        <label [class.err-status]="!resol.role">Select user status</label>
     </div>
-    <div class="user-status-item" *ngIf="User.role == config.USER_ROLE.SUPER">
-      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.ADMIN">radio_button_checked</i>
-      <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.ADMIN" (click)="tempNewUser.role = config.USER_ROLE.ADMIN; resol.role = true">radio_button_unchecked</i>
-      <span>Client-admin</span>
+    <div class="new-btns">
+        <span class="false-btn" (click)="cancel()">cancel</span>
+        <span class="true-btn" (click)="accept(createUserForm.invalid)">accept</span>
     </div>
-    <div class="user-status-item" *ngIf="User.role !== config.USER_ROLE.ADMIN">
-      <i class="material-icons selected-status" [hidden]="tempNewUser.role !== config.USER_ROLE.USER">radio_button_checked</i>
-      <i class="material-icons" [hidden]="tempNewUser.role === config.USER_ROLE.USER" (click)="tempNewUser.role = config.USER_ROLE.USER; resol.role = true">radio_button_unchecked</i>
-      <span>Client-user</span>
-    </div>
-    <label [class.err-status]="!resol.role">Select user status</label>
-  </div>
-  <div class="new-btns">
-    <span class="false-btn" (click)="cancel()">cancel</span>
-    <span class="true-btn" (click)="accept()">accept</span>
-  </div>
 </div>

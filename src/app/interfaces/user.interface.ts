@@ -1,3 +1,5 @@
+import {Config} from "../entities/entities";
+
 export interface IUser{
     _id: string,
     firstName: string,
@@ -34,7 +36,7 @@ export class User  implements IUser{
         firstName:string='',
         secondName:string='',
         email:string='',
-        role:number=null,
+        role:number=Config.USER_ROLE.USER,
         created:number=null,
         avatar:string='',
         active:boolean = true,

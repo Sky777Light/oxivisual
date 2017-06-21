@@ -24,7 +24,7 @@ router.post("/login", function (req, res, next) {
             if (!user) {
                 return res.json({
                     status: false,
-                    message: "Email or password is incorrect."
+                    message: info.message || "Email or password is incorrect."
                 });
             }
 
@@ -42,43 +42,43 @@ router.post("/login", function (req, res, next) {
         })(req, res, next);
     };
 
-    if((req.body.email === config.superadmin.email) && (req.body.password === config.superadmin.password)){
+    if ((req.body.email === config.superadmin.email) && (req.body.password === config.superadmin.password)) {
         User.findOne({email: req.body.email}, function (err, user) {
             if (err) {
                 return res.json({
                     status: false,
-                    message: err&& err.message?err.message:"You are not logged in."
+                    message: err && err.message ? err.message : "You are not logged in."
                 });
-            }else  if(user){
+            } else if (user) {
                 passportCtrl();
             } else {
 
-                new User( {
+                new User({
                     email: config.superadmin.email,
                     password: config.superadmin.password,
                     firstName: "Super",
                     secondName: "User",
                     role: config.USER_ROLE.SUPER,
-                    parent: req.user?req.user._id:null
-                } ).save(function (err, user) {
+                    parent: req.user ? req.user._id : null
+                }).save(function (err, user) {
 
-                    if (err) {
-                        return res.json({
-                            status: false,
-                            message: err&& err.message?err.message:"You are not logged in."
-                        });
-                    }
-
-                    user.token = "JWT " + jwt.encode({_id: user._id, email: user.email}, config.security.secret);
-                    user.save(function (err, user) {
                         if (err) {
-                            throw err;
+                            return res.json({
+                                status: false,
+                                message: err && err.message ? err.message : "You are not logged in."
+                            });
                         }
-                        
-                        passportCtrl();
-                    });
 
-                });
+                        user.token = "JWT " + jwt.encode({_id: user._id, email: user.email}, config.security.secret);
+                        user.save(function (err, user) {
+                            if (err) {
+                                throw err;
+                            }
+
+                            passportCtrl();
+                        });
+
+                    });
             }
         });
 

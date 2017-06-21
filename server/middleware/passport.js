@@ -35,6 +35,12 @@ module.exports = function (passport) {
                     message: "No user found."
                 });
             }
+            if (!user.active) {
+                return done(null, false, {
+                    status: false,
+                    message: "User is not active"
+                });
+            }
 
             if (!user.comparePassword(password)) {
                 return done(null, false, {

@@ -1,69 +1,75 @@
 <main class="row">
-  <div class="user-list-wrap col-md-4">
+    <div class="user-list-wrap col-md-4">
 
-    <div class="user-list">
-      <div class="slimscroll-wrap" slimScroll  width="100%" alwaysVisible=false distance="0px" height="100%" size="2px" color="#8b8d91" opacity=1 railColor="#b2b3b7" railOpacity=0>
-        <div class="user-list-item" [class.deactive]="!user.active" [class.selected-user]="selectedUser === user" *ngFor="let user of User.users | namefilter: header.searchName: header.sortType">
-          <div class="user-item-img-wrap" [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}" (click)="selectUser(user, false)">
-            <span *ngIf="!user.avatar">{{userService.lettersNoImg(user)}}</span>
-          </div>
-          <div class="user-list-item-wrap">
-            <div class="user-name-wrap">
-              <div class="user-name pointer" (click)="selectUser(user, false)">
-                <span>{{user.firstName}} {{user.secondName}}</span>
-                <i class="material-icons" [hidden]="user.active">visibility_off</i>
-                <span class="new-title" [hidden]="!user.newUser">New</span>
-              </div>
-              <br>
-              <span class="user-status pointer" (click)="selectUser(user, false)" *ngIf="user.role == userService.config.USER_ROLE.SUPER">Super user</span>
-              <span class="user-status pointer" (click)="selectUser(user, false)" *ngIf="user.role ==  userService.config.USER_ROLE.ADMIN">Client-admin</span>
-              <span class="user-status pointer" (click)="selectUser(user, false)" *ngIf="user.role ==  userService.config.USER_ROLE.USER">Client-user</span>
-            </div>
-            <div class="user-ctrl">
-              <i class="material-icons" (click)="selectUser(user, true)">edit</i>
-              <div class="pop-up-icon" [class.pop-up-icon-active]="settingsUser === user">
-                <i class="material-icons" (click)="settingsUser = user" (window:mouseup)="settingsUser = null">more_vert</i>
-                <div class="pop-up" [hidden]="settingsUser !== user">
-                  <div class="pop-up-item" [hidden]="!user.active" (click)="deactivateUser(user)">
-                    <i class="material-icons">visibility_off</i>
-                    <div class="pop-up-row-name">
-                      <span>Deactivate</span>
+        <div class="user-list">
+            <div class="slimscroll-wrap" slimScroll width="100%" alwaysVisible=false distance="0px" height="100%"
+                 size="2px" color="#8b8d91" opacity=1 railColor="#b2b3b7" railOpacity=0>
+                <div class="user-list-item" [class.deactive]="!user.active"
+                     [class.selected-user]="selectedUser === user"
+                     *ngFor="let user of User.users | namefilter: header.searchName: header.sortType">
+                    <div class="user-item-img-wrap" [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}"
+                         (click)="selectUser(user, false)">
+                        <span *ngIf="!user.avatar">{{userService.lettersNoImg(user)}}</span>
                     </div>
-                  </div>
-                  <div class="pop-up-item" [hidden]="user.active" (click)="deactivateUser(user)">
-                    <i class="material-icons">visibility</i>
-                    <div class="pop-up-row-name">
-                      <span>Activate</span>
+                    <div class="user-list-item-wrap">
+                        <div class="user-name-wrap">
+                            <div class="user-name pointer" (click)="selectUser(user, false)">
+                                <span>{{user.firstName}} {{user.secondName}}</span>
+                                <i class="material-icons" [hidden]="user.active">visibility_off</i>
+                                <span class="new-title" [hidden]="!user.newUser">New</span>
+                            </div>
+                            <br>
+                            <span class="user-status pointer" (click)="selectUser(user, false)"
+                                  *ngIf="user.role == userService.config.USER_ROLE.SUPER">Super user</span>
+                            <span class="user-status pointer" (click)="selectUser(user, false)"
+                                  *ngIf="user.role ==  userService.config.USER_ROLE.ADMIN">Client-admin</span>
+                            <span class="user-status pointer" (click)="selectUser(user, false)"
+                                  *ngIf="user.role ==  userService.config.USER_ROLE.USER">Client-user</span>
+                        </div>
+                        <div class="user-ctrl">
+                            <i class="material-icons" (click)="selectUser(user, true)">edit</i>
+
+                            <div class="pop-up-icon" [class.pop-up-icon-active]="settingsUser === user">
+                                <i class="material-icons" (click)="settingsUser = user"
+                                   (window:mouseup)="settingsUser = null">more_vert</i>
+
+                                <div class="pop-up" [hidden]="settingsUser !== user">
+                                    <div class="pop-up-item"   (click)="deactivateUser(user)">
+                                        <i class="material-icons"
+                                           [innerHTML]="!user.active?'visibility':'visibility_off'"></i>
+                                        <div class="pop-up-row-name">
+                                            <span [innerHTML]="!user.active?'Activate':'Deactivate' "></span>
+                                        </div>
+                                    </div>
+                                    <div class="pop-up-item" (click)="deleteUser(user)">
+                                        <i class="material-icons">delete</i>
+                                        <div class="pop-up-row-name">
+                                            <span>Delete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="pop-up-item" (click)="deleteUser(user)">
-                    <i class="material-icons">delete</i>
-                    <div class="pop-up-row-name">
-                      <span>Delete</span>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+
+        <div class="add-btn" (click)="createNewUser = true"
+             *ngIf="!createNewUser && User.role !=  userService.config.USER_ROLE.USER">
+            <i class="material-icons">add</i>
+
+            <div class="span-hover">
+                <span>Add a new user</span>
+            </div>
+        </div>
     </div>
 
-    <div class="add-btn" (click)="createNewUser = true" [hidden]="createNewUser">
-      <i class="material-icons">add</i>
-      <div class="span-hover">
-        <span>Add a new user</span>
-      </div>
+    <div class="user-card-wrap col-md-8">
+        <app-user-card [(user)]="selectedUser" [canEdit]="canEdit" *ngIf="selectedUser"></app-user-card>
+        <span class="no-user" [hidden]="selectedUser">No user selected</span>
     </div>
-
-  </div>
-
-  <div class="user-card-wrap col-md-8">
-    <app-user-card [(user)]="selectedUser" [canEdit]="canEdit" [hidden]="!selectedUser"></app-user-card>
-    <span class="no-user" [hidden]="selectedUser">No user selected</span>
-  </div>
 
 </main>
 
-<app-new-user class="add-new" [message]="message" *ngIf="createNewUser" ></app-new-user>
+<app-new-user class="add-new" [message]="message" *ngIf="createNewUser"></app-new-user>

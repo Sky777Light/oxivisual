@@ -20,7 +20,7 @@
 </header>
 
 <div class="pop-up" *ngIf="User.projects">
-  <div class="pop-up-item" routerLink="/projects" routerLinkActive="asd-active">
+  <div class="pop-up-item" routerLink="/projects" routerLinkActive="asd-active"  *ngIf="User.role !=  userService.config.USER_ROLE.USER">
     <i class="material-icons">folder</i>
     <div class="pop-up-row-name">
       <span class="pointer">Projects</span>

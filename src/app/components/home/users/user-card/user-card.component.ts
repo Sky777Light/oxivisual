@@ -26,8 +26,7 @@ export class UserCardComponent {
     private submitted:boolean = false;
 
     private User:USER.IUser;
-    private tempUser = new USER.User();
-
+    private tempUser:any = new USER.User();
     //popup menu
     private openMenu:boolean = false;
 
@@ -74,7 +73,6 @@ export class UserCardComponent {
     removePhoto() {
         this.tempUser.avatar = '';
     }
-
 //popup functions
     deactivate() {
         this.tempUser.active = !this.tempUser.active;
@@ -95,8 +93,10 @@ export class UserCardComponent {
                 let idx = this.User.users.indexOf(this.user);
                 this.User.users.splice(idx, 1);
                 this.userChange.emit(null);
+                alertify.success(res.message);
+            }else{
+                alertify.error(res.message);
             }
-            alertify.success(res.message);
         }, (error) => {
         });
     }
@@ -104,8 +104,7 @@ export class UserCardComponent {
 //change user
     changeUser(invalid) {
         this.submitted = true;
-        if (invalid) return alertify.error('please fill all inputs correct');
-
+        if (invalid || (this.tempUser.password && this.tempUser.oldPassword && this.tempUser.psw2 && this.tempUser.password != this.tempUser.psw2)) return alertify.error('please fill all inputs correct');
         this.authService.put('/api/users/user', this.tempUser).subscribe((res:any) => {
             res = res.json();
             if (res.status) {
@@ -113,13 +112,15 @@ export class UserCardComponent {
                 this.user.secondName = this.tempUser.secondName;
                 this.user.email = this.tempUser.email;
                 this.user.active = this.tempUser.active;
-                this.user.avatar = res.res.avatar;
                 this.submitted = false;
+                this.tempUser.password = this.tempUser.oldPassword = this.tempUser.psw2=null;
+                if(res.res){
+                    this.user.avatar = res.res.avatar;
+                }
                 alertify.success(res.message);
             } else {
-                if (res.email)
-                    this.message = res.message;
-                alertify.error(this.message);
+                if (res.email)this.message = res.message;
+                alertify.error(res.message);
             }
 
 
