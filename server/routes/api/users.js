@@ -76,8 +76,8 @@ router.get("/user/:id", function (req, res) {
                 'secondName': 1,
                 'created': 1,
                 'role': 1,
-                'projects': 1,
-                'users': 1,
+                //'projects': 1,
+                //'users': 1,
                 'active': 1,
                 'avatar': 1
             }, function (err, user) {
