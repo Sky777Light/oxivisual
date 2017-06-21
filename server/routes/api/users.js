@@ -55,7 +55,7 @@ var saveImage = function (image, avatar, done) {
 };
 
 function checkPermissioin(r, rs, next) {
-    if (r.body._id == r.user._id || r.user.users.indexOf(r.body._id) > -1 || r.user.role === config.USER_ROLE.SUPER ) {
+    if (r.body._id == r.user._id || r.user.users.indexOf(r.body._id) > -1 || r.user.role === config.USER_ROLE.SUPER) {
         next();
     } else {
         return rs.json({
@@ -83,9 +83,9 @@ router.get("/user/:id", function (req, res) {
             }, function (err, user) {
                 if (!user) {
                     return done({status: false, message: "No user found."}, null);
-                }else if(!user.active){
+                } else if (!user.active) {
                     return done({status: false, message: "User is not active"}, null);
-                }else{
+                } else {
                     done(err, user);
                 }
 
@@ -112,20 +112,20 @@ router.get("/user/:id", function (req, res) {
             }
         },
         function (user, done) {
-                User.find((user.role === config.USER_ROLE.SUPER ? {} : (user.role === config.USER_ROLE.ADMIN ? {$or: [{parent: user._id}, {_id: user._id}]} : {_id: user._id})), {
-                    'email': 1,
-                    'firstName': 1,
-                    'secondName': 1,
-                    'created': 1,
-                    'role': 1,
-                    'projects': 1,
-                    'users': 1,
-                    'active': 1,
-                    'avatar': 1
-                }, function (err, users) {
-                    user.users = users;
-                    done(err, user);
-                });
+            User.find((user.role === config.USER_ROLE.SUPER ? {} : (user.role === config.USER_ROLE.ADMIN ? {$or: [{parent: user._id}, {_id: user._id}]} : {_id: user._id})), {
+                'email': 1,
+                'firstName': 1,
+                'secondName': 1,
+                'created': 1,
+                'role': 1,
+                //'projects': 1,
+                //'users': 1,
+                'active': 1,
+                'avatar': 1
+            }, function (err, users) {
+                user.users = users;
+                done(err, user);
+            });
         }
     ], function (err, user) {
 
@@ -148,25 +148,15 @@ router.get("/user/:id", function (req, res) {
 //update user
 router.put("/user", function (req, res) {
     checkPermissioin(req, res, function () {
+        var result = 'User was changed ';
         async.waterfall([
             function (done) {
                 User.findOne({_id: req.body._id}, {}, function (err, user) {
-
-                    var result = 'User was changed ';
                     if (err) {
                         return done({status: false, message: "Undefined error, no user found."}, null);
                     } else if (!user) {
                         return done({status: false, message: "No user found."}, null);
                     } else {
-                        function saveUser() {
-                            user.save(function (err) {
-                                if (err) {
-                                    return done(err, null);
-                                }
-                                return done({status: true, message: result}, null);
-                            });
-                        }
-
                         if (req.body.oldPassword) {
                             if (!user.comparePassword(req.body.oldPassword)) {
                                 return done({status: false, message: "Oops! Wrong password."}, null);
@@ -182,39 +172,39 @@ router.put("/user", function (req, res) {
                         ['firstName', 'secondName'].forEach(function (el) {
                             if (req.body[el]) user[el] = req.body[el];
                         });
-
-                        if (req.body.email !== user.email) {
-                            User.findOne({email: req.body.email}, function (err, _result) {
-                                if (err) {
-                                    return done(err, null);
-                                } else if (_result) {
-                                    return done({
-                                        status: false,
-                                        email: true,
-                                        message: "That email is already taken."
-                                    }, null);
-                                } else {
-                                    user.email = req.body.email;
-                                    result += ",email was updated";
-                                    saveUser();
-                                }
-
-                            });
-                        } else {
-                            saveUser();
-                        }
+                        done(null, user);
                     }
-
 
                 });
 
             },
             function (user, done) {
-                user.firstName = req.body.firstName || user.firstName;
-                user.secondName = req.body.secondName || user.secondName;
+                if (req.body.email !== user.email) {
+                    User.findOne({email: req.body.email}, function (err, _result) {
+                        if (err) {
+                            return done(err, null);
+                        } else if (_result) {
+                            return done({
+                                status: false,
+                                email: true,
+                                message: "That email is already taken."
+                            }, null);
+                        } else {
+                            result += ", email was updated";
+                            user.email = req.body.email;
+                            done(null, user);
+                        }
+
+                    });
+                } else {
+                    done(null, user);
+                }
+            },
+            function (user, done) {
 
                 if (req.body.avatar !== user.avatar) {
                     saveImage(req.body.avatar, user.avatar, function (err, img) {
+                        result += ", avatar was updated";
                         user.avatar = img;
                         done(err, user);
                     })
@@ -225,22 +215,27 @@ router.put("/user", function (req, res) {
 
         ], function (err, resUser) {
             if (err) {
-                if (err.message) {
-                    return res.json(err);
-                } else {
-                    throw err;
-                }
-            }
-            resUser.save(function (err, user) {
-                if (err) {
-                    throw err;
-                }
                 return res.json({
-                    status: true,
-                    res: user,
-                    message: "User successfully was changed."
-                })
-            });
+                    status: false,
+                    message: err.message || err
+                });
+            } else {
+                resUser.save(function (err, user) {
+                    if (err) {
+                        return res.json({
+                            status: false,
+                            message: err.message || err
+                        });
+                    } else {
+                        return res.json({
+                            status: true,
+                            res: user,
+                            message: result
+                        })
+                    }
+
+                });
+            }
         });
     });
 
