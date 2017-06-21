@@ -4393,6 +4393,8 @@ var OxiToolTip = (function () {
     };
     OxiToolTip.prototype.checkPst = function (x, y, dataSource) {
         if (dataSource === void 0) { dataSource = null; }
+        if (!this.main._slider)
+            return '';
         var minX = 0, minY = 0, maxX = this.main._slider._W(), maxY = this.main._slider._H(), tootlipWidth = 280, tooltipHeight = 160, classes = [' tooltip-align-left', ' tooltip-align-right', ' tooltip-align-bottom'];
         if (dataSource)
             dataSource.alignLeft = dataSource.alignRight = dataSource.alignBottom = false;

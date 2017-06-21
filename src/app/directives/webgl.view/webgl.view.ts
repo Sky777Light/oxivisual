@@ -1753,6 +1753,7 @@ export class OxiToolTip {
     }
 
     private checkPst(x, y, dataSource = null) {
+        if(!this.main._slider) return '';
         let minX = 0, minY = 0, maxX = this.main._slider._W(), maxY = this.main._slider._H(), tootlipWidth = 280, tooltipHeight = 160,
             classes = [' tooltip-align-left', ' tooltip-align-right', ' tooltip-align-bottom'];
         if (dataSource) dataSource.alignLeft = dataSource.alignRight = dataSource.alignBottom = false;
