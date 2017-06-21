@@ -354,16 +354,19 @@ router.delete("/user", function (req, res) {
     checkPermissioin(req, res, function () {
         User.findOne({_id: req.body._id}, function (err, user) {
             if (err) {
-                return res.json({
-                    status: false,
-                    message: err.message || "No user found"
-                });
+                //return res.json({
+                //    status: false,
+                //    message: err.message || "No user found"
+                //
+                //});
+                console.log("No user found1");
             } else {
                 if (!user) {
-                    return res.json({
-                        status: false,
-                        message: "No user found"
-                    });
+                    //return res.json({
+                    //    status: false,
+                    //    message: "No user found"
+                    //});
+                    console.log("No user found");
                 }
             }
 
