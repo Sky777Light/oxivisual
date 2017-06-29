@@ -221,8 +221,10 @@ function saveProjectFiles(options, req, res, next) {
     }
 }
 function Structure(req, res) {
-    var modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + req.session.lastEditProject.model.link + config.DIR.DELIMETER;
+    var hasFile = req.session.lastEditProject &&  req.session.lastEditProject.model && req.session.lastEditProject.model.link;
+    var  modelDir = config.DIR.UPLOADS + config.DIR.PROJECTS + (hasFile?req.session.lastEditProject.model.link:'') + config.DIR.DELIMETER;
     this.getData = function () {
+        if(!hasFile)return {};
         var structure = fs.readFileSync(modelDir + config.DIR.SITE_STRUCTURE, 'utf-8');
         if (!structure)return res.json({
             status: false,
@@ -232,10 +234,10 @@ function Structure(req, res) {
         return this.structure;
     }
     this.saveData = function () {
+        if(!hasFile)return null;
         fs.writeFileSync(path.normalize(modelDir + config.DIR.SITE_STRUCTURE), JSON.stringify([this.structure]), 'utf8');
     }
 }
-
 //update project
 router.put("/project", function (request, responce) {
     checkPermissionOnProject(request, responce, function (req, res) {
@@ -273,6 +275,7 @@ router.put("/project", function (request, responce) {
 
                     Project.update({_id: req.body._id}, {$set: _sets}, function (err) {
                         if (!err && _sets.link) {
+                            console.log(req.session);
                             var _str = new Structure(req, res),
                                 structure = _str.getData();
                             structure.dataSource = _sets.link;

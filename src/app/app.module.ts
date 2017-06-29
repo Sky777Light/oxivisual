@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule ,JsonpModule} from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 import { CodemirrorModule } from 'ng2-codemirror';
 import {DynamicComponentModule} from 'angular2-dynamic-component/index';
-
 
 import {routing} from "./router";
 
@@ -85,6 +84,7 @@ declare var webpack:any;
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     AlertModule.forRoot(),
     DynamicComponentModule,
     routing

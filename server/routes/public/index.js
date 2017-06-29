@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const config = require("../../config");
 const Project = require("../../models/project");
-
+const request = require('request');
 router.all("/", function (req, res) {
     if(req.body.projectDir ){
 
@@ -39,6 +39,24 @@ router.post("/project/isactive", function (req, res) {
             }
         });
     }
+
+});
+router.post("/model/remote", function (req, res) {
+
+    request.get(req.body.dataUrl, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+           res.json({
+               status: true,
+               message: "forgot something",
+               data:body
+           });
+        }else{
+            res.json({
+                status: false,
+                message: error
+            });
+        }
+    });
 
 });
 

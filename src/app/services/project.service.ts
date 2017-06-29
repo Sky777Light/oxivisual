@@ -22,6 +22,11 @@ export class ProjectService {
         } else {
             this.Project = project;
         }
+        this.Project.owner = {
+            _id:this.Project.owner._id,
+            firstName:this.Project.owner.firstName,
+            lastName:this.Project.owner.lastName
+        }
         if (!(this.Project.model instanceof  ENTITY.ProjectModel)) {
             this.Project.model = new ENTITY.ProjectModel(this.Project.model);
         }

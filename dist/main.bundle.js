@@ -6,17 +6,17 @@ webpackJsonp([0,4],{
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(224);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Project__ = __webpack_require__(727);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Project__ = __webpack_require__(728);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__Project__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModelStructure__ = __webpack_require__(726);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModelStructure__ = __webpack_require__(727);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["b"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["c"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["d"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_2__ModelStructure__["f"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constant_data__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constant_data__ = __webpack_require__(376);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__constant_data__["b"]; });
 
@@ -180,27 +180,27 @@ var UserService = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__ = __webpack_require__(375);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_0__webgl_view_webgl_view__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__ = __webpack_require__(371);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__webgl_view_controls_controls__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__ = __webpack_require__(372);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__webgl_view_preloader_preloader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__ = __webpack_require__(374);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__webgl_view_tooltip_tooltip__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__ = __webpack_require__(373);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_4__webgl_view_svg_draw_svg_draw__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tree_tree__ = __webpack_require__(724);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tree_tree__ = __webpack_require__(725);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_5__tree_tree__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__ = __webpack_require__(722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__ = __webpack_require__(723);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_6__slimscroll_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__ = __webpack_require__(725);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__ = __webpack_require__(726);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_7__upload_files_upload_file__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__ = __webpack_require__(723);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__ = __webpack_require__(724);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__templates_loader_templates_loader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__safeHtml__ = __webpack_require__(721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__safeHtml__ = __webpack_require__(722);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_9__safeHtml__["a"]; });
 
 
@@ -439,7 +439,7 @@ var LoggedGuardService = (function () {
 
 /***/ }),
 
-/***/ 360:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -463,8 +463,8 @@ var HomeComponent = (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(853),
-            styles: [__webpack_require__(794)],
+            template: __webpack_require__(854),
+            styles: [__webpack_require__(795)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('slideInOut', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('in', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
@@ -486,7 +486,7 @@ var HomeComponent = (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -514,8 +514,8 @@ var BasicProject = (function () {
     BasicProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-basic-project',
-            template: __webpack_require__(854),
-            styles: [__webpack_require__(795)]
+            template: __webpack_require__(855),
+            styles: [__webpack_require__(796)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_project_service__["a" /* ProjectService */]) === 'function' && _a) || Object])
     ], BasicProject);
@@ -526,7 +526,7 @@ var BasicProject = (function () {
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -704,8 +704,8 @@ var Costumization = (function () {
     Costumization = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-costumization',
-            template: __webpack_require__(855),
-            styles: [__webpack_require__(796)]
+            template: __webpack_require__(856),
+            styles: [__webpack_require__(797)]
         }), 
         __metadata('design:paramtypes', [(typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === 'function' && _f) || Object])
     ], Costumization);
@@ -806,7 +806,7 @@ var CodeConfig = (function () {
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -872,8 +872,8 @@ var PreviewProject = (function () {
     PreviewProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-preview',
-            template: __webpack_require__(856),
-            styles: [__webpack_require__(797)]
+            template: __webpack_require__(857),
+            styles: [__webpack_require__(798)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === 'function' && _b) || Object])
     ], PreviewProject);
@@ -884,7 +884,7 @@ var PreviewProject = (function () {
 
 /***/ }),
 
-/***/ 364:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -944,8 +944,8 @@ var ProjectComponent = (function () {
     ProjectComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project',
-            template: __webpack_require__(857),
-            styles: [__webpack_require__(798)]
+            template: __webpack_require__(858),
+            styles: [__webpack_require__(799)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__services_project_service__["a" /* ProjectService */]) === 'function' && _e) || Object])
     ], ProjectComponent);
@@ -956,7 +956,7 @@ var ProjectComponent = (function () {
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1173,8 +1173,8 @@ var SourceProject = (function () {
     SourceProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-projects-source',
-            template: __webpack_require__(859),
-            styles: [__webpack_require__(800)]
+            template: __webpack_require__(860),
+            styles: [__webpack_require__(801)]
         }), 
         __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["b" /* ProjectService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_services__["a" /* AuthService */]) === 'function' && _d) || Object])
     ], SourceProject);
@@ -1195,7 +1195,7 @@ var ProjTabs = (function () {
 
 /***/ }),
 
-/***/ 366:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1236,8 +1236,8 @@ var ProjectsComponent = (function () {
     ProjectsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-projects',
-            template: __webpack_require__(862),
-            styles: [__webpack_require__(803)]
+            template: __webpack_require__(863),
+            styles: [__webpack_require__(804)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _b) || Object])
     ], ProjectsComponent);
@@ -1248,7 +1248,7 @@ var ProjectsComponent = (function () {
 
 /***/ }),
 
-/***/ 367:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1367,8 +1367,8 @@ var UsersComponent = (function () {
     UsersComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-users',
-            template: __webpack_require__(866),
-            styles: [__webpack_require__(807)]
+            template: __webpack_require__(867),
+            styles: [__webpack_require__(808)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object])
     ], UsersComponent);
@@ -1379,7 +1379,7 @@ var UsersComponent = (function () {
 
 /***/ }),
 
-/***/ 368:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1431,8 +1431,8 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-login',
-            template: __webpack_require__(867),
-            styles: [__webpack_require__(808)]
+            template: __webpack_require__(868),
+            styles: [__webpack_require__(809)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object])
     ], LoginComponent);
@@ -1443,7 +1443,7 @@ var LoginComponent = (function () {
 
 /***/ }),
 
-/***/ 369:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1532,8 +1532,8 @@ var PreviewSceneComponent = (function () {
     PreviewSceneComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-scene-preview',
-            template: __webpack_require__(868),
-            styles: [__webpack_require__(809)]
+            template: __webpack_require__(869),
+            styles: [__webpack_require__(810)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_common__["Location"]) === 'function' && _b) || Object])
     ], PreviewSceneComponent);
@@ -1556,7 +1556,7 @@ var PreviewSceneService = (function () {
 
 /***/ }),
 
-/***/ 370:
+/***/ 371:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1587,8 +1587,8 @@ var WControls = (function (_super) {
     WControls = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-webgl-controls',
-            template: __webpack_require__(869),
-            styles: [__webpack_require__(812)]
+            template: __webpack_require__(870),
+            styles: [__webpack_require__(813)]
         }), 
         __metadata('design:paramtypes', [])
     ], WControls);
@@ -1598,7 +1598,7 @@ var WControls = (function (_super) {
 
 /***/ }),
 
-/***/ 371:
+/***/ 372:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1651,8 +1651,8 @@ var Preloader = (function (_super) {
     Preloader = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-preloader',
-            template: __webpack_require__(870),
-            styles: [__webpack_require__(813)]
+            template: __webpack_require__(871),
+            styles: [__webpack_require__(814)]
         }), 
         __metadata('design:paramtypes', [])
     ], Preloader);
@@ -1662,14 +1662,14 @@ var Preloader = (function (_super) {
 
 /***/ }),
 
-/***/ 372:
+/***/ 373:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric__ = __webpack_require__(817);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__webgl_view__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric__ = __webpack_require__(818);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fabric___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fabric__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SVGView; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2598,8 +2598,8 @@ var SVGView = (function () {
     SVGView = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-svg-view',
-            template: __webpack_require__(871),
-            styles: [__webpack_require__(814)]
+            template: __webpack_require__(872),
+            styles: [__webpack_require__(815)]
         }), 
         __metadata('design:paramtypes', [])
     ], SVGView);
@@ -2676,13 +2676,15 @@ var SVGGroup = (function () {
 
 /***/ }),
 
-/***/ 373:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WTooltip; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -2701,6 +2703,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WTooltip = (function (_super) {
     __extends(WTooltip, _super);
     function WTooltip(authService, vc) {
@@ -2712,30 +2715,46 @@ var WTooltip = (function (_super) {
     }
     WTooltip.prototype.ngOnInit = function () {
         var _this = this;
-        if (!this.modelData || !this.modelData.dataSource)
-            return console.error('Data source is not defined');
-        this.authService.get(this.modelData.dataSource, { hasAuthHeader: false }).subscribe(function (res) {
-            try {
-                _this.dataSource = JSON.parse(res._body);
-                _this.dataSourceLoaded = true;
-            }
-            catch (e) {
-                console.error(e);
-            }
-            finally {
-                setTimeout(function () {
-                    if (_this.htmlTemplate) {
+        var onfinish = function () {
+            setTimeout(function () {
+                if (_this.htmlTemplate) {
+                    _this.initParser();
+                }
+                else {
+                    _this.callbacks.push(function () {
                         _this.initParser();
-                    }
-                    else {
-                        _this.callbacks.push(function () {
-                            _this.initParser();
-                        });
-                    }
-                    _super.prototype.ngOnInit.call(_this);
-                });
+                    });
+                }
+                _super.prototype.ngOnInit.call(_this);
+            });
+        };
+        if (!this.modelData || !this.modelData.dataSource) {
+            onfinish();
+            return console.error('Data source is not defined');
+        }
+        this.authService.post("public/model/remote", { dataUrl: this.modelData.dataSource }, {
+            hasAuthHeader: false,
+            isCross: true
+        }).subscribe(function (res) {
+            console.log(res);
+            res = res.json();
+            if (res.status) {
+                try {
+                    _this.dataSource = JSON.parse(res.data);
+                    _this.dataSourceLoaded = true;
+                }
+                catch (e) {
+                    console.error(e);
+                }
+                finally {
+                    onfinish();
+                }
+            }
+            else {
+                onfinish();
             }
         }, function (res) {
+            onfinish();
             console.error("Incorrect dataSource: " + res && res.message ? res.message : res);
         });
     };
@@ -2758,7 +2777,8 @@ var WTooltip = (function (_super) {
                     el._left = 160 + 'px';
                     el._top = 220 + 'px';
                 }
-                el.onclick = function () { };
+                el.onclick = function () {
+                };
             });
             this.dataElem = _data;
         }
@@ -2773,14 +2793,18 @@ var WTooltip = (function (_super) {
         }
     };
     __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('scripts'), 
+        __metadata('design:type', Object)
+    ], WTooltip.prototype, "scripts", void 0);
+    __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Object)
     ], WTooltip.prototype, "isEdit", void 0);
     WTooltip = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-webgl-tooltip',
-            template: __webpack_require__(872),
-            styles: [__webpack_require__(815)]
+            template: __webpack_require__(873),
+            styles: [__webpack_require__(816)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]) === 'function' && _b) || Object])
     ], WTooltip);
@@ -2791,7 +2815,7 @@ var WTooltip = (function (_super) {
 
 /***/ }),
 
-/***/ 374:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2799,11 +2823,11 @@ var WTooltip = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__ = __webpack_require__(720);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controls_controls__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__svg_draw_svg_draw__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__ = __webpack_require__(721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controls_controls__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__preloader_preloader__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__svg_draw_svg_draw__ = __webpack_require__(373);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WebGLService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebglView; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return OxiToolTip; });
@@ -2909,8 +2933,8 @@ var WebglView = (function () {
     WebglView = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-webgl-view',
-            template: __webpack_require__(873),
-            styles: [__webpack_require__(816)]
+            template: __webpack_require__(874),
+            styles: [__webpack_require__(817)]
         }), 
         __metadata('design:paramtypes', [(typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_common__["Location"]) === 'function' && _j) || Object, (typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["a" /* AuthService */]) === 'function' && _k) || Object])
     ], WebglView);
@@ -4426,7 +4450,7 @@ var OxiToolTip = (function () {
 
 /***/ }),
 
-/***/ 375:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4598,7 +4622,7 @@ var ShareService = (function () {
 
 /***/ }),
 
-/***/ 390:
+/***/ 391:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -4607,7 +4631,7 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 390;
+webpackEmptyContext.id = 391;
 
 
 /***/ }),
@@ -4619,6 +4643,8 @@ webpackEmptyContext.id = 390;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage_service__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4632,10 +4658,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = (function () {
-    function AuthService(http, storageService) {
+    function AuthService(http, storageService, _jsonP) {
         this.http = http;
         this.storageService = storageService;
+        this._jsonP = _jsonP;
     }
     AuthService.prototype.createAuthorizationHeader = function (headers) {
         var token = this.storageService.get("token") || this.storageService.getSession("token");
@@ -4646,6 +4674,8 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({ 'Content-Type': 'application/json' });
         if (options.hasAuthHeader)
             this.createAuthorizationHeader(headers);
+        if (options.isCross)
+            headers.append('Access-Control-Allow-Origin', '*');
         return this.http.get(url, new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: headers }));
     };
     AuthService.prototype.post = function (url, data, options) {
@@ -4672,7 +4702,8 @@ var AuthService = (function () {
         }));
     };
     AuthService.prototype.safeJS = function (jsCode) {
-        var res = function () { };
+        var res = function () {
+        };
         try {
             res = Function("return " + jsCode)();
         }
@@ -4685,16 +4716,16 @@ var AuthService = (function () {
     };
     AuthService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__storage_service__["a" /* StorageService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Jsonp"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Jsonp"]) === 'function' && _c) || Object])
     ], AuthService);
     return AuthService;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=auth.service.js.map
 
 /***/ }),
 
-/***/ 592:
+/***/ 593:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -4703,20 +4734,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 592;
+webpackEmptyContext.id = 593;
 
 
 /***/ }),
 
-/***/ 593:
+/***/ 594:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(711);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(730);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(681);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(731);
 
 
 
@@ -4765,6 +4796,11 @@ var ProjectService = (function () {
         else {
             this.Project = project;
         }
+        this.Project.owner = {
+            _id: this.Project.owner._id,
+            firstName: this.Project.owner.firstName,
+            lastName: this.Project.owner.lastName
+        };
         if (!(this.Project.model instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["b" /* ProjectModel */])) {
             this.Project.model = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["b" /* ProjectModel */](this.Project.model);
         }
@@ -4849,7 +4885,7 @@ var ProjectService = (function () {
 
 /***/ }),
 
-/***/ 710:
+/***/ 711:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4872,8 +4908,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(850),
-            styles: [__webpack_require__(791)],
+            template: __webpack_require__(851),
+            styles: [__webpack_require__(792)],
             host: { 'window:beforeunload': 'beforeClose' }
         }), 
         __metadata('design:paramtypes', [])
@@ -4884,7 +4920,7 @@ var AppComponent = (function () {
 
 /***/ }),
 
-/***/ 711:
+/***/ 712:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4892,40 +4928,40 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__ = __webpack_require__(829);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_codemirror__ = __webpack_require__(845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__ = __webpack_require__(830);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_codemirror__ = __webpack_require__(846);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_codemirror___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_codemirror__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index__ = __webpack_require__(733);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index__ = __webpack_require__(734);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__router__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__router__ = __webpack_require__(730);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_storage_service__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_user_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_auth_guard_service__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_logged_guard_service__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_share_service__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pipes_name_pipe__ = __webpack_require__(728);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_component__ = __webpack_require__(710);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_login_login_component__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_home_aside_aside_component__ = __webpack_require__(712);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_home_users_users_component__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_header_header_component__ = __webpack_require__(713);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_home_users_user_card_user_card_component__ = __webpack_require__(719);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_home_users_new_user_new_user_component__ = __webpack_require__(718);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__ = __webpack_require__(716);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_home_projects_view_view_project__ = __webpack_require__(717);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_home_projects_edit_edit_project__ = __webpack_require__(715);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_home_project_project_component__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_home_project_source_source_project__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pipes_name_pipe__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_component__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_login_login_component__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_home_aside_aside_component__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_home_users_users_component__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_home_projects_projects_component__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_home_header_header_component__ = __webpack_require__(714);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_home_users_user_card_user_card_component__ = __webpack_require__(720);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_home_users_new_user_new_user_component__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_home_projects_new_project_new_project_component__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_home_projects_view_view_project__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_home_projects_edit_edit_project__ = __webpack_require__(716);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_home_project_project_component__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_home_project_source_source_project__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__services_project_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives_directives__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_home_project_source_edit_view_edit_view__ = __webpack_require__(714);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_home_project_source_edit_view_edit_view__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__ = __webpack_require__(370);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5017,6 +5053,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["HttpModule"],
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["JsonpModule"],
                 __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap__["a" /* AlertModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_6_angular2_dynamic_component_index__["DynamicComponentModule"],
                 __WEBPACK_IMPORTED_MODULE_7__router__["a" /* routing */]
@@ -5042,7 +5079,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 712:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5102,8 +5139,8 @@ var AsideComponent = (function () {
     AsideComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-aside',
-            template: __webpack_require__(851),
-            styles: [__webpack_require__(792)]
+            template: __webpack_require__(852),
+            styles: [__webpack_require__(793)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === 'function' && _b) || Object])
     ], AsideComponent);
@@ -5114,7 +5151,7 @@ var AsideComponent = (function () {
 
 /***/ }),
 
-/***/ 713:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5180,8 +5217,8 @@ var HeaderComponent = (function () {
     HeaderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-header',
-            template: __webpack_require__(852),
-            styles: [__webpack_require__(793)]
+            template: __webpack_require__(853),
+            styles: [__webpack_require__(794)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_common__["Location"]) === 'function' && _d) || Object])
     ], HeaderComponent);
@@ -5192,7 +5229,7 @@ var HeaderComponent = (function () {
 
 /***/ }),
 
-/***/ 714:
+/***/ 715:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5221,8 +5258,8 @@ var EditView = (function () {
     EditView = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-edit-view',
-            template: __webpack_require__(858),
-            styles: [__webpack_require__(799)]
+            template: __webpack_require__(859),
+            styles: [__webpack_require__(800)]
         }), 
         __metadata('design:paramtypes', [])
     ], EditView);
@@ -5232,7 +5269,7 @@ var EditView = (function () {
 
 /***/ }),
 
-/***/ 715:
+/***/ 716:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5318,8 +5355,8 @@ var EditProject = (function () {
     EditProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-edit',
-            template: __webpack_require__(860),
-            styles: [__webpack_require__(801)]
+            template: __webpack_require__(861),
+            styles: [__webpack_require__(802)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_share_service__["a" /* ShareService */]) === 'function' && _c) || Object])
     ], EditProject);
@@ -5330,7 +5367,7 @@ var EditProject = (function () {
 
 /***/ }),
 
-/***/ 716:
+/***/ 717:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5444,8 +5481,8 @@ var NewProjectComponent = (function () {
     NewProjectComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-project',
-            template: __webpack_require__(861),
-            styles: [__webpack_require__(802)]
+            template: __webpack_require__(862),
+            styles: [__webpack_require__(803)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_project_service__["a" /* ProjectService */]) === 'function' && _c) || Object])
     ], NewProjectComponent);
@@ -5456,7 +5493,7 @@ var NewProjectComponent = (function () {
 
 /***/ }),
 
-/***/ 717:
+/***/ 718:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5526,8 +5563,8 @@ var ViewProject = (function () {
     ViewProject = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-view',
-            template: __webpack_require__(863),
-            styles: [__webpack_require__(804)]
+            template: __webpack_require__(864),
+            styles: [__webpack_require__(805)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */]) === 'function' && _b) || Object])
     ], ViewProject);
@@ -5538,7 +5575,7 @@ var ViewProject = (function () {
 
 /***/ }),
 
-/***/ 718:
+/***/ 719:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5627,8 +5664,8 @@ var NewUserComponent = (function () {
     NewUserComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-user',
-            template: __webpack_require__(864),
-            styles: [__webpack_require__(805)]
+            template: __webpack_require__(865),
+            styles: [__webpack_require__(806)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_share_service__["a" /* ShareService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object])
     ], NewUserComponent);
@@ -5639,7 +5676,7 @@ var NewUserComponent = (function () {
 
 /***/ }),
 
-/***/ 719:
+/***/ 720:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5790,8 +5827,8 @@ var UserCardComponent = (function () {
     UserCardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-card',
-            template: __webpack_require__(865),
-            styles: [__webpack_require__(806)]
+            template: __webpack_require__(866),
+            styles: [__webpack_require__(807)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === 'function' && _b) || Object])
     ], UserCardComponent);
@@ -5802,7 +5839,7 @@ var UserCardComponent = (function () {
 
 /***/ }),
 
-/***/ 720:
+/***/ 721:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5907,7 +5944,7 @@ var Prompt = (function (_super) {
 
 /***/ }),
 
-/***/ 721:
+/***/ 722:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5950,7 +5987,7 @@ var HtmlDirective = (function () {
 
 /***/ }),
 
-/***/ 722:
+/***/ 723:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6604,7 +6641,7 @@ var SlimScroll = (function () {
 
 /***/ }),
 
-/***/ 723:
+/***/ 724:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6696,7 +6733,7 @@ var TemplatesLoader = (function () {
 
 /***/ }),
 
-/***/ 724:
+/***/ 725:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6785,7 +6822,7 @@ var MTree = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'tree',
             template: "\n<ul class=\"tree-webgl-view first\" slimScroll  >\n\t\t<node *ngFor=\"let item of data\" [arrow]=\"1\" [classes]=\"'main'\" [parent]=\"item\" [mainParent]=\"mainParent\" [item]=\"item\"     ></node>\n</ul>\n",
-            styles: [__webpack_require__(810)]
+            styles: [__webpack_require__(811)]
         }), 
         __metadata('design:paramtypes', [])
     ], MTree);
@@ -6795,7 +6832,7 @@ var MTree = (function () {
 
 /***/ }),
 
-/***/ 725:
+/***/ 726:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6907,7 +6944,7 @@ var UploadFile = (function () {
             template: '<input type="file" accept="{{accept}}"   [(ngModel)]="filesModel" #filesModels="ngModel" class="hidden" #fileUpload>' +
                 ' <label [class.full-op]="filesModels.invalid"  [hidden] = "filesModels.valid">{{title}} is required</label> ' +
                 '<div #btnFile class="btn-def">{{title}}</div>  <div class="list-files" *ngIf="files" [innerHTML]="files.toString()"></div>',
-            styles: [__webpack_require__(811)]
+            styles: [__webpack_require__(812)]
         }), 
         __metadata('design:paramtypes', [])
     ], UploadFile);
@@ -6917,12 +6954,12 @@ var UploadFile = (function () {
 
 /***/ }),
 
-/***/ 726:
+/***/ 727:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Main__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constant_data__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constant_data__ = __webpack_require__(376);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjMain; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ProjFile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return OxiCamera; });
@@ -7096,7 +7133,7 @@ var ModelStructure = (function (_super) {
 
 /***/ }),
 
-/***/ 727:
+/***/ 728:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7129,7 +7166,7 @@ var Project = (function (_super) {
 
 /***/ }),
 
-/***/ 728:
+/***/ 729:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7234,23 +7271,23 @@ var NamePipe = (function () {
 
 /***/ }),
 
-/***/ 729:
+/***/ 730:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_logged_guard_service__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_guard_service__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_home_component__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_home_projects_projects_component__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_home_users_users_component__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_project_project_component__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home_project_basic_basic_project__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_home_project_source_source_project__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_project_costumization_costumization__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_home_project_preview_preview__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_preview_preview_project__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_home_component__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_home_projects_projects_component__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_home_users_users_component__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_project_project_component__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home_project_basic_basic_project__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_home_project_source_source_project__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_project_costumization_costumization__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_home_project_preview_preview__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_preview_preview_project__ = __webpack_require__(370);
 /* unused harmony export routes */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
 
@@ -7337,7 +7374,7 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* RouterModule 
 
 /***/ }),
 
-/***/ 730:
+/***/ 731:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7353,7 +7390,7 @@ var environment = {
 
 /***/ }),
 
-/***/ 791:
+/***/ 792:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -7371,7 +7408,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 792:
+/***/ 793:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -7389,7 +7426,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 793:
+/***/ 794:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -7407,7 +7444,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 794:
+/***/ 795:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -7425,7 +7462,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 795:
+/***/ 796:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -7443,7 +7480,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 796:
+/***/ 797:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -7461,7 +7498,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 797:
+/***/ 798:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -7479,24 +7516,6 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 798:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, "app-project {\n  height: 100%;\n  width: 100%; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
 /***/ 799:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7505,7 +7524,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.model-config .row {\n  margin: 5px 0; }\n\n.model-config .inp-form input[type=checkbox] {\n  -webkit-transform: scale(2.5);\n          transform: scale(2.5);\n  width: initial;\n  display: block;\n  margin-top: 10px;\n  margin-left: 10px;\n  cursor: pointer; }\n\n.model-config .inp-form.col-lg-12 {\n  margin: 20px 0; }\n\n.model-config .inp-form label.full-op {\n  right: inherit; }\n\n.model-config .upload-list {\n  padding: 10px 0; }\n  .model-config .upload-list app-file-upload {\n    margin: 5px 0; }\n    .model-config .upload-list app-file-upload .btn-def, .model-config .upload-list app-file-upload .list-files {\n      width: 50%;\n      float: left; }\n    .model-config .upload-list app-file-upload .btn-def {\n      padding: 10px;\n      background: #ffffff; }\n    .model-config .upload-list app-file-upload .list-files {\n      padding: 13px 10px; }\n\n.model-config .files-top-block {\n  border-bottom: 1px solid #EBEBEB;\n  margin: 20px 0;\n  display: inline-block;\n  padding: 0 10px;\n  width: 100%;\n  margin-top: 10px; }\n  .model-config .files-top-block .input-wrap input {\n    margin-top: 0; }\n\n.bottom-block {\n  padding: 0 10px; }\n", ""]);
+exports.push([module.i, "app-project {\n  height: 100%;\n  width: 100%; }\n", ""]);
 
 // exports
 
@@ -7552,7 +7571,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.my-btn {\n  padding: 0 6px 0 6px;\n  margin: 6px 8px 6px 8px;\n  border-radius: 3px;\n  font-size: 14px;\n  text-align: center;\n  text-transform: uppercase;\n  border: none;\n  outline: none;\n  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15); }\n  .my-btn.round {\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    background: #FFA000;\n    color: #ffffff;\n    float: right; }\n    .my-btn.round i {\n      display: table;\n      margin: auto; }\n  .my-btn:active {\n    margin-top: 15px; }\n  .my-btn:hover {\n    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3); }\n\n.source-creating {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n  .source-creating .input-wrap {\n    margin-bottom: 30px; }\n\n.tabs-view .tabs-blocks {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex; }\n\n.tabs-view .my-table tr:nth-child(1) td {\n  padding: 20px 30px; }\n  .tabs-view .my-table tr:nth-child(1) td.webgl-item {\n    padding: 0; }\n\n.tabs-view .my-table tr:nth-child(2) td {\n  height: calc(100vh - 160px);\n  overflow: auto; }\n\n.tabs-view .my-table td {\n  max-width: 0px;\n  padding: 10px 0;\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  vertical-align: top; }\n  .tabs-view .my-table td .source-creating {\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    position: relative;\n    background: #ffffff;\n    padding: 30px;\n    z-index: 3; }\n  .tabs-view .my-table td.s-tab {\n    background: rgba(128, 128, 128, 0.1); }\n    .tabs-view .my-table td.s-tab.webgl-item {\n      background: gray;\n      padding: 0;\n      margin: 0;\n      max-height: calc(100vh - 230px);\n      vertical-align: middle; }\n      .tabs-view .my-table td.s-tab.webgl-itemtd {\n        padding: 0; }\n    .tabs-view .my-table td.s-tab .add-btn {\n      position: relative;\n      outline: none;\n      border: none;\n      float: right;\n      right: 30px;\n      bottom: 0; }\n  .tabs-view .my-table td .webgl-view {\n    padding: 0;\n    margin: 0; }\n\n.tabs-view .my-table .tabs-header {\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  border-bottom: 2px solid #EBEBEB; }\n  .tabs-view .my-table .tabs-header:nth-child(1) {\n    width: 305px; }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    width: 370px; }\n  .tabs-view .my-table .tabs-header .temp-data {\n    display: inline-table;\n    width: 100%;\n    vertical-align: top; }\n    .tabs-view .my-table .tabs-header .temp-data .temp-header {\n      display: table-cell;\n      padding: 20px;\n      border-bottom: 2px solid #EBEBEB; }\n    .tabs-view .my-table .tabs-header .temp-data .tabs-body {\n      display: table-row; }\n      .tabs-view .my-table .tabs-header .temp-data .tabs-body .body-data {\n        display: block;\n        padding: 20px;\n        height: calc(100vh - 163px); }\n  .tabs-view .my-table .tabs-header .title, .tabs-view .my-table .tabs-header .text-btn {\n    display: inline; }\n  .tabs-view .my-table .tabs-header .title {\n    float: left; }\n  .tabs-view .my-table .tabs-header .text-btn {\n    float: right;\n    text-transform: uppercase;\n    cursor: pointer;\n    font-size: 16px;\n    color: #328AFB;\n    font-weight: 500;\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s; }\n    .tabs-view .my-table .tabs-header .text-btn:hover {\n      opacity: 0.6; }\n  .tabs-view .my-table .tabs-header.no-width {\n    width: 10px;\n    text-align: center;\n    padding: 20px; }\n  .tabs-view .my-table .tabs-header img:hover {\n    cursor: pointer;\n    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    background: rgba(128, 128, 128, 0.1); }\n\n.tabs-view .model-config .inp-form input {\n  width: 100%;\n  background: #ffffff;\n  font-size: 22px;\n  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13); }\n  .tabs-view .model-config .inp-form input[disabled] {\n    background: #CACACA; }\n\n.center-container {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(0, -50%);\n          transform: translate(0, -50%);\n  z-index: 2;\n  width: 100%;\n  height: 100%; }\n\n.img-slider-container img {\n  display: none;\n  width: 100%;\n  margin: auto; }\n  .img-slider-container img.active {\n    display: block; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.model-config .row {\n  margin: 5px 0; }\n\n.model-config .inp-form input[type=checkbox] {\n  -webkit-transform: scale(2.5);\n          transform: scale(2.5);\n  width: initial;\n  display: block;\n  margin-top: 10px;\n  margin-left: 10px;\n  cursor: pointer; }\n\n.model-config .inp-form.col-lg-12 {\n  margin: 20px 0; }\n\n.model-config .inp-form label.full-op {\n  right: inherit; }\n\n.model-config .upload-list {\n  padding: 10px 0; }\n  .model-config .upload-list app-file-upload {\n    margin: 5px 0; }\n    .model-config .upload-list app-file-upload .btn-def, .model-config .upload-list app-file-upload .list-files {\n      width: 50%;\n      float: left; }\n    .model-config .upload-list app-file-upload .btn-def {\n      padding: 10px;\n      background: #ffffff; }\n    .model-config .upload-list app-file-upload .list-files {\n      padding: 13px 10px; }\n\n.model-config .files-top-block {\n  border-bottom: 1px solid #EBEBEB;\n  margin: 20px 0;\n  display: inline-block;\n  padding: 0 10px;\n  width: 100%;\n  margin-top: 10px; }\n  .model-config .files-top-block .input-wrap input {\n    margin-top: 0; }\n\n.bottom-block {\n  padding: 0 10px; }\n", ""]);
 
 // exports
 
@@ -7570,7 +7589,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.edit-form {\n  padding: 35px 30px 25px 30px; }\n  .edit-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    .edit-form .main-info .item-form {\n      width: 100%; }\n    .edit-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      .edit-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      .edit-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      .edit-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  .edit-form .new-btns {\n    margin-top: 62px; }\n  .edit-form .text-btn {\n    text-transform: uppercase; }\n    .edit-form .text-btn:hover {\n      cursor: pointer;\n      color: #328AFB; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.my-btn {\n  padding: 0 6px 0 6px;\n  margin: 6px 8px 6px 8px;\n  border-radius: 3px;\n  font-size: 14px;\n  text-align: center;\n  text-transform: uppercase;\n  border: none;\n  outline: none;\n  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15); }\n  .my-btn.round {\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    background: #FFA000;\n    color: #ffffff;\n    float: right; }\n    .my-btn.round i {\n      display: table;\n      margin: auto; }\n  .my-btn:active {\n    margin-top: 15px; }\n  .my-btn:hover {\n    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3); }\n\n.source-creating {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n  .source-creating .input-wrap {\n    margin-bottom: 30px; }\n\n.tabs-view .tabs-blocks {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex; }\n\n.tabs-view .my-table tr:nth-child(1) td {\n  padding: 20px 30px; }\n  .tabs-view .my-table tr:nth-child(1) td.webgl-item {\n    padding: 0; }\n\n.tabs-view .my-table tr:nth-child(2) td {\n  height: calc(100vh - 160px);\n  overflow: auto; }\n\n.tabs-view .my-table td {\n  max-width: 0px;\n  padding: 10px 0;\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  vertical-align: top; }\n  .tabs-view .my-table td .source-creating {\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    position: relative;\n    background: #ffffff;\n    padding: 30px;\n    z-index: 3; }\n  .tabs-view .my-table td.s-tab {\n    background: rgba(128, 128, 128, 0.1); }\n    .tabs-view .my-table td.s-tab.webgl-item {\n      background: gray;\n      padding: 0;\n      margin: 0;\n      max-height: calc(100vh - 230px);\n      vertical-align: middle; }\n      .tabs-view .my-table td.s-tab.webgl-itemtd {\n        padding: 0; }\n    .tabs-view .my-table td.s-tab .add-btn {\n      position: relative;\n      outline: none;\n      border: none;\n      float: right;\n      right: 30px;\n      bottom: 0; }\n  .tabs-view .my-table td .webgl-view {\n    padding: 0;\n    margin: 0; }\n\n.tabs-view .my-table .tabs-header {\n  -webkit-transition: width,display,0.1s;\n  transition: width,display,0.1s;\n  border-bottom: 2px solid #EBEBEB; }\n  .tabs-view .my-table .tabs-header:nth-child(1) {\n    width: 305px; }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    width: 370px; }\n  .tabs-view .my-table .tabs-header .temp-data {\n    display: inline-table;\n    width: 100%;\n    vertical-align: top; }\n    .tabs-view .my-table .tabs-header .temp-data .temp-header {\n      display: table-cell;\n      padding: 20px;\n      border-bottom: 2px solid #EBEBEB; }\n    .tabs-view .my-table .tabs-header .temp-data .tabs-body {\n      display: table-row; }\n      .tabs-view .my-table .tabs-header .temp-data .tabs-body .body-data {\n        display: block;\n        padding: 20px;\n        height: calc(100vh - 163px); }\n  .tabs-view .my-table .tabs-header .title, .tabs-view .my-table .tabs-header .text-btn {\n    display: inline; }\n  .tabs-view .my-table .tabs-header .title {\n    float: left; }\n  .tabs-view .my-table .tabs-header .text-btn {\n    float: right;\n    text-transform: uppercase;\n    cursor: pointer;\n    font-size: 16px;\n    color: #328AFB;\n    font-weight: 500;\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s; }\n    .tabs-view .my-table .tabs-header .text-btn:hover {\n      opacity: 0.6; }\n  .tabs-view .my-table .tabs-header.no-width {\n    width: 10px;\n    text-align: center;\n    padding: 20px; }\n  .tabs-view .my-table .tabs-header img:hover {\n    cursor: pointer;\n    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }\n  .tabs-view .my-table .tabs-header:nth-child(2) {\n    background: rgba(128, 128, 128, 0.1); }\n\n.tabs-view .model-config .inp-form input {\n  width: 100%;\n  background: #ffffff;\n  font-size: 22px;\n  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13); }\n  .tabs-view .model-config .inp-form input[disabled] {\n    background: #CACACA; }\n\n.center-container {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(0, -50%);\n          transform: translate(0, -50%);\n  z-index: 2;\n  width: 100%;\n  height: 100%; }\n\n.img-slider-container img {\n  display: none;\n  width: 100%;\n  margin: auto; }\n  .img-slider-container img.active {\n    display: block; }\n", ""]);
 
 // exports
 
@@ -7588,7 +7607,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-project .new-form {\n  width: 420px;\n  height: 580px;\n  padding: 35px 30px 25px 30px; }\n  app-new-project .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    app-new-project .new-form .main-info .item-form {\n      width: 100%; }\n    app-new-project .new-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      app-new-project .new-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      app-new-project .new-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      app-new-project .new-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  app-new-project .new-form .new-btns {\n    margin-top: 62px; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.edit-form {\n  padding: 35px 30px 25px 30px; }\n  .edit-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    .edit-form .main-info .item-form {\n      width: 100%; }\n    .edit-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      .edit-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      .edit-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      .edit-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  .edit-form .new-btns {\n    margin-top: 62px; }\n  .edit-form .text-btn {\n    text-transform: uppercase; }\n    .edit-form .text-btn:hover {\n      cursor: pointer;\n      color: #328AFB; }\n", ""]);
 
 // exports
 
@@ -7606,7 +7625,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-projects, .edit-form {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-projects main, .edit-form main {\n    width: 100%;\n    height: 100%;\n    padding: 30px 20px; }\n    app-projects main .projects-wrap, .edit-form main .projects-wrap {\n      width: 100%;\n      height: calc(100% - 56px); }\n      app-projects main .projects-wrap .projects-list, .edit-form main .projects-wrap .projects-list {\n        height: 100%;\n        width: 100%; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-project .new-form {\n  width: 420px;\n  height: 580px;\n  padding: 35px 30px 25px 30px; }\n  app-new-project .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    app-new-project .new-form .main-info .item-form {\n      width: 100%; }\n    app-new-project .new-form .main-info .item-photo {\n      position: relative;\n      margin-top: 30px;\n      width: 360px;\n      height: 260px; }\n      app-new-project .new-form .main-info .item-photo .photo {\n        width: 100%;\n        height: 220px;\n        border-radius: inherit; }\n      app-new-project .new-form .main-info .item-photo .photo-ctrl {\n        -webkit-box-pack: start;\n            -ms-flex-pack: start;\n                justify-content: flex-start; }\n      app-new-project .new-form .main-info .item-photo .photo-info {\n        display: inline-block;\n        position: absolute;\n        bottom: 1px;\n        right: 0; }\n  app-new-project .new-form .new-btns {\n    margin-top: 62px; }\n", ""]);
 
 // exports
 
@@ -7624,7 +7643,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-project-view {\n  padding: 0 10px 20px 10px;\n  height: 300px; }\n  app-project-view .project {\n    width: 100%;\n    height: 100%;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);\n    border-radius: 2px; }\n    app-project-view .project .project-content {\n      position: relative;\n      width: 100%;\n      height: 220px;\n      padding: 20px 0;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      color: #ffffff;\n      border-radius: 2px;\n      background-position: 50% 50%;\n      background-size: cover;\n      background-color: #4D4D4E;\n      font-size: 14px; }\n      app-project-view .project .project-content .project-ctrl-wrap {\n        width: 100%;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        padding: 0 0 0 20px; }\n        app-project-view .project .project-content .project-ctrl-wrap .unpublished {\n          font-weight: 500;\n          color: #FFA000; }\n        app-project-view .project .project-content .project-ctrl-wrap .project-ctrl {\n          width: 100%;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: end;\n              -ms-flex-pack: end;\n                  justify-content: flex-end;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon {\n            margin: 0 12px;\n            color: #ffffff; }\n            app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon .pop-up {\n              position: absolute;\n              z-index: 100;\n              right: 0;\n              top: 35px;\n              width: 170px;\n              height: 100px; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon-active {\n            background-color: #9B9B9B; }\n      app-project-view .project .project-content .no-img {\n        cursor: default;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        opacity: 0.2;\n        font-size: 38px;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%); }\n      app-project-view .project .project-content .project-info {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        padding: 0 20px; }\n        app-project-view .project .project-content .project-info .project-title {\n          font-size: 24px; }\n        app-project-view .project .project-content .project-info .project-created {\n          opacity: 0.5; }\n    app-project-view .project .img-true {\n      background: -webkit-linear-gradient(top, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background-color: rgba(0, 0, 0, 0.3);\n      background-size: cover; }\n    app-project-view .project .project-bot {\n      width: 100%;\n      height: 60px;\n      padding: 15px 20px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 14px; }\n      app-project-view .project .project-bot .project-admin {\n        color: #9B9B9B;\n        width: 44px; }\n      app-project-view .project .project-bot .project-users {\n        width: calc(100% - 44px);\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-project-view .project .project-bot .project-users .project-user {\n          width: 50%;\n          padding-left: 20px;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-name {\n            width: calc(100% - 40px);\n            margin-left: 10px;\n            overflow: hidden;\n            text-overflow: ellipsis;\n            white-space: nowrap; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-img {\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            color: #4A4A4A;\n            width: 30px;\n            height: 30px;\n            border-radius: 50%;\n            background: no-repeat;\n            background-position: 50% 50%;\n            background-size: auto 100%;\n            background-color: #EBEBEB; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-projects, .edit-form {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-projects main, .edit-form main {\n    width: 100%;\n    height: 100%;\n    padding: 30px 20px; }\n    app-projects main .projects-wrap, .edit-form main .projects-wrap {\n      width: 100%;\n      height: calc(100% - 56px); }\n      app-projects main .projects-wrap .projects-list, .edit-form main .projects-wrap .projects-list {\n        height: 100%;\n        width: 100%; }\n", ""]);
 
 // exports
 
@@ -7642,7 +7661,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-user .new-form {\n  width: 460px;\n  height: 540px; }\n  app-new-user .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    app-new-user .new-form .main-info .item-photo {\n      padding-top: 30px;\n      width: 130px;\n      height: 200px; }\n      app-new-user .new-form .main-info .item-photo .photo {\n        width: 130px;\n        height: 130px; }\n    app-new-user .new-form .main-info .item-form {\n      width: 240px;\n      margin-left: 30px; }\n  app-new-user .new-form .user-status {\n    width: 100%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    margin: 50px 0 58px; }\n    app-new-user .new-form .user-status .user-status-item {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 16px;\n      color: #4A4A4A; }\n      app-new-user .new-form .user-status .user-status-item span {\n        margin-left: 12px; }\n      app-new-user .new-form .user-status .user-status-item .selected-status {\n        color: #1976D2; }\n    app-new-user .new-form .user-status label {\n      position: absolute;\n      width: 100%;\n      left: 0;\n      top: 30px;\n      text-align: center;\n      color: #ff0000;\n      font-size: 12px;\n      opacity: 0;\n      -webkit-transition: opacity .5s;\n      transition: opacity .5s;\n      border-top: 2px solid #ff0000; }\n    app-new-user .new-form .user-status .err-status {\n      opacity: 1; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-project-view {\n  padding: 0 10px 20px 10px;\n  height: 300px; }\n  app-project-view .project {\n    width: 100%;\n    height: 100%;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);\n    border-radius: 2px; }\n    app-project-view .project .project-content {\n      position: relative;\n      width: 100%;\n      height: 220px;\n      padding: 20px 0;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      color: #ffffff;\n      border-radius: 2px;\n      background-position: 50% 50%;\n      background-size: cover;\n      background-color: #4D4D4E;\n      font-size: 14px; }\n      app-project-view .project .project-content .project-ctrl-wrap {\n        width: 100%;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        padding: 0 0 0 20px; }\n        app-project-view .project .project-content .project-ctrl-wrap .unpublished {\n          font-weight: 500;\n          color: #FFA000; }\n        app-project-view .project .project-content .project-ctrl-wrap .project-ctrl {\n          width: 100%;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: end;\n              -ms-flex-pack: end;\n                  justify-content: flex-end;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon {\n            margin: 0 12px;\n            color: #ffffff; }\n            app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon .pop-up {\n              position: absolute;\n              z-index: 100;\n              right: 0;\n              top: 35px;\n              width: 170px;\n              height: 100px; }\n          app-project-view .project .project-content .project-ctrl-wrap .project-ctrl .pop-up-icon-active {\n            background-color: #9B9B9B; }\n      app-project-view .project .project-content .no-img {\n        cursor: default;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        opacity: 0.2;\n        font-size: 38px;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%); }\n      app-project-view .project .project-content .project-info {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        padding: 0 20px; }\n        app-project-view .project .project-content .project-info .project-title {\n          font-size: 24px; }\n        app-project-view .project .project-content .project-info .project-created {\n          opacity: 0.5; }\n    app-project-view .project .img-true {\n      background: -webkit-linear-gradient(top, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, #101010 100%), 50% 50% no-repeat;\n      background-color: rgba(0, 0, 0, 0.3);\n      background-size: cover; }\n    app-project-view .project .project-bot {\n      width: 100%;\n      height: 60px;\n      padding: 15px 20px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 14px; }\n      app-project-view .project .project-bot .project-admin {\n        color: #9B9B9B;\n        width: 44px; }\n      app-project-view .project .project-bot .project-users {\n        width: calc(100% - 44px);\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-project-view .project .project-bot .project-users .project-user {\n          width: 50%;\n          padding-left: 20px;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-name {\n            width: calc(100% - 40px);\n            margin-left: 10px;\n            overflow: hidden;\n            text-overflow: ellipsis;\n            white-space: nowrap; }\n          app-project-view .project .project-bot .project-users .project-user .project-user-img {\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            color: #4A4A4A;\n            width: 30px;\n            height: 30px;\n            border-radius: 50%;\n            background: no-repeat;\n            background-position: 50% 50%;\n            background-size: auto 100%;\n            background-color: #EBEBEB; }\n", ""]);
 
 // exports
 
@@ -7660,7 +7679,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-user-card {\n  height: 470px;\n  width: 100%; }\n  app-user-card .user-card, app-user-card .user-card-foot {\n    padding: 0 30px 0 27px;\n    border-bottom: 2px solid #EBEBEB; }\n  app-user-card .user-card {\n    height: inherit;\n    width: 100%; }\n    app-user-card .user-card .user-card-head {\n      width: 100%;\n      height: 80px;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      app-user-card .user-card .user-card-head .user-card-hd-name {\n        font-size: 24px;\n        color: #444444; }\n      app-user-card .user-card .user-card-head .user-card-hd-status {\n        font-size: 14px;\n        font-style: italic;\n        color: #9B9B9B;\n        margin-left: 10px; }\n      app-user-card .user-card .user-card-head .pop-up-icon {\n        height: 40px;\n        width: 40px; }\n        app-user-card .user-card .user-card-head .pop-up-icon .pop-up {\n          position: absolute;\n          z-index: 100;\n          right: 0;\n          top: 50px;\n          width: 200px;\n          height: 215px; }\n      app-user-card .user-card .user-card-head .user-card-created-date {\n        position: absolute;\n        line-height: 0.7;\n        bottom: 0px;\n        font-size: 14px;\n        color: #9B9B9B; }\n    app-user-card .user-card .user-card-body {\n      width: 100%;\n      height: 260px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      app-user-card .user-card .user-card-body .item-photo {\n        padding-top: 35px;\n        width: 120px;\n        height: 100%; }\n      app-user-card .user-card .user-card-body .item-form {\n        width: 320px;\n        margin-left: 60px; }\n  app-user-card .user-card-foot {\n    height: 80px;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-user-card .user-card-foot .user-ft-l {\n      margin-right: 15px; }\n    app-user-card .user-card-foot .user-ft-r {\n      margin-left: 15px; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-new-user .new-form {\n  width: 460px;\n  height: 540px; }\n  app-new-user .new-form .main-info {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    app-new-user .new-form .main-info .item-photo {\n      padding-top: 30px;\n      width: 130px;\n      height: 200px; }\n      app-new-user .new-form .main-info .item-photo .photo {\n        width: 130px;\n        height: 130px; }\n    app-new-user .new-form .main-info .item-form {\n      width: 240px;\n      margin-left: 30px; }\n  app-new-user .new-form .user-status {\n    width: 100%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    margin: 50px 0 58px; }\n    app-new-user .new-form .user-status .user-status-item {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 16px;\n      color: #4A4A4A; }\n      app-new-user .new-form .user-status .user-status-item span {\n        margin-left: 12px; }\n      app-new-user .new-form .user-status .user-status-item .selected-status {\n        color: #1976D2; }\n    app-new-user .new-form .user-status label {\n      position: absolute;\n      width: 100%;\n      left: 0;\n      top: 30px;\n      text-align: center;\n      color: #ff0000;\n      font-size: 12px;\n      opacity: 0;\n      -webkit-transition: opacity .5s;\n      transition: opacity .5s;\n      border-top: 2px solid #ff0000; }\n    app-new-user .new-form .user-status .err-status {\n      opacity: 1; }\n", ""]);
 
 // exports
 
@@ -7678,7 +7697,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: 100%; }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: calc(100% - 86px);\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-item-img-wrap {\n              cursor: pointer;\n              float: left;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: center;\n                  -ms-flex-pack: center;\n                      justify-content: center;\n              font-size: 14px;\n              color: #4A4A4A;\n              width: 39px;\n              height: 39px;\n              border-radius: 50%;\n              background: no-repeat;\n              background-position: 50% 50%;\n              background-size: auto 100%;\n              background-color: #EBEBEB; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap {\n              height: 100%;\n              width: calc(100% - 39px);\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap {\n                margin-left: 15px;\n                width: 100%; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name {\n                  display: -webkit-inline-box;\n                  display: -ms-inline-flexbox;\n                  display: inline-flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name i {\n                    margin-left: 10px;\n                    font-size: 21px;\n                    line-height: 0.7; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name span {\n                    display: block;\n                    float: left; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name .new-title {\n                    margin-left: 10px;\n                    color: #FFA000; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-status {\n                  font-size: 14px;\n                  font-family: Roboto-Light;\n                  color: #9B9B9B;\n                  font-style: italic; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl {\n                float: right;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon {\n                  margin-right: 20px; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon .pop-up {\n                    position: absolute;\n                    z-index: 100;\n                    right: 0;\n                    top: 35px;\n                    width: 170px;\n                    height: 100px; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-user-card {\n  height: 470px;\n  width: 100%; }\n  app-user-card .user-card, app-user-card .user-card-foot {\n    padding: 0 30px 0 27px;\n    border-bottom: 2px solid #EBEBEB; }\n  app-user-card .user-card {\n    height: inherit;\n    width: 100%; }\n    app-user-card .user-card .user-card-head {\n      width: 100%;\n      height: 80px;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      app-user-card .user-card .user-card-head .user-card-hd-name {\n        font-size: 24px;\n        color: #444444; }\n      app-user-card .user-card .user-card-head .user-card-hd-status {\n        font-size: 14px;\n        font-style: italic;\n        color: #9B9B9B;\n        margin-left: 10px; }\n      app-user-card .user-card .user-card-head .pop-up-icon {\n        height: 40px;\n        width: 40px; }\n        app-user-card .user-card .user-card-head .pop-up-icon .pop-up {\n          position: absolute;\n          z-index: 100;\n          right: 0;\n          top: 50px;\n          width: 200px;\n          height: 215px; }\n      app-user-card .user-card .user-card-head .user-card-created-date {\n        position: absolute;\n        line-height: 0.7;\n        bottom: 0px;\n        font-size: 14px;\n        color: #9B9B9B; }\n    app-user-card .user-card .user-card-body {\n      width: 100%;\n      height: 260px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      app-user-card .user-card .user-card-body .item-photo {\n        padding-top: 35px;\n        width: 120px;\n        height: 100%; }\n      app-user-card .user-card .user-card-body .item-form {\n        width: 320px;\n        margin-left: 60px; }\n  app-user-card .user-card-foot {\n    height: 80px;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    app-user-card .user-card-foot .user-ft-l {\n      margin-right: 15px; }\n    app-user-card .user-card-foot .user-ft-r {\n      margin-left: 15px; }\n", ""]);
 
 // exports
 
@@ -7696,7 +7715,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center, app-login .login-form .log-in .chkbx-wrap #remember-int i {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-login {\n  background-color: #1976D2;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0; }\n  app-login .login-logo {\n    width: 165px;\n    height: 30px;\n    position: absolute;\n    left: 50%;\n    top: 16.6%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n    app-login .login-logo img {\n      width: 100%;\n      height: 100%; }\n  app-login .login-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    width: 380px;\n    height: 280px;\n    padding: 30px;\n    box-sizing: border-box;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n    app-login .login-form .login-text {\n      font-size: 24px;\n      color: #444444; }\n    app-login .login-form .item-form {\n      width: 320px; }\n    app-login .login-form .log-in {\n      margin-top: 45px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-login .login-form .log-in .chkbx-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-login .login-form .log-in .chkbx-wrap #remember-int {\n          position: relative;\n          float: left;\n          width: 18px;\n          height: 18px;\n          border: 1px solid #4D4D4E;\n          border-radius: 3px;\n          cursor: pointer; }\n        app-login .login-form .log-in .chkbx-wrap label[for=remember-int] {\n          margin-left: 10px;\n          font-size: 15px;\n          cursor: pointer; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-users {\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative; }\n  app-users main {\n    width: 100%;\n    height: 100%; }\n    app-users main .user-list-wrap {\n      position: relative;\n      height: 100%;\n      padding: 0;\n      border-right: 2px solid #EBEBEB; }\n      app-users main .user-list-wrap .user-list {\n        height: calc(100% - 86px);\n        width: 100%; }\n        app-users main .user-list-wrap .user-list .slimscroll-wrap {\n          width: 100%;\n          height: 100%; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item {\n            padding-left: 30px;\n            width: 100%;\n            height: 80px;\n            border-bottom: 2px solid #EBEBEB;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center;\n            -webkit-box-pack: justify;\n                -ms-flex-pack: justify;\n                    justify-content: space-between; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-item-img-wrap {\n              cursor: pointer;\n              float: left;\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: center;\n                  -ms-flex-pack: center;\n                      justify-content: center;\n              font-size: 14px;\n              color: #4A4A4A;\n              width: 39px;\n              height: 39px;\n              border-radius: 50%;\n              background: no-repeat;\n              background-position: 50% 50%;\n              background-size: auto 100%;\n              background-color: #EBEBEB; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap {\n              height: 100%;\n              width: calc(100% - 39px);\n              display: -webkit-box;\n              display: -ms-flexbox;\n              display: flex;\n              -webkit-box-align: center;\n                  -ms-flex-align: center;\n                      align-items: center;\n              -webkit-box-pack: justify;\n                  -ms-flex-pack: justify;\n                      justify-content: space-between; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap {\n                margin-left: 15px;\n                width: 100%; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name {\n                  display: -webkit-inline-box;\n                  display: -ms-inline-flexbox;\n                  display: inline-flex;\n                  -webkit-box-align: center;\n                      -ms-flex-align: center;\n                          align-items: center; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name i {\n                    margin-left: 10px;\n                    font-size: 21px;\n                    line-height: 0.7; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name span {\n                    display: block;\n                    float: left; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-name .new-title {\n                    margin-left: 10px;\n                    color: #FFA000; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-name-wrap .user-status {\n                  font-size: 14px;\n                  font-family: Roboto-Light;\n                  color: #9B9B9B;\n                  font-style: italic; }\n              app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl {\n                float: right;\n                display: -webkit-box;\n                display: -ms-flexbox;\n                display: flex;\n                -webkit-box-align: center;\n                    -ms-flex-align: center;\n                        align-items: center; }\n                app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon {\n                  margin-right: 20px; }\n                  app-users main .user-list-wrap .user-list .slimscroll-wrap .user-list-item .user-list-item-wrap .user-ctrl .pop-up-icon .pop-up {\n                    position: absolute;\n                    z-index: 100;\n                    right: 0;\n                    top: 35px;\n                    width: 170px;\n                    height: 100px; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive img {\n            opacity: 0.5; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap {\n            color: #D6D5D5; }\n            app-users main .user-list-wrap .user-list .slimscroll-wrap .deactive .user-name-wrap span {\n              color: #D6D5D5 !important; }\n          app-users main .user-list-wrap .user-list .slimscroll-wrap .selected-user {\n            background-color: rgba(255, 160, 0, 0.1); }\n    app-users main .user-card-wrap {\n      padding: 0;\n      height: 100%;\n      position: relative; }\n      app-users main .user-card-wrap .no-user {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        -webkit-transform: translate(-50%, -50%);\n                transform: translate(-50%, -50%);\n        font-size: 24px;\n        color: #D6D5D5; }\n", ""]);
 
 // exports
 
@@ -7714,7 +7733,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center, app-login .login-form .log-in .chkbx-wrap #remember-int i {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-login {\n  background-color: #1976D2;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0; }\n  app-login .login-logo {\n    width: 165px;\n    height: 30px;\n    position: absolute;\n    left: 50%;\n    top: 16.6%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n    app-login .login-logo img {\n      width: 100%;\n      height: 100%; }\n  app-login .login-form {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    width: 380px;\n    height: 280px;\n    padding: 30px;\n    box-sizing: border-box;\n    background-color: #ffffff;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); }\n    app-login .login-form .login-text {\n      font-size: 24px;\n      color: #444444; }\n    app-login .login-form .item-form {\n      width: 320px; }\n    app-login .login-form .log-in {\n      margin-top: 45px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      app-login .login-form .log-in .chkbx-wrap {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center; }\n        app-login .login-form .log-in .chkbx-wrap #remember-int {\n          position: relative;\n          float: left;\n          width: 18px;\n          height: 18px;\n          border: 1px solid #4D4D4E;\n          border-radius: 3px;\n          cursor: pointer; }\n        app-login .login-form .log-in .chkbx-wrap label[for=remember-int] {\n          margin-left: 10px;\n          font-size: 15px;\n          cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -7779,7 +7798,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\ntree .parent .iconButton {\n  background: #7E7E7E; }\n\ntree ul {\n  /* z-index: 100000000; */\n  /* top: 0; */\n  border-right: 1px solid #D6D5D5; }\n  tree ul.tree-webgl-view {\n    border: none;\n    border-left: 1px solid #D6D5D5;\n    margin-left: 15px; }\n    tree ul.tree-webgl-view.first {\n      border: none;\n      margin: 0; }\n    tree ul.tree-webgl-view .left-arrow {\n      position: absolute;\n      width: 15px;\n      border-top: 1px solid #D6D5D5;\n      -webkit-transform: translate(-100%, -33px);\n              transform: translate(-100%, -33px); }\n      tree ul.tree-webgl-view .left-arrow.end-list {\n        -webkit-transform: translate(-17px, -65px) rotate(0deg);\n                transform: translate(-17px, -65px) rotate(0deg);\n        width: 0;\n        border-right: 1px solid #D6D5D5;\n        height: 33px; }\n\ntree .tree-webgl-view {\n  list-style-type: none;\n  padding: 0;\n  margin: 10px 0; }\n  tree .tree-webgl-view li {\n    padding: 0px 16px;\n    margin-left: -1px; }\n    tree .tree-webgl-view li.last-item {\n      border-left: 1px solid #ffffff; }\n  tree .tree-webgl-view .iconButton {\n    color: #000000;\n    padding: 10px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);\n    max-width: 140px;\n    text-overflow: ellipsis;\n    display: block;\n    overflow: hidden;\n    cursor: pointer;\n    margin: 10px 0;\n    border-radius: 2px; }\n    tree .tree-webgl-view .iconButton:hover {\n      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3); }\n    tree .tree-webgl-view .iconButton.active {\n      border: 2px solid #77BBFF; }\n    tree .tree-webgl-view .iconButton.main {\n      background: #4D4D4E; }\n    tree .tree-webgl-view .iconButton.link {\n      background: #EBEBEB; }\n    tree .tree-webgl-view .iconButton.js-code {\n      background: #D6D5D5; }\n    tree .tree-webgl-view .iconButton a {\n      padding-top: 7px;\n      color: #000000;\n      float: left;\n      text-overflow: ellipsis;\n      overflow: hidden;\n      width: 70%; }\n    tree .tree-webgl-view .iconButton .pop-up-icon {\n      float: right; }\n    tree .tree-webgl-view .iconButton li {\n      margin: 30px 0; }\n\ntree .pop-up {\n  margin-right: -10px;\n  margin-top: -20px; }\n  tree .pop-up.bla-t {\n    position: absolute;\n    z-index: 1; }\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -7797,7 +7816,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-file-upload {\n  padding: 0; }\n  app-file-upload .list-files {\n    display: block;\n    font-size: 12px;\n    color: #7E7E7E;\n    overflow: hidden;\n    text-overflow: ellipsis; }\n  app-file-upload .btn-def {\n    padding: 10px 30px;\n    text-align: center;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.19);\n    font-size: 16px;\n    color: #4D4D4E;\n    font-weight: 500;\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n    cursor: pointer; }\n    app-file-upload .btn-def:hover {\n      opacity: 0.6; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\ntree .parent .iconButton {\n  background: #7E7E7E; }\n\ntree ul {\n  /* z-index: 100000000; */\n  /* top: 0; */\n  border-right: 1px solid #D6D5D5; }\n  tree ul.tree-webgl-view {\n    border: none;\n    border-left: 1px solid #D6D5D5;\n    margin-left: 15px; }\n    tree ul.tree-webgl-view.first {\n      border: none;\n      margin: 0; }\n    tree ul.tree-webgl-view .left-arrow {\n      position: absolute;\n      width: 15px;\n      border-top: 1px solid #D6D5D5;\n      -webkit-transform: translate(-100%, -33px);\n              transform: translate(-100%, -33px); }\n      tree ul.tree-webgl-view .left-arrow.end-list {\n        -webkit-transform: translate(-17px, -65px) rotate(0deg);\n                transform: translate(-17px, -65px) rotate(0deg);\n        width: 0;\n        border-right: 1px solid #D6D5D5;\n        height: 33px; }\n\ntree .tree-webgl-view {\n  list-style-type: none;\n  padding: 0;\n  margin: 10px 0; }\n  tree .tree-webgl-view li {\n    padding: 0px 16px;\n    margin-left: -1px; }\n    tree .tree-webgl-view li.last-item {\n      border-left: 1px solid #ffffff; }\n  tree .tree-webgl-view .iconButton {\n    color: #000000;\n    padding: 10px;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);\n    max-width: 140px;\n    text-overflow: ellipsis;\n    display: block;\n    overflow: hidden;\n    cursor: pointer;\n    margin: 10px 0;\n    border-radius: 2px; }\n    tree .tree-webgl-view .iconButton:hover {\n      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3); }\n    tree .tree-webgl-view .iconButton.active {\n      border: 2px solid #77BBFF; }\n    tree .tree-webgl-view .iconButton.main {\n      background: #4D4D4E; }\n    tree .tree-webgl-view .iconButton.link {\n      background: #EBEBEB; }\n    tree .tree-webgl-view .iconButton.js-code {\n      background: #D6D5D5; }\n    tree .tree-webgl-view .iconButton a {\n      padding-top: 7px;\n      color: #000000;\n      float: left;\n      text-overflow: ellipsis;\n      overflow: hidden;\n      width: 70%; }\n    tree .tree-webgl-view .iconButton .pop-up-icon {\n      float: right; }\n    tree .tree-webgl-view .iconButton li {\n      margin: 30px 0; }\n\ntree .pop-up {\n  margin-right: -10px;\n  margin-top: -20px; }\n  tree .pop-up.bla-t {\n    position: absolute;\n    z-index: 1; }\n", ""]);
 
 // exports
 
@@ -7815,7 +7834,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\napp-file-upload {\n  padding: 0; }\n  app-file-upload .list-files {\n    display: block;\n    font-size: 12px;\n    color: #7E7E7E;\n    overflow: hidden;\n    text-overflow: ellipsis; }\n  app-file-upload .btn-def {\n    padding: 10px 30px;\n    text-align: center;\n    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.19);\n    font-size: 16px;\n    color: #4D4D4E;\n    font-weight: 500;\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n    cursor: pointer; }\n    app-file-upload .btn-def:hover {\n      opacity: 0.6; }\n", ""]);
 
 // exports
 
@@ -7833,7 +7852,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  -webkit-transition: background-color 2s linear;\n  transition: background-color 2s linear; }\n  .preloader-back.active {\n    background-color: rgba(0, 0, 0, 0.5); }\n  .preloader-back .preview {\n    -webkit-filter: blur(20px);\n            filter: blur(20px);\n    -webkit-transition: -webkit-filter 1s linear;\n    transition: -webkit-filter 1s linear;\n    transition: filter 1s linear;\n    transition: filter 1s linear, -webkit-filter 1s linear;\n    height: 100%;\n    wedth: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n", ""]);
 
 // exports
 
@@ -7851,7 +7870,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.svg-view .zoomer-c {\n  display: none;\n  position: absolute;\n  right: 0;\n  top: 0; }\n  .svg-view .zoomer-c div {\n    -webkit-animation: color-change infinite ease-in-out 5s  alternate;\n            animation: color-change infinite ease-in-out 5s  alternate; }\n  .svg-view .zoomer-c .left-border {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    width: 1px;\n    height: 50%;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%);\n    background: red; }\n  .svg-view .zoomer-c .top-border {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n    height: 1px;\n    background: red; }\n  .svg-view .zoomer-c.active {\n    display: block; }\n\n.svg-view canvas {\n  width: 100%;\n  height: 100%; }\n  .svg-view canvas.buffer-c {\n    position: absolute;\n    left: 0;\n    top: 0;\n    z-index: -1;\n    visibility: hidden; }\n\n.svg-view .log-info {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  font-size: 12px; }\n\n.svg-view .help-info {\n  position: fixed;\n  right: 10px;\n  top: 20px;\n  cursor: pointer; }\n  .svg-view .help-info h1 {\n    position: relative;\n    right: 0;\n    cursor: pointer;\n    padding: 10px; }\n    .svg-view .help-info h1:hover {\n      color: yellowgreen; }\n  .svg-view .help-info p {\n    position: absolute;\n    right: 10px;\n    width: 0;\n    height: 0;\n    -webkit-transition: opacity, 0.2s linear;\n    transition: opacity, 0.2s linear;\n    opacity: 0;\n    background: #fff4c2; }\n    .svg-view .help-info p.active {\n      width: 250px;\n      height: inherit;\n      opacity: 1; }\n\n.svg-view * {\n  margin: 0;\n  padding: 0; }\n", ""]);
+exports.push([module.i, ".preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  -webkit-transition: background-color 2s linear;\n  transition: background-color 2s linear; }\n  .preloader-back.active {\n    background-color: rgba(0, 0, 0, 0.5); }\n  .preloader-back .preview {\n    -webkit-filter: blur(20px);\n            filter: blur(20px);\n    -webkit-transition: -webkit-filter 1s linear;\n    transition: -webkit-filter 1s linear;\n    transition: filter 1s linear;\n    transition: filter 1s linear, -webkit-filter 1s linear;\n    height: 100%;\n    wedth: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n", ""]);
 
 // exports
 
@@ -7869,7 +7888,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  -webkit-transition: background-color 2s linear;\n  transition: background-color 2s linear; }\n  .preloader-back.active {\n    background-color: rgba(0, 0, 0, 0.5); }\n  .preloader-back .preview {\n    -webkit-filter: blur(20px);\n            filter: blur(20px);\n    -webkit-transition: -webkit-filter 1s linear;\n    transition: -webkit-filter 1s linear;\n    transition: filter 1s linear;\n    transition: filter 1s linear, -webkit-filter 1s linear;\n    height: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n\n.tooltip-container .cos-info {\n  position: absolute;\n  z-index: 3;\n  display: none; }\n  .tooltip-container .cos-info.active {\n    display: block; }\n  .tooltip-container .cos-info.act:after {\n    content: '';\n    position: absolute;\n    top: 100%;\n    margin-left: 9px;\n    margin-top: -25px;\n    background-size: 35px 25px;\n    background-color: transparent;\n    width: 0;\n    height: 0;\n    border-left: 20px solid transparent;\n    border-right: 20px solid transparent;\n    border-top: 20px solid #ffffff; }\n  .tooltip-container .cos-info.tooltip-align-right:after {\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n    margin-left: 18px; }\n  .tooltip-container .cos-info.tooltip-align-right .cos-tooltip {\n    -webkit-transform-origin: left;\n            transform-origin: left;\n    left: 160px;\n    top: -95px; }\n  .tooltip-container .cos-info.tooltip-align-bottom:after {\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg);\n    margin-top: -15px; }\n  .tooltip-container .cos-info.tooltip-align-bottom .cos-tooltip {\n    -webkit-transform-origin: top;\n            transform-origin: top;\n    left: 0px;\n    top: 0px; }\n  .tooltip-container .cos-info.tooltip-align-left:after {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n    margin-left: 0px; }\n  .tooltip-container .cos-info.tooltip-align-left .cos-tooltip {\n    -webkit-transform-origin: right;\n            transform-origin: right;\n    left: -158px;\n    top: -95px; }\n  .tooltip-container .cos-info hr {\n    padding: 0;\n    margin: 0 10px;\n    border-width: 2px; }\n  .tooltip-container .cos-info .cos-tooltip, .tooltip-container .cos-info .cos-label {\n    position: absolute;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    color: #000; }\n  .tooltip-container .cos-info .cos-tooltip {\n    width: 280px;\n    height: 160px;\n    border-radius: 5px;\n    box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);\n    background-color: #FFFFFF;\n    bottom: 25px;\n    -webkit-transform: translateX(-40%) scale(0);\n            transform: translateX(-40%) scale(0);\n    -webkit-transition: -webkit-transform 0.2s linear;\n    transition: -webkit-transform 0.2s linear;\n    transition: transform 0.2s linear;\n    transition: transform 0.2s linear, -webkit-transform 0.2s linear;\n    -webkit-transform-origin: bottom;\n            transform-origin: bottom; }\n    .tooltip-container .cos-info .cos-tooltip.active {\n      -webkit-transform: translateX(-40%) scale(1);\n              transform: translateX(-40%) scale(1); }\n    .tooltip-container .cos-info .cos-tooltip .cos-tooltip-header {\n      overflow: hidden;\n      text-overflow: ellipsis;\n      padding: 10px 15px;\n      border-left: 2px solid #1976D2;\n      margin: 10px 0; }\n    .tooltip-container .cos-info .cos-tooltip .cos-tooltip-body {\n      padding: 10px 15px;\n      margin: 10px 0;\n      height: 50%;\n      color: #9B9B9B;\n      font-size: 13px;\n      font-weight: 300;\n      line-height: 20px; }\n      .tooltip-container .cos-info .cos-tooltip .cos-tooltip-body .cos-tooltip-body-title {\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: initial;\n        height: 100%; }\n  .tooltip-container .cos-info .cos-label {\n    border-radius: 50%;\n    border: 3px solid #fff;\n    background: #1976D2;\n    padding: 0;\n    font-size: 28px;\n    color: white;\n    box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.38);\n    width: 60px;\n    height: 60px;\n    text-align: center;\n    margin: auto;\n    display: list-item; }\n    .tooltip-container .cos-info .cos-label span {\n      margin: auto;\n      vertical-align: middle;\n      display: table-row;\n      width: 55px;\n      float: right; }\n", ""]);
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.svg-view .zoomer-c {\n  display: none;\n  position: absolute;\n  right: 0;\n  top: 0; }\n  .svg-view .zoomer-c div {\n    -webkit-animation: color-change infinite ease-in-out 5s  alternate;\n            animation: color-change infinite ease-in-out 5s  alternate; }\n  .svg-view .zoomer-c .left-border {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    width: 1px;\n    height: 50%;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%);\n    background: red; }\n  .svg-view .zoomer-c .top-border {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n    height: 1px;\n    background: red; }\n  .svg-view .zoomer-c.active {\n    display: block; }\n\n.svg-view canvas {\n  width: 100%;\n  height: 100%; }\n  .svg-view canvas.buffer-c {\n    position: absolute;\n    left: 0;\n    top: 0;\n    z-index: -1;\n    visibility: hidden; }\n\n.svg-view .log-info {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  font-size: 12px; }\n\n.svg-view .help-info {\n  position: fixed;\n  right: 10px;\n  top: 20px;\n  cursor: pointer; }\n  .svg-view .help-info h1 {\n    position: relative;\n    right: 0;\n    cursor: pointer;\n    padding: 10px; }\n    .svg-view .help-info h1:hover {\n      color: yellowgreen; }\n  .svg-view .help-info p {\n    position: absolute;\n    right: 10px;\n    width: 0;\n    height: 0;\n    -webkit-transition: opacity, 0.2s linear;\n    transition: opacity, 0.2s linear;\n    opacity: 0;\n    background: #fff4c2; }\n    .svg-view .help-info p.active {\n      width: 250px;\n      height: inherit;\n      opacity: 1; }\n\n.svg-view * {\n  margin: 0;\n  padding: 0; }\n", ""]);
 
 // exports
 
@@ -7887,6 +7906,24 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
+exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.preloader-back {\n  position: absolute;\n  z-index: 999;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  -webkit-transition: background-color 2s linear;\n  transition: background-color 2s linear; }\n  .preloader-back.active {\n    background-color: rgba(0, 0, 0, 0.5); }\n  .preloader-back .preview {\n    -webkit-filter: blur(20px);\n            filter: blur(20px);\n    -webkit-transition: -webkit-filter 1s linear;\n    transition: -webkit-filter 1s linear;\n    transition: filter 1s linear;\n    transition: filter 1s linear, -webkit-filter 1s linear;\n    height: 100%; }\n    .preloader-back .preview.active {\n      -webkit-filter: blur(0px);\n              filter: blur(0px); }\n  .preloader-back .preloader-data {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center; }\n    .preloader-back .preloader-data .pre-progress-bar {\n      width: 240px;\n      border-radius: 4px;\n      height: 8px; }\n      .preloader-back .preloader-data .pre-progress-bar .pre-progress-status {\n        height: 100%;\n        border-radius: 4px; }\n\n.tooltip-container .cos-info {\n  position: absolute;\n  z-index: 3;\n  display: none; }\n  .tooltip-container .cos-info.active {\n    display: block; }\n  .tooltip-container .cos-info.act:after {\n    content: '';\n    position: absolute;\n    top: 100%;\n    margin-left: 9px;\n    margin-top: -25px;\n    background-size: 35px 25px;\n    background-color: transparent;\n    width: 0;\n    height: 0;\n    border-left: 20px solid transparent;\n    border-right: 20px solid transparent;\n    border-top: 20px solid #ffffff; }\n  .tooltip-container .cos-info.tooltip-align-right:after {\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n    margin-left: 18px; }\n  .tooltip-container .cos-info.tooltip-align-right .cos-tooltip {\n    -webkit-transform-origin: left;\n            transform-origin: left;\n    left: 160px;\n    top: -95px; }\n  .tooltip-container .cos-info.tooltip-align-bottom:after {\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg);\n    margin-top: -15px; }\n  .tooltip-container .cos-info.tooltip-align-bottom .cos-tooltip {\n    -webkit-transform-origin: top;\n            transform-origin: top;\n    left: 0px;\n    top: 0px; }\n  .tooltip-container .cos-info.tooltip-align-left:after {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n    margin-left: 0px; }\n  .tooltip-container .cos-info.tooltip-align-left .cos-tooltip {\n    -webkit-transform-origin: right;\n            transform-origin: right;\n    left: -158px;\n    top: -95px; }\n  .tooltip-container .cos-info hr {\n    padding: 0;\n    margin: 0 10px;\n    border-width: 2px; }\n  .tooltip-container .cos-info .cos-tooltip, .tooltip-container .cos-info .cos-label {\n    position: absolute;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    color: #000; }\n  .tooltip-container .cos-info .cos-tooltip {\n    width: 280px;\n    height: 160px;\n    border-radius: 5px;\n    box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);\n    background-color: #FFFFFF;\n    bottom: 25px;\n    -webkit-transform: translateX(-40%) scale(0);\n            transform: translateX(-40%) scale(0);\n    -webkit-transition: -webkit-transform 0.2s linear;\n    transition: -webkit-transform 0.2s linear;\n    transition: transform 0.2s linear;\n    transition: transform 0.2s linear, -webkit-transform 0.2s linear;\n    -webkit-transform-origin: bottom;\n            transform-origin: bottom; }\n    .tooltip-container .cos-info .cos-tooltip.active {\n      -webkit-transform: translateX(-40%) scale(1);\n              transform: translateX(-40%) scale(1); }\n    .tooltip-container .cos-info .cos-tooltip .cos-tooltip-header {\n      overflow: hidden;\n      text-overflow: ellipsis;\n      padding: 10px 15px;\n      border-left: 2px solid #1976D2;\n      margin: 10px 0; }\n    .tooltip-container .cos-info .cos-tooltip .cos-tooltip-body {\n      padding: 10px 15px;\n      margin: 10px 0;\n      height: 50%;\n      color: #9B9B9B;\n      font-size: 13px;\n      font-weight: 300;\n      line-height: 20px; }\n      .tooltip-container .cos-info .cos-tooltip .cos-tooltip-body .cos-tooltip-body-title {\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: initial;\n        height: 100%; }\n  .tooltip-container .cos-info .cos-label {\n    border-radius: 50%;\n    border: 3px solid #fff;\n    background: #1976D2;\n    padding: 0;\n    font-size: 28px;\n    color: white;\n    box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.38);\n    width: 60px;\n    height: 60px;\n    text-align: center;\n    margin: auto;\n    display: list-item; }\n    .tooltip-container .cos-info .cos-label span {\n      margin: auto;\n      vertical-align: middle;\n      display: table-row;\n      width: 55px;\n      float: right; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 817:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
 exports.push([module.i, "@-webkit-keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@keyframes back-opac-down {\n  0% {\n    background: black; }\n  100% {\n    background: rgba(0, 0, 0, 0.5); } }\n\n@-webkit-keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@keyframes opac-down {\n  0% {\n    opacity: 1;\n    z-index: 100; }\n  100% {\n    opacity: 0;\n    z-index: -1; } }\n\n@-webkit-keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@keyframes opac-up {\n  0% {\n    opacity: 0;\n    z-index: -1; }\n  100% {\n    opacity: 1;\n    z-index: 100; } }\n\n@-webkit-keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@keyframes width-down {\n  0% {\n    width: initial; }\n  100% {\n    width: 0; } }\n\n@-webkit-keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n@keyframes color-change {\n  0% {\n    background: red; }\n  100% {\n    background: yellow; } }\n\n.pos-center {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n\n.hidden {\n  display: none !important; }\n\n.full-op {\n  opacity: 1 !important; }\n\n.curs-dis {\n  pointer-events: none; }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-1 {\n    width: 8.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-2 {\n    width: 16.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-3 {\n    width: 25%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-4 {\n    width: 33.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-5 {\n    width: 41.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-6 {\n    width: 50%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-7 {\n    width: 58.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-8 {\n    width: 66.6666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-9 {\n    width: 75%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-10 {\n    width: 83.3333%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-11 {\n    width: 91.66666%; } }\n\n@media screen and (min-width: 1600px) {\n  .col-exlg-12 {\n    width: 100%; } }\n\n.webgl-view {\n  border-radius: 10px; }\n  .webgl-view .proj_logo {\n    z-index: 1; }\n  .webgl-view.preview .center-container.THREEJS {\n    max-width: 100vw;\n    height: 100%;\n    position: absolute; }\n  .webgl-view .back-area {\n    position: absolute;\n    z-index: 1000000;\n    bottom: 10px;\n    right: 10px;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n    width: 50px;\n    height: 50px;\n    background-size: contain;\n    background-repeat: no-repeat;\n    cursor: pointer; }\n  .webgl-view .THREEJS .gl-view {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n    transform: translate(-50%, -50%);\n    z-index: 2;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n  .webgl-view .THREEJS.svg-active .gl-view, .webgl-view .THREEJS.svg-active .oxi-controls-move, .webgl-view .THREEJS.svg-active .img-pagination {\n    display: none !important; }\n  .webgl-view ul {\n    text-align: center;\n    margin: auto;\n    padding: 10px 0;\n    z-index: 10;\n    width: 100%;\n    position: absolute; }\n    .webgl-view ul li {\n      display: inline-block;\n      padding: 5px;\n      background: #000000;\n      color: #ffffff;\n      border-radius: 5px;\n      margin: 5px;\n      cursor: pointer;\n      -webkit-transition: background, 0.5s;\n      transition: background, 0.5s;\n      z-index: 3; }\n      .webgl-view ul li.active {\n        border: 1px solid #77BBFF; }\n      .webgl-view ul li:hover {\n        background: #7E7E7E; }\n  .webgl-view .kompass {\n    position: absolute;\n    left: 10px;\n    bottom: 10px;\n    width: 78px;\n    height: 78px;\n    background-size: contain;\n    background-repeat: no-repeat; }\n  .webgl-view .oxi-controls-move {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, 0%);\n            transform: translate(-50%, 0%);\n    bottom: 0;\n    z-index: 99; }\n    .webgl-view .oxi-controls-move div {\n      display: inline-block;\n      padding: 10px;\n      margin: 10px 30px;\n      cursor: pointer;\n      width: 42px;\n      background-size: contain; }\n      .webgl-view .oxi-controls-move div.right {\n        -webkit-transform: rotate3d(0, 1, 0, 180deg);\n                transform: rotate3d(0, 1, 0, 180deg); }\n      .webgl-view .oxi-controls-move div:hover {\n        opacity: 0.7; }\n  .webgl-view .oxi-controls {\n    width: 150px;\n    display: none;\n    position: absolute;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    z-index: 4; }\n    .webgl-view .oxi-controls.active {\n      display: block; }\n    .webgl-view .oxi-controls div {\n      width: 50px;\n      height: 50px;\n      background: #000000;\n      opacity: 0.5;\n      -webkit-transition: opacity 0.5s, -webkit-transform;\n      transition: opacity 0.5s, -webkit-transform;\n      transition: transform, opacity 0.5s;\n      transition: transform, opacity 0.5s, -webkit-transform;\n      border-radius: 50%;\n      cursor: pointer;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .webgl-view .oxi-controls div img {\n        fill: #ffffff;\n        margin: auto; }\n      .webgl-view .oxi-controls div:hover {\n        opacity: 1;\n        -webkit-transform: scale(1.2);\n                transform: scale(1.2); }\n      .webgl-view .oxi-controls div:nth-child(1), .webgl-view .oxi-controls div:nth-child(4) {\n        margin: auto; }\n      .webgl-view .oxi-controls div.attach-js {\n        right: 0;\n        position: absolute;\n        top: 33%; }\n  .webgl-view .center-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .webgl-view .center-container.THREEJS {\n      max-width: 70vw;\n      height: 100%;\n      margin: auto;\n      position: relative;\n      left: 0;\n      top: 0;\n      -webkit-transform: translate(0);\n              transform: translate(0);\n      text-align: center; }\n      .webgl-view .center-container.THREEJS .tooltip-container .cos-info .cos-label {\n        display: -webkit-inline-box !important;\n        display: -ms-inline-flexbox !important;\n        display: inline-flex !important; }\n      .webgl-view .center-container.THREEJS .gl-view {\n        margin: auto; }\n    .webgl-view .center-container.img-slider-container {\n      z-index: -1;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%); }\n  .webgl-view .oxi-tooltips {\n    position: absolute;\n    top: 0;\n    left: 0; }\n    .webgl-view .oxi-tooltips .tooltip {\n      display: none;\n      opacity: 1;\n      position: absolute;\n      -webkit-transform: translate(-50%, -50%);\n              transform: translate(-50%, -50%);\n      cursor: pointer;\n      background: #ffffff; }\n      .webgl-view .oxi-tooltips .tooltip .header {\n        text-transform: uppercase;\n        padding: 10px 5px; }\n      .webgl-view .oxi-tooltips .tooltip .body {\n        display: none; }\n      .webgl-view .oxi-tooltips .tooltip.active {\n        display: block; }\n", ""]);
 
 // exports
@@ -7897,240 +7934,240 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 821:
+/***/ 822:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 393,
-	"./af.js": 393,
-	"./ar": 400,
-	"./ar-dz": 394,
-	"./ar-dz.js": 394,
-	"./ar-kw": 395,
-	"./ar-kw.js": 395,
-	"./ar-ly": 396,
-	"./ar-ly.js": 396,
-	"./ar-ma": 397,
-	"./ar-ma.js": 397,
-	"./ar-sa": 398,
-	"./ar-sa.js": 398,
-	"./ar-tn": 399,
-	"./ar-tn.js": 399,
-	"./ar.js": 400,
-	"./az": 401,
-	"./az.js": 401,
-	"./be": 402,
-	"./be.js": 402,
-	"./bg": 403,
-	"./bg.js": 403,
-	"./bn": 404,
-	"./bn.js": 404,
-	"./bo": 405,
-	"./bo.js": 405,
-	"./br": 406,
-	"./br.js": 406,
-	"./bs": 407,
-	"./bs.js": 407,
-	"./ca": 408,
-	"./ca.js": 408,
-	"./cs": 409,
-	"./cs.js": 409,
-	"./cv": 410,
-	"./cv.js": 410,
-	"./cy": 411,
-	"./cy.js": 411,
-	"./da": 412,
-	"./da.js": 412,
-	"./de": 415,
-	"./de-at": 413,
-	"./de-at.js": 413,
-	"./de-ch": 414,
-	"./de-ch.js": 414,
-	"./de.js": 415,
-	"./dv": 416,
-	"./dv.js": 416,
-	"./el": 417,
-	"./el.js": 417,
-	"./en-au": 418,
-	"./en-au.js": 418,
-	"./en-ca": 419,
-	"./en-ca.js": 419,
-	"./en-gb": 420,
-	"./en-gb.js": 420,
-	"./en-ie": 421,
-	"./en-ie.js": 421,
-	"./en-nz": 422,
-	"./en-nz.js": 422,
-	"./eo": 423,
-	"./eo.js": 423,
-	"./es": 425,
-	"./es-do": 424,
-	"./es-do.js": 424,
-	"./es.js": 425,
-	"./et": 426,
-	"./et.js": 426,
-	"./eu": 427,
-	"./eu.js": 427,
-	"./fa": 428,
-	"./fa.js": 428,
-	"./fi": 429,
-	"./fi.js": 429,
-	"./fo": 430,
-	"./fo.js": 430,
-	"./fr": 433,
-	"./fr-ca": 431,
-	"./fr-ca.js": 431,
-	"./fr-ch": 432,
-	"./fr-ch.js": 432,
-	"./fr.js": 433,
-	"./fy": 434,
-	"./fy.js": 434,
-	"./gd": 435,
-	"./gd.js": 435,
-	"./gl": 436,
-	"./gl.js": 436,
-	"./gom-latn": 437,
-	"./gom-latn.js": 437,
-	"./he": 438,
-	"./he.js": 438,
-	"./hi": 439,
-	"./hi.js": 439,
-	"./hr": 440,
-	"./hr.js": 440,
-	"./hu": 441,
-	"./hu.js": 441,
-	"./hy-am": 442,
-	"./hy-am.js": 442,
-	"./id": 443,
-	"./id.js": 443,
-	"./is": 444,
-	"./is.js": 444,
-	"./it": 445,
-	"./it.js": 445,
-	"./ja": 446,
-	"./ja.js": 446,
-	"./jv": 447,
-	"./jv.js": 447,
-	"./ka": 448,
-	"./ka.js": 448,
-	"./kk": 449,
-	"./kk.js": 449,
-	"./km": 450,
-	"./km.js": 450,
-	"./kn": 451,
-	"./kn.js": 451,
-	"./ko": 452,
-	"./ko.js": 452,
-	"./ky": 453,
-	"./ky.js": 453,
-	"./lb": 454,
-	"./lb.js": 454,
-	"./lo": 455,
-	"./lo.js": 455,
-	"./lt": 456,
-	"./lt.js": 456,
-	"./lv": 457,
-	"./lv.js": 457,
-	"./me": 458,
-	"./me.js": 458,
-	"./mi": 459,
-	"./mi.js": 459,
-	"./mk": 460,
-	"./mk.js": 460,
-	"./ml": 461,
-	"./ml.js": 461,
-	"./mr": 462,
-	"./mr.js": 462,
-	"./ms": 464,
-	"./ms-my": 463,
-	"./ms-my.js": 463,
-	"./ms.js": 464,
-	"./my": 465,
-	"./my.js": 465,
-	"./nb": 466,
-	"./nb.js": 466,
-	"./ne": 467,
-	"./ne.js": 467,
-	"./nl": 469,
-	"./nl-be": 468,
-	"./nl-be.js": 468,
-	"./nl.js": 469,
-	"./nn": 470,
-	"./nn.js": 470,
-	"./pa-in": 471,
-	"./pa-in.js": 471,
-	"./pl": 472,
-	"./pl.js": 472,
-	"./pt": 474,
-	"./pt-br": 473,
-	"./pt-br.js": 473,
-	"./pt.js": 474,
-	"./ro": 475,
-	"./ro.js": 475,
-	"./ru": 476,
-	"./ru.js": 476,
-	"./sd": 477,
-	"./sd.js": 477,
-	"./se": 478,
-	"./se.js": 478,
-	"./si": 479,
-	"./si.js": 479,
-	"./sk": 480,
-	"./sk.js": 480,
-	"./sl": 481,
-	"./sl.js": 481,
-	"./sq": 482,
-	"./sq.js": 482,
-	"./sr": 484,
-	"./sr-cyrl": 483,
-	"./sr-cyrl.js": 483,
-	"./sr.js": 484,
-	"./ss": 485,
-	"./ss.js": 485,
-	"./sv": 486,
-	"./sv.js": 486,
-	"./sw": 487,
-	"./sw.js": 487,
-	"./ta": 488,
-	"./ta.js": 488,
-	"./te": 489,
-	"./te.js": 489,
-	"./tet": 490,
-	"./tet.js": 490,
-	"./th": 491,
-	"./th.js": 491,
-	"./tl-ph": 492,
-	"./tl-ph.js": 492,
-	"./tlh": 493,
-	"./tlh.js": 493,
-	"./tr": 494,
-	"./tr.js": 494,
-	"./tzl": 495,
-	"./tzl.js": 495,
-	"./tzm": 497,
-	"./tzm-latn": 496,
-	"./tzm-latn.js": 496,
-	"./tzm.js": 497,
-	"./uk": 498,
-	"./uk.js": 498,
-	"./ur": 499,
-	"./ur.js": 499,
-	"./uz": 501,
-	"./uz-latn": 500,
-	"./uz-latn.js": 500,
-	"./uz.js": 501,
-	"./vi": 502,
-	"./vi.js": 502,
-	"./x-pseudo": 503,
-	"./x-pseudo.js": 503,
-	"./yo": 504,
-	"./yo.js": 504,
-	"./zh-cn": 505,
-	"./zh-cn.js": 505,
-	"./zh-hk": 506,
-	"./zh-hk.js": 506,
-	"./zh-tw": 507,
-	"./zh-tw.js": 507
+	"./af": 394,
+	"./af.js": 394,
+	"./ar": 401,
+	"./ar-dz": 395,
+	"./ar-dz.js": 395,
+	"./ar-kw": 396,
+	"./ar-kw.js": 396,
+	"./ar-ly": 397,
+	"./ar-ly.js": 397,
+	"./ar-ma": 398,
+	"./ar-ma.js": 398,
+	"./ar-sa": 399,
+	"./ar-sa.js": 399,
+	"./ar-tn": 400,
+	"./ar-tn.js": 400,
+	"./ar.js": 401,
+	"./az": 402,
+	"./az.js": 402,
+	"./be": 403,
+	"./be.js": 403,
+	"./bg": 404,
+	"./bg.js": 404,
+	"./bn": 405,
+	"./bn.js": 405,
+	"./bo": 406,
+	"./bo.js": 406,
+	"./br": 407,
+	"./br.js": 407,
+	"./bs": 408,
+	"./bs.js": 408,
+	"./ca": 409,
+	"./ca.js": 409,
+	"./cs": 410,
+	"./cs.js": 410,
+	"./cv": 411,
+	"./cv.js": 411,
+	"./cy": 412,
+	"./cy.js": 412,
+	"./da": 413,
+	"./da.js": 413,
+	"./de": 416,
+	"./de-at": 414,
+	"./de-at.js": 414,
+	"./de-ch": 415,
+	"./de-ch.js": 415,
+	"./de.js": 416,
+	"./dv": 417,
+	"./dv.js": 417,
+	"./el": 418,
+	"./el.js": 418,
+	"./en-au": 419,
+	"./en-au.js": 419,
+	"./en-ca": 420,
+	"./en-ca.js": 420,
+	"./en-gb": 421,
+	"./en-gb.js": 421,
+	"./en-ie": 422,
+	"./en-ie.js": 422,
+	"./en-nz": 423,
+	"./en-nz.js": 423,
+	"./eo": 424,
+	"./eo.js": 424,
+	"./es": 426,
+	"./es-do": 425,
+	"./es-do.js": 425,
+	"./es.js": 426,
+	"./et": 427,
+	"./et.js": 427,
+	"./eu": 428,
+	"./eu.js": 428,
+	"./fa": 429,
+	"./fa.js": 429,
+	"./fi": 430,
+	"./fi.js": 430,
+	"./fo": 431,
+	"./fo.js": 431,
+	"./fr": 434,
+	"./fr-ca": 432,
+	"./fr-ca.js": 432,
+	"./fr-ch": 433,
+	"./fr-ch.js": 433,
+	"./fr.js": 434,
+	"./fy": 435,
+	"./fy.js": 435,
+	"./gd": 436,
+	"./gd.js": 436,
+	"./gl": 437,
+	"./gl.js": 437,
+	"./gom-latn": 438,
+	"./gom-latn.js": 438,
+	"./he": 439,
+	"./he.js": 439,
+	"./hi": 440,
+	"./hi.js": 440,
+	"./hr": 441,
+	"./hr.js": 441,
+	"./hu": 442,
+	"./hu.js": 442,
+	"./hy-am": 443,
+	"./hy-am.js": 443,
+	"./id": 444,
+	"./id.js": 444,
+	"./is": 445,
+	"./is.js": 445,
+	"./it": 446,
+	"./it.js": 446,
+	"./ja": 447,
+	"./ja.js": 447,
+	"./jv": 448,
+	"./jv.js": 448,
+	"./ka": 449,
+	"./ka.js": 449,
+	"./kk": 450,
+	"./kk.js": 450,
+	"./km": 451,
+	"./km.js": 451,
+	"./kn": 452,
+	"./kn.js": 452,
+	"./ko": 453,
+	"./ko.js": 453,
+	"./ky": 454,
+	"./ky.js": 454,
+	"./lb": 455,
+	"./lb.js": 455,
+	"./lo": 456,
+	"./lo.js": 456,
+	"./lt": 457,
+	"./lt.js": 457,
+	"./lv": 458,
+	"./lv.js": 458,
+	"./me": 459,
+	"./me.js": 459,
+	"./mi": 460,
+	"./mi.js": 460,
+	"./mk": 461,
+	"./mk.js": 461,
+	"./ml": 462,
+	"./ml.js": 462,
+	"./mr": 463,
+	"./mr.js": 463,
+	"./ms": 465,
+	"./ms-my": 464,
+	"./ms-my.js": 464,
+	"./ms.js": 465,
+	"./my": 466,
+	"./my.js": 466,
+	"./nb": 467,
+	"./nb.js": 467,
+	"./ne": 468,
+	"./ne.js": 468,
+	"./nl": 470,
+	"./nl-be": 469,
+	"./nl-be.js": 469,
+	"./nl.js": 470,
+	"./nn": 471,
+	"./nn.js": 471,
+	"./pa-in": 472,
+	"./pa-in.js": 472,
+	"./pl": 473,
+	"./pl.js": 473,
+	"./pt": 475,
+	"./pt-br": 474,
+	"./pt-br.js": 474,
+	"./pt.js": 475,
+	"./ro": 476,
+	"./ro.js": 476,
+	"./ru": 477,
+	"./ru.js": 477,
+	"./sd": 478,
+	"./sd.js": 478,
+	"./se": 479,
+	"./se.js": 479,
+	"./si": 480,
+	"./si.js": 480,
+	"./sk": 481,
+	"./sk.js": 481,
+	"./sl": 482,
+	"./sl.js": 482,
+	"./sq": 483,
+	"./sq.js": 483,
+	"./sr": 485,
+	"./sr-cyrl": 484,
+	"./sr-cyrl.js": 484,
+	"./sr.js": 485,
+	"./ss": 486,
+	"./ss.js": 486,
+	"./sv": 487,
+	"./sv.js": 487,
+	"./sw": 488,
+	"./sw.js": 488,
+	"./ta": 489,
+	"./ta.js": 489,
+	"./te": 490,
+	"./te.js": 490,
+	"./tet": 491,
+	"./tet.js": 491,
+	"./th": 492,
+	"./th.js": 492,
+	"./tl-ph": 493,
+	"./tl-ph.js": 493,
+	"./tlh": 494,
+	"./tlh.js": 494,
+	"./tr": 495,
+	"./tr.js": 495,
+	"./tzl": 496,
+	"./tzl.js": 496,
+	"./tzm": 498,
+	"./tzm-latn": 497,
+	"./tzm-latn.js": 497,
+	"./tzm.js": 498,
+	"./uk": 499,
+	"./uk.js": 499,
+	"./ur": 500,
+	"./ur.js": 500,
+	"./uz": 502,
+	"./uz-latn": 501,
+	"./uz-latn.js": 501,
+	"./uz.js": 502,
+	"./vi": 503,
+	"./vi.js": 503,
+	"./x-pseudo": 504,
+	"./x-pseudo.js": 504,
+	"./yo": 505,
+	"./yo.js": 505,
+	"./zh-cn": 506,
+	"./zh-cn.js": 506,
+	"./zh-hk": 507,
+	"./zh-hk.js": 507,
+	"./zh-tw": 508,
+	"./zh-tw.js": 508
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -8146,173 +8183,173 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 821;
+webpackContext.id = 822;
 
-
-/***/ }),
-
-/***/ 850:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"app-wrap\">\n    <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
 /***/ 851:
 /***/ (function(module, exports) {
 
-module.exports = "<header *ngIf=\"user\">\n  <div class=\"asd-hd-top\">\n    <div class=\"asd-name-in\"  [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\">\n      <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n    </div>\n    <div class=\"asd-status-wrap\">\n      <i class=\"material-icons\" (click)=\"closeMenu()\">arrow_back</i>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'super'\">Super user</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'admin'\">Client-admin</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'user'\">Client-user</div>\n    </div>\n  </div>\n  <div class=\"asd-hd-bot\">\n    <div class=\"asd-name\">{{user.firstName}} {{user.secondName}}</div>\n    <div class=\"asd-email-wrap\">\n      <div class=\"asd-email\">{{user.email}}</div>\n      <i class=\"material-icons\">arrow_drop_down</i>\n    </div>\n  </div>\n</header>\n\n<div class=\"pop-up\" *ngIf=\"User.projects\">\n  <div class=\"pop-up-item\" routerLink=\"/projects\" routerLinkActive=\"asd-active\"  *ngIf=\"User.role !=  userService.config.USER_ROLE.USER\">\n    <i class=\"material-icons\">folder</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Projects</span>\n      <span class=\"pop-up-num\">{{User.projects.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/users\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">people</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Users</span>\n      <span class=\"pop-up-num\">{{User.users.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/settings\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">settings</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Settings</span>\n    </div>\n  </div>\n</div>\n\n<footer>\n  <div class=\"asd-logout\">\n    <i class=\"material-icons\" (click)=\"logOut()\">exit_to_app</i>\n    <div class=\"text-wrap pointer\" (click)=\"logOut()\">\n      Log out\n    </div>\n  </div>\n  <div class=\"asd-terms\">\n    <img src=\"../../../assets/img/logo.png\" alt=\"\">\n    <a href=\"#\">Terms</a>\n  </div>\n</footer>\n"
+module.exports = "<div class=\"app-wrap\">\n    <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
 /***/ 852:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-wrap\">\n  <div class=\"header-tag\">\n    <i class=\"material-icons\" [routerLink]=\"['/projects']\" *ngIf=\"headerData._id\" #backProject>arrow_back</i>\n    <div class=\"header-title-wrap\">\n      <div class=\"header-title\">{{headerData.title}}<span class=\"arr-info\" *ngIf=\"!headerData._id\">{{'( ' + headerData.arrLength + ' )'}}</span></div>\n      <span class=\"published\" *ngIf=\"!headerData.published && headerData._id\" >Unpublished</span>\n    </div>\n  </div>\n  <div class=\"header-main\"  *ngIf=\"!headerData._id\">\n    <div class=\"header-search\">\n      <input type=\"text\" placeholder=\"Search\" [(ngModel)]=\"headerData.searchName\">\n    </div>\n    <div class=\"header-sort\">\n      <span>Sorted by:</span>\n      <div class=\"sort-select\" (window:mouseup)=\"sortActive = false\">\n        <div class=\"sort-present\" [class.sort-active]=\"sortActive\" (click)=\"sortActive = !sortActive\">\n          <span>{{headerData.sortType}}</span>\n          <i class=\"material-icons\" >arrow_drop_down</i>\n        </div>\n        <div class=\"pop-up\" [hidden]=\"!sortActive\">\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'A-Z'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'A-Z'\">A-Z</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Z-A'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Z-A'\">Z-A</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Newest to older'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Newest to older'\">Newest to older</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Older to newest'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Older to newest'\">Older to newest</span>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"header-main\"  *ngIf=\"headerData._id\">\n    <div class=\"header-main-mnu\">\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/basic']\" routerLinkActive=\"mnu-item-active\">Basic</div>\n      <div class=\"mnu-item\">Admins</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/source']\" routerLinkActive=\"mnu-item-active\">Source</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/preview']\" routerLinkActive=\"mnu-item-active\">Preview</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/costumization']\" routerLinkActive=\"mnu-item-active\">Costumization</div>\n    </div>\n    <!--<div class=\"publish-btn\" [class.publish-btn-active]=\"headerData.published\" [class.publish-btn-disable]=\"headerData.published\" (click)=\"deactivate()\"><span>{{headerData.published?\"Deactivate\":\"Publish\"}}</span></div>-->\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"headerSettings\">\n      <i class=\"material-icons set-icon\" (click)=\"headerSettings = !headerSettings\" (window:mouseup)=\"headerSettings = false\">more_vert</i>\n      <div class=\"pop-up\" [hidden]=\"!headerSettings\">\n        <div class=\"pop-up-item\" [hidden]=\"!headerData.published\" (click)=\"deactivate()\">\n          <i class=\"material-icons\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"headerData.published\" (click)=\"deactivate()\">\n          <i class=\"material-icons\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
+module.exports = "<header *ngIf=\"user\">\n  <div class=\"asd-hd-top\">\n    <div class=\"asd-name-in\"  [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\">\n      <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n    </div>\n    <div class=\"asd-status-wrap\">\n      <i class=\"material-icons\" (click)=\"closeMenu()\">arrow_back</i>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'super'\">Super user</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'admin'\">Client-admin</div>\n      <div class=\"asd-status\" *ngIf=\"user.role == 'user'\">Client-user</div>\n    </div>\n  </div>\n  <div class=\"asd-hd-bot\">\n    <div class=\"asd-name\">{{user.firstName}} {{user.secondName}}</div>\n    <div class=\"asd-email-wrap\">\n      <div class=\"asd-email\">{{user.email}}</div>\n      <i class=\"material-icons\">arrow_drop_down</i>\n    </div>\n  </div>\n</header>\n\n<div class=\"pop-up\" *ngIf=\"User.projects\">\n  <div class=\"pop-up-item\" routerLink=\"/projects\" routerLinkActive=\"asd-active\"  *ngIf=\"User.role !=  userService.config.USER_ROLE.USER\">\n    <i class=\"material-icons\">folder</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Projects</span>\n      <span class=\"pop-up-num\">{{User.projects.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/users\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">people</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Users</span>\n      <span class=\"pop-up-num\">{{User.users.length || 0}}</span>\n    </div>\n  </div>\n  <div class=\"pop-up-item\" routerLink=\"/settings\" routerLinkActive=\"asd-active\">\n    <i class=\"material-icons\">settings</i>\n    <div class=\"pop-up-row-name\">\n      <span class=\"pointer\">Settings</span>\n    </div>\n  </div>\n</div>\n\n<footer>\n  <div class=\"asd-logout\">\n    <i class=\"material-icons\" (click)=\"logOut()\">exit_to_app</i>\n    <div class=\"text-wrap pointer\" (click)=\"logOut()\">\n      Log out\n    </div>\n  </div>\n  <div class=\"asd-terms\">\n    <img src=\"../../../assets/img/logo.png\" alt=\"\">\n    <a href=\"#\">Terms</a>\n  </div>\n</footer>\n"
 
 /***/ }),
 
 /***/ 853:
 /***/ (function(module, exports) {
 
-module.exports = "<app-header [class.openedMenu]=\"openMenu == 'in' \"></app-header>\n<app-aside [@slideInOut]=\"openMenu\" [(menu)]=\"openMenu\"></app-aside>\n\n<main class=\"main-content\" [class.openedMenu]=\"openMenu == 'in' \">\n    <router-outlet></router-outlet>\n</main>\n<div class=\"menu-btn\" [class.menu-btn-hide]=\"openMenu == 'in' \" (click)=\"openMenu='in'\">\n    <i class=\"material-icons\">menu</i>\n</div>\n\n"
+module.exports = "<div class=\"header-wrap\">\n  <div class=\"header-tag\">\n    <i class=\"material-icons\" [routerLink]=\"['/projects']\" *ngIf=\"headerData._id\" #backProject>arrow_back</i>\n    <div class=\"header-title-wrap\">\n      <div class=\"header-title\">{{headerData.title}}<span class=\"arr-info\" *ngIf=\"!headerData._id\">{{'( ' + headerData.arrLength + ' )'}}</span></div>\n      <span class=\"published\" *ngIf=\"!headerData.published && headerData._id\" >Unpublished</span>\n    </div>\n  </div>\n  <div class=\"header-main\"  *ngIf=\"!headerData._id\">\n    <div class=\"header-search\">\n      <input type=\"text\" placeholder=\"Search\" [(ngModel)]=\"headerData.searchName\">\n    </div>\n    <div class=\"header-sort\">\n      <span>Sorted by:</span>\n      <div class=\"sort-select\" (window:mouseup)=\"sortActive = false\">\n        <div class=\"sort-present\" [class.sort-active]=\"sortActive\" (click)=\"sortActive = !sortActive\">\n          <span>{{headerData.sortType}}</span>\n          <i class=\"material-icons\" >arrow_drop_down</i>\n        </div>\n        <div class=\"pop-up\" [hidden]=\"!sortActive\">\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'A-Z'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'A-Z'\">A-Z</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Z-A'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Z-A'\">Z-A</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Newest to older'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Newest to older'\">Newest to older</span>\n            </div>\n          </div>\n          <div class=\"pop-up-item\" (click)=\"headerData.sortType = 'Older to newest'; sortActive = false\">\n            <div class=\"pop-up-row-name\">\n              <span [class.sort-selected]=\"headerData.sortType === 'Older to newest'\">Older to newest</span>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"header-main\"  *ngIf=\"headerData._id\">\n    <div class=\"header-main-mnu\">\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/basic']\" routerLinkActive=\"mnu-item-active\">Basic</div>\n      <div class=\"mnu-item\">Admins</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/source']\" routerLinkActive=\"mnu-item-active\">Source</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/preview']\" routerLinkActive=\"mnu-item-active\">Preview</div>\n      <div class=\"mnu-item\" [routerLink]=\"['/project/' + headerData._id + '/costumization']\" routerLinkActive=\"mnu-item-active\">Costumization</div>\n    </div>\n    <!--<div class=\"publish-btn\" [class.publish-btn-active]=\"headerData.published\" [class.publish-btn-disable]=\"headerData.published\" (click)=\"deactivate()\"><span>{{headerData.published?\"Deactivate\":\"Publish\"}}</span></div>-->\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"headerSettings\">\n      <i class=\"material-icons set-icon\" (click)=\"headerSettings = !headerSettings\" (window:mouseup)=\"headerSettings = false\">more_vert</i>\n      <div class=\"pop-up\" [hidden]=\"!headerSettings\">\n        <div class=\"pop-up-item\" [hidden]=\"!headerData.published\" (click)=\"deactivate()\">\n          <i class=\"material-icons\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"headerData.published\" (click)=\"deactivate()\">\n          <i class=\"material-icons\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
 /***/ 854:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"half-basic-l\">\n    <div class=\"basic-cont-wrap\">\n        <div class=\"basic-inf\">Basic information:</div>\n        <app-new-project [project]=\"project\" [Create]=\"false\"></app-new-project>\n    </div>\n</div>\n<div class=\"half-basic-r\">\n    <div class=\"basic-cont-wrap\">\n        <div class=\"basic-prev\">Live preview:</div>\n        <app-project-view [project]=\"project\" [Editable]=\"false\"></app-project-view>\n    </div>\n</div>\n"
+module.exports = "<app-header [class.openedMenu]=\"openMenu == 'in' \"></app-header>\n<app-aside [@slideInOut]=\"openMenu\" [(menu)]=\"openMenu\"></app-aside>\n\n<main class=\"main-content\" [class.openedMenu]=\"openMenu == 'in' \">\n    <router-outlet></router-outlet>\n</main>\n<div class=\"menu-btn\" [class.menu-btn-hide]=\"openMenu == 'in' \" (click)=\"openMenu='in'\">\n    <i class=\"material-icons\">menu</i>\n</div>\n\n"
 
 /***/ }),
 
 /***/ 855:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"costumization\" *ngIf=\"!project.model || !project.model.link\"><h2>You have to add some area!!!</h2></div>\n<div class=\"costumization\" *ngIf=\"project.model && project.model.link\">\n    <div class=\"cos-row col-lg-2\">\n        <div class=\"row cos-header\">Element list:</div>\n        <ul class=\"cos-list\">\n            <li *ngFor=\"let item of menuList;  let ind = index\" [ngClass]=\"{'active':item.active}\"\n                (click)=\"selectCurItem(item,menuList,ind)\">\n                {{item.title}}\n                <div class=\"mailicon\">\n                    <svg width=\"6px\" height=\"9px\" viewBox=\"0 0 6 9\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"\n                         xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                        <defs></defs>\n                        <g id=\"Website\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n                            <g id=\"Super-User---project-creator---Publishing-\"\n                               transform=\"translate(-1298.000000, -396.000000)\" fill=\"#181818\">\n                                <g id=\"tooltip\" transform=\"translate(1048.000000, 370.000000)\">\n                                    <g id=\"Page-1\" transform=\"translate(245.000000, 23.000000)\">\n                                        <polygon id=\"Fill-2-Copy\"\n                                                 points=\"5.72666642 10.8933327 8.77999947 7.83333286 5.72666642 4.77333294 6.66666627 3.8333331 10.666666 7.83333286 6.66666627 11.8333326\"></polygon>\n                                    </g>\n                                </g>\n                            </g>\n                        </g>\n                    </svg>\n                </div>\n            </li>\n        </ul>\n    </div>\n    <div class=\"cos-row col-lg-3\">\n        <div class=\"row cos-header cos-t\">Customization <span class=\"btn-def\"\n                                                              (click)=\"saveChanges()\">SAVE CHANGES</span>\n        </div>\n        <div class=\"cos-edit-body\">\n\n            <div class=\"cos-item\" [ngClass]=\"{'active':menuList[0].active}\">\n\n            </div>\n\n            <div class=\"cos-item\" *ngFor=\"let menuL of menuList;  let ind = index\" [ngClass]=\"{'active':menuL.active}\">\n                <div class=\"cos-tabs w3-bar w3-black\">\n                    <button *ngFor=\"let mtab of tabList[ind]\" (click)=\"selectCurItem(mtab , tabList[ind])\"\n                            [ngClass]=\"{'active':mtab.active}\" class=\"w3-bar-item w3-button\"\n                            [innerText]=\"mtab.title\"></button>\n                </div>\n                <app-project-text-code-mirror *ngFor=\"let mtab of tabList[ind]\" class=\"cos-code\"\n                                              [ngClass]=\"{'active':mtab.active}\" [config]=\"mtab\"></app-project-text-code-mirror>\n\n            </div>\n\n        </div>\n    </div>\n    <div class=\"cos-row col-lg-7\">\n        <div class=\"cos-preview webgl-view\" *ngIf=\"menuList[0].active && curItem\">\n            <app-project-webgl-controls [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                        #wcontrols></app-project-webgl-controls>\n        </div>\n        <div class=\"cos-preview\" *ngIf=\"menuList[1].active\">\n            <app-project-webgl-tooltip [isEdit]=\"1\" [modelData]=\"modelData\" [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                       #wtooltip></app-project-webgl-tooltip>\n        </div>\n        <div class=\"cos-preview\" *ngIf=\"menuList[2].active\">\n            <app-project-preloader [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                   #preloader></app-project-preloader>\n        </div>\n\n    </div>\n</div>"
+module.exports = "<div class=\"half-basic-l\">\n    <div class=\"basic-cont-wrap\">\n        <div class=\"basic-inf\">Basic information:</div>\n        <app-new-project [project]=\"project\" [Create]=\"false\"></app-new-project>\n    </div>\n</div>\n<div class=\"half-basic-r\">\n    <div class=\"basic-cont-wrap\">\n        <div class=\"basic-prev\">Live preview:</div>\n        <app-project-view [project]=\"project\" [Editable]=\"false\"></app-project-view>\n    </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 856:
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"dataSrc\">\n    <div class=\"tabs-view\">\n        <div class=\"tabs-blocks col-lg-12\">\n            <table class=\"my-table col-lg-12\">\n                <tbody>\n                <tr>\n                    <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                        <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                            <span class=\"title\">Project Share</span>\n                            <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                        </div>\n                        <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                             src=\"../assets/img/Fill 2 (1).svg\">\n                    </td>\n                    <td class=\"s-tab webgl-item\" rowspan=\"2\" style=\"text-align: center;\"\n                        [attr.colspan]=\"treeView.hide ?2:1\">\n                        <iframe [src]=\"dataSrc\" frameborder=0 allowfullscreen #ifrm></iframe>\n                    </td>\n                </tr>\n                <tr>\n                    <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"treeView.hide?2:1\" class=\"s-tab\">\n                        <div class=\"tabs-body\">\n                            <div class=\"body-data\">\n                                <div class=\"model-config\">\n                                    <form class=\"item-form\" novalidate>\n                                        <div class=\"bottom-block\">\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>Link</label>\n                                                    <input name=\"link\" type=\"text\" [(attr.value)]=\"data.link\">\n                                                </div>\n                                            </div>\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>HTML</label>\n                                                    <input name=\"linkH\" type=\"text\"\n                                                           [(attr.value)]=\"data.ifr\">\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                                <textarea style=\"opacity: 0\" [innerText]=\"urlC\" #textAr></textarea>\n\n                                <div class=\"add-btn\" (click)=\"copyUrl()\">\n                                    <i class=\"material-icons\">save</i>\n\n                                    <div class=\"span-hover\">\n                                        <span>Click to copy link</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                    <td *ngIf=\"treeView.hide\"></td>\n                </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
+module.exports = "<div class=\"costumization\" *ngIf=\"!project.model || !project.model.link\"><h2>You have to add some area!!!</h2></div>\n<div class=\"costumization\" *ngIf=\"project.model && project.model.link\">\n    <div class=\"cos-row col-lg-2\">\n        <div class=\"row cos-header\">Element list:</div>\n        <ul class=\"cos-list\">\n            <li *ngFor=\"let item of menuList;  let ind = index\" [ngClass]=\"{'active':item.active}\"\n                (click)=\"selectCurItem(item,menuList,ind)\">\n                {{item.title}}\n                <div class=\"mailicon\">\n                    <svg width=\"6px\" height=\"9px\" viewBox=\"0 0 6 9\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"\n                         xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                        <defs></defs>\n                        <g id=\"Website\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n                            <g id=\"Super-User---project-creator---Publishing-\"\n                               transform=\"translate(-1298.000000, -396.000000)\" fill=\"#181818\">\n                                <g id=\"tooltip\" transform=\"translate(1048.000000, 370.000000)\">\n                                    <g id=\"Page-1\" transform=\"translate(245.000000, 23.000000)\">\n                                        <polygon id=\"Fill-2-Copy\"\n                                                 points=\"5.72666642 10.8933327 8.77999947 7.83333286 5.72666642 4.77333294 6.66666627 3.8333331 10.666666 7.83333286 6.66666627 11.8333326\"></polygon>\n                                    </g>\n                                </g>\n                            </g>\n                        </g>\n                    </svg>\n                </div>\n            </li>\n        </ul>\n    </div>\n    <div class=\"cos-row col-lg-3\">\n        <div class=\"row cos-header cos-t\">Customization <span class=\"btn-def\"\n                                                              (click)=\"saveChanges()\">SAVE CHANGES</span>\n        </div>\n        <div class=\"cos-edit-body\">\n\n            <div class=\"cos-item\" [ngClass]=\"{'active':menuList[0].active}\">\n\n            </div>\n\n            <div class=\"cos-item\" *ngFor=\"let menuL of menuList;  let ind = index\" [ngClass]=\"{'active':menuL.active}\">\n                <div class=\"cos-tabs w3-bar w3-black\">\n                    <button *ngFor=\"let mtab of tabList[ind]\" (click)=\"selectCurItem(mtab , tabList[ind])\"\n                            [ngClass]=\"{'active':mtab.active}\" class=\"w3-bar-item w3-button\"\n                            [innerText]=\"mtab.title\"></button>\n                </div>\n                <app-project-text-code-mirror *ngFor=\"let mtab of tabList[ind]\" class=\"cos-code\"\n                                              [ngClass]=\"{'active':mtab.active}\" [config]=\"mtab\"></app-project-text-code-mirror>\n\n            </div>\n\n        </div>\n    </div>\n    <div class=\"cos-row col-lg-7\">\n        <div class=\"cos-preview webgl-view\" *ngIf=\"menuList[0].active && curItem\">\n            <app-project-webgl-controls [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                        #wcontrols></app-project-webgl-controls>\n        </div>\n        <div class=\"cos-preview\" *ngIf=\"menuList[1].active\">\n            <app-project-webgl-tooltip [isEdit]=\"1\" [modelData]=\"modelData\" [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                       #wtooltip></app-project-webgl-tooltip>\n        </div>\n        <div class=\"cos-preview\" *ngIf=\"menuList[2].active\">\n            <app-project-preloader [parent]=\"curNameSpace\" [htmlTemplate]=\"curItem[1].value\"\n                                   #preloader></app-project-preloader>\n        </div>\n\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 857:
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>"
+module.exports = "<div *ngIf=\"dataSrc\">\n    <div class=\"tabs-view\">\n        <div class=\"tabs-blocks col-lg-12\">\n            <table class=\"my-table col-lg-12\">\n                <tbody>\n                <tr>\n                    <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                        <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                            <span class=\"title\">Project Share</span>\n                            <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                        </div>\n                        <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                             src=\"../assets/img/Fill 2 (1).svg\">\n                    </td>\n                    <td class=\"s-tab webgl-item\" rowspan=\"2\" style=\"text-align: center;\"\n                        [attr.colspan]=\"treeView.hide ?2:1\">\n                        <iframe [src]=\"dataSrc\" frameborder=0 allowfullscreen #ifrm></iframe>\n                    </td>\n                </tr>\n                <tr>\n                    <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"treeView.hide?2:1\" class=\"s-tab\">\n                        <div class=\"tabs-body\">\n                            <div class=\"body-data\">\n                                <div class=\"model-config\">\n                                    <form class=\"item-form\" novalidate>\n                                        <div class=\"bottom-block\">\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>Link</label>\n                                                    <input name=\"link\" type=\"text\" [(attr.value)]=\"data.link\">\n                                                </div>\n                                            </div>\n                                            <div class=\"row\">\n                                                <div class=\"inp-form col-lg-12\">\n                                                    <label>HTML</label>\n                                                    <input name=\"linkH\" type=\"text\"\n                                                           [(attr.value)]=\"data.ifr\">\n                                                </div>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                                <textarea style=\"opacity: 0\" [innerText]=\"urlC\" #textAr></textarea>\n\n                                <div class=\"add-btn\" (click)=\"copyUrl()\">\n                                    <i class=\"material-icons\">save</i>\n\n                                    <div class=\"span-hover\">\n                                        <span>Click to copy link</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                    <td *ngIf=\"treeView.hide\"></td>\n                </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n<h1 style=\"text-align: center;\" *ngIf=\"!dataSrc\">Still had nothing created!!!</h1>"
 
 /***/ }),
 
 /***/ 858:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"!modelStructure.camera.isSVG\"></app-file-upload>\n                    <app-file-upload [title]=\"'Upload svg'\" [accept]=\"'.svg'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_SVG\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.svgDestination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"modelStructure.camera.isSVG\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\"\n                                     [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <div class=\"add-btn\"\n                         *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\"\n                         (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>SVG(*)</label>\n                        <input name=\"isSVG\" type=\"checkbox\" (change)=\"modelStructure.glApp.updateData('isSVG')\"\n                               [(ngModel)]=\"modelStructure.camera.isSVG\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\" *ngIf=\"modelStructure.camera.isSVG\">\n                        <label>Zoom Helper(*)</label>\n                        <input name=\"showZoomHelper\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('showZoomHelper')\"\n                               [(ngModel)]=\"modelStructure.camera.showZoomHelper\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\">\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div *ngIf=\"modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <a href=\"#\" (click)=\"modelStructure.glApp.main.svgEl.exportJSON($event)\">export JSON</a>\n                        </div>\n                    </div>\n                </div>\n                <div *ngIf=\"!modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Scale</label>\n                            <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\"\n                                   step=\"0.1\"\n                                   [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Current</label>\n                            <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\"\n                                   min=\"0\"\n                                   max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Frames</label>\n                            <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                                   [ngModel]=\"modelStructure.images.length\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera X</label>\n                            <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Y</label>\n                            <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Z</label>\n                            <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Fov</label>\n                            <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Size</label>\n                            <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                                   (change)=\"modelStructure.glApp.updateData('size')\"\n                                   step=\"0.1\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Lens</label>\n                            <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                                   [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Zoom</label>\n                            <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG\"\n             (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
 /***/ 859:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"source-project\"  >\n    <div *ngIf=\"!project.model.link\" class=\"source-creating col-lg-3\">\n        <span>Parent creating:</span>\n\n        <form class=\"item-form\" #createForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" #parentName=\"ngModel\" name=\"parentName\" placeholder=\"Parent`s Name\"\n                       [(ngModel)]=\"project.model.name\" required autofocus>\n                <label [class.full-op]=\"parentName.invalid && parentName.touched\">The Parent`s Name is required!</label>\n            </div>\n            <div class=\"upload-list col-lg-12\">\n                <app-file-upload [title]=\"'Upload obj/svg'\" [accept]=\"'.obj,.svg'\" [required]=\"1\" [category]=\"[]\" class=\"col-lg-6\"\n                                 #modelObj></app-file-upload>\n                <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\" [required]=\"1\" [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\" [accept]=\"'image/*'\"\n                                 class=\"col-lg-6\" #framesObj></app-file-upload>\n            </div>\n\n            <div class=\"new-btns\">\n                <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n                <span class=\"right-btn text-btn\" (click)=\"create(createForm)\">create</span>\n                <!--<input type=\"submit\"  class=\"right-btn text-btn\" class=\"btn btn-default\" value=\"create\" />-->\n            </div>\n        </form>\n\n    </div>\n    <div *ngIf=\"project.model.link\">\n        <div class=\"tabs-view\">\n            <div class=\"tabs-blocks col-lg-12\">\n                <table class=\"my-table col-lg-12\">\n                    <tbody>\n                    <tr>\n                        <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                            <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                                <span class=\"title\">Project Map</span>\n                                <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"tabs-header s-tab\" [ngClass]=\"{'no-width':sceneConfig.hide}\" #sceneConfig>\n                            <div class=\"temp-header\" *ngIf=\"!sceneConfig.hide\">\n                                <span class=\"title\">Preferences</span>\n                                <span class=\"text-btn\" (click)=\"sceneConfig.hide=!sceneConfig.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"sceneConfig.hide\" (click)=\"sceneConfig.hide=!sceneConfig.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"s-tab webgl-item\" rowspan=\"2\"\n                            [attr.colspan]=\"sceneConfig.hide && treeView.hide ?3:1\">\n                            <app-project-webgl-view *ngIf=\"selectedChild && selectedChild._category == 2\" [selected]=\"selectedChild\">-----WEBGL------</app-project-webgl-view>\n                        </td>\n                    </tr>\n                    <tr>\n                        <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"sceneConfig.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <tree   [mainParent] = \"instance\" [data]=\"project.model.data\"></tree>\n                                </div>\n                            </div>\n                        </td>\n                        <td *ngIf=\"!sceneConfig.hide\" class=\"s-tab\" [attr.colspan]=\"treeView.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <app-project-edit-view  *ngIf=\"selectedChild\" [modelStructure]=\"selectedChild\" ></app-project-edit-view>\n                                </div>\n                            </div>\n\n                        </td>\n                        <td *ngIf=\"sceneConfig.hide && treeView.hide\"></td>\n                    </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"model-config\">\n    <form class=\"item-form\" #editViewForm=\"ngForm\" novalidate (change)=\"modelStructure.glApp.updateData('test')\">\n        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"top-block files-top-block \">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">The\n                            Level`s Name is required!</label>\n                    </div>\n                </div>\n\n                <div class=\"upload-list col-lg-12\">\n                    <app-file-upload [title]=\"'Upload model'\" [accept]=\"'.obj'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_OBJ\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.destination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"!modelStructure.camera.isSVG\"></app-file-upload>\n                    <app-file-upload [title]=\"'Upload svg'\" [accept]=\"'.svg'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.MODEL_SVG\"\n                                     [required]=\"'1'\" class=\"col-lg-12\" [files]=\"[modelStructure.svgDestination]\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     *ngIf=\"modelStructure.camera.isSVG\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\"\n                                     [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\"\n                                     [required]=\"'1'\" [accept]=\"'image/*'\" [files]=\"modelStructure.images\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <app-file-upload [title]=\"'Aligning frames'\" [multiple]=\"'multiple'\"\n                                     [inject]=\"modelStructure.glApp\"\n                                     [category]=\"_CONFIG.FILE.TYPE.ALIGN_IMG\" [accept]=\"'image/*'\"\n                                     [files]=\"modelStructure.alignImages\"\n                                     class=\"col-lg-12\"></app-file-upload>\n\n                    <div class=\"add-btn\"\n                         *ngIf=\"modelStructure.images.length && modelStructure.alignImages.length && modelStructure.glApp._slider\"\n                         (click)=\"modelStructure.glApp._slider.toggleDebug()\">\n                        <i class=\"material-icons\">image</i>\n\n                        <div class=\"span-hover\">\n                            <span>Togle to {{modelStructure.glApp._slider.isDebug?'Upload':'Align'}} frames </span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"bottom-block\">\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>SVG(*)</label>\n                        <input name=\"isSVG\" type=\"checkbox\" (change)=\"modelStructure.glApp.updateData('isSVG')\"\n                               [(ngModel)]=\"modelStructure.camera.isSVG\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\" *ngIf=\"modelStructure.camera.isSVG\">\n                        <label>Zoom Helper(*)</label>\n                        <input name=\"showZoomHelper\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('showZoomHelper')\"\n                               [(ngModel)]=\"modelStructure.camera.showZoomHelper\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Opacity</label>\n                        <input name=\"opacity\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('opacity')\" step=\"0.01\" min=\"0\" max=\"1\"\n                               [(ngModel)]=\"modelStructure.camera.opacity\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Kompas(&deg;),start from</label>\n                        <input name=\"angle\" type=\"number\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\" step=\"1\" min=\"0\" max=\"360\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.angle\">\n                    </div>\n                    <div class=\"inp-form col-lg-3\">\n                        <label>Kompas(*)</label>\n                        <input name=\"enablr\" type=\"checkbox\"\n                               (change)=\"modelStructure.glApp.updateData('kompass')\"\n                               [(ngModel)]=\"modelStructure.camera.kompass.enabled\">\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Width</label>\n                        <input name=\"width\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientWidth ||modelStructure.glApp._slider.currentAlignFrame.clientWidth\">\n                    </div>\n                    <div class=\"inp-form col-lg-6\">\n                        <label>Height</label>\n                        <input name=\"height\" type=\"number\" disabled *ngIf=\"modelStructure.glApp._slider\"\n                               [ngModel]=\"modelStructure.glApp._slider.currentFrame.clientHeight ||modelStructure.glApp._slider.currentAlignFrame.clientHeight\">\n                    </div>\n                </div>\n                <div *ngIf=\"modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <a href=\"#\" (click)=\"modelStructure.glApp.main.svgEl.exportJSON($event)\">export JSON</a>\n                        </div>\n                    </div>\n                </div>\n                <div *ngIf=\"!modelStructure.camera.isSVG\">\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Scale</label>\n                            <input name=\"scaleX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('scale')\"\n                                   step=\"0.1\"\n                                   [(ngModel)]=\"modelStructure.glApp.model.scale.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Current</label>\n                            <input name=\"current\" type=\"number\" *ngIf=\"modelStructure.glApp._slider\" disabled=\"true\"\n                                   min=\"0\"\n                                   max=\"36\" [(ngModel)]=\"modelStructure.currentItem\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Frames</label>\n                            <input name=\"frames\" type=\"number\" min=\"0\" max=\"36\" disabled=\"true\"\n                                   [ngModel]=\"modelStructure.images.length\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera X</label>\n                            <input name=\"posX\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.x\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Y</label>\n                            <input name=\"posY\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.y\">\n                        </div>\n                        <div class=\"inp-form col-lg-4\">\n                            <label>Camera Z</label>\n                            <input name=\"posZ\" type=\"number\" (change)=\"modelStructure.glApp.updateData('cameraPst')\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.position.z\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Fov</label>\n                            <input name=\"fov\" type=\"number\" step=\"0.01\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.fov\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Size</label>\n                            <input name=\"size\" type=\"number\" [(ngModel)]=\"modelStructure.camera.size\"\n                                   (change)=\"modelStructure.glApp.updateData('size')\"\n                                   step=\"0.1\">\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Lens</label>\n                            <input name=\"lens\" type=\"number\" (change)=\"modelStructure.glApp.updateData('lens')\"\n                                   [(ngModel)]=\"modelStructure.camera.lens\" step=\"0.01\">\n                        </div>\n                        <div class=\"inp-form col-lg-6\">\n                            <label>Zoom</label>\n                            <input name=\"zoom\" type=\"number\" (change)=\"modelStructure.glApp.updateData()\"\n                                   [(ngModel)]=\"modelStructure.glApp.camera.zoom\" step=\"0.01\">\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div *ngIf=\"modelStructure._category != _CONFIG.PROJ_DESTINATION.ModelStructure\">\n            <div class=\"bottom-block\">\n                <div class=\"input-wrap\">\n                    <div class=\"col-lg-12\">\n                        <input type=\"text\" #curentName=\"ngModel\" name=\"curentName\"\n                               placeholder=\"Level`s Name\"\n                               [(ngModel)]=\"modelStructure.name\" required autofocus>\n                        <label [class.full-op]=\"curentName.invalid && curentName.touched\">\n                            The Level`s Name is required!</label>\n                    </div>\n                </div>\n                <div class=\"input-wrap\">\n                    <div class=\"inp-form col-lg-12\">\n                        <span>Destionation</span>\n\n                        <div *ngIf=\"modelStructure._category == _CONFIG.PROJ_DESTINATION.LinkGeneralStructure\">\n                            <input name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                                   [pattern]=\"_CONFIG.PATTERNS.URL\"\n                                   [(ngModel)]=\"modelStructure.destination\">\n                            <label [class.full-op]=\"destination1.invalid && destination1.touched\">The\n                                Destionation is required and must be an url!</label>\n                        </div>\n                        <div *ngIf=\"modelStructure._category === _CONFIG.PROJ_DESTINATION.GeneralStructure\">\n                            <textarea rows=\"10\" class=\"col-lg-12\" name=\"destination0\" #destination0=\"ngModel\" required\n                                      [(ngModel)]=\"modelStructure.destination\"></textarea>\n                            <label [class.full-op]=\"destination0.invalid && destination0.touched || !modelStructure.destination.length\">The\n                                Destionation is required and must be an js code! </label>\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasChanges\" (click)=\"modelStructure.sourcesApp.update(editViewForm)\">\n            <i class=\"material-icons\">save</i>\n\n            <div class=\"span-hover\">\n                <span>Save</span>\n            </div>\n        </div>\n        <div class=\"add-btn\" *ngIf=\"modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG\"\n             (click)=\"modelStructure.glApp.recalc()\">\n            <i class=\"material-icons\">exposure</i>\n\n            <div class=\"span-hover\">\n                <span>Recalculate for all</span>\n            </div>\n        </div>\n\n        <div class=\"add-btn disabled\" *ngIf=\"!modelStructure.hasChanges\">\n            <i class=\"material-icons\">save</i>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
 /***/ 860:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"edit-form\" style=\"width: 420px;height: 580px;\">\n    <span class=\"tag-text\">{{title}}:</span>\n    \n    <div class=\"main-info\">\n        <form class=\"item-form\">\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.link\" [class.input-error]=\"!resol.link\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.link = true\">\n                <label [class.full-op]=\"!resol.link\">This input requires a value!</label>\n            </div>\n        </form>\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\n            </label>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"!project.image\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">540*330 px</span>\n        </div>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n        <span class=\"right-btn text-btn\" (click)=\"accept()\">accept</span>\n    </div>\n</div>\n"
+module.exports = "<div class=\"source-project\"  >\n    <div *ngIf=\"!project.model.link\" class=\"source-creating col-lg-3\">\n        <span>Parent creating:</span>\n\n        <form class=\"item-form\" #createForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" #parentName=\"ngModel\" name=\"parentName\" placeholder=\"Parent`s Name\"\n                       [(ngModel)]=\"project.model.name\" required autofocus>\n                <label [class.full-op]=\"parentName.invalid && parentName.touched\">The Parent`s Name is required!</label>\n            </div>\n            <div class=\"upload-list col-lg-12\">\n                <app-file-upload [title]=\"'Upload obj/svg'\" [accept]=\"'.obj,.svg'\" [required]=\"1\" [category]=\"[]\" class=\"col-lg-6\"\n                                 #modelObj></app-file-upload>\n                <app-file-upload [title]=\"'Upload frames'\" [multiple]=\"'multiple'\" [required]=\"1\" [category]=\"_CONFIG.FILE.TYPE.PREVIEW_IMG\" [accept]=\"'image/*'\"\n                                 class=\"col-lg-6\" #framesObj></app-file-upload>\n            </div>\n\n            <div class=\"new-btns\">\n                <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n                <span class=\"right-btn text-btn\" (click)=\"create(createForm)\">create</span>\n                <!--<input type=\"submit\"  class=\"right-btn text-btn\" class=\"btn btn-default\" value=\"create\" />-->\n            </div>\n        </form>\n\n    </div>\n    <div *ngIf=\"project.model.link\">\n        <div class=\"tabs-view\">\n            <div class=\"tabs-blocks col-lg-12\">\n                <table class=\"my-table col-lg-12\">\n                    <tbody>\n                    <tr>\n                        <td class=\"tabs-header\" [ngClass]=\"{'no-width':treeView.hide}\" #treeView>\n                            <div *ngIf=\"!treeView.hide\" class=\"tab-header\">\n                                <span class=\"title\">Project Map</span>\n                                <span class=\"text-btn\" (click)=\"treeView.hide=!treeView.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"treeView.hide\" (click)=\"treeView.hide=!treeView.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"tabs-header s-tab\" [ngClass]=\"{'no-width':sceneConfig.hide}\" #sceneConfig>\n                            <div class=\"temp-header\" *ngIf=\"!sceneConfig.hide\">\n                                <span class=\"title\">Preferences</span>\n                                <span class=\"text-btn\" (click)=\"sceneConfig.hide=!sceneConfig.hide\">hide</span>\n                            </div>\n                            <img *ngIf=\"sceneConfig.hide\" (click)=\"sceneConfig.hide=!sceneConfig.hide\"\n                                 src=\"../assets/img/Fill 2 (1).svg\">\n                        </td>\n                        <td class=\"s-tab webgl-item\" rowspan=\"2\"\n                            [attr.colspan]=\"sceneConfig.hide && treeView.hide ?3:1\">\n                            <app-project-webgl-view *ngIf=\"selectedChild && selectedChild._category == 2\" [selected]=\"selectedChild\">-----WEBGL------</app-project-webgl-view>\n                        </td>\n                    </tr>\n                    <tr>\n                        <td *ngIf=\"!treeView.hide\" [attr.colspan]=\"sceneConfig.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <tree   [mainParent] = \"instance\" [data]=\"project.model.data\"></tree>\n                                </div>\n                            </div>\n                        </td>\n                        <td *ngIf=\"!sceneConfig.hide\" class=\"s-tab\" [attr.colspan]=\"treeView.hide?2:1\">\n                            <div class=\"tabs-body\">\n                                <div class=\"body-data\">\n                                    <app-project-edit-view  *ngIf=\"selectedChild\" [modelStructure]=\"selectedChild\" ></app-project-edit-view>\n                                </div>\n                            </div>\n\n                        </td>\n                        <td *ngIf=\"sceneConfig.hide && treeView.hide\"></td>\n                    </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 861:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\">\n    <span class=\"tag-text\">{{title}}</span>\n    <div class=\"main-info\">\n        <form class=\"item-form\" #createViewForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\n            </div>\n            <div class=\"input-wrap\">\n\n                <input [class.input-fill]=\"project.link\" [class.input-error]=\"destination1.invalid && (destination1.touched || createViewForm.clicked)\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"\n                       name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                       [pattern]=\"_CONFIG.PATTERNS.URL\" >\n                <label [class.full-op]=\"destination1.invalid && (destination1.touched|| createViewForm.clicked)\">The\n                    Destionation is required and must be an url!</label>\n            </div>\n        </form>\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\n            </label>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image == false\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image != false\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">540*330 px</span>\n        </div>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"false-btn\" (click)=\"Create ? cancel() : reset()\">cancel</span>\n        <span class=\"true-btn\" (click)=\"accept(createViewForm)\">{{Create ? 'accept' : 'save'}}</span>\n    </div>\n</div>"
+module.exports = "<div class=\"edit-form\" style=\"width: 420px;height: 580px;\">\n    <span class=\"tag-text\">{{title}}:</span>\n    \n    <div class=\"main-info\">\n        <form class=\"item-form\">\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.link\" [class.input-error]=\"!resol.link\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.link = true\">\n                <label [class.full-op]=\"!resol.link\">This input requires a value!</label>\n            </div>\n        </form>\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\n            </label>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"!project.image\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">540*330 px</span>\n        </div>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"text-btn\" (click)=\"cancel()\">cancel</span>\n        <span class=\"right-btn text-btn\" (click)=\"accept()\">accept</span>\n    </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 862:
 /***/ (function(module, exports) {
 
-module.exports = "<main>\n    <div class=\"projects-wrap\">\n        <div class=\"projects-list  row\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"9px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n            <app-project-view class=\"project-wrap col-xs-12 col-sm-6 col-lg-4 col-exlg-3\" *ngFor=\"let project of User.projects | namefilter: header.searchName: header.sortType\" [project]=\"project\" ></app-project-view>\n        </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewProject = true\" [hidden]=\"createNewProject\">\n        <i class=\"material-icons\">add</i>\n        <div class=\"span-hover\">\n            <span>Add a new project</span>\n        </div>\n    </div>\n</main>\n\n<app-new-project class=\"add-new\" [(openedState)]=\"createNewProject\" [title]=\"'Create a new project:'\" *ngIf=\"createNewProject\"></app-new-project>"
+module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\">\n    <span class=\"tag-text\">{{title}}</span>\n    <div class=\"main-info\">\n        <form class=\"item-form\" #createViewForm=\"ngForm\" novalidate>\n            <div class=\"input-wrap\">\n                <input type=\"text\" [class.input-fill]=\"project.title\" [class.input-error]=\"!resol.title\" placeholder=\"Projet Name\" [(ngModel)]=\"project.title\" [ngModelOptions]=\"{standalone: true}\"  (focus)=\"resol.title = true\">\n                <label [class.full-op]=\"!resol.title\">This input requires a value!</label>\n            </div>\n            <div class=\"input-wrap\">\n\n                <input [class.input-fill]=\"project.link\" [class.input-error]=\"destination1.invalid && (destination1.touched || createViewForm.clicked)\"  placeholder=\"datasource URL\" [(ngModel)]=\"project.link\" [ngModelOptions]=\"{standalone: true}\"\n                       name=\"destination1\" #destination1=\"ngModel\" type=\"text\" required\n                       [pattern]=\"_CONFIG.PATTERNS.URL\" >\n                <label [class.full-op]=\"destination1.invalid && (destination1.touched|| createViewForm.clicked)\">The\n                    Destionation is required and must be an url!</label>\n            </div>\n        </form>\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"project.image != false\">crop_original</i>\n            </label>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image == false\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"project.image != false\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">540*330 px</span>\n        </div>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"false-btn\" (click)=\"Create ? cancel() : reset()\">cancel</span>\n        <span class=\"true-btn\" (click)=\"accept(createViewForm)\">{{Create ? 'accept' : 'save'}}</span>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 863:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"project\" [routerLink]=\"['/project', (project._id || 0)]\"  routerLinkActive=\"active\">\n    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\" [class.img-true]=\"project.image\">\n        <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\n        <div class=\"project-ctrl-wrap\">\n            <span class=\"unpublished\" [hidden]=\"project.published\">Unpublished</span>\n            <div class=\"project-ctrl\">\n                <i class=\"material-icons\" >edit</i>\n                <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openedPopUp\">\n                    <i class=\"material-icons\" (click)=\"openPopUp($event)\"  >more_vert</i>\n                    <div class=\"pop-up\" [hidden]=\"!openedPopUp\">\n\n                        <div class=\"pop-up-item\"   (click)=\"deactivateProject($event)\">\n                            <i class=\"material-icons\" [innerText]=\"project.published?'visibility':'visibility_off'\"></i>\n                            <div class=\"pop-up-row-name\">\n                                <span [innerText]=\"project.published?'Deactivate':'Activate'\"></span>\n                            </div>\n                        </div>\n                        <div class=\"pop-up-item\" (click)=\"deleteProject($event)\">\n                            <i class=\"material-icons\">delete</i>\n                            <div class=\"pop-up-row-name\">\n                                <span>Delete</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"project-info\">\n            <div class=\"project-title\">{{project.title}}</div>\n            <div class=\"project-created\">Created: {{project.created | date: 'dd.MM.yyyy' }}</div>\n        </div>\n    </div>\n    <div class=\"project-bot\">\n        <span class=\"project-admin\">Admin:</span>\n        <div class=\"project-users\">\n            <div class=\"project-user\">\n                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\n                    <span>AF</span>\n                </div>\n                <span class=\"project-user-name\" [innerHTML]=\"project.owner.firstName+' '+project.owner.secondName\"></span>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<main>\n    <div class=\"projects-wrap\">\n        <div class=\"projects-list  row\" slimScroll  width=\"100%\" alwaysVisible=false distance=\"9px\" height=\"100%\" size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n            <app-project-view class=\"project-wrap col-xs-12 col-sm-6 col-lg-4 col-exlg-3\" *ngFor=\"let project of User.projects | namefilter: header.searchName: header.sortType\" [project]=\"project\" ></app-project-view>\n        </div>\n    </div>\n\n    <div class=\"add-btn\" (click)=\"createNewProject = true\" [hidden]=\"createNewProject\">\n        <i class=\"material-icons\">add</i>\n        <div class=\"span-hover\">\n            <span>Add a new project</span>\n        </div>\n    </div>\n</main>\n\n<app-new-project class=\"add-new\" [(openedState)]=\"createNewProject\" [title]=\"'Create a new project:'\" *ngIf=\"createNewProject\"></app-new-project>"
 
 /***/ }),
 
 /***/ 864:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\" (keydown)=\"keyDown($event,createUserForm.invalid)\">\n    <span class=\"tag-text\">Creating a new user:</span>\n\n    <div class=\"main-info\">\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + tempNewUser.avatar + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"tempNewUser.avatar != false\">crop_original</i>\n            </label>\n\n            <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar == false\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar != false\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\"\n                                          (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">300*300 px</span>\n        </div>\n        <form class=\"item-form\" #createUserForm=\"ngForm\">\n            <div class=\"input-wrap\">\n                <input type=\"email\" name=\"email\" #email=\"ngModel\"\n                       [class.input-error]=\"email.invalid && (email.touched || submitted)\" placeholder=\"Email\"\n                       [(ngModel)]=\"tempNewUser.email\" [pattern]=\"userService.config.PATTERNS.EMAIL\" maxlength=\"20\"\n                       required>\n\n                <div *ngIf=\"email.touched || submitted\">\n                    <label [class.full-op]=\"email.invalid \">This input requires an email value!</label>\n                    <label [class.full-op]=\"message.email\">{{message.email}}</label>\n                </div>\n\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"text\" name=\"firstName\" #firstName=\"ngModel\"\n                       [class.input-error]=\"firstName.invalid && (firstName.touched || submitted)\"\n                       placeholder=\"First name\" [(ngModel)]=\"tempNewUser.firstName\" maxlength=\"20\" required>\n                <label [class.full-op]=\"firstName.invalid && (firstName.touched || submitted)\">This input requires a\n                    value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"text\" name=\"secondName\" #secondName=\"ngModel\"\n                       [class.input-error]=\"secondName.invalid && (secondName.touched || submitted)\"\n                       placeholder=\"Last name\" [(ngModel)]=\"tempNewUser.secondName\" maxlength=\"20\" required>\n                <label [class.full-op]=\"secondName.invalid && (secondName.touched || submitted)\">This input requires a\n                    value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"password\" name=\"psw1\" #psw1=\"ngModel\"\n                       [class.input-error]=\"psw1.invalid && (psw1.touched || submitted)\" placeholder=\"Password\"\n                       [(ngModel)]=\"tempNewUser.password\" maxlength=\"20\" required>\n                <label [class.full-op]=\"psw1.invalid && (psw1.touched || submitted)\">This input requires a\n                    value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"password\" name=\"psw1\" #psw2=\"ngModel\"\n                       [class.input-error]=\"(psw2.invalid || tempNewUser.passwordRepeat != tempNewUser.password) && (psw2.touched || submitted)\" placeholder=\"Repeat password\"\n                       [(ngModel)]=\"tempNewUser.passwordRepeat\" maxlength=\"20\" required>\n\n                <div *ngIf=\"psw2.touched || submitted\">\n                    <label [class.full-op]=\"psw2.invalid \">This input requires a value! </label>\n                    <label [class.full-op]=\"tempNewUser.passwordRepeat != tempNewUser.password \">Passwords didn`t\n                        match </label>\n                </div>\n            </div>\n        </form>\n    </div>\n    <div class=\"user-status\">\n        <div class=\"user-status-item\" *ngIf=\"User.role == config.USER_ROLE.SUPER\">\n            <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.SUPER\">radio_button_checked</i>\n            <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.SUPER\"\n               (click)=\"tempNewUser.role = config.USER_ROLE.SUPER; resol.role = true\">radio_button_unchecked</i>\n            <span>Superuser</span>\n        </div>\n        <div class=\"user-status-item\" *ngIf=\"User.role == config.USER_ROLE.SUPER\">\n            <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.ADMIN\">radio_button_checked</i>\n            <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.ADMIN\"\n               (click)=\"tempNewUser.role = config.USER_ROLE.ADMIN; resol.role = true\">radio_button_unchecked</i>\n            <span>Client-admin</span>\n        </div>\n        <div class=\"user-status-item\" *ngIf=\"User.role !== config.USER_ROLE.ADMIN\">\n            <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.USER\">radio_button_checked</i>\n            <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.USER\"\n               (click)=\"tempNewUser.role = config.USER_ROLE.USER; resol.role = true\">radio_button_unchecked</i>\n            <span>Client-user</span>\n        </div>\n        <label [class.err-status]=\"!resol.role\">Select user status</label>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"false-btn\" (click)=\"cancel()\">cancel</span>\n        <span class=\"true-btn\" (click)=\"accept(createUserForm.invalid)\">accept</span>\n    </div>\n</div>\n"
+module.exports = "<div class=\"project\" [routerLink]=\"['/project', (project._id || 0)]\"  routerLinkActive=\"active\">\n    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\" [class.img-true]=\"project.image\">\n        <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\n        <div class=\"project-ctrl-wrap\">\n            <span class=\"unpublished\" [hidden]=\"project.published\">Unpublished</span>\n            <div class=\"project-ctrl\">\n                <i class=\"material-icons\" >edit</i>\n                <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openedPopUp\">\n                    <i class=\"material-icons\" (click)=\"openPopUp($event)\"  >more_vert</i>\n                    <div class=\"pop-up\" [hidden]=\"!openedPopUp\">\n\n                        <div class=\"pop-up-item\"   (click)=\"deactivateProject($event)\">\n                            <i class=\"material-icons\" [innerText]=\"project.published?'visibility':'visibility_off'\"></i>\n                            <div class=\"pop-up-row-name\">\n                                <span [innerText]=\"project.published?'Deactivate':'Activate'\"></span>\n                            </div>\n                        </div>\n                        <div class=\"pop-up-item\" (click)=\"deleteProject($event)\">\n                            <i class=\"material-icons\">delete</i>\n                            <div class=\"pop-up-row-name\">\n                                <span>Delete</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"project-info\">\n            <div class=\"project-title\">{{project.title}}</div>\n            <div class=\"project-created\">Created: {{project.created | date: 'dd.MM.yyyy' }}</div>\n        </div>\n    </div>\n    <div class=\"project-bot\">\n        <span class=\"project-admin\">Admin:</span>\n        <div class=\"project-users\">\n            <div class=\"project-user\">\n                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\n                    <span>AF</span>\n                </div>\n                <span class=\"project-user-name\" [innerHTML]=\"project.owner.firstName+' '+project.owner.secondName\"></span>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 865:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n    <div>\n      <span class=\"user-card-hd-name\">{{tempUser.firstName}} {{tempUser.secondName}}</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'super'\">superuser</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'admin'\">client-admin</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'user'\">client-user</span>\n    </div>\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openMenu\" [hidden]=\"!canEdit\">\n      <i class=\"material-icons\" (click)=\"openMenu = !openMenu\" (window:mouseup)=\"openMenu = false\">more_vert</i>\n      <div class=\"pop-up\" [class.hidden]=\"!openMenu\">\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">folder</i>\n          <div class=\"pop-up-row-name\">\n            <span>Projects</span>\n            <span class=\"pop-up-num\">{{tempUser.projects.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">people</i>\n          <div class=\"pop-up-row-name\">\n            <span>Users</span>\n            <span class=\"pop-up-num\">{{tempUser.users.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = false\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = true\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\">\n          <i class=\"material-icons\">lock</i>\n          <div class=\"pop-up-row-name\">\n            <span>Change password</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n    <span class=\"user-card-created-date\">Created: {{tempUser.created | date: 'dd.MM.yyyy' }}</span>\n  </div>\n  <div class=\"user-card-body\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [class.curs-dis]=\"!canEdit\" [ngStyle]=\"{'background-image': 'url(' + tempUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempUser.avatar\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"!canEdit\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n    </div>\n    <form class=\"item-form\" #editViewForm=\"ngForm\" >\n      <div class=\"input-wrap\">\n        <input type=\"email\" name=\"email\" [class.no-changable]=\"!canEdit\" placeholder=\"Email\" #email=\"ngModel\" [class.input-error]=\"email.invalid && (email.touched || submitted)\"  [(ngModel)]=\"tempUser.email\" [readonly]=\"!canEdit\" [pattern]=\"userService.config.PATTERNS.EMAIL\"  maxlength=\"20\" required>\n        <label  [class.full-op]=\"email.invalid && (email.touched|| submitted)\">This input requires an email value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" name=\"firstname\"[class.no-changable]=\"!canEdit\" #firstName=\"ngModel\" [class.input-error]=\"firstName.invalid && (firstName.touched || submitted)\"  placeholder=\"First name\" [(ngModel)]=\"tempUser.firstName\"  [readonly]=\"!canEdit\" maxlength=\"20\" required>\n        <label [class.full-op]=\"firstName.invalid && (firstName.touched || submitted)\">This input requires a value!</label>\n      </div>\n\n      <div class=\"input-wrap\">\n        <input type=\"text\" name=\"secondname\" [class.no-changable]=\"!canEdit\" #secondName=\"ngModel\" [class.input-error]=\"secondName.invalid && (secondName.touched || submitted)\" placeholder=\"Last name\" [(ngModel)]=\"tempUser.secondName\" [readonly]=\"!canEdit\"  maxlength=\"20\" required>\n        <label [class.full-op]=\"secondName.invalid && (secondName.touched || submitted)\">This input requires a value!</label>\n      </div>\n\n      <div *ngIf=\"User._id === user._id && canEdit\">\n        <div class=\"input-wrap\">\n          <input type=\"password\" name=\"oldPassword\"  #oldPassword=\"ngModel\"   placeholder=\"Old Password\" [(ngModel)]=\"tempUser.oldPassword\"  maxlength=\"20\" [required]=\"!!tempUser.password\" [class.input-error]=\"oldPassword.invalid && (oldPassword.touched  || submitted)\"  >\n          <label [class.full-op]=\"oldPassword.invalid && (oldPassword.touched || submitted)\">This input requires a value!</label>\n        </div>\n        <div class=\"input-wrap\">\n          <input type=\"password\" name=\"psw1\"  #psw1=\"ngModel\"   placeholder=\"New Password\" [(ngModel)]=\"tempUser.password\"  maxlength=\"20\" [required]=\"!!tempUser.psw2 || !!tempUser.oldPassword\" [class.input-error]=\"psw1.invalid && (psw1.touched  || submitted)\"  >\n          <label [class.full-op]=\"psw1.invalid && (psw1.touched || submitted)\">This input requires a value!</label>\n        </div>\n        <div class=\"input-wrap\">\n          <input type=\"password\"  name=\"psw2\"  #psw2=\"ngModel\"   placeholder=\"Repeat Password\" [(ngModel)]=\"tempUser.psw2\"  maxlength=\"20\" [required]=\"!!tempUser.password\" [class.input-error]=\"(psw2.invalid||psw1.invalid||( tempUser.password && tempUser.psw2 &&tempUser.psw2 != tempUser.password)) && (psw2.touched || submitted )\" >\n          <label [class.full-op]=\"psw2.invalid && ( submitted || psw2.touched) \">This input requires a value!</label>\n          <label [class.full-op]=\"(!!tempUser.password ||!!tempUser.psw2) && tempUser.password != tempUser.psw2 && (psw2.touched || submitted)&&!psw2.invalid \">Passwords didn`t match </label>\n        </div>\n      </div>\n    </form>\n  </div>\n</div>\n<div class=\"user-card-foot\" [hidden]=\"!canEdit\">\n  <span class=\"user-ft-l false-btn\" (click)=\"reset()\">Reset</span>\n  <span class=\"user-ft-r true-btn\" (click)=\"changeUser(editViewForm.invalid)\">save changes</span>\n</div>"
+module.exports = "<div class=\"block-bg\" (click)=\"cancel()\"></div>\n\n<div class=\"new-form\" (keydown)=\"keyDown($event,createUserForm.invalid)\">\n    <span class=\"tag-text\">Creating a new user:</span>\n\n    <div class=\"main-info\">\n        <div class=\"item-photo\">\n            <label class=\"photo\" [ngStyle]=\"{'background-image': 'url(' + tempNewUser.avatar + ')'}\">\n                <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n                <i class=\"material-icons\" [hidden]=\"tempNewUser.avatar != false\">crop_original</i>\n            </label>\n\n            <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar == false\">\n                <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n                <span (click)=\"removePhoto()\">Remove</span>\n            </div>\n            <div class=\"photo-ctrl\" [hidden]=\"tempNewUser.avatar != false\">\n                <label>Upload image<input type=\"file\" capture=\"camera\" accept=\"image/*\"\n                                          (change)=\"loadPhoto($event)\"></label>\n            </div>\n            <span class=\"photo-info\">300*300 px</span>\n        </div>\n        <form class=\"item-form\" #createUserForm=\"ngForm\">\n            <div class=\"input-wrap\">\n                <input type=\"email\" name=\"email\" #email=\"ngModel\"\n                       [class.input-error]=\"email.invalid && (email.touched || submitted)\" placeholder=\"Email\"\n                       [(ngModel)]=\"tempNewUser.email\" [pattern]=\"userService.config.PATTERNS.EMAIL\" maxlength=\"20\"\n                       required>\n\n                <div *ngIf=\"email.touched || submitted\">\n                    <label [class.full-op]=\"email.invalid \">This input requires an email value!</label>\n                    <label [class.full-op]=\"message.email\">{{message.email}}</label>\n                </div>\n\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"text\" name=\"firstName\" #firstName=\"ngModel\"\n                       [class.input-error]=\"firstName.invalid && (firstName.touched || submitted)\"\n                       placeholder=\"First name\" [(ngModel)]=\"tempNewUser.firstName\" maxlength=\"20\" required>\n                <label [class.full-op]=\"firstName.invalid && (firstName.touched || submitted)\">This input requires a\n                    value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"text\" name=\"secondName\" #secondName=\"ngModel\"\n                       [class.input-error]=\"secondName.invalid && (secondName.touched || submitted)\"\n                       placeholder=\"Last name\" [(ngModel)]=\"tempNewUser.secondName\" maxlength=\"20\" required>\n                <label [class.full-op]=\"secondName.invalid && (secondName.touched || submitted)\">This input requires a\n                    value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"password\" name=\"psw1\" #psw1=\"ngModel\"\n                       [class.input-error]=\"psw1.invalid && (psw1.touched || submitted)\" placeholder=\"Password\"\n                       [(ngModel)]=\"tempNewUser.password\" maxlength=\"20\" required>\n                <label [class.full-op]=\"psw1.invalid && (psw1.touched || submitted)\">This input requires a\n                    value!</label>\n            </div>\n            <div class=\"input-wrap\">\n                <input type=\"password\" name=\"psw1\" #psw2=\"ngModel\"\n                       [class.input-error]=\"(psw2.invalid || tempNewUser.passwordRepeat != tempNewUser.password) && (psw2.touched || submitted)\" placeholder=\"Repeat password\"\n                       [(ngModel)]=\"tempNewUser.passwordRepeat\" maxlength=\"20\" required>\n\n                <div *ngIf=\"psw2.touched || submitted\">\n                    <label [class.full-op]=\"psw2.invalid \">This input requires a value! </label>\n                    <label [class.full-op]=\"tempNewUser.passwordRepeat != tempNewUser.password \">Passwords didn`t\n                        match </label>\n                </div>\n            </div>\n        </form>\n    </div>\n    <div class=\"user-status\">\n        <div class=\"user-status-item\" *ngIf=\"User.role == config.USER_ROLE.SUPER\">\n            <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.SUPER\">radio_button_checked</i>\n            <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.SUPER\"\n               (click)=\"tempNewUser.role = config.USER_ROLE.SUPER; resol.role = true\">radio_button_unchecked</i>\n            <span>Superuser</span>\n        </div>\n        <div class=\"user-status-item\" *ngIf=\"User.role == config.USER_ROLE.SUPER\">\n            <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.ADMIN\">radio_button_checked</i>\n            <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.ADMIN\"\n               (click)=\"tempNewUser.role = config.USER_ROLE.ADMIN; resol.role = true\">radio_button_unchecked</i>\n            <span>Client-admin</span>\n        </div>\n        <div class=\"user-status-item\" *ngIf=\"User.role !== config.USER_ROLE.ADMIN\">\n            <i class=\"material-icons selected-status\" [hidden]=\"tempNewUser.role !== config.USER_ROLE.USER\">radio_button_checked</i>\n            <i class=\"material-icons\" [hidden]=\"tempNewUser.role === config.USER_ROLE.USER\"\n               (click)=\"tempNewUser.role = config.USER_ROLE.USER; resol.role = true\">radio_button_unchecked</i>\n            <span>Client-user</span>\n        </div>\n        <label [class.err-status]=\"!resol.role\">Select user status</label>\n    </div>\n    <div class=\"new-btns\">\n        <span class=\"false-btn\" (click)=\"cancel()\">cancel</span>\n        <span class=\"true-btn\" (click)=\"accept(createUserForm.invalid)\">accept</span>\n    </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 866:
 /***/ (function(module, exports) {
 
-module.exports = "<main class=\"row\">\n    <div class=\"user-list-wrap col-md-4\">\n\n        <div class=\"user-list\">\n            <div class=\"slimscroll-wrap\" slimScroll width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\"\n                 size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n                <div class=\"user-list-item\" [class.deactive]=\"!user.active\"\n                     [class.selected-user]=\"selectedUser === user\"\n                     *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\n                    <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\"\n                         (click)=\"selectUser(user, false)\">\n                        <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n                    </div>\n                    <div class=\"user-list-item-wrap\">\n                        <div class=\"user-name-wrap\">\n                            <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n                                <span>{{user.firstName}} {{user.secondName}}</span>\n                                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n                                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n                            </div>\n                            <br>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role == userService.config.USER_ROLE.SUPER\">Super user</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.ADMIN\">Client-admin</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.USER\">Client-user</span>\n                        </div>\n                        <div class=\"user-ctrl\">\n                            <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n\n                            <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"settingsUser === user\">\n                                <i class=\"material-icons\" (click)=\"settingsUser = user\"\n                                   (window:mouseup)=\"settingsUser = null\">more_vert</i>\n\n                                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\n                                    <div class=\"pop-up-item\"   (click)=\"deactivateUser(user)\">\n                                        <i class=\"material-icons\"\n                                           [innerHTML]=\"!user.active?'visibility':'visibility_off'\"></i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span [innerHTML]=\"!user.active?'Activate':'Deactivate' \"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\n                                        <i class=\"material-icons\">delete</i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span>Delete</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" (click)=\"createNewUser = true\"\n             *ngIf=\"!createNewUser && User.role !=  userService.config.USER_ROLE.USER\">\n            <i class=\"material-icons\">add</i>\n\n            <div class=\"span-hover\">\n                <span>Add a new user</span>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"user-card-wrap col-md-8\">\n        <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" *ngIf=\"selectedUser\"></app-user-card>\n        <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n    </div>\n\n</main>\n\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\"></app-new-user>\n"
+module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n    <div>\n      <span class=\"user-card-hd-name\">{{tempUser.firstName}} {{tempUser.secondName}}</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'super'\">superuser</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'admin'\">client-admin</span>\n      <span class=\"user-card-hd-status\" *ngIf=\"tempUser.role == 'user'\">client-user</span>\n    </div>\n    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openMenu\" [hidden]=\"!canEdit\">\n      <i class=\"material-icons\" (click)=\"openMenu = !openMenu\" (window:mouseup)=\"openMenu = false\">more_vert</i>\n      <div class=\"pop-up\" [class.hidden]=\"!openMenu\">\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">folder</i>\n          <div class=\"pop-up-row-name\">\n            <span>Projects</span>\n            <span class=\"pop-up-num\">{{tempUser.projects.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\">\n          <i class=\"material-icons\">people</i>\n          <div class=\"pop-up-row-name\">\n            <span>Users</span>\n            <span class=\"pop-up-num\">{{tempUser.users.length}}</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = false\">visibility_off</i>\n          <div class=\"pop-up-row-name\">\n            <span>Deactivate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"tempUser.active || !canEdit\" (click)=\"deactivate()\">\n          <i class=\"material-icons\" (click)=\"tempUser.active = true\">visibility</i>\n          <div class=\"pop-up-row-name\">\n            <span>Activate</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\">\n          <i class=\"material-icons\">lock</i>\n          <div class=\"pop-up-row-name\">\n            <span>Change password</span>\n          </div>\n        </div>\n        <div class=\"pop-up-item\" [hidden]=\"!canEdit\" (click)=\"delete()\">\n          <i class=\"material-icons\">delete</i>\n          <div class=\"pop-up-row-name\">\n            <span>Delete</span>\n          </div>\n        </div>\n      </div>\n    </div>\n    <span class=\"user-card-created-date\">Created: {{tempUser.created | date: 'dd.MM.yyyy' }}</span>\n  </div>\n  <div class=\"user-card-body\">\n    <div class=\"item-photo\">\n      <label class=\"photo\" [class.curs-dis]=\"!canEdit\" [ngStyle]=\"{'background-image': 'url(' + tempUser.avatar + ')'}\">\n        <input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\">\n        <i class=\"material-icons\" [hidden]=\"tempUser.avatar\">crop_original</i>\n      </label>\n      <div class=\"photo-ctrl\" [hidden]=\"!canEdit\">\n        <label>Upload<input type=\"file\" capture=\"camera\" accept=\"image/*\" (change)=\"loadPhoto($event)\"></label>\n        <span (click)=\"removePhoto()\">Remove</span>\n      </div>\n    </div>\n    <form class=\"item-form\" #editViewForm=\"ngForm\" >\n      <div class=\"input-wrap\">\n        <input type=\"email\" name=\"email\" [class.no-changable]=\"!canEdit\" placeholder=\"Email\" #email=\"ngModel\" [class.input-error]=\"email.invalid && (email.touched || submitted)\"  [(ngModel)]=\"tempUser.email\" [readonly]=\"!canEdit\" [pattern]=\"userService.config.PATTERNS.EMAIL\"  maxlength=\"20\" required>\n        <label  [class.full-op]=\"email.invalid && (email.touched|| submitted)\">This input requires an email value!</label>\n      </div>\n      <div class=\"input-wrap\">\n        <input type=\"text\" name=\"firstname\"[class.no-changable]=\"!canEdit\" #firstName=\"ngModel\" [class.input-error]=\"firstName.invalid && (firstName.touched || submitted)\"  placeholder=\"First name\" [(ngModel)]=\"tempUser.firstName\"  [readonly]=\"!canEdit\" maxlength=\"20\" required>\n        <label [class.full-op]=\"firstName.invalid && (firstName.touched || submitted)\">This input requires a value!</label>\n      </div>\n\n      <div class=\"input-wrap\">\n        <input type=\"text\" name=\"secondname\" [class.no-changable]=\"!canEdit\" #secondName=\"ngModel\" [class.input-error]=\"secondName.invalid && (secondName.touched || submitted)\" placeholder=\"Last name\" [(ngModel)]=\"tempUser.secondName\" [readonly]=\"!canEdit\"  maxlength=\"20\" required>\n        <label [class.full-op]=\"secondName.invalid && (secondName.touched || submitted)\">This input requires a value!</label>\n      </div>\n\n      <div *ngIf=\"User._id === user._id && canEdit\">\n        <div class=\"input-wrap\">\n          <input type=\"password\" name=\"oldPassword\"  #oldPassword=\"ngModel\"   placeholder=\"Old Password\" [(ngModel)]=\"tempUser.oldPassword\"  maxlength=\"20\" [required]=\"!!tempUser.password\" [class.input-error]=\"oldPassword.invalid && (oldPassword.touched  || submitted)\"  >\n          <label [class.full-op]=\"oldPassword.invalid && (oldPassword.touched || submitted)\">This input requires a value!</label>\n        </div>\n        <div class=\"input-wrap\">\n          <input type=\"password\" name=\"psw1\"  #psw1=\"ngModel\"   placeholder=\"New Password\" [(ngModel)]=\"tempUser.password\"  maxlength=\"20\" [required]=\"!!tempUser.psw2 || !!tempUser.oldPassword\" [class.input-error]=\"psw1.invalid && (psw1.touched  || submitted)\"  >\n          <label [class.full-op]=\"psw1.invalid && (psw1.touched || submitted)\">This input requires a value!</label>\n        </div>\n        <div class=\"input-wrap\">\n          <input type=\"password\"  name=\"psw2\"  #psw2=\"ngModel\"   placeholder=\"Repeat Password\" [(ngModel)]=\"tempUser.psw2\"  maxlength=\"20\" [required]=\"!!tempUser.password\" [class.input-error]=\"(psw2.invalid||psw1.invalid||( tempUser.password && tempUser.psw2 &&tempUser.psw2 != tempUser.password)) && (psw2.touched || submitted )\" >\n          <label [class.full-op]=\"psw2.invalid && ( submitted || psw2.touched) \">This input requires a value!</label>\n          <label [class.full-op]=\"(!!tempUser.password ||!!tempUser.psw2) && tempUser.password != tempUser.psw2 && (psw2.touched || submitted)&&!psw2.invalid \">Passwords didn`t match </label>\n        </div>\n      </div>\n    </form>\n  </div>\n</div>\n<div class=\"user-card-foot\" [hidden]=\"!canEdit\">\n  <span class=\"user-ft-l false-btn\" (click)=\"reset()\">Reset</span>\n  <span class=\"user-ft-r true-btn\" (click)=\"changeUser(editViewForm.invalid)\">save changes</span>\n</div>"
 
 /***/ }),
 
 /***/ 867:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/logo.png\" alt=\"\">\n</div>\n<div class=\"login-form\">\n  <label class=\"login-text\">Log in:</label>\n  <form class=\"item-form\" #editViewForm=\"ngForm\"  (keydown)=\"keyDown($event,editViewForm.invalid)\"  >\n    <div class=\"input-wrap\">\n      <input id=\"login-name\" name=\"login\" #email=\"ngModel\" [class.input-error]=\"email.invalid && (email.touched || submitted)\" type=\"email\" [(ngModel)]=\"user.email\"   [pattern]=\"config.PATTERNS.EMAIL\"  maxlength=\"20\" placeholder=\"Username / email\" required>\n      <label for=\"login-name\" [class.full-op]=\"email.invalid && (email.touched|| submitted)\">This input requires a value!</label>\n    </div>\n    <div class=\"input-wrap\">\n      <input id=\"login-pass\" name=\"usrPsw\" #password =\"ngModel\"  [class.input-error]=\"password.invalid && (password.touched|| submitted)\" type=\"password\" [(ngModel)]=\"user.password\"  maxlength=\"15\" placeholder=\"Password\" required>\n      <label for=\"login-pass\" [class.full-op]=\"password.invalid && (password.touched || submitted)\">This input requires a value!</label>\n    </div>\n  </form>\n  <div class=\"log-in\">\n    <div class=\"chkbx-wrap\">\n      <div id=\"remember-int\" (click)=\"remember = !remember\">\n        <i class=\"material-icons\" [hidden]=\"!remember\">done</i>\n      </div>\n      <label for=\"remember-int\" (click)=\"remember = !remember\">Remember password  </label>\n    </div>\n    <span class=\"true-btn\" (click)=\"logIn(editViewForm.invalid)\">ACCEPT</span>\n  </div>\n</div>"
+module.exports = "<main class=\"row\">\n    <div class=\"user-list-wrap col-md-4\">\n\n        <div class=\"user-list\">\n            <div class=\"slimscroll-wrap\" slimScroll width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\"\n                 size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n                <div class=\"user-list-item\" [class.deactive]=\"!user.active\"\n                     [class.selected-user]=\"selectedUser === user\"\n                     *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\n                    <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\"\n                         (click)=\"selectUser(user, false)\">\n                        <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n                    </div>\n                    <div class=\"user-list-item-wrap\">\n                        <div class=\"user-name-wrap\">\n                            <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n                                <span>{{user.firstName}} {{user.secondName}}<span *ngIf=\"user._id == User._id\">you</span></span>\n                                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n                                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n                            </div>\n                            <br>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role == userService.config.USER_ROLE.SUPER\">Super user</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.ADMIN\">Client-admin</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.USER\">Client-user</span>\n                        </div>\n                        <div class=\"user-ctrl\">\n                            <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n\n                            <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"settingsUser === user\">\n                                <i class=\"material-icons\" (click)=\"settingsUser = user\"\n                                   (window:mouseup)=\"settingsUser = null\">more_vert</i>\n\n                                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\n                                    <div class=\"pop-up-item\"   (click)=\"deactivateUser(user)\">\n                                        <i class=\"material-icons\"\n                                           [innerHTML]=\"!user.active?'visibility':'visibility_off'\"></i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span [innerHTML]=\"!user.active?'Activate':'Deactivate' \"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\n                                        <i class=\"material-icons\">delete</i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span>Delete</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" (click)=\"createNewUser = true\"\n             *ngIf=\"!createNewUser && User.role !=  userService.config.USER_ROLE.USER\">\n            <i class=\"material-icons\">add</i>\n\n            <div class=\"span-hover\">\n                <span>Add a new user</span>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"user-card-wrap col-md-8\">\n        <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" *ngIf=\"selectedUser\"></app-user-card>\n        <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n    </div>\n\n</main>\n\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\"></app-new-user>\n"
 
 /***/ }),
 
 /***/ 868:
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n    <app-project-webgl-view *ngIf=\"selected\" [selected]=\"selected\"></app-project-webgl-view>\n</div>"
+module.exports = "<div class=\"login-logo\">\n  <img src=\"../../../assets/img/logo.png\" alt=\"\">\n</div>\n<div class=\"login-form\">\n  <label class=\"login-text\">Log in:</label>\n  <form class=\"item-form\" #editViewForm=\"ngForm\"  (keydown)=\"keyDown($event,editViewForm.invalid)\"  >\n    <div class=\"input-wrap\">\n      <input id=\"login-name\" name=\"login\" #email=\"ngModel\" [class.input-error]=\"email.invalid && (email.touched || submitted)\" type=\"email\" [(ngModel)]=\"user.email\"   [pattern]=\"config.PATTERNS.EMAIL\"  maxlength=\"20\" placeholder=\"Username / email\" required>\n      <label for=\"login-name\" [class.full-op]=\"email.invalid && (email.touched|| submitted)\">This input requires a value!</label>\n    </div>\n    <div class=\"input-wrap\">\n      <input id=\"login-pass\" name=\"usrPsw\" #password =\"ngModel\"  [class.input-error]=\"password.invalid && (password.touched|| submitted)\" type=\"password\" [(ngModel)]=\"user.password\"  maxlength=\"15\" placeholder=\"Password\" required>\n      <label for=\"login-pass\" [class.full-op]=\"password.invalid && (password.touched || submitted)\">This input requires a value!</label>\n    </div>\n  </form>\n  <div class=\"log-in\">\n    <div class=\"chkbx-wrap\">\n      <div id=\"remember-int\" (click)=\"remember = !remember\">\n        <i class=\"material-icons\" [hidden]=\"!remember\">done</i>\n      </div>\n      <label for=\"remember-int\" (click)=\"remember = !remember\">Remember password  </label>\n    </div>\n    <span class=\"true-btn\" (click)=\"logIn(editViewForm.invalid)\">ACCEPT</span>\n  </div>\n</div>"
 
 /***/ }),
 
 /***/ 869:
 /***/ (function(module, exports) {
 
-module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.CONTROLS\" #tempLoad></app-template-loader>\n<link rel=\"stylesheet\" *ngIf=\"cssUrl\" [href]=\"cssUrl\">\n<div class=\"oxi-controls-container\" [innerHTML]=\"htmlTemplate\"></div>"
+module.exports = "<div>\n    <app-project-webgl-view *ngIf=\"selected\" [selected]=\"selected\"></app-project-webgl-view>\n</div>"
 
 /***/ }),
 
 /***/ 870:
 /***/ (function(module, exports) {
 
-module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.PRELOADER\" #tempLoad></app-template-loader>\n<!--<link rel=\"stylesheet\" *ngIf=\"cssUrl\" [href]=\"cssUrl\">-->\n<div class=\"preloader-back\" #preloader>\n    <img *ngIf = \"preview\" [src]=\"preview\" class=\"preview\" (load)=\"onPreloaderLoad()\" #prevImg>\n    <div class=\"preloader-data\" [innerHTML]=\"htmlTemplate\"></div>\n</div>\n"
+module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.CONTROLS\" #tempLoad></app-template-loader>\n<link rel=\"stylesheet\" *ngIf=\"cssUrl\" [href]=\"cssUrl\">\n<div class=\"oxi-controls-container\" [innerHTML]=\"htmlTemplate\"></div>"
 
 /***/ }),
 
 /***/ 871:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"svg-view\" #parentEl>\n    <canvas #dataEl></canvas>\n    <div *ngIf=\"selected.canEdit\">\n\n        <div [ngClass] =\"{'active': showHelpZoomer}\" class=\"zoomer-c\" >\n            <div class=\"left-border\"></div>\n            <div class=\"top-border\"></div>\n            <canvas #zoomer></canvas>\n        </div>\n\n        <canvas  class=\"buffer-c\"   #bufferC></canvas>\n\n        <div class=\"help-info\">\n            <h1 (mouseover)=\"help=!help\" (mouseout)=\"help=!help\">?</h1>\n                <p class=\"help-text\" [ngClass]=\"{'active':help}\">Press ESC or right click to finish draw, mouse in - to hover draw area, mouse right down - to switch to draw mode, mouse left down - to attach loaded area, hold SHIFT and click on polygon to make group from polygons</p>\n        </div>\n        <div class=\"log-info\">\n            <p *ngIf=\"mode == MODES.ADD || mode == MODES.EDIT\">drawing/edit mode</p>\n            <p *ngIf=\"mode == MODES.NO\">selecting mode</p>\n            <p *ngIf=\"mode == MODES.GROUP\">grouping mode</p>\n        </div>\n    </div>\n</div>"
+module.exports = "<app-template-loader  [model]=\"modelData\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.PRELOADER\" #tempLoad></app-template-loader>\n<!--<link rel=\"stylesheet\" *ngIf=\"cssUrl\" [href]=\"cssUrl\">-->\n<div class=\"preloader-back\" #preloader>\n    <img *ngIf = \"preview\" [src]=\"preview\" class=\"preview\" (load)=\"onPreloaderLoad()\" #prevImg>\n    <div class=\"preloader-data\" [innerHTML]=\"htmlTemplate\"></div>\n</div>\n"
 
 /***/ }),
 
 /***/ 872:
 /***/ (function(module, exports) {
 
-module.exports = "<app-template-loader [model]=\"modelData\" *ngIf=\"dataSourceLoaded\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.TOOLTIP\"\n                     #tempLoad></app-template-loader>\n<div [ngClass]=\"ProjClasses.PROJ_TOOLTIP_CONTAINER\" *ngIf=\"dataElem\">\n    <div class=\"cos-info\" *ngFor=\"let item of dataElem; let i = index\"\n         [ngClass]=\"{'active' : item.active,'act':item.tooltip.active,'tooltip-align-left':item.alignLeft,'tooltip-align-right':item.alignRight,'tooltip-align-bottom':item.alignBottom}\" (selectstart)=\"onEventPrevent($event)\"\n         [style.left]=\"item._left\"\n         [style.top]=\"item._top\" (click)=\"item.onclick()\">\n        <template dynamic-component\n                  [componentContext]=\"{tooltip: item.tooltip}\"\n                  [componentTemplate]='item.html'></template>\n    </div>\n</div>\n"
+module.exports = "<div class=\"svg-view\" #parentEl>\n    <canvas #dataEl></canvas>\n    <div *ngIf=\"selected.canEdit\">\n\n        <div [ngClass] =\"{'active': showHelpZoomer}\" class=\"zoomer-c\" >\n            <div class=\"left-border\"></div>\n            <div class=\"top-border\"></div>\n            <canvas #zoomer></canvas>\n        </div>\n\n        <canvas  class=\"buffer-c\"   #bufferC></canvas>\n\n        <div class=\"help-info\">\n            <h1 (mouseover)=\"help=!help\" (mouseout)=\"help=!help\">?</h1>\n                <p class=\"help-text\" [ngClass]=\"{'active':help}\">Press ESC or right click to finish draw, mouse in - to hover draw area, mouse right down - to switch to draw mode, mouse left down - to attach loaded area, hold SHIFT and click on polygon to make group from polygons</p>\n        </div>\n        <div class=\"log-info\">\n            <p *ngIf=\"mode == MODES.ADD || mode == MODES.EDIT\">drawing/edit mode</p>\n            <p *ngIf=\"mode == MODES.NO\">selecting mode</p>\n            <p *ngIf=\"mode == MODES.GROUP\">grouping mode</p>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 873:
+/***/ (function(module, exports) {
+
+module.exports = "<app-template-loader [model]=\"modelData\" *ngIf=\"dataSourceLoaded\" [templateType]=\"DIR.PROJECT_TEMPLATE._TYPE.TOOLTIP\"\n                     #tempLoad></app-template-loader>\n<div [ngClass]=\"ProjClasses.PROJ_TOOLTIP_CONTAINER\" *ngIf=\"dataElem\">\n    <div class=\"cos-info\" *ngFor=\"let item of dataElem; let i = index\"\n         [ngClass]=\"{'active' : item.active,'act':item.tooltip.active,'tooltip-align-left':item.alignLeft,'tooltip-align-right':item.alignRight,'tooltip-align-bottom':item.alignBottom}\" (selectstart)=\"onEventPrevent($event)\"\n         [style.left]=\"item._left\"\n         [style.top]=\"item._top\" (click)=\"item.onclick()\">\n        <template dynamic-component\n                  [componentContext]=\"{tooltip: item.tooltip}\"\n                  [componentTemplate]='item.html'></template>\n    </div>\n</div>\n"
+
+/***/ }),
+
+/***/ 874:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"webgl-view\" [ngClass]=\"{'preview':selected && !selected.canEdit}\" #renderParent>\n    <div class=\"center-container THREEJS\" [ngClass]=\"{'svg-active':selected.camera.isSVG}\" #projCnt>\n        <app-project-preloader [preview]=\"preview\" [modelData]=\"selected.parent\" #preloader ></app-project-preloader>\n        <app-project-webgl-controls [modelData]=\"selected.parent\" #preControls></app-project-webgl-controls>\n        <app-project-webgl-tooltip  [modelData]=\"selected.parent\" #preToolTip ></app-project-webgl-tooltip>\n        <app-project-svg-view  [selected]=\"selected\" [glapp]=\"_self\" *ngIf=\"selected.camera.isSVG && app.allLoad\" #svgEl></app-project-svg-view>\n    </div>\n</div>\n"
@@ -8350,7 +8387,7 @@ module.exports = "<div class=\"webgl-view\" [ngClass]=\"{'preview':selected && !
 /***/ 923:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(593);
+module.exports = __webpack_require__(594);
 
 
 /***/ })

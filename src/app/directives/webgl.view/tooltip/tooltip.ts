@@ -2,7 +2,7 @@ import {Input,ViewChild,Component,OnInit,ViewContainerRef} from '@angular/core';
 import * as ENTITY from '../../../entities/entities';
 import {AbstractChangesView} from '../abstract.changes.view';
 import {AuthService} from "../../../services/services";
-
+import 'rxjs/add/operator/map';
 declare var alertify:any;
 
 @Component({
@@ -11,42 +11,62 @@ declare var alertify:any;
     styleUrls: ['./tooltip.sass']
 })
 export class WTooltip extends AbstractChangesView implements OnInit {
+    @ViewChild('scripts')
+        scripts;
+    HTMLElement;
     @Input() isEdit:any;
     dataSource:any;
-    private dataSourceLoaded:boolean=false;
+    private dataSourceLoaded:boolean = false;
     private parser:any;
-      dataElem:any;
+    dataElem:any;
 
-    constructor(private authService:AuthService,public vc: ViewContainerRef) {
+    constructor(private authService:AuthService, public vc:ViewContainerRef) {
         super();
 
-        this.dataElem=[];
+        this.dataElem = [];
     }
 
     ngOnInit() {
 
-        if (!this.modelData || !this.modelData.dataSource)return console.error('Data source is not defined');
-        this.authService.get(this.modelData.dataSource, {hasAuthHeader: false}).subscribe((res:any)=> {
-            try {
-                this.dataSource = JSON.parse(res._body);
-                this.dataSourceLoaded = true;
-            } catch (e) {
-                console.error(e);
-            } finally {
-                setTimeout(()=>{
-                    if (this.htmlTemplate) {
+        let onfinish = ()=> {
+            setTimeout(()=> {
+                if (this.htmlTemplate) {
+                    this.initParser();
+                } else {
+                    this.callbacks.push(()=> {
                         this.initParser();
-                    } else {
-                        this.callbacks.push(()=> {
-                            this.initParser();
-                        });
-                    }
+                    });
+                }
 
-                    super.ngOnInit();
-                });
+                super.ngOnInit();
+            });
+        }
+        if (!this.modelData || !this.modelData.dataSource) {
+            onfinish();
+            return console.error('Data source is not defined');
+        }
+        this.authService.post("public/model/remote", {dataUrl: this.modelData.dataSource}, {
+            hasAuthHeader: false,
+            isCross: true
+        }).subscribe((res:any)=> {
+            console.log(res);
+            res = res.json();
+            if (res.status) {
+                try {
+                    this.dataSource = JSON.parse(res.data);
+                    this.dataSourceLoaded = true;
+                } catch (e) {
+                    console.error(e);
+                } finally {
+                    onfinish();
+                }
+            } else {
+                onfinish();
             }
+
         }, (res)=> {
-            console.error("Incorrect dataSource: "+res && res.message ? res.message : res);
+            onfinish();
+            console.error("Incorrect dataSource: " + res && res.message ? res.message : res);
         });
     }
 
@@ -54,25 +74,27 @@ export class WTooltip extends AbstractChangesView implements OnInit {
         event.preventDefault();
         return false;
     }
-    private initParser(value:any=null) {
+
+    private initParser(value:any = null) {
         let val = value;
         try {
-            if(!value)val= this.htmlTemplate;
+            if (!value)val = this.htmlTemplate;
             this.parser = this.authService.safeJS(val);
-            let _data= this.parser({dataSource: this.dataSource});
-            _data.forEach((el,i)=>{
-                if (this.isEdit && i==0) {
+            let _data = this.parser({dataSource: this.dataSource});
+            _data.forEach((el, i)=> {
+                if (this.isEdit && i == 0) {
                     el.tooltip.active = el.active = true;
                     el._left = 160 + 'px';
                     el._top = 220 + 'px';
                 }
-                el.onclick = ()=>{};
+                el.onclick = ()=> {
+                };
             });
 
             this.dataElem = _data;
 
         } catch (e) {
-            console.error("Incorrect dataSource: "+e)
+            console.error("Incorrect dataSource: " + e)
         }
     }
 
