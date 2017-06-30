@@ -2984,6 +2984,7 @@ var OxiAPP = (function () {
                     main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
                 _this.camera.updateProjectionMatrix();
                 _this.dataSave();
+                _this.controls.targetObj.position.copy(_this.controls.target);
                 _this._animation.play();
             });
         /*-----------set config data----------*/
@@ -3031,8 +3032,11 @@ var OxiAPP = (function () {
             _this.camera.updateProjectionMatrix();
             _this._animation.play();
         };
-        if (this.main.selected.canEdit)
-            this.scene.add(new THREE.AxisHelper(500));
+        if (this.main.selected.canEdit) {
+            this.scene.add(new THREE.AxisHelper(600));
+            this.controls.targetObj = new THREE.AxisHelper(200);
+            this.scene.add(this.controls.targetObj);
+        }
         //let light = new THREE.DirectionalLight(0xffffff);
         //light.position.set(1, 1, 1);
         //this.scene.add(light);

@@ -156,6 +156,7 @@ class OxiAPP {
             if (main.selected.camera.frameState[main.selected.currentItem])main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
             this.camera.updateProjectionMatrix();
             this.dataSave();
+            this.controls.targetObj.position.copy( this.controls.target);
             this._animation.play();
         });
         /*-----------set config data----------*/
@@ -205,7 +206,11 @@ class OxiAPP {
             this._animation.play();
 
         };
-        if (this.main.selected.canEdit)this.scene.add(new THREE.AxisHelper(500));
+        if (this.main.selected.canEdit){
+            this.scene.add(new THREE.AxisHelper(600));
+            this.controls.targetObj = new THREE.AxisHelper(200);
+            this.scene.add( this.controls.targetObj);
+        }
 
         //let light = new THREE.DirectionalLight(0xffffff);
         //light.position.set(1, 1, 1);
