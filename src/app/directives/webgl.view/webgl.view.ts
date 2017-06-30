@@ -555,12 +555,13 @@ class OxiAPP {
 
         } else {
             this.model.add(object);
+            let _mat = new THREE.MeshBasicMaterial({
+                transparent: true,
+                opacity: this.main.selected.camera.opacity
+            }),meshType = 'Mesh'
             object.traverse((child)=> {
-                if (child.type == 'Mesh') {
-                    child.material = new THREE.MeshBasicMaterial({
-                        transparent: true,
-                        opacity: this.main.selected.camera.opacity
-                    });
+                if (child.type == meshType) {
+                    child.material = _mat;
                     child.material.opacity0 = child.material.opacity;
                     child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                     child.renderOrder = 0;
@@ -575,17 +576,29 @@ class OxiAPP {
                             break;
                         }
                     }
-                    for (let i = 0, sources = this.main.preToolTip.dataElem; sources && i < sources.length; i++) {
-                        if (sources[i]._id == child.name || (child._data && sources[i]._id == child._data.dataSourceId)) {
-                            child._dataSource = sources[i];
-                            break;
-                        }
-                    }
+                    let matches = [ child._data ? child._data.dataSourceId : child.name];
+                    this.dataSourceMatch(this.main.preToolTip.dataElem, matches, (source)=> {
+                        child._dataSource = source;
+                    });
                 }
             });
         }
-
         this.main.selected.cash.model = object;
+    }
+
+    dataSourceMatch(_data, matches:Array<string> = null, onSucces:Function = null) {
+        for (let i = 0, sources = _data; sources && i < sources.length; i++) {
+            if (!matches) {
+                onSucces(sources[i]);
+                if (sources[i].children) {
+                    this.dataSourceMatch(sources[i].children, matches, onSucces);
+                }
+            } else if (matches.indexOf(sources[i]._id) > -1 ) {
+                return onSucces(sources[i]);
+            } else if (sources[i].children) {
+                this.dataSourceMatch(sources[i].children, matches, onSucces);
+            }
+        }
     }
 
     updateInfoHTML() {
@@ -1563,8 +1576,10 @@ class OxiControls {
         }
         let _mesh = elem,
             _dialog:any = new Dialog({title: 'Attach data source'});
-        for (let i = 0, _a = this.app.main.preToolTip.dataElem; i < _a.length; i++) {
-            if (_a[i].active)continue;
+
+        this.app.dataSourceMatch(this.app.main.preToolTip.dataElem, null, (source)=> {
+
+            if (source.active)return;
             let d = document.createElement('div'),
                 spa = document.createElement('span'),
                 btn = document.createElement('button');
@@ -1572,21 +1587,21 @@ class OxiControls {
                 if (_mesh._dataSource) {
                     _mesh._dataSource.active = false;
                 }
-                _mesh._data.dataSourceId = _a[i]._id;
-                _mesh._dataSource = _a[i];
+                _mesh._data.dataSourceId = source._id;
+                _mesh._dataSource = source;
                 _mesh._tooltip = new OxiToolTip(_mesh, this.app);
                 _dialog.anyWay();
                 this.app._animation.play();
             });
             btn.innerText = 'Attach';
-            spa.innerText = _a[i]._id;
+            spa.innerText = source._id;
             d.className = "my-dialog";
             d.appendChild(spa);
             d.appendChild(btn);
 
             _dialog.body.appendChild(d);
+        });
 
-        }
         return true;
     }
 }
@@ -1627,6 +1642,7 @@ export class OxiToolTip {
         main.infoHTML.push(this);
         if (mesh._dataSource) {
             mesh._dataSource.active = true;
+            if(mesh._data)mesh._data.dataSourceId = mesh._dataSource._id;
         } else {
 
             tooltip = document.createElement('div');
@@ -1673,7 +1689,7 @@ export class OxiToolTip {
         mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
         if (!main.main.selected.canEdit) {
             if (mesh._data || mesh._dataSource) {
-                if (mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
+                if (mesh._data && mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
                     mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
                 }
                 mesh.click = ()=> {
@@ -1753,7 +1769,7 @@ export class OxiToolTip {
     }
 
     private checkPst(x, y, dataSource = null) {
-        if(!this.main._slider) return '';
+        if (!this.main._slider) return '';
         let minX = 0, minY = 0, maxX = this.main._slider._W(), maxY = this.main._slider._H(), tootlipWidth = 280, tooltipHeight = 160,
             classes = [' tooltip-align-left', ' tooltip-align-right', ' tooltip-align-bottom'];
         if (dataSource) dataSource.alignLeft = dataSource.alignRight = dataSource.alignBottom = false;

@@ -138,6 +138,23 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="inp-form col-lg-4">
+                            <label>Target X</label>
+                            <input name="tar" type="number" (change)="modelStructure.glApp.updateData('cameraTarget')"
+                                   [(ngModel)]="modelStructure.glApp.controls.target.x">
+                        </div>
+                        <div class="inp-form col-lg-4">
+                            <label>Target Y</label>
+                            <input name="tarY" type="number" (change)="modelStructure.glApp.updateData('cameraTarget')"
+                                   [(ngModel)]="modelStructure.glApp.controls.target.y">
+                        </div>
+                        <div class="inp-form col-lg-4">
+                            <label>Target Z</label>
+                            <input name="tarZ" type="number" (change)="modelStructure.glApp.updateData('cameraTarget')"
+                                   [(ngModel)]="modelStructure.glApp.controls.target.z">
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="inp-form col-lg-6">
                             <label>Fov</label>
                             <input name="fov" type="number" step="0.01" (change)="modelStructure.glApp.updateData()"

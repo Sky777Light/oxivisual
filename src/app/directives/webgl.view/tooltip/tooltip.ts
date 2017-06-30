@@ -49,7 +49,6 @@ export class WTooltip extends AbstractChangesView implements OnInit {
             hasAuthHeader: false,
             isCross: true
         }).subscribe((res:any)=> {
-            console.log(res);
             res = res.json();
             if (res.status) {
                 try {
@@ -81,14 +80,13 @@ export class WTooltip extends AbstractChangesView implements OnInit {
             if (!value)val = this.htmlTemplate;
             this.parser = this.authService.safeJS(val);
             let _data = this.parser({dataSource: this.dataSource});
-            _data.forEach((el, i)=> {
+            _data.forEach((el:any, i)=> {
                 if (this.isEdit && i == 0) {
                     el.tooltip.active = el.active = true;
                     el._left = 160 + 'px';
                     el._top = 220 + 'px';
                 }
-                el.onclick = ()=> {
-                };
+                el.onclick = ()=> {};
             });
 
             this.dataElem = _data;
