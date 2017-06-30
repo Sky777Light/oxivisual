@@ -2944,6 +2944,7 @@ var OxiAPP = (function () {
         var _this = this;
         this.isMobile = false;
         this.imgType = '';
+        this._angle = 10;
         this.screen = {};
         this._files = {};
         this.allLoad = false;
@@ -3023,7 +3024,7 @@ var OxiAPP = (function () {
             }
             else {
                 var quaternion = new THREE.Quaternion();
-                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
+                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * _this._angle) * Math.PI / 180);
                 _this.camera.position.copy(_this.camera.positionDef.clone().applyQuaternion(quaternion));
                 if (_cm.target)
                     _this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
@@ -3277,7 +3278,7 @@ var OxiAPP = (function () {
             if (_selected.currentItem == i)
                 continue;
             var quaternion = new THREE.Quaternion(), _cmC = _c.clone();
-            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * 10) * Math.PI / 180);
+            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * this._angle) * Math.PI / 180);
             _cmC.applyQuaternion(quaternion);
             _selected.camera.frameState[i] = {
                 x: _cmC.x,
@@ -3522,6 +3523,9 @@ var OxiAPP = (function () {
     OxiAPP.prototype.onEventPrevent = function (event) {
         event.preventDefault();
         return false;
+    };
+    OxiAPP.prototype.updateAngle = function (frames) {
+        this._angle = 360 / frames;
     };
     OxiAPP.prototype.render = function () {
         if (Pace.running)
@@ -3777,6 +3781,7 @@ var OxiSlider = (function () {
         if (!app.main.selected.images || !app.main.selected.images.length)
             return;
         imgPagination.className = 'img-pagination';
+        this.app.updateAngle(app.main.selected.images.length);
         var _loop_1 = function(i) {
             var img = document.createElement('img'), curImg = app.main.selected.images[i];
             if (typeof curImg == 'string') {

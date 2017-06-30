@@ -101,6 +101,7 @@ class OxiAPP {
     model:any;
     camera:any;
     gl:any;
+    _angle:number = 10;
     screen:any = {};
     main:WebglView;
     loader:any;
@@ -196,7 +197,7 @@ class OxiAPP {
                 if (_p.target)this.controls.target.set(_p.target.x, _p.target.y, _p.target.z);
             } else {
                 let quaternion = new THREE.Quaternion();
-                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * 10) * Math.PI / 180);
+                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), (angle * this._angle) * Math.PI / 180);
                 this.camera.position.copy(this.camera.positionDef.clone().applyQuaternion(quaternion));
                 if (_cm.target)this.controls.target.set(_cm.target.x, _cm.target.y, _cm.target.z);
             }
@@ -485,7 +486,7 @@ class OxiAPP {
 
             let quaternion = new THREE.Quaternion(),
                 _cmC = _c.clone();
-            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * 10) * Math.PI / 180);
+            quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), ((i - _selected.currentItem) * this._angle) * Math.PI / 180);
             _cmC.applyQuaternion(quaternion);
             _selected.camera.frameState[i] = {
                 x: _cmC.x,
@@ -742,6 +743,9 @@ class OxiAPP {
         return false;
     }
 
+    updateAngle(frames){
+        this._angle = 360 / frames;
+    }
     render() {
         if (Pace.running) return;
         this.updateInfoHTML();
@@ -1060,6 +1064,8 @@ class OxiSlider {
 
         if (!app.main.selected.images || !app.main.selected.images.length) return;
         imgPagination.className = 'img-pagination';
+
+        this.app.updateAngle(app.main.selected.images.length);
         for (let i in app.main.selected.images) {
             let img = document.createElement('img'),
                 curImg = app.main.selected.images[i];
