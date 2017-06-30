@@ -561,7 +561,7 @@ class OxiAPP {
             }),meshType = 'Mesh'
             object.traverse((child)=> {
                 if (child.type == meshType) {
-                    child.material = _mat;
+                    child.material = _mat.clone();
                     child.material.opacity0 = child.material.opacity;
                     child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                     child.renderOrder = 0;

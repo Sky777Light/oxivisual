@@ -3354,7 +3354,7 @@ var OxiAPP = (function () {
             }), meshType_1 = 'Mesh';
             object.traverse(function (child) {
                 if (child.type == meshType_1) {
-                    child.material = _mat_1;
+                    child.material = _mat_1.clone();
                     child.material.opacity0 = child.material.opacity;
                     child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                     child.renderOrder = 0;
