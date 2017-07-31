@@ -1696,6 +1696,7 @@ var SVGView = (function () {
         this.COLORS = ['#00ff00', "#ff0000"];
         this.MODES = {};
         this.defOpacity = 0.1;
+        this.idCb = Date.now();
         this.MODES = { EDIT: 1, ADD: 2, NORMAL: 3, NO: 4 };
         this.MOUSE = { DOWN: 1, UP: 2, CUR: 0, GROUP: 3 };
         this.mode = this.MODES.ADD;
@@ -1703,6 +1704,14 @@ var SVGView = (function () {
         this.curImgBufferZoom = new Image();
     }
     SVGView.prototype.ngOnInit = function () {
+        this.glapp.app._animation.add(function () { TWEEN.update(); }, this.idCb);
+    };
+    SVGView.prototype.ngOnDestroy = function () {
+        //delete this.selected.svgDestination;
+        this.eventsData.forEach(function (el) {
+            fabric.util.removeListener(el.cntx, el.name, el.callback);
+        });
+        this.glapp.app._animation.remove(this.idCb);
     };
     SVGView.prototype.reload = function (data) {
         var _this = this;
@@ -1773,7 +1782,7 @@ var SVGView = (function () {
             _clone: function (isHard) {
                 var _this = this;
                 this.setCoords();
-                var clone = ['fill', 'hoverFill', 'defFill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'], _pn = this.get('_points');
+                var clone = ['fill', 'hoverFill', 'defFill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects', '_border'], _pn = this.get('_points');
                 var _points = isHard || this._hasUpdate ? this.get('points') : this.get('points').map(function (el, d) {
                     var _pC = new fabric.Point((el.x) * _this.scaleX0, (el.y) * _this.scaleY0);
                     //this.left = this.top = 0;
@@ -1787,6 +1796,23 @@ var SVGView = (function () {
                 newObj.perPixelTargetFind = !_self.selected.canEdit;
                 if (!newObj.id)
                     newObj.set('id', __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].randomstr());
+                if (!_self.canEdit) {
+                    var lineWidth_1 = 6;
+                    var lineBorder = new fabric.Polyline(_points.map(function (el) { el.x += lineWidth_1 / 2.5; el.y += lineWidth_1 / 2.5; return el; }).concat(_points[0]), {
+                        left: newObj.left,
+                        top: newObj.top,
+                        stroke: 'yellow',
+                        opacity: 0,
+                        strokeWidth: lineWidth_1,
+                        strokeLineCap: 'round',
+                        strokeLineJoin: 'round',
+                        fill: null
+                    });
+                    if (newObj._border)
+                        _self.fabricJS.remove(lineBorder);
+                    _self.fabricJS._add(lineBorder);
+                    newObj._border = lineBorder;
+                }
                 if (this._parent) {
                     this._parent._add(newObj);
                 }
@@ -1889,6 +1915,7 @@ var SVGView = (function () {
                 }
             };
             _this.shapes = {
+                POLYLINE: 'polyline',
                 GROUP: 'group',
                 POLYGON: 'polygon',
                 CIRCLE: 'circle'
@@ -2177,24 +2204,12 @@ var SVGView = (function () {
             fabricJS.on('mouse:over', function (e) {
                 if (_this.mode != _this.MODES.NO || !e.target)
                     return;
-                e.target.opacity = 1;
-                if (e.target._objects)
-                    e.target._objects.forEach(function (el) {
-                        el.opacity = 1;
-                    });
-                _this.currentShape = e.target;
-                _this.fabricJS.renderAll();
+                _this.fadeSelected(e.target, true);
             });
             fabricJS.on('mouse:out', function (e) {
                 if (_this.mode != _this.MODES.NO || !e.target)
                     return;
-                _this.currentShape = null;
-                e.target.opacity = _this.selected.camera.opacity;
-                if (e.target._objects)
-                    e.target._objects.forEach(function (el) {
-                        el.opacity = e.target.opacity;
-                    });
-                _this.fabricJS.renderAll();
+                _this.fadeSelected(e.target);
             });
         }
         else {
@@ -2202,44 +2217,14 @@ var SVGView = (function () {
                 if (!e.target)
                     return;
                 _this.intersectingCheck(e.target, function () {
-                    _this.currentShape = e.target;
-                    if (e.target.type == _this.shapes.GROUP) {
-                        var isGreen_1 = e.target._data && e.target._data.areas && e.target._data.areas.length || e.target._dataSource;
-                        e.target._objects.forEach(function (el) {
-                            if (!el.defFill)
-                                el.defFill = el.fill;
-                            if (!el.hoverFill)
-                                el.hoverFill = isGreen_1 ? _self.COLORS[0] : _self.COLORS[1];
-                            el.set('fill', el.hoverFill);
-                            el.set('opacity', _this.selected.camera.opacity);
-                        });
-                    }
-                    else {
-                        e.target.set('fill', e.target.hoverFill).set('opacity', _this.selected.camera.opacity).setCoords();
-                    }
-                    if (e.target._tooltip)
-                        e.target._tooltip.show();
-                    _this.fabricJS.renderAll();
+                    _this.fadeSelected(e.target, true);
                 });
             });
             fabricJS.on('mouse:out', function (e) {
                 if (!e.target)
                     return;
                 _this.intersectingCheck(e.target, function () {
-                    _this.currentShape = null;
-                    if (e.target._tooltip)
-                        e.target._tooltip.show(false);
-                    if (e.target.type == _this.shapes.GROUP) {
-                        e.target._objects.forEach(function (el) {
-                            el.set('fill', el.defFill);
-                            el.set('opacity', _self.defOpacity);
-                        });
-                    }
-                    else {
-                        e.target.set('fill', e.target.defFill);
-                        e.target.set('opacity', _self.defOpacity);
-                    }
-                    _this.fabricJS.renderAll();
+                    _this.fadeSelected(e.target);
                 });
             });
             fabricJS.on('mouse:up', function (e) {
@@ -2265,6 +2250,74 @@ var SVGView = (function () {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
+    };
+    SVGView.prototype.fadeSelected = function (target, show) {
+        var _this = this;
+        if (show === void 0) { show = false; }
+        if (target.type == this.shapes.POLYLINE)
+            return;
+        if (target.tween) {
+            if (target.tween.show == show) {
+                return;
+            }
+            else {
+                target.tween.stop();
+            }
+        }
+        var endO = (show) ? 1 : this.selected.camera.opacity || this.defOpacity, lineDeltaOpacity = 0.2;
+        var isGreen = target._data && target._data.areas && target._data.areas.length || target._dataSource;
+        target.tween = new TWEEN.Tween({ delta: 0 }).to({ delta: 1 }, 400)
+            .onStart(function () {
+            if (!_this.canEdit && target._tooltip)
+                target._tooltip.display(show);
+        })
+            .onUpdate(function (delta) {
+            var _opct = endO === 1 ? delta * endO : (1 - endO * delta), lineOpacity = endO === 1 ? delta : (1 - delta);
+            if (_this.canEdit) {
+                target.opacity = _opct;
+                if (target._objects)
+                    for (var i = 0; i < target._objects.length; i++) {
+                        target._objects[i].opacity = _opct;
+                    }
+            }
+            else {
+                if (target.type == _this.shapes.GROUP) {
+                    for (var i = 0; i < target._objects.length; i++) {
+                        var el = target._objects[i];
+                        if (!el.defFill)
+                            el.defFill = el.fill;
+                        if (!el.hoverFill)
+                            el.hoverFill = isGreen ? _this.COLORS[0] : _this.COLORS[1];
+                        el.set('fill', el.hoverFill);
+                        el.set('opacity', _opct);
+                        if (el._border)
+                            el._border.set('opacity', lineOpacity);
+                    }
+                }
+                else {
+                    target.set('fill', target.hoverFill).set('opacity', _opct);
+                    if (target._border)
+                        target._border.set('opacity', lineOpacity);
+                }
+            }
+            _this.fabricJS.renderAll();
+        })
+            .onComplete(function () {
+            if (!show) {
+                if (target.type == _this.shapes.GROUP) {
+                    for (var i = 0; i < target._objects.length; i++) {
+                        target._objects[i].set('fill', target._objects[i].defFill);
+                    }
+                }
+                else {
+                    target.set('fill', target.defFill);
+                }
+            }
+            _this.fabricJS.renderAll();
+            _this.currentShape = show ? null : target;
+        })
+            .start();
+        target.tween.show = show;
     };
     SVGView.prototype.toSVG = function () {
         var svgName = 'models.svg';
@@ -2381,12 +2434,6 @@ var SVGView = (function () {
                 }
             }
         }
-    };
-    SVGView.prototype.ngOnDestroy = function () {
-        //delete this.selected.svgDestination;
-        this.eventsData.forEach(function (el) {
-            fabric.util.removeListener(el.cntx, el.name, el.callback);
-        });
     };
     SVGView.prototype.componentToHex = function (c) {
         var hex = c.toString(16);
@@ -2769,7 +2816,7 @@ var WTooltip = (function (_super) {
             if (!value)
                 val = this.htmlTemplate;
             this.parser = this.authService.safeJS(val);
-            var _data = this.parser({ dataSource: this.dataSource });
+            var _data = this.parser instanceof Function ? this.parser({ dataSource: this.dataSource }) : [];
             _data.forEach(function (el, i) {
                 if (_this.isEdit && i == 0) {
                     el.tooltip.active = el.active = true;
@@ -2955,10 +3002,15 @@ var OxiAPP = (function () {
             CONTROLS: 'app-project-webgl-controls',
             PRELOADER: 'app-project-preloader'
         };
+        this.HOVER_COLOR = {
+            ACTIVE: new THREE.Color(0.1, 1.0, 0.1),
+            SOLGHT: new THREE.Color(1.0, 0.0, 0.1),
+        };
         this.main = main;
         this.isMobile = this.deviceCheck();
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
+        this.model.inters = [];
         this.scene.add(this.model);
         var renderer = this.gl = new THREE.WebGLRenderer({
             antialias: true, alpha: true,
@@ -3356,14 +3408,16 @@ var OxiAPP = (function () {
             var _mat_1 = new THREE.MeshBasicMaterial({
                 transparent: true,
                 opacity: this.main.selected.camera.opacity
-            }), meshType_1 = 'Mesh';
+            }), _mat1 = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.0, 1.0, 0.0), transparent: true, opacity: 0 }), meshType_1 = 'Mesh', _elms = [];
+            this.model.inters = [];
             object.traverse(function (child) {
                 if (child.type == meshType_1) {
                     child.material = _mat_1.clone();
                     child.material.opacity0 = child.material.opacity;
                     child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                     child.renderOrder = 0;
-                    //child.name = child.name.toLowerCase();
+                    child.category = -1111;
+                    _this.model.inters.push(child);
                     if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
                         child.material.color = new THREE.Color(0, 0, 0);
                     }
@@ -3531,6 +3585,7 @@ var OxiAPP = (function () {
         if (Pace.running)
             return;
         this.updateInfoHTML();
+        TWEEN.update();
         this.gl.render(this.scene, this.camera);
     };
     return OxiAPP;
@@ -3599,10 +3654,6 @@ var OxiEvents = (function () {
     };
     OxiEvents.prototype.onMouseMove = function (ev) {
         var _this = this;
-        if (this.lastInter) {
-            this.main._projControls.show(ev, false);
-            this.lastInter = null;
-        }
         if (this.canEdit) {
             this.onSelected(ev, function (inter) {
                 _this.main._projControls.show({ x: -1500 }, true, false);
@@ -3610,6 +3661,10 @@ var OxiEvents = (function () {
         }
         else {
             if (this.mouse.down) {
+                if (this.lastInter) {
+                    this.main._projControls.show(ev, false);
+                    this.lastInter = null;
+                }
                 if (!this.lastEv)
                     return this.lastEv = ev;
                 if (Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove) {
@@ -3628,13 +3683,27 @@ var OxiEvents = (function () {
             }
         }
     };
-    OxiEvents.prototype.onSelected = function (ev, callback) {
+    OxiEvents.prototype.onSelected = function (ev, callback, onNoteSame) {
+        var _this = this;
+        if (onNoteSame === void 0) { onNoteSame = function (last) {
+            if (_this.lastInter) {
+                if (last && last.object.uuid == _this.lastInter.object.uuid) {
+                }
+                else {
+                    _this.main._projControls.show(ev, false);
+                }
+            }
+            _this.lastInter = last;
+        }; }
         var intersectList = this.inter(ev);
         if (intersectList && intersectList[0]) {
             if (intersectList[0].object.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE))
                 return;
-            this.lastInter = intersectList[0];
+            onNoteSame(intersectList[0]);
             callback(intersectList[0]);
+        }
+        else {
+            onNoteSame(null);
         }
     };
     OxiEvents.prototype.onMouseDown = function (ev) {
@@ -3658,7 +3727,7 @@ var OxiEvents = (function () {
     };
     OxiEvents.prototype.inter = function (ev, arg) {
         if (arg === void 0) { arg = null; }
-        var _self = this, elements = arg && arg.childs ? arg.childs : [_self.main.model];
+        var _self = this, elements = arg && arg.childs ? arg.childs : _self.main.model.inters;
         if (this.mouse.down || !elements)
             return false;
         if (arg && arg.position) {
@@ -3717,15 +3786,22 @@ var OxiAnimation = (function () {
             _this.animate();
         }, 100);
     }
-    OxiAnimation.prototype.add = function (callback) {
-        this.animations.push(callback);
+    OxiAnimation.prototype.add = function (callback, id) {
+        if (id === void 0) { id = Date.now(); }
+        this.animations.push({ cb: callback, id: id });
+    };
+    OxiAnimation.prototype.remove = function (id) {
+        for (var i = 0; i < this.animations.length; i++) {
+            if (this.animations[i].id == id)
+                return this.animations.splice(i, 1);
+        }
     };
     OxiAnimation.prototype.animate = function () {
         var _this = this;
         if (!this.app.gl.domElement.width || this.isStop)
             return;
         for (var i = 0; i < this.animations.length; i++) {
-            this.animations[i]();
+            this.animations[i].cb();
         }
         if (this.canAnimate) {
             this.canAnimate = this.lastUpdate > Date.now();
@@ -4228,8 +4304,7 @@ var OxiControls = (function () {
             if (!_inter.material.defColor)
                 _inter.material.defColor = _inter.material.color.clone();
             if (!_inter.material.onSelectColor)
-                _inter.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
-            _inter.material.color = flag ? _inter.material.onSelectColor : _inter.material.defColor;
+                _inter.material.onSelectColor = this.app.HOVER_COLOR.ACTIVE;
             _inter.material.transparent = fl;
             _inter.renderOrder = flag ? 100 : 0;
         }
@@ -4359,11 +4434,11 @@ var OxiToolTip = (function () {
         this.mesh = mesh;
         if (!mesh.material)
             mesh.material = {};
-        mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
+        mesh.material.onSelectColor = main.HOVER_COLOR.SOLGHT;
         if (!main.main.selected.canEdit) {
             if (mesh._data || mesh._dataSource) {
                 if (mesh._data && mesh._data._category == __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_DESTINATION.ModelStructure) {
-                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
                 }
                 mesh.click = function () {
                     switch (mesh._data._category) {
@@ -4404,7 +4479,10 @@ var OxiToolTip = (function () {
                     mesh._dataSource.onclick = mesh.click;
                     if (tooltip)
                         tooltip.addEventListener(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].EVENTS_NAME.CLICK, function (e) { return mesh.click(); });
-                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
+                }
+                else if (!mesh._dataSource.sold) {
+                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
                 }
             }
         }
@@ -4413,9 +4491,36 @@ var OxiToolTip = (function () {
         this.update();
     }
     OxiToolTip.prototype.show = function (show) {
+        var _this = this;
         if (show === void 0) { show = true; }
         //this.mesh.material.visible = show || this.canEdit;
-        this.mesh.material.opacity = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        if (this.mesh.tween) {
+            if (this.mesh.tween.show == show) {
+                return;
+            }
+            else {
+                this.mesh.tween.stop();
+            }
+        }
+        var endO = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        this.mesh.tween = new TWEEN.Tween({ delta: 0 }).to({ delta: 1 }, 400)
+            .onStart(function () {
+            if (show)
+                _this.mesh.material.color = _this.mesh.material.onSelectColor;
+        })
+            .onUpdate(function (delta) {
+            _this.mesh.material.opacity = endO === 0 ? (1 - delta) : delta * endO;
+        })
+            .onComplete(function () {
+            _this.mesh.material.color = show ? _this.mesh.material.onSelectColor : _this.mesh.material.defColor;
+            //this.mesh.tween.stop();
+            //this.mesh.tween = null;
+        })
+            .start();
+        this.mesh.tween.show = show;
+        this.display(show);
+    };
+    OxiToolTip.prototype.display = function (show) {
         if (this.tooltip) {
             this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
             this.tooltipCnt.className = show ? 'cos-tooltip active' : 'cos-tooltip';

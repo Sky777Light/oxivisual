@@ -11,6 +11,7 @@ import {SVGView} from './svg.draw/svg.draw';
 declare var alertify:any;
 declare var THREE:any;
 declare var Pace:any;
+declare var TWEEN:any;
 
 @Injectable()
 export class WebGLService {
@@ -123,6 +124,10 @@ class OxiAPP {
         CONTROLS: 'app-project-webgl-controls',
         PRELOADER: 'app-project-preloader'
     };
+    HOVER_COLOR:any={
+        ACTIVE : new THREE.Color(0.1,1.0,0.1),
+        SOLGHT : new THREE.Color(1.0,0.0,0.1),
+    }
 
     constructor(main:WebglView) {
         this.main = main;
@@ -130,6 +135,7 @@ class OxiAPP {
 
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
+        this.model.inters=[];
         this.scene.add(this.model);
         let renderer = this.gl = new THREE.WebGLRenderer({
                 antialias: true, alpha: true,
@@ -564,14 +570,19 @@ class OxiAPP {
             let _mat = new THREE.MeshBasicMaterial({
                 transparent: true,
                 opacity: this.main.selected.camera.opacity
-            }),meshType = 'Mesh'
+            }),
+              _mat1 = new THREE.MeshBasicMaterial({color:new THREE.Color(1.0,1.0,0.0),transparent:true,opacity:0}),
+                meshType = 'Mesh',
+                _elms =[];
+            this.model.inters=[];
             object.traverse((child)=> {
                 if (child.type == meshType) {
                     child.material = _mat.clone();
                     child.material.opacity0 = child.material.opacity;
                     child.material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
                     child.renderOrder = 0;
-                    //child.name = child.name.toLowerCase();
+                    child.category = -1111;
+                    this.model.inters.push(child);
                     if (child.name.match(ENTITY.Config.IGNORE)) {
                         child.material.color = new THREE.Color(0, 0, 0);
                     }
@@ -749,6 +760,7 @@ class OxiAPP {
     render() {
         if (Pace.running) return;
         this.updateInfoHTML();
+        TWEEN.update();
         this.gl.render(this.scene, this.camera);
     }
 
@@ -841,18 +853,20 @@ class OxiEvents {
 
     private onMouseMove(ev:any) {
 
-        if (this.lastInter) {
-            this.main._projControls.show(ev, false);
-            this.lastInter = null;
-        }
+
+
 
         if (this.canEdit) {
             this.onSelected(ev, (inter)=> {
                 this.main._projControls.show({x: -1500}, true, false);
-            });
+            } );
         } else {
 
             if (this.mouse.down) {
+                if(this.lastInter) {
+                    this.main._projControls.show(ev, false);
+                    this.lastInter = null;
+                }
                 if (!this.lastEv)return this.lastEv = ev;
                 if (
                     Math.abs(ev.clientX - this.lastEv.clientX) > this.pathOnMove
@@ -873,12 +887,24 @@ class OxiEvents {
 
     }
 
-    private onSelected(ev, callback) {
+    private onSelected(ev, callback,onNoteSame=(last)=>{
+        if(this.lastInter){
+            if ( last && last.object.uuid ==this.lastInter.object.uuid) {
+
+            }else{
+                this.main._projControls.show(ev, false);
+            }
+        }
+
+        this.lastInter = last;
+    }) {
         let intersectList = this.inter(ev);
         if (intersectList && intersectList[0]) {
             if (intersectList[0].object.name.match(ENTITY.Config.IGNORE))return;
-            this.lastInter = intersectList[0];
+            onNoteSame(intersectList[0]);
             callback(intersectList[0]);
+        }else{
+            onNoteSame(null);
         }
     }
 
@@ -906,7 +932,7 @@ class OxiEvents {
 
     inter(ev:any, arg:any = null) {
         var _self = this,
-            elements = arg && arg.childs ? arg.childs : [_self.main.model];
+            elements = arg && arg.childs ? arg.childs : _self.main.model.inters;
 
         if (this.mouse.down || !elements)return false;
         if (arg && arg.position) {
@@ -970,7 +996,7 @@ class OxiAnimation {
     private lastUpdate:number = Date.now();
     private maxTimeUpdate:number = 1500;
     private id:number = Date.now();
-    private animations:Array<Function> = [];
+    private animations:Array<any> = [];
     private lastIter:number = 0;
     private app:OxiAPP;
 
@@ -984,14 +1010,19 @@ class OxiAnimation {
 
     }
 
-    add(callback:Function) {
-        this.animations.push(callback);
+    add(callback:Function,id:number=Date.now()) {
+        this.animations.push({cb:callback,id:id});
+    }
+    remove(id){
+        for (let i = 0; i < this.animations.length; i++) {
+            if(this.animations[i].id == id)return this.animations.splice(i,1);
+        }
     }
 
     animate() {
         if (!this.app.gl.domElement.width || this.isStop)return;
         for (let i = 0; i < this.animations.length; i++) {
-            this.animations[i]();
+            this.animations[i].cb();
         }
 
         if (this.canAnimate) {
@@ -1542,8 +1573,8 @@ class OxiControls {
             _inter = _inter.object;
             if (_inter._toolTip)_inter._toolTip.show(flag);
             if (!_inter.material.defColor)_inter.material.defColor = _inter.material.color.clone();
-            if (!_inter.material.onSelectColor)_inter.material.onSelectColor = new THREE.Color(61 / 250, 131 / 250, 203 / 250);
-            _inter.material.color = flag ? _inter.material.onSelectColor : _inter.material.defColor;
+            if (!_inter.material.onSelectColor)_inter.material.onSelectColor = this.app.HOVER_COLOR.ACTIVE;
+
             _inter.material.transparent = fl;
             _inter.renderOrder = flag ? 100 : 0;
             //if (this.app._events.lastInter.object._data && flag)return;
@@ -1697,11 +1728,11 @@ export class OxiToolTip {
         }
         this.mesh = mesh;
         if (!mesh.material)mesh.material = {};
-        mesh.material.onSelectColor = new THREE.Color(1.0, 0.1, 0.1);
+        mesh.material.onSelectColor = main.HOVER_COLOR.SOLGHT;
         if (!main.main.selected.canEdit) {
             if (mesh._data || mesh._dataSource) {
                 if (mesh._data && mesh._data._category == ENTITY.Config.PROJ_DESTINATION.ModelStructure) {
-                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
                 }
                 mesh.click = ()=> {
                     switch (mesh._data._category) {
@@ -1740,7 +1771,9 @@ export class OxiToolTip {
                     }
                     mesh._dataSource.onclick = mesh.click;
                     if (tooltip)tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
-                    mesh.material.onSelectColor = new THREE.Color(0.1, 1.0, 0.1);
+                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
+                }else if(!mesh._dataSource.sold){
+                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
                 }
             }
         }
@@ -1752,8 +1785,33 @@ export class OxiToolTip {
 
     show(show:boolean = true) {
         //this.mesh.material.visible = show || this.canEdit;
-        this.mesh.material.opacity = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        if(this.mesh.tween ){
+            if( this.mesh.tween.show == show){
+                return;
+            }else{
+                this.mesh.tween.stop();
+            }
+        }
+        let endO =    (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        this.mesh.tween = new TWEEN.Tween({delta: 0}).to({delta: 1}, 400)
+            //.easing(TWEEN.Easing.Exponential.In)
+            .onStart(()=> {
+                if(show)this.mesh.material.color =  this.mesh.material.onSelectColor ;
+            })
+            .onUpdate(  (delta)=> {
+                this.mesh.material.opacity =endO===0? (1-delta):delta*endO;
+            })
+            .onComplete(() => {
+                this.mesh.material.color = show ? this.mesh.material.onSelectColor : this.mesh.material.defColor;
+                //this.mesh.tween.stop();
+                //this.mesh.tween = null;
+            })
+            .start();
+        this.mesh.tween.show = show;
 
+       this.display(show);
+    }
+    display(show){
         if (this.tooltip) {
 
             this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';

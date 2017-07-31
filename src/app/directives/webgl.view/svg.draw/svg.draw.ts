@@ -5,6 +5,7 @@ import 'fabric';
 
 declare var fabric:any;
 declare var alertify:any;
+declare var TWEEN:any;
 
 @Component({
     selector: 'app-project-svg-view',
@@ -34,6 +35,7 @@ export class SVGView implements OnInit,AfterViewInit {
     private upperC:any;
     private defOpacity:number = 0.1;
     private eventsData:any;
+    private idCb:number=Date.now();
     shapes:any;
     settings:any;
     fabricJS:any;
@@ -54,10 +56,19 @@ export class SVGView implements OnInit,AfterViewInit {
         this.mode = this.MODES.ADD;
         this.curImgZoom = new Image();
         this.curImgBufferZoom = new Image();
+
     }
 
 
     ngOnInit() {
+        this.glapp.app._animation.add(()=>{TWEEN.update()},this.idCb);
+    }
+    ngOnDestroy() {
+        //delete this.selected.svgDestination;
+        this.eventsData.forEach((el)=> {
+            fabric.util.removeListener(el.cntx, el.name, el.callback);
+        });
+        this.glapp.app._animation.remove(this.idCb);
     }
 
     reload(data) {
@@ -124,7 +135,7 @@ export class SVGView implements OnInit,AfterViewInit {
             _clone: function (isHard) {
 
                 this.setCoords();
-                let clone = ['fill', 'hoverFill', 'defFill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects'],
+                let clone = ['fill', 'hoverFill', 'defFill', 'opacity', '_hasUpdate', 'scaleX0', 'scaleY0', 'points0', 'id', '_tooltip', '_data', '_dataSource', 'material', 'click', 'selectable', '_objects','_border'],
                     _pn = this.get('_points');
                 let _points = isHard || this._hasUpdate ? this.get('points') : this.get('points').map((el, d)=> {
                         let _pC = new fabric.Point((el.x) * this.scaleX0, (el.y) * this.scaleY0);
@@ -141,6 +152,22 @@ export class SVGView implements OnInit,AfterViewInit {
                 newObj.perPixelTargetFind = !_self.selected.canEdit;
                 if (!newObj.id)newObj.set('id', ENTITY.Config.randomstr());
 
+                if(!_self.canEdit){
+                    let lineWidth = 6;
+                    let lineBorder = new fabric.Polyline(_points.map((el)=>{el.x +=lineWidth/2.5;el.y +=lineWidth/2.5;return el;}).concat(_points[0]), {
+                        left: newObj.left,
+                        top: newObj.top,
+                        stroke: 'yellow',
+                        opacity:0,
+                        strokeWidth: lineWidth,
+                        strokeLineCap:'round',
+                        strokeLineJoin:'round',
+                        fill:null
+                    });
+                    if( newObj._border ) _self.fabricJS.remove(lineBorder);
+                    _self.fabricJS._add(lineBorder);
+                    newObj._border = lineBorder;
+                }
 
                 if (this._parent) {
                     this._parent._add(newObj);
@@ -221,7 +248,6 @@ export class SVGView implements OnInit,AfterViewInit {
                 return this.add(e);
             }
         });
-
         setTimeout(()=> {
             this.fabricJS = new fabric.Canvas(this.dataEl.nativeElement, {
                 selection: true, borderColor: 'red',
@@ -253,6 +279,7 @@ export class SVGView implements OnInit,AfterViewInit {
                 }
             };
             this.shapes = {
+                POLYLINE: 'polyline',
                 GROUP: 'group',
                 POLYGON: 'polygon',
                 CIRCLE: 'circle'
@@ -350,6 +377,7 @@ export class SVGView implements OnInit,AfterViewInit {
                     }
                 }
                 orCloner.opacity = _self.canEdit ? _self.selected.camera.opacity : _self.defOpacity;
+
                 if (!orCloner.defFill) orCloner.defFill = orCloner.fill;
                 if (!orCloner.hoverFill)orCloner.hoverFill = cloneCur._data && cloneCur._data.areas && cloneCur._data.areas.length || cloneCur._dataSource ? _self.COLORS[0] : _self.COLORS[1];
                 if (!cloneCur._tooltip && cloneCur.type == _self.shapes.POLYGON)cloneCur._tooltip = new OxiToolTip(cloneCur, _self.glapp.app);
@@ -557,59 +585,24 @@ export class SVGView implements OnInit,AfterViewInit {
              });*/
             fabricJS.on('mouse:over', (e)=> {
                 if (this.mode != this.MODES.NO || !e.target)return;
-                e.target.opacity = 1;
-                if (e.target._objects)e.target._objects.forEach((el:any)=> {
-                    el.opacity = 1
-                });
-                this.currentShape = e.target;
-                this.fabricJS.renderAll();
+                this.fadeSelected(e.target,true);
             });
             fabricJS.on('mouse:out', (e)=> {
                 if (this.mode != this.MODES.NO || !e.target)return;
-                this.currentShape = null;
-                e.target.opacity = this.selected.camera.opacity;
-                if (e.target._objects)e.target._objects.forEach((el:any)=> {
-                    el.opacity = e.target.opacity
-                });
-                this.fabricJS.renderAll();
+                this.fadeSelected(e.target);
+
             });
         } else {
             fabricJS.on('mouse:over', (e)=> {
                 if (!e.target)return;
                 this.intersectingCheck(e.target, ()=> {
-                    this.currentShape = e.target;
-                    if (e.target.type == this.shapes.GROUP) {
-                        let isGreen = e.target._data && e.target._data.areas && e.target._data.areas.length || e.target._dataSource;
-                        e.target._objects.forEach((el)=> {
-                            if (!el.defFill)el.defFill = el.fill;
-                            if (!el.hoverFill)el.hoverFill = isGreen ? _self.COLORS[0] : _self.COLORS[1];
-                            el.set('fill', el.hoverFill);
-                            el.set('opacity', this.selected.camera.opacity);
-                        });
-
-                    } else {
-                        e.target.set('fill', e.target.hoverFill).set('opacity', this.selected.camera.opacity).setCoords();
-                    }
-                    if (e.target._tooltip)e.target._tooltip.show();
-                    this.fabricJS.renderAll();
+                    this.fadeSelected(e.target,true);
                 });
             });
             fabricJS.on('mouse:out', (e)=> {
                 if (!e.target)return;
                 this.intersectingCheck(e.target, ()=> {
-                    this.currentShape = null;
-                    if (e.target._tooltip)e.target._tooltip.show(false);
-
-                    if (e.target.type == this.shapes.GROUP) {
-                        e.target._objects.forEach((el)=> {
-                            el.set('fill', el.defFill);
-                            el.set('opacity', _self.defOpacity);
-                        })
-                    } else {
-                        e.target.set('fill', e.target.defFill);
-                        e.target.set('opacity', _self.defOpacity);
-                    }
-                    this.fabricJS.renderAll();
+                    this.fadeSelected(e.target);
                 });
 
             });
@@ -636,6 +629,67 @@ export class SVGView implements OnInit,AfterViewInit {
         return color;
     }
 
+    private fadeSelected(target:any,show:boolean=false){
+        if(target.type == this.shapes.POLYLINE)return;
+        if(target.tween ){
+            if( target.tween.show == show){
+                return;
+            }else{
+                target.tween.stop();
+            }
+        }
+        let endO =    (show ) ? 1:this.selected.camera.opacity||this.defOpacity,
+            lineDeltaOpacity = 0.2;
+        let isGreen =  target._data && target._data.areas &&  target._data.areas.length ||  target._dataSource;
+        target.tween = new TWEEN.Tween({delta: 0}).to({delta: 1}, 400)
+            //.easing(TWEEN.Easing.Exponential.In)
+            .onStart(()=> {
+                if (!this.canEdit && target._tooltip) target._tooltip.display(show);
+            })
+            .onUpdate(  (delta)=> {
+                let _opct = endO===1?delta*endO :(1-endO*delta),
+                    lineOpacity = endO===1? delta :(1-delta);
+                if(this.canEdit){
+                    target.opacity =_opct;
+                    if (target._objects)for(let i =0;i<target._objects.length;i++){
+                        target._objects[i].opacity = _opct;
+                    }
+                }else{
+                    if ( target.type == this.shapes.GROUP) {
+                        for(let i =0;i<target._objects.length;i++){
+                            let el = target._objects[i];
+                            if (!el.defFill)el.defFill = el.fill;
+                            if (!el.hoverFill)el.hoverFill = isGreen ? this.COLORS[0] : this.COLORS[1];
+                            el.set('fill', el.hoverFill);
+                            el.set('opacity', _opct);
+                            if(el._border)el._border.set('opacity',lineOpacity);
+                        }
+
+                    } else {
+                         target.set('fill',  target.hoverFill).set('opacity', _opct) ;
+                        if(target._border)target._border.set('opacity',lineOpacity);
+                    }
+                }
+                this.fabricJS.renderAll();
+
+            })
+            .onComplete(() => {
+                if(!show){
+                    if ( target.type == this.shapes.GROUP) {
+                        for(let i =0;i<target._objects.length;i++){
+                            target._objects[i].set('fill',  target._objects[i].defFill);
+                        }
+                    } else {
+                        target.set('fill',  target.defFill);
+                    }
+                }
+                this.fabricJS.renderAll();
+                this.currentShape = show?null:target;
+            })
+            .start();
+        target.tween.show = show;
+
+    }
     private toSVG() {
         let svgName = 'models.svg';
         this.selected.svgDestination = [{
@@ -766,13 +820,6 @@ export class SVGView implements OnInit,AfterViewInit {
 
 
         }
-    }
-
-    ngOnDestroy() {
-        //delete this.selected.svgDestination;
-        this.eventsData.forEach((el)=> {
-            fabric.util.removeListener(el.cntx, el.name, el.callback);
-        });
     }
 
     private  componentToHex(c) {

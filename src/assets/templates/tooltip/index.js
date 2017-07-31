@@ -2,8 +2,8 @@ function my_parser(options) {
     if (!options || !(options.dataSource instanceof Array))return null;
     var dataSource = options.dataSource,
         assignElements = (options.assignElements || [
-            [['info_box_header', 'bygg'], ['info_box_title', 'beskrivelse'], ['info_label_title', 'antallrom'], ['id', 'name']],
-            ['tooltip.header', 'tooltip.body.title', 'label.title', '_id']
+            [['info_box_header', 'bygg'], ['info_box_title', 'beskrivelse'], ['info_label_title', 'antallrom'], ['id', 'name'],['sold']],
+            ['tooltip.header', 'tooltip.body.title', 'label.title', '_id','sold']
         ]),
         res = {},
         noClone = [],

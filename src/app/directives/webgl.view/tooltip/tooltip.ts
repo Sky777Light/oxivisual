@@ -79,7 +79,8 @@ export class WTooltip extends AbstractChangesView implements OnInit {
         try {
             if (!value)val = this.htmlTemplate;
             this.parser = this.authService.safeJS(val);
-            let _data = this.parser({dataSource: this.dataSource});
+
+            let _data = this.parser instanceof Function?this.parser({dataSource: this.dataSource}):[];
             _data.forEach((el:any, i)=> {
                 if (this.isEdit && i == 0) {
                     el.tooltip.active = el.active = true;
