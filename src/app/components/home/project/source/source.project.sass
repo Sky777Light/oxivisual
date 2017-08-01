@@ -86,7 +86,7 @@
         margin: 0
     .tabs-header
       transition: width,display,0.1s
-      border-bottom: 2px solid  $bottom-bor
+      border-bottom: 1px solid  $bottom-bor
       &:nth-child(1)
         width: 305px
       &:nth-child(2)
@@ -98,7 +98,7 @@
         .temp-header
           display: table-cell
           padding: 20px
-          border-bottom: 2px solid $bottom-bor
+          border-bottom: 1px solid $bottom-bor
         .tabs-body
           display: table-row
           .body-data
@@ -132,11 +132,14 @@
         background: $back-alter
   .model-config
     .inp-form
+      label
+        color: #7E7E7E
       input
         width: 100%
         background: $white
         font-size: 22px
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13)
+        border: 1px solid #EBEBEB
+        border-radius: 2px
         &[disabled]
           background: $input-color
 

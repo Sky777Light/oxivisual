@@ -12,8 +12,8 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
       state('out', style({
         transform: 'translate3d(-100%, 0, 0)'
       })),
-      transition('in => out', animate('400ms ease-in-out')),
-      transition('out => in', animate('400ms ease-in-out'))
+      transition('in => out', animate('300ms ease-in-out')),
+      transition('out => in', animate('300ms ease-in-out'))
     ]),
   ]
 })

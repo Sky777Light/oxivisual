@@ -9,16 +9,23 @@ tree
       border: none
       border-left: 1px solid $deactive
       margin-left: 15px
+      width: 300px
       &.first
         border: none
         margin: 0
+        OVERFLOW: auto
+        max-height: 80vh
+        .clear
+          clear: both
       .left-arrow
-        position: absolute
         width: 15px
         border-top: 1px solid $deactive
         transform: translate(-100%,-33px)
+        float: left
+        &.end
+          width: 16px
         &.end-list
-          transform: translate(-17px, -65px) rotate(0deg)
+          transform: translate(-33px, -65px) rotate(0deg)
           width: 0
           border-right: 1px solid $deactive
           height: 33px

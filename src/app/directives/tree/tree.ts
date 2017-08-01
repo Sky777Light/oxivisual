@@ -19,17 +19,19 @@ import {
           <i class="material-icons set-icon" (click)="showPopUp = !showPopUp">more_vert</i>
         </div>
 	</div>
-	<div *ngIf="!arrow" class="left-arrow"></div>
+	<div *ngIf="!arrow" class="left-arrow" [ngClass]="lastE?'end':''"></div>
+
 	<div *ngIf="!arrow && lastE" class="left-arrow end-list"></div>
 
+
 	    <div class="pop-up bla-t" [hidden]="!showPopUp" *ngIf="showPopUp" (click)="showPopUp = !showPopUp" (window:mouseup)="showPopUp = !showPopUp">
-            <div class="pop-up-item"  *ngIf="item.areas && item.areas.length" (click)="IsExpanded = !IsExpanded">
+            <div class="pop-up-item"  *ngIf="item.areas && item.areas.length" (mousedown)="onWindowMouseDown($event,1)">
               <i class="material-icons">visibility</i>
               <div class="pop-up-row-name">
                 <span>{{IsExpanded?"Hide":"Expand"}}</span>
               </div>
             </div>
-            <div class="pop-up-item" (click)="delete()" *ngIf="item._id != parent._id">
+            <div class="pop-up-item" (mousedown)="onWindowMouseDown($event,2)" *ngIf="item._id != parent._id">
               <i class="material-icons">delete</i>
               <div class="pop-up-row-name">
                 <span>Delete</span>
@@ -41,6 +43,7 @@ import {
               <node  *ngFor="let subitem of item.areas; let itT = index"  [_iter]="index" [classes]="subitem._category===0?'js-code':subitem._category==1?'link':'' " [mainParent]="mainParent"  [parent]="item" [item]="subitem" [lastE]="itT == item.areas.length-1"></node>
         </ul>
 	</div>
+	<div *ngIf="!arrow"  class="clear"></div>
 </li>
 `
 })
@@ -54,12 +57,17 @@ export class MNode {
     @Input() _iter:number;
     @ViewChild("iconBtn")
         iconBtn:HTMLElement;
-    IsExpanded:boolean = true;
-    toggle() {
-        this.IsExpanded = !this.IsExpanded;
-
-
+    IsExpanded:boolean = true
+    onWindowMouseDown(ev,type){
+        ev.preventDefault();
+        if(type ==1){
+            this.IsExpanded = !this.IsExpanded;
+        }else{
+            this.delete();
+        }
+        return false;
     }
+
     select(item){
         this.mainParent.select(item);
     }
@@ -74,7 +82,7 @@ export class MNode {
 @Component({
     selector: 'tree',
     template: `
-<ul class="tree-webgl-view first" slimScroll  >
+<ul class="tree-webgl-view first"    >
 		<node *ngFor="let item of data" [arrow]="1" [classes]="'main'" [parent]="item" [mainParent]="mainParent" [item]="item"     ></node>
 </ul>
 `,
