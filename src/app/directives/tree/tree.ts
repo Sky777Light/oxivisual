@@ -21,7 +21,7 @@ import {
 	</div>
 	<div *ngIf="!arrow" class="left-arrow" [ngClass]="lastE?'end':''"></div>
 
-	<div *ngIf="!arrow && lastE" class="left-arrow end-list"></div>
+
 
 
 	    <div class="pop-up bla-t" [hidden]="!showPopUp" *ngIf="showPopUp" (click)="showPopUp = !showPopUp" (window:mouseup)="showPopUp = !showPopUp">
@@ -38,6 +38,7 @@ import {
               </div>
             </div>
         </div>
+        <div *ngIf="!arrow && lastE" class="left-arrow end-list"></div>
 	<div *ngIf="IsExpanded">
         <ul *ngIf="item.areas" class="tree-webgl-view">
               <node  *ngFor="let subitem of item.areas; let itT = index"  [_iter]="index" [classes]="subitem._category===0?'js-code':subitem._category==1?'link':'' " [mainParent]="mainParent"  [parent]="item" [item]="subitem" [lastE]="itT == item.areas.length-1"></node>

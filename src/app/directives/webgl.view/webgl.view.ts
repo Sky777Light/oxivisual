@@ -124,9 +124,9 @@ class OxiAPP {
         CONTROLS: 'app-project-webgl-controls',
         PRELOADER: 'app-project-preloader'
     };
-    HOVER_COLOR:any={
-        ACTIVE : new THREE.Color(0.1,1.0,0.1),
-        SOLGHT : new THREE.Color(1.0,0.0,0.1),
+    HOVER_COLOR:any = {
+        ACTIVE: new THREE.Color(0.1, 1.0, 0.1),
+        SOLGHT: new THREE.Color(1.0, 0.0, 0.1),
     }
 
     constructor(main:WebglView) {
@@ -135,7 +135,7 @@ class OxiAPP {
 
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
-        this.model.inters=[];
+        this.model.inters = [];
         this.scene.add(this.model);
         let renderer = this.gl = new THREE.WebGLRenderer({
                 antialias: true, alpha: true,
@@ -163,7 +163,7 @@ class OxiAPP {
             if (main.selected.camera.frameState[main.selected.currentItem])main.selected.camera.frameState[main.selected.currentItem].hasChanges = true;
             this.camera.updateProjectionMatrix();
             this.dataSave();
-            this.controls.targetObj.position.copy( this.controls.target);
+            this.controls.targetObj.position.copy(this.controls.target);
             this._animation.play();
         });
         /*-----------set config data----------*/
@@ -213,10 +213,10 @@ class OxiAPP {
             this._animation.play();
 
         };
-        if (this.main.selected.canEdit){
+        if (this.main.selected.canEdit) {
             this.scene.add(new THREE.AxisHelper(600));
             this.controls.targetObj = new THREE.AxisHelper(200);
-            this.scene.add( this.controls.targetObj);
+            this.scene.add(this.controls.targetObj);
         }
 
         //let light = new THREE.DirectionalLight(0xffffff);
@@ -568,13 +568,17 @@ class OxiAPP {
         } else {
             this.model.add(object);
             let _mat = new THREE.MeshBasicMaterial({
-                transparent: true,
-                opacity: this.main.selected.camera.opacity
-            }),
-              _mat1 = new THREE.MeshBasicMaterial({color:new THREE.Color(1.0,1.0,0.0),transparent:true,opacity:0}),
+                    transparent: true,
+                    opacity: this.main.selected.camera.opacity
+                }),
+                _mat1 = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color(1.0, 1.0, 0.0),
+                    transparent: true,
+                    opacity: 0
+                }),
                 meshType = 'Mesh',
-                _elms =[];
-            this.model.inters=[];
+                _elms = [];
+            this.model.inters = [];
             object.traverse((child)=> {
                 if (child.type == meshType) {
                     child.material = _mat.clone();
@@ -593,7 +597,7 @@ class OxiAPP {
                             break;
                         }
                     }
-                    let matches = [ child._data ? child._data.dataSourceId : child.name];
+                    let matches = [child._data ? child._data.dataSourceId : child.name];
                     this.dataSourceMatch(this.main.preToolTip.dataElem, matches, (source)=> {
                         child._dataSource = source;
                     });
@@ -610,7 +614,7 @@ class OxiAPP {
                 if (sources[i].children) {
                     this.dataSourceMatch(sources[i].children, matches, onSucces);
                 }
-            } else if (matches.indexOf(sources[i]._id) > -1 ) {
+            } else if (matches.indexOf(sources[i]._id) > -1) {
                 return onSucces(sources[i]);
             } else if (sources[i].children) {
                 this.dataSourceMatch(sources[i].children, matches, onSucces);
@@ -754,9 +758,10 @@ class OxiAPP {
         return false;
     }
 
-    updateAngle(frames){
+    updateAngle(frames) {
         this._angle = 360 / frames;
     }
+
     render() {
         if (Pace.running) return;
         this.updateInfoHTML();
@@ -854,16 +859,14 @@ class OxiEvents {
     private onMouseMove(ev:any) {
 
 
-
-
         if (this.canEdit) {
             this.onSelected(ev, (inter)=> {
                 this.main._projControls.show({x: -1500}, true, false);
-            } );
+            });
         } else {
 
             if (this.mouse.down) {
-                if(this.lastInter) {
+                if (this.lastInter) {
                     this.main._projControls.show(ev, false);
                     this.lastInter = null;
                 }
@@ -887,11 +890,11 @@ class OxiEvents {
 
     }
 
-    private onSelected(ev, callback,onNoteSame=(last)=>{
-        if(this.lastInter){
-            if ( last && last.object.uuid ==this.lastInter.object.uuid) {
+    private onSelected(ev, callback, onNoteSame = (last)=> {
+        if (this.lastInter) {
+            if (last && last.object.uuid == this.lastInter.object.uuid) {
 
-            }else{
+            } else {
                 this.main._projControls.show(ev, false);
             }
         }
@@ -903,7 +906,7 @@ class OxiEvents {
             if (intersectList[0].object.name.match(ENTITY.Config.IGNORE))return;
             onNoteSame(intersectList[0]);
             callback(intersectList[0]);
-        }else{
+        } else {
             onNoteSame(null);
         }
     }
@@ -1010,12 +1013,13 @@ class OxiAnimation {
 
     }
 
-    add(callback:Function,id:number=Date.now()) {
-        this.animations.push({cb:callback,id:id});
+    add(callback:Function, id:number = Date.now()) {
+        this.animations.push({cb: callback, id: id});
     }
-    remove(id){
+
+    remove(id) {
         for (let i = 0; i < this.animations.length; i++) {
-            if(this.animations[i].id == id)return this.animations.splice(i,1);
+            if (this.animations[i].id == id)return this.animations.splice(i, 1);
         }
     }
 
@@ -1684,7 +1688,7 @@ export class OxiToolTip {
         main.infoHTML.push(this);
         if (mesh._dataSource) {
             mesh._dataSource.active = true;
-            if(mesh._data)mesh._data.dataSourceId = mesh._dataSource._id;
+            if (mesh._data)mesh._data.dataSourceId = mesh._dataSource._id;
         } else {
 
             tooltip = document.createElement('div');
@@ -1759,21 +1763,20 @@ export class OxiToolTip {
                     }
                 };
                 if (mesh._dataSource) {
+
+                    if (mesh._dataSource.URL && mesh._dataSource.URL.match(ENTITY.Config.PATTERNS.URL)) {
+                        mesh.click = ()=> {
+                            window.open(mesh._dataSource.URL);
+                        }
+                        mesh._dataSource.onclick = mesh.click;
+                        if (tooltip)tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
+                        mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
+                    } else if (!mesh._dataSource.sold) {
+                        mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
+                    }
                     mesh._dataSource.onclick = mesh.click;
                 } else {
                     tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
-                }
-            } else if (mesh._dataSource) {
-
-                if (mesh._dataSource.URL && mesh._dataSource.URL.match(ENTITY.Config.PATTERNS.URL)) {
-                    mesh.click = ()=> {
-                        window.open(mesh._dataSource.URL);
-                    }
-                    mesh._dataSource.onclick = mesh.click;
-                    if (tooltip)tooltip.addEventListener(ENTITY.Config.EVENTS_NAME.CLICK, (e)=>mesh.click());
-                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
-                }else if(!mesh._dataSource.sold){
-                    mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
                 }
             }
         }
@@ -1785,21 +1788,21 @@ export class OxiToolTip {
 
     show(show:boolean = true) {
         //this.mesh.material.visible = show || this.canEdit;
-        if(this.mesh.tween ){
-            if( this.mesh.tween.show == show){
+        if (this.mesh.tween) {
+            if (this.mesh.tween.show == show) {
                 return;
-            }else{
+            } else {
                 this.mesh.tween.stop();
             }
         }
-        let endO =    (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        let endO = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
         this.mesh.tween = new TWEEN.Tween({delta: 0}).to({delta: 1}, 400)
             //.easing(TWEEN.Easing.Exponential.In)
             .onStart(()=> {
-                if(show)this.mesh.material.color =  this.mesh.material.onSelectColor ;
+                if (show)this.mesh.material.color = this.mesh.material.onSelectColor;
             })
-            .onUpdate(  (delta)=> {
-                this.mesh.material.opacity =endO===0? (1-delta):delta*endO;
+            .onUpdate((delta)=> {
+                this.mesh.material.opacity = endO === 0 ? (1 - delta) : delta * endO;
             })
             .onComplete(() => {
                 this.mesh.material.color = show ? this.mesh.material.onSelectColor : this.mesh.material.defColor;
@@ -1809,9 +1812,10 @@ export class OxiToolTip {
             .start();
         this.mesh.tween.show = show;
 
-       this.display(show);
+        this.display(show);
     }
-    display(show){
+
+    display(show) {
         if (this.tooltip) {
 
             this.tooltip.className = show ? 'cos-info active act' : 'cos-info active';
