@@ -4379,8 +4379,8 @@ var OxiControls = (function () {
             btn.innerText = 'Attach';
             _tdId.innerText = source._id;
             ['available', 'sold', 'total'].forEach(function (un) {
-                if (source[un]) {
-                    _tdAvailabel.innerText += source[un] + "/";
+                if (source.label[un]) {
+                    _tdAvailabel.innerText += source.label[un] + "/";
                     _tdId.style.fontWeight = 900;
                 }
             });
