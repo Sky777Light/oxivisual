@@ -1636,7 +1636,7 @@ class OxiControls {
         _search.setAttribute('placeholder',"serach by id");
         _search.addEventListener('input',()=>{
             for(let i =0;i<_tbody.childNodes.length;i++){
-                    _tbody.childNodes[i].style.display = !_search.value ||_listArr[i]._id.toLowerCase().match(_search.value.toLowerCase())?"":'none';
+                    _tbody.childNodes[i].style.display = !_search.value ||!_listArr[i]._id ||_listArr[i]._id.toLowerCase().match(_search.value.toLowerCase())?"":'none';
             }
         });
         _tdId.innerText = "Id";
@@ -1777,28 +1777,33 @@ export class OxiToolTip {
                     mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
                 }
                 mesh.click = ()=> {
-                    switch (mesh._data._category) {
-                        case ENTITY.Config.PROJ_DESTINATION.ModelStructure:
-                        {
-                            let _url = mesh._data.projFilesDirname.split("/");
-                            window.location.href += "&area=" + _url[_url.length - 1];
-                            break;
-                        }
-                        case ENTITY.Config.PROJ_DESTINATION.LinkGeneralStructure:
-                        {
-                            window.open(mesh._data.destination);
-                            break;
-                        }
-                        case ENTITY.Config.PROJ_DESTINATION.GeneralStructure:
-                        {
-                            try {
-                                main.main.authServ.safeJS(mesh._data.destination)();
-                            } catch (e) {
+                    if(mesh._data){
+                        switch (mesh._data._category) {
+                            case ENTITY.Config.PROJ_DESTINATION.ModelStructure:
+                            {
+                                let _url = mesh._data.projFilesDirname.split("/");
+                                window.location.href += "&area=" + _url[_url.length - 1];
+                                break;
                             }
+                            case ENTITY.Config.PROJ_DESTINATION.LinkGeneralStructure:
+                            {
+                                window.open(mesh._data.destination);
+                                break;
+                            }
+                            case ENTITY.Config.PROJ_DESTINATION.GeneralStructure:
+                            {
+                                try {
+                                    main.main.authServ.safeJS(mesh._data.destination)();
+                                } catch (e) {
+                                }
 
-                            break;
+                                break;
+                            }
                         }
+                    }else{
+                        console.log("has to attach data");
                     }
+
                 };
                 if (mesh._dataSource) {
 
