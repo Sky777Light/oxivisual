@@ -17,6 +17,7 @@ export class SourceProject {
     public instance:SourceProject;
     private project:any;
     selectedChild:any;
+    isSaving:boolean=false;
     _CONFIG:any;
     tempNewChild:ENTITY.ModelStructure;
     uploadChild:any;
@@ -91,6 +92,7 @@ export class SourceProject {
     update(form:NgForm) {
         if (form.invalid)return alertify.error('Please fill all inputs correctly');
 
+        this.isSaving = true;
         let data = this.project.model.data[0],
             self = this;
 
@@ -107,6 +109,7 @@ export class SourceProject {
                 } else {
                     alertify.error(res.message);
                 }
+                self.isSaving = false;
             });
         }, data.projFilesDirname);
     }

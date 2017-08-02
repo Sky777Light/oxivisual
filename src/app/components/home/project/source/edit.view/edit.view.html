@@ -218,24 +218,27 @@
             </div>
         </div>
 
-        <div class="add-btn" *ngIf="modelStructure.hasChanges" (click)="modelStructure.sourcesApp.update(editViewForm)">
-            <i class="material-icons">save</i>
+        <div *ngIf="!modelStructure.sourcesApp.isSaving">
+            <div class="add-btn" *ngIf="modelStructure.hasChanges"
+                 (click)="modelStructure.sourcesApp.update(editViewForm)">
+                <i class="material-icons">save</i>
 
-            <div class="span-hover">
-                <span>Save</span>
+                <div class="span-hover">
+                    <span>Save</span>
+                </div>
             </div>
-        </div>
-        <div class="add-btn" *ngIf="modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG"
-             (click)="modelStructure.glApp.recalc()">
-            <i class="material-icons">exposure</i>
+            <div class="add-btn" *ngIf="modelStructure.hasRecalcChanges && !modelStructure.camera.isSVG"
+                 (click)="modelStructure.glApp.recalc()">
+                <i class="material-icons">exposure</i>
 
-            <div class="span-hover">
-                <span>Recalculate for all</span>
+                <div class="span-hover">
+                    <span>Recalculate for all</span>
+                </div>
             </div>
-        </div>
 
-        <div class="add-btn disabled" *ngIf="!modelStructure.hasChanges">
-            <i class="material-icons">save</i>
+            <div class="add-btn disabled" *ngIf="!modelStructure.hasChanges">
+                <i class="material-icons">save</i>
+            </div>
         </div>
     </form>
 </div>
