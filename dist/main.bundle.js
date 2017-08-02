@@ -4344,11 +4344,28 @@ var OxiControls = (function () {
             alertify.error('please create area for this element, on right click');
             return false;
         }
-        var _mesh = elem, _dialog = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["c" /* Dialog */]({ title: 'Attach data source' });
-        this.app.dataSourceMatch(this.app.main.preToolTip.dataElem, null, function (source) {
+        var _mesh = elem, _listArr = this.app.main.preToolTip.dataElem, _dialog = new __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__["c" /* Dialog */]({ title: 'Attach data source' }), _search = document.createElement('input'), _table = document.createElement('table'), _tbody = document.createElement('tbody'), _tthead = document.createElement('thead'), _tr = document.createElement('tr'), _tdId = document.createElement('th'), _tdAvailabel = document.createElement('th'), _tdAct = document.createElement('th');
+        _search.setAttribute('placeholder', "serach by id");
+        _search.addEventListener('input', function () {
+            for (var i = 0; i < _tbody.childNodes.length; i++) {
+                _tbody.childNodes[i].style.display = !_search.value || _listArr[i]._id.toLowerCase().match(_search.value.toLowerCase()) ? "" : 'none';
+            }
+        });
+        _tdId.innerText = "Id";
+        _tdAvailabel.innerText = "Available/Sold/Total";
+        _tdAct.innerText = "Action";
+        _tr.appendChild(_tdId);
+        _tr.appendChild(_tdAvailabel);
+        _tr.appendChild(_tdAct);
+        _tthead.appendChild(_tr);
+        _table.appendChild(_tthead);
+        _table.appendChild(_tbody);
+        _dialog.body.appendChild(_search);
+        _dialog.body.appendChild(_table);
+        this.app.dataSourceMatch(_listArr, null, function (source) {
             if (source.active)
                 return;
-            var d = document.createElement('div'), spa = document.createElement('span'), btn = document.createElement('button');
+            var d = document.createElement('tr'), _tdId = document.createElement('td'), _tdAvailabel = document.createElement('td'), _tdAct = document.createElement('td'), btn = document.createElement('button');
             btn.addEventListener('click', function () {
                 if (_mesh._dataSource) {
                     _mesh._dataSource.active = false;
@@ -4360,11 +4377,19 @@ var OxiControls = (function () {
                 _this.app._animation.play();
             });
             btn.innerText = 'Attach';
-            spa.innerText = source._id;
+            _tdId.innerText = source._id;
+            ['units_available', 'units_sold', 'units_total'].forEach(function (un) {
+                if (source[un]) {
+                    _tdAvailabel.innerText += source[un] + "/";
+                    _tdId.style.fontWeight = 900;
+                }
+            });
             d.className = "my-dialog";
-            d.appendChild(spa);
-            d.appendChild(btn);
-            _dialog.body.appendChild(d);
+            _tdAct.appendChild(btn);
+            d.appendChild(_tdId);
+            d.appendChild(_tdAvailabel);
+            d.appendChild(_tdAct);
+            _tbody.appendChild(d);
         });
         return true;
     };

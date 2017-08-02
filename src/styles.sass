@@ -87,11 +87,17 @@ i
   -webkit-font-feature-settings: 'liga'
   -webkit-font-smoothing: antialiased
 .body-dialog
-  max-height: 110px
   overflow: auto
+  max-height: 60vh
+  border: 1px solid black
+  padding: 5px
 
+  table
+    td,th
+      border: 1px solid gray
+      padding: 5px
+      text-align: center
   .my-dialog
-    display: flex
     span
       float: left
     button

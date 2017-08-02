@@ -1621,13 +1621,42 @@ class OxiControls {
             return false;
         }
         let _mesh = elem,
-            _dialog:any = new Dialog({title: 'Attach data source'});
+            _listArr = this.app.main.preToolTip.dataElem,
+            _dialog:any = new Dialog({title: 'Attach data source'}),
+            _search = document.createElement('input'),
+            _table = document.createElement('table'),
+            _tbody:any = document.createElement('tbody'),
+            _tthead = document.createElement('thead'),
+            _tr = document.createElement('tr'),
+            _tdId = document.createElement('th'),
+            _tdAvailabel = document.createElement('th'),
+            _tdAct = document.createElement('th')
+            ;
 
-        this.app.dataSourceMatch(this.app.main.preToolTip.dataElem, null, (source)=> {
+        _search.setAttribute('placeholder',"serach by id");
+        _search.addEventListener('input',()=>{
+            for(let i =0;i<_tbody.childNodes.length;i++){
+                    _tbody.childNodes[i].style.display = !_search.value ||_listArr[i]._id.toLowerCase().match(_search.value.toLowerCase())?"":'none';
+            }
+        });
+        _tdId.innerText = "Id";
+        _tdAvailabel.innerText = "Available/Sold/Total";
+        _tdAct.innerText = "Action";
+        _tr.appendChild(_tdId);
+        _tr.appendChild(_tdAvailabel);
+        _tr.appendChild(_tdAct);
+        _tthead.appendChild(_tr);
+        _table.appendChild(_tthead);
+        _table.appendChild(_tbody);
+        _dialog.body.appendChild(_search);
+        _dialog.body.appendChild(_table);
+        this.app.dataSourceMatch(_listArr, null, (source)=> {
 
             if (source.active)return;
-            let d = document.createElement('div'),
-                spa = document.createElement('span'),
+            let d = document.createElement('tr'),
+                _tdId:any = document.createElement('td'),
+                _tdAvailabel = document.createElement('td'),
+                _tdAct = document.createElement('td'),
                 btn = document.createElement('button');
             btn.addEventListener('click', ()=> {
                 if (_mesh._dataSource) {
@@ -1640,12 +1669,21 @@ class OxiControls {
                 this.app._animation.play();
             });
             btn.innerText = 'Attach';
-            spa.innerText = source._id;
-            d.className = "my-dialog";
-            d.appendChild(spa);
-            d.appendChild(btn);
+            _tdId.innerText = source._id;
 
-            _dialog.body.appendChild(d);
+            ['units_available','units_sold','units_total'].forEach((un)=>{
+                if(source[un]) {
+                    _tdAvailabel.innerText +=source[un]+"/";
+                    _tdId.style.fontWeight = 900;
+                }
+            });
+
+            d.className = "my-dialog";
+            _tdAct.appendChild(btn);
+            d.appendChild(_tdId);
+            d.appendChild(_tdAvailabel);
+            d.appendChild(_tdAct);
+            _tbody.appendChild(d);
         });
 
         return true;
