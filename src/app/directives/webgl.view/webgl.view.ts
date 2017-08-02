@@ -1671,7 +1671,7 @@ class OxiControls {
             btn.innerText = 'Attach';
             _tdId.innerText = source._id;
 
-            ['units_available','units_sold','units_total'].forEach((un)=>{
+            ['available','sold','total'].forEach((un)=>{
                 if(source[un]) {
                     _tdAvailabel.innerText +=source[un]+"/";
                     _tdId.style.fontWeight = 900;
