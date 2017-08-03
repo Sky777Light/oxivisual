@@ -22,7 +22,7 @@ export class ProjectService {
         } else {
             this.Project = project;
         }
-        if(! this.Project.owner)this.Project.owner = {
+        if(!this.Project.owner)this.Project.owner = {
             _id:this.Project.owner._id,
             avatar:this.Project.owner.avatar,
             firstName:this.Project.owner.firstName,
