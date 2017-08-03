@@ -3663,10 +3663,10 @@ var OxiEvents = (function () {
         //app.updateInfoHTML();
         if (svgEl)
             svgEl.resize(_w, _h);
-        //app.effectFXAA.uniforms['resolution'].value.set(1 / _w, 1 / _h );
-        //app.outlinePass.resolution.x = _w;
-        //app.outlinePass.resolution.y = _h;
-        //app.composer.setSize( _w, _h );
+        app.effectFXAA.uniforms['resolution'].value.set(1 / _w, 1 / _h);
+        app.outlinePass.resolution.x = _w;
+        app.outlinePass.resolution.y = _h;
+        app.composer.setSize(_w, _h);
         if (app._animation)
             app._animation.play();
     };
