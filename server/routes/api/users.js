@@ -92,7 +92,7 @@ router.get("/user/:id", function (req, res) {
             })
         },
         function (user, done) {
-            var _populate = ['owner', 'firstName secondName'];
+            var _populate = ['owner', 'firstName secondName avatar'];
             if (user.role === config.USER_ROLE.SUPER) {
                 Project.find({}).populate(_populate[0],_populate[1]).exec( function (err, projects) {
                     user.projects = projects;

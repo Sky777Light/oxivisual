@@ -118,6 +118,7 @@ class OxiAPP {
     allLoad:boolean = false;
     private curLoadedTemplates:number = 0;
     private templates:Array<any>;
+    private shader:any;
     infoHTML:Array<OxiToolTip> = [];
     TEMPLATES:any = {
         TOOLTIP: 'app-project-webgl-tooltip',
@@ -127,20 +128,44 @@ class OxiAPP {
     HOVER_COLOR:any = {
         ACTIVE: new THREE.Color(0.1, 1.0, 0.1),
         SOLGHT: new THREE.Color(1.0, 0.0, 0.1),
-    }
+    };
+    effectFXAA:any;
+    composer:any;
+    outlinePass:any;
 
     constructor(main:WebglView) {
         this.main = main;
         this.isMobile = this.deviceCheck();
 
+        this.shader = {
+            'outline': {
+                vertex_shader: [
+                    "uniform float opacity;",
+                    "varying float _opacity;",
+                    "void main() {",
+                    "vec4 pos = modelViewMatrix * vec4( position + normal * 25.0, 1.0 );",
+                    "_opacity = opacity;",
+                    "gl_Position = projectionMatrix * pos;",
+                    "}"
+                ].join("\n"),
+
+                fragment_shader: [
+                    "varying float _opacity;",
+                    "void main(){",
+                    "gl_FragColor = vec4( 1.0, 1.0, 0.0, _opacity );",
+                    "}"
+                ].join("\n")
+            }
+        };
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
         this.model.inters = [];
         this.scene.add(this.model);
         let renderer = this.gl = new THREE.WebGLRenderer({
-                antialias: true, alpha: true,
-                clearAlpha: true,
-                sortObjects: false
+                antialias: true,
+                alpha: true,
+                //clearAlpha: true,
+                //sortObjects: false
             }),
             SCREEN_WIDTH = this.screen.width = 720,
             SCREEN_HEIGHT = this.screen.height = 405,
@@ -223,6 +248,19 @@ class OxiAPP {
         //light.position.set(1, 1, 1);
         //this.scene.add(light);
 
+
+        // postprocessing
+        //this.composer = new THREE.EffectComposer( renderer );
+        //let renderPass =   new THREE.RenderPass( this.scene, this.camera );
+        //this.composer.addPass( renderPass );
+        //let outlinePass = this.outlinePass = new THREE.OutlinePass( new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
+        //this.composer.addPass( outlinePass );
+        //outlinePass.hiddenEdgeColor.r=outlinePass.hiddenEdgeColor.g = outlinePass.hiddenEdgeColor.b= 1;
+        //
+        //this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+        //this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight );
+        //this.effectFXAA.renderToScreen = true;
+        //this.composer.addPass(  this.effectFXAA );
 
         THREE.Mesh.prototype.getScreenPst = function () {
             let mesh:any = this,
@@ -587,7 +625,7 @@ class OxiAPP {
                     child.renderOrder = 0;
                     child.category = -1111;
                     this.model.inters.push(child);
-                    if (child.name.match(ENTITY.Config.IGNORE)) {
+                    if (child.name.toLowerCase().match(ENTITY.Config.IGNORE)) {
                         child.material.color = new THREE.Color(0, 0, 0);
                     }
 
@@ -767,6 +805,12 @@ class OxiAPP {
         this.updateInfoHTML();
         TWEEN.update();
         this.gl.render(this.scene, this.camera);
+
+        //this.gl.autoClear = true;
+        //this.gl.setClearColor( 0xffffff ,0);
+        //this.gl.setClearAlpha( 0.0 );
+
+        //this.composer.render();
     }
 
 }
@@ -820,6 +864,10 @@ class OxiEvents {
         app._container.style.height = _h + _px;
         //app.updateInfoHTML();
         if (svgEl)  svgEl.resize(_w, _h);
+        //app.effectFXAA.uniforms['resolution'].value.set(1 / _w, 1 / _h );
+        //app.outlinePass.resolution.x = _w;
+        //app.outlinePass.resolution.y = _h;
+        //app.composer.setSize( _w, _h );
         if (app._animation)app._animation.play();
     }
 
@@ -903,7 +951,7 @@ class OxiEvents {
     }) {
         let intersectList = this.inter(ev);
         if (intersectList && intersectList[0]) {
-            if (intersectList[0].object.name.match(ENTITY.Config.IGNORE))return;
+            if (intersectList[0].object.name.toLowerCase().match(ENTITY.Config.IGNORE))return;
             onNoteSame(intersectList[0]);
             callback(intersectList[0]);
         } else {
@@ -1633,10 +1681,10 @@ class OxiControls {
             _tdAct = document.createElement('th')
             ;
 
-        _search.setAttribute('placeholder',"serach by id");
-        _search.addEventListener('input',()=>{
-            for(let i =0;i<_tbody.childNodes.length;i++){
-                    _tbody.childNodes[i].style.display = !_search.value ||!_listArr[i]._id ||_listArr[i]._id.toLowerCase().match(_search.value.toLowerCase())?"":'none';
+        _search.setAttribute('placeholder', "serach by id");
+        _search.addEventListener('input', ()=> {
+            for (let i = 0; i < _tbody.childNodes.length; i++) {
+                _tbody.childNodes[i].style.display = !_search.value || !_listArr[i]._id || _listArr[i]._id.toLowerCase().match(_search.value.toLowerCase()) ? "" : 'none';
             }
         });
         _tdId.innerText = "Id";
@@ -1671,9 +1719,9 @@ class OxiControls {
             btn.innerText = 'Attach';
             _tdId.innerText = source._id;
 
-            ['available','sold','total'].forEach((un)=>{
-                if(source.label[un]) {
-                    _tdAvailabel.innerText +=source.label[un]+"/";
+            ['available', 'sold', 'total'].forEach((un)=> {
+                if (source.label[un]) {
+                    _tdAvailabel.innerText += source.label[un] + "/";
                     _tdId.style.fontWeight = 900;
                 }
             });
@@ -1777,7 +1825,7 @@ export class OxiToolTip {
                     mesh.material.onSelectColor = main.HOVER_COLOR.ACTIVE;
                 }
                 mesh.click = ()=> {
-                    if(mesh._data){
+                    if (mesh._data) {
                         switch (mesh._data._category) {
                             case ENTITY.Config.PROJ_DESTINATION.ModelStructure:
                             {
@@ -1800,7 +1848,7 @@ export class OxiToolTip {
                                 break;
                             }
                         }
-                    }else{
+                    } else {
                         console.log("has to attach data");
                     }
 
@@ -1838,19 +1886,27 @@ export class OxiToolTip {
                 this.mesh.tween.stop();
             }
         }
-        let endO = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        let maxOp = this.main.main.selected.camera.opacity,
+        endO = (show || this.canEdit) ? maxOp : 0;
         this.mesh.tween = new TWEEN.Tween({delta: 0}).to({delta: 1}, 400)
             //.easing(TWEEN.Easing.Exponential.In)
             .onStart(()=> {
-                if (show)this.mesh.material.color = this.mesh.material.onSelectColor;
+                //this.main.outlinePass.selectedObjects=[];
+                if (show) {
+                    this.mesh.material.color = this.mesh.material.onSelectColor;
+
+                }
             })
             .onUpdate((delta)=> {
-                this.mesh.material.opacity = endO === 0 ? (1 - delta) : delta * endO;
+                this.mesh.material.opacity = endO == 0 ? (maxOp - delta) : delta * endO;
             })
             .onComplete(() => {
                 this.mesh.material.color = show ? this.mesh.material.onSelectColor : this.mesh.material.defColor;
                 //this.mesh.tween.stop();
                 //this.mesh.tween = null;
+                //this.mesh.material.depthTest =!show;
+                //this.main.gl.setDepthTest(false);
+                //if(show)this.main.outlinePass.selectedObjects = [this.mesh];
             })
             .start();
         this.mesh.tween.show = show;

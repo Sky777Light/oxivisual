@@ -45,8 +45,8 @@
 
         <div class="project-users">
             <div class="project-user">
-                <div class="project-user-img" [ngStyle]="{'background-image': 'url(asfd)'}">
-                    <span>AF</span>
+                <div class="project-user-img" [ngStyle]="{'background-image': 'url(' + project.owner.avatar + ')'}">
+                    <span *ngIf="!project.owner.avatar">{{userService.lettersNoImg(project.owner)}}</span>
                 </div>
                 <span class="project-user-name"
                       [innerHTML]="project.owner.firstName+' '+project.owner.secondName"></span>

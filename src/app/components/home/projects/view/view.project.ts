@@ -1,6 +1,6 @@
 import {Input,Component} from '@angular/core';
 import {IProject} from "../../../../entities/entities";
-import {ProjectService} from "../../../../services/project.service";
+import {ProjectService,UserService} from "../../../../services/services";
 
 declare var alertify: any;
 
@@ -14,7 +14,8 @@ export class ViewProject{
     @Input()  Editable: boolean;
     private openedPopUp: boolean = false;
     constructor(
-        private projectService: ProjectService
+        private projectService: ProjectService,
+        private userService:UserService
     ){
         this.Editable = true;
     }

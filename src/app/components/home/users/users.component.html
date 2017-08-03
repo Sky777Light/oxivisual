@@ -14,7 +14,7 @@
                     <div class="user-list-item-wrap">
                         <div class="user-name-wrap">
                             <div class="user-name pointer" (click)="selectUser(user, false)">
-                                <span>{{user.firstName}} {{user.secondName}}<span *ngIf="user._id == User._id">you</span></span>
+                                <span>{{user.firstName}} {{user.secondName}}</span>
                                 <i class="material-icons" [hidden]="user.active">visibility_off</i>
                                 <span class="new-title" [hidden]="!user.newUser">New</span>
                             </div>

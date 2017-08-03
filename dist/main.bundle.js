@@ -491,7 +491,7 @@ var HomeComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_project_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_project_service__ = __webpack_require__(80);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BasicProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -532,7 +532,7 @@ var BasicProject = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Costumization; });
@@ -812,7 +812,7 @@ var CodeConfig = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviewProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -892,7 +892,7 @@ var PreviewProject = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_project_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_project_service__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_entities__ = __webpack_require__(13);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -961,7 +961,7 @@ var ProjectComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_services__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_directives__ = __webpack_require__(222);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SourceProject; });
@@ -1452,7 +1452,7 @@ var LoginComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_entities__ = __webpack_require__(13);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviewSceneComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PreviewSceneService; });
@@ -2732,7 +2732,7 @@ var SVGGroup = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstract_changes_view__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WTooltip; });
@@ -2869,7 +2869,7 @@ var WTooltip = (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogs_dialog__ = __webpack_require__(721);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip_tooltip__ = __webpack_require__(374);
@@ -3011,14 +3011,32 @@ var OxiAPP = (function () {
         };
         this.main = main;
         this.isMobile = this.deviceCheck();
+        this.shader = {
+            'outline': {
+                vertex_shader: [
+                    "uniform float opacity;",
+                    "varying float _opacity;",
+                    "void main() {",
+                    "vec4 pos = modelViewMatrix * vec4( position + normal * 25.0, 1.0 );",
+                    "_opacity = opacity;",
+                    "gl_Position = projectionMatrix * pos;",
+                    "}"
+                ].join("\n"),
+                fragment_shader: [
+                    "varying float _opacity;",
+                    "void main(){",
+                    "gl_FragColor = vec4( 1.0, 1.0, 0.0, _opacity );",
+                    "}"
+                ].join("\n")
+            }
+        };
         this.scene = new THREE.Scene();
         this.model = new THREE.Object3D();
         this.model.inters = [];
         this.scene.add(this.model);
         var renderer = this.gl = new THREE.WebGLRenderer({
-            antialias: true, alpha: true,
-            clearAlpha: true,
-            sortObjects: false
+            antialias: true,
+            alpha: true,
         }), SCREEN_WIDTH = this.screen.width = 720, SCREEN_HEIGHT = this.screen.height = 405, _self = this;
         renderer.domElement.className = 'gl-view';
         if (main.selected.canEdit)
@@ -3096,6 +3114,18 @@ var OxiAPP = (function () {
         //let light = new THREE.DirectionalLight(0xffffff);
         //light.position.set(1, 1, 1);
         //this.scene.add(light);
+        // postprocessing
+        //this.composer = new THREE.EffectComposer( renderer );
+        //let renderPass =   new THREE.RenderPass( this.scene, this.camera );
+        //this.composer.addPass( renderPass );
+        //let outlinePass = this.outlinePass = new THREE.OutlinePass( new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
+        //this.composer.addPass( outlinePass );
+        //outlinePass.hiddenEdgeColor.r=outlinePass.hiddenEdgeColor.g = outlinePass.hiddenEdgeColor.b= 1;
+        //
+        //this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+        //this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight );
+        //this.effectFXAA.renderToScreen = true;
+        //this.composer.addPass(  this.effectFXAA );
         THREE.Mesh.prototype.getScreenPst = function () {
             var mesh = this, m = _self.gl.domElement, offset = _self._offset(), width = m.clientWidth, height = m.clientHeight, widthHalf = width / 2, heightHalf = height / 2, position = new THREE.Vector3();
             mesh.updateMatrixWorld();
@@ -3425,7 +3455,7 @@ var OxiAPP = (function () {
                     child.renderOrder = 0;
                     child.category = -1111;
                     _this.model.inters.push(child);
-                    if (child.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
+                    if (child.name.toLowerCase().match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE)) {
                         child.material.color = new THREE.Color(0, 0, 0);
                     }
                     for (var i = 0, areas = _this.main.selected.areas; areas && i < areas.length; i++) {
@@ -3594,6 +3624,10 @@ var OxiAPP = (function () {
         this.updateInfoHTML();
         TWEEN.update();
         this.gl.render(this.scene, this.camera);
+        //this.gl.autoClear = true;
+        //this.gl.setClearColor( 0xffffff ,0);
+        //this.gl.setClearAlpha( 0.0 );
+        //this.composer.render();
     };
     return OxiAPP;
 }());
@@ -3627,6 +3661,10 @@ var OxiEvents = (function () {
         //app.updateInfoHTML();
         if (svgEl)
             svgEl.resize(_w, _h);
+        //app.effectFXAA.uniforms['resolution'].value.set(1 / _w, 1 / _h );
+        //app.outlinePass.resolution.x = _w;
+        //app.outlinePass.resolution.y = _h;
+        //app.composer.setSize( _w, _h );
         if (app._animation)
             app._animation.play();
     };
@@ -3704,7 +3742,7 @@ var OxiEvents = (function () {
         }; }
         var intersectList = this.inter(ev);
         if (intersectList && intersectList[0]) {
-            if (intersectList[0].object.name.match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE))
+            if (intersectList[0].object.name.toLowerCase().match(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].IGNORE))
                 return;
             onNoteSame(intersectList[0]);
             callback(intersectList[0]);
@@ -4537,19 +4575,24 @@ var OxiToolTip = (function () {
                 this.mesh.tween.stop();
             }
         }
-        var endO = (show || this.canEdit) ? this.mesh.material.opacity0 : 0;
+        var maxOp = this.main.main.selected.camera.opacity, endO = (show || this.canEdit) ? maxOp : 0;
         this.mesh.tween = new TWEEN.Tween({ delta: 0 }).to({ delta: 1 }, 400)
             .onStart(function () {
-            if (show)
+            //this.main.outlinePass.selectedObjects=[];
+            if (show) {
                 _this.mesh.material.color = _this.mesh.material.onSelectColor;
+            }
         })
             .onUpdate(function (delta) {
-            _this.mesh.material.opacity = endO === 0 ? (1 - delta) : delta * endO;
+            _this.mesh.material.opacity = endO == 0 ? (maxOp - delta) : delta * endO;
         })
             .onComplete(function () {
             _this.mesh.material.color = show ? _this.mesh.material.onSelectColor : _this.mesh.material.defColor;
             //this.mesh.tween.stop();
             //this.mesh.tween = null;
+            //this.mesh.material.depthTest =!show;
+            //this.main.gl.setDepthTest(false);
+            //if(show)this.main.outlinePass.selectedObjects = [this.mesh];
         })
             .start();
         this.mesh.tween.show = show;
@@ -4927,124 +4970,28 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service__ = __webpack_require__(20);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_service__ = __webpack_require__(51);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__auth_service__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_guard_service__ = __webpack_require__(225);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_service__ = __webpack_require__(80);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__project_service__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logged_guard_service__ = __webpack_require__(226);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__share_service__ = __webpack_require__(38);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__storage_service__ = __webpack_require__(81);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(20);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_6__user_service__["a"]; });
 
 
 
 
-var ProjectService = (function () {
-    function ProjectService(authService, userService) {
-        this.authService = authService;
-        this.userService = userService;
-        this.Project = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["a" /* Project */]();
-    }
-    ProjectService.prototype.setProject = function (project) {
-        var _this = this;
-        if (!(project instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["a" /* Project */])) {
-            this.Project = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["a" /* Project */](project);
-        }
-        else {
-            this.Project = project;
-        }
-        this.Project.owner = {
-            _id: this.Project.owner._id,
-            firstName: this.Project.owner.firstName,
-            lastName: this.Project.owner.lastName
-        };
-        if (!(this.Project.model instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["b" /* ProjectModel */])) {
-            this.Project.model = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["b" /* ProjectModel */](this.Project.model);
-        }
-        if (this.Project.model.link) {
-            if (!(this.Project.model.data instanceof Array)) {
-                this.authService.get(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.Project.model.link + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].SITE_STRUCTURE).subscribe(function (res) {
-                    _this.Project.model.data = [];
-                    for (var _data = res.json(), i = 0; i < _data.length; i++) {
-                        _this.Project.model.data.push(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["d" /* ProjMain */].inject(_data[i]));
-                    }
-                    if (_this.Project.select)
-                        _this.Project.select(_this.Project.model);
-                });
-            }
-        }
-    };
-    ProjectService.prototype.getProject = function () {
-        return this.Project;
-    };
-    ProjectService.prototype.createProject = function (project) {
-        var _this = this;
-        var link = '/api/projects/project';
-        this.authService.post(link, project).subscribe(function (res) {
-            res = res.json();
-            if (res.status) {
-                var user = _this.userService.getUser();
-                res.res.owner = user;
-                user.projects.push(res.res);
-            }
-            alertify.success(res.message);
-        }, function (error) {
-        });
-    };
-    ProjectService.prototype.changeProject = function (project) {
-        var _this = this;
-        var link = '/api/projects/project';
-        this.authService.put(link, project).subscribe(function (res) {
-            res = res.json();
-            if (res.status) {
-                alertify.success(res.message);
-                //this.setProject(res.res);
-                for (var key in project) {
-                    _this.Project[key] = project[key];
-                }
-            }
-            else {
-                alertify.error(res.message);
-            }
-        }, function (error) {
-        });
-    };
-    ProjectService.prototype.deleteProject = function (project, callback) {
-        var _this = this;
-        if (callback === void 0) { callback = null; }
-        var link = '/api/projects/project';
-        this.authService.delete(link, { _id: project._id }).subscribe(function (res) {
-            res = res.json();
-            if (res.status) {
-                var user = _this.userService.getUser();
-                for (var i = 0; i < user.projects.length; i++) {
-                    if (user.projects[i]._id == project._id) {
-                        user.projects.splice(i, 1);
-                        break;
-                    }
-                }
-                if (callback)
-                    callback();
-            }
-            alertify.success(res.message);
-        }, function (error) {
-            alertify.error(error && error.message ? error.message : error);
-        });
-    };
-    ProjectService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__user_service__["a" /* UserService */]) === 'function' && _b) || Object])
-    ], ProjectService);
-    return ProjectService;
-    var _a, _b;
-}());
-//# sourceMappingURL=project.service.js.map
+
+
+
+//# sourceMappingURL=services.js.map
 
 /***/ }),
 
@@ -5121,7 +5068,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_home_project_basic_basic_project__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_home_project_costumization_costumization__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_home_project_preview_preview__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__services_project_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__services_project_service__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives_directives__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_home_project_source_edit_view_edit_view__ = __webpack_require__(715);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_preview_preview_project__ = __webpack_require__(370);
@@ -5321,7 +5268,7 @@ var AsideComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_share_service__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(8);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5537,7 +5484,7 @@ var EditProject = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_entities__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_project_service__ = __webpack_require__(80);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewProjectComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5662,7 +5609,7 @@ var NewProjectComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_services__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewProject; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5677,8 +5624,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ViewProject = (function () {
-    function ViewProject(projectService) {
+    function ViewProject(projectService, userService) {
         this.projectService = projectService;
+        this.userService = userService;
         this.openedPopUp = false;
         this.Editable = true;
     }
@@ -5729,10 +5677,10 @@ var ViewProject = (function () {
             template: __webpack_require__(864),
             styles: [__webpack_require__(805)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["b" /* ProjectService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_services__["c" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_services__["c" /* UserService */]) === 'function' && _c) || Object])
     ], ViewProject);
     return ViewProject;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=view.project.js.map
 
@@ -7708,28 +7656,124 @@ module.exports = module.exports.toString();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_service__ = __webpack_require__(51);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__auth_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_guard_service__ = __webpack_require__(225);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_service__ = __webpack_require__(65);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__project_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__logged_guard_service__ = __webpack_require__(226);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__share_service__ = __webpack_require__(38);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__storage_service__ = __webpack_require__(81);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(20);
-/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_entities__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service__ = __webpack_require__(20);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
 
-
-
-
-//# sourceMappingURL=services.js.map
+var ProjectService = (function () {
+    function ProjectService(authService, userService) {
+        this.authService = authService;
+        this.userService = userService;
+        this.Project = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["a" /* Project */]();
+    }
+    ProjectService.prototype.setProject = function (project) {
+        var _this = this;
+        if (!(project instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["a" /* Project */])) {
+            this.Project = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["a" /* Project */](project);
+        }
+        else {
+            this.Project = project;
+        }
+        this.Project.owner = {
+            _id: this.Project.owner._id,
+            firstName: this.Project.owner.firstName,
+            lastName: this.Project.owner.lastName
+        };
+        if (!(this.Project.model instanceof __WEBPACK_IMPORTED_MODULE_1__entities_entities__["b" /* ProjectModel */])) {
+            this.Project.model = new __WEBPACK_IMPORTED_MODULE_1__entities_entities__["b" /* ProjectModel */](this.Project.model);
+        }
+        if (this.Project.model.link) {
+            if (!(this.Project.model.data instanceof Array)) {
+                this.authService.get(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].PROJ_LOC + this.Project.model.link + __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].SITE_STRUCTURE).subscribe(function (res) {
+                    _this.Project.model.data = [];
+                    for (var _data = res.json(), i = 0; i < _data.length; i++) {
+                        _this.Project.model.data.push(__WEBPACK_IMPORTED_MODULE_1__entities_entities__["d" /* ProjMain */].inject(_data[i]));
+                    }
+                    if (_this.Project.select)
+                        _this.Project.select(_this.Project.model);
+                });
+            }
+        }
+    };
+    ProjectService.prototype.getProject = function () {
+        return this.Project;
+    };
+    ProjectService.prototype.createProject = function (project) {
+        var _this = this;
+        var link = '/api/projects/project';
+        this.authService.post(link, project).subscribe(function (res) {
+            res = res.json();
+            if (res.status) {
+                var user = _this.userService.getUser();
+                res.res.owner = user;
+                user.projects.push(res.res);
+            }
+            alertify.success(res.message);
+        }, function (error) {
+        });
+    };
+    ProjectService.prototype.changeProject = function (project) {
+        var _this = this;
+        var link = '/api/projects/project';
+        this.authService.put(link, project).subscribe(function (res) {
+            res = res.json();
+            if (res.status) {
+                alertify.success(res.message);
+                //this.setProject(res.res);
+                for (var key in project) {
+                    _this.Project[key] = project[key];
+                }
+            }
+            else {
+                alertify.error(res.message);
+            }
+        }, function (error) {
+        });
+    };
+    ProjectService.prototype.deleteProject = function (project, callback) {
+        var _this = this;
+        if (callback === void 0) { callback = null; }
+        var link = '/api/projects/project';
+        this.authService.delete(link, { _id: project._id }).subscribe(function (res) {
+            res = res.json();
+            if (res.status) {
+                var user = _this.userService.getUser();
+                for (var i = 0; i < user.projects.length; i++) {
+                    if (user.projects[i]._id == project._id) {
+                        user.projects.splice(i, 1);
+                        break;
+                    }
+                }
+                if (callback)
+                    callback();
+            }
+            alertify.success(res.message);
+        }, function (error) {
+            alertify.error(error && error.message ? error.message : error);
+        });
+    };
+    ProjectService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__user_service__["a" /* UserService */]) === 'function' && _b) || Object])
+    ], ProjectService);
+    return ProjectService;
+    var _a, _b;
+}());
+//# sourceMappingURL=project.service.js.map
 
 /***/ }),
 
@@ -8452,7 +8496,7 @@ module.exports = "<main>\n    <div class=\"projects-wrap\">\n        <div class=
 /***/ 864:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"project\" [routerLink]=\"['/project', (project._id || 0)]\" routerLinkActive=\"active\">\n    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\"\n         [class.img-true]=\"project.image\">\n        <div class=\"darkness-body\"></div>\n        <div class=\"project-body\">\n            <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\n            <div class=\"project-ctrl-wrap\">\n                <span class=\"unpublished\" [hidden]=\"project.published\">Unpublished</span>\n\n                <div class=\"project-ctrl\">\n                    <i class=\"material-icons\">edit</i>\n\n                    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openedPopUp\">\n                        <i class=\"material-icons\" (click)=\"openPopUp($event)\">more_vert</i>\n\n                        <div class=\"pop-up\" [hidden]=\"!openedPopUp\">\n\n                            <div class=\"pop-up-item\" (click)=\"deactivateProject($event)\">\n                                <i class=\"material-icons\"\n                                   [innerText]=\"project.published?'visibility':'visibility_off'\"></i>\n\n                                <div class=\"pop-up-row-name\">\n                                    <span [innerText]=\"project.published?'Deactivate':'Activate'\"></span>\n                                </div>\n                            </div>\n                            <div class=\"pop-up-item\" (click)=\"deleteProject($event)\">\n                                <i class=\"material-icons\">delete</i>\n\n                                <div class=\"pop-up-row-name\">\n                                    <span>Delete</span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"project-info\">\n                <div class=\"project-title\">{{project.title}}</div>\n                <div class=\"project-created\">Created: {{project.created | date: 'dd.MM.yyyy' }}</div>\n            </div>\n        </div>\n    </div>\n    <div class=\"project-bot\">\n        <span class=\"project-admin\">Admin:</span>\n\n        <div class=\"project-users\">\n            <div class=\"project-user\">\n                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(asfd)'}\">\n                    <span>AF</span>\n                </div>\n                <span class=\"project-user-name\"\n                      [innerHTML]=\"project.owner.firstName+' '+project.owner.secondName\"></span>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"project\" [routerLink]=\"['/project', (project._id || 0)]\" routerLinkActive=\"active\">\n    <div class=\"project-content img-true\" [ngStyle]=\"{'background-image': 'url(' + project.image + ')'}\"\n         [class.img-true]=\"project.image\">\n        <div class=\"darkness-body\"></div>\n        <div class=\"project-body\">\n            <i class=\"material-icons no-img\" [hidden]=\"project.image\">crop_original</i>\n            <div class=\"project-ctrl-wrap\">\n                <span class=\"unpublished\" [hidden]=\"project.published\">Unpublished</span>\n\n                <div class=\"project-ctrl\">\n                    <i class=\"material-icons\">edit</i>\n\n                    <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"openedPopUp\">\n                        <i class=\"material-icons\" (click)=\"openPopUp($event)\">more_vert</i>\n\n                        <div class=\"pop-up\" [hidden]=\"!openedPopUp\">\n\n                            <div class=\"pop-up-item\" (click)=\"deactivateProject($event)\">\n                                <i class=\"material-icons\"\n                                   [innerText]=\"project.published?'visibility':'visibility_off'\"></i>\n\n                                <div class=\"pop-up-row-name\">\n                                    <span [innerText]=\"project.published?'Deactivate':'Activate'\"></span>\n                                </div>\n                            </div>\n                            <div class=\"pop-up-item\" (click)=\"deleteProject($event)\">\n                                <i class=\"material-icons\">delete</i>\n\n                                <div class=\"pop-up-row-name\">\n                                    <span>Delete</span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"project-info\">\n                <div class=\"project-title\">{{project.title}}</div>\n                <div class=\"project-created\">Created: {{project.created | date: 'dd.MM.yyyy' }}</div>\n            </div>\n        </div>\n    </div>\n    <div class=\"project-bot\">\n        <span class=\"project-admin\">Admin:</span>\n\n        <div class=\"project-users\">\n            <div class=\"project-user\">\n                <div class=\"project-user-img\" [ngStyle]=\"{'background-image': 'url(' + project.owner.avatar + ')'}\">\n                    <span *ngIf=\"!project.owner.avatar\">{{userService.lettersNoImg(project.owner)}}</span>\n                </div>\n                <span class=\"project-user-name\"\n                      [innerHTML]=\"project.owner.firstName+' '+project.owner.secondName\"></span>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -8473,7 +8517,7 @@ module.exports = "<div class=\"user-card\">\n  <div class=\"user-card-head\">\n 
 /***/ 867:
 /***/ (function(module, exports) {
 
-module.exports = "<main class=\"row\">\n    <div class=\"user-list-wrap col-md-4\">\n\n        <div class=\"user-list\">\n            <div class=\"slimscroll-wrap\" slimScroll width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\"\n                 size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n                <div class=\"user-list-item\" [class.deactive]=\"!user.active\"\n                     [class.selected-user]=\"selectedUser === user\"\n                     *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\n                    <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\"\n                         (click)=\"selectUser(user, false)\">\n                        <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n                    </div>\n                    <div class=\"user-list-item-wrap\">\n                        <div class=\"user-name-wrap\">\n                            <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n                                <span>{{user.firstName}} {{user.secondName}}<span *ngIf=\"user._id == User._id\">you</span></span>\n                                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n                                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n                            </div>\n                            <br>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role == userService.config.USER_ROLE.SUPER\">Super user</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.ADMIN\">Client-admin</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.USER\">Client-user</span>\n                        </div>\n                        <div class=\"user-ctrl\">\n                            <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n\n                            <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"settingsUser === user\">\n                                <i class=\"material-icons\" (click)=\"settingsUser = user\"\n                                   (window:mouseup)=\"settingsUser = null\">more_vert</i>\n\n                                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\n                                    <div class=\"pop-up-item\"   (click)=\"deactivateUser(user)\">\n                                        <i class=\"material-icons\"\n                                           [innerHTML]=\"!user.active?'visibility':'visibility_off'\"></i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span [innerHTML]=\"!user.active?'Activate':'Deactivate' \"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\n                                        <i class=\"material-icons\">delete</i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span>Delete</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" (click)=\"createNewUser = true\"\n             *ngIf=\"!createNewUser && User.role !=  userService.config.USER_ROLE.USER\">\n            <i class=\"material-icons\">add</i>\n\n            <div class=\"span-hover\">\n                <span>Add a new user</span>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"user-card-wrap col-md-8\">\n        <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" *ngIf=\"selectedUser\"></app-user-card>\n        <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n    </div>\n\n</main>\n\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\"></app-new-user>\n"
+module.exports = "<main class=\"row\">\n    <div class=\"user-list-wrap col-md-4\">\n\n        <div class=\"user-list\">\n            <div class=\"slimscroll-wrap\" slimScroll width=\"100%\" alwaysVisible=false distance=\"0px\" height=\"100%\"\n                 size=\"2px\" color=\"#8b8d91\" opacity=1 railColor=\"#b2b3b7\" railOpacity=0>\n                <div class=\"user-list-item\" [class.deactive]=\"!user.active\"\n                     [class.selected-user]=\"selectedUser === user\"\n                     *ngFor=\"let user of User.users | namefilter: header.searchName: header.sortType\">\n                    <div class=\"user-item-img-wrap\" [ngStyle]=\"{'background-image': 'url(' + user.avatar + ')'}\"\n                         (click)=\"selectUser(user, false)\">\n                        <span *ngIf=\"!user.avatar\">{{userService.lettersNoImg(user)}}</span>\n                    </div>\n                    <div class=\"user-list-item-wrap\">\n                        <div class=\"user-name-wrap\">\n                            <div class=\"user-name pointer\" (click)=\"selectUser(user, false)\">\n                                <span>{{user.firstName}} {{user.secondName}}</span>\n                                <i class=\"material-icons\" [hidden]=\"user.active\">visibility_off</i>\n                                <span class=\"new-title\" [hidden]=\"!user.newUser\">New</span>\n                            </div>\n                            <br>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role == userService.config.USER_ROLE.SUPER\">Super user</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.ADMIN\">Client-admin</span>\n                            <span class=\"user-status pointer\" (click)=\"selectUser(user, false)\"\n                                  *ngIf=\"user.role ==  userService.config.USER_ROLE.USER\">Client-user</span>\n                        </div>\n                        <div class=\"user-ctrl\">\n                            <i class=\"material-icons\" (click)=\"selectUser(user, true)\">edit</i>\n\n                            <div class=\"pop-up-icon\" [class.pop-up-icon-active]=\"settingsUser === user\">\n                                <i class=\"material-icons\" (click)=\"settingsUser = user\"\n                                   (window:mouseup)=\"settingsUser = null\">more_vert</i>\n\n                                <div class=\"pop-up\" [hidden]=\"settingsUser !== user\">\n                                    <div class=\"pop-up-item\"   (click)=\"deactivateUser(user)\">\n                                        <i class=\"material-icons\"\n                                           [innerHTML]=\"!user.active?'visibility':'visibility_off'\"></i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span [innerHTML]=\"!user.active?'Activate':'Deactivate' \"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"pop-up-item\" (click)=\"deleteUser(user)\">\n                                        <i class=\"material-icons\">delete</i>\n                                        <div class=\"pop-up-row-name\">\n                                            <span>Delete</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"add-btn\" (click)=\"createNewUser = true\"\n             *ngIf=\"!createNewUser && User.role !=  userService.config.USER_ROLE.USER\">\n            <i class=\"material-icons\">add</i>\n\n            <div class=\"span-hover\">\n                <span>Add a new user</span>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"user-card-wrap col-md-8\">\n        <app-user-card [(user)]=\"selectedUser\" [canEdit]=\"canEdit\" *ngIf=\"selectedUser\"></app-user-card>\n        <span class=\"no-user\" [hidden]=\"selectedUser\">No user selected</span>\n    </div>\n\n</main>\n\n<app-new-user class=\"add-new\" [message]=\"message\" *ngIf=\"createNewUser\"></app-new-user>\n"
 
 /***/ }),
 
