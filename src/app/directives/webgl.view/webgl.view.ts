@@ -250,20 +250,19 @@ class OxiAPP {
 
 
         // postprocessing
-        this.gl.setClearAlpha( 0.0 );
-        this.composer = new THREE.EffectComposer( renderer );
-        let renderPass =   new THREE.RenderPass( this.scene, this.camera );
-        this.composer.addPass( renderPass );
-        let outlinePass = this.outlinePass = new THREE.OutlinePass( new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
-        this.composer.addPass( outlinePass );
-        outlinePass.hiddenEdgeColor = outlinePass.visibleEdgeColor = new THREE.Color(1.0,1.0,0.0);
-        //outlinePass.hiddenEdgeColor = new THREE.Color(0.117,0.117,0.117);
-        outlinePass.edgeStrength =outlinePass.edgeGlow = 0;
-
-        this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
-        this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight );
-        this.effectFXAA.renderToScreen = true;
-        this.composer.addPass(  this.effectFXAA );
+        //this.gl.setClearAlpha( 0.0 );
+        //this.composer = new THREE.EffectComposer( renderer );
+        //let renderPass =   new THREE.RenderPass( this.scene, this.camera );
+        //this.composer.addPass( renderPass );
+        //let outlinePass = this.outlinePass = new THREE.OutlinePass( new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
+        //this.composer.addPass( outlinePass );
+        //outlinePass.hiddenEdgeColor = outlinePass.visibleEdgeColor = new THREE.Color(1.0,1.0,0.0);
+        ////outlinePass.hiddenEdgeColor = new THREE.Color(0.117,0.117,0.117);
+        //outlinePass.edgeStrength =outlinePass.edgeGlow = 0;
+        //this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+        //this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight );
+        //this.effectFXAA.renderToScreen = true;
+        //this.composer.addPass(  this.effectFXAA );
 
         THREE.Mesh.prototype.getScreenPst = function () {
             let mesh:any = this,
@@ -807,14 +806,14 @@ class OxiAPP {
         if (Pace.running) return;
         this.updateInfoHTML();
         TWEEN.update();
-        //this.gl.render(this.scene, this.camera);
+        this.gl.render(this.scene, this.camera);
 
-        this.gl.autoClear = true;
-        this.gl.setClearColor( 0xffffff ,0);
-        this.gl.setClearAlpha( 0);
-
-
-        this.composer.render();
+        //this.gl.autoClear = true;
+        //this.gl.setClearColor( 0xffffff ,0);
+        //this.gl.setClearAlpha( 0);
+        //
+        //
+        //this.composer.render();
     }
 
 }
@@ -868,10 +867,10 @@ class OxiEvents {
         app._container.style.height = _h + _px;
         //app.updateInfoHTML();
         if (svgEl)  svgEl.resize(_w, _h);
-        app.effectFXAA.uniforms['resolution'].value.set(1 / _w, 1 / _h );
-        app.outlinePass.resolution.x = _w;
-        app.outlinePass.resolution.y = _h;
-        app.composer.setSize( _w, _h );
+        //app.effectFXAA.uniforms['resolution'].value.set(1 / _w, 1 / _h );
+        //app.outlinePass.resolution.x = _w;
+        //app.outlinePass.resolution.y = _h;
+        //app.composer.setSize( _w, _h );
         if (app._animation)app._animation.play();
     }
 
@@ -1902,12 +1901,12 @@ export class OxiToolTip {
 
                 if (show) {
                     this.mesh.material.color = this.mesh.material.onSelectColor;
-                    this.main.outlinePass.selectedObjects = [this.mesh];
+                    //this.main.outlinePass.selectedObjects = [this.mesh];
                 }
             })
             .onUpdate((delta)=> {
                 this.mesh.material.opacity = endO == 0 ? (maxOp - delta) : delta * endO;
-                this.main.outlinePass.edgeStrength =  this.mesh.material.opacity*5 ;
+                //this.main.outlinePass.edgeStrength =  this.mesh.material.opacity*5 ;
             })
             .onComplete(() => {
                 this.mesh.material.color = show ? this.mesh.material.onSelectColor : this.mesh.material.defColor;
