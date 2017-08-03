@@ -15,7 +15,7 @@ export interface IProject extends IMain{
     title: string;
     link?: string;
     image?: string;
-    owner?: string;
+    owner?: any;
     published?: boolean;
     newProject?: boolean;
     model?: ProjectModel;
@@ -24,7 +24,7 @@ export class Project  extends Main implements IProject{
     public title: string;
     public link: string;
     public image: string;
-    public owner: string;
+    public owner: any;
     public published: boolean;
     public newProject: boolean;
     public model: ProjectModel;
