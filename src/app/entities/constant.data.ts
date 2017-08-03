@@ -10,6 +10,13 @@ export class Config {
         Vector3: 4,
         ProjFile: 5,
     };
+
+    static CURSOR:any={
+        DEFAULT:'-webkit-grab',
+        POINTER:'pointer',
+        HOLDING:"-webkit-grabbing",
+        UN_AVAILABLE:'not-allowed',
+    };
     static EVENTS_NAME = {
         KEY: {
             DOWN: 'keydown',

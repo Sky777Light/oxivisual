@@ -250,17 +250,20 @@ class OxiAPP {
 
 
         // postprocessing
-        //this.composer = new THREE.EffectComposer( renderer );
-        //let renderPass =   new THREE.RenderPass( this.scene, this.camera );
-        //this.composer.addPass( renderPass );
-        //let outlinePass = this.outlinePass = new THREE.OutlinePass( new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
-        //this.composer.addPass( outlinePass );
-        //outlinePass.hiddenEdgeColor.r=outlinePass.hiddenEdgeColor.g = outlinePass.hiddenEdgeColor.b= 1;
-        //
-        //this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
-        //this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight );
-        //this.effectFXAA.renderToScreen = true;
-        //this.composer.addPass(  this.effectFXAA );
+        this.gl.setClearAlpha( 0.0 );
+        this.composer = new THREE.EffectComposer( renderer );
+        let renderPass =   new THREE.RenderPass( this.scene, this.camera );
+        this.composer.addPass( renderPass );
+        let outlinePass = this.outlinePass = new THREE.OutlinePass( new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
+        this.composer.addPass( outlinePass );
+        outlinePass.hiddenEdgeColor = outlinePass.visibleEdgeColor = new THREE.Color(1.0,1.0,0.0);
+        //outlinePass.hiddenEdgeColor = new THREE.Color(0.117,0.117,0.117);
+        outlinePass.edgeStrength =outlinePass.edgeGlow = 0;
+
+        this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+        this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight );
+        this.effectFXAA.renderToScreen = true;
+        this.composer.addPass(  this.effectFXAA );
 
         THREE.Mesh.prototype.getScreenPst = function () {
             let mesh:any = this,
@@ -804,13 +807,14 @@ class OxiAPP {
         if (Pace.running) return;
         this.updateInfoHTML();
         TWEEN.update();
-        this.gl.render(this.scene, this.camera);
+        //this.gl.render(this.scene, this.camera);
 
-        //this.gl.autoClear = true;
-        //this.gl.setClearColor( 0xffffff ,0);
-        //this.gl.setClearAlpha( 0.0 );
+        this.gl.autoClear = true;
+        this.gl.setClearColor( 0xffffff ,0);
+        this.gl.setClearAlpha( 0);
 
-        //this.composer.render();
+
+        this.composer.render();
     }
 
 }
@@ -872,7 +876,7 @@ class OxiEvents {
     }
 
     private onMouseUp(ev:any) {
-
+        if (!this.canEdit)this.main.gl.domElement.style.cursor  = ENTITY.Config.CURSOR.DEFAULT;
         let _self = this,
             btn:number = ev.button;
         this.mouse.down = this.lastEv = false;
@@ -912,8 +916,9 @@ class OxiEvents {
                 this.main._projControls.show({x: -1500}, true, false);
             });
         } else {
-
+            this.main.gl.domElement.style.cursor  = ENTITY.Config.CURSOR.DEFAULT;
             if (this.mouse.down) {
+                this.main.gl.domElement.style.cursor  = ENTITY.Config.CURSOR.HOLDING;
                 if (this.lastInter) {
                     this.main._projControls.show(ev, false);
                     this.lastInter = null;
@@ -962,6 +967,7 @@ class OxiEvents {
     private onMouseDown(ev:Event) {
         this.mouse.down = ev;
         this.lastEv = false;
+        if(!this.canEdit)this.main.gl.domElement.style.cursor  = ENTITY.Config.CURSOR.HOLDING;
     }
 
     private onMouseOut(ev:any) {
@@ -1879,6 +1885,7 @@ export class OxiToolTip {
 
     show(show:boolean = true) {
         //this.mesh.material.visible = show || this.canEdit;
+        this.main.gl.domElement.style.cursor  = show?this.mesh.click?ENTITY.Config.CURSOR.POINTER:ENTITY.Config.CURSOR.UN_AVAILABLE:ENTITY.Config.CURSOR.DEFAULT;
         if (this.mesh.tween) {
             if (this.mesh.tween.show == show) {
                 return;
@@ -1886,27 +1893,31 @@ export class OxiToolTip {
                 this.mesh.tween.stop();
             }
         }
-        let maxOp = this.main.main.selected.camera.opacity,
-        endO = (show || this.canEdit) ? maxOp : 0;
+        let maxOp = this.mesh.material.opacity,
+            _maxOpc = this.main.main.selected.camera.opacity,
+        endO = (show || this.canEdit) ? _maxOpc : 0;
         this.mesh.tween = new TWEEN.Tween({delta: 0}).to({delta: 1}, 400)
             //.easing(TWEEN.Easing.Exponential.In)
             .onStart(()=> {
-                //this.main.outlinePass.selectedObjects=[];
+
                 if (show) {
                     this.mesh.material.color = this.mesh.material.onSelectColor;
-
+                    this.main.outlinePass.selectedObjects = [this.mesh];
                 }
             })
             .onUpdate((delta)=> {
                 this.mesh.material.opacity = endO == 0 ? (maxOp - delta) : delta * endO;
+                this.main.outlinePass.edgeStrength =  this.mesh.material.opacity*5 ;
             })
             .onComplete(() => {
                 this.mesh.material.color = show ? this.mesh.material.onSelectColor : this.mesh.material.defColor;
+
+                //if(!show) this.main.outlinePass.selectedObjects=[];
                 //this.mesh.tween.stop();
                 //this.mesh.tween = null;
                 //this.mesh.material.depthTest =!show;
                 //this.main.gl.setDepthTest(false);
-                //if(show)this.main.outlinePass.selectedObjects = [this.mesh];
+
             })
             .start();
         this.mesh.tween.show = show;

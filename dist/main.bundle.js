@@ -3115,17 +3115,19 @@ var OxiAPP = (function () {
         //light.position.set(1, 1, 1);
         //this.scene.add(light);
         // postprocessing
-        //this.composer = new THREE.EffectComposer( renderer );
-        //let renderPass =   new THREE.RenderPass( this.scene, this.camera );
-        //this.composer.addPass( renderPass );
-        //let outlinePass = this.outlinePass = new THREE.OutlinePass( new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
-        //this.composer.addPass( outlinePass );
-        //outlinePass.hiddenEdgeColor.r=outlinePass.hiddenEdgeColor.g = outlinePass.hiddenEdgeColor.b= 1;
-        //
-        //this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
-        //this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight );
-        //this.effectFXAA.renderToScreen = true;
-        //this.composer.addPass(  this.effectFXAA );
+        this.gl.setClearAlpha(0.0);
+        this.composer = new THREE.EffectComposer(renderer);
+        var renderPass = new THREE.RenderPass(this.scene, this.camera);
+        this.composer.addPass(renderPass);
+        var outlinePass = this.outlinePass = new THREE.OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
+        this.composer.addPass(outlinePass);
+        outlinePass.hiddenEdgeColor = outlinePass.visibleEdgeColor = new THREE.Color(1.0, 1.0, 0.0);
+        //outlinePass.hiddenEdgeColor = new THREE.Color(0.117,0.117,0.117);
+        outlinePass.edgeStrength = outlinePass.edgeGlow = 0;
+        this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+        this.effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
+        this.effectFXAA.renderToScreen = true;
+        this.composer.addPass(this.effectFXAA);
         THREE.Mesh.prototype.getScreenPst = function () {
             var mesh = this, m = _self.gl.domElement, offset = _self._offset(), width = m.clientWidth, height = m.clientHeight, widthHalf = width / 2, heightHalf = height / 2, position = new THREE.Vector3();
             mesh.updateMatrixWorld();
@@ -3623,11 +3625,11 @@ var OxiAPP = (function () {
             return;
         this.updateInfoHTML();
         TWEEN.update();
-        this.gl.render(this.scene, this.camera);
-        //this.gl.autoClear = true;
-        //this.gl.setClearColor( 0xffffff ,0);
-        //this.gl.setClearAlpha( 0.0 );
-        //this.composer.render();
+        //this.gl.render(this.scene, this.camera);
+        this.gl.autoClear = true;
+        this.gl.setClearColor(0xffffff, 0);
+        this.gl.setClearAlpha(0);
+        this.composer.render();
     };
     return OxiAPP;
 }());
@@ -3670,6 +3672,8 @@ var OxiEvents = (function () {
     };
     OxiEvents.prototype.onMouseUp = function (ev) {
         var _this = this;
+        if (!this.canEdit)
+            this.main.gl.domElement.style.cursor = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].CURSOR.DEFAULT;
         var _self = this, btn = ev.button;
         this.mouse.down = this.lastEv = false;
         this.main._projControls.show(ev, false);
@@ -3705,7 +3709,9 @@ var OxiEvents = (function () {
             });
         }
         else {
+            this.main.gl.domElement.style.cursor = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].CURSOR.DEFAULT;
             if (this.mouse.down) {
+                this.main.gl.domElement.style.cursor = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].CURSOR.HOLDING;
                 if (this.lastInter) {
                     this.main._projControls.show(ev, false);
                     this.lastInter = null;
@@ -3754,6 +3760,8 @@ var OxiEvents = (function () {
     OxiEvents.prototype.onMouseDown = function (ev) {
         this.mouse.down = ev;
         this.lastEv = false;
+        if (!this.canEdit)
+            this.main.gl.domElement.style.cursor = __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].CURSOR.HOLDING;
     };
     OxiEvents.prototype.onMouseOut = function (ev) {
         if (this.mouse.down)
@@ -4567,6 +4575,7 @@ var OxiToolTip = (function () {
         var _this = this;
         if (show === void 0) { show = true; }
         //this.mesh.material.visible = show || this.canEdit;
+        this.main.gl.domElement.style.cursor = show ? this.mesh.click ? __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].CURSOR.POINTER : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].CURSOR.UN_AVAILABLE : __WEBPACK_IMPORTED_MODULE_1__entities_entities__["c" /* Config */].CURSOR.DEFAULT;
         if (this.mesh.tween) {
             if (this.mesh.tween.show == show) {
                 return;
@@ -4575,24 +4584,25 @@ var OxiToolTip = (function () {
                 this.mesh.tween.stop();
             }
         }
-        var maxOp = this.main.main.selected.camera.opacity, endO = (show || this.canEdit) ? maxOp : 0;
+        var maxOp = this.mesh.material.opacity, _maxOpc = this.main.main.selected.camera.opacity, endO = (show || this.canEdit) ? _maxOpc : 0;
         this.mesh.tween = new TWEEN.Tween({ delta: 0 }).to({ delta: 1 }, 400)
             .onStart(function () {
-            //this.main.outlinePass.selectedObjects=[];
             if (show) {
                 _this.mesh.material.color = _this.mesh.material.onSelectColor;
+                _this.main.outlinePass.selectedObjects = [_this.mesh];
             }
         })
             .onUpdate(function (delta) {
             _this.mesh.material.opacity = endO == 0 ? (maxOp - delta) : delta * endO;
+            _this.main.outlinePass.edgeStrength = _this.mesh.material.opacity * 5;
         })
             .onComplete(function () {
             _this.mesh.material.color = show ? _this.mesh.material.onSelectColor : _this.mesh.material.defColor;
+            //if(!show) this.main.outlinePass.selectedObjects=[];
             //this.mesh.tween.stop();
             //this.mesh.tween = null;
             //this.mesh.material.depthTest =!show;
             //this.main.gl.setDepthTest(false);
-            //if(show)this.main.outlinePass.selectedObjects = [this.mesh];
         })
             .start();
         this.mesh.tween.show = show;
@@ -4683,6 +4693,12 @@ var Config = (function () {
         OxiCamera: 3,
         Vector3: 4,
         ProjFile: 5,
+    };
+    Config.CURSOR = {
+        DEFAULT: '-webkit-grab',
+        POINTER: 'pointer',
+        HOLDING: "-webkit-grabbing",
+        UN_AVAILABLE: 'not-allowed',
     };
     Config.EVENTS_NAME = {
         KEY: {
